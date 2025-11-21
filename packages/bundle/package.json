@@ -23,7 +23,7 @@
     "build": "tsx src/builder.ts",
     "build:copy": "pnpm run build && pnpm run copy:all",
     "copy:all": "pnpm run copy:examples && pnpm run copy:storybook",
-    "copy:examples": "mkdir -p ../../examples/dist && cp dist/sb-ui-*.min.css dist/sb-ui-*.min.js dist/sb-ui-*.min.js.map ../../examples/dist/ 2>/dev/null || true && echo '✅ Archivos copiados a examples/dist/'",
+    "copy:examples": "mkdir -p ../../examples/dist && cp dist/sb-ui-*.css dist/sb-ui-*.js ../../examples/dist/ 2>/dev/null || true && echo '✅ Archivos copiados a examples/dist/'",
     "copy:storybook": "mkdir -p ../docs/.storybook && cp dist/sb-ui-*.min.css ../docs/.storybook/ 2>/dev/null || true && echo '✅ Archivos CSS copiados a Storybook'",
     "dev": "tsx watch src/builder.ts",
     "clean": "rm -rf dist",

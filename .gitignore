@@ -9,6 +9,11 @@ build/
 .next/
 out/
 
+# EXCEPCIÓN: Permitir examples/dist/ para desarrollo local
+!examples/dist/
+!examples/dist/*.css
+!examples/dist/*.js
+
 # No subir demos en dist (solo en examples/)
 **/dist/*.html
 
