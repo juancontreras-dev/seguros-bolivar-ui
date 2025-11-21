@@ -711,6 +711,247 @@ import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';</div>
         </div>
       </div>
 
+      <h3><i class="fa-solid fa-rocket"></i> Demo en Vivo - Prueba los Componentes</h3>
+      <p>Interactúa con los componentes y ve cómo funcionan en tiempo real:</p>
+
+      <!-- Demo Container -->
+      <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+        
+        <!-- Formulario Completo -->
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <h4 style="margin-top: 0; color: #038450; margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-clipboard-list"></i> Formulario de Registro
+          </h4>
+          
+          <form id="demo-form" style="display: grid; gap: 1.5rem;">
+            <!-- Nombre y Apellido -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                  Nombre <span style="color: #e53935;">*</span>
+                </label>
+                <input type="text" class="sb-ui-input" placeholder="Tu nombre" required style="width: 100%;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                  Apellido <span style="color: #e53935;">*</span>
+                </label>
+                <input type="text" class="sb-ui-input" placeholder="Tu apellido" required style="width: 100%;">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                Correo Electrónico <span style="color: #e53935;">*</span>
+              </label>
+              <input type="email" class="sb-ui-input" placeholder="tu@email.com" required style="width: 100%;">
+            </div>
+
+            <!-- Fecha de Nacimiento con Datepicker -->
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                Fecha de Nacimiento <span style="color: #e53935;">*</span>
+              </label>
+              <sb-ui-datepicker
+                id="demo-datepicker"
+                placeholder="DD/MM/YYYY"
+                size="medium"
+                style="width: 100%;"
+              ></sb-ui-datepicker>
+            </div>
+
+            <!-- Tipo de Seguro -->
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                Tipo de Seguro <span style="color: #e53935;">*</span>
+              </label>
+              <select class="sb-ui-select" required style="width: 100%;">
+                <option value="">Selecciona una opción</option>
+                <option value="vida">Seguro de Vida</option>
+                <option value="auto">Seguro de Auto</option>
+                <option value="hogar">Seguro de Hogar</option>
+                <option value="salud">Seguro de Salud</option>
+              </select>
+            </div>
+
+            <!-- Checkboxes -->
+            <div>
+              <label style="display: block; margin-bottom: 0.75rem; font-weight: 500; color: #1b1b1b;">
+                Coberturas Adicionales
+              </label>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" class="sb-ui-checkbox">
+                  <span>Cobertura internacional</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" class="sb-ui-checkbox">
+                  <span>Asistencia 24/7</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" class="sb-ui-checkbox">
+                  <span>Protección contra robo</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Toggle -->
+            <div>
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                <input type="checkbox" class="sb-ui-toggle">
+                <span style="font-weight: 500; color: #1b1b1b;">Acepto recibir notificaciones por correo</span>
+              </label>
+            </div>
+
+            <!-- Términos y Condiciones -->
+            <div>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="checkbox" class="sb-ui-checkbox" required>
+                <span style="color: #5b5b5b; font-size: 0.875rem;">
+                  Acepto los <a href="#" style="color: #038450; text-decoration: underline;">términos y condiciones</a> <span style="color: #e53935;">*</span>
+                </span>
+              </label>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <button type="submit" class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+                <i class="fa-solid fa-paper-plane"></i> Enviar Solicitud
+              </button>
+              <button type="button" class="sb-ui-button sb-ui-button--secondary" onclick="document.getElementById('demo-form').reset()">
+                <i class="fa-solid fa-rotate-left"></i> Limpiar
+              </button>
+              <button type="button" class="sb-ui-button sb-ui-button--secondary sb-ui-button--text" onclick="document.getElementById('demo-modal').setAttribute('open', 'true')">
+                <i class="fa-solid fa-info-circle"></i> Más Info
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Botones de Demo para Toasts -->
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <h4 style="margin-top: 0; color: #038450; margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-bell"></i> Notificaciones Toast
+          </h4>
+          <p style="color: #5b5b5b; margin-bottom: 1.5rem;">Prueba los diferentes tipos de notificaciones:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small" onclick="showDemoToast('success')">
+              <i class="fa-solid fa-check"></i> Éxito
+            </button>
+            <button class="sb-ui-button sb-ui-button--error sb-ui-button--fill sb-ui-button--small" onclick="showDemoToast('error')">
+              <i class="fa-solid fa-xmark"></i> Error
+            </button>
+            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small" onclick="showDemoToast('warning')">
+              <i class="fa-solid fa-triangle-exclamation"></i> Advertencia
+            </button>
+            <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--fill sb-ui-button--small" onclick="showDemoToast('info')">
+              <i class="fa-solid fa-info-circle"></i> Información
+            </button>
+          </div>
+        </div>
+
+        <!-- Spinner Demo -->
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <h4 style="margin-top: 0; color: #038450; margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-spinner"></i> Indicadores de Carga
+          </h4>
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+            <div style="text-align: center;">
+              <div class="sb-ui-spinner" style="margin: 0 auto 0.5rem;"></div>
+              <small style="color: #5b5b5b;">Basic</small>
+            </div>
+            <div style="text-align: center;">
+              <div class="sb-ui-spinner sb-ui-spinner--fast" style="margin: 0 auto 0.5rem;"></div>
+              <small style="color: #5b5b5b;">Fast</small>
+            </div>
+            <div style="text-align: center;">
+              <div class="sb-ui-spinner sb-ui-spinner--slow" style="margin: 0 auto 0.5rem;"></div>
+              <small style="color: #5b5b5b;">Slow</small>
+            </div>
+            <div style="text-align: center;">
+              <div class="sb-ui-spinner sb-ui-spinner--icon">
+                <i class="fa-solid fa-rotate"></i>
+              </div>
+              <small style="color: #5b5b5b; display: block; margin-top: 0.5rem;">Icon</small>
+            </div>
+            <div style="text-align: center;">
+              <div class="sb-ui-spinner sb-ui-spinner--icon-text">
+                <i class="fa-solid fa-download"></i>
+                <span>Descargando...</span>
+              </div>
+              <small style="color: #5b5b5b; display: block; margin-top: 0.5rem;">Icon + Text</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Demo -->
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="margin-top: 0; color: #038450; margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-bars"></i> Acordeones Informativos
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-shield-halved sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Qué coberturas incluye?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Nuestro seguro incluye cobertura completa contra daños, robo, accidentes y asistencia 24/7 en todo el país.</p>
+                <button class="sb-ui-button sb-ui-button--primary sb-ui-button--text sb-ui-button--small">
+                  Ver detalles completos
+                </button>
+              </div>
+            </details>
+
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-clock sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cuánto tarda la aprobación?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>La aprobación es inmediata en la mayoría de los casos. Recibirás una respuesta en menos de 24 horas.</p>
+              </div>
+            </details>
+
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-invoice-dollar sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cómo funciona la facturación?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Puedes elegir pago mensual, trimestral o anual. Aceptamos tarjetas de crédito, débito y transferencias bancarias.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de Demo -->
+      <sb-ui-modal id="demo-modal" title="Información del Seguro">
+        <div style="padding: 1rem;">
+          <p style="margin-bottom: 1rem;">Este es un modal de ejemplo que muestra cómo funcionan las ventanas emergentes en el Design System.</p>
+          <h4 style="color: #038450; margin-bottom: 0.5rem;">Características principales:</h4>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: #5b5b5b;">
+            <li>Overlay oscuro</li>
+            <li>Animaciones suaves</li>
+            <li>Cierre con ESC o botón</li>
+            <li>Accesible (ARIA)</li>
+          </ul>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="document.getElementById('demo-modal').removeAttribute('open')">
+            <i class="fa-solid fa-check"></i> Entendido
+          </button>
+        </div>
+      </sb-ui-modal>
+
+      <div class="info-box" style="margin-top: 2rem;">
+        <strong><i class="fa-solid fa-code"></i> ¿Quieres ver el código?</strong>
+        <p style="margin-top: 0.5rem;">Todos estos ejemplos están disponibles en la sección de componentes individuales. Cada componente tiene su propia página con código completo y documentación.</p>
+      </div>
+
       <h3>Ejemplo Rápido: Botón</h3>
       <div class="code-block" data-lang="html">&lt;!-- Botón Primary Fill --&gt;
 &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
@@ -1272,6 +1513,96 @@ window.addEventListener('DOMContentLoaded', () => {
       
       alert(`Marca cambiada a: ${marca} (${tema})`);
     }
+
+    // ========================================
+    // Demo: Toast Notifications
+    // ========================================
+    function showDemoToast(type) {
+      const messages = {
+        success: 'Formulario enviado correctamente',
+        error: 'Error al procesar la solicitud',
+        warning: 'Por favor revisa los campos marcados',
+        info: 'Recuerda verificar tu correo electrónico'
+      };
+
+      const icons = {
+        success: '<i class="fa-solid fa-check"></i>',
+        error: '<i class="fa-solid fa-xmark"></i>',
+        warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
+        info: '<i class="fa-solid fa-info-circle"></i>'
+      };
+
+      const titles = {
+        success: 'Éxito',
+        error: 'Error',
+        warning: 'Advertencia',
+        info: 'Información'
+      };
+
+      // Crear toast
+      const toast = document.createElement('div');
+      toast.className = `sb-ui-alert sb-ui-alert--${type} sb-ui-alert--toast sb-ui-alert--fade-in`;
+      toast.setAttribute('role', 'alert');
+      
+      toast.innerHTML = `
+        <div class="sb-ui-alert-icon">${icons[type]}</div>
+        <div class="sb-ui-alert-content">
+          <div class="sb-ui-alert-title">${titles[type]}</div>
+          <div class="sb-ui-alert-message">${messages[type]}</div>
+        </div>
+        <button class="sb-ui-alert-close" aria-label="Cerrar notificación">×</button>
+      `;
+
+      // Agregar al DOM
+      document.body.appendChild(toast);
+
+      // Botón de cerrar
+      const closeBtn = toast.querySelector('.sb-ui-alert-close');
+      closeBtn.addEventListener('click', () => removeDemoToast(toast));
+
+      // Auto-remover después de 5 segundos
+      setTimeout(() => removeDemoToast(toast), 5000);
+    }
+
+    function removeDemoToast(toast) {
+      if (!toast.parentNode) return;
+      toast.classList.add('sb-ui-alert--fade-out');
+      toast.addEventListener('animationend', () => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      });
+    }
+
+    // ========================================
+    // Demo: Form Submit
+    // ========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('demo-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Mostrar spinner en el botón
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalHTML = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<div class="sb-ui-spinner sb-ui-spinner--fast" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></div> Enviando...';
+          submitBtn.disabled = true;
+
+          // Simular envío
+          setTimeout(() => {
+            submitBtn.innerHTML = originalHTML;
+            submitBtn.disabled = false;
+            
+            // Mostrar toast de éxito
+            showDemoToast('success');
+            
+            // Opcional: Limpiar formulario
+            // form.reset();
+          }, 2000);
+        });
+      }
+    });
 
     // Nueva función para la demostración interactiva
     function aplicarCambioMarcaTema() {
