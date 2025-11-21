@@ -29,6 +29,47 @@
       min-height: 100vh;
     }
 
+    /* Fix para componentes del Design System */
+    .sb-ui-input,
+    .sb-ui-select,
+    .sb-ui-checkbox,
+    .sb-ui-toggle,
+    .sb-ui-button {
+      all: revert;
+      box-sizing: border-box;
+    }
+
+    /* Asegurar que los inputs tengan padding */
+    .sb-ui-input,
+    .sb-ui-select {
+      padding: 0.75rem 1rem !important;
+      border: 1px solid #d0d0d0 !important;
+      border-radius: 4px !important;
+      font-size: 1rem !important;
+      transition: border-color 0.2s ease !important;
+    }
+
+    .sb-ui-input:focus,
+    .sb-ui-select:focus {
+      outline: none !important;
+      border-color: #038450 !important;
+      box-shadow: 0 0 0 3px rgba(3, 132, 80, 0.1) !important;
+    }
+
+    /* Checkboxes y toggles */
+    .sb-ui-checkbox,
+    .sb-ui-toggle {
+      width: 20px !important;
+      height: 20px !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
+    .sb-ui-toggle {
+      width: 44px !important;
+      height: 24px !important;
+    }
+
     /* Header */
     .header {
       background: linear-gradient(135deg, #038450 0%, #026d42 100%);
