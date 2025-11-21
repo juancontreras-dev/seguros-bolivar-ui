@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: davivienda | Theme: dark
- * Generated: 2025-11-21T15:02:31.923Z
+ * Generated: 2025-11-21T19:06:02.857Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -6953,23 +6953,33 @@
 
 
 
-@layer reset, tokens, base, variants, layouts, states, utilities;
+@layer reset, tokens, base, variants, states, utilities;
 /**
  * Tabs Component - Seguros Bolivar UI Design System
  * - CSS Nesting nativo con &
  * - @layer para control de cascada
  * - Logical Properties (RTL/LTR)
- * - clamp() para responsive fluido
+ * - Dimensiones específicas según variante
  *
- * Uso: <div class="sb-ui-tabs sb-ui-tabs--horizontal sb-ui-tabs--track">
- *        <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
- *          <i class="sb-ui-tabs__icon">🌐</i>
- *          <div class="sb-ui-tabs__content">
- *            <span class="sb-ui-tabs__title">Title</span>
- *            <span class="sb-ui-tabs__description">Description</span>
- *          </div>
- *        </button>
- *      </div>
+ * VARIANTES:
+ * - track: Línea inferior verde (48px × 152px, sin iconos)
+ * - button: Fondo amarillo activo (72px × 146px, con iconos 20px)
+ * - folder: Estilo carpeta (72px × 146px, con iconos 20px)
+ *
+ * Uso Track: <div class="sb-ui-tabs sb-ui-tabs--track">
+ *              <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+ *                <span class="sb-ui-tabs__title">Title</span>
+ *                <span class="sb-ui-tabs__description">Description</span>
+ *              </button>
+ *            </div>
+ *
+ * Uso Button/Folder: <div class="sb-ui-tabs sb-ui-tabs--button">
+ *                      <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+ *                        <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+ *                        <span class="sb-ui-tabs__title">Title</span>
+ *                        <span class="sb-ui-tabs__description">Description</span>
+ *                      </button>
+ *                    </div>
  */
 /* ========================================
    RESET LAYER
@@ -6990,56 +7000,22 @@
    ======================================== */
 @layer tokens {
   .sb-ui-tabs {
-    /* Colores BASE - Estados interactivos */
-    --sb-ui-tabs-bg-color: transparent;
-    --sb-ui-tabs-bg-hover: var(--sb-ui-color-secondary-L400, #fffcf0);
-    --sb-ui-tabs-bg-active: var(--sb-ui-color-secondary-L400, #fffcf0);
-    --sb-ui-tabs-bg-disabled: transparent;
+    /* Colores BASE */
+    --sb-ui-tabs-text-color: #5b5b5b;
+    --sb-ui-tabs-text-active: #038450;
+    --sb-ui-tabs-description-color: #9b9b9b;
 
-    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-base, #038450);
-    --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-tabs-icon-color: #5b5b5b;
+    --sb-ui-tabs-icon-active: #038450;
 
-    --sb-ui-tabs-icon-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    --sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-base, #038450);
-    --sb-ui-tabs-icon-active: var(--sb-ui-color-primary-base, #038450);
-    --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100, #d0d0d0);
+    --sb-ui-tabs-bg-hover: #f5f5f5;
 
-    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
-    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base, #038450);
-
-    /* Espaciado de tabs (muy compactos según diseño) */
-    --sb-ui-tabs-padding-inline: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
-    --sb-ui-tabs-padding-block: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
-    --sb-ui-tabs-gap: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
-    
-    /* Espaciado del panel de contenido (más espacioso) */
-    --sb-ui-tabs-panel-padding-inline: clamp(2rem, 1.5rem + 2vw, 3rem);
-    --sb-ui-tabs-panel-padding-block: clamp(2rem, 1.5rem + 2vw, 3rem);
-    --sb-ui-tabs-panel-margin-block-start: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
-
-    /* Tipografía - SIEMPRE con clamp() */
+    /* Tipografía */
     --sb-ui-tabs-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-    --sb-ui-tabs-title-font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
-    --sb-ui-tabs-title-font-weight: 500;
-    --sb-ui-tabs-description-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-    --sb-ui-tabs-description-font-weight: 400;
-    --sb-ui-tabs-line-height: 1.5;
-
-    /* Tamaños - Logical properties */
-    --sb-ui-tabs-min-inline-size: clamp(80px, 15vw, 120px);
-
-    /* Bordes */
-    --sb-ui-tabs-border-width: 1px;
-    --sb-ui-tabs-border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
-    --sb-ui-tabs-indicator-size: 2px;
-
-    /* Iconos */
-    --sb-ui-tabs-icon-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+    --sb-ui-tabs-line-height: 1.2;
 
     /* Transiciones */
-    --sb-ui-tabs-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    --sb-ui-tabs-transition: all 0.2s ease;
   }
 }
 /* ========================================
@@ -7058,21 +7034,15 @@
   .sb-ui-tabs__item {
     /* Layout */
     display: flex;
-    align-items: center;
-    gap: var(--sb-ui-tabs-gap);
     position: relative;
-
-    /* Spacing */
-    padding-inline: var(--sb-ui-tabs-padding-inline);
-    padding-block: var(--sb-ui-tabs-padding-block);
+    box-sizing: border-box;
 
     /* Typography */
     font-family: var(--sb-ui-tabs-font-family);
-    text-align: start;
+    line-height: var(--sb-ui-tabs-line-height);
 
     /* Appearance */
-    background-color: var(--sb-ui-tabs-bg-color);
-    color: var(--sb-ui-tabs-text-color);
+    background: transparent;
     border: none;
 
     /* Interaction */
@@ -7082,44 +7052,22 @@
     /* Animation */
     transition: var(--sb-ui-tabs-transition);
 
-    /* Nested Pseudo-classes */
+    /* Hover */
   }
-    .sb-ui-tabs__item:hover:not(:disabled):not(.sb-ui-tabs__item--disabled) {
-      background-color: var(--sb-ui-tabs-bg-hover);
-      color: var(--sb-ui-tabs-text-hover);
+    .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active) {
+      background: var(--sb-ui-tabs-bg-hover);
     }
 
-      .sb-ui-tabs__item:hover:not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
-        color: var(--sb-ui-tabs-icon-hover);
-      }
-
-    .sb-ui-tabs__item:active:not(:disabled):not(.sb-ui-tabs__item--disabled) {
-      background-color: var(--sb-ui-tabs-bg-active);
-    }
-
-    .sb-ui-tabs__item:focus-visible:not(:disabled):not(.sb-ui-tabs__item--disabled) {
-      outline: 3px solid var(--sb-ui-color-secondary-L100);
+    /* Focus */
+    .sb-ui-tabs__item:focus-visible {
+      outline: 3px solid var(--sb-ui-color-secondary-L100, #fffcf0);
       outline-offset: 2px;
     }
 
-    .sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled {
-      color: var(--sb-ui-tabs-text-disabled);
-      cursor: not-allowed;
-      pointer-events: none;
+    /* Active transform - prevent misalignment */
+    .sb-ui-tabs__item:active {
+      transform: none;
     }
-
-      :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
-        color: var(--sb-ui-tabs-icon-disabled);
-      }
-
-    /* Active state */
-    .sb-ui-tabs__item.sb-ui-tabs__item--active {
-      color: var(--sb-ui-tabs-text-active);
-    }
-
-      .sb-ui-tabs__item.sb-ui-tabs__item--active .sb-ui-tabs__icon {
-        color: var(--sb-ui-tabs-icon-active);
-      }
 
   .sb-ui-tabs__icon {
     /* Layout */
@@ -7128,11 +7076,6 @@
     justify-content: center;
     flex-shrink: 0;
 
-    /* Size */
-    inline-size: var(--sb-ui-tabs-icon-size);
-    block-size: var(--sb-ui-tabs-icon-size);
-    font-size: var(--sb-ui-tabs-icon-size);
-
     /* Color */
     color: var(--sb-ui-tabs-icon-color);
 
@@ -7140,133 +7083,192 @@
     transition: var(--sb-ui-tabs-transition);
   }
 
-  .sb-ui-tabs__content {
-    /* Layout */
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.0625rem, 0.05rem + 0.1vw, 0.125rem);
-    flex: 1;
-  }
-
   .sb-ui-tabs__title {
     /* Typography */
-    font-size: var(--sb-ui-tabs-title-font-size);
-    font-weight: var(--sb-ui-tabs-title-font-weight);
-    line-height: var(--sb-ui-tabs-line-height);
+    font-weight: 700;
+    color: var(--sb-ui-tabs-text-color);
   }
 
   .sb-ui-tabs__description {
     /* Typography */
-    font-size: var(--sb-ui-tabs-description-font-size);
-    font-weight: var(--sb-ui-tabs-description-font-weight);
-    line-height: var(--sb-ui-tabs-line-height);
-    color: var(--sb-ui-tabs-text-color);
+    font-weight: 400;
+    color: var(--sb-ui-tabs-description-color);
   }
-
-  .sb-ui-tabs__panel {
-    /* Layout */
-    display: none;
-
-    /* Spacing */
-    padding-inline: var(--sb-ui-tabs-panel-padding-inline);
-    padding-block: var(--sb-ui-tabs-panel-padding-block);
-    margin-block-start: var(--sb-ui-tabs-panel-margin-block-start);
-
-    /* Typography */
-    font-family: var(--sb-ui-tabs-font-family);
-    font-size: var(--sb-ui-tabs-title-font-size);
-    line-height: var(--sb-ui-tabs-line-height);
-    color: var(--sb-ui-tabs-text-color);
-
-    /* Appearance */
-    background-color: transparent;
-
-    /* Active panel */
-  }
-    .sb-ui-tabs__panel.sb-ui-tabs__panel--active {
-      display: block;
-    }
 }
 /* ========================================
-   VARIANTS LAYER - Track, Button, Folder
+   VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* Track variant - con línea indicadora */
+  /* ========================================
+     TRACK VARIANT - Línea inferior verde
+     ======================================== */
+  .sb-ui-tabs--track {
+    gap: 0;
+  }
+
     .sb-ui-tabs--track .sb-ui-tabs__item {
-      background-color: transparent;
-    }
+      /* Dimensiones específicas */
+      height: 48px;
+      min-height: 48px;
+      max-height: 48px;
+      width: 152px;
+      max-width: 152px;
+      min-width: 152px;
+      flex: 0 0 152px;
 
-  /* Button variant - con fondo en active */
-    .sb-ui-tabs--button .sb-ui-tabs__item.sb-ui-tabs__item--active {
-      background-color: var(--sb-ui-tabs-bg-active);
-    }
-
-  /* Folder variant - sin fondo especial */
-    .sb-ui-tabs--folder .sb-ui-tabs__item {
-      background-color: transparent;
-    }
-}
-/* ========================================
-   LAYOUTS LAYER - Horizontal y Vertical
-   ======================================== */
-@layer layouts {
-  /* Horizontal layout */
-  .sb-ui-tabs--horizontal {
-    flex-direction: row;
-    border-block-end: var(--sb-ui-tabs-border-width) solid var(--sb-ui-tabs-border-color);
-  }
-
-    .sb-ui-tabs--horizontal .sb-ui-tabs__item {
+      /* Layout */
       flex-direction: column;
-      text-align: center;
+      align-items: flex-start;
+      justify-content: center;
 
-      /* Indicador inferior */
+      /* Spacing */
+      padding: 0.25rem 1rem;
+      gap: 0.125rem;
+
+      /* Border */
+      border-bottom: 3px solid transparent;
+
+      /* Active state */
     }
-      :is(.sb-ui-tabs--horizontal .sb-ui-tabs__item)::after {
-        content: '';
-        position: absolute;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
-        inset-block-end: calc(-1 * var(--sb-ui-tabs-border-width));
-        block-size: var(--sb-ui-tabs-indicator-size);
-        background-color: transparent;
-        transition: background-color 0.2s ease;
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) {
+        background: #f2f9f6;
+        border-bottom-color: #038450;
       }
 
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--horizontal .sb-ui-tabs__item)::after {
-        background-color: var(--sb-ui-tabs-border-active);
-      }
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: #038450;
+        }
 
-    .sb-ui-tabs--horizontal .sb-ui-tabs__content {
-      align-items: center;
+    .sb-ui-tabs--track .sb-ui-tabs__title {
+      font-size: 0.875rem; /* 14px */
     }
 
-  /* Vertical layout */
-  .sb-ui-tabs--vertical {
-    flex-direction: column;
-    border-inline-start: var(--sb-ui-tabs-border-width) solid var(--sb-ui-tabs-border-color);
+    .sb-ui-tabs--track .sb-ui-tabs__description {
+      font-size: 0.6875rem; /* 11px */
+    }
+
+  /* ========================================
+     BUTTON VARIANT - Fondo amarillo activo
+     ======================================== */
+  .sb-ui-tabs--button {
+    gap: 0.5rem;
   }
 
-    .sb-ui-tabs--vertical .sb-ui-tabs__item {
-      flex-direction: row;
-      inline-size: 100%;
+    .sb-ui-tabs--button .sb-ui-tabs__item {
+      /* Dimensiones específicas */
+      height: 72px;
+      min-height: 72px;
+      max-height: 72px;
+      width: 146px;
+      max-width: 146px;
+      min-width: 146px;
+      flex: 0 0 146px;
 
-      /* Indicador lateral */
+      /* Layout */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      /* Spacing */
+      padding: 0.75rem 1rem;
+      gap: 0.375rem;
+
+      /* Border */
+      background: #fff;
+      border: 1px solid transparent;
+      border-radius: 8px;
+
+      /* Active state */
     }
-      :is(.sb-ui-tabs--vertical .sb-ui-tabs__item)::before {
-        content: '';
-        position: absolute;
-        inset-inline-start: calc(-1 * var(--sb-ui-tabs-border-width));
-        inset-block-start: 0;
-        inset-block-end: 0;
-        inline-size: var(--sb-ui-tabs-indicator-size);
-        background-color: transparent;
-        transition: background-color 0.2s ease;
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
+        background: #ffe16f;
+        border: 1px solid #ffe16f;
       }
 
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--vertical .sb-ui-tabs__item)::before {
-        background-color: var(--sb-ui-tabs-border-active);
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: #038450;
+          font-weight: 700;
+        }
+
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__icon {
+          color: #038450;
+        }
+
+    .sb-ui-tabs--button .sb-ui-tabs__icon {
+      font-size: 20px;
+    }
+
+    .sb-ui-tabs--button .sb-ui-tabs__title {
+      font-size: 0.875rem; /* 14px */
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .sb-ui-tabs--button .sb-ui-tabs__description {
+      font-size: 0.75rem; /* 12px */
+      text-align: center;
+    }
+
+  /* ========================================
+     FOLDER VARIANT - Estilo carpeta
+     ======================================== */
+  .sb-ui-tabs--folder {
+    gap: 0;
+  }
+
+    .sb-ui-tabs--folder .sb-ui-tabs__item {
+      /* Dimensiones específicas */
+      height: 72px;
+      min-height: 72px;
+      max-height: 72px;
+      width: 146px;
+      max-width: 146px;
+      min-width: 146px;
+      flex: 0 0 146px;
+
+      /* Layout */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      /* Spacing */
+      padding: 0.75rem 1rem;
+      gap: 0.375rem;
+
+      /* Border */
+      background: #fff;
+      border: none;
+      border-radius: 8px 8px 0 0;
+
+      /* Active state */
+    }
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) {
+        background: #f2f9f6;
       }
+
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: #038450;
+          font-weight: 700;
+        }
+
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__icon {
+          color: #038450;
+        }
+
+    .sb-ui-tabs--folder .sb-ui-tabs__icon {
+      font-size: 20px;
+    }
+
+    .sb-ui-tabs--folder .sb-ui-tabs__title {
+      font-size: 0.875rem; /* 14px */
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .sb-ui-tabs--folder .sb-ui-tabs__description {
+      font-size: 0.75rem; /* 12px */
+      text-align: center;
+    }
 }
 /* ========================================
    STATES LAYER
@@ -7283,9 +7285,8 @@
 @layer utilities {
   /* High contrast mode support */
   @media (prefers-contrast: high) {
-    .sb-ui-tabs {
-      --sb-ui-tabs-border-width: 2px;
-      --sb-ui-tabs-indicator-size: 3px;
+    .sb-ui-tabs__item {
+      outline-width: 2px;
     }
   }
 
@@ -7295,20 +7296,15 @@
       --sb-ui-tabs-transition: none;
     }
 
+    .sb-ui-tabs__item {
+      transition: none;
+    }
+
     .sb-ui-tabs__icon {
       transition: none;
     }
   }
-
-  /* Mobile responsive */
-  @media (inline-size <= 640px) {
-    .sb-ui-tabs--horizontal {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
 }
-
 
 
 /**

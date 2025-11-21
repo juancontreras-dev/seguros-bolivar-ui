@@ -636,9 +636,12 @@
 
       // Initialize on page load
       updateBrandAndTheme();
+    </script>
 
-      // Toast Management
-      const toastMessages = {
+    <!-- Toast Management - Separate script for global scope -->
+    <script>
+      // Toast Management - Definiciones globales
+      window.toastMessages = {
         success: {
           title: '¡Operación exitosa!',
           message: 'Tu solicitud ha sido procesada correctamente.'
@@ -657,7 +660,7 @@
         }
       };
 
-      const positionClasses = {
+      window.positionClasses = {
         'top-left': 'sb-ui-alert--toast-top-left',
         'top-center': 'sb-ui-alert--toast-top-center',
         'top-right': '',  // Default
@@ -666,9 +669,20 @@
         'bottom-right': 'sb-ui-alert--toast-bottom-right'
       };
 
-      function showToast(type = 'success', position = 'top-right') {
-        const message = toastMessages[type];
-        const positionClass = positionClasses[position] || '';
+      // Función para mostrar toast (global para onclick)
+      window.showToast = function(type, position) {
+        console.log('🔔 showToast called with:', { type, position });
+        
+        const message = window.toastMessages[type];
+        if (!message) {
+          console.error('❌ Tipo de toast no válido:', type);
+          console.error('Tipos disponibles:', Object.keys(window.toastMessages));
+          return;
+        }
+        
+        const positionClass = window.positionClasses[position] || '';
+        console.log('✅ Message:', message);
+        console.log('✅ Position class:', positionClass);
         
         // Create toast element
         const toast = document.createElement('div');
@@ -686,31 +700,41 @@
         
         // Add to body
         document.body.appendChild(toast);
+        console.log('✅ Toast agregado al DOM');
         
         // Close button handler
         const closeBtn = toast.querySelector('.sb-ui-alert-close');
-        closeBtn.addEventListener('click', () => {
-          removeToast(toast);
-        });
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            window.removeToast(toast);
+          });
+        }
         
         // Auto-remove after 5 seconds
         setTimeout(() => {
           if (document.body.contains(toast)) {
-            removeToast(toast);
+            window.removeToast(toast);
           }
         }, 5000);
-      }
+      };
 
-      function removeToast(toast) {
+      window.removeToast = function(toast) {
+        console.log('🗑️ Removiendo toast');
         toast.classList.add('sb-ui-alert--fade-out');
         setTimeout(() => {
           if (toast.parentNode) {
             toast.parentNode.removeChild(toast);
+            console.log('✅ Toast removido del DOM');
           }
         }, 300);
-      }
+      };
 
-      // Close button handlers for static alerts
+      // Ensure script is loaded
+      console.log('✅ Toast script loaded. showToast is available:', typeof window.showToast === 'function');
+    </script>
+
+    <!-- Close button handlers for static alerts -->
+    <script>
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.sb-ui-alert-close').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -720,6 +744,8 @@
             }
           });
         });
+        
+        console.log('✅ Alert close handlers initialized');
       });
     </script>
   </body>

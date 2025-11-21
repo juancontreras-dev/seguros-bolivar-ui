@@ -102,6 +102,74 @@ import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';
 
 ---
 
+## ⚠️ IMPORTANTE: Data Attributes
+
+Para que los estilos de cada marca se apliquen correctamente, **DEBES agregar** los atributos `data-brand` y `data-theme` al elemento `<html>`:
+
+```html
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+</head>
+<body>
+  <!-- Tus componentes aquí -->
+</body>
+</html>
+```
+
+### ¿Por qué son necesarios?
+
+Los estilos de cada marca se aplican mediante **brand overrides** que utilizan selectores CSS basados en estos data attributes. Sin ellos, solo verás los estilos base genéricos (White Label).
+
+```css
+/* Sin data-brand → Estilos genéricos */
+.sb-ui-button--primary {
+  background-color: blue; /* Color genérico */
+}
+
+/* Con data-brand="seguros-bolivar" → Estilos de la marca */
+[data-brand='seguros-bolivar'] .sb-ui-button--primary {
+  background-color: #FFE16F; /* ¡Amarillo de Bolívar! */
+}
+```
+
+### Valores disponibles
+
+#### `data-brand` (Obligatorio)
+- `seguros-bolivar` → Amarillo (#FFE16F) + Verde (#038450)
+- `davivienda` → Rojo Davivienda
+- `jelpit` → Estilos Jelpit
+- `cien-cuadras` → Estilos Cien Cuadras
+- `doctor-aki` → Estilos Doctor Aki
+- `white-label` → Estilos base sin personalización
+
+#### `data-theme` (Opcional)
+- `light` → Tema claro (default)
+- `dark` → Tema oscuro
+
+### Cambiar dinámicamente
+
+```javascript
+// Cambiar marca
+document.documentElement.setAttribute('data-brand', 'davivienda');
+
+// Cambiar tema
+document.documentElement.setAttribute('data-theme', 'dark');
+
+// Cambiar ambos + CSS
+function cambiarMarcaYTema(marca, tema) {
+  document.documentElement.setAttribute('data-brand', marca);
+  document.documentElement.setAttribute('data-theme', tema);
+  
+  // Actualizar el archivo CSS cargado
+  const linkCSS = document.querySelector('link[rel="stylesheet"]');
+  linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+}
+```
+
+---
+
 ## 💡 Uso Rápido
 
 ### 1. Componentes CSS (Atoms)

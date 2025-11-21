@@ -358,8 +358,412 @@
     console.warn('unable to connect to top frame for connecting dev tools');
   }
 </script>
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
-  <script type="module" crossorigin src="./assets/iframe-zmBSBa-S.js"></script>
+<!-- Storybook Layout Customization - Solo para Web Components -->
+<style>
+  /* Z-index alto para dropdowns de Web Components */
+  .sb-datepicker,
+  .sb-ui-datepicker,
+  .sb-ui-calendar,
+  .sb-ui-modal {
+    z-index: 1000 !important;
+  }
+
+  /* Dropdown del datepicker siempre visible */
+  .sb-ui-datepicker__dropdown {
+    position: absolute !important;
+    z-index: 9999 !important;
+  }
+
+  /* Overlay del modal siempre visible */
+  .sb-ui-modal__overlay {
+    z-index: 9998 !important;
+  }
+
+  /* ========================================================================
+     DATEPICKER CUSTOM STYLES - Seguros Bolívar
+     ======================================================================== */
+
+  /* Mantener padding de inputs */
+  input.sb-ui-input,
+  .sb-ui-input {
+    padding-inline: var(--sb-ui-input-padding-inline, 1rem) !important;
+    padding-block: var(--sb-ui-input-padding-block, 0.75rem) !important;
+  }
+
+  /* Tamaños de inputs según size del datepicker */
+  .sb-ui-datepicker[size="small"] .sb-ui-datepicker__input {
+    font-size: 0.8125rem !important;
+    padding-inline: 0.75rem !important;
+    padding-block: 0.5rem !important;
+    min-block-size: 32px !important;
+  }
+
+  .sb-ui-datepicker[size="small"] .sb-ui-datepicker__trigger {
+    inline-size: 32px !important;
+    block-size: 32px !important;
+    font-size: 0.875rem !important;
+  }
+
+  .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__input,
+  .sb-ui-datepicker:not([size]) .sb-ui-datepicker__input {
+    font-size: 0.9375rem !important;
+    padding-inline: 1rem !important;
+    padding-block: 0.625rem !important;
+    min-block-size: 40px !important;
+  }
+
+  .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__trigger,
+  .sb-ui-datepicker:not([size]) .sb-ui-datepicker__trigger {
+    inline-size: 40px !important;
+    block-size: 40px !important;
+    font-size: 1rem !important;
+  }
+
+  .sb-ui-datepicker[size="large"] .sb-ui-datepicker__input {
+    font-size: 1.0625rem !important;
+    padding-inline: 1.25rem !important;
+    padding-block: 0.75rem !important;
+    min-block-size: 48px !important;
+  }
+
+  .sb-ui-datepicker[size="large"] .sb-ui-datepicker__trigger {
+    inline-size: 48px !important;
+    block-size: 48px !important;
+    font-size: 1.125rem !important;
+  }
+
+  /* Ajustar tamaño del datepicker desplegado - Compacto y sin desbordes */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar {
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Size SMALL - Más compacto */
+  .sb-ui-datepicker[size="small"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+    --sb-ui-calendar-inline-size: 320px;
+    inline-size: 320px !important;
+    max-block-size: 340px !important;
+    block-size: 340px !important;
+    --sb-ui-calendar-padding: 10px;
+    --sb-ui-calendar-gap: 3px;
+    --sb-ui-calendar-grid-gap: 1px;
+    --sb-ui-calendar-day-size: 34px;
+    --sb-ui-calendar-day-font-size: 11px;
+    --sb-ui-calendar-weekday-font-size: 9px;
+    --sb-ui-calendar-weekday-padding-block: 3px;
+    --sb-ui-calendar-header-padding-block: 3px;
+    --sb-ui-calendar-nav-size: 26px;
+    --sb-ui-calendar-month-font-size: 11px;
+  }
+
+  /* Size MEDIUM (default) */
+  .sb-ui-datepicker:not([size]) .sb-ui-datepicker__dropdown .sb-ui-calendar,
+  .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+    --sb-ui-calendar-inline-size: 368px;
+    inline-size: 368px !important;
+    max-block-size: 388px !important;
+    block-size: 388px !important;
+    --sb-ui-calendar-padding: 12px;
+    --sb-ui-calendar-gap: 4px;
+    --sb-ui-calendar-grid-gap: 2px;
+    --sb-ui-calendar-day-size: 40px;
+    --sb-ui-calendar-day-font-size: 13px;
+    --sb-ui-calendar-weekday-font-size: 10px;
+    --sb-ui-calendar-weekday-padding-block: 4px;
+    --sb-ui-calendar-header-padding-block: 4px;
+    --sb-ui-calendar-nav-size: 30px;
+    --sb-ui-calendar-month-font-size: 13px;
+  }
+
+  /* Size LARGE - Más grande */
+  .sb-ui-datepicker[size="large"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+    --sb-ui-calendar-inline-size: 420px;
+    inline-size: 420px !important;
+    max-block-size: 440px !important;
+    block-size: 440px !important;
+    --sb-ui-calendar-padding: 16px;
+    --sb-ui-calendar-gap: 5px;
+    --sb-ui-calendar-grid-gap: 3px;
+    --sb-ui-calendar-day-size: 46px;
+    --sb-ui-calendar-day-font-size: 15px;
+    --sb-ui-calendar-weekday-font-size: 12px;
+    --sb-ui-calendar-weekday-padding-block: 5px;
+    --sb-ui-calendar-header-padding-block: 5px;
+    --sb-ui-calendar-nav-size: 34px;
+    --sb-ui-calendar-month-font-size: 15px;
+  }
+
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__grid {
+    gap: var(--sb-ui-calendar-grid-gap) !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Ajustar header para que sea más compacto */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__header {
+    padding-block-end: var(--sb-ui-calendar-header-padding-block) !important;
+    margin-block-end: var(--sb-ui-calendar-gap) !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Ajustar weekdays para que sean más compactos */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__weekdays {
+    margin-block-end: 2px !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* Asegurar que el contenido del calendario no se desborde */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar > * {
+    flex-shrink: 0 !important;
+  }
+
+  /* Footer - distribuir botones a los lados, siempre dentro del datepicker */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    border: none !important;
+    flex-shrink: 0 !important;
+    min-block-size: auto !important;
+  }
+
+  /* Footer - SMALL */
+  .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer {
+    padding-block: 4px !important;
+    padding-inline: 4px !important;
+    margin-block-start: 2px !important;
+    margin-block-end: 0 !important;
+  }
+
+  /* Footer - MEDIUM */
+  .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer,
+  .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer {
+    padding-block: 6px !important;
+    padding-inline: 6px !important;
+    margin-block-start: 2px !important;
+    margin-block-end: 0 !important;
+  }
+
+  /* Footer - LARGE */
+  .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer {
+    padding-block: 8px !important;
+    padding-inline: 8px !important;
+    margin-block-start: 4px !important;
+    margin-block-end: 0 !important;
+  }
+
+  /* Botones del footer - estilo TEXT Primary Button - Base */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--secondary,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--primary,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--fill {
+    /* Reset estilos de FILL y SECONDARY */
+    background-color: transparent !important;
+    color: #038450 !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* Estilos TEXT Primary */
+    font-weight: 700 !important;
+    min-block-size: auto !important;
+    min-inline-size: auto !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease !important;
+    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif) !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    
+    /* ✨ Underline característico de TEXT buttons */
+    text-decoration: underline !important;
+    text-underline-offset: 1px !important;
+    text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+  }
+
+  /* Botones footer - SMALL */
+  .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer button,
+  .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer .sb-ui-button {
+    font-size: 11px !important;
+    padding-inline: 4px !important;
+    padding-block: 3px !important;
+  }
+
+  /* Botones footer - MEDIUM */
+  .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer button,
+  .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer .sb-ui-button,
+  .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer button,
+  .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer .sb-ui-button {
+    font-size: 13px !important;
+    padding-inline: 6px !important;
+    padding-block: 4px !important;
+  }
+
+  /* Botones footer - LARGE */
+  .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer button,
+  .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer .sb-ui-button {
+    font-size: 15px !important;
+    padding-inline: 8px !important;
+    padding-block: 5px !important;
+  }
+
+  /* Hover - TEXT Primary (sin fondo) */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button:hover,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button:hover,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--secondary:hover,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--primary:hover,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--fill:hover {
+    background-color: transparent !important;
+    color: #038450 !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Active - TEXT Primary (sin fondo) */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button:active,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button:active,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--secondary:active,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--primary:active,
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button--fill:active {
+    background-color: transparent !important;
+    color: #038450 !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+    opacity: 0.6 !important;
+  }
+
+  /* Hacer circular solo los días seleccionados */
+  .sb-ui-calendar__day--selected,
+  .sb-ui-calendar__day--range-start,
+  .sb-ui-calendar__day--range-end,
+  .sb-ui-calendar__day--in-range {
+    border-radius: 50% !important;
+  }
+
+  /* Quitar completamente el estilo del día actual */
+  .sb-ui-calendar__day--today {
+    background-color: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    font-weight: 400 !important;
+  }
+
+  /* Día seleccionado: fondo amarillo circular */
+  .sb-ui-calendar__day--selected,
+  .sb-ui-calendar__day--range-start,
+  .sb-ui-calendar__day--range-end,
+  .sb-ui-calendar__day--in-range {
+    background-color: var(--sb-ui-calendar-day-selected-bg, #FFE16F) !important;
+    color: var(--sb-ui-calendar-day-selected-color, #000) !important;
+    border: none !important;
+    font-weight: 400 !important;
+  }
+
+  /* Hover de los días: fondo gris claro circular */
+  .sb-ui-calendar__day:hover:not(.sb-ui-calendar__day--disabled):not(.sb-ui-calendar__day--outside) {
+    background-color: #F5F5F5 !important;
+    border-radius: 50% !important;
+  }
+
+  /* Días del calendario - tamaño controlado */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__day {
+    font-size: var(--sb-ui-calendar-day-font-size) !important;
+    inline-size: var(--sb-ui-calendar-day-size) !important;
+    block-size: var(--sb-ui-calendar-day-size) !important;
+    min-inline-size: var(--sb-ui-calendar-day-size) !important;
+    min-block-size: var(--sb-ui-calendar-day-size) !important;
+    max-inline-size: var(--sb-ui-calendar-day-size) !important;
+    max-block-size: var(--sb-ui-calendar-day-size) !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Month/year header - tamaño controlado */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__month-year {
+    font-size: var(--sb-ui-calendar-month-font-size) !important;
+  }
+
+  /* Weekdays - tamaño controlado */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__weekday {
+    font-size: var(--sb-ui-calendar-weekday-font-size) !important;
+    padding-block: var(--sb-ui-calendar-weekday-padding-block) !important;
+  }
+
+  /* Selectores de mes y año - SMALL */
+  .sb-ui-datepicker[size="small"] .sb-ui-calendar__month-select,
+  .sb-ui-datepicker[size="small"] .sb-ui-calendar__year-select {
+    font-size: 0.65rem !important;
+    padding-inline: 0.3rem !important;
+    padding-block: 0.2rem !important;
+    min-inline-size: auto !important;
+    max-inline-size: 85px !important;
+  }
+
+  /* Selectores de mes y año - MEDIUM */
+  .sb-ui-datepicker[size="medium"] .sb-ui-calendar__month-select,
+  .sb-ui-datepicker[size="medium"] .sb-ui-calendar__year-select,
+  .sb-ui-datepicker:not([size]) .sb-ui-calendar__month-select,
+  .sb-ui-datepicker:not([size]) .sb-ui-calendar__year-select {
+    font-size: 0.7rem !important;
+    padding-inline: 0.375rem !important;
+    padding-block: 0.25rem !important;
+    min-inline-size: auto !important;
+    max-inline-size: 100px !important;
+  }
+
+  /* Selectores de mes y año - LARGE */
+  .sb-ui-datepicker[size="large"] .sb-ui-calendar__month-select,
+  .sb-ui-datepicker[size="large"] .sb-ui-calendar__year-select {
+    font-size: 0.8rem !important;
+    padding-inline: 0.5rem !important;
+    padding-block: 0.3rem !important;
+    min-inline-size: auto !important;
+    max-inline-size: 115px !important;
+  }
+
+  /* Trigger hover - solo verde, sin cambiar fondo o borde */
+  .sb-ui-datepicker__trigger:hover:not(:disabled) {
+    background-color: transparent !important;
+    color: #038450 !important;
+    border-color: var(--sb-ui-datepicker-trigger-border-color, #d0d0d0) !important;
+  }
+
+  /* Trigger active - igual que hover */
+  .sb-ui-datepicker__trigger:active:not(:disabled) {
+    background-color: transparent !important;
+    color: #038450 !important;
+    border-color: var(--sb-ui-datepicker-trigger-border-color, #d0d0d0) !important;
+  }
+
+  /* Botones de navegación del calendario - tamaño controlado */
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__nav-button {
+    inline-size: var(--sb-ui-calendar-nav-size) !important;
+    block-size: var(--sb-ui-calendar-nav-size) !important;
+    min-inline-size: var(--sb-ui-calendar-nav-size) !important;
+    min-block-size: var(--sb-ui-calendar-nav-size) !important;
+  }
+</style>
+
+
+  <script type="module" crossorigin src="./assets/iframe-C_XQOyXT.js"></script>
 </head>
 
 <body>

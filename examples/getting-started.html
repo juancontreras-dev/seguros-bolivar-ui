@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -722,6 +722,13 @@ import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';</div>
       
       <p>El Design System soporta 6 marcas diferentes, cada una con tema claro y oscuro:</p>
 
+      <div class="warning-box" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin-bottom: 2rem; border-radius: 8px;">
+        <strong><i class="fa-solid fa-exclamation-triangle"></i> ¡IMPORTANTE!</strong>
+        <p style="margin-top: 0.5rem;">Para que los estilos de la marca se apliquen correctamente, debes agregar los atributos <code>data-brand</code> y <code>data-theme</code> al elemento <code>&lt;html&gt;</code>:</p>
+        <div class="code-block" data-lang="html" style="margin-top: 0.5rem;">&lt;html lang="es" data-brand="seguros-bolivar" data-theme="light"&gt;</div>
+        <p style="margin-top: 0.5rem; margin-bottom: 0;">Sin estos atributos, solo verás los estilos base (White Label). <a href="#data-attributes" style="color: #038450; text-decoration: underline;">Ver detalles →</a></p>
+      </div>
+
       <h3>Marcas Disponibles</h3>
       <table class="doc-table">
         <thead>
@@ -821,6 +828,192 @@ cambiarTema('davivienda', 'light');       // Cambia a Davivienda light</div>
           <li><strong>Overrides:</strong> Personalizaciones específicas por marca</li>
           <li><strong>Todo en uno:</strong> Un solo archivo CSS contiene todo</li>
         </ul>
+      </div>
+
+      <h3 id="data-attributes"><i class="fa-solid fa-code"></i> Data Attributes (Obligatorio)</h3>
+      <p>Los estilos de marca se aplican mediante <strong>brand overrides</strong> que utilizan selectores CSS basados en data attributes. Sin estos atributos, solo verás los estilos base genéricos (White Label).</p>
+
+      <div class="code-block" data-lang="html">&lt;!-- ✅ CORRECTO - Con data attributes --&gt;
+&lt;html lang="es" data-brand="seguros-bolivar" data-theme="light"&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Los componentes aquí tendrán estilos de Seguros Bolívar --&gt;
+  &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
+    Botón Amarillo (Bolívar)
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+      <div class="code-block" data-lang="html">&lt;!-- ❌ INCORRECTO - Sin data attributes --&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Los componentes aquí tendrán estilos genéricos (White Label) --&gt;
+  &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
+    Botón Genérico (sin estilos de marca)
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+      <h4>Valores de <code>data-brand</code></h4>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Valor</th>
+            <th>Marca</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>seguros-bolivar</code></td>
+            <td><strong>Seguros Bolívar</strong></td>
+            <td>Amarillo #FFE16F + Verde #038450</td>
+          </tr>
+          <tr>
+            <td><code>davivienda</code></td>
+            <td><strong>Davivienda</strong></td>
+            <td>Rojo Davivienda + animaciones especiales</td>
+          </tr>
+          <tr>
+            <td><code>jelpit</code></td>
+            <td><strong>Jelpit</strong></td>
+            <td>Colores y estilos Jelpit</td>
+          </tr>
+          <tr>
+            <td><code>cien-cuadras</code></td>
+            <td><strong>Cien Cuadras</strong></td>
+            <td>Colores y estilos Cien Cuadras</td>
+          </tr>
+          <tr>
+            <td><code>doctor-aki</code></td>
+            <td><strong>Doctor Aki</strong></td>
+            <td>Colores y estilos Doctor Aki</td>
+          </tr>
+          <tr>
+            <td><code>white-label</code></td>
+            <td><strong>White Label</strong></td>
+            <td>Estilos base sin personalización</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Valores de <code>data-theme</code></h4>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Valor</th>
+            <th>Tema</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>light</code></td>
+            <td><strong>Claro</strong></td>
+            <td>Fondo blanco, texto oscuro (default)</td>
+          </tr>
+          <tr>
+            <td><code>dark</code></td>
+            <td><strong>Oscuro</strong></td>
+            <td>Fondo oscuro, texto claro</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3><i class="fa-solid fa-sync"></i> Cambiar de Marca/Tema Dinámicamente</h3>
+      <p>Puedes cambiar la marca y el tema en tiempo real usando JavaScript:</p>
+
+      <div class="code-block" data-lang="javascript">// Cambiar marca
+document.documentElement.setAttribute('data-brand', 'seguros-bolivar');
+
+// Cambiar tema
+document.documentElement.setAttribute('data-theme', 'dark');
+
+// Cambiar ambos a la vez
+function cambiarMarcaYTema(marca, tema) {
+  const html = document.documentElement;
+  
+  // Actualizar data attributes
+  html.setAttribute('data-brand', marca);
+  html.setAttribute('data-theme', tema);
+  
+  // Actualizar el CSS cargado
+  const linkCSS = document.querySelector('link[rel="stylesheet"]');
+  linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+}
+
+// Ejemplos de uso:
+cambiarMarcaYTema('seguros-bolivar', 'light');  // Bolívar claro
+cambiarMarcaYTema('davivienda', 'dark');         // Davivienda oscuro
+cambiarMarcaYTema('jelpit', 'light');            // Jelpit claro</div>
+
+      <div class="demo-section">
+        <h4>Demostración Interactiva:</h4>
+        <p style="margin-bottom: 1rem;">Prueba cambiar de marca y tema en tiempo real:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+            <strong style="display: block; margin-bottom: 0.5rem;">Marca:</strong>
+            <select id="marca-selector" class="sb-ui-input" style="width: 100%;">
+              <option value="seguros-bolivar">Seguros Bolívar</option>
+              <option value="davivienda">Davivienda</option>
+              <option value="jelpit">Jelpit</option>
+              <option value="cien-cuadras">Cien Cuadras</option>
+              <option value="doctor-aki">Doctor Aki</option>
+              <option value="white-label">White Label</option>
+            </select>
+          </div>
+          
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+            <strong style="display: block; margin-bottom: 0.5rem;">Tema:</strong>
+            <select id="tema-selector" class="sb-ui-input" style="width: 100%;">
+              <option value="light">Claro (Light)</option>
+              <option value="dark">Oscuro (Dark)</option>
+            </select>
+          </div>
+        </div>
+        
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="aplicarCambioMarcaTema()" style="width: 100%;">
+          <i class="fa-solid fa-palette"></i> Aplicar Cambios
+        </button>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #2196f3;">
+          <strong>Data attributes actuales:</strong>
+          <pre id="current-attributes" style="margin-top: 0.5rem; background: white; padding: 0.75rem; border-radius: 4px; overflow-x: auto;">data-brand="seguros-bolivar"
+data-theme="light"</pre>
+        </div>
+        
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+            Botón Fill
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke">
+            Botón Stroke
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--text">
+            Botón Text
+          </button>
+        </div>
+      </div>
+
+      <div class="info-box" style="background: #d1f2eb; border-left: 4px solid #038450;">
+        <strong><i class="fa-solid fa-lightbulb"></i> Tip: Persistencia</strong>
+        <p style="margin-top: 0.5rem; margin-bottom: 0;">Guarda la preferencia del usuario en <code>localStorage</code> para mantenerla entre sesiones:</p>
+        <div class="code-block" data-lang="javascript" style="margin-top: 0.5rem;">// Guardar preferencia
+localStorage.setItem('marca', 'seguros-bolivar');
+localStorage.setItem('tema', 'light');
+
+// Cargar preferencia al inicio
+window.addEventListener('DOMContentLoaded', () => {
+  const marca = localStorage.getItem('marca') || 'seguros-bolivar';
+  const tema = localStorage.getItem('tema') || 'light';
+  cambiarMarcaYTema(marca, tema);
+});</div>
       </div>
     </section>
 
@@ -1030,14 +1223,108 @@ cambiarTema('davivienda', 'light');       // Cambia a Davivienda light</div>
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Demo: Cambiar marca
+    // Demo: Cambiar marca (mantener para botones existentes)
     function cambiarMarca(marca, tema) {
       const linkCSS = document.querySelector('link[href*="sb-ui-"]');
       const nuevoCSS = `dist/sb-ui-${marca}-${tema}.min.css?v=2.0`;
       linkCSS.href = nuevoCSS;
       
+      // Actualizar data attributes
+      document.documentElement.setAttribute('data-brand', marca);
+      document.documentElement.setAttribute('data-theme', tema);
+      
       alert(`Marca cambiada a: ${marca} (${tema})`);
     }
+
+    // Nueva función para la demostración interactiva
+    function aplicarCambioMarcaTema() {
+      const marca = document.getElementById('marca-selector').value;
+      const tema = document.getElementById('tema-selector').value;
+      const html = document.documentElement;
+      
+      // Actualizar data attributes
+      html.setAttribute('data-brand', marca);
+      html.setAttribute('data-theme', tema);
+      
+      // Actualizar el CSS cargado
+      const linkCSS = document.querySelector('link[href*="sb-ui-"]');
+      linkCSS.href = `dist/sb-ui-${marca}-${tema}.min.css?v=2.0`;
+      
+      // Actualizar el display de atributos actuales
+      const currentAttrs = document.getElementById('current-attributes');
+      currentAttrs.textContent = `data-brand="${marca}"\ndata-theme="${tema}"`;
+      
+      // Mostrar notificación
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #038450;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+      `;
+      notification.innerHTML = `
+        <i class="fa-solid fa-check-circle"></i> 
+        <strong>¡Aplicado!</strong><br>
+        <small>Marca: ${marca} | Tema: ${tema}</small>
+      `;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+
+    // Sincronizar selectores con data attributes actuales al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+      const marca = html.getAttribute('data-brand') || 'seguros-bolivar';
+      const tema = html.getAttribute('data-theme') || 'light';
+      
+      const marcaSelector = document.getElementById('marca-selector');
+      const temaSelector = document.getElementById('tema-selector');
+      
+      if (marcaSelector) marcaSelector.value = marca;
+      if (temaSelector) temaSelector.value = tema;
+      
+      // Actualizar display de atributos actuales
+      const currentAttrs = document.getElementById('current-attributes');
+      if (currentAttrs) {
+        currentAttrs.textContent = `data-brand="${marca}"\ndata-theme="${tema}"`;
+      }
+    });
+
+    // CSS para animaciones
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
