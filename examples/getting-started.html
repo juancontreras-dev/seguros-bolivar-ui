@@ -417,14 +417,47 @@
     <section id="instalacion" class="content-section active">
       <h2><i class="fa-solid fa-download"></i> Instalación</h2>
       
+      <!-- SECCIÓN RÁPIDA: SOLO CDN -->
+      <div style="background: linear-gradient(135deg, #038450 0%, #026d42 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(3, 132, 80, 0.2);">
+        <h3 style="margin: 0 0 1rem 0; color: white; font-size: 1.5rem;">
+          <i class="fa-solid fa-bolt"></i> Inicio Rápido - Solo CDN
+        </h3>
+        <p style="margin: 0 0 1rem 0; opacity: 0.95;">Copia y pega estos links en tu HTML:</p>
+        
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <strong style="font-size: 0.875rem; opacity: 0.9;">CSS (Estilos):</strong>
+            <button onclick="navigator.clipboard.writeText('https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css')" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">
+              <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+          </div>
+          <code style="display: block; background: rgba(0, 0, 0, 0.2); padding: 0.5rem; border-radius: 4px; font-size: 0.75rem; word-break: break-all; color: #FFE16F;">https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css</code>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 1rem; border-radius: 8px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <strong style="font-size: 0.875rem; opacity: 0.9;">JavaScript (Web Components - opcional):</strong>
+            <button onclick="navigator.clipboard.writeText('https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js')" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">
+              <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+          </div>
+          <code style="display: block; background: rgba(0, 0, 0, 0.2); padding: 0.5rem; border-radius: 4px; font-size: 0.75rem; word-break: break-all; color: #FFE16F;">https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js</code>
+        </div>
+      </div>
+
       <p>Existen tres formas principales de usar Seguros Bolívar UI en tu proyecto. Elige la que mejor se adapte a tus necesidades:</p>
 
       <h3>1. CDN (Recomendado para Prototipos)</h3>
       <p>La forma más rápida de empezar. Simplemente incluye los archivos CSS y JS desde un CDN público:</p>
 
+      <div class="warning-box" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin-bottom: 1.5rem; border-radius: 8px;">
+        <strong><i class="fa-solid fa-exclamation-triangle"></i> ¡IMPORTANTE!</strong>
+        <p style="margin-top: 0.5rem; margin-bottom: 0;">Recuerda agregar los atributos <code>data-brand="seguros-bolivar"</code> y <code>data-theme="light"</code> al elemento <code>&lt;html&gt;</code>. <a href="#data-attributes" onclick="showSection('marcas')" style="color: #038450; text-decoration: underline;">Ver detalles →</a></p>
+      </div>
+
       <h4><i class="fa-brands fa-npm"></i> unpkg.com</h4>
       <div class="code-block" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="es"&gt;
+&lt;html lang="es" data-brand="seguros-bolivar" data-theme="light"&gt;
 &lt;head&gt;
   &lt;!-- CSS del Design System --&gt;
   &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
@@ -495,7 +528,7 @@ import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';</div>
         <div class="feature-card">
           <h4><i class="fa-brands fa-github"></i> GitHub Releases</h4>
           <p>Releases oficiales del proyecto</p>
-          <a href="https://github.com/seguros-bolivar/bolivar-ui/releases" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" target="_blank">
+          <a href="https://github.com/juancontreras-dev/seguros-bolivar-ui/releases" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" target="_blank">
             Ver Releases
           </a>
         </div>
