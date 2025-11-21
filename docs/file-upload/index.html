@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload Component - Seguros Bolívar UI Design System</title>
+
+    <!-- CSS Bundle -->
+    <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .header {
+        background: var(--sb-ui-color-grayscale-white);
+        padding: 1.5rem 2rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .header-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .header-title h1 {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        color: var(--sb-ui-color-primary-base);
+        font-weight: 700;
+      }
+
+      .header-controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+      }
+
+      .control-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D100);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Content */
+      .content {
+        background: var(--sb-ui-color-grayscale-white);
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .section {
+        margin-bottom: 3rem;
+      }
+
+      .section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base);
+        margin-bottom: 0.5rem;
+      }
+
+      .section-description {
+        color: var(--sb-ui-color-grayscale-base);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .demo-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .demo-item {
+        padding: 1.5rem;
+        background: var(--sb-ui-color-grayscale-L400);
+        border-radius: 12px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      .demo-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* File Upload Icon (SVG as text) */
+      .file-icon {
+        display: inline-block;
+        inline-size: 40px;
+        block-size: 40px;
+      }
+
+      .file-icon svg {
+        inline-size: 100%;
+        block-size: 100%;
+      }
+
+      /* Upload Icon for dropzone */
+      .upload-icon {
+        font-size: 48px;
+        line-height: 1;
+      }
+
+      /* Hidden Input */
+      .sb-ui-file-upload-input {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .content {
+          padding: 1.5rem;
+        }
+
+        .header {
+          padding: 1rem 1.5rem;
+        }
+
+        .header-controls {
+          width: 100%;
+        }
+
+        .control-group {
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-title">
+          <a href="../index.html" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            ← Volver
+          </a>
+          <h1>📂 File Upload</h1>
+        </div>
+        <div class="header-controls">
+          <div class="control-group">
+            <label class="control-label">Marca</label>
+            <select id="brandSelect" class="sb-ui-select" style="min-width: 180px">
+              <option value="white-label">White Label</option>
+              <option value="jelpit">Jelpit</option>
+              <option value="davivienda">Davivienda</option>
+              <option value="cien-cuadras">Cien Cuadras</option>
+              <option value="doctor-aki">Doctor Aki</option>
+              <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Tema</label>
+            <div style="display: flex; gap: 0.5rem">
+              <button
+                id="lightBtn"
+                class="sb-ui-button sb-ui-button--small sb-ui-button--primary"
+              >
+                ☀️ Light
+              </button>
+              <button
+                id="darkBtn"
+                class="sb-ui-button sb-ui-button--small sb-ui-button--tertiary"
+              >
+                🌙 Dark
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Section: Demo Funcional -->
+        <section class="section">
+          <h2 class="section-title">Demo Funcional - File Upload</h2>
+          <p class="section-description">
+            Zona de arrastre de archivos completamente funcional con drag & drop y selección manual.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container" id="fileUploadDemo">
+                  <!-- Hidden file input -->
+                  <input 
+                    type="file" 
+                    id="fileInput" 
+                    class="sb-ui-file-upload-input"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                    style="display: none;"
+                  />
+                  
+                  <!-- Dropzone (sin botón adentro) -->
+                  <div class="sb-ui-file-upload-dropzone" id="dropzone">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
+                    </svg>
+                    <p class="sb-ui-file-upload-dropzone__text">
+                      Arrastre y suelte sus documentos aquí.
+                    </p>
+                    <p class="sb-ui-file-upload__help">
+                      El peso máximo por archivo es 20 MB. Formatos permitidos: .jpg, .png, .jpeg.
+                    </p>
+                  </div>
+
+                  <!-- Botón FUERA del dropzone -->
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-file-upload__select-button" type="button" id="selectFileBtn">
+                    Seleccione un archivo
+                  </button>
+
+                  <!-- File items container -->
+                  <div id="fileItemsContainer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Default State -->
+        <section class="section">
+          <h2 class="section-title">Estado Default - Dropzone</h2>
+          <p class="section-description">
+            Zona de arrastre de archivos con instrucciones y botón de selección.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop - Default</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload-dropzone">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
+                    </svg>
+                    <p class="sb-ui-file-upload-dropzone__text">
+                      Arrastre y suelte sus documentos aquí.
+                    </p>
+                    <p class="sb-ui-file-upload__help">
+                      El peso máximo por archivo es 20 MB. Formatos permitidos: .jpg, .png, .jpeg.
+                    </p>
+                  </div>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-file-upload__select-button" type="button">
+                    Seleccione un archivo
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-item">
+              <div class="demo-label">Mobile - Compact</div>
+              <div class="sb-ui-file-upload-wrapper" style="max-width: 400px">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload-dropzone">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
+                    </svg>
+                    <p class="sb-ui-file-upload-dropzone__text" style="font-size: 0.875rem;">
+                      Arrastre sus documentos aquí.
+                    </p>
+                    <p class="sb-ui-file-upload__help" style="font-size: 0.75rem;">
+                      Máx. 20 MB. Formatos: .jpg, .png, .jpeg.
+                    </p>
+                  </div>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-file-upload__select-button" type="button" style="width: 100%">
+                    Seleccione un archivo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Uploading State -->
+        <section class="section">
+          <h2 class="section-title">Estado Uploading</h2>
+          <p class="section-description">
+            Archivo en proceso de carga con barra de progreso y porcentaje.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--uploading">
+                    <span class="file-icon">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+                        <div class="sb-ui-file-upload__progress" style="flex: 1">
+                          <div class="sb-ui-file-upload__progress-bar" style="width: 50%"></div>
+                        </div>
+                        <span class="sb-ui-file-upload__percentage">50%</span>
+                      </div>
+                      <p class="sb-ui-file-upload__caption">
+                        <span class="sb-ui-file-upload__status-dot" style="color: #ffa726"></span>
+                        Cargando archivo...
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button
+                        class="sb-ui-file-upload__button"
+                        type="button"
+                        title="Cancelar"
+                        aria-label="Cancelar carga"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-item">
+              <div class="demo-label">Mobile</div>
+              <div class="sb-ui-file-upload-wrapper" style="max-width: 400px">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--uploading">
+                    <span class="file-icon">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+                        <div class="sb-ui-file-upload__progress" style="flex: 1">
+                          <div class="sb-ui-file-upload__progress-bar" style="width: 50%"></div>
+                        </div>
+                        <span class="sb-ui-file-upload__percentage">50%</span>
+                      </div>
+                      <p class="sb-ui-file-upload__caption">
+                        <span class="sb-ui-file-upload__status-dot" style="color: #ffa726"></span>
+                        Cargando archivo...
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button
+                        class="sb-ui-file-upload__button"
+                        type="button"
+                        title="Cancelar"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Uploaded State -->
+        <section class="section">
+          <h2 class="section-title">Estado Uploaded</h2>
+          <p class="section-description">
+            Archivo cargado exitosamente con indicador de éxito y opción para eliminarlo.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--uploaded">
+                    <span class="file-icon" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,21L16,17L14.59,15.58L12,18.17L10.59,16.75L10,17.17V19Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <p
+                        class="sb-ui-file-upload__caption"
+                        style="color: var(--sb-ui-color-feedback-success-base)"
+                      >
+                        <span
+                          class="sb-ui-file-upload__status-dot"
+                          style="color: var(--sb-ui-color-feedback-success-base)"
+                        ></span>
+                        Archivo cargado
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button
+                        class="sb-ui-file-upload__button"
+                        type="button"
+                        title="Eliminar"
+                        aria-label="Eliminar archivo"
+                      >
+                        🗑️
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-item">
+              <div class="demo-label">Mobile</div>
+              <div class="sb-ui-file-upload-wrapper" style="max-width: 400px">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--uploaded">
+                    <span class="file-icon" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,21L16,17L14.59,15.58L12,18.17L10.59,16.75L10,17.17V19Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <p
+                        class="sb-ui-file-upload__caption"
+                        style="color: var(--sb-ui-color-feedback-success-base)"
+                      >
+                        <span
+                          class="sb-ui-file-upload__status-dot"
+                          style="color: var(--sb-ui-color-feedback-success-base)"
+                        ></span>
+                        Archivo cargado
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button class="sb-ui-file-upload__button" type="button" title="Eliminar">
+                        🗑️
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Success State (100%) -->
+        <section class="section">
+          <h2 class="section-title">Estado Success (100%)</h2>
+          <p class="section-description">
+            Archivo cargado al 100% antes de pasar al estado uploaded.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--success">
+                    <span class="file-icon" style="color: var(--sb-ui-color-feedback-success-base)">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+                        <div class="sb-ui-file-upload__progress" style="flex: 1">
+                          <div class="sb-ui-file-upload__progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="sb-ui-file-upload__percentage">100%</span>
+                      </div>
+                      <p
+                        class="sb-ui-file-upload__caption"
+                        style="color: var(--sb-ui-color-feedback-success-base)"
+                      >
+                        <span
+                          class="sb-ui-file-upload__status-dot"
+                          style="color: var(--sb-ui-color-feedback-success-base)"
+                        ></span>
+                        Cargando archivo...
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button class="sb-ui-file-upload__button" type="button" title="Cerrar">
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Error State -->
+        <section class="section">
+          <h2 class="section-title">Estado Error</h2>
+          <p class="section-description">
+            Error durante la carga con mensaje de error y opciones para reintentar o cancelar.
+          </p>
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Desktop</div>
+              <div class="sb-ui-file-upload-wrapper">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--error">
+                    <span class="file-icon" style="color: var(--sb-ui-color-feedback-error-base)">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M11,15H13V17H11V15M11,7H13V13H11V7Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+                        <div class="sb-ui-file-upload__progress" style="flex: 1">
+                          <div class="sb-ui-file-upload__progress-bar" style="width: 50%"></div>
+                        </div>
+                        <span class="sb-ui-file-upload__percentage">50%</span>
+                      </div>
+                      <p
+                        class="sb-ui-file-upload__caption"
+                        style="color: var(--sb-ui-color-feedback-error-base)"
+                      >
+                        <span
+                          class="sb-ui-file-upload__status-dot"
+                          style="color: var(--sb-ui-color-feedback-error-base)"
+                        ></span>
+                        Ha ocurrido un error, por favor intente de nuevo.
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button
+                        class="sb-ui-file-upload__button"
+                        type="button"
+                        title="Reintentar"
+                        aria-label="Reintentar carga"
+                      >
+                        🔄
+                      </button>
+                      <button
+                        class="sb-ui-file-upload__button"
+                        type="button"
+                        title="Cancelar"
+                        aria-label="Cancelar"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-item">
+              <div class="demo-label">Mobile</div>
+              <div class="sb-ui-file-upload-wrapper" style="max-width: 400px">
+                <label class="sb-ui-file-upload__label">Documento</label>
+                <div class="sb-ui-file-upload-container">
+                  <div class="sb-ui-file-upload sb-ui-file-upload--error">
+                    <span class="file-icon" style="color: var(--sb-ui-color-feedback-error-base)">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M11,15H13V17H11V15M11,7H13V13H11V7Z"
+                        />
+                      </svg>
+                    </span>
+                    <div class="sb-ui-file-upload__content">
+                      <p class="sb-ui-file-upload__filename">Documento.pdf</p>
+                      <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+                        <div class="sb-ui-file-upload__progress" style="flex: 1">
+                          <div class="sb-ui-file-upload__progress-bar" style="width: 50%"></div>
+                        </div>
+                        <span class="sb-ui-file-upload__percentage">50%</span>
+                      </div>
+                      <p
+                        class="sb-ui-file-upload__caption"
+                        style="color: var(--sb-ui-color-feedback-error-base)"
+                      >
+                        <span
+                          class="sb-ui-file-upload__status-dot"
+                          style="color: var(--sb-ui-color-feedback-error-base)"
+                        ></span>
+                        Ha ocurrido un error, por favor intente de fav...
+                      </p>
+                    </div>
+                    <div class="sb-ui-file-upload__actions">
+                      <button class="sb-ui-file-upload__button" type="button" title="Reintentar">
+                        🔄
+                      </button>
+                      <button class="sb-ui-file-upload__button" type="button" title="Cancelar">
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Brand and Theme Switching
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const brandCss = document.getElementById('brand-css');
+
+      let currentBrand = html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme = html.getAttribute('data-theme') || 'light';
+
+      function updateTheme() {
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css`;
+        brandSelect.value = currentBrand;
+
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--small sb-ui-button--primary';
+          darkBtn.className = 'sb-ui-button sb-ui-button--small sb-ui-button--tertiary';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--small sb-ui-button--tertiary';
+          darkBtn.className = 'sb-ui-button sb-ui-button--small sb-ui-button--primary';
+        }
+
+        console.log(`✅ Theme changed to: ${currentBrand} ${currentTheme}`);
+      }
+
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateTheme();
+      });
+
+      updateTheme();
+
+      // File Upload Functionality
+      const fileInput = document.getElementById('fileInput');
+      const selectFileBtn = document.getElementById('selectFileBtn');
+      const dropzone = document.getElementById('dropzone');
+      const fileItemsContainer = document.getElementById('fileItemsContainer');
+      let uploadedFiles = [];
+
+      // Click to select file
+      if (selectFileBtn && fileInput) {
+        selectFileBtn.addEventListener('click', () => {
+          fileInput.click();
+        });
+      }
+
+      // Drag and Drop functionality
+      if (dropzone) {
+        dropzone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          dropzone.classList.add('is-dragover');
+        });
+
+        dropzone.addEventListener('dragleave', (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('is-dragover');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('is-dragover');
+          const files = e.dataTransfer.files;
+          if (files.length > 0) {
+            handleFileSelect(files[0]);
+          }
+        });
+
+        // Allow clicking dropzone to select file
+        dropzone.addEventListener('click', (e) => {
+          if (e.target === dropzone || e.target.closest('.sb-ui-file-upload-dropzone__text')) {
+            fileInput.click();
+          }
+        });
+      }
+
+      // File input change
+      if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+          const files = e.target.files;
+          if (files.length > 0) {
+            handleFileSelect(files[0]);
+          }
+        });
+      }
+
+      // Handle file selection
+      function handleFileSelect(file) {
+        console.log('File selected:', file);
+
+        // Validate file size (20 MB)
+        const maxSize = 20 * 1024 * 1024;
+        if (file.size > maxSize) {
+          alert('El archivo es demasiado grande. Máximo 20 MB.');
+          return;
+        }
+
+        // Validate file type
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+        if (!allowedTypes.includes(file.type)) {
+          alert('Tipo de archivo no permitido. Solo: jpg, png, pdf');
+          return;
+        }
+
+        // Create file item
+        const fileId = Date.now();
+        createFileItem(file, fileId);
+        uploadedFiles.push({ id: fileId, file: file });
+
+        // Simulate upload progress
+        simulateUpload(fileId);
+      }
+
+      // Create file item element
+      function createFileItem(file, fileId) {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'sb-ui-file-upload sb-ui-file-upload--uploading';
+        fileItem.id = `file-${fileId}`;
+        
+        fileItem.innerHTML = `
+          <span class="file-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
+            </svg>
+          </span>
+          <div class="sb-ui-file-upload__content">
+            <p class="sb-ui-file-upload__filename">${file.name}</p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%">
+              <div class="sb-ui-file-upload__progress" style="flex: 1">
+                <div class="sb-ui-file-upload__progress-bar" style="width: 0%" data-progress="0"></div>
+              </div>
+              <span class="sb-ui-file-upload__percentage">0%</span>
+            </div>
+            <p class="sb-ui-file-upload__caption">
+              <span class="sb-ui-file-upload__status-dot" style="color: #ffa726"></span>
+              Cargando archivo...
+            </p>
+          </div>
+          <div class="sb-ui-file-upload__actions">
+            <button
+              class="sb-ui-file-upload__button"
+              type="button"
+              title="Cancelar"
+              onclick="removeFile(${fileId})"
+            >
+              ✕
+            </button>
+          </div>
+        `;
+
+        fileItemsContainer.appendChild(fileItem);
+      }
+
+      // Simulate upload progress
+      function simulateUpload(fileId) {
+        const fileItem = document.getElementById(`file-${fileId}`);
+        const progressBar = fileItem.querySelector('.sb-ui-file-upload__progress-bar');
+        const percentage = fileItem.querySelector('.sb-ui-file-upload__percentage');
+        
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 15;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            
+            // Update to success state
+            fileItem.className = 'sb-ui-file-upload sb-ui-file-upload--success';
+            progressBar.style.width = '100%';
+            percentage.textContent = '100%';
+
+            // After a moment, change to uploaded state
+            setTimeout(() => {
+              fileItem.className = 'sb-ui-file-upload sb-ui-file-upload--uploaded';
+              fileItem.querySelector('.sb-ui-file-upload__content').innerHTML = `
+                <p class="sb-ui-file-upload__filename">${uploadedFiles.find(f => f.id === fileId)?.file.name}</p>
+                <p class="sb-ui-file-upload__caption" style="color: var(--sb-ui-color-feedback-success-base)">
+                  <span class="sb-ui-file-upload__status-dot" style="color: var(--sb-ui-color-feedback-success-base)"></span>
+                  Archivo cargado
+                </p>
+              `;
+              fileItem.querySelector('.file-icon').innerHTML = `
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" style="color: var(--sb-ui-color-feedback-success-base)">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,21L16,17L14.59,15.58L12,18.17L10.59,16.75L10,17.17V19Z"/>
+                </svg>
+              `;
+              fileItem.querySelector('.sb-ui-file-upload__button').innerHTML = '🗑️';
+              fileItem.querySelector('.sb-ui-file-upload__button').title = 'Eliminar';
+            }, 500);
+          } else {
+            progressBar.style.width = `${progress}%`;
+            percentage.textContent = `${Math.round(progress)}%`;
+          }
+        }, 200);
+      }
+
+      // Remove file
+      window.removeFile = function(fileId) {
+        const fileItem = document.getElementById(`file-${fileId}`);
+        if (fileItem) {
+          fileItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          fileItem.style.opacity = '0';
+          fileItem.style.transform = 'translateX(20px)';
+          setTimeout(() => {
+            fileItem.remove();
+          }, 300);
+        }
+        uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
+      };
+    </script>
+  </body>
+</html>
+

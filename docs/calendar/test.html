@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar Test - Quick Demo</title>
+
+    <!-- Estilos y Web Components -->
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" />
+    <script type="module" src="../dist/sb-ui-components.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      h1 {
+        color: #026838;
+        text-align: center;
+      }
+
+      .test-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .test-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .test-section h2 {
+        color: #026838;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        background: #fcd535;
+        color: #026838;
+      }
+
+      .test-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+
+      .output {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f5f5f5;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        min-height: 60px;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+
+      .status.success {
+        background: #4caf50;
+        color: white;
+      }
+
+      .status.error {
+        background: #f44336;
+        color: white;
+      }
+
+      .status.info {
+        background: #2196f3;
+        color: white;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .log {
+        max-height: 150px;
+        overflow-y: auto;
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      .log-entry {
+        margin-bottom: 0.25rem;
+        padding: 0.25rem;
+        border-left: 2px solid #fcd535;
+        padding-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar">
+    <h1>📅 Calendar Component - Quick Test</h1>
+
+    <div class="test-container">
+      <!-- Test 1: Verificar que el componente existe -->
+      <div class="test-section">
+        <h2>
+          1️⃣ Component Registration Test
+          <span class="status success" id="test1-status">✓ Passed</span>
+        </h2>
+        <p>Verificando que el Web Component está registrado...</p>
+        <div class="output" id="test1-output">Checking...</div>
+      </div>
+
+      <!-- Test 2: Single Date Picker -->
+      <div class="test-section">
+        <h2>
+          <span class="badge">Single</span>
+          2️⃣ Single Date Picker
+        </h2>
+        <p>Clic en cualquier día para seleccionar. Usa las flechas del teclado para navegar.</p>
+
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+          <sb-ui-calendar
+            id="test-single"
+            variant="single"
+            selected-date="2022-03-15"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output" id="single-output">
+          <strong>Selected:</strong> <span id="single-date">2022-03-15</span>
+        </div>
+
+        <div class="controls">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" onclick="testSingleToday()">
+            Set Today
+          </button>
+          <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" onclick="testSingleClear()">
+            Clear
+          </button>
+        </div>
+
+        <div class="log" id="single-log"></div>
+      </div>
+
+      <!-- Test 3: Range Date Picker -->
+      <div class="test-section">
+        <h2>
+          <span class="badge">Range</span>
+          3️⃣ Range Date Picker
+        </h2>
+        <p>Clic en dos días para seleccionar un rango. Toggle para mostrar dos calendarios.</p>
+
+        <div class="controls">
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="show-double" />
+            <span>Show Double Calendar</span>
+          </label>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+          <sb-ui-calendar
+            id="test-range"
+            variant="range"
+            range-start="2022-03-15"
+            range-end="2022-03-25"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output" id="range-output">
+          <strong>Start:</strong> <span id="range-start">2022-03-15</span><br />
+          <strong>End:</strong> <span id="range-end">2022-03-25</span>
+        </div>
+
+        <div class="log" id="range-log"></div>
+      </div>
+
+      <!-- Test 4: Multiple Date Picker -->
+      <div class="test-section">
+        <h2>
+          <span class="badge">Multiple</span>
+          4️⃣ Multiple Date Picker
+        </h2>
+        <p>Clic para seleccionar/deseleccionar múltiples días.</p>
+
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+          <sb-ui-calendar
+            id="test-multiple"
+            variant="multiple"
+            selected-dates="2022-03-15,2022-03-16,2022-03-17"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output" id="multiple-output">
+          <strong>Selected:</strong>
+          <span id="multiple-dates">2022-03-15, 2022-03-16, 2022-03-17</span>
+        </div>
+
+        <div class="log" id="multiple-log"></div>
+      </div>
+
+      <!-- Test 5: Events Test -->
+      <div class="test-section">
+        <h2>
+          5️⃣ Events Test
+          <span class="status info" id="test5-status">Listening...</span>
+        </h2>
+        <p>Todos los eventos son capturados y mostrados abajo:</p>
+        <div class="log" id="events-log" style="max-height: 200px;"></div>
+        <div class="controls">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" onclick="clearEventLog()">
+            Clear Log
+          </button>
+        </div>
+      </div>
+
+      <!-- Test 6: Keyboard Navigation -->
+      <div class="test-section">
+        <h2>6️⃣ Keyboard Navigation Test</h2>
+        <p>
+          <strong>Instructions:</strong> Focus en un día y usa:
+        </p>
+        <ul style="margin: 0.5rem 0 0 2rem;">
+          <li><kbd>Arrow Left/Right</kbd>: Navegar entre días</li>
+          <li><kbd>Arrow Up/Down</kbd>: Navegar por semanas</li>
+          <li><kbd>Home</kbd>: Ir al primer día</li>
+          <li><kbd>End</kbd>: Ir al último día</li>
+          <li><kbd>Enter/Space</kbd>: Seleccionar día</li>
+        </ul>
+
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+          <sb-ui-calendar
+            id="test-keyboard"
+            variant="single"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+      </div>
+
+      <!-- Test 7: Validation -->
+      <div class="test-section">
+        <h2>7️⃣ Validation Test</h2>
+        <p>Solo puedes seleccionar entre 01-15 Marzo 2022. Los días 10, 11, 12 están deshabilitados.</p>
+
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+          <sb-ui-calendar
+            id="test-validation"
+            variant="single"
+            min-date="2022-03-01"
+            max-date="2022-03-15"
+            disabled-dates="2022-03-10,2022-03-11,2022-03-12"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output" id="validation-output">
+          Try to select disabled dates or outside range...
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="test-section" style="background: linear-gradient(135deg, #026838 0%, #038450 100%); color: white;">
+        <h2 style="color: white;">✅ Test Summary</h2>
+        <p>Si puedes ver todos los calendarios y interactuar con ellos, ¡el componente funciona perfectamente!</p>
+        <p style="margin-top: 0.5rem;">
+          <strong>Bundle Size:</strong> sb-ui-components.min.js (~59KB / ~15KB gzipped)
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // ============================================================================
+      // Test 1: Component Registration
+      // ============================================================================
+      window.addEventListener('DOMContentLoaded', () => {
+        const isDefined = customElements.get('sb-ui-calendar');
+        const output = document.getElementById('test1-output');
+        const status = document.getElementById('test1-status');
+
+        if (isDefined) {
+          output.innerHTML = `
+            <strong>✓ SUCCESS</strong><br>
+            Component: sb-ui-calendar<br>
+            Status: Registered<br>
+            Constructor: ${isDefined.name}
+          `;
+          status.className = 'status success';
+          status.textContent = '✓ Passed';
+        } else {
+          output.innerHTML = `
+            <strong>✗ ERROR</strong><br>
+            Component not registered!<br>
+            Make sure sb-ui-components.min.js is loaded.
+          `;
+          status.className = 'status error';
+          status.textContent = '✗ Failed';
+        }
+      });
+
+      // ============================================================================
+      // Test 2: Single Date Picker
+      // ============================================================================
+      const singleCalendar = document.getElementById('test-single');
+      const singleDateSpan = document.getElementById('single-date');
+      const singleLog = document.getElementById('single-log');
+
+      singleCalendar.addEventListener('date-change', (e) => {
+        singleDateSpan.textContent = e.detail.date || 'None';
+        logToElement(singleLog, 'date-change', e.detail);
+      });
+
+      function testSingleToday() {
+        const today = new Date().toISOString().split('T')[0];
+        singleCalendar.setAttribute('selected-date', today);
+      }
+
+      function testSingleClear() {
+        singleCalendar.removeAttribute('selected-date');
+        singleDateSpan.textContent = 'None';
+      }
+
+      // ============================================================================
+      // Test 3: Range Date Picker
+      // ============================================================================
+      const rangeCalendar = document.getElementById('test-range');
+      const rangeStartSpan = document.getElementById('range-start');
+      const rangeEndSpan = document.getElementById('range-end');
+      const rangeLog = document.getElementById('range-log');
+      const showDoubleCheckbox = document.getElementById('show-double');
+
+      rangeCalendar.addEventListener('date-change', (e) => {
+        rangeStartSpan.textContent = e.detail.start || 'None';
+        rangeEndSpan.textContent = e.detail.end || 'None';
+        logToElement(rangeLog, 'date-change', e.detail);
+      });
+
+      showDoubleCheckbox.addEventListener('change', (e) => {
+        rangeCalendar.showDouble = e.target.checked;
+      });
+
+      // ============================================================================
+      // Test 4: Multiple Date Picker
+      // ============================================================================
+      const multipleCalendar = document.getElementById('test-multiple');
+      const multipleDatesSpan = document.getElementById('multiple-dates');
+      const multipleLog = document.getElementById('multiple-log');
+
+      multipleCalendar.addEventListener('date-change', (e) => {
+        multipleDatesSpan.textContent = e.detail.dates?.join(', ') || 'None';
+        logToElement(multipleLog, 'date-change', e.detail);
+      });
+
+      // ============================================================================
+      // Test 5: Events Test (Global listener)
+      // ============================================================================
+      const eventsLog = document.getElementById('events-log');
+
+      // Listen to all calendars
+      document.addEventListener('date-select', (e) => {
+        logToElement(eventsLog, 'date-select', e.detail, e.target.id);
+      });
+
+      document.addEventListener('date-change', (e) => {
+        logToElement(eventsLog, 'date-change', e.detail, e.target.id);
+      });
+
+      document.addEventListener('month-change', (e) => {
+        logToElement(eventsLog, 'month-change', e.detail, e.target.id);
+      });
+
+      document.addEventListener('calendar-accept', (e) => {
+        logToElement(eventsLog, 'calendar-accept', e.detail, e.target.id);
+        alert(`Calendar accepted!\n${JSON.stringify(e.detail, null, 2)}`);
+      });
+
+      document.addEventListener('calendar-cancel', (e) => {
+        logToElement(eventsLog, 'calendar-cancel', {}, e.target.id);
+      });
+
+      // ============================================================================
+      // Test 7: Validation
+      // ============================================================================
+      const validationCalendar = document.getElementById('test-validation');
+      const validationOutput = document.getElementById('validation-output');
+
+      validationCalendar.addEventListener('date-change', (e) => {
+        validationOutput.innerHTML = `
+          <strong>✓ Valid date selected:</strong> ${e.detail.date}<br>
+          <em>Within range: 2022-03-01 to 2022-03-15</em>
+        `;
+      });
+
+      // ============================================================================
+      // Utilities
+      // ============================================================================
+      function logToElement(element, eventName, detail, source = '') {
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        const timestamp = new Date().toLocaleTimeString();
+        const sourceStr = source ? ` [${source}]` : '';
+        entry.textContent = `[${timestamp}]${sourceStr} ${eventName}: ${JSON.stringify(detail)}`;
+        element.insertBefore(entry, element.firstChild);
+
+        // Keep only last 10 entries
+        while (element.children.length > 10) {
+          element.removeChild(element.lastChild);
+        }
+      }
+
+      function clearEventLog() {
+        eventsLog.innerHTML = '';
+      }
+
+      // ============================================================================
+      // Console Info
+      // ============================================================================
+      console.log('%c📅 Calendar Test Suite Loaded', 'color: #026838; font-size: 16px; font-weight: bold');
+      console.log('Available calendars:', {
+        single: document.getElementById('test-single'),
+        range: document.getElementById('test-range'),
+        multiple: document.getElementById('test-multiple'),
+        keyboard: document.getElementById('test-keyboard'),
+        validation: document.getElementById('test-validation'),
+      });
+      console.log('All events are being logged to the Events Test section');
+    </script>
+  </body>
+</html>
+

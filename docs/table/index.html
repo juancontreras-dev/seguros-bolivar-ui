@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table Component - Seguros Bolivar UI</title>
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=1.0.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Bolivar', 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #fafafa;
+        margin: 0;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #1b1b1b;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #038450;
+        border-bottom: 2px solid #cce9dd;
+        padding-bottom: 0.5rem;
+      }
+
+      /* ============================================
+         BRAND & THEME CONTROLS
+         ============================================ */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1400px;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+
+      /* Main Content */
+      .section {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .section h2 {
+        font-size: 1.25rem;
+        color: #1b1b1b;
+        margin-bottom: 0.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e1e1e1;
+      }
+
+      .section p {
+        font-size: 0.875rem;
+        color: #5b5b5b;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Table specific styles */
+      .table-wrapper {
+        margin-block-start: 1.5rem;
+      }
+
+      /* Action buttons in table */
+      .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .action-btn {
+        padding: 0.25rem 0.5rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+      }
+
+      .action-btn--edit {
+        background-color: #ffe16f;
+        color: #038450;
+      }
+
+      .action-btn--delete {
+        background-color: #fff3f3;
+        color: #d32f2f;
+      }
+
+      .action-btn:hover {
+        opacity: 0.8;
+      }
+
+      /* Badge */
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge--success {
+        background-color: #f2f9f6;
+        color: #038450;
+      }
+
+      .badge--warning {
+        background-color: #fffcf0;
+        color: #f57c00;
+      }
+
+      .badge--error {
+        background-color: #fff3f3;
+        color: #d32f2f;
+      }
+
+      .badge--info {
+        background-color: #f0f7ff;
+        color: #0277bd;
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar">
+    <!-- Brand & Theme Controls -->
+    <div class="brand-controls">
+      <button
+        onclick="window.location.href='../index.html'"
+        class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+        style="text-decoration: none"
+      >
+        ← Volver
+      </button>
+
+      <div class="brand-controls-group">
+        <label for="brandSelect">📦 Marca:</label>
+        <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+          <option value="white-label">White Label</option>
+          <option value="jelpit">Jelpit</option>
+          <option value="davivienda">Davivienda</option>
+          <option value="cien-cuadras">Cien Cuadras</option>
+          <option value="doctor-aki">Doctor Aki</option>
+          <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+        </select>
+
+        <label for="themeToggle">🌓 Tema:</label>
+        <div class="theme-toggle">
+          <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+            ☀️ Light
+          </button>
+          <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            🌙 Dark
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-container">
+      <!-- Header -->
+      <h1 style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: #1b1b1b">📊 Table Component</h1>
+      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
+        Componente de tabla con paginación, checkboxes, inputs y múltiples variantes (striped, 
+        bordered, hover, compact). Incluye paginación con botones circulares amarillos estilo Bootstrap.
+      </p>
+
+      <!-- Main Content -->
+      <!-- Basic Table -->
+      <section class="section">
+        <h2>Tabla Básica</h2>
+        <p>Tabla simple con columnas de datos, checkboxes e inputs</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" id="select-all-1" />
+                  </th>
+                  <th>Cobertura</th>
+                  <th class="sb-ui-table__cell--center">% Asegurado</th>
+                  <th class="sb-ui-table__cell--end">Valor Asegurado</th>
+                  <th class="sb-ui-table__cell--center">Tasa</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>PREDIOS LABORY OPERACIO/PLO</td>
+                  <td class="sb-ui-table__cell--center">100%</td>
+                  <td class="sb-ui-table__cell--end">$150,000,000</td>
+                  <td class="sb-ui-table__cell--center">2%</td>
+                  <td>01/08/24</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>PATRONAL PERSONA</td>
+                  <td class="sb-ui-table__cell--center">100%</td>
+                  <td class="sb-ui-table__cell--end">$150,000,000</td>
+                  <td class="sb-ui-table__cell--center">1.85%</td>
+                  <td>01/08/24</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>PATRONAL VIGENCIA</td>
+                  <td class="sb-ui-table__cell--center">
+                    <input type="number" value="90" style="width: 60px" />
+                  </td>
+                  <td class="sb-ui-table__cell--end">
+                    <input type="text" value="150000000" />
+                  </td>
+                  <td class="sb-ui-table__cell--center">1.9%</td>
+                  <td>01/08/24</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" checked />
+                  </td>
+                  <td>CONTRATISTA Y SUBCONTRATISTA</td>
+                  <td class="sb-ui-table__cell--center">100%</td>
+                  <td class="sb-ui-table__cell--end">$150,000,000</td>
+                  <td class="sb-ui-table__cell--center">2.1%</td>
+                  <td>01/08/24</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" checked />
+                  </td>
+                  <td>GASTOS MEDICOS PERSONA</td>
+                  <td class="sb-ui-table__cell--center">100%</td>
+                  <td class="sb-ui-table__cell--end">$150,000,000</td>
+                  <td class="sb-ui-table__cell--center">1.7%</td>
+                  <td>01/08/24</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="sb-ui-table-pagination">
+            <button class="sb-ui-table-pagination__button" disabled>
+              <i class="fa-solid fa-angles-left"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button" disabled>
+              <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button sb-ui-table-pagination__button--active">
+              1
+            </button>
+            <button class="sb-ui-table-pagination__button">2</button>
+            <button class="sb-ui-table-pagination__button">3</button>
+            <button class="sb-ui-table-pagination__button">
+              <i class="fa-solid fa-angle-right"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button">
+              <i class="fa-solid fa-angles-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Striped Table -->
+      <section class="section">
+        <h2>Tabla con Rayas (Striped)</h2>
+        <p>Filas alternadas con fondo gris para mejor legibilidad</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table sb-ui-table--striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Estado</th>
+                  <th class="sb-ui-table__cell--end">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>001</td>
+                  <td>Juan Pérez</td>
+                  <td>juan.perez@email.com</td>
+                  <td>
+                    <span class="badge badge--success">Activo</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$1,500,000</td>
+                </tr>
+                <tr>
+                  <td>002</td>
+                  <td>María González</td>
+                  <td>maria.gonzalez@email.com</td>
+                  <td>
+                    <span class="badge badge--success">Activo</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$2,300,000</td>
+                </tr>
+                <tr>
+                  <td>003</td>
+                  <td>Carlos Rodríguez</td>
+                  <td>carlos.rodriguez@email.com</td>
+                  <td>
+                    <span class="badge badge--warning">Pendiente</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$980,000</td>
+                </tr>
+                <tr>
+                  <td>004</td>
+                  <td>Ana Martínez</td>
+                  <td>ana.martinez@email.com</td>
+                  <td>
+                    <span class="badge badge--success">Activo</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$3,200,000</td>
+                </tr>
+                <tr>
+                  <td>005</td>
+                  <td>Luis Hernández</td>
+                  <td>luis.hernandez@email.com</td>
+                  <td>
+                    <span class="badge badge--error">Inactivo</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bordered Table -->
+      <section class="section">
+        <h2>Tabla con Bordes (Bordered)</h2>
+        <p>Bordes visibles en todas las celdas</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table sb-ui-table--bordered">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th class="sb-ui-table__cell--center">Stock</th>
+                  <th class="sb-ui-table__cell--end">Precio</th>
+                  <th class="sb-ui-table__cell--center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Póliza de Vida</td>
+                  <td>Seguros</td>
+                  <td class="sb-ui-table__cell--center">45</td>
+                  <td class="sb-ui-table__cell--end">$500,000</td>
+                  <td class="sb-ui-table__cell--center">
+                    <div class="action-buttons" style="justify-content: center">
+                      <button class="action-btn action-btn--edit">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="action-btn action-btn--delete">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Seguro de Auto</td>
+                  <td>Seguros</td>
+                  <td class="sb-ui-table__cell--center">30</td>
+                  <td class="sb-ui-table__cell--end">$1,200,000</td>
+                  <td class="sb-ui-table__cell--center">
+                    <div class="action-buttons" style="justify-content: center">
+                      <button class="action-btn action-btn--edit">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="action-btn action-btn--delete">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Seguro de Hogar</td>
+                  <td>Seguros</td>
+                  <td class="sb-ui-table__cell--center">22</td>
+                  <td class="sb-ui-table__cell--end">$800,000</td>
+                  <td class="sb-ui-table__cell--center">
+                    <div class="action-buttons" style="justify-content: center">
+                      <button class="action-btn action-btn--edit">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="action-btn action-btn--delete">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hover Table -->
+      <section class="section">
+        <h2>Tabla con Hover</h2>
+        <p>Resalta las filas al pasar el cursor</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table sb-ui-table--hover">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Departamento</th>
+                  <th>Cargo</th>
+                  <th class="sb-ui-table__cell--end">Salario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pedro Sánchez</td>
+                  <td>Tecnología</td>
+                  <td>Desarrollador Senior</td>
+                  <td class="sb-ui-table__cell--end">$8,000,000</td>
+                </tr>
+                <tr>
+                  <td>Laura Torres</td>
+                  <td>Marketing</td>
+                  <td>Directora de Marketing</td>
+                  <td class="sb-ui-table__cell--end">$10,000,000</td>
+                </tr>
+                <tr>
+                  <td>Diego Castro</td>
+                  <td>Ventas</td>
+                  <td>Ejecutivo de Ventas</td>
+                  <td class="sb-ui-table__cell--end">$6,500,000</td>
+                </tr>
+                <tr>
+                  <td>Sofia Ramírez</td>
+                  <td>Recursos Humanos</td>
+                  <td>Gerente de RRHH</td>
+                  <td class="sb-ui-table__cell--end">$9,000,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compact Table -->
+      <section class="section">
+        <h2>Tabla Compacta (Compact)</h2>
+        <p>Espaciado reducido para mostrar más información</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table sb-ui-table--compact sb-ui-table--striped">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Descripción</th>
+                  <th class="sb-ui-table__cell--center">Cantidad</th>
+                  <th class="sb-ui-table__cell--end">Precio Unit.</th>
+                  <th class="sb-ui-table__cell--end">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>COB-001</td>
+                  <td>Cobertura básica</td>
+                  <td class="sb-ui-table__cell--center">1</td>
+                  <td class="sb-ui-table__cell--end">$500,000</td>
+                  <td class="sb-ui-table__cell--end">$500,000</td>
+                </tr>
+                <tr>
+                  <td>COB-002</td>
+                  <td>Cobertura adicional</td>
+                  <td class="sb-ui-table__cell--center">2</td>
+                  <td class="sb-ui-table__cell--end">$300,000</td>
+                  <td class="sb-ui-table__cell--end">$600,000</td>
+                </tr>
+                <tr>
+                  <td>COB-003</td>
+                  <td>Cobertura premium</td>
+                  <td class="sb-ui-table__cell--center">1</td>
+                  <td class="sb-ui-table__cell--end">$1,000,000</td>
+                  <td class="sb-ui-table__cell--end">$1,000,000</td>
+                </tr>
+                <tr>
+                  <td>COB-004</td>
+                  <td>Cobertura especial</td>
+                  <td class="sb-ui-table__cell--center">3</td>
+                  <td class="sb-ui-table__cell--end">$200,000</td>
+                  <td class="sb-ui-table__cell--end">$600,000</td>
+                </tr>
+                <tr>
+                  <td>COB-005</td>
+                  <td>Cobertura extendida</td>
+                  <td class="sb-ui-table__cell--center">1</td>
+                  <td class="sb-ui-table__cell--end">$750,000</td>
+                  <td class="sb-ui-table__cell--end">$750,000</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="sb-ui-table__cell--end">Total:</td>
+                  <td class="sb-ui-table__cell--end">$3,450,000</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Combined Variants -->
+      <section class="section">
+        <h2>Tabla Combinada (Striped + Hover + Bordered)</h2>
+        <p>Combinación de múltiples variantes</p>
+        <div class="table-wrapper">
+          <div class="sb-ui-table-container">
+            <table class="sb-ui-table sb-ui-table--striped sb-ui-table--hover sb-ui-table--bordered">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" />
+                  </th>
+                  <th>Póliza</th>
+                  <th>Cliente</th>
+                  <th class="sb-ui-table__cell--center">Estado</th>
+                  <th class="sb-ui-table__cell--end">Valor</th>
+                  <th>Vigencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>POL-2024-001</td>
+                  <td>Empresa ABC S.A.S</td>
+                  <td class="sb-ui-table__cell--center">
+                    <span class="badge badge--success">Activa</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$15,000,000</td>
+                  <td>01/01/2024 - 31/12/2024</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>POL-2024-002</td>
+                  <td>Comercializadora XYZ Ltda</td>
+                  <td class="sb-ui-table__cell--center">
+                    <span class="badge badge--warning">Por vencer</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$8,500,000</td>
+                  <td>15/02/2024 - 14/02/2025</td>
+                </tr>
+                <tr class="sb-ui-table__row--selected">
+                  <td>
+                    <input type="checkbox" checked />
+                  </td>
+                  <td>POL-2024-003</td>
+                  <td>Servicios Profesionales MNO</td>
+                  <td class="sb-ui-table__cell--center">
+                    <span class="badge badge--success">Activa</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$22,000,000</td>
+                  <td>01/03/2024 - 28/02/2025</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>POL-2024-004</td>
+                  <td>Constructora DEF S.A</td>
+                  <td class="sb-ui-table__cell--center">
+                    <span class="badge badge--info">En revisión</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$35,000,000</td>
+                  <td>10/04/2024 - 09/04/2025</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>POL-2023-089</td>
+                  <td>Industrias GHI E.U</td>
+                  <td class="sb-ui-table__cell--center">
+                    <span class="badge badge--error">Vencida</span>
+                  </td>
+                  <td class="sb-ui-table__cell--end">$12,000,000</td>
+                  <td>01/01/2023 - 31/12/2023</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="sb-ui-table-pagination">
+            <button class="sb-ui-table-pagination__button" disabled>
+              <i class="fa-solid fa-angles-left"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button" disabled>
+              <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button sb-ui-table-pagination__button--active">
+              1
+            </button>
+            <button class="sb-ui-table-pagination__button">2</button>
+            <button class="sb-ui-table-pagination__button">3</button>
+            <button class="sb-ui-table-pagination__button">4</button>
+            <button class="sb-ui-table-pagination__button">5</button>
+            <button class="sb-ui-table-pagination__button">
+              <i class="fa-solid fa-angle-right"></i>
+            </button>
+            <button class="sb-ui-table-pagination__button">
+              <i class="fa-solid fa-angles-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // ============================================
+      // BRAND & THEME MANAGEMENT
+      // ============================================
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const brandCSS = document.getElementById('brand-css');
+
+      // Load saved state
+      const savedBrand = localStorage.getItem('sb-ui-selected-brand') || 'seguros-bolivar';
+      const savedTheme = localStorage.getItem('sb-ui-selected-theme') || 'light';
+
+      // Apply saved state
+      document.body.setAttribute('data-brand', savedBrand);
+      document.body.setAttribute('data-theme', savedTheme);
+      brandSelect.value = savedBrand;
+      updateThemeButtons(savedTheme);
+      updateStylesheet(savedBrand, savedTheme);
+
+      // Brand selector change
+      brandSelect.addEventListener('change', () => {
+        const brand = brandSelect.value;
+        document.body.setAttribute('data-brand', brand);
+        localStorage.setItem('sb-ui-selected-brand', brand);
+        
+        const currentTheme = document.body.getAttribute('data-theme');
+        updateStylesheet(brand, currentTheme);
+      });
+
+      // Light theme button
+      lightBtn.addEventListener('click', () => {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('sb-ui-selected-theme', 'light');
+        updateThemeButtons('light');
+        
+        const currentBrand = document.body.getAttribute('data-brand');
+        updateStylesheet(currentBrand, 'light');
+      });
+
+      // Dark theme button
+      darkBtn.addEventListener('click', () => {
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('sb-ui-selected-theme', 'dark');
+        updateThemeButtons('dark');
+        
+        const currentBrand = document.body.getAttribute('data-brand');
+        updateStylesheet(currentBrand, 'dark');
+      });
+
+      function updateThemeButtons(theme) {
+        if (theme === 'light') {
+          lightBtn.classList.remove('sb-ui-button--tertiary');
+          lightBtn.classList.add('sb-ui-button--primary');
+          darkBtn.classList.remove('sb-ui-button--primary');
+          darkBtn.classList.add('sb-ui-button--tertiary');
+        } else {
+          darkBtn.classList.remove('sb-ui-button--tertiary');
+          darkBtn.classList.add('sb-ui-button--primary');
+          lightBtn.classList.remove('sb-ui-button--primary');
+          lightBtn.classList.add('sb-ui-button--tertiary');
+        }
+      }
+
+      function updateStylesheet(brand, theme) {
+        const timestamp = new Date().getTime();
+        brandCSS.href = `../dist/sb-ui-${brand}-${theme}.min.css?v=${timestamp}`;
+      }
+
+      // Select All Checkbox
+      document.getElementById('select-all-1').addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll(
+          '.sb-ui-table tbody input[type="checkbox"]'
+        );
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = this.checked;
+        });
+      });
+
+      // Pagination functionality
+      const paginationButtons = document.querySelectorAll('.sb-ui-table-pagination__button');
+      
+      paginationButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          if (this.disabled) return;
+
+          // Remove active class from all buttons
+          this.closest('.sb-ui-table-pagination')
+            .querySelectorAll('.sb-ui-table-pagination__button')
+            .forEach((btn) => btn.classList.remove('sb-ui-table-pagination__button--active'));
+
+          // Add active class to clicked button (if it's a number)
+          if (!this.querySelector('i')) {
+            this.classList.add('sb-ui-table-pagination__button--active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+

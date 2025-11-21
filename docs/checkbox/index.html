@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkbox Component - Seguros Bolivar UI Design System</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Design System - Seguros Bolívar Light -->
+    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      id="brand-css"
+    />
+
+    <style>
+      * {
+        margin-block: 0;
+        margin-inline: 0;
+        padding-block: 0;
+        padding-inline: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .matrix-container {
+        max-inline-size: 1400px;
+        margin-block: 0;
+        margin-inline: auto;
+      }
+
+      .matrix-header {
+        margin-block-end: 2rem;
+        text-align: center;
+      }
+
+      .matrix-header h1 {
+        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base, #007acc);
+        margin-block-end: 0.5rem;
+      }
+
+      .matrix-header p {
+        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+      }
+
+      .matrix-section {
+        margin-block-end: 3rem;
+        background: white;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .matrix-title {
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+        font-weight: 700;
+        margin-block-end: 0.5rem;
+        color: var(--sb-ui-color-primary-base, #007acc);
+      }
+
+      .matrix-subtitle {
+        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+        margin-block-end: 1.5rem;
+      }
+
+      .matrix-table {
+        inline-size: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        margin-block-end: 2rem;
+      }
+
+      .matrix-table th,
+      .matrix-table td {
+        padding-block: 1.25rem;
+        padding-inline: 1rem;
+        text-align: center;
+        border-inline-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      .matrix-table th {
+        background: var(--sb-ui-color-primary-base, #007acc);
+        color: white;
+        font-weight: 700;
+        font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.95rem);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .matrix-table td:first-child {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        font-weight: 600;
+        text-align: start;
+        padding-inline-start: 1.5rem;
+        color: var(--sb-ui-color-grayscale-D100, #333);
+      }
+
+      .matrix-table tr:last-child td {
+        border-block-end: none;
+      }
+
+      .matrix-table th:last-child,
+      .matrix-table td:last-child {
+        border-inline-end: none;
+      }
+
+      .state-label {
+        display: inline-block;
+        padding-block: 0.25rem;
+        padding-inline: 0.75rem;
+        border-radius: 4px;
+        font-size: clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
+        font-weight: 600;
+        background: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        color: var(--sb-ui-color-grayscale-D200, #222);
+      }
+
+      .state-label.default {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .state-label.disabled {
+        background: #eceff1;
+        color: #546e7a;
+      }
+      .state-label.error {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-block-end: 2rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+        background: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .card h4 {
+        margin-block-end: 1rem;
+        color: #666;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .example-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .code-block {
+        background: #263238;
+        color: #aed581;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin-block-start: 1rem;
+      }
+
+      .notes-section {
+        background: #fff9e6;
+        border-inline-start: 4px solid #ffa000;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        border-radius: 12px;
+        margin-block-end: 2rem;
+      }
+
+      .notes-section h3 {
+        margin-block-start: 0;
+        color: #e65100;
+        font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+        margin-block-end: 1rem;
+      }
+
+      .notes-section ul {
+        line-height: 1.8;
+        color: #333;
+        padding-inline-start: 1.5rem;
+      }
+
+      .notes-section code {
+        background: rgba(0, 0, 0, 0.05);
+        padding-block: 0.125rem;
+        padding-inline: 0.375rem;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+      }
+
+      /* Brand Selector Styles - Modern UI */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-block-end: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="matrix-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <a
+          href="../index.html"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </a>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="matrix-header">
+        <h1>☑️ Checkbox Component</h1>
+        <p>Componente de selección múltiple con estados completos</p>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 1: ESTADOS BÁSICOS
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">1. Estados Básicos</h2>
+        <p class="matrix-subtitle">Checkbox con estado normal y estado de error (validación)</p>
+
+        <div class="grid">
+          <!-- NORMAL -->
+          <div class="card">
+            <h4>Normal (Default)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Unchecked</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Checked</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- ERROR STATE -->
+          <div class="card">
+            <h4>Error (Validación Fallida)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Campo requerido</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Error checked</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 2: ESTADOS INTERACTIVOS
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">2. Estados Interactivos</h2>
+        <p class="matrix-subtitle">
+          Todos los estados de un checkbox: Default, Hover, Focus, Disabled, Indeterminate
+        </p>
+
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="text-align: start; padding-inline-start: 1.5rem">Estado</th>
+              <th>Unchecked</th>
+              <th>Checked</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Default State -->
+            <tr>
+              <td>
+                <span class="state-label default">Default</span>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Unchecked default</span>
+                </label>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Checked default</span>
+                </label>
+              </td>
+            </tr>
+
+            <!-- Hover State -->
+            <tr>
+              <td>
+                <span class="state-label default">Hover</span>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Pasa el mouse sobre mí</span>
+                </label>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Pasa el mouse sobre mí</span>
+                </label>
+              </td>
+            </tr>
+
+            <!-- Focus State -->
+            <tr>
+              <td>
+                <span class="state-label default">Focus</span>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" id="focus-unchecked" />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Click para ver focus</span>
+                </label>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" id="focus-checked" checked />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Click para ver focus</span>
+                </label>
+              </td>
+            </tr>
+
+            <!-- Disabled State -->
+            <tr>
+              <td>
+                <span class="state-label disabled">Disabled</span>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Unchecked disabled</span>
+                </label>
+              </td>
+              <td>
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" checked disabled />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Checked disabled</span>
+                </label>
+              </td>
+            </tr>
+
+            <!-- Indeterminate State -->
+            <tr>
+              <td>
+                <span class="state-label default">Indeterminate</span>
+              </td>
+              <td colspan="2" style="text-align: center">
+                <label class="sb-ui-checkbox">
+                  <input type="checkbox" class="sb-ui-checkbox__input" id="indeterminate-demo" />
+                  <span class="sb-ui-checkbox__box"></span>
+                  <span class="sb-ui-checkbox__label">Indeterminate state (línea horizontal)</span>
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 3: TAMAÑOS
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">3. Tamaños</h2>
+        <p class="matrix-subtitle">
+          Tres tamaños disponibles: Small (16px), Medium (20px), Large (24px)
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Small (16x16px)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--small">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Small unchecked</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--small">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Small checked</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Medium (20x20px - default)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Medium unchecked</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Medium checked</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Large (24x24px)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--large">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Large unchecked</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--large">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Large checked</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 4: SIN LABEL
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">4. Sin Label (solo checkbox)</h2>
+        <p class="matrix-subtitle">Útil para tablas, listas compactas y selección múltiple</p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Small</h4>
+            <div class="example-group" style="flex-direction: row; justify-content: center">
+              <label class="sb-ui-checkbox sb-ui-checkbox--small sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--small sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Medium</h4>
+            <div class="example-group" style="flex-direction: row; justify-content: center">
+              <label class="sb-ui-checkbox sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Large</h4>
+            <div class="example-group" style="flex-direction: row; justify-content: center">
+              <label class="sb-ui-checkbox sb-ui-checkbox--large sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--large sb-ui-checkbox--no-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 5: ESTADO FOCUS
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">5. Estado Focus</h2>
+        <p class="matrix-subtitle">
+          Halo verde claro (#E5F4EE) aparece cuando el checkbox recibe foco por teclado (Tab)
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Focus en Unchecked</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Presiona
+              <kbd
+                style="
+                  padding: 2px 6px;
+                  background: #f5f5f5;
+                  border: 1px solid #ccc;
+                  border-radius: 3px;
+                "
+                >Tab</kbd
+              >
+              para ver el halo de focus
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Enfócame con Tab</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Segundo checkbox</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Focus en Checked</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              El halo de focus también aparece en checkboxes marcados
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Checkbox marcado con focus</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Otro checkbox marcado</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Accesibilidad</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              El halo de focus cumple con WCAG 2.1 AA para indicadores visuales
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Navegable por teclado</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Usa Espacio para marcar/desmarcar</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 6: ESTADO DISABLED
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">6. Estado Disabled</h2>
+        <p class="matrix-subtitle">
+          Checkbox y texto en color gris (#9B9B9B) para indicar que no están disponibles
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Disabled Unchecked</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Box y texto en gris, no responde a interacciones
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Opción deshabilitada</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">No disponible temporalmente</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Disabled Checked</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Muestra selección pero no permite cambios
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Selección permanente</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Configuración bloqueada</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Tamaños Disabled</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              El estado disabled funciona en todos los tamaños
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--small">
+                <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Small disabled</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Medium disabled</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--large">
+                <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Large disabled</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 7: ESTADO ERROR
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">7. Estado Error</h2>
+        <p class="matrix-subtitle">
+          Border y texto en rojo (#DC3545) para indicar validación fallida
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Error en Validación</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Indica que el campo requiere atención del usuario
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Debe aceptar los términos *</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Campo obligatorio sin marcar</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Error + Hover</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Halo rojizo aparece en hover/pressed manteniendo el color de error
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Pasa el mouse sobre mí</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Error pero marcado</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Error + Disabled</h4>
+            <p style="font-size: 14px; color: #666; margin-block-end: 1rem">
+              Estado disabled tiene prioridad sobre error visual
+            </p>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Error y deshabilitado</span>
+              </label>
+
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked disabled />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Error, marcado y disabled</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 8: CASOS DE USO REALES
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">8. Casos de Uso Reales</h2>
+
+        <div class="grid">
+          <!-- Formulario de Registro -->
+          <div class="card">
+            <h4>Formulario de Registro</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" required />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Acepto los términos y condiciones *</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Deseo recibir notificaciones</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Suscribirme al newsletter (opcional)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Selector de Preferencias -->
+          <div class="card">
+            <h4>Selector de Preferencias</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Email</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" checked />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">SMS</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Push Notifications</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Filtros con Error -->
+          <div class="card">
+            <h4>Filtros (con validación)</h4>
+            <div class="example-group">
+              <label class="sb-ui-checkbox sb-ui-checkbox--error">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Debe seleccionar al menos una opción</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">En stock</span>
+              </label>
+
+              <label class="sb-ui-checkbox">
+                <input type="checkbox" class="sb-ui-checkbox__input" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">Con descuento</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 9: VALIDACIÓN DE FORMULARIO (DEMO INTERACTIVO)
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">9. Validación de Formulario (Demo Interactivo)</h2>
+        <p class="matrix-subtitle">
+          Formulario con checkbox obligatorio. Intenta enviar sin aceptar los términos para ver el
+          estado de error.
+        </p>
+
+        <div
+          style="
+            max-inline-size: 600px;
+            margin-inline: auto;
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+          "
+        >
+          <form id="demo-form" style="display: flex; flex-direction: column; gap: 1.5rem">
+            <div>
+              <label
+                for="demo-name"
+                style="
+                  display: block;
+                  margin-block-end: 0.5rem;
+                  font-weight: 500;
+                  color: #333;
+                  font-size: 14px;
+                "
+              >
+                Nombre completo *
+              </label>
+              <input
+                type="text"
+                id="demo-name"
+                class="sb-ui-input"
+                placeholder="Escribe tu nombre"
+                required
+                style="
+                  inline-size: 100%;
+                  padding: 0.75rem;
+                  border: 1px solid #e0e0e0;
+                  border-radius: 8px;
+                  font-size: 16px;
+                  font-family: inherit;
+                "
+              />
+            </div>
+
+            <div>
+              <label
+                for="demo-email"
+                style="
+                  display: block;
+                  margin-block-end: 0.5rem;
+                  font-weight: 500;
+                  color: #333;
+                  font-size: 14px;
+                "
+              >
+                Email *
+              </label>
+              <input
+                type="email"
+                id="demo-email"
+                class="sb-ui-input"
+                placeholder="tu@email.com"
+                required
+                style="
+                  inline-size: 100%;
+                  padding: 0.75rem;
+                  border: 1px solid #e0e0e0;
+                  border-radius: 8px;
+                  font-size: 16px;
+                  font-family: inherit;
+                "
+              />
+            </div>
+
+            <!-- CHECKBOX OBLIGATORIO -->
+            <div
+              style="
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                border: 2px solid transparent;
+              "
+              id="terms-container"
+            >
+              <label class="sb-ui-checkbox" id="terms-checkbox-label">
+                <input type="checkbox" class="sb-ui-checkbox__input" id="terms-checkbox" />
+                <span class="sb-ui-checkbox__box"></span>
+                <span class="sb-ui-checkbox__label">
+                  Acepto los
+                  <a
+                    href="#"
+                    style="color: var(--sb-ui-color-primary-base); text-decoration: underline"
+                    >términos y condiciones</a
+                  >
+                  *
+                </span>
+              </label>
+              <p
+                id="terms-error"
+                style="
+                  display: none;
+                  margin-block-start: 0.5rem;
+                  margin-inline-start: 28px;
+                  color: #dc3545;
+                  font-size: 14px;
+                  font-weight: 500;
+                "
+              >
+                ⚠️ Debes aceptar los términos y condiciones para continuar
+              </p>
+            </div>
+
+            <!-- BOTONES -->
+            <div style="display: flex; gap: 1rem; justify-content: flex-end">
+              <button
+                type="button"
+                id="reset-btn"
+                class="sb-ui-button sb-ui-button--tertiary"
+                style="min-inline-size: 120px"
+              >
+                Limpiar
+              </button>
+              <button
+                type="submit"
+                class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
+                style="min-inline-size: 120px"
+              >
+                Enviar
+              </button>
+            </div>
+
+            <!-- RESULTADO -->
+            <div
+              id="form-result"
+              style="
+                display: none;
+                padding: 1rem;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 500;
+              "
+            ></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ========================================
+         SECCIÓN 10: CÓDIGO DE USO
+         ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">10. Código de Ejemplo</h2>
+
+        <h3 style="margin-block-end: 1rem; color: #333">HTML Básico</h3>
+        <div class="code-block">
+          &lt;!-- Checkbox normal --&gt; <br />
+          &lt;label class="sb-ui-checkbox"&gt;
+          <br />
+          &nbsp;&nbsp;&lt;input type="checkbox" class="sb-ui-checkbox__input" /&gt;
+          <br />
+          &nbsp;&nbsp;&lt;span class="sb-ui-checkbox__box"&gt;&lt;/span&gt;
+          <br />
+          &nbsp;&nbsp;&lt;span class="sb-ui-checkbox__label"&gt;Option text&lt;/span&gt;
+          <br />
+          &lt;/label&gt;
+          <br />
+          <br />
+          &lt;!-- Checkbox con error (validación fallida) --&gt; <br />
+          &lt;label class="sb-ui-checkbox sb-ui-checkbox--error"&gt;
+          <br />
+          &nbsp;&nbsp;&lt;input type="checkbox" class="sb-ui-checkbox__input" /&gt;
+          <br />
+          &nbsp;&nbsp;&lt;span class="sb-ui-checkbox__box"&gt;&lt;/span&gt;
+          <br />
+          &nbsp;&nbsp;&lt;span class="sb-ui-checkbox__label"&gt;Campo requerido&lt;/span&gt;
+          <br />
+          &lt;/label&gt;
+        </div>
+
+        <h3 style="margin-block-start: 2rem; margin-block-end: 1rem; color: #333">
+          Clases Disponibles
+        </h3>
+        <div class="code-block">
+          /* CLASE BASE */ <br />
+          sb-ui-checkbox (clase única, sin variantes) <br />
+          <br />
+          /* ESTADOS */ <br />
+          sb-ui-checkbox--error (validación fallida) <br />
+          sb-ui-checkbox--loading (operación async) <br />
+          sb-ui-checkbox--readonly (solo lectura) <br />
+          <br />
+          /* TAMAÑOS */ <br />
+          sb-ui-checkbox--small (16x16px) <br />
+          sb-ui-checkbox--medium (20x20px - default) <br />
+          sb-ui-checkbox--large (24x24px) <br />
+          <br />
+          /* MODIFIERS */ <br />
+          sb-ui-checkbox--no-label <br />
+          sb-ui-checkbox--block <br />
+          sb-ui-checkbox--vertical
+        </div>
+
+        <h3 style="margin-block-start: 2rem; margin-block-end: 1rem; color: #333">CSS Import</h3>
+        <div class="code-block">
+          &lt;!-- Bundle completo (tokens + atoms + overrides) --&gt; <br />
+          &lt;link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css" /&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript para funcionalidad del demo -->
+    <script>
+      // ========================================
+      // INDETERMINATE STATE DEMO
+      // ========================================
+      const indeterminateCheckbox = document.getElementById('indeterminate-demo');
+      if (indeterminateCheckbox) {
+        indeterminateCheckbox.indeterminate = true;
+      }
+
+      // ========================================
+      // BRAND AND THEME SWITCHING
+      // ========================================
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+
+      // ========================================
+      // FORM VALIDATION DEMO
+      // ========================================
+      const demoForm = document.getElementById('demo-form');
+      const termsCheckbox = document.getElementById('terms-checkbox');
+      const termsCheckboxLabel = document.getElementById('terms-checkbox-label');
+      const termsError = document.getElementById('terms-error');
+      const termsContainer = document.getElementById('terms-container');
+      const formResult = document.getElementById('form-result');
+      const resetBtn = document.getElementById('reset-btn');
+
+      // Verificar que todos los elementos existen
+      console.log('🔍 Elementos del formulario:', {
+        demoForm: !!demoForm,
+        termsCheckbox: !!termsCheckbox,
+        termsCheckboxLabel: !!termsCheckboxLabel,
+        termsError: !!termsError,
+        termsContainer: !!termsContainer,
+        formResult: !!formResult,
+        resetBtn: !!resetBtn,
+      });
+
+      // Función para mostrar error en el checkbox
+      function showCheckboxError() {
+        // Agregar clase de error al label del checkbox (solo cambia el checkbox a rojo)
+        termsCheckboxLabel.classList.add('sb-ui-checkbox--error');
+
+        // Mostrar mensaje de error
+        termsError.style.display = 'block';
+
+        // Debug: verificar que se aplicó
+        console.log(
+          '❌ Error aplicado:',
+          termsCheckboxLabel.classList.contains('sb-ui-checkbox--error')
+        );
+      }
+
+      // Función para ocultar error en el checkbox
+      function hideCheckboxError() {
+        // Remover clase de error
+        termsCheckboxLabel.classList.remove('sb-ui-checkbox--error');
+
+        // Ocultar mensaje de error
+        termsError.style.display = 'none';
+
+        // Debug: verificar que se quitó
+        console.log(
+          '✅ Error removido:',
+          !termsCheckboxLabel.classList.contains('sb-ui-checkbox--error')
+        );
+      }
+
+      // Validar cuando el usuario marca/desmarca el checkbox
+      termsCheckbox.addEventListener('change', () => {
+        if (termsCheckbox.checked) {
+          hideCheckboxError();
+        }
+      });
+
+      // Manejar el submit del formulario
+      demoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Validar checkbox
+        if (!termsCheckbox.checked) {
+          showCheckboxError();
+
+          // Scroll al checkbox con error
+          termsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Mostrar mensaje de error general (sin estilos rojos)
+          formResult.style.display = 'block';
+          formResult.style.backgroundColor = 'transparent';
+          formResult.style.color = '#333';
+          formResult.style.border = 'none';
+          formResult.innerHTML =
+            '⚠️ <strong>Error:</strong> Debes aceptar los términos y condiciones para continuar.';
+
+          return;
+        }
+
+        // Si todo está OK, mostrar éxito
+        hideCheckboxError();
+        formResult.style.display = 'block';
+        formResult.style.backgroundColor = '#e8f5e9';
+        formResult.style.color = '#2e7d32';
+        formResult.style.border = '2px solid #4caf50';
+        formResult.innerHTML = `
+          ✅ <strong>¡Formulario enviado exitosamente!</strong><br>
+          <span style="font-size: 12px; font-weight: normal; color: #555;">
+            Nombre: ${demoForm['demo-name'].value}<br>
+            Email: ${demoForm['demo-email'].value}<br>
+            Términos aceptados: Sí
+          </span>
+        `;
+
+        // Scroll al resultado
+        formResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Limpiar después de 3 segundos
+        setTimeout(() => {
+          formResult.style.display = 'none';
+        }, 5000);
+      });
+
+      // Botón limpiar
+      resetBtn.addEventListener('click', () => {
+        demoForm.reset();
+        hideCheckboxError();
+        formResult.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

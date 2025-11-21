@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Calendar - Web Component - Seguros Bolívar UI</title>
+
+    <!-- ============================================
+         TOKENS + ATOMS + BRAND OVERRIDES
+         ============================================ -->
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+    />
+
+    <!-- Web Components JS Bundle -->
+    <script type="module" src="../dist/sb-ui-components.min.js"></script>
+
+    <style>
+      /* Demo Page Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .demo-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .demo-header h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: #026838;
+        margin-bottom: 0.5rem;
+      }
+
+      .demo-header p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: #666;
+      }
+
+      .demo-section {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-section h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: #026838;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .demo-section p {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .demo-item {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .demo-item h3 {
+        font-size: 1.25rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .demo-item-description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .calendar-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+
+      .output-box {
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        color: #333;
+      }
+
+      .output-box strong {
+        color: #026838;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .output-box pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .control-group label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .control-group select,
+      .control-group input {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        background: #fcd535;
+        color: #026838;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+      }
+
+      .feature-list li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .feature-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #026838;
+        font-weight: bold;
+      }
+
+      .event-log {
+        max-height: 200px;
+        overflow-y: auto;
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+      }
+
+      .event-log-entry {
+        margin-bottom: 0.5rem;
+        padding: 0.25rem;
+        border-left: 3px solid #fcd535;
+        padding-left: 0.5rem;
+      }
+
+      .event-log-entry.type-select {
+        border-left-color: #4caf50;
+      }
+
+      .event-log-entry.type-change {
+        border-left-color: #2196f3;
+      }
+
+      .event-log-entry.type-month {
+        border-left-color: #ff9800;
+      }
+
+      .event-log-entry.type-accept {
+        border-left-color: #9c27b0;
+      }
+
+      .clear-log {
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar">
+    <div class="demo-container">
+      <!-- Header -->
+      <header class="demo-header">
+        <h1>📅 Interactive Calendar - Web Component</h1>
+        <p>Seguros Bolívar UI Design System</p>
+      </header>
+
+      <!-- ============================================
+           CARACTERÍSTICAS
+           ============================================ -->
+      <section class="demo-section">
+        <h2>🚀 Características del Web Component</h2>
+        <ul class="feature-list">
+          <li><strong>3 Modos de Selección:</strong> Single, Range, Multiple</li>
+          <li><strong>Navegación por Teclado:</strong> Flechas, Enter, Space, Home, End</li>
+          <li><strong>i18n:</strong> Español e Inglés incluidos</li>
+          <li><strong>Validación:</strong> Min/Max dates, Disabled dates</li>
+          <li><strong>Custom Events:</strong> date-select, date-change, month-change</li>
+          <li><strong>Accesible:</strong> ARIA labels, focus management</li>
+          <li><strong>Responsive:</strong> Adapta tamaño automáticamente</li>
+          <li><strong>Themeable:</strong> Respeta brand overrides</li>
+        </ul>
+      </section>
+
+      <!-- ============================================
+           DEMO 1: SINGLE DATE PICKER
+           ============================================ -->
+      <section class="demo-section">
+        <h2>
+          <span class="badge">Single</span>
+          Single Date Picker
+        </h2>
+        <p>
+          Selecciona una sola fecha. Usa las flechas del teclado para navegar entre días.
+        </p>
+
+        <div class="controls">
+          <div class="control-group">
+            <label for="single-min-date">Min Date:</label>
+            <input type="date" id="single-min-date" value="2022-03-01" />
+          </div>
+          <div class="control-group">
+            <label for="single-max-date">Max Date:</label>
+            <input type="date" id="single-max-date" value="2022-03-31" />
+          </div>
+          <div class="control-group">
+            <label for="single-locale">Locale:</label>
+            <select id="single-locale">
+              <option value="es">Español</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calendar-wrapper">
+          <sb-ui-calendar
+            id="single-calendar"
+            variant="single"
+            selected-date="2022-03-15"
+            min-date="2022-03-01"
+            max-date="2022-03-31"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output-box">
+          <strong>Selected Date:</strong>
+          <pre id="single-output">2022-03-15</pre>
+        </div>
+
+        <div class="event-log" id="single-log"></div>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small clear-log" onclick="clearLog('single-log')">
+          Clear Log
+        </button>
+      </section>
+
+      <!-- ============================================
+           DEMO 2: RANGE DATE PICKER
+           ============================================ -->
+      <section class="demo-section">
+        <h2>
+          <span class="badge">Range</span>
+          Range Date Picker
+        </h2>
+        <p>
+          Selecciona un rango de fechas. Primer clic = inicio, segundo clic = fin.
+          Activa "Show Double" para ver dos meses.
+        </p>
+
+        <div class="controls">
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="range-double" />
+              Show Double Calendar
+            </label>
+          </div>
+          <div class="control-group">
+            <label for="range-size">Size:</label>
+            <select id="range-size">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calendar-wrapper">
+          <sb-ui-calendar
+            id="range-calendar"
+            variant="range"
+            range-start="2022-03-15"
+            range-end="2022-04-08"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output-box">
+          <strong>Range:</strong>
+          <pre id="range-output">Start: 2022-03-15
+End: 2022-04-08</pre>
+        </div>
+
+        <div class="event-log" id="range-log"></div>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small clear-log" onclick="clearLog('range-log')">
+          Clear Log
+        </button>
+      </section>
+
+      <!-- ============================================
+           DEMO 3: MULTIPLE DATE PICKER
+           ============================================ -->
+      <section class="demo-section">
+        <h2>
+          <span class="badge">Multiple</span>
+          Multiple Date Picker
+        </h2>
+        <p>
+          Selecciona múltiples fechas independientes. Clic para seleccionar/deseleccionar.
+        </p>
+
+        <div class="controls">
+          <div class="control-group">
+            <label for="multiple-disabled">Disabled Dates (comma separated):</label>
+            <input
+              type="text"
+              id="multiple-disabled"
+              placeholder="2022-03-20,2022-03-21"
+              style="width: 250px;"
+            />
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="multiple-footer" checked />
+              Show Footer
+            </label>
+          </div>
+        </div>
+
+        <div class="calendar-wrapper">
+          <sb-ui-calendar
+            id="multiple-calendar"
+            variant="multiple"
+            selected-dates="2022-03-15,2022-03-16,2022-03-17"
+            locale="es"
+            show-footer
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output-box">
+          <strong>Selected Dates:</strong>
+          <pre id="multiple-output">2022-03-15, 2022-03-16, 2022-03-17</pre>
+        </div>
+
+        <div class="event-log" id="multiple-log"></div>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small clear-log" onclick="clearLog('multiple-log')">
+          Clear Log
+        </button>
+      </section>
+
+      <!-- ============================================
+           DEMO 4: PROGRAMMATIC CONTROL
+           ============================================ -->
+      <section class="demo-section">
+        <h2>⚙️ Programmatic Control</h2>
+        <p>Control del calendario mediante JavaScript.</p>
+
+        <div class="controls">
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small" onclick="setToday()">
+            Set Today
+          </button>
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" onclick="clearSelection()">
+            Clear Selection
+          </button>
+          <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" onclick="setNextWeek()">
+            Set Next Week (Range)
+          </button>
+          <button class="sb-ui-button sb-ui-button--error sb-ui-button--small" onclick="disableWeekends()">
+            Disable Weekends
+          </button>
+        </div>
+
+        <div class="calendar-wrapper">
+          <sb-ui-calendar
+            id="programmatic-calendar"
+            variant="single"
+            locale="es"
+          ></sb-ui-calendar>
+        </div>
+
+        <div class="output-box">
+          <strong>Current Selection:</strong>
+          <pre id="programmatic-output">None</pre>
+        </div>
+      </section>
+
+      <!-- ============================================
+           USO DEL COMPONENTE
+           ============================================ -->
+      <section class="demo-section">
+        <h2>💻 Uso del Web Component</h2>
+        
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">HTML Básico</h3>
+        <div class="output-box">
+<pre>&lt;!-- Single Date Picker --&gt;
+&lt;sb-ui-calendar
+  variant="single"
+  selected-date="2022-03-15"
+  min-date="2022-03-01"
+  max-date="2022-03-31"
+  locale="es"
+&gt;&lt;/sb-ui-calendar&gt;
+
+&lt;!-- Range Date Picker --&gt;
+&lt;sb-ui-calendar
+  variant="range"
+  range-start="2022-03-15"
+  range-end="2022-04-08"
+  show-double
+&gt;&lt;/sb-ui-calendar&gt;
+
+&lt;!-- Multiple Date Picker --&gt;
+&lt;sb-ui-calendar
+  variant="multiple"
+  selected-dates="2022-03-15,2022-03-16,2022-03-17"
+  disabled-dates="2022-03-20,2022-03-21"
+&gt;&lt;/sb-ui-calendar&gt;</pre>
+        </div>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">JavaScript Events</h3>
+        <div class="output-box">
+<pre>const calendar = document.querySelector('sb-ui-calendar');
+
+// Date selected
+calendar.addEventListener('date-select', (e) => {
+  console.log('Selected:', e.detail);
+  // { date: "2022-03-15", timestamp: 1647302400000 }
+});
+
+// Selection changed
+calendar.addEventListener('date-change', (e) => {
+  console.log('Changed:', e.detail);
+  // Single: { variant: "single", date: "2022-03-15" }
+  // Range: { variant: "range", start: "...", end: "..." }
+  // Multiple: { variant: "multiple", dates: [...] }
+});
+
+// Month changed
+calendar.addEventListener('month-change', (e) => {
+  console.log('Month:', e.detail);
+  // { month: 2, year: 2022, monthName: "Marzo" }
+});
+
+// Accept button clicked
+calendar.addEventListener('calendar-accept', (e) => {
+  console.log('Accepted:', e.detail);
+});
+
+// Cancel button clicked
+calendar.addEventListener('calendar-cancel', () => {
+  console.log('Cancelled');
+});</pre>
+        </div>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Propiedades Disponibles</h3>
+        <div class="output-box">
+<pre>// Selection
+variant: 'single' | 'range' | 'multiple'
+selected-date: string (ISO format: YYYY-MM-DD)
+selected-dates: string (comma separated)
+range-start: string
+range-end: string
+
+// Validation
+min-date: string
+max-date: string
+disabled-dates: string (comma separated)
+
+// Appearance
+size: 'small' | 'medium' | 'large'
+show-footer: boolean
+show-double: boolean
+inline: boolean
+
+// i18n
+locale: 'es' | 'en'</pre>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // ============================================================================
+      // Event Listeners - Single Calendar
+      // ============================================================================
+      const singleCalendar = document.getElementById('single-calendar');
+      const singleOutput = document.getElementById('single-output');
+      const singleLog = document.getElementById('single-log');
+
+      singleCalendar.addEventListener('date-change', (e) => {
+        singleOutput.textContent = e.detail.date || 'None';
+        logEvent('single-log', 'date-change', e.detail, 'type-change');
+      });
+
+      singleCalendar.addEventListener('date-select', (e) => {
+        logEvent('single-log', 'date-select', e.detail, 'type-select');
+      });
+
+      singleCalendar.addEventListener('month-change', (e) => {
+        logEvent('single-log', 'month-change', e.detail, 'type-month');
+      });
+
+      // Controls
+      document.getElementById('single-min-date').addEventListener('change', (e) => {
+        singleCalendar.setAttribute('min-date', e.target.value);
+      });
+
+      document.getElementById('single-max-date').addEventListener('change', (e) => {
+        singleCalendar.setAttribute('max-date', e.target.value);
+      });
+
+      document.getElementById('single-locale').addEventListener('change', (e) => {
+        singleCalendar.setAttribute('locale', e.target.value);
+      });
+
+      // ============================================================================
+      // Event Listeners - Range Calendar
+      // ============================================================================
+      const rangeCalendar = document.getElementById('range-calendar');
+      const rangeOutput = document.getElementById('range-output');
+      const rangeLog = document.getElementById('range-log');
+
+      rangeCalendar.addEventListener('date-change', (e) => {
+        rangeOutput.textContent = `Start: ${e.detail.start || 'None'}\nEnd: ${e.detail.end || 'None'}`;
+        logEvent('range-log', 'date-change', e.detail, 'type-change');
+      });
+
+      rangeCalendar.addEventListener('calendar-accept', (e) => {
+        logEvent('range-log', 'calendar-accept', e.detail, 'type-accept');
+        alert(`Range accepted!\nStart: ${e.detail.start}\nEnd: ${e.detail.end}`);
+      });
+
+      // Controls
+      document.getElementById('range-double').addEventListener('change', (e) => {
+        rangeCalendar.showDouble = e.target.checked;
+      });
+
+      document.getElementById('range-size').addEventListener('change', (e) => {
+        rangeCalendar.setAttribute('size', e.target.value);
+      });
+
+      // ============================================================================
+      // Event Listeners - Multiple Calendar
+      // ============================================================================
+      const multipleCalendar = document.getElementById('multiple-calendar');
+      const multipleOutput = document.getElementById('multiple-output');
+      const multipleLog = document.getElementById('multiple-log');
+
+      multipleCalendar.addEventListener('date-change', (e) => {
+        multipleOutput.textContent = e.detail.dates?.join(', ') || 'None';
+        logEvent('multiple-log', 'date-change', e.detail, 'type-change');
+      });
+
+      multipleCalendar.addEventListener('calendar-accept', (e) => {
+        logEvent('multiple-log', 'calendar-accept', e.detail, 'type-accept');
+        alert(`Selected ${e.detail.dates.length} dates:\n${e.detail.dates.join('\n')}`);
+      });
+
+      // Controls
+      document.getElementById('multiple-disabled').addEventListener('change', (e) => {
+        multipleCalendar.setAttribute('disabled-dates', e.target.value);
+      });
+
+      document.getElementById('multiple-footer').addEventListener('change', (e) => {
+        multipleCalendar.showFooter = e.target.checked;
+      });
+
+      // ============================================================================
+      // Programmatic Control Functions
+      // ============================================================================
+      const programmaticCalendar = document.getElementById('programmatic-calendar');
+      const programmaticOutput = document.getElementById('programmatic-output');
+
+      programmaticCalendar.addEventListener('date-change', (e) => {
+        programmaticOutput.textContent = JSON.stringify(e.detail, null, 2);
+      });
+
+      function setToday() {
+        const today = new Date().toISOString().split('T')[0];
+        programmaticCalendar.setAttribute('selected-date', today);
+      }
+
+      function clearSelection() {
+        programmaticCalendar.removeAttribute('selected-date');
+        programmaticCalendar.removeAttribute('selected-dates');
+        programmaticCalendar.removeAttribute('range-start');
+        programmaticCalendar.removeAttribute('range-end');
+        programmaticOutput.textContent = 'None';
+      }
+
+      function setNextWeek() {
+        programmaticCalendar.setAttribute('variant', 'range');
+        programmaticCalendar.setAttribute('show-double', 'true');
+        
+        const today = new Date();
+        const nextWeek = new Date(today);
+        nextWeek.setDate(today.getDate() + 7);
+        
+        programmaticCalendar.setAttribute('range-start', today.toISOString().split('T')[0]);
+        programmaticCalendar.setAttribute('range-end', nextWeek.toISOString().split('T')[0]);
+      }
+
+      function disableWeekends() {
+        const dates = [];
+        const today = new Date();
+        const month = today.getMonth();
+        const year = today.getFullYear();
+        
+        for (let day = 1; day <= 31; day++) {
+          const date = new Date(year, month, day);
+          if (date.getMonth() !== month) break;
+          
+          const dayOfWeek = date.getDay();
+          if (dayOfWeek === 0 || dayOfWeek === 6) {
+            dates.push(date.toISOString().split('T')[0]);
+          }
+        }
+        
+        programmaticCalendar.setAttribute('disabled-dates', dates.join(','));
+        alert('Weekends disabled for current month');
+      }
+
+      // ============================================================================
+      // Utility Functions
+      // ============================================================================
+      function logEvent(logId, eventName, detail, className = '') {
+        const log = document.getElementById(logId);
+        const entry = document.createElement('div');
+        entry.className = `event-log-entry ${className}`;
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${eventName}: ${JSON.stringify(detail)}`;
+        log.insertBefore(entry, log.firstChild);
+        
+        // Keep only last 10 entries
+        while (log.children.length > 10) {
+          log.removeChild(log.lastChild);
+        }
+      }
+
+      function clearLog(logId) {
+        document.getElementById(logId).innerHTML = '';
+      }
+
+      // ============================================================================
+      // Initial Log
+      // ============================================================================
+      console.log('%c📅 Calendar Web Component Loaded', 'color: #026838; font-size: 16px; font-weight: bold');
+      console.log('Available calendars:', {
+        single: singleCalendar,
+        range: rangeCalendar,
+        multiple: multipleCalendar,
+        programmatic: programmaticCalendar,
+      });
+    </script>
+  </body>
+</html>
+

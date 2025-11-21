@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Component - Seguros Bolívar UI Design System</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #fafafa;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #cce9dd;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: #1b1b1b;
+      }
+
+      .brand-controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .brand-controls select {
+        padding: 0.5rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: #f0f0f0;
+        padding: 0.25rem;
+        border-radius: 50px;
+      }
+
+      .theme-toggle button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: transparent;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .theme-toggle button.active {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #038450;
+        border-bottom: 2px solid #cce9dd;
+        padding-bottom: 0.5rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1.5rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .demo-item h3 {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        color: #9b9b9b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .demo-section {
+        margin-bottom: 3rem;
+      }
+
+      .info-box {
+        background: #e5f4ee;
+        border-left: 4px solid #009056;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 4px;
+      }
+
+      .info-box p {
+        color: #038450;
+        font-size: 0.9375rem;
+        line-height: 1.5;
+      }
+
+      .helper-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #9b9b9b;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 4px;
+      }
+
+      .helper-icon--success {
+        background: #28a745;
+      }
+
+      .helper-icon--error {
+        background: #dc3545;
+      }
+
+      /* Focus button styling */
+      .demo-item button {
+        padding: 4px 12px;
+        font-size: 11px;
+        background: #009056;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        margin-top: 8px;
+      }
+
+      .demo-item button:hover {
+        background: #038450;
+        transform: translateY(-1px);
+      }
+
+      .demo-item button:active {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-container">
+      <!-- Header -->
+      <div class="header">
+        <h1>🎨 Select Component</h1>
+        <div class="brand-controls">
+          <select id="brandSelect">
+            <option value="white-label">White Label</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+          </select>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="active">☀️ Light</button>
+            <button id="darkBtn">🌙 Dark</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="info-box">
+        <p>
+          <strong>Componente Select:</strong> Dropdown para selección de opciones. 
+          Estados: Default, Hover, Focus, Active, Disabled, Success, Error. 
+          Incluye label, helper text y validación según el Design System de Seguros Bolívar.
+        </p>
+      </div>
+
+      <!-- BASIC STATES -->
+      <section class="demo-section">
+        <h2>Estados Básicos</h2>
+        <div class="demo-grid">
+          <!-- Default -->
+          <div class="demo-item">
+            <h3>Default</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+
+          <!-- Hover -->
+          <div class="demo-item">
+            <h3>Hover</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+
+          <!-- Focus -->
+          <div class="demo-item">
+            <h3>Focus</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select" id="focus-select">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+            <button onclick="document.getElementById('focus-select').focus()">
+              👁️ Focus
+            </button>
+          </div>
+
+          <!-- Active/Selected -->
+          <div class="demo-item">
+            <h3>Active (Selected)</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select">
+                <option value="">Placeholder</option>
+                <option value="1" selected>Option</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+
+          <!-- Disabled -->
+          <div class="demo-item">
+            <h3>Disabled</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select" disabled>
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALIDATION STATES -->
+      <section class="demo-section">
+        <h2>Estados de Validación</h2>
+        <div class="demo-grid">
+          <!-- Success -->
+          <div class="demo-item">
+            <h3>Success</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--success">
+                <option value="">Placeholder</option>
+                <option value="1" selected>Opción válida</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon helper-icon--success">✓</span>Selection is valid
+              </span>
+            </div>
+          </div>
+
+          <!-- Error -->
+          <div class="demo-item">
+            <h3>Error</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--error">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon helper-icon--error">⊗</span>Please select an option
+              </span>
+            </div>
+          </div>
+
+          <!-- Warning -->
+          <div class="demo-item">
+            <h3>Warning</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--warning">
+                <option value="">Placeholder</option>
+                <option value="1" selected>Opción con advertencia</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon" style="background: #ffc107">⚠</span>Warning message
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIZES -->
+      <section class="demo-section">
+        <h2>Tamaños</h2>
+        <div class="demo-grid">
+          <!-- Small -->
+          <div class="demo-item">
+            <h3>Small</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--small">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+
+          <!-- Medium (Default) -->
+          <div class="demo-item">
+            <h3>Medium (Default)</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--medium">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+
+          <!-- Large -->
+          <div class="demo-item">
+            <h3>Large</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Label txt</label>
+              <select class="sb-ui-select sb-ui-select--large">
+                <option value="">Placeholder</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3">Opción 3</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Help text
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MULTIPLE OPTIONS -->
+      <section class="demo-section">
+        <h2>Múltiples Opciones</h2>
+        <div class="demo-grid">
+          <!-- Multiple Select -->
+          <div class="demo-item">
+            <h3>Multiple Select</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Selecciona múltiples</label>
+              <select class="sb-ui-select" multiple size="5">
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+                <option value="3" selected>Opción 3</option>
+                <option value="4">Opción 4</option>
+                <option value="5">Opción 5</option>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Mantén Ctrl/Cmd para seleccionar múltiples
+              </span>
+            </div>
+          </div>
+
+          <!-- With Optgroup -->
+          <div class="demo-item">
+            <h3>With Groups</h3>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Selecciona categoría</label>
+              <select class="sb-ui-select">
+                <option value="">Placeholder</option>
+                <optgroup label="Grupo 1">
+                  <option value="1-1">Opción 1.1</option>
+                  <option value="1-2">Opción 1.2</option>
+                </optgroup>
+                <optgroup label="Grupo 2">
+                  <option value="2-1">Opción 2.1</option>
+                  <option value="2-2">Opción 2.2</option>
+                </optgroup>
+              </select>
+              <span class="sb-ui-select-helper">
+                <span class="helper-icon">i</span>Opciones agrupadas por categoría
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Brand and Theme Switching
+      const html = document.documentElement;
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const brandCSS = document.getElementById('brand-css');
+
+      // Load saved preferences
+      const savedBrand = localStorage.getItem('selectedBrand') || 'seguros-bolivar';
+      const savedTheme = localStorage.getItem('selectedTheme') || 'light';
+
+      function updateBrandAndTheme() {
+        const brand = brandSelect.value;
+        const theme = savedTheme;
+
+        // Update data attributes
+        html.setAttribute('data-brand', brand);
+        html.setAttribute('data-theme', theme);
+
+        // Update CSS file with cache busting
+        const timestamp = new Date().getTime();
+        brandCSS.href = `../dist/sb-ui-${brand}-${theme}.min.css?v=${timestamp}`;
+
+        // Save to localStorage
+        localStorage.setItem('selectedBrand', brand);
+      }
+
+      function updateTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('selectedTheme', theme);
+
+        // Update CSS file with cache busting
+        const timestamp = new Date().getTime();
+        brandCSS.href = `../dist/sb-ui-${brandSelect.value}-${theme}.min.css?v=${timestamp}`;
+
+        // Update active button
+        if (theme === 'light') {
+          lightBtn.classList.add('active');
+          darkBtn.classList.remove('active');
+        } else {
+          darkBtn.classList.add('active');
+          lightBtn.classList.remove('active');
+        }
+      }
+
+      // Initialize
+      brandSelect.value = savedBrand;
+      updateBrandAndTheme();
+      updateTheme(savedTheme);
+
+      // Event listeners
+      brandSelect.addEventListener('change', updateBrandAndTheme);
+      lightBtn.addEventListener('click', () => updateTheme('light'));
+      darkBtn.addEventListener('click', () => updateTheme('dark'));
+    </script>
+  </body>
+</html>
+

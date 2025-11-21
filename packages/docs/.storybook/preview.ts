@@ -79,8 +79,9 @@ const preview: Preview = {
       }
 
       // Cargar desde publicDir configurado en main.ts
-      // Los archivos están servidos desde el root gracias a Vite
-      styleLink.href = `/sb-ui-${brand}-${theme}.min.css`;
+      // Usar ruta relativa sin '/' inicial para compatibilidad con GitHub Pages
+      // Esto funciona tanto en /storybook/ como en /
+      styleLink.href = `sb-ui-${brand}-${theme}.min.css`;
 
       return story();
     },

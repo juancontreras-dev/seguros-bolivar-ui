@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle Component - Seguros Bolívar UI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Design System - Seguros Bolívar Light -->
+    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      id="brand-css"
+    />
+
+    <style>
+      * {
+        margin-block: 0;
+        margin-inline: 0;
+        padding-block: 0;
+        padding-inline: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .matrix-container {
+        max-inline-size: 1400px;
+        margin-block: 0;
+        margin-inline: auto;
+      }
+
+      .matrix-header {
+        margin-block-end: 2rem;
+        text-align: center;
+      }
+
+      .matrix-header h1 {
+        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base, #007acc);
+        margin-block-end: 0.5rem;
+      }
+
+      .matrix-header p {
+        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+      }
+
+      /* Brand & Theme Controls */
+      .brand-controls {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-block-end: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+
+      /* Sections */
+      .matrix-section {
+        margin-block-end: 4rem;
+        background: white;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .matrix-title {
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+        font-weight: 700;
+        margin-block-end: 0.5rem;
+        color: var(--sb-ui-color-primary-base, #007acc);
+      }
+
+      .matrix-subtitle {
+        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+        margin-block-end: 2rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .demo-item {
+        padding-block: 1.5rem;
+        padding-inline: 1.5rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .demo-item h3 {
+        margin-block: 0 0 1.5rem 0;
+        margin-inline: 0;
+        font-size: 0.875rem;
+        color: var(--sb-ui-color-grayscale-base, #666);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .demo-item .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      /* Matrix Grid for States */
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding-block: 1.5rem;
+        padding-inline: 1.5rem;
+        background: var(--sb-ui-color-grayscale-L400, #f9f9f9);
+        border-radius: 8px;
+      }
+
+      .matrix-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .matrix-column h3 {
+        text-align: center;
+        font-size: 1rem;
+        color: var(--sb-ui-color-primary-base, #007acc);
+        margin-block-end: 0.5rem;
+        padding-block: 0.75rem;
+        padding-inline: 1rem;
+        background: white;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      .matrix-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-block: 1rem;
+        padding-inline: 1rem;
+        background: white;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 4px;
+      }
+
+      .matrix-label {
+        min-inline-size: 80px;
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-base, #666);
+        font-weight: 500;
+      }
+
+      /* Focus button styling */
+      .matrix-item button {
+        padding: 4px 12px;
+        font-size: 11px;
+        background: var(--sb-ui-color-primary-base);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        margin-inline-start: 8px;
+      }
+
+      .matrix-item button:hover {
+        background: var(--sb-ui-color-primary-D100);
+        transform: translateY(-1px);
+      }
+
+      .matrix-item button:active {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="matrix-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <button
+          onclick="window.location.href='../index.html'"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </button>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <header class="matrix-header">
+        <h1>Toggle Component</h1>
+        <p>
+          Componente toggle con todos sus estados (default, hover, pressed, focus, disabled, error) siguiendo
+          el sistema de diseño de Seguros Bolívar.
+        </p>
+      </header>
+
+      <!-- SECTION: Estados del Toggle -->
+      <section class="matrix-section">
+        <h2 class="matrix-title">Estados del Toggle</h2>
+        <div class="matrix-grid">
+          <!-- Column: Selection OFF -->
+          <div class="matrix-column">
+            <h3>Selection: OFF</h3>
+
+            <!-- Default OFF -->
+            <div class="matrix-item">
+              <span class="matrix-label">Default</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+
+            <!-- Hover OFF (simulated) -->
+            <div class="matrix-item">
+              <span class="matrix-label">Hover</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <small style="color: #999">(hover para ver efecto)</small>
+            </div>
+
+            <!-- Pressed OFF (simulated) -->
+            <div class="matrix-item">
+              <span class="matrix-label">Pressed</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <small style="color: #999">(click para ver efecto)</small>
+            </div>
+
+            <!-- Focus OFF -->
+            <div class="matrix-item">
+              <span class="matrix-label">Focus</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" id="focus-off" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <button onclick="document.getElementById('focus-off').focus()">
+                👁️ Focus
+              </button>
+            </div>
+
+            <!-- Disabled OFF -->
+            <div class="matrix-item">
+              <span class="matrix-label">Disabled</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" disabled />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+
+            <!-- Error OFF -->
+            <div class="matrix-item">
+              <span class="matrix-label">Error</span>
+              <label class="sb-ui-toggle sb-ui-toggle--error">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Column: Selection ON -->
+          <div class="matrix-column">
+            <h3>Selection: ON</h3>
+
+            <!-- Default ON -->
+            <div class="matrix-item">
+              <span class="matrix-label">Default</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+
+            <!-- Hover ON (simulated) -->
+            <div class="matrix-item">
+              <span class="matrix-label">Hover</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <small style="color: #999">(hover para ver efecto)</small>
+            </div>
+
+            <!-- Pressed ON (simulated) -->
+            <div class="matrix-item">
+              <span class="matrix-label">Pressed</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <small style="color: #999">(click para ver efecto)</small>
+            </div>
+
+            <!-- Focus ON -->
+            <div class="matrix-item">
+              <span class="matrix-label">Focus</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" id="focus-on" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <button onclick="document.getElementById('focus-on').focus()">
+                👁️ Focus
+              </button>
+            </div>
+
+            <!-- Disabled ON -->
+            <div class="matrix-item">
+              <span class="matrix-label">Disabled</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked disabled />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+
+            <!-- Error ON -->
+            <div class="matrix-item">
+              <span class="matrix-label">Error</span>
+              <label class="sb-ui-toggle sb-ui-toggle--error">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Text Variants -->
+      <section class="matrix-section">
+        <h2 class="matrix-title">Text Variants</h2>
+        <div class="demo-grid">
+          <!-- With Text (Text: True) -->
+          <div class="demo-item">
+            <h3>Text: True (With Label)</h3>
+            <div class="demo-content">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Option</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Without Text (Text: False) -->
+          <div class="demo-item">
+            <h3>Text: False (No Label)</h3>
+            <div class="demo-content">
+              <label class="sb-ui-toggle sb-ui-toggle--no-label">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+              </label>
+              <label class="sb-ui-toggle sb-ui-toggle--no-label">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Sizes -->
+      <section class="matrix-section">
+        <h2 class="matrix-title">Tamaños</h2>
+        <div class="demo-grid">
+          <!-- Small -->
+          <div class="demo-item">
+            <h3>Small</h3>
+            <div class="demo-content">
+              <label class="sb-ui-toggle sb-ui-toggle--small">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Small Toggle</span>
+              </label>
+              <label class="sb-ui-toggle sb-ui-toggle--small">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Small Toggle</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Medium (Default) -->
+          <div class="demo-item">
+            <h3>Medium (Default)</h3>
+            <div class="demo-content">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Medium Toggle</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Medium Toggle</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Large -->
+          <div class="demo-item">
+            <h3>Large</h3>
+            <div class="demo-content">
+              <label class="sb-ui-toggle sb-ui-toggle--large">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Large Toggle</span>
+              </label>
+              <label class="sb-ui-toggle sb-ui-toggle--large">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Large Toggle</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Multiple Toggles -->
+      <section class="matrix-section">
+        <h2 class="matrix-title">Grupo de Toggles</h2>
+        <div class="demo-grid">
+          <!-- Vertical Group -->
+          <div class="demo-item">
+            <h3>Vertical Layout</h3>
+            <div class="sb-ui-toggle-group">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Notificaciones</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Email</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">SMS</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Horizontal Group -->
+          <div class="demo-item">
+            <h3>Horizontal Layout</h3>
+            <div class="sb-ui-toggle-group--horizontal">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Notificaciones</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Email</span>
+              </label>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">SMS</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- /matrix-container -->
+
+    <!-- JavaScript para Brand/Theme Switching -->
+    <script>
+      // Referencias
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Load saved values or defaults
+      let currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
+      let currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
+
+      // Function to update everything
+      function updateBrandAndTheme() {
+        // Update data attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,8 @@
+# Vercel ignore - asegurar que todos los archivos se copien
+!*.html
+!dist/*
+!**/*.html
+!**/*.css
+!**/*.js
+!**/*.md
+

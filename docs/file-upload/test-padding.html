@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Padding - File Upload</title>
+  <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css?v=<?php echo time(); ?>">
+  <style>
+    body {
+      margin: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .debug-info {
+      background: #fffcf0;
+      border: 2px solid #ffc107;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .debug-info h2 {
+      margin-top: 0;
+      color: #dc3545;
+    }
+    .debug-info code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body data-brand="seguros-bolivar">
+  
+  <div class="debug-info">
+    <h2>🔍 Debug Info - Valores de Padding</h2>
+    <p>Si ves este card con <code>padding: 24px</code> en desktop (>640px) y <code>padding: 20px</code> en mobile (≤640px), el CSS está funcionando correctamente.</p>
+    <p><strong>Tu ancho de pantalla:</strong> <span id="screen-width"></span>px</p>
+    <p><strong>Padding actual del card:</strong> <span id="actual-padding"></span></p>
+  </div>
+
+  <div style="max-width: 600px;">
+    <label class="sb-ui-file-upload__label">Documento de Prueba</label>
+    
+    <!-- Card con archivo cargado -->
+    <div id="test-card" class="sb-ui-file-upload sb-ui-file-upload--uploaded">
+      <!-- Icon Container - Card gris -->
+      <div class="sb-ui-file-upload__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <polyline points="16 13 12 17 8 13"/>
+          <line x1="12" y1="17" x2="12" y2="11"/>
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="sb-ui-file-upload__content">
+        <span class="sb-ui-file-upload__filename">28946831-lkp0gbe2mhts5i87u96hv1umdtlhjec3l0vj1dlcss.pdf</span>
+        <p class="sb-ui-file-upload__caption">
+          <span class="sb-ui-file-upload__status-dot" style="color: var(--sb-ui-color-feedback-success-base);"></span>
+          Archivo cargado
+        </p>
+      </div>
+
+      <!-- Delete Button -->
+      <button type="button" class="sb-ui-file-upload__button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <line x1="10" y1="11" x2="10" y2="17"/>
+          <line x1="14" y1="11" x2="14" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Show screen width
+    const updateDebugInfo = () => {
+      const width = window.innerWidth;
+      document.getElementById('screen-width').textContent = width;
+      
+      // Get actual padding
+      const card = document.getElementById('test-card');
+      const styles = window.getComputedStyle(card);
+      const paddingTop = styles.paddingTop;
+      const paddingLeft = styles.paddingLeft;
+      
+      document.getElementById('actual-padding').innerHTML = 
+        `<code>padding-block: ${paddingTop}</code> | <code>padding-inline: ${paddingLeft}</code>`;
+      
+      // Expected values
+      const expected = width <= 640 ? '20px' : '24px';
+      if (paddingTop === expected) {
+        document.getElementById('actual-padding').innerHTML += ' ✅ <span style="color: green;">CORRECTO</span>';
+      } else {
+        document.getElementById('actual-padding').innerHTML += ` ❌ <span style="color: red;">ESPERADO: ${expected}</span>`;
+      }
+    };
+    
+    updateDebugInfo();
+    window.addEventListener('resize', updateDebugInfo);
+  </script>
+
+</body>
+</html>

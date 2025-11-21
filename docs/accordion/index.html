@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Component - Seguros Bolívar UI Design System</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Bolivar', 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #fafafa;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #1b1b1b;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #038450;
+        border-bottom: 2px solid #cce9dd;
+        padding-bottom: 0.5rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1.5rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .demo-item h3 {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        color: #9b9b9b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .description {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin-top: 1rem;
+      }
+
+      .code-block code {
+        display: block;
+        white-space: pre;
+      }
+
+      /* Ajustes para accordions demo */
+      .accordion-demo-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      /* Para mostrar estados hover en demo */
+      .state-label {
+        font-size: 0.75rem;
+        color: #9b9b9b;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* ============================================
+         BRAND & THEME CONTROLS
+         ============================================ */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar" data-theme="light">
+    <div class="demo-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <button
+          onclick="window.location.href='../index.html'"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </button>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <h1 style="text-align: center; margin-bottom: 1rem">📂 Accordion Component</h1>
+      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
+        Componente acordeón expandible/colapsable con soporte para iconos, botones de acción y
+        múltiples estados. Usa el elemento nativo <code>&lt;details&gt;</code> para máxima
+        accesibilidad. Ideal para FAQs, secciones de información y contenido agrupado.
+      </p>
+
+      <!-- ========================================
+           ESTADOS DEL ACCORDION
+           ======================================== -->
+      <h2>Estados del Accordion</h2>
+      <div class="demo-grid">
+        <!-- Default (Cerrado) -->
+        <div class="demo-item">
+          <h3>Default (Cerrado)</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Label text</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Button
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>
+                  Larade lask. Kona isk. Nyktiga. Intranilig desat. Dypiledes senäktigt. Polyk
+                  megad. Lepisa sor.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Expanded (Abierto) -->
+        <div class="demo-item">
+          <h3>Expanded (Abierto)</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary" open>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Label text</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Button
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>
+                  Larade lask. Kona isk. Nyktiga. Intranilig desat. Dypiledes senäktigt. Polyk
+                  megad. Lepisa sor. Doss sonade. Kurt Ek trev. Tede krolig. Dines dore. Ida.
+                  Preck ovis.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div class="demo-item">
+          <h3>Disabled</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--disabled">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Label text</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  disabled
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Button
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Este contenido no es accesible.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           VARIANTES DE COLOR
+           ======================================== -->
+      <h2>Variantes de Color</h2>
+      <div class="demo-grid">
+        <!-- Primary -->
+        <div class="demo-item">
+          <h3>Primary (Verde)</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-info-circle sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Información Principal</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>
+                  Contenido principal del accordion. Esta es la variante primary que usa los
+                  colores verdes de Seguros Bolívar.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="demo-item">
+          <h3>Secondary (Amarillo)</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--secondary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-star sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Información Secundaria</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>
+                  Contenido secundario del accordion. Esta variante usa los colores amarillos de
+                  Seguros Bolívar.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           TAMAÑOS
+           ======================================== -->
+      <h2>Tamaños</h2>
+      <div class="demo-grid">
+        <!-- Small -->
+        <div class="demo-item">
+          <h3>Small</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--small">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-lines sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Accordion Pequeño</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Contenido del accordion pequeño con menos padding.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Medium (Default) -->
+        <div class="demo-item">
+          <h3>Medium (Default)</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-lines sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Accordion Mediano</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Contenido del accordion en tamaño mediano (por defecto).</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Large -->
+        <div class="demo-item">
+          <h3>Large</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--large">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-lines sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Accordion Grande</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Contenido del accordion grande con más padding y tipografía más grande.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           MODIFICADORES
+           ======================================== -->
+      <h2>Modificadores</h2>
+      <div class="demo-grid">
+        <!-- Sin icono inicial -->
+        <div class="demo-item">
+          <h3>Sin Icono Inicial</h3>
+          <div class="accordion-demo-wrapper">
+            <details
+              class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--no-icon-start"
+            >
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">Solo texto y acción</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Button
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Accordion sin icono inicial visible.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Sin botón de acción -->
+        <div class="demo-item">
+          <h3>Sin Botón de Acción</h3>
+          <div class="accordion-demo-wrapper">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--no-action">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">Solo iconos y texto</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Button
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Accordion sin botón de acción visible.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Minimal -->
+        <div class="demo-item">
+          <h3>Minimal</h3>
+          <div class="accordion-demo-wrapper">
+            <details
+              class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--no-icon-start sb-ui-accordion--no-action"
+            >
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">Solo texto y flecha</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Accordion minimal con solo texto y flecha de expansión.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           GRUPO DE ACCORDIONS (FAQ)
+           ======================================== -->
+      <h2>Grupo de Accordions (FAQ)</h2>
+      <div class="demo-item">
+        <h3>Preguntas Frecuentes</h3>
+        <div class="accordion-demo-wrapper">
+          <details class="sb-ui-accordion sb-ui-accordion--primary">
+            <summary class="sb-ui-accordion__header">
+              <i class="fa-solid fa-circle-question sb-ui-accordion__icon-start"></i>
+              <span class="sb-ui-accordion__label">¿Qué es Seguros Bolívar?</span>
+              <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+            </summary>
+            <div class="sb-ui-accordion__content">
+              <p>
+                Seguros Bolívar es una compañía aseguradora colombiana con más de 70 años de
+                experiencia en el mercado, ofreciendo soluciones de seguros para personas, familias
+                y empresas.
+              </p>
+            </div>
+          </details>
+
+          <details class="sb-ui-accordion sb-ui-accordion--primary">
+            <summary class="sb-ui-accordion__header">
+              <i class="fa-solid fa-shield-halved sb-ui-accordion__icon-start"></i>
+              <span class="sb-ui-accordion__label">¿Qué tipos de seguros ofrecen?</span>
+              <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+            </summary>
+            <div class="sb-ui-accordion__content">
+              <p>
+                Ofrecemos una amplia gama de seguros: seguros de vida, salud, automóviles, hogar,
+                mascotas, viajes, y seguros empresariales. Cada producto está diseñado para
+                proteger lo que más valoras.
+              </p>
+            </div>
+          </details>
+
+          <details class="sb-ui-accordion sb-ui-accordion--primary">
+            <summary class="sb-ui-accordion__header">
+              <i class="fa-solid fa-handshake sb-ui-accordion__icon-start"></i>
+              <span class="sb-ui-accordion__label">¿Cómo puedo contratar un seguro?</span>
+              <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+            </summary>
+            <div class="sb-ui-accordion__content">
+              <p>
+                Puedes contratar tu seguro de forma 100% digital a través de nuestra plataforma web
+                o app móvil. También puedes contactar a uno de nuestros asesores especializados
+                para recibir asesoría personalizada.
+              </p>
+            </div>
+          </details>
+
+          <details class="sb-ui-accordion sb-ui-accordion--primary">
+            <summary class="sb-ui-accordion__header">
+              <i class="fa-solid fa-lock sb-ui-accordion__icon-start"></i>
+              <span class="sb-ui-accordion__label">¿Mis datos están seguros?</span>
+              <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+            </summary>
+            <div class="sb-ui-accordion__content">
+              <p>
+                Sí, absolutamente. Seguros Bolívar cumple con las más altas normas de seguridad y
+                protección de datos. Toda tu información está encriptada y protegida bajo los
+                estándares internacionales de seguridad.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- ========================================
+           CÓDIGO DE USO
+           ======================================== -->
+      <h2>Código de Uso</h2>
+      <div class="code-block">
+        <code>&lt;!-- Accordion Básico --&gt;
+&lt;details class="sb-ui-accordion sb-ui-accordion--primary"&gt;
+  &lt;summary class="sb-ui-accordion__header"&gt;
+    &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
+    &lt;span class="sb-ui-accordion__label"&gt;Label text&lt;/span&gt;
+    &lt;button class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"&gt;
+      &lt;i class="fa-solid fa-arrow-right"&gt;&lt;/i&gt;
+      Button
+    &lt;/button&gt;
+    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
+  &lt;/summary&gt;
+  &lt;div class="sb-ui-accordion__content"&gt;
+    &lt;p&gt;Tu contenido aquí&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;!-- Variantes --&gt;
+class="sb-ui-accordion sb-ui-accordion--primary"
+class="sb-ui-accordion sb-ui-accordion--secondary"
+
+&lt;!-- Tamaños --&gt;
+class="sb-ui-accordion sb-ui-accordion--small"
+class="sb-ui-accordion sb-ui-accordion--large"
+
+&lt;!-- Modificadores --&gt;
+class="sb-ui-accordion sb-ui-accordion--no-icon-start"
+class="sb-ui-accordion sb-ui-accordion--no-action"
+class="sb-ui-accordion sb-ui-accordion--disabled"</code>
+      </div>
+    </div>
+
+    <script>
+      // Brand and Theme Switching with localStorage persistence
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Button - Seguros Bolivar UI Design System</title>
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS del Design System - Seguros Bolívar Light -->
+    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=centrado-natural"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=centrado-natural"
+      id="brand-css"
+    />
+    <style>
+      * {
+        margin-block: 0;
+        margin-inline: 0;
+        padding-block: 0;
+        padding-inline: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .matrix-container {
+        max-inline-size: 1400px;
+        margin-block: 0;
+        margin-inline: auto;
+      }
+
+      .matrix-header {
+        margin-block-end: 2rem;
+        text-align: center;
+      }
+
+      .matrix-header h1 {
+        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base, #007acc);
+        margin-block-end: 0.5rem;
+      }
+
+      .matrix-header p {
+        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+      }
+
+      .matrix-section {
+        margin-block-end: 3rem;
+        background: white;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .matrix-title {
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+        font-weight: 700;
+        margin-block-end: 0.5rem;
+        color: var(--sb-ui-color-primary-base, #007acc);
+      }
+
+      .matrix-subtitle {
+        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+        color: var(--sb-ui-color-grayscale-base, #666);
+        margin-block-end: 2rem;
+      }
+
+      .example-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .example-card {
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      .example-card h4 {
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D100, #333);
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hint-text {
+        font-size: 0.875rem;
+        color: var(--sb-ui-color-grayscale-base, #999);
+        margin-block-start: 1rem;
+        font-style: italic;
+      }
+
+      .notes-section {
+        background: #fff9e6;
+        border-inline-start: 4px solid #ffa000;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        border-radius: 12px;
+        margin-block-end: 3rem;
+      }
+
+      .notes-section h3 {
+        margin-block-start: 0;
+        color: #e65100;
+        font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+        margin-block-end: 1rem;
+      }
+
+      .notes-section ul {
+        line-height: 1.8;
+        color: #333;
+        padding-inline-start: 1.5rem;
+      }
+
+      .notes-section code {
+        background: rgba(0, 0, 0, 0.05);
+        padding-block: 0.125rem;
+        padding-inline: 0.375rem;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+      }
+
+      /* Brand Selector Styles - Modern UI */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-block-end: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+
+        .example-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="matrix-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <button
+          onclick="window.location.href='../index.html'"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </button>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="matrix-header">
+        <h1>🔘 Radio Button Component</h1>
+        <p>Componente CSS puro con efectos hover/pressed Material Design</p>
+      </div>
+
+      <!-- ========================================
+           SECCIÓN 1: ESTADOS BÁSICOS
+           ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">1️⃣ Estados Básicos</h2>
+        <p class="matrix-subtitle">Matriz 2×2: Unselected/Selected × Enabled/Disabled</p>
+
+        <div class="example-grid">
+          <!-- ENABLED -->
+          <div class="example-card">
+            <h4>Enabled</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group1" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Unselected option</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="group1" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Selected option</span>
+              </label>
+            </div>
+            <p class="hint-text">Pasa el mouse para ver el halo verde</p>
+          </div>
+
+          <!-- DISABLED -->
+          <div class="example-card">
+            <h4>Disabled</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group2" class="sb-ui-radio__input" disabled />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Disabled unselected</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="group2" class="sb-ui-radio__input" checked disabled />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Disabled selected</span>
+              </label>
+            </div>
+            <p class="hint-text">Círculo blanco + border gris (#9B9B9B)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           SECCIÓN 2: TAMAÑOS
+           ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">2️⃣ Tamaños</h2>
+        <p class="matrix-subtitle">Small (16px), Medium (18px - default), Large (24px)</p>
+
+        <div class="example-grid">
+          <!-- SMALL -->
+          <div class="example-card">
+            <h4>Small (16px)</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--small">
+                <input type="radio" name="group-small" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Small unselected</span>
+              </label>
+
+              <label class="sb-ui-radio sb-ui-radio--small">
+                <input type="radio" name="group-small" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Small selected</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- MEDIUM -->
+          <div class="example-card">
+            <h4>Medium (18px - Default)</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group-medium" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Medium unselected</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="group-medium" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Medium selected</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- LARGE -->
+          <div class="example-card">
+            <h4>Large (24px)</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--large">
+                <input type="radio" name="group-large" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Large unselected</span>
+              </label>
+
+              <label class="sb-ui-radio sb-ui-radio--large">
+                <input type="radio" name="group-large" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Large selected</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           SECCIÓN 3: ESTADO ERROR
+           ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">3️⃣ Estado Error</h2>
+        <p class="matrix-subtitle">Border rojo (#DC3545) para indicar validación fallida</p>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <h4>Error - Unselected</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" name="group-error" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Campo obligatorio *</span>
+              </label>
+            </div>
+            <p class="hint-text">Border rojo, background blanco, texto gris</p>
+          </div>
+
+          <div class="example-card">
+            <h4>Error - Selected</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" name="group-error" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Error pero seleccionado</span>
+              </label>
+            </div>
+            <p class="hint-text">Point check rojo (#DC3545)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           SECCIÓN 4: EFECTOS INTERACTIVOS
+           ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">4️⃣ Efectos Interactivos</h2>
+        <p class="matrix-subtitle">Halos Material Design que aparecen en hover y pressed</p>
+
+        <div class="example-grid">
+          <!-- HOVER -->
+          <div class="example-card">
+            <h4>Hover Effect</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group-hover" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Hover me</span>
+              </label>
+            </div>
+            <p class="hint-text">
+              Halo verde claro (#F2F9F6)<br />
+              32×32px, opacity 0.7
+            </p>
+          </div>
+
+          <!-- PRESSED -->
+          <div class="example-card">
+            <h4>Pressed Effect</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group-pressed" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Press me</span>
+              </label>
+            </div>
+            <p class="hint-text">
+              Doble halo concéntrico<br />
+              Outer: 32px, Inner: 28px
+            </p>
+          </div>
+
+          <!-- FOCUS -->
+          <div class="example-card">
+            <h4>Focus Effect</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="group-focus" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Focus me with Tab</span>
+              </label>
+            </div>
+            <p class="hint-text">
+              Halo verde medio (#E5F4EE)<br />
+              32×32px, opacity 0.7
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           SECCIÓN 5: CASOS DE USO REALES
+           ======================================== -->
+      <div class="matrix-section">
+        <h2 class="matrix-title">5️⃣ Casos de Uso Reales</h2>
+        <p class="matrix-subtitle">Ejemplos prácticos de uso en formularios</p>
+
+        <div class="example-grid">
+          <!-- FORMULARIO DE CONTACTO -->
+          <div class="example-card">
+            <h4>Método de Contacto</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="contact-method" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Email</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="contact-method" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Teléfono</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="contact-method" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">WhatsApp</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- PLAN DE SEGURO -->
+          <div class="example-card">
+            <h4>Plan de Seguro</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Plan Básico ($50/mes)</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Plan Premium ($100/mes)</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Plan Familiar ($150/mes)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- MÉTODO DE PAGO -->
+          <div class="example-card">
+            <h4>Método de Pago</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" name="payment-method" class="sb-ui-radio__input" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Tarjeta de Crédito</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="payment-method" class="sb-ui-radio__input" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Tarjeta de Débito</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" name="payment-method" class="sb-ui-radio__input" disabled />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Efectivo (No disponible)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Brand and Theme Switching with localStorage persistence
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+    </script>
+  </body>
+</html>

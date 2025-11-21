@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spinner Component - Seguros Bolivar UI</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS del Design System - Seguros Bolívar Light -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=spinner-final"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=spinner-final"
+      id="brand-css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #f5f5f5;
+      }
+
+      .demo-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-section h2 {
+        margin-bottom: 1rem;
+        color: #038450;
+        font-size: 1.5rem;
+      }
+
+      .demo-section p {
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+
+      .demo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .demo-item p {
+        font-size: 0.875rem;
+        color: #666;
+        text-align: center;
+      }
+
+      .controls {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .controls label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .controls input[type='range'] {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .controls .value-display {
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        color: #038450;
+        font-size: 1.2rem;
+      }
+
+      /* Brand Selector Styles */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white, #fff) 0%,
+          var(--sb-ui-color-grayscale-L400, #fafafa) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300, #222);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Brand & Theme Controls -->
+    <div class="brand-controls">
+      <a
+        href="../index.html"
+        class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+        style="text-decoration: none"
+      >
+        ← Volver
+      </a>
+
+      <div class="brand-controls-group">
+        <label for="brandSelect">📦 Marca:</label>
+        <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+          <option value="white-label">White Label</option>
+          <option value="jelpit">Jelpit</option>
+          <option value="davivienda">Davivienda</option>
+          <option value="cien-cuadras">Cien Cuadras</option>
+          <option value="doctor-aki">Doctor Aki</option>
+          <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+        </select>
+
+        <label for="themeToggle">🌓 Tema:</label>
+        <div class="theme-toggle">
+          <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+            ☀️ Light
+          </button>
+          <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            🌙 Dark
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h1 style="margin-bottom: 2rem; color: #038450">🔄 Spinner Component</h1>
+
+    <!-- ============================================
+         CONTROL INTERACTIVO DE PROGRESO (0-100%)
+         ============================================ -->
+    <section class="demo-section">
+      <h2>🎮 Control Interactivo de Progreso (0-100%)</h2>
+      <p>Controla el progreso del spinner dinámicamente. El arco representa el % de progreso.</p>
+
+      <div style="display: flex; justify-content: center; margin-bottom: 2rem">
+        <div id="interactive-spinner" class="sb-ui-spinner" data-progress="50"></div>
+      </div>
+
+      <div class="controls">
+        <label for="progress-control">
+          Progress:
+          <span id="progress-value" class="value-display">50%</span>
+        </label>
+        <input type="range" id="progress-control" min="0" max="100" value="50" step="1" />
+      </div>
+    </section>
+
+    <!-- ============================================
+         TIPO 1: BASIC SPINNER
+         ============================================ -->
+    <section class="demo-section">
+      <h2>🔵 Tipo 1: BASIC Spinner</h2>
+      <p>Spinner circular simple con gradiente verde que rota continuamente.</p>
+
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
+          <p><strong>25%</strong><br />Progreso 1</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="50"></div>
+          <p><strong>50%</strong><br />Progreso 2</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="75"></div>
+          <p><strong>75%</strong><br />Progreso 3</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="100"></div>
+          <p><strong>100%</strong><br />Completo</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         TIPO 2: INTEGRATED SPINNER (3 Círculos)
+         ============================================ -->
+    <section class="demo-section">
+      <h2>🔄 Tipo 2: INTEGRATED Spinner</h2>
+      <p>
+        3 círculos concéntricos que rotan continuamente a <strong>velocidades diferentes</strong>:
+      </p>
+      <ul style="margin-bottom: 1rem; padding-left: 2rem">
+        <li>🟢 Verde oscuro (#009056) - 2s</li>
+        <li>🟢 Verde claro (#02D46F) - 3s</li>
+        <li>🟡 Amarillo (#FFE16F) - 1.5s</li>
+      </ul>
+      <p>
+        <strong>Nota:</strong> Este spinner <u>NO usa progreso</u>, rota continuamente sin parar.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
+          <p><strong>Normal</strong><br />Velocidades default</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast"></div>
+          <p><strong>Fast</strong><br />Velocidad x1.5</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow"></div>
+          <p><strong>Slow</strong><br />Velocidad x0.6</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--paused"></div>
+          <p><strong>Paused</strong><br />Animación pausada</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         TIPO 3: ICON SPINNER
+         ============================================ -->
+    <section class="demo-section">
+      <h2>🎯 Tipo 3: ICON Spinner</h2>
+      <p>Spinner con icono centrado fijo. El círculo rota pero el icono NO.</p>
+
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 20px; color: #038450"></i>
+              </div>
+            </div>
+          </div>
+          <p><strong>Upload</strong><br />Cloud Icon</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-download" style="font-size: 20px; color: #038450"></i>
+              </div>
+            </div>
+          </div>
+          <p><strong>Download</strong><br />Download Icon</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-gear" style="font-size: 20px; color: #038450"></i>
+              </div>
+            </div>
+          </div>
+          <p><strong>Settings</strong><br />Gear Icon</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         TIPO 4: ICON-TEXT SPINNER
+         ============================================ -->
+    <section class="demo-section">
+      <h2>📝 Tipo 4: ICON-TEXT Spinner</h2>
+      <p>Spinner con icono y texto centrados. El círculo rota pero icono + texto NO.</p>
+
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 16px; color: #038450"></i>
+              </div>
+              <span class="sb-ui-spinner__label">Upload</span>
+            </div>
+          </div>
+          <p><strong>Upload</strong><br />Con texto</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-hourglass-half" style="font-size: 16px; color: #038450"></i>
+              </div>
+              <span class="sb-ui-spinner__label">Wait</span>
+            </div>
+          </div>
+          <p><strong>Wait</strong><br />Processing</p>
+        </div>
+
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-circle-check" style="font-size: 16px; color: #038450"></i>
+              </div>
+              <span class="sb-ui-spinner__label">Done</span>
+            </div>
+          </div>
+          <p><strong>Done</strong><br />Completado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         VELOCIDAD DE ANIMACIÓN
+         ============================================ -->
+    <section class="demo-section">
+      <h2>⚡ Velocidad de Animación</h2>
+      <p>Controla la velocidad de rotación del spinner.</p>
+
+      <div class="demo-grid">
+        <!-- Fast -->
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--fast" data-progress="50"></div>
+          <p><strong>Fast</strong><br />0.8s</p>
+        </div>
+
+        <!-- Normal -->
+        <div class="demo-item">
+          <div class="sb-ui-spinner" data-progress="50"></div>
+          <p><strong>Normal</strong><br />1.2s</p>
+        </div>
+
+        <!-- Slow -->
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--slow" data-progress="50"></div>
+          <p><strong>Slow</strong><br />2s</p>
+        </div>
+
+        <!-- Paused -->
+        <div class="demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--paused" data-progress="50"></div>
+          <p><strong>Paused</strong><br />Sin animación</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+      // Interactive progress control
+      const spinner = document.getElementById('interactive-spinner');
+      const progressControl = document.getElementById('progress-control');
+      const progressValue = document.getElementById('progress-value');
+
+      progressControl.addEventListener('input', (e) => {
+        const value = e.target.value;
+        progressValue.textContent = `${value}%`;
+        spinner.style.setProperty('--sb-ui-spinner-progress', value);
+        spinner.dataset.progress = value;
+      });
+
+      // Brand and Theme Switching with localStorage persistence
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+
+      console.log('🔄 Spinner Component Demo Loaded');
+      console.log('✅ 4 tipos: basic, integrated, icon, icon-text');
+      console.log('✅ Progress dinámico: 0-100%');
+      console.log('✅ Tamaños: small, default, large');
+    </script>
+  </body>
+</html>

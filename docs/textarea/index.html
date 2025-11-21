@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TextArea Component - Seguros Bolívar UI Design System</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Bolivar', 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #fafafa;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #1b1b1b;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #038450;
+        border-bottom: 2px solid #cce9dd;
+        padding-bottom: 0.5rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1.5rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .demo-item h3 {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        color: #9b9b9b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Helper text icon - Font Awesome */
+      .sb-ui-textarea-helper i {
+        font-size: 14px;
+        margin-right: 10px; /* Mayor separación entre icono y texto */
+        flex-shrink: 0;
+      }
+
+      /* Asegurar que helper text sea flex */
+      .sb-ui-textarea-helper {
+        display: flex;
+        align-items: center;
+        color: #5b5b5b; /* Texto gris oscuro por defecto (grayscale-D200) */
+        padding-block-start: 2px; /* Más padding superior */
+      }
+
+      code {
+        background: #f5f5f5;
+        padding: 0.125rem 0.375rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-family: 'Courier New', monospace;
+      }
+
+      /* Character Counter - alineado con el helper text */
+      .sb-ui-textarea-counter {
+        position: relative !important;
+        display: inline-block !important;
+        margin-left: auto !important;
+        font-size: 0.75rem !important;
+        color: #9b9b9b !important;
+        background: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border: none !important;
+        bottom: auto !important;
+        right: auto !important;
+      }
+
+      /* Container flex para alinear contador y helper text */
+      .sb-ui-textarea-container {
+        position: relative !important;
+      }
+
+      /* Wrapper para helper text y contador en la misma línea */
+      .textarea-footer {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-top: 8px !important;
+      }
+
+      /* States del contador */
+      .sb-ui-textarea-counter--success {
+        color: var(--sb-ui-color-feedback-success-base) !important;
+      }
+
+      .sb-ui-textarea-counter--warning {
+        color: var(--sb-ui-color-feedback-warning-base) !important;
+      }
+
+      .sb-ui-textarea-counter--error {
+        color: var(--sb-ui-color-feedback-error-base) !important;
+      }
+
+      /* Ajustar padding del textarea con contador */
+      .sb-ui-textarea--with-counter {
+        padding-bottom: 8px !important;
+      }
+
+      /* ============================================
+         BRAND & THEME CONTROLS
+         ============================================ */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar" data-theme="light">
+    <div class="demo-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <button
+          onclick="window.location.href='../index.html'"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </button>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <h1 style="text-align: center; margin-bottom: 1rem">📝 TextArea Component</h1>
+      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
+        Componente de textarea con CSS Nesting, @layer, Logical Properties y clamp() para responsive
+        fluido.
+      </p>
+
+      <!-- ============================================
+           ESTADOS PRINCIPALES
+           ============================================ -->
+      <h2>Estados del TextArea</h2>
+      <div class="demo-grid">
+        <!-- DEFAULT -->
+        <div class="demo-item">
+          <h3>1. Default</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- HOVER -->
+        <div class="demo-item">
+          <h3>2. Hover</h3>
+          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Pasa el mouse sobre el textarea</p>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- FOCUS -->
+        <div class="demo-item">
+          <h3>3. Focus</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- ACTIVE -->
+        <div class="demo-item">
+          <h3>4. Active</h3>
+          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Click y escribe en el textarea</p>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea class="sb-ui-textarea">Description example</textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- DISABLED -->
+        <div class="demo-item">
+          <h3>5. Disabled</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea"
+              placeholder="Placeholder"
+              disabled
+            ></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="demo-item">
+          <h3>6. Success</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--success"
+            >Description example</textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-check"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div class="demo-item">
+          <h3>7. Error</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--error"
+            >Description example</textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-xmark"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- VIEW / READ-ONLY -->
+        <div class="demo-item">
+          <h3>8. View / Read-Only</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea"
+              readonly
+            >Description example</textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           TAMAÑOS
+           ============================================ -->
+      <h2>Tamaños</h2>
+      <div class="demo-grid">
+        <!-- SMALL -->
+        <div class="demo-item">
+          <h3>Small</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--small"
+              placeholder="Placeholder"
+            ></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- MEDIUM (default) -->
+        <div class="demo-item">
+          <h3>Medium (default)</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea"
+              placeholder="Placeholder"
+            ></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- LARGE -->
+        <div class="demo-item">
+          <h3>Large</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--large"
+              placeholder="Placeholder"
+            ></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           MODIFICADORES
+           ============================================ -->
+      <h2>Modificadores</h2>
+      <div class="demo-grid">
+        <!-- REQUIRED -->
+        <div class="demo-item">
+          <h3>Required</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label sb-ui-textarea-label--required">Label txt</label>
+            <textarea class="sb-ui-textarea" placeholder="Placeholder" required></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- OPTIONAL -->
+        <div class="demo-item">
+          <h3>Optional</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label sb-ui-textarea-label--optional">Label txt</label>
+            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- ROUNDED -->
+        <div class="demo-item">
+          <h3>Rounded</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--rounded"
+              placeholder="Placeholder"
+            ></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- NO RESIZE -->
+        <div class="demo-item">
+          <h3>No Resize</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea class="sb-ui-textarea sb-ui-textarea--no-resize" placeholder="Placeholder"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           CONTADOR DE CARACTERES
+           ============================================ -->
+      <h2>Contador de Caracteres</h2>
+      <div class="demo-grid">
+        <!-- WITH COUNTER -->
+        <div class="demo-item">
+          <h3>Con Contador (500 max)</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--with-counter"
+              placeholder="Escribe aquí..."
+              maxlength="500"
+              id="textarea-counter-1"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 500 caracteres</span>
+              <span class="sb-ui-textarea-counter" id="counter-1">0 / 500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WITH COUNTER - SMALL -->
+        <div class="demo-item">
+          <h3>Contador Small (200 max)</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--small sb-ui-textarea--with-counter"
+              placeholder="Escribe aquí..."
+              maxlength="200"
+              id="textarea-counter-2"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 200 caracteres</span>
+              <span class="sb-ui-textarea-counter" id="counter-2">0 / 200</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WITH COUNTER - LARGE -->
+        <div class="demo-item">
+          <h3>Contador Large (1000 max)</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--large sb-ui-textarea--with-counter"
+              placeholder="Escribe aquí..."
+              maxlength="1000"
+              id="textarea-counter-3"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 1000 caracteres</span>
+              <span class="sb-ui-textarea-counter" id="counter-3">0 / 1000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WITH COUNTER - WARNING STATE -->
+        <div class="demo-item">
+          <h3>Con Advertencia (80% usado)</h3>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label">Label txt</label>
+            <textarea
+              class="sb-ui-textarea sb-ui-textarea--with-counter"
+              placeholder="Escribe aquí..."
+              maxlength="100"
+              id="textarea-counter-4"
+            >Este texto ya tiene 81 caracteres y está cerca del límite, por lo que aparece advertencia</textarea>
+            <div class="textarea-footer">
+              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-triangle-exclamation"></i>Cerca del límite</span>
+              <span class="sb-ui-textarea-counter sb-ui-textarea-counter--warning" id="counter-4">81 / 100</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           EJEMPLO DE CÓDIGO
+           ============================================ -->
+      <h2>Ejemplo de Código</h2>
+      <pre><code class="language-html">
+&lt;div class="sb-ui-textarea-container"&gt;
+  &lt;label class="sb-ui-textarea-label"&gt;Label txt&lt;/label&gt;
+  &lt;textarea class="sb-ui-textarea" placeholder="Placeholder"&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;Help text&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e1e1e1; text-align: center">
+        <p style="color: #9b9b9b; font-size: 0.875rem">
+          © 2024 Seguros Bolívar UI Design System • Built with ❤️ and modern CSS
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Brand and Theme Switching with localStorage persistence
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+
+      // ============================================
+      // CHARACTER COUNTER FUNCTIONALITY
+      // ============================================
+      function updateCounter(textareaId, counterId) {
+        const textarea = document.getElementById(textareaId);
+        const counter = document.getElementById(counterId);
+        
+        if (!textarea || !counter) return;
+        
+        const maxLength = textarea.getAttribute('maxlength');
+        const currentLength = textarea.value.length;
+        
+        // Update counter text
+        counter.textContent = `${currentLength} / ${maxLength}`;
+        
+        // Calculate percentage
+        const percentage = (currentLength / maxLength) * 100;
+        
+        // Remove all state classes
+        counter.classList.remove('sb-ui-textarea-counter--warning', 'sb-ui-textarea-counter--error', 'sb-ui-textarea-counter--success');
+        
+        // Add appropriate state class
+        if (percentage >= 100) {
+          counter.classList.add('sb-ui-textarea-counter--error');
+        } else if (percentage >= 80) {
+          counter.classList.add('sb-ui-textarea-counter--warning');
+        } else if (currentLength > 0) {
+          counter.classList.add('sb-ui-textarea-counter--success');
+        }
+      }
+      
+      // Initialize all counters
+      const counterPairs = [
+        ['textarea-counter-1', 'counter-1'],
+        ['textarea-counter-2', 'counter-2'],
+        ['textarea-counter-3', 'counter-3'],
+        ['textarea-counter-4', 'counter-4']
+      ];
+      
+      counterPairs.forEach(([textareaId, counterId]) => {
+        const textarea = document.getElementById(textareaId);
+        if (textarea) {
+          // Initialize counter on load
+          updateCounter(textareaId, counterId);
+          
+          // Update counter on input
+          textarea.addEventListener('input', () => {
+            updateCounter(textareaId, counterId);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stepper - Ejemplo Simple</title>
+
+    <!-- Bundle de producción -->
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" />
+
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        color: #038450;
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .step-content {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        min-height: 150px;
+      }
+
+      .step-content h3 {
+        color: #038450;
+        margin-top: 0;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: 3px solid #ffe16f;
+        border-color: #009056;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #038450;
+        border-radius: 24px;
+        background-color: #038450;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.875rem;
+      }
+
+      .btn:hover {
+        background-color: #026f42;
+      }
+
+      .btn:disabled {
+        background-color: #e0e0e0;
+        border-color: #e0e0e0;
+        color: #9b9b9b;
+        cursor: not-allowed;
+      }
+
+      .btn-secondary {
+        background-color: white;
+        color: #038450;
+      }
+
+      .btn-secondary:hover {
+        background-color: #f0f9f4;
+      }
+
+      .controls {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .summary-box {
+        background-color: #f0f9f4;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      .summary-box p {
+        margin: 0.5rem 0;
+        color: #333;
+      }
+
+      .code-section {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        color: #d4d4d4;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+      }
+
+      .code-section h3 {
+        color: #4ec9b0;
+        margin-top: 0;
+      }
+
+      .code-section pre {
+        margin: 0;
+        overflow-x: auto;
+      }
+
+      .code-section code {
+        color: #ce9178;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📋 Formulario de Registro</h1>
+      <p style="color: #666">Completa los 4 pasos para registrarte</p>
+
+      <!-- ========== STEPPER ========== -->
+      <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash" id="stepper">
+        <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+          <div class="sb-ui-stepper__step-circle" aria-current="step">1</div>
+          <div class="sb-ui-stepper__step-label">Datos Personales</div>
+          <div class="sb-ui-stepper__step-track"></div>
+        </div>
+
+        <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-default">
+          <div class="sb-ui-stepper__step-circle">2</div>
+          <div class="sb-ui-stepper__step-label">Contacto</div>
+          <div class="sb-ui-stepper__step-track"></div>
+        </div>
+
+        <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-default">
+          <div class="sb-ui-stepper__step-circle">3</div>
+          <div class="sb-ui-stepper__step-label">Dirección</div>
+          <div class="sb-ui-stepper__step-track"></div>
+        </div>
+
+        <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-default">
+          <div class="sb-ui-stepper__step-circle">4</div>
+          <div class="sb-ui-stepper__step-label">Confirmación</div>
+          <div class="sb-ui-stepper__step-track"></div>
+        </div>
+      </div>
+
+      <!-- ========== CONTENIDO QUE CAMBIA POR PASO ========== -->
+      <div class="step-content" id="stepContent"></div>
+
+      <!-- ========== CONTROLES ========== -->
+      <div class="controls">
+        <button class="btn btn-secondary" id="btnPrev" onclick="prev()">← Anterior</button>
+        <button class="btn" id="btnNext" onclick="next()">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+      let currentStep = 1;
+      const totalSteps = 4;
+
+      // ============================================
+      // CONTENIDO DE CADA PASO
+      // ============================================
+      const stepContents = {
+        1: `
+          <h3>Paso 1: Datos Personales</h3>
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Juan Pérez" />
+          </div>
+          <div class="form-group">
+            <label for="cedula">Cédula</label>
+            <input type="text" id="cedula" placeholder="1234567890" />
+          </div>
+        `,
+        2: `
+          <h3>Paso 2: Contacto</h3>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="juan@ejemplo.com" />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="300 123 4567" />
+          </div>
+        `,
+        3: `
+          <h3>Paso 3: Dirección</h3>
+          <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad">
+              <option value="">Seleccione una ciudad</option>
+              <option value="bogota">Bogotá</option>
+              <option value="medellin">Medellín</option>
+              <option value="cali">Cali</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" placeholder="Calle 123 # 45-67" />
+          </div>
+        `,
+        4: `
+          <h3>Paso 4: Confirmación</h3>
+          <div class="summary-box">
+            <p><strong>Resumen de tu información:</strong></p>
+            <p>✅ Datos personales completados</p>
+            <p>✅ Información de contacto completada</p>
+            <p>✅ Dirección completada</p>
+            <p style="margin-top: 1rem; color: #038450; font-weight: 700">
+              ¡Todo listo! Haz clic en Finalizar para completar el registro.
+            </p>
+          </div>
+        `,
+      };
+
+      // ============================================
+      // RENDERIZAR CONTENIDO DEL PASO
+      // ============================================
+      function renderStep() {
+        // Actualizar contenido
+        document.getElementById('stepContent').innerHTML = stepContents[currentStep];
+
+        // Actualizar stepper visual
+        updateStepperVisual();
+
+        // Actualizar botones
+        document.getElementById('btnPrev').disabled = currentStep === 1;
+        document.getElementById('btnNext').textContent =
+          currentStep === totalSteps ? 'Finalizar ✓' : 'Siguiente →';
+      }
+
+      // ============================================
+      // ACTUALIZAR VISUAL DEL STEPPER
+      // ============================================
+      function updateStepperVisual() {
+        const steps = document.querySelectorAll('.sb-ui-stepper__step');
+        const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+        </svg>`;
+
+        steps.forEach((step, index) => {
+          const stepNumber = index + 1;
+          const circle = step.querySelector('.sb-ui-stepper__step-circle');
+          const track = step.querySelector('.sb-ui-stepper__step-track');
+
+          // Remover clases
+          step.classList.remove(
+            'sb-ui-stepper__step--empty-default',
+            'sb-ui-stepper__step--empty-active',
+            'sb-ui-stepper__step--filled-default'
+          );
+
+          if (stepNumber < currentStep) {
+            // ✅ Completado
+            step.classList.add('sb-ui-stepper__step--filled-default');
+            circle.innerHTML = checkIcon;
+            circle.removeAttribute('aria-current');
+            if (track) {
+              track.style.borderBlockStartStyle = 'solid';
+            }
+          } else if (stepNumber === currentStep) {
+            // 🔵 Activo
+            step.classList.add('sb-ui-stepper__step--empty-active');
+            circle.textContent = stepNumber;
+            circle.setAttribute('aria-current', 'step');
+            if (track) {
+              track.style.borderBlockStartStyle = 'dashed';
+            }
+          } else {
+            // ⚪ Pendiente
+            step.classList.add('sb-ui-stepper__step--empty-default');
+            circle.textContent = stepNumber;
+            circle.removeAttribute('aria-current');
+            if (track) {
+              track.style.borderBlockStartStyle = 'dashed';
+            }
+          }
+        });
+      }
+
+      // ============================================
+      // NAVEGACIÓN
+      // ============================================
+      function next() {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep();
+        } else {
+          // Finalizar
+          alert('¡Formulario completado! 🎉');
+        }
+      }
+
+      function prev() {
+        if (currentStep > 1) {
+          currentStep--;
+          renderStep();
+        }
+      }
+
+      // Renderizar paso inicial
+      renderStep();
+    </script>
+
+    <!-- ========== BLOQUE DE CÓDIGO ========== -->
+    <div class="container" style="margin-top: 2rem">
+      <div class="code-section">
+        <h3>💻 Código de este ejemplo</h3>
+        <pre>
+// 1️⃣ Define el contenido de cada paso
+const stepContents = {
+  1: '&lt;h3&gt;Paso 1&lt;/h3&gt;&lt;input placeholder="Nombre" /&gt;',
+  2: '&lt;h3&gt;Paso 2&lt;/h3&gt;&lt;input placeholder="Email" /&gt;',
+  3: '&lt;h3&gt;Paso 3&lt;/h3&gt;&lt;select&gt;...&lt;/select&gt;',
+  4: '&lt;h3&gt;Confirmación&lt;/h3&gt;&lt;p&gt;Todo listo&lt;/p&gt;'
+};
+
+// 2️⃣ Función para renderizar el paso actual
+function renderStep() {
+  // Actualizar contenido dinámico
+  document.getElementById('stepContent').innerHTML = stepContents[currentStep];
+
+  // Actualizar stepper visual
+  updateStepperVisual();
+
+  // Actualizar botones
+  document.getElementById('btnPrev').disabled = (currentStep === 1);
+  document.getElementById('btnNext').textContent =
+    (currentStep === totalSteps) ? 'Finalizar ✓' : 'Siguiente →';
+}
+
+// 3️⃣ Actualizar estados del stepper
+function updateStepperVisual() {
+  const steps = document.querySelectorAll('.sb-ui-stepper__step');
+
+  steps.forEach((step, index) => {
+    const stepNumber = index + 1;
+    const circle = step.querySelector('.sb-ui-stepper__step-circle');
+
+    // Remover clases anteriores
+    step.classList.remove(
+      'sb-ui-stepper__step--empty-default',
+      'sb-ui-stepper__step--empty-active',
+      'sb-ui-stepper__step--filled-default'
+    );
+
+    if (stepNumber &lt; currentStep) {
+      // ✅ Completado: verde con check
+      step.classList.add('sb-ui-stepper__step--filled-default');
+      circle.innerHTML = '&lt;svg&gt;...check icon...&lt;/svg&gt;';
+    } else if (stepNumber === currentStep) {
+      // 🔵 Activo: amarillo con número
+      step.classList.add('sb-ui-stepper__step--empty-active');
+      circle.textContent = stepNumber;
+    } else {
+      // ⚪ Pendiente: blanco con número gris
+      step.classList.add('sb-ui-stepper__step--empty-default');
+      circle.textContent = stepNumber;
+    }
+  });
+}
+
+// 4️⃣ Navegación simple
+function next() {
+  if (currentStep &lt; totalSteps) {
+    currentStep++;
+    renderStep();
+  } else {
+    alert('¡Formulario completado! 🎉');
+  }
+}
+
+function prev() {
+  if (currentStep &gt; 1) {
+    currentStep--;
+    renderStep();
+  }
+}</pre
+        >
+      </div>
+    </div>
+  </body>
+</html>

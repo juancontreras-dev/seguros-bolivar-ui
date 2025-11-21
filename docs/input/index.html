@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Component - Seguros Bolívar UI Design System</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Bolivar', 'Roboto', sans-serif;
+        padding: 2rem;
+        background: #fafafa;
+      }
+
+      .demo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #1b1b1b;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #038450;
+        border-bottom: 2px solid #cce9dd;
+        padding-bottom: 0.5rem;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1.5rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .demo-item h3 {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        color: #9b9b9b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Icon wrapper para los íconos del input */
+      .icon-wrapper {
+        position: relative;
+        display: block;
+        width: 100%;
+      }
+
+      /* Font Awesome Icons - 24px × 24px según diseño */
+      .input-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #9b9b9b;
+        font-size: 18px;
+        line-height: 1;
+        z-index: 1;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .input-icon i {
+        font-size: 18px;
+      }
+
+      code {
+        background: #f5f5f5;
+        padding: 0.125rem 0.375rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-family: 'Courier New', monospace;
+      }
+
+      /* Helper text icon - Font Awesome */
+      .sb-ui-input-helper i {
+        font-size: 14px;
+        margin-right: 10px; /* Mayor separación entre icono y texto */
+        flex-shrink: 0;
+      }
+
+      /* Default/Focus - ícono info verde */
+      .sb-ui-input-helper .fa-circle-info {
+        color: #009056;
+      }
+
+      /* Success - ícono check verde (hereda del helper text) */
+      .sb-ui-input-container:has(.sb-ui-input--success) .sb-ui-input-helper .fa-circle-check {
+        color: inherit;
+      }
+
+      /* Error - ícono xmark rojo (hereda del helper text) */
+      .sb-ui-input-container:has(.sb-ui-input--error) .sb-ui-input-helper .fa-circle-xmark {
+        color: inherit;
+      }
+
+      /* Warning - ícono triangle amarillo (hereda del helper text) */
+      .sb-ui-input-container:has(.sb-ui-input--warning) .sb-ui-input-helper .fa-triangle-exclamation {
+        color: inherit;
+      }
+
+              /* Asegurar que helper text sea flex */
+              .sb-ui-input-helper {
+                display: flex;
+                align-items: center;
+                color: #5b5b5b; /* Texto gris oscuro por defecto (grayscale-D200) */
+                padding-block-start: 2px; /* Más padding superior */
+              }
+
+              /* Helper text en focus: texto negro, ícono permanece verde */
+              .sb-ui-input-container:focus-within .sb-ui-input-helper {
+                color: #1b1b1b; /* Texto negro en focus */
+              }
+
+              .sb-ui-input-container:focus-within .sb-ui-input-helper::before {
+                color: #009056; /* Ícono sigue verde en focus */
+              }
+
+      /* ============================================
+         BRAND & THEME CONTROLS - Copied from radio example
+         ============================================ */
+      .brand-controls {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--sb-ui-color-grayscale-white) 0%,
+          var(--sb-ui-color-grayscale-L400) 100%
+        );
+        border-radius: 16px;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .brand-controls:hover {
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .brand-controls-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-controls label {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .theme-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      @media (max-width: 768px) {
+        .brand-controls {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .brand-controls-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .theme-toggle {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body data-brand="seguros-bolivar" data-theme="light">
+    <div class="demo-container">
+      <!-- Brand & Theme Controls -->
+      <div class="brand-controls">
+        <button
+          onclick="window.location.href='../index.html'"
+          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+          style="text-decoration: none"
+        >
+          ← Volver
+        </button>
+
+        <div class="brand-controls-group">
+          <label for="brandSelect">📦 Marca:</label>
+          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+            <option value="white-label">White Label</option>
+            <option value="jelpit">Jelpit</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="cien-cuadras">Cien Cuadras</option>
+            <option value="doctor-aki">Doctor Aki</option>
+            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+          </select>
+
+          <label for="themeToggle">🌓 Tema:</label>
+          <div class="theme-toggle">
+            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
+              ☀️ Light
+            </button>
+            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
+              🌙 Dark
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <h1 style="text-align: center; margin-bottom: 1rem">🎨 Input Component</h1>
+      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
+        Componente de input con CSS Nesting, @layer, Logical Properties y clamp() para responsive
+        fluido.
+      </p>
+
+      <!-- ============================================
+           ESTADOS PRINCIPALES
+           ============================================ -->
+      <h2>Estados del Input</h2>
+      <div class="demo-grid">
+        <!-- DEFAULT -->
+        <div class="demo-item">
+          <h3>1. Default</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- HOVER -->
+        <div class="demo-item">
+          <h3>2. Hover</h3>
+          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Pasa el mouse sobre el input</p>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- FOCUS -->
+        <div class="demo-item">
+          <h3>3. Focus (borde verde)</h3>
+          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Click para ver foco verde</p>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- DISABLED -->
+        <div class="demo-item">
+          <h3>4. Disabled</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" disabled />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="demo-item">
+          <h3>5. Success</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <div class="icon-wrapper">
+              <input
+                class="sb-ui-input sb-ui-input--success sb-ui-input--with-icon"
+                type="text"
+                placeholder="Placeholder"
+              />
+              <span class="input-icon" style="color: #28a745"><i class="fa-solid fa-check"></i></span>
+            </div>
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-check"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div class="demo-item">
+          <h3>6. Error</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <div class="icon-wrapper">
+              <input
+                class="sb-ui-input sb-ui-input--error sb-ui-input--with-icon"
+                type="text"
+                placeholder="Placeholder"
+              />
+              <span class="input-icon" style="color: #dc3545"><i class="fa-solid fa-xmark"></i></span>
+            </div>
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-xmark"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- WARNING -->
+        <div class="demo-item">
+          <h3>7. Warning</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <div class="icon-wrapper">
+              <input
+                class="sb-ui-input sb-ui-input--warning sb-ui-input--with-icon"
+                type="text"
+                placeholder="Placeholder"
+              />
+              <span class="input-icon" style="color: #ffc100"><i class="fa-solid fa-triangle-exclamation"></i></span>
+            </div>
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-triangle-exclamation"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- VIEW / READ-ONLY -->
+        <div class="demo-item">
+          <h3>8. View / Read-Only</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" value="Option" readonly />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           TAMAÑOS
+           ============================================ -->
+      <h2>Tamaños</h2>
+      <div class="demo-grid">
+        <!-- SMALL -->
+        <div class="demo-item">
+          <h3>Small</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input sb-ui-input--small" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- MEDIUM (default) -->
+        <div class="demo-item">
+          <h3>Medium (default)</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+
+        <!-- LARGE -->
+        <div class="demo-item">
+          <h3>Large</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Label txt</label>
+            <input class="sb-ui-input sb-ui-input--large" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           REQUIRED & OPTIONAL
+           ============================================ -->
+      <h2>Required & Optional</h2>
+      <div class="demo-grid">
+        <!-- REQUIRED -->
+        <div class="demo-item">
+          <h3>Required</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label sb-ui-input-label--required">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" required />
+            <span class="sb-ui-input-helper">This field is required</span>
+          </div>
+        </div>
+
+        <!-- OPTIONAL -->
+        <div class="demo-item">
+          <h3>Optional</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label sb-ui-input-label--optional">Label txt</label>
+            <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+            <span class="sb-ui-input-helper">This field is optional</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           TIPOS DE INPUT
+           ============================================ -->
+      <h2>Tipos de Input</h2>
+      <div class="demo-grid">
+        <!-- EMAIL -->
+        <div class="demo-item">
+          <h3>Email</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Email</label>
+            <div class="icon-wrapper">
+              <input class="sb-ui-input sb-ui-input--with-icon" type="email" placeholder="name@example.com" />
+              <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+            </div>
+            <span class="sb-ui-input-helper">Enter your email address</span>
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="demo-item">
+          <h3>Password</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Password</label>
+            <div class="icon-wrapper">
+              <input class="sb-ui-input sb-ui-input--with-icon" type="password" placeholder="••••••••" />
+              <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+            </div>
+            <span class="sb-ui-input-helper">At least 8 characters</span>
+          </div>
+        </div>
+
+        <!-- NUMBER -->
+        <div class="demo-item">
+          <h3>Number</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Number</label>
+            <div class="icon-wrapper">
+              <input class="sb-ui-input sb-ui-input--with-icon" type="number" placeholder="0" />
+              <span class="input-icon"><i class="fa-solid fa-hashtag"></i></span>
+            </div>
+            <span class="sb-ui-input-helper">Enter a number</span>
+          </div>
+        </div>
+
+        <!-- DATE -->
+        <div class="demo-item">
+          <h3>Date</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Date</label>
+            <input class="sb-ui-input" type="date" />
+            <span class="sb-ui-input-helper">Select a date</span>
+          </div>
+        </div>
+
+        <!-- TEL -->
+        <div class="demo-item">
+          <h3>Phone</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Phone</label>
+            <div class="icon-wrapper">
+              <input class="sb-ui-input sb-ui-input--with-icon" type="tel" placeholder="+1 (555) 000-0000" />
+              <span class="input-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+            </div>
+            <span class="sb-ui-input-helper">Enter your phone number</span>
+          </div>
+        </div>
+
+        <!-- URL -->
+        <div class="demo-item">
+          <h3>Website</h3>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Website</label>
+            <div class="icon-wrapper">
+              <input class="sb-ui-input sb-ui-input--with-icon" type="url" placeholder="https://example.com" />
+              <span class="input-icon"><i class="fa-solid fa-globe"></i></span>
+            </div>
+            <span class="sb-ui-input-helper">Enter a valid URL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           EJEMPLO DE CÓDIGO
+           ============================================ -->
+      <h2>Ejemplo de Código</h2>
+      <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; margin-top: 1rem">
+        <pre style="font-family: 'Courier New', monospace; font-size: 0.875rem; overflow-x: auto; line-height: 1.6"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label"&gt;Label txt&lt;/label&gt;
+  &lt;div style="position: relative"&gt;
+    &lt;input 
+      class="sb-ui-input sb-ui-input--with-icon" 
+      type="text" 
+      placeholder="Placeholder"
+    /&gt;
+    &lt;span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%);"&gt;📋&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Help text&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e1e1e1; text-align: center">
+        <p style="color: #9b9b9b; font-size: 0.875rem">
+          © 2024 Seguros Bolívar UI Design System • Built with ❤️ and modern CSS
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Brand and Theme Switching with localStorage persistence
+      const brandSelect = document.getElementById('brandSelect');
+      const lightBtn = document.getElementById('lightBtn');
+      const darkBtn = document.getElementById('darkBtn');
+      const html = document.documentElement;
+      const body = document.body;
+      const brandCss = document.getElementById('brand-css');
+
+      // Leer valores de localStorage o usar defaults
+      let currentBrand =
+        localStorage.getItem('sb-ui-brand') || html.getAttribute('data-brand') || 'seguros-bolivar';
+      let currentTheme =
+        localStorage.getItem('sb-ui-theme') || html.getAttribute('data-theme') || 'light';
+
+      function updateBrandAndTheme() {
+        // Update HTML attributes
+        html.setAttribute('data-brand', currentBrand);
+        html.setAttribute('data-theme', currentTheme);
+        body.setAttribute('data-brand', currentBrand);
+
+        // Save to localStorage
+        localStorage.setItem('sb-ui-brand', currentBrand);
+        localStorage.setItem('sb-ui-theme', currentTheme);
+
+        // Update CSS bundle (tokens + atoms + overrides)
+        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
+
+        // Sync select
+        brandSelect.value = currentBrand;
+
+        // Update button states
+        if (currentTheme === 'light') {
+          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+        } else {
+          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
+          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
+        }
+
+        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
+        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
+        console.log(`💾 Sincronizado con localStorage`);
+      }
+
+      // Event Listeners
+      brandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandAndTheme();
+      });
+
+      lightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandAndTheme();
+      });
+
+      darkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandAndTheme();
+      });
+
+      // Initialize on page load
+      updateBrandAndTheme();
+    </script>
+  </body>
+</html>

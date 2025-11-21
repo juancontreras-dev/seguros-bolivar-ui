@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Inicio - Seguros Bolívar UI</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css?v=2.0">
+  
+  <style>
+    :root {
+      --sb-ui-color-primary-base: #038450;
+      --sb-ui-color-secondary-base: #FFE16F;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #038450 0%, #026d42 100%);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .header-nav {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .header-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .header-nav a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    }
+
+    .nav-tab {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      color: #5b5b5b;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .nav-tab:hover {
+      background: #f2f9f6;
+      color: #038450;
+    }
+
+    .nav-tab.active {
+      background: #038450;
+      color: white;
+      border-color: #038450;
+    }
+
+    /* Content Section */
+    .content-section {
+      display: none;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-section h2 {
+      color: #038450;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #FFE16F;
+    }
+
+    .content-section h3 {
+      color: #026d42;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .content-section h4 {
+      color: #5b5b5b;
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-section p {
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .content-section ul,
+    .content-section ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .content-section li {
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Code Block */
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      position: relative;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .code-block::before {
+      content: attr(data-lang);
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #038450;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Feature Cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #f2f9f6 0%, #e6f4ed 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid #FFE16F;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(3, 132, 80, 0.2);
+    }
+
+    .feature-card h4 {
+      color: #038450;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-card p {
+      color: #5b5b5b;
+      font-size: 0.95rem;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: #f2f9f6;
+      border-left: 4px solid #038450;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+    }
+
+    .info-box.warning {
+      background: #fff9e6;
+      border-left-color: #ffc107;
+    }
+
+    .info-box.error {
+      background: #fff0f0;
+      border-left-color: #e53935;
+    }
+
+    .info-box strong {
+      color: #038450;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Table */
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .doc-table thead {
+      background: #038450;
+      color: white;
+    }
+
+    .doc-table th,
+    .doc-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .doc-table tbody tr:hover {
+      background: #f2f9f6;
+    }
+
+    .doc-table code {
+      background: #1e1e1e;
+      color: #FFE16F;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    /* Demo Section */
+    .demo-section {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border: 2px dashed #d0d0d0;
+    }
+
+    .demo-section h4 {
+      margin-top: 0;
+      color: #038450;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1b1b1b;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .footer a {
+      color: #FFE16F;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-tabs {
+        flex-direction: column;
+      }
+
+      .header-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <h1><i class="fa-solid fa-rocket"></i> Guía de Inicio Rápido</h1>
+      <p>Todo lo que necesitas saber para empezar a usar Seguros Bolívar UI Design System</p>
+      <div class="header-nav">
+        <a href="index.html">
+          <i class="fa-solid fa-arrow-left"></i> Volver a Ejemplos
+        </a>
+        <a href="https://www.npmjs.com/package/@seguros-bolivar/ui-bundle" target="_blank">
+          <i class="fa-brands fa-npm"></i> NPM Package
+        </a>
+        <a href="https://github.com/seguros-bolivar/bolivar-ui" target="_blank">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('instalacion')">
+        <i class="fa-solid fa-download"></i> Instalación
+      </button>
+      <button class="nav-tab" onclick="showSection('uso-basico')">
+        <i class="fa-solid fa-code"></i> Uso Básico
+      </button>
+      <button class="nav-tab" onclick="showSection('componentes')">
+        <i class="fa-solid fa-puzzle-piece"></i> Componentes
+      </button>
+      <button class="nav-tab" onclick="showSection('marcas')">
+        <i class="fa-solid fa-palette"></i> Marcas
+      </button>
+      <button class="nav-tab" onclick="showSection('personalizacion')">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Personalización
+      </button>
+      <button class="nav-tab" onclick="showSection('mejores-practicas')">
+        <i class="fa-solid fa-star"></i> Mejores Prácticas
+      </button>
+    </nav>
+
+    <!-- Section: Instalación -->
+    <section id="instalacion" class="content-section active">
+      <h2><i class="fa-solid fa-download"></i> Instalación</h2>
+      
+      <p>Existen tres formas principales de usar Seguros Bolívar UI en tu proyecto. Elige la que mejor se adapte a tus necesidades:</p>
+
+      <h3>1. CDN (Recomendado para Prototipos)</h3>
+      <p>La forma más rápida de empezar. Simplemente incluye los archivos CSS y JS desde un CDN público:</p>
+
+      <h4><i class="fa-brands fa-npm"></i> unpkg.com</h4>
+      <div class="code-block" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;!-- CSS del Design System --&gt;
+  &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+  
+  &lt;!-- Web Components (opcional) --&gt;
+  &lt;script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
+    ¡Hola Mundo!
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+      <h4><i class="fa-solid fa-bolt"></i> jsDelivr (Alternativa)</h4>
+      <div class="code-block" data-lang="html">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+&lt;script type="module" src="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"&gt;&lt;/script&gt;</div>
+
+      <div class="info-box">
+        <strong><i class="fa-solid fa-lightbulb"></i> Ventajas del CDN:</strong>
+        <ul>
+          <li>✅ Configuración instantánea - sin instalación</li>
+          <li>✅ Caché global - carga más rápida</li>
+          <li>✅ Ideal para prototipos y demos</li>
+          <li>✅ Sin gestión de dependencias</li>
+        </ul>
+      </div>
+
+      <h3>2. NPM (Recomendado para Producción)</h3>
+      <p>Para proyectos en producción, instala el paquete como una dependencia:</p>
+
+      <div class="code-block" data-lang="bash"># NPM
+npm install @seguros-bolivar/ui-bundle
+
+# PNPM
+pnpm add @seguros-bolivar/ui-bundle
+
+# Yarn
+yarn add @seguros-bolivar/ui-bundle</div>
+
+      <p>Luego importa en tu aplicación:</p>
+
+      <div class="code-block" data-lang="javascript">// En tu archivo principal (ej: main.js, index.js)
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar-light.min.css';
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';</div>
+
+      <div class="info-box">
+        <strong><i class="fa-solid fa-shield-halved"></i> Ventajas de NPM:</strong>
+        <ul>
+          <li>✅ Control de versiones preciso</li>
+          <li>✅ Optimización con bundler (Webpack, Vite, etc.)</li>
+          <li>✅ Tree-shaking disponible</li>
+          <li>✅ Integración con sistemas de build</li>
+        </ul>
+      </div>
+
+      <h3>3. Descarga Directa</h3>
+      <p>También puedes descargar los archivos directamente desde:</p>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4><i class="fa-brands fa-npm"></i> NPM Registry</h4>
+          <p>Descarga el tarball completo</p>
+          <a href="https://registry.npmjs.org/@seguros-bolivar/ui-bundle/-/ui-bundle-1.0.0.tgz" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" download>
+            Descargar .tgz
+          </a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-brands fa-github"></i> GitHub Releases</h4>
+          <p>Releases oficiales del proyecto</p>
+          <a href="https://github.com/seguros-bolivar/bolivar-ui/releases" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" target="_blank">
+            Ver Releases
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Uso Básico -->
+    <section id="uso-basico" class="content-section">
+      <h2><i class="fa-solid fa-code"></i> Uso Básico</h2>
+      
+      <h3>Estructura HTML Mínima</h3>
+      <p>Este es un ejemplo completo de una página HTML usando el Design System:</p>
+
+      <div class="code-block" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Mi App - Seguros Bolívar&lt;/title&gt;
+  
+  &lt;!-- CSS del Design System --&gt;
+  &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+  
+  &lt;!-- Web Components (opcional) --&gt;
+  &lt;script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Tu contenido aquí --&gt;
+  &lt;div style="padding: 2rem;"&gt;
+    &lt;h1&gt;¡Bienvenido a Seguros Bolívar!&lt;/h1&gt;
+    
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
+      Botón Principal
+    &lt;/button&gt;
+    
+    &lt;input type="text" class="sb-ui-input" placeholder="Ingresa tu nombre"&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+      <h3>Demo en Vivo</h3>
+      <div class="demo-section">
+        <h4>Resultado:</h4>
+        <div style="padding: 2rem; background: white; border-radius: 8px;">
+          <h1 style="color: #038450; margin-bottom: 1rem;">¡Bienvenido a Seguros Bolívar!</h1>
+          
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" style="margin-right: 1rem; margin-bottom: 1rem;">
+            Botón Principal
+          </button>
+          
+          <input type="text" class="sb-ui-input" placeholder="Ingresa tu nombre" style="display: block; margin-top: 1rem;">
+        </div>
+      </div>
+
+      <h3>Nomenclatura BEM</h3>
+      <p>Todos los componentes siguen la metodología BEM (Block, Element, Modifier) con el prefijo <code>sb-ui-</code>:</p>
+
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Patrón</th>
+            <th>Ejemplo</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.sb-ui-{block}</code></td>
+            <td><code>.sb-ui-button</code></td>
+            <td>Bloque base del componente</td>
+          </tr>
+          <tr>
+            <td><code>.sb-ui-{block}--{modifier}</code></td>
+            <td><code>.sb-ui-button--primary</code></td>
+            <td>Modificador de variante</td>
+          </tr>
+          <tr>
+            <td><code>.sb-ui-{block}--{size}</code></td>
+            <td><code>.sb-ui-button--small</code></td>
+            <td>Modificador de tamaño</td>
+          </tr>
+          <tr>
+            <td><code>.sb-ui-{block}--{state}</code></td>
+            <td><code>.sb-ui-button--disabled</code></td>
+            <td>Modificador de estado</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong><i class="fa-solid fa-circle-info"></i> ¿Por qué BEM?</strong>
+        <p>BEM hace que el CSS sea predecible, reutilizable y escalable. El prefijo <code>sb-ui-</code> evita conflictos con otros estilos de tu proyecto.</p>
+      </div>
+    </section>
+
+    <!-- Section: Componentes -->
+    <section id="componentes" class="content-section">
+      <h2><i class="fa-solid fa-puzzle-piece"></i> Componentes</h2>
+      
+      <p>El Design System incluye 15+ componentes divididos en dos categorías:</p>
+
+      <h3><i class="fa-solid fa-atom"></i> Atoms (CSS Puro)</h3>
+      <p>Componentes básicos que solo requieren clases CSS. Sin JavaScript.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-hand-pointer"></i> Button</h4>
+          <p>Botones en 4 variantes y 3 estilos</p>
+          <a href="button/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-keyboard"></i> Input</h4>
+          <p>Campos de texto con validación</p>
+          <a href="input/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-list-check"></i> Select</h4>
+          <p>Listas desplegables estilizadas</p>
+          <a href="select/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-check-square"></i> Checkbox</h4>
+          <p>Casillas de verificación accesibles</p>
+          <a href="checkbox/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-toggle-on"></i> Toggle</h4>
+          <p>Interruptores on/off</p>
+          <a href="toggle/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-table"></i> Table</h4>
+          <p>Tablas con paginación</p>
+          <a href="table/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-bell"></i> Alert</h4>
+          <p>Notificaciones y mensajes</p>
+          <a href="alert/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-bars"></i> Accordion</h4>
+          <p>Paneles desplegables</p>
+          <a href="accordion/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-folder-tree"></i> Breadcrumb</h4>
+          <p>Navegación jerárquica</p>
+          <a href="breadcrumb/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-spinner"></i> Spinner</h4>
+          <p>Indicadores de carga</p>
+          <a href="spinner/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+      </div>
+
+      <h3><i class="fa-solid fa-cube"></i> Molecules (Web Components)</h3>
+      <p>Componentes interactivos avanzados usando Web Components (Lit).</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-calendar"></i> Datepicker</h4>
+          <p>Selector de fecha con calendario</p>
+          <a href="calendar/datepicker.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-window-maximize"></i> Modal</h4>
+          <p>Ventanas modales con overlay</p>
+          <a href="modal/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-upload"></i> File Upload</h4>
+          <p>Carga de archivos con drag & drop</p>
+          <a href="file-upload/index.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Ver Ejemplos</a>
+        </div>
+      </div>
+
+      <h3>Ejemplo Rápido: Botón</h3>
+      <div class="code-block" data-lang="html">&lt;!-- Botón Primary Fill --&gt;
+&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;
+  Acción Principal
+&lt;/button&gt;
+
+&lt;!-- Botón Secondary Stroke --&gt;
+&lt;button class="sb-ui-button sb-ui-button--secondary"&gt;
+  Acción Secundaria
+&lt;/button&gt;
+
+&lt;!-- Botón Terciario Text --&gt;
+&lt;button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--text"&gt;
+  Acción Terciaria
+&lt;/button&gt;
+
+&lt;!-- Botón con ícono --&gt;
+&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left"&gt;
+  &lt;i class="fa-solid fa-download"&gt;&lt;/i&gt;
+  Descargar
+&lt;/button&gt;</div>
+
+      <div class="demo-section">
+        <h4>Resultado:</h4>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+            Acción Principal
+          </button>
+          <button class="sb-ui-button sb-ui-button--secondary">
+            Acción Secundaria
+          </button>
+          <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--text">
+            Acción Terciaria
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left">
+            <i class="fa-solid fa-download"></i>
+            Descargar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Marcas -->
+    <section id="marcas" class="content-section">
+      <h2><i class="fa-solid fa-palette"></i> Marcas y Temas</h2>
+      
+      <p>El Design System soporta 6 marcas diferentes, cada una con tema claro y oscuro:</p>
+
+      <h3>Marcas Disponibles</h3>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Light</th>
+            <th>Dark</th>
+            <th>Tamaño</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Seguros Bolívar</strong></td>
+            <td><code>sb-ui-seguros-bolivar-light.min.css</code></td>
+            <td><code>sb-ui-seguros-bolivar-dark.min.css</code></td>
+            <td>~27 KB</td>
+          </tr>
+          <tr>
+            <td><strong>Davivienda</strong></td>
+            <td><code>sb-ui-davivienda-light.min.css</code></td>
+            <td><code>sb-ui-davivienda-dark.min.css</code></td>
+            <td>~23 KB</td>
+          </tr>
+          <tr>
+            <td><strong>Jelpit</strong></td>
+            <td><code>sb-ui-jelpit-light.min.css</code></td>
+            <td><code>sb-ui-jelpit-dark.min.css</code></td>
+            <td>~23 KB</td>
+          </tr>
+          <tr>
+            <td><strong>Cien Cuadras</strong></td>
+            <td><code>sb-ui-cien-cuadras-light.min.css</code></td>
+            <td><code>sb-ui-cien-cuadras-dark.min.css</code></td>
+            <td>~23 KB</td>
+          </tr>
+          <tr>
+            <td><strong>Doctor Aki</strong></td>
+            <td><code>sb-ui-doctor-aki-light.min.css</code></td>
+            <td><code>sb-ui-doctor-aki-dark.min.css</code></td>
+            <td>~23 KB</td>
+          </tr>
+          <tr>
+            <td><strong>White Label</strong></td>
+            <td><code>sb-ui-white-label-light.min.css</code></td>
+            <td><code>sb-ui-white-label-dark.min.css</code></td>
+            <td>~23 KB</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Cambiar de Marca</h3>
+      <p>Para cambiar de marca, simplemente cambia el archivo CSS que importas:</p>
+
+      <div class="code-block" data-lang="html">&lt;!-- Seguros Bolívar Light --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+
+&lt;!-- Davivienda Dark --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-davivienda-dark.min.css"&gt;
+
+&lt;!-- Jelpit Light --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-jelpit-light.min.css"&gt;</div>
+
+      <h3>Cambiar de Tema Dinámicamente</h3>
+      <p>Puedes permitir a los usuarios cambiar entre tema claro y oscuro en tiempo real:</p>
+
+      <div class="code-block" data-lang="javascript">// JavaScript para cambiar tema dinámicamente
+function cambiarTema(marca, tema) {
+  const linkCSS = document.querySelector('link[rel="stylesheet"]');
+  const nuevoCSS = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+  linkCSS.href = nuevoCSS;
+}
+
+// Uso:
+cambiarTema('seguros-bolivar', 'dark');  // Cambia a tema oscuro
+cambiarTema('davivienda', 'light');       // Cambia a Davivienda light</div>
+
+      <div class="demo-section">
+        <h4>Prueba Cambiar de Marca:</h4>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="sb-ui-button sb-ui-button--primary" onclick="cambiarMarca('seguros-bolivar', 'light')">
+            Seguros Bolívar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary" onclick="cambiarMarca('davivienda', 'light')">
+            Davivienda
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary" onclick="cambiarMarca('jelpit', 'light')">
+            Jelpit
+          </button>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong><i class="fa-solid fa-magic-wand-sparkles"></i> ¿Qué incluye cada marca?</strong>
+        <ul>
+          <li><strong>Tokens:</strong> Colores, tipografía, espaciado personalizados</li>
+          <li><strong>Componentes:</strong> Todos los componentes con estilos de la marca</li>
+          <li><strong>Overrides:</strong> Personalizaciones específicas por marca</li>
+          <li><strong>Todo en uno:</strong> Un solo archivo CSS contiene todo</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section: Personalización -->
+    <section id="personalizacion" class="content-section">
+      <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Personalización</h2>
+      
+      <h3>Variables CSS</h3>
+      <p>Todos los componentes usan CSS Variables (Custom Properties) que puedes sobrescribir:</p>
+
+      <div class="code-block" data-lang="css">/* Sobrescribir colores principales */
+:root {
+  --sb-ui-color-primary-base: #your-color;
+  --sb-ui-color-secondary-base: #your-color;
+}
+
+/* Sobrescribir espaciado de un componente específico */
+.sb-ui-button {
+  --sb-ui-button-padding-inline: 2rem;
+  --sb-ui-button-padding-block: 1rem;
+  --sb-ui-button-border-radius: 8px;
+}</div>
+
+      <h3>Tokens Principales</h3>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Descripción</th>
+            <th>Ejemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--sb-ui-color-primary-base</code></td>
+            <td>Color primario de la marca</td>
+            <td><code>#038450</code> (Seguros Bolívar)</td>
+          </tr>
+          <tr>
+            <td><code>--sb-ui-color-secondary-base</code></td>
+            <td>Color secundario de la marca</td>
+            <td><code>#FFE16F</code> (Seguros Bolívar)</td>
+          </tr>
+          <tr>
+            <td><code>--sb-ui-typography-fontFamily</code></td>
+            <td>Familia tipográfica</td>
+            <td><code>'Roboto', sans-serif</code></td>
+          </tr>
+          <tr>
+            <td><code>--sb-ui-spacing-base</code></td>
+            <td>Espaciado base</td>
+            <td><code>1rem</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Crear Tu Propia Marca</h3>
+      <p>Puedes extender el Design System creando tus propios brand overrides:</p>
+
+      <div class="code-block" data-lang="css">/* mi-marca.css */
+:root {
+  /* Colores */
+  --sb-ui-color-primary-base: #1e88e5;
+  --sb-ui-color-secondary-base: #ffa726;
+  
+  /* Tipografía */
+  --sb-ui-typography-fontFamily: 'Open Sans', sans-serif;
+  
+  /* Espaciado */
+  --sb-ui-button-padding-inline: 2rem;
+  --sb-ui-button-border-radius: 12px;
+}
+
+/* Personalización específica de componentes */
+.sb-ui-button--primary {
+  --sb-ui-button-bg: var(--sb-ui-color-primary-base);
+  --sb-ui-button-text: white;
+}</div>
+
+      <p>Luego carga tu CSS personalizado después del CSS del Design System:</p>
+
+      <div class="code-block" data-lang="html">&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-white-label-light.min.css"&gt;
+&lt;link rel="stylesheet" href="mi-marca.css"&gt;</div>
+    </section>
+
+    <!-- Section: Mejores Prácticas -->
+    <section id="mejores-practicas" class="content-section">
+      <h2><i class="fa-solid fa-star"></i> Mejores Prácticas</h2>
+      
+      <h3><i class="fa-solid fa-check-circle"></i> Hacer (Do's)</h3>
+      
+      <div class="info-box">
+        <ul>
+          <li>✅ <strong>Usa las clases CSS directamente</strong> - No crees wrappers innecesarios</li>
+          <li>✅ <strong>Combina modificadores</strong> - <code>.sb-ui-button--primary.sb-ui-button--small</code></li>
+          <li>✅ <strong>Usa variables CSS</strong> - Para personalización consistente</li>
+          <li>✅ <strong>Sigue BEM</strong> - Respeta la nomenclatura del sistema</li>
+          <li>✅ <strong>Prueba accesibilidad</strong> - Usa lectores de pantalla</li>
+          <li>✅ <strong>Mobile-first</strong> - Diseña primero para móvil</li>
+          <li>✅ <strong>Usa CDN para prototipos</strong> - NPM para producción</li>
+          <li>✅ <strong>Versiona tu CSS</strong> - Usa <code>@1.0.0</code> en lugar de <code>@latest</code> en producción</li>
+        </ul>
+      </div>
+
+      <h3><i class="fa-solid fa-times-circle"></i> No Hacer (Don'ts)</h3>
+      
+      <div class="info-box error">
+        <ul>
+          <li>❌ <strong>No sobrescribas con !important</strong> - Usa CSS Variables</li>
+          <li>❌ <strong>No modifiques las clases base</strong> - Crea nuevos modificadores</li>
+          <li>❌ <strong>No mezcles estilos</strong> - Usa solo el Design System</li>
+          <li>❌ <strong>No uses IDs para estilos</strong> - Solo clases</li>
+          <li>❌ <strong>No ignores la accesibilidad</strong> - Siempre usa atributos ARIA</li>
+          <li>❌ <strong>No uses <code>@latest</code> en producción</strong> - Puede romper tu app</li>
+          <li>❌ <strong>No cargues múltiples marcas</strong> - Solo una por página</li>
+        </ul>
+      </div>
+
+      <h3><i class="fa-solid fa-shield-halved"></i> Accesibilidad</h3>
+      <p>El Design System está diseñado con accesibilidad en mente. Asegúrate de:</p>
+
+      <div class="code-block" data-lang="html">&lt;!-- Botones con texto descriptivo --&gt;
+&lt;button class="sb-ui-button sb-ui-button--primary" aria-label="Cerrar sesión"&gt;
+  &lt;i class="fa-solid fa-sign-out"&gt;&lt;/i&gt;
+  Cerrar Sesión
+&lt;/button&gt;
+
+&lt;!-- Inputs con labels --&gt;
+&lt;label for="email"&gt;Correo Electrónico&lt;/label&gt;
+&lt;input id="email" type="email" class="sb-ui-input" required&gt;
+
+&lt;!-- Modales con foco automático --&gt;
+&lt;sb-ui-modal id="modal" title="Confirmación" role="dialog" aria-labelledby="modal-title"&gt;
+  &lt;p id="modal-title"&gt;¿Estás seguro?&lt;/p&gt;
+&lt;/sb-ui-modal&gt;</div>
+
+      <h3><i class="fa-solid fa-bolt"></i> Performance</h3>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-compress"></i> Tamaño Optimizado</h4>
+          <p>CSS: ~23-27 KB (gzipped)<br>JS: ~16 KB (gzipped)<br><strong>Total: ~40 KB</strong></p>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-rocket"></i> Carga Rápida</h4>
+          <p>Servido desde CDN global<br>Cache automático<br>HTTP/2 enabled</p>
+        </div>
+        <div class="feature-card">
+          <h4><i class="fa-solid fa-tree"></i> Tree-shaking</h4>
+          <p>Con NPM puedes importar solo lo que uses<br>Optimización automática</p>
+        </div>
+      </div>
+
+      <h3><i class="fa-solid fa-code-compare"></i> Versionado</h3>
+      <p>Siempre especifica una versión en producción:</p>
+
+      <div class="code-block" data-lang="html">&lt;!-- ❌ NO en producción - puede cambiar sin aviso --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+
+&lt;!-- ✅ SÍ en producción - versión fija --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@1.0.0/dist/sb-ui-seguros-bolivar-light.min.css"&gt;</div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+      <strong>Seguros Bolívar UI Design System</strong><br>
+      Construido con ❤️ por el equipo de Seguros Bolívar
+    </p>
+    <p style="margin-top: 1rem;">
+      <a href="https://www.npmjs.com/package/@seguros-bolivar/ui-bundle" target="_blank">
+        <i class="fa-brands fa-npm"></i> NPM
+      </a> |
+      <a href="https://github.com/seguros-bolivar/bolivar-ui" target="_blank">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a> |
+      <a href="index.html">
+        <i class="fa-solid fa-cube"></i> Componentes
+      </a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">
+      v1.0.0 | MIT License | © 2025 Seguros Bolívar
+    </p>
+  </footer>
+
+  <script>
+    // Navigation
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Remove active from all tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+      
+      // Mark tab as active
+      event.target.classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Demo: Cambiar marca
+    function cambiarMarca(marca, tema) {
+      const linkCSS = document.querySelector('link[href*="sb-ui-"]');
+      const nuevoCSS = `dist/sb-ui-${marca}-${tema}.min.css?v=2.0`;
+      linkCSS.href = nuevoCSS;
+      
+      alert(`Marca cambiada a: ${marca} (${tema})`);
+    }
+  </script>
+</body>
+</html>
+
