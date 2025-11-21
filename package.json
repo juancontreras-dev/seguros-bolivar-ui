@@ -11,13 +11,13 @@
     "css",
     "design-tokens"
   ],
-  "homepage": "https://github.com/tu-usuario/bolivar-ui#readme",
+  "homepage": "https://github.com/juancontreras-dev/seguros-bolivar-ui#readme",
   "bugs": {
-    "url": "https://github.com/tu-usuario/bolivar-ui/issues"
+    "url": "https://github.com/juancontreras-dev/seguros-bolivar-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tu-usuario/bolivar-ui.git"
+    "url": "https://github.com/juancontreras-dev/seguros-bolivar-ui.git"
   },
   "license": "MIT",
   "author": "Seguros Bolivar UI",
