@@ -47,7 +47,7 @@ storybook-static/
 # Deployment (GitHub Pages)
 # Si usas GitHub Actions, mantén esto activo (docs/ se genera en CI)
 # Si usas despliegue manual desde branch, comenta esta línea
-/docs/
+# /docs/
 
 # Temporary files
 *.tmp
