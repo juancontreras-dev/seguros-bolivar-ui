@@ -9,7 +9,7 @@
  * - Crea index.html de redirección
  */
 
-import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, rmSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, rmSync, readdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -46,8 +46,33 @@ cpSync(examplesDir, docsDir, {
 });
 console.log('   ✅ Copied examples/ to docs/\n');
 
-// 3. Copiar storybook-static/ a docs/storybook/
-console.log('📁 Step 3: Copying Storybook to docs/storybook/...');
+// 3. Copiar archivos del bundle a docs/dist/
+console.log('📁 Step 3: Copying bundle files to docs/dist/...');
+const bundleDistDir = join(rootDir, 'packages/bundle/dist');
+const docsDistDir = join(docsDir, 'dist');
+
+if (!existsSync(bundleDistDir)) {
+  console.error('   ❌ ERROR: Bundle dist/ folder not found!');
+  console.error('   Make sure "pnpm run build" was successful.');
+  process.exit(1);
+}
+
+// Crear carpeta dist en docs y copiar archivos
+mkdirSync(docsDistDir, { recursive: true });
+cpSync(bundleDistDir, docsDistDir, {
+  recursive: true,
+  filter: (src) => {
+    // Solo copiar archivos .min.css, .min.js y .min.js.map
+    return src.endsWith('.min.css') || 
+           src.endsWith('.min.js') || 
+           src.endsWith('.min.js.map') ||
+           src.includes('dist');
+  }
+});
+console.log('   ✅ Copied bundle files to docs/dist/\n');
+
+// 4. Copiar storybook-static/ a docs/storybook/
+console.log('📁 Step 4: Copying Storybook to docs/storybook/...');
 const storybookDir = join(rootDir, 'packages/docs/storybook-static');
 if (!existsSync(storybookDir)) {
   console.warn('   ⚠️  WARNING: Storybook build not found. Run "pnpm run build:storybook" first.');
@@ -58,33 +83,46 @@ if (!existsSync(storybookDir)) {
   console.log('   ✅ Copied Storybook to docs/storybook/\n');
 }
 
-// 4. Verificar que dist/ existe en docs/
-console.log('📁 Step 4: Verifying dist/ folder...');
+// 5. Verificar que dist/ existe en docs/
+console.log('📁 Step 5: Verifying dist/ folder...');
 const distDir = join(docsDir, 'dist');
 if (!existsSync(distDir)) {
   console.error('   ❌ ERROR: dist/ folder not found in docs/!');
-  console.error('   Make sure "pnpm run build" was successful.');
+  console.error('   Make sure bundle files were copied correctly.');
   process.exit(1);
 }
-console.log('   ✅ dist/ folder verified\n');
 
-// 5. Crear .nojekyll para GitHub Pages
-console.log('📄 Step 5: Creating .nojekyll file...');
+// Verificar que hay archivos CSS y JS
+const cssFiles = readdirSync(distDir).filter(f => f.endsWith('.min.css'));
+const jsFiles = readdirSync(distDir).filter(f => f.endsWith('.min.js'));
+
+if (cssFiles.length === 0 || jsFiles.length === 0) {
+  console.error('   ❌ ERROR: No CSS or JS files found in dist/!');
+  console.error('   CSS files:', cssFiles.length);
+  console.error('   JS files:', jsFiles.length);
+  process.exit(1);
+}
+
+console.log(`   ✅ dist/ folder verified (${cssFiles.length} CSS, ${jsFiles.length} JS files)\n`);
+
+// 6. Crear .nojekyll para GitHub Pages
+console.log('📄 Step 6: Creating .nojekyll file...');
 writeFileSync(join(docsDir, '.nojekyll'), '');
 console.log('   ✅ Created .nojekyll (disables Jekyll processing)\n');
 
-// 6. Crear CNAME si es necesario (opcional)
+// 7. Crear CNAME si es necesario (opcional)
 // Si tienes un dominio personalizado, descomenta esto:
-// console.log('📄 Step 6: Creating CNAME file...');
+// console.log('📄 Step 7: Creating CNAME file...');
 // writeFileSync(join(docsDir, 'CNAME'), 'tu-dominio.com');
 // console.log('   ✅ Created CNAME\n');
 
-// 7. Generar reporte
+// 8. Generar reporte
 console.log('📊 Build Summary:');
 console.log('   📁 Output directory: docs/');
 console.log('   🌐 Main site: docs/index.html');
 console.log('   📖 Storybook: docs/storybook/index.html');
 console.log('   📦 Assets: docs/dist/');
+console.log(`   📄 Files: ${cssFiles.length} CSS bundles, ${jsFiles.length} JS files`);
 console.log('');
 
 console.log('✨ Site build completed successfully!\n');
