@@ -4,27 +4,29 @@ import { html } from 'lit';
 /**
  * # Spinner Component
  *
- * Componente de spinner/cargador del Seguros Bolivar UI Design System.
+ * Componente de spinner/cargador del Seguros Bolivar UI Design System con soporte de progreso dinámico.
  *
  * ## 📋 Referencia Rápida de Clases
  *
  * | Quiero... | Clase CSS | Ejemplo |
  * |-----------|-----------|---------|
- * | **Variantes de Color** | | |
- * | Spinner primario | `.sb-ui-spinner--primary` | `<div class="sb-ui-spinner sb-ui-spinner--primary"></div>` |
- * | Spinner secundario | `.sb-ui-spinner--secondary` | `<div class="sb-ui-spinner sb-ui-spinner--secondary"></div>` |
- * | Spinner blanco | `.sb-ui-spinner--white` | `<div class="sb-ui-spinner sb-ui-spinner--white"></div>` |
- * | **Tamaños** | | |
- * | Pequeño | `.sb-ui-spinner--small` | `<div class="sb-ui-spinner sb-ui-spinner--small"></div>` |
- * | Mediano (default) | `.sb-ui-spinner--medium` o sin clase | `<div class="sb-ui-spinner"></div>` |
- * | Grande | `.sb-ui-spinner--large` | `<div class="sb-ui-spinner sb-ui-spinner--large"></div>` |
+ * | **Tipos** | | |
+ * | Spinner básico (default) | `.sb-ui-spinner` | `<div class="sb-ui-spinner" data-progress="50"></div>` |
+ * | Spinner integrado (3 círculos) | `.sb-ui-spinner--integrated` | `<div class="sb-ui-spinner sb-ui-spinner--integrated"></div>` |
+ * | Spinner con icono | `.sb-ui-spinner--icon` | Ver ejemplo abajo |
+ * | Spinner con icono y texto | `.sb-ui-spinner--icon-text` | Ver ejemplo abajo |
+ * | **Modificadores de Velocidad** | | |
+ * | Rápido | `.sb-ui-spinner--fast` | `<div class="sb-ui-spinner sb-ui-spinner--fast"></div>` |
+ * | Lento | `.sb-ui-spinner--slow` | `<div class="sb-ui-spinner sb-ui-spinner--slow"></div>` |
+ * | Pausado | `.sb-ui-spinner--paused` | `<div class="sb-ui-spinner sb-ui-spinner--paused"></div>` |
  *
  * ## 💡 Notas Importantes
  *
- * - **Variante por defecto**: PRIMARY - color primario del design system
- * - **Tamaño por defecto**: MEDIUM
+ * - **Progreso**: Usa `data-progress="0-100"` para controlar el arco del spinner
+ * - **Tipo por defecto**: BASIC - spinner simple circular
+ * - **Tamaño**: 40x40px (único tamaño)
  * - **Animación**: Rotación infinita suave
- * - **Uso común**: Estados de carga, botones con loading, overlays
+ * - **Integrated**: 3 círculos concéntricos con velocidades diferentes
  */
 const meta: Meta = {
   title: 'Atoms/Spinner',
@@ -33,27 +35,43 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Componente de spinner para indicar estados de carga. Soporta 3 variantes de color y 3 tamaños.',
+          'Componente de spinner para indicar estados de carga con soporte de progreso dinámico (0-100%). Incluye 4 tipos: Basic, Integrated, Icon, Icon-Text.',
       },
     },
   },
   argTypes: {
-    variant: {
+    type: {
       control: 'select',
-      options: ['primary', 'secondary', 'white'],
-      description: 'Variante de color del spinner',
+      options: ['basic', 'integrated', 'icon', 'icon-text'],
+      description: 'Tipo de spinner',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'primary' },
+        defaultValue: { summary: 'basic' },
       },
     },
-    size: {
+    progress: {
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+      description: 'Progreso del spinner (0-100%) - Solo para tipo "basic"',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 50 },
+      },
+    },
+    speed: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Tamaño del spinner',
+      options: ['normal', 'fast', 'slow'],
+      description: 'Velocidad de rotación',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
+        defaultValue: { summary: 'normal' },
+      },
+    },
+    paused: {
+      control: 'boolean',
+      description: 'Pausar la animación',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
     },
   },
@@ -65,36 +83,60 @@ type Story = StoryObj;
 /**
  * ## Playground (Interactivo)
  *
- * Experimenta con diferentes tamaños y colores del spinner.
+ * Experimenta con diferentes tipos, progreso y velocidades del spinner.
  */
 export const Playground: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
+    type: 'basic',
+    progress: 50,
+    speed: 'normal',
+    paused: false,
   },
   render: (args) => {
     const classes = [
       'sb-ui-spinner',
-      `sb-ui-spinner--${args.variant}`,
-      args.size !== 'medium' ? `sb-ui-spinner--${args.size}` : '',
+      args.type !== 'basic' ? `sb-ui-spinner--${args.type}` : '',
+      args.speed !== 'normal' ? `sb-ui-spinner--${args.speed}` : '',
+      args.paused ? 'sb-ui-spinner--paused' : '',
     ]
       .filter(Boolean)
       .join(' ');
 
+    // Para integrated, no usa progress
+    const progressAttr = args.type === 'basic' ? args.progress : null;
+
     return html`
-      <div style="display: flex; justify-content: center; padding: 3rem;">
-        <div class="${classes}"></div>
+      <div style="display: flex; justify-content: center; padding: 3rem; background: #fafafa;">
+        <div class="${classes}" data-progress="${progressAttr}">
+          ${args.type === 'icon' || args.type === 'icon-text'
+            ? html`
+                <div class="sb-ui-spinner__content">
+                  <div class="sb-ui-spinner__icon">
+                    <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+                  </div>
+                  ${args.type === 'icon-text'
+                    ? html`<div class="sb-ui-spinner__label">OK</div>`
+                    : ''}
+                </div>
+              `
+            : ''}
+        </div>
       </div>
+      ${args.type === 'basic'
+        ? html`<div style="text-align: center; color: #666;">
+            Progress: ${args.progress}%
+          </div>`
+        : ''}
     `;
   },
 };
 
 /**
- * ## Todos los Tamaños
+ * ## Tipo 1: BASIC Spinner con Progreso
  *
- * Comparación de los tres tamaños disponibles del spinner.
+ * Spinner circular simple con gradiente verde. El arco representa el progreso (0-100%).
  */
-export const Tamaños: Story = {
+export const Basic: Story = {
   render: () => html`
     <style>
       .spinner-demo-container {
@@ -105,9 +147,8 @@ export const Tamaños: Story = {
 
       .spinner-demo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 2rem;
-        margin-bottom: 2rem;
       }
 
       .spinner-demo-item {
@@ -123,25 +164,37 @@ export const Tamaños: Story = {
       .spinner-demo-label {
         margin-top: 1rem;
         font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D100, #333);
+        color: var(--sb-ui-color-grayscale-D200, #333);
+        text-align: center;
       }
     </style>
 
     <div class="spinner-demo-container">
+      <h3 style="margin-bottom: 1.5rem; color: #038450;">Diferentes Niveles de Progreso</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--small sb-ui-spinner--primary"></div>
-          <div class="spinner-demo-label">Small (16px)</div>
+          <div class="sb-ui-spinner" data-progress="0"></div>
+          <div class="spinner-demo-label">0%<br />Iniciando</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--medium sb-ui-spinner--primary"></div>
-          <div class="spinner-demo-label">Medium (24px)</div>
+          <div class="sb-ui-spinner" data-progress="25"></div>
+          <div class="spinner-demo-label">25%<br />En progreso</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--large sb-ui-spinner--primary"></div>
-          <div class="spinner-demo-label">Large (32px)</div>
+          <div class="sb-ui-spinner" data-progress="50"></div>
+          <div class="spinner-demo-label">50%<br />Medio camino</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner" data-progress="75"></div>
+          <div class="spinner-demo-label">75%<br />Casi listo</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner" data-progress="100"></div>
+          <div class="spinner-demo-label">100%<br />Completo</div>
         </div>
       </div>
     </div>
@@ -149,11 +202,16 @@ export const Tamaños: Story = {
 };
 
 /**
- * ## Todas las Variantes
+ * ## Tipo 2: INTEGRATED Spinner (3 Círculos)
  *
- * Comparación de las tres variantes de color disponibles.
+ * Spinner con 3 círculos concéntricos que rotan a velocidades diferentes:
+ * - 🟢 Verde oscuro (#009056) - 2s
+ * - 🟢 Verde claro (#02D46F) - 3s
+ * - 🟡 Amarillo (#FFE16F) - 1.5s
+ *
+ * **Nota:** Este spinner NO usa progreso, rota continuamente.
  */
-export const Variantes: Story = {
+export const Integrated: Story = {
   render: () => html`
     <style>
       .spinner-demo-container {
@@ -166,7 +224,6 @@ export const Variantes: Story = {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 2rem;
-        margin-bottom: 2rem;
       }
 
       .spinner-demo-item {
@@ -179,36 +236,35 @@ export const Variantes: Story = {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .spinner-demo-item--dark {
-        background: var(--sb-ui-color-grayscale-D300, #222);
-      }
-
       .spinner-demo-label {
         margin-top: 1rem;
         font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D100, #333);
-      }
-
-      .spinner-demo-label--white {
-        color: var(--sb-ui-color-grayscale-white, #fff);
+        color: var(--sb-ui-color-grayscale-D200, #333);
+        text-align: center;
       }
     </style>
 
     <div class="spinner-demo-container">
+      <h3 style="margin-bottom: 1.5rem; color: #038450;">Diferentes Velocidades</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--primary"></div>
-          <div class="spinner-demo-label">Primary</div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
+          <div class="spinner-demo-label">Normal<br />Velocidades default</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--secondary"></div>
-          <div class="spinner-demo-label">Secondary</div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast"></div>
+          <div class="spinner-demo-label">Fast<br />Velocidad x1.5</div>
         </div>
 
-        <div class="spinner-demo-item spinner-demo-item--dark">
-          <div class="sb-ui-spinner sb-ui-spinner--white"></div>
-          <div class="spinner-demo-label spinner-demo-label--white">White</div>
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow"></div>
+          <div class="spinner-demo-label">Slow<br />Velocidad /2</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--paused"></div>
+          <div class="spinner-demo-label">Paused<br />Animación detenida</div>
         </div>
       </div>
     </div>
@@ -216,9 +272,183 @@ export const Variantes: Story = {
 };
 
 /**
- * ## Casos de Uso
+ * ## Tipo 3: ICON Spinner
  *
- * Ejemplos comunes de uso del spinner en diferentes contextos.
+ * Spinner con icono centrado. El anillo rota alrededor del icono estático.
+ * Ideal para mostrar confirmación mientras se procesa.
+ */
+export const Icon: Story = {
+  render: () => html`
+    <style>
+      .spinner-demo-container {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding: 2rem;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .spinner-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2rem;
+      }
+
+      .spinner-demo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .spinner-demo-label {
+        margin-top: 1rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200, #333);
+        text-align: center;
+      }
+    </style>
+
+    <div class="spinner-demo-container">
+      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner con Diferentes Iconos</h3>
+      <div class="spinner-demo-grid">
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">Check<br />75% Progreso</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="50">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i
+                  class="fa-solid fa-cloud-arrow-up"
+                  style="color: #038450; font-size: 20px;"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">Upload<br />50% Progreso</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="90">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-download" style="color: #038450; font-size: 20px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">Download<br />90% Progreso</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="25">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-sync" style="color: #038450; font-size: 20px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">Sync<br />25% Progreso</div>
+        </div>
+      </div>
+    </div>
+  `,
+};
+
+/**
+ * ## Tipo 4: ICON-TEXT Spinner
+ *
+ * Spinner con icono y texto centrados. Combina confirmación visual con mensaje breve.
+ */
+export const IconText: Story = {
+  render: () => html`
+    <style>
+      .spinner-demo-container {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding: 2rem;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+
+      .spinner-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2rem;
+      }
+
+      .spinner-demo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .spinner-demo-label {
+        margin-top: 1rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200, #333);
+        text-align: center;
+      }
+    </style>
+
+    <div class="spinner-demo-container">
+      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner con Icono y Texto</h3>
+      <div class="spinner-demo-grid">
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+              </div>
+              <div class="sb-ui-spinner__label">OK</div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">100% Complete</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="50">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-cloud-arrow-up" style="color: #038450; font-size: 20px;"></i>
+              </div>
+              <div class="sb-ui-spinner__label">UP</div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">50% Subiendo</div>
+        </div>
+
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-shield-halved" style="color: #038450; font-size: 20px;"></i>
+              </div>
+              <div class="sb-ui-spinner__label">SEC</div>
+            </div>
+          </div>
+          <div class="spinner-demo-label">75% Seguro</div>
+        </div>
+      </div>
+    </div>
+  `,
+};
+
+/**
+ * ## Casos de Uso Prácticos
+ *
+ * Ejemplos de cómo usar los spinners en contextos reales.
  */
 export const CasosDeUso: Story = {
   render: () => html`
@@ -239,13 +469,7 @@ export const CasosDeUso: Story = {
 
       .use-case h3 {
         margin: 0 0 1rem 0;
-        color: var(--sb-ui-color-primary-base, #007acc);
-      }
-
-      .use-case-content {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+        color: var(--sb-ui-color-primary-base, #038450);
       }
 
       .loading-overlay {
@@ -254,71 +478,90 @@ export const CasosDeUso: Story = {
         background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
         border-radius: 8px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-      }
-
-      .loading-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: var(--sb-ui-color-primary-base, #007acc);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: not-allowed;
-        opacity: 0.7;
+        gap: 1rem;
       }
 
       .loading-text {
+        font-size: 1rem;
+        color: var(--sb-ui-color-grayscale-D100, #333);
+      }
+
+      .progress-display {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        border-radius: 8px;
+      }
+
+      .progress-text {
         font-size: 1rem;
         color: var(--sb-ui-color-grayscale-D100, #333);
       }
     </style>
 
     <div class="use-cases-container">
-      <!-- Caso 1: Loading Overlay -->
+      <!-- Caso 1: Loading Overlay con Integrated -->
       <div class="use-case">
-        <h3>Loading Overlay</h3>
+        <h3>Loading Overlay - Integrated Spinner</h3>
         <div class="loading-overlay">
-          <div class="sb-ui-spinner sb-ui-spinner--large sb-ui-spinner--primary"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
+          <div class="loading-text">Cargando contenido...</div>
         </div>
       </div>
 
-      <!-- Caso 2: Loading Button -->
+      <!-- Caso 2: Progress Display -->
       <div class="use-case">
-        <h3>Button Loading State</h3>
-        <button class="loading-button">
-          <div class="sb-ui-spinner sb-ui-spinner--small sb-ui-spinner--white"></div>
-          Cargando...
-        </button>
-      </div>
-
-      <!-- Caso 3: Inline Loading -->
-      <div class="use-case">
-        <h3>Inline Loading Text</h3>
-        <div class="loading-text">
-          <div class="sb-ui-spinner sb-ui-spinner--small sb-ui-spinner--primary"></div>
-          <span>Procesando tu solicitud...</span>
+        <h3>Upload con Progress - Basic Spinner</h3>
+        <div class="progress-display">
+          <div class="sb-ui-spinner" data-progress="65"></div>
+          <div class="progress-text">
+            <strong>Subiendo archivo...</strong><br />
+            65% completado (3.2 MB de 5 MB)
+          </div>
         </div>
       </div>
 
-      <!-- Caso 4: Card Loading -->
+      <!-- Caso 3: Success Confirmation -->
       <div class="use-case">
-        <h3>Card Loading</h3>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-          <div class="sb-ui-spinner sb-ui-spinner--medium sb-ui-spinner--primary"></div>
-          <p style="margin: 0; color: var(--sb-ui-color-grayscale-base);">
-            Cargando contenido...
-          </p>
+        <h3>Confirmación de Éxito - Icon-Text Spinner</h3>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+              </div>
+              <div class="sb-ui-spinner__label">OK</div>
+            </div>
+          </div>
+          <div>
+            <strong style="color: #038450;">¡Operación completada!</strong><br />
+            <span style="color: #666;">Tu archivo se ha guardado correctamente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 4: Processing -->
+      <div class="use-case">
+        <h3>Procesando - Icon Spinner</h3>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="45">
+            <div class="sb-ui-spinner__content">
+              <div class="sb-ui-spinner__icon">
+                <i class="fa-solid fa-gear" style="color: #038450; font-size: 20px;"></i>
+              </div>
+            </div>
+          </div>
+          <div>
+            <strong>Procesando tu solicitud...</strong><br />
+            <span style="color: #666;">Esto puede tomar unos momentos</span>
+          </div>
         </div>
       </div>
     </div>
   `,
 };
-

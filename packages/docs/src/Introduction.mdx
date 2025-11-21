@@ -1,0 +1,275 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="📚 Introducción/Tipos de Componentes" />
+
+# 📚 Tipos de Componentes
+
+El Seguros Bolivar UI Design System incluye **dos tipos de componentes** con diferentes métodos de implementación.
+
+---
+
+## 🎨 Componentes CSS Puros (Atoms)
+
+Estos componentes **solo necesitan HTML y CSS**. No requieren JavaScript adicional.
+
+### ✅ Características:
+
+- Solo requieren agregar las clases CSS correctas
+- No necesitan importación de JavaScript
+- Funcionan con HTML puro
+- Ligeros y de carga rápida
+- Compatible con cualquier framework
+
+### 📦 Componentes Incluidos:
+
+| Componente | Clases Principales | Descripción |
+|------------|-------------------|-------------|
+| **Button** | `.sb-ui-button` | Botones con variantes Primary, Secondary, Tertiary |
+| **Input** | `.sb-ui-input` | Campos de texto |
+| **Select** | `.sb-ui-select` | Selectores dropdown |
+| **Textarea** | `.sb-ui-textarea` | Áreas de texto multi-línea |
+| **Checkbox** | `.sb-ui-checkbox` | Casillas de verificación |
+| **Radio** | `.sb-ui-radio` | Botones de opción |
+| **Toggle** | `.sb-ui-toggle` | Interruptores on/off |
+| **Alert** | `.sb-ui-alert` | Mensajes de alerta |
+| **Tabs** | `.sb-ui-tabs` | Pestañas interactivas |
+| **Accordion** | `.sb-ui-accordion` | Acordeones colapsables |
+| **Breadcrumb** | `.sb-ui-breadcrumb` | Migas de pan |
+| **Spinner** | `.sb-ui-spinner` | Indicadores de carga |
+| **File Upload** | `.sb-ui-file-upload` | Carga de archivos |
+| **Table** | `.sb-ui-table` | Tablas con paginación |
+
+### 🚀 Cómo Implementar:
+
+#### 1. Incluye el CSS en tu HTML:
+
+```html
+<!-- Opción A: CDN (Recomendado) -->
+<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+
+<!-- Opción B: NPM -->
+<!-- Después de instalar: npm install @seguros-bolivar/ui-bundle -->
+<link rel="stylesheet" href="node_modules/@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar-light.min.css">
+```
+
+#### 2. Usa el HTML con las clases correctas:
+
+```html
+<!-- Ejemplo: Button -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+  Botón Primary
+</button>
+
+<!-- Ejemplo: Input -->
+<input type="text" class="sb-ui-input" placeholder="Escribe algo...">
+
+<!-- Ejemplo: Tabs -->
+<div class="sb-ui-tabs sb-ui-tabs--track">
+  <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+    <span class="sb-ui-tabs__title">Tab 1</span>
+  </button>
+  <button class="sb-ui-tabs__item">
+    <span class="sb-ui-tabs__title">Tab 2</span>
+  </button>
+</div>
+```
+
+#### 3. Para hacerlos interactivos (opcional):
+
+Algunos componentes como **Tabs** y **Accordion** necesitan JavaScript básico para cambiar estados:
+
+```javascript
+// Ejemplo: Tabs interactivos
+document.querySelectorAll('.sb-ui-tabs__item').forEach(tab => {
+  tab.addEventListener('click', function() {
+    // Remover active de todos
+    this.parentElement.querySelectorAll('.sb-ui-tabs__item').forEach(item => {
+      item.classList.remove('sb-ui-tabs__item--active');
+    });
+    // Agregar active al clickeado
+    this.classList.add('sb-ui-tabs__item--active');
+  });
+});
+```
+
+---
+
+## ⚙️ Web Components (Molecules)
+
+Estos componentes son **elementos personalizados de JavaScript** que encapsulan funcionalidad compleja.
+
+### ✅ Características:
+
+- Requieren importación de JavaScript
+- Funcionan como elementos HTML personalizados (`<sb-ui-modal>`)
+- Incluyen lógica compleja integrada
+- API declarativa con atributos HTML
+- Compatibles con cualquier framework
+
+### 📦 Componentes Incluidos:
+
+| Componente | Tag HTML | Descripción |
+|------------|----------|-------------|
+| **Modal** | `<sb-ui-modal>` | Ventanas modales con overlay |
+| **Calendar** | `<sb-ui-calendar>` | Calendario interactivo |
+| **Datepicker** | `<sb-ui-datepicker>` | Selector de fechas |
+
+### 🚀 Cómo Implementar:
+
+#### 1. Incluye CSS + JavaScript en tu HTML:
+
+```html
+<!-- CSS (igual que componentes CSS puros) -->
+<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+
+<!-- JavaScript (NUEVO - solo para Web Components) -->
+<script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+```
+
+#### 2. Usa los custom elements en tu HTML:
+
+```html
+<!-- Ejemplo: Modal -->
+<sb-ui-modal id="mi-modal" title="Título del Modal">
+  <div slot="body">
+    <p>Contenido del modal aquí</p>
+  </div>
+  <div slot="footer">
+    <button class="sb-ui-button sb-ui-button--primary">Aceptar</button>
+  </div>
+</sb-ui-modal>
+
+<!-- Botón para abrir el modal -->
+<button onclick="document.getElementById('mi-modal').setAttribute('open', 'true')">
+  Abrir Modal
+</button>
+
+<!-- Ejemplo: Datepicker -->
+<sb-ui-datepicker
+  label="Selecciona una fecha"
+  value="2024-01-15"
+  min-date="2024-01-01"
+  max-date="2024-12-31"
+></sb-ui-datepicker>
+
+<!-- Ejemplo: Calendar -->
+<sb-ui-calendar
+  value="2024-01-15"
+  type="single"
+></sb-ui-calendar>
+```
+
+#### 3. Interactúa con JavaScript (opcional):
+
+```javascript
+// Obtener referencia al componente
+const modal = document.getElementById('mi-modal');
+
+// Abrir modal
+modal.setAttribute('open', 'true');
+
+// Cerrar modal
+modal.removeAttribute('open');
+
+// Escuchar eventos
+modal.addEventListener('close', () => {
+  console.log('Modal cerrado');
+});
+
+// Datepicker
+const datepicker = document.querySelector('sb-ui-datepicker');
+datepicker.addEventListener('change', (e) => {
+  console.log('Fecha seleccionada:', e.detail.value);
+});
+```
+
+---
+
+## 🔧 Instalación Completa
+
+### Opción 1: CDN (Más Simple)
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- CSS: Componentes CSS puros -->
+  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  
+  <!-- JavaScript: Solo si usas Web Components (Modal, Calendar, Datepicker) -->
+  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+  
+  <!-- Font Awesome: Para iconos (opcional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Tus componentes aquí -->
+</body>
+</html>
+```
+
+### Opción 2: NPM
+
+```bash
+npm install @seguros-bolivar/ui-bundle
+```
+
+```javascript
+// En tu JavaScript/TypeScript
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar-light.min.css';
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';
+```
+
+---
+
+## 🎨 Cambiar de Marca/Tema
+
+Disponemos de **6 marcas** y **2 temas** (light/dark):
+
+### Marcas Disponibles:
+- `sb-ui-white-label-{theme}.min.css`
+- `sb-ui-jelpit-{theme}.min.css`
+- `sb-ui-davivienda-{theme}.min.css`
+- `sb-ui-cien-cuadras-{theme}.min.css`
+- `sb-ui-doctor-aki-{theme}.min.css`
+- `sb-ui-seguros-bolivar-{theme}.min.css`
+
+### Cambio Dinámico:
+
+```javascript
+// Cambiar marca dinámicamente
+function cambiarMarca(marca, tema) {
+  const linkCSS = document.getElementById('sb-ui-styles');
+  linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+}
+
+// Ejemplo
+cambiarMarca('davivienda', 'dark');
+```
+
+---
+
+## 📋 Resumen Rápido
+
+| Tipo | CSS Requerido | JS Requerido | Ejemplos | Cuándo Usar |
+|------|--------------|--------------|----------|-------------|
+| **CSS Puros** | ✅ Sí | ❌ No | Button, Input, Tabs | Componentes simples de UI |
+| **Web Components** | ✅ Sí | ✅ Sí | Modal, Calendar, Datepicker | Componentes con lógica compleja |
+
+---
+
+## 🚀 Próximos Pasos
+
+1. Explora los **componentes CSS puros** en la sección `Atoms/`
+2. Prueba los **Web Components** en la sección `Molecules/`
+3. Mira los **ejemplos de implementación** en cada componente
+4. Revisa la **documentación completa** en cada story
+
+---
+
+## 💡 Necesitas Ayuda?
+
+- 📖 Documentación completa: [README.md](https://github.com/juancontreras-dev/seguros-bolivar-ui)
+- 🐛 Reportar bugs: [GitHub Issues](https://github.com/juancontreras-dev/seguros-bolivar-ui/issues)
+- 📦 NPM Package: [@seguros-bolivar/ui-bundle](https://www.npmjs.com/package/@seguros-bolivar/ui-bundle)
+

@@ -102,6 +102,29 @@ const meta: Meta = {
         defaultValue: { summary: false },
       },
     },
+    showIconStart: {
+      control: 'boolean',
+      description: 'Mostrar icono al inicio',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    showActionButton: {
+      control: 'boolean',
+      description: 'Mostrar botón de acción',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    buttonText: {
+      control: 'text',
+      description: 'Texto del botón de acción',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
   },
 };
 
@@ -128,6 +151,9 @@ export const Playground: Story = {
     size: 'medium',
     title: '¿Cuál es tu pregunta?',
     content: 'Esta es la respuesta con contenido detallado. Puedes agregar texto, listas, enlaces y más.',
+    showIconStart: true,
+    showActionButton: true,
+    buttonText: 'Ver más',
     open: false,
     disabled: false,
   },
@@ -137,18 +163,34 @@ export const Playground: Story = {
       `sb-ui-accordion--${args.variant}`,
       args.size !== 'medium' ? `sb-ui-accordion--${args.size}` : '',
       args.disabled ? 'sb-ui-accordion--disabled' : '',
+      !args.showIconStart ? 'sb-ui-accordion--no-icon-start' : '',
+      !args.showActionButton ? 'sb-ui-accordion--no-action' : '',
     ]
       .filter(Boolean)
       .join(' ');
 
+    const buttonVariant = args.variant === 'primary' ? 'primary' : 'secondary';
+
     return html`
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
       <div style="max-width: 600px;">
         <details class="${classes}" ?open="${args.open}">
-          <summary class="sb-ui-accordion__header">${args.title}</summary>
+          <summary class="sb-ui-accordion__header">
+            ${args.showIconStart
+              ? html`<i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>`
+              : ''}
+            <span class="sb-ui-accordion__label">${args.title}</span>
+            ${args.showActionButton
+              ? html`<button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--${buttonVariant} sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  ?disabled="${args.disabled}"
+                  @click="${(e: Event) => e.stopPropagation()}"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  ${args.buttonText}
+                </button>`
+              : ''}
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">${args.content}</div>
         </details>
       </div>
@@ -175,10 +217,6 @@ export const Primary: Story = {
     },
   },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
       .accordion-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -240,7 +278,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--small">
-              <summary class="sb-ui-accordion__header">¿Qué es el seguro de vida?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-info-circle sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Qué es el seguro de vida?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 El seguro de vida es un producto que protege a tu familia en caso de fallecimiento.
                 Puedes elegir entre diferentes coberturas y beneficios adicionales.
@@ -251,7 +300,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Abierto</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--small" open>
-              <summary class="sb-ui-accordion__header">¿Qué es el seguro de vida?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-info-circle sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Qué es el seguro de vida?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 El seguro de vida es un producto que protege a tu familia en caso de fallecimiento.
                 Puedes elegir entre diferentes coberturas y beneficios adicionales.
@@ -272,7 +332,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary">
-              <summary class="sb-ui-accordion__header">¿Cómo puedo contratar un seguro?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-handshake sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cómo puedo contratar un seguro?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Contratar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Puedes contratar tu seguro de forma online, por teléfono o en una de nuestras
                 oficinas. El proceso es rápido y sencillo, y te guiaremos en cada paso.
@@ -283,7 +354,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Abierto</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary" open>
-              <summary class="sb-ui-accordion__header">¿Cómo puedo contratar un seguro?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-handshake sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cómo puedo contratar un seguro?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Contratar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Puedes contratar tu seguro de forma online, por teléfono o en una de nuestras
                 oficinas. El proceso es rápido y sencillo, y te guiaremos en cada paso.
@@ -304,7 +386,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--large">
-              <summary class="sb-ui-accordion__header">¿Qué coberturas están incluidas?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-shield-halved sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Qué coberturas están incluidas?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver coberturas
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Nuestros seguros incluyen coberturas básicas y opcionales. Entre las básicas
                 encontrarás fallecimiento, invalidez y enfermedades graves. Las opcionales pueden
@@ -316,7 +409,18 @@ export const Primary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Abierto</span>
             <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--large" open>
-              <summary class="sb-ui-accordion__header">¿Qué coberturas están incluidas?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-shield-halved sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Qué coberturas están incluidas?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver coberturas
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Nuestros seguros incluyen coberturas básicas y opcionales. Entre las básicas
                 encontrarás fallecimiento, invalidez y enfermedades graves. Las opcionales pueden
@@ -349,10 +453,6 @@ export const Secondary: Story = {
     },
   },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
       .accordion-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -415,7 +515,16 @@ export const Secondary: Story = {
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--secondary sb-ui-accordion--small">
               <summary class="sb-ui-accordion__header">
-                ¿Cuánto tiempo tarda la aprobación?
+                <i class="fa-solid fa-clock sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cuánto tiempo tarda la aprobación?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
               </summary>
               <div class="sb-ui-accordion__content">
                 El proceso de aprobación suele tardar entre 24 y 48 horas hábiles. Te notificaremos
@@ -431,7 +540,16 @@ export const Secondary: Story = {
               open
             >
               <summary class="sb-ui-accordion__header">
-                ¿Cuánto tiempo tarda la aprobación?
+                <i class="fa-solid fa-clock sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cuánto tiempo tarda la aprobación?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Ver más
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
               </summary>
               <div class="sb-ui-accordion__content">
                 El proceso de aprobación suele tardar entre 24 y 48 horas hábiles. Te notificaremos
@@ -453,7 +571,18 @@ export const Secondary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--secondary">
-              <summary class="sb-ui-accordion__header">¿Puedo modificar mi póliza?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-pen sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Puedo modificar mi póliza?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Modificar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Sí, puedes modificar tu póliza en cualquier momento. Los cambios pueden incluir
                 beneficiarios, coberturas adicionales o ajustes en el valor asegurado.
@@ -464,7 +593,18 @@ export const Secondary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Abierto</span>
             <details class="sb-ui-accordion sb-ui-accordion--secondary" open>
-              <summary class="sb-ui-accordion__header">¿Puedo modificar mi póliza?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-pen sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Puedo modificar mi póliza?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Modificar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Sí, puedes modificar tu póliza en cualquier momento. Los cambios pueden incluir
                 beneficiarios, coberturas adicionales o ajustes en el valor asegurado.
@@ -485,7 +625,18 @@ export const Secondary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Cerrado (Default)</span>
             <details class="sb-ui-accordion sb-ui-accordion--secondary sb-ui-accordion--large">
-              <summary class="sb-ui-accordion__header">¿Cómo hago un reclamo?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-medical sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cómo hago un reclamo?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Reclamar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Para hacer un reclamo, debes comunicarte con nuestro centro de atención al cliente
                 disponible 24/7. Tendrás que proporcionar tu número de póliza, documentos de
@@ -497,7 +648,18 @@ export const Secondary: Story = {
           <div class="accordion-demo">
             <span class="demo-label">Abierto</span>
             <details class="sb-ui-accordion sb-ui-accordion--secondary sb-ui-accordion--large" open>
-              <summary class="sb-ui-accordion__header">¿Cómo hago un reclamo?</summary>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-file-medical sb-ui-accordion__icon-start"></i>
+                <span class="sb-ui-accordion__label">¿Cómo hago un reclamo?</span>
+                <button
+                  class="sb-ui-accordion__action sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+                  onclick="event.stopPropagation()"
+                >
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Reclamar
+                </button>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+              </summary>
               <div class="sb-ui-accordion__content">
                 Para hacer un reclamo, debes comunicarte con nuestro centro de atención al cliente
                 disponible 24/7. Tendrás que proporcionar tu número de póliza, documentos de
@@ -527,10 +689,6 @@ export const MultipleAccordions: Story = {
     },
   },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
       .faq-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -568,7 +726,10 @@ export const MultipleAccordions: Story = {
 
       <div class="faq-list">
         <details class="sb-ui-accordion sb-ui-accordion--primary" open>
-          <summary class="sb-ui-accordion__header">¿Qué es un seguro de vida?</summary>
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">¿Qué es un seguro de vida?</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">
             Un seguro de vida es un contrato entre tú y la compañía aseguradora que garantiza una
             protección económica para tus beneficiarios en caso de fallecimiento. También puede
@@ -577,7 +738,10 @@ export const MultipleAccordions: Story = {
         </details>
 
         <details class="sb-ui-accordion sb-ui-accordion--primary">
-          <summary class="sb-ui-accordion__header">¿Cómo se calcula la prima?</summary>
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">¿Cómo se calcula la prima?</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">
             La prima se calcula en base a varios factores: tu edad, estado de salud, ocupación,
             valor asegurado y coberturas adicionales que elijas. Nuestro sistema te dará una
@@ -586,7 +750,10 @@ export const MultipleAccordions: Story = {
         </details>
 
         <details class="sb-ui-accordion sb-ui-accordion--primary">
-          <summary class="sb-ui-accordion__header">¿Puedo cambiar mis beneficiarios?</summary>
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">¿Puedo cambiar mis beneficiarios?</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">
             Sí, puedes cambiar tus beneficiarios en cualquier momento durante la vigencia de tu
             póliza. Solo necesitas completar un formulario de cambio de beneficiarios y enviarlo a
@@ -595,7 +762,10 @@ export const MultipleAccordions: Story = {
         </details>
 
         <details class="sb-ui-accordion sb-ui-accordion--primary">
-          <summary class="sb-ui-accordion__header">¿Cuánto tiempo dura el proceso de reclamo?</summary>
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">¿Cuánto tiempo dura el proceso de reclamo?</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">
             El proceso de reclamo suele tardar entre 5 y 15 días hábiles, dependiendo de la
             complejidad del caso y la documentación proporcionada. Te mantendremos informado del
@@ -604,7 +774,10 @@ export const MultipleAccordions: Story = {
         </details>
 
         <details class="sb-ui-accordion sb-ui-accordion--primary">
-          <summary class="sb-ui-accordion__header">¿El seguro cubre enfermedades preexistentes?</summary>
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">¿El seguro cubre enfermedades preexistentes?</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+          </summary>
           <div class="sb-ui-accordion__content">
             Las enfermedades preexistentes generalmente no están cubiertas durante el primer año de
             vigencia de la póliza. Sin embargo, después de este período de carencia, podrán ser

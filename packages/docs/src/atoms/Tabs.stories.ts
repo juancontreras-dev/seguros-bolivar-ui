@@ -4,48 +4,99 @@ import { html } from 'lit';
 /**
  * # Tabs Component
  *
- * Componente de tabs (pestañas) CSS puro del Seguros Bolivar UI Design System con soporte para iconos y descripciones.
+ * <div style="display: inline-flex; gap: 0.5rem; margin-bottom: 1rem;">
+ *   <span style="background: #E3F2FD; color: #1976D2; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">🎨 CSS PURO</span>
+ *   <span style="background: #FFF3E0; color: #F57C00; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">⚡ JS opcional</span>
+ *   <span style="background: #E8F5E9; color: #388E3C; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">✅ Solo HTML + CSS</span>
+ * </div>
+ *
+ * Componente de tabs (pestañas) del Seguros Bolivar UI Design System con 3 variaciones visuales.
+ * **Solo requiere CSS**, pero puedes agregar JavaScript simple para interactividad (cambiar tabs).
+ *
+ * ## 🚀 Instalación Rápida
+ *
+ * ```html
+ * <!-- 1. Incluye el CSS: -->
+ * <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+ *
+ * <!-- 2. HTML básico: -->
+ * <div class="sb-ui-tabs sb-ui-tabs--track">
+ *   <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+ *     <span class="sb-ui-tabs__title">Tab 1</span>
+ *   </button>
+ *   <button class="sb-ui-tabs__item">
+ *     <span class="sb-ui-tabs__title">Tab 2</span>
+ *   </button>
+ * </div>
+ *
+ * <!-- 3. JavaScript para interactividad (opcional): -->
+ * <script>
+ * document.querySelectorAll('.sb-ui-tabs__item').forEach(tab => {
+ *   tab.addEventListener('click', function() {
+ *     this.parentElement.querySelectorAll('.sb-ui-tabs__item').forEach(item => {
+ *       item.classList.remove('sb-ui-tabs__item--active');
+ *     });
+ *     this.classList.add('sb-ui-tabs__item--active');
+ *   });
+ * });
+ * </script>
+ * ```
  *
  * ## 📋 Referencia Rápida de Clases
  *
  * | Quiero... | Clase CSS | Ejemplo |
  * |-----------|-----------|---------|
  * | **Variantes** | | |
- * | Track (con línea) | `.sb-ui-tabs--track` | `<div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--horizontal">` |
- * | Button (con fondo) | `.sb-ui-tabs--button` | `<div class="sb-ui-tabs sb-ui-tabs--button sb-ui-tabs--horizontal">` |
- * | Folder | `.sb-ui-tabs--folder` | `<div class="sb-ui-tabs sb-ui-tabs--folder sb-ui-tabs--horizontal">` |
- * | **Layouts** | | |
- * | Horizontal (default) | `.sb-ui-tabs--horizontal` | `<div class="sb-ui-tabs sb-ui-tabs--horizontal">` |
- * | Vertical | `.sb-ui-tabs--vertical` | `<div class="sb-ui-tabs sb-ui-tabs--vertical">` |
+ * | Track (línea inferior) | `.sb-ui-tabs--track` | `<div class="sb-ui-tabs sb-ui-tabs--track">` |
+ * | Button (fondo amarillo) | `.sb-ui-tabs--button` | `<div class="sb-ui-tabs sb-ui-tabs--button">` |
+ * | Folder (carpeta) | `.sb-ui-tabs--folder` | `<div class="sb-ui-tabs sb-ui-tabs--folder">` |
  * | **Estados** | | |
  * | Tab activo | `.sb-ui-tabs__item--active` | `<button class="sb-ui-tabs__item sb-ui-tabs__item--active">` |
- * | Tab deshabilitado | `.sb-ui-tabs__item--disabled` | `<button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">` |
  *
- * ## 💡 Notas Importantes
+ * ## 💡 Especificaciones Técnicas
  *
- * - **JavaScript requerido**: Necesitas JS para cambiar entre tabs activos
- * - **Iconos opcionales**: Puedes incluir iconos con Font Awesome
- * - **Descripciones**: Cada tab puede tener un título y una descripción
- * - **Responsive**: Usa `clamp()` para tamaños fluidos
- * - **Accesibilidad**: Usa atributos `role` y `aria-*` para mejorar accesibilidad
+ * ### Track Variant
+ * - **Altura:** 48px
+ * - **Ancho:** 152px
+ * - **Indicador:** Línea verde inferior (border-bottom)
+ * - **Iconos:** NO incluye
+ * - **Active BG:** Verde claro (#F2F9F6)
+ * - **Font Title:** 0.875rem (14px)
+ * - **Font Description:** 0.6875rem (11px)
  *
- * ## 🎯 Ejemplo de Estructura Completa
+ * ### Button Variant
+ * - **Altura:** 72px
+ * - **Ancho:** 146px
+ * - **Border-radius:** 8px
+ * - **Iconos:** SÍ (20px)
+ * - **Active BG:** Amarillo (#FFE16F)
+ * - **Active Text:** Verde (#038450), font-weight 700
+ *
+ * ### Folder Variant
+ * - **Altura:** 72px
+ * - **Ancho:** 146px
+ * - **Border-radius:** 8px 8px 0 0 (solo arriba)
+ * - **Iconos:** SÍ (20px)
+ * - **Active BG:** Verde claro (#F2F9F6)
+ * - **Active Text:** Verde (#038450), font-weight 700
+ *
+ * ## 🎯 Ejemplo de Estructura
  *
  * ```html
- * <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--horizontal">
+ * <!-- Track: Sin iconos, con title y description -->
+ * <div class="sb-ui-tabs sb-ui-tabs--track">
  *   <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
- *     <i class="sb-ui-tabs__icon fa-solid fa-home"></i>
- *     <div class="sb-ui-tabs__content">
- *       <span class="sb-ui-tabs__title">Home</span>
- *       <span class="sb-ui-tabs__description">Página principal</span>
- *     </div>
+ *     <span class="sb-ui-tabs__title">Title</span>
+ *     <span class="sb-ui-tabs__description">Description</span>
  *   </button>
- *   <button class="sb-ui-tabs__item">
- *     <i class="sb-ui-tabs__icon fa-solid fa-user"></i>
- *     <div class="sb-ui-tabs__content">
- *       <span class="sb-ui-tabs__title">Profile</span>
- *       <span class="sb-ui-tabs__description">Tu perfil</span>
- *     </div>
+ * </div>
+ *
+ * <!-- Button/Folder: Con icono, title y description -->
+ * <div class="sb-ui-tabs sb-ui-tabs--button">
+ *   <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+ *     <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+ *     <span class="sb-ui-tabs__title">Title</span>
+ *     <span class="sb-ui-tabs__description">Description</span>
  *   </button>
  * </div>
  * ```
@@ -57,7 +108,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Componente de tabs versátil con 3 variantes visuales (Track, Button, Folder), 2 orientaciones (Horizontal, Vertical), soporte para iconos y descripciones.',
+          'Componente de tabs con 3 variantes visuales: Track (línea inferior, 48px), Button (fondo amarillo, 72px) y Folder (estilo carpeta, 72px). Cada variante tiene dimensiones y estilos específicos.',
       },
     },
   },
@@ -71,31 +122,6 @@ const meta: Meta = {
         defaultValue: { summary: 'track' },
       },
     },
-    orientation: {
-      control: 'select',
-      options: ['horizontal', 'vertical'],
-      description: 'Orientación de los tabs',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'horizontal' },
-      },
-    },
-    withIcons: {
-      control: 'boolean',
-      description: 'Incluir iconos en los tabs',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
-    withDescriptions: {
-      control: 'boolean',
-      description: 'Incluir descripciones en los tabs',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
   },
 };
 
@@ -105,61 +131,26 @@ type Story = StoryObj;
 /**
  * ## Playground (Interactivo)
  *
- * Experimenta con todas las combinaciones de tabs usando los controles interactivos
- * en el panel inferior. Puedes ajustar variante, orientación, iconos y descripciones.
+ * Experimenta con las 3 variantes de tabs. Cada una tiene su propia identidad visual y dimensiones específicas.
  */
 export const Playground: Story = {
-  parameters: {
-    docs: {
-      source: {
-        format: 'dedent',
-        language: 'html',
-      },
-    },
-  },
   args: {
     variant: 'track',
-    orientation: 'horizontal',
-    withIcons: true,
-    withDescriptions: true,
   },
   render: (args) => {
-    const classes = [
-      'sb-ui-tabs',
-      `sb-ui-tabs--${args.variant}`,
-      `sb-ui-tabs--${args.orientation}`,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    const showIcons = args.variant === 'button' || args.variant === 'folder';
 
     const tabs = [
-      {
-        icon: 'fa-home',
-        title: 'Home',
-        description: 'Página principal',
-        active: true,
-      },
-      {
-        icon: 'fa-user',
-        title: 'Profile',
-        description: 'Tu perfil',
-        active: false,
-      },
-      {
-        icon: 'fa-cog',
-        title: 'Settings',
-        description: 'Configuración',
-        active: false,
-      },
+      { title: 'Seguros', description: 'Protección total', active: true },
+      { title: 'Inversiones', description: 'Haz crecer tu dinero', active: false },
+      { title: 'Créditos', description: 'Financia proyectos', active: false },
+      { title: 'Ahorros', description: 'Planifica tu futuro', active: false },
+      { title: 'Pensiones', description: 'Retiro seguro', active: false },
     ];
 
     return html`
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
-      <div style="max-width: 800px;">
-        <div class="${classes}">
+      <div style="max-width: 800px; padding: 2rem; background: #fafafa;">
+        <div class="sb-ui-tabs sb-ui-tabs--${args.variant}">
           ${tabs.map(
             (tab) => html`
               <button
@@ -175,15 +166,9 @@ export const Playground: Story = {
                   }
                 }}"
               >
-                ${args.withIcons
-                  ? html`<i class="sb-ui-tabs__icon fa-solid ${tab.icon}"></i>`
-                  : ''}
-                <div class="sb-ui-tabs__content">
-                  <span class="sb-ui-tabs__title">${tab.title}</span>
-                  ${args.withDescriptions
-                    ? html`<span class="sb-ui-tabs__description">${tab.description}</span>`
-                    : ''}
-                </div>
+                ${showIcons ? html`<i class="sb-ui-tabs__icon fa-solid fa-globe"></i>` : ''}
+                <span class="sb-ui-tabs__title">${tab.title}</span>
+                <span class="sb-ui-tabs__description">${tab.description}</span>
               </button>
             `,
           )}
@@ -194,33 +179,21 @@ export const Playground: Story = {
 };
 
 /**
- * ## Track Variant - Matriz Completa
+ * ## Track Variant (48px)
  *
- * Variante con línea indicadora inferior/lateral según la orientación.
- * Muestra combinaciones de Horizontal/Vertical con/sin iconos y descripciones.
+ * Tabs con línea verde inferior como indicador. Altura de 48px, ancho de 152px.
+ * **NO incluye iconos**, solo título y descripción.
  */
 export const TrackVariant: Story = {
-  parameters: {
-    docs: {
-      source: {
-        format: 'dedent',
-        language: 'html',
-      },
-    },
-  },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
-      .tabs-container {
+      .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+        background: #fafafa;
       }
 
-      .tabs-section {
+      .tabs-demo-section {
         margin-bottom: 3rem;
         background: white;
         padding: 2rem;
@@ -228,145 +201,137 @@ export const TrackVariant: Story = {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .tabs-title {
-        font-size: 1.75rem;
+      .tabs-demo-title {
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: var(--sb-ui-color-primary-base, #038450);
+        color: #038450;
       }
 
-      .tabs-subtitle {
-        font-size: 1rem;
-        color: var(--sb-ui-color-grayscale-base, #666);
+      .tabs-demo-subtitle {
+        font-size: 0.875rem;
+        color: #666;
         margin-bottom: 2rem;
       }
 
-      .demo-label {
+      .tabs-demo-specs {
+        background: #f2f9f6;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #038450;
+      }
+
+      .tabs-demo-specs ul {
+        margin: 0;
+        padding-left: 1.5rem;
         font-size: 0.875rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D200, #333);
-        padding: 0.5rem 0;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        color: #333;
+      }
+
+      .tabs-demo-specs li {
+        margin-bottom: 0.25rem;
       }
     </style>
 
-    <div class="tabs-container">
-      <!-- ========================================
-           HORIZONTAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Track - Horizontal (Completo)</h2>
-        <p class="tabs-subtitle">Tabs horizontales con iconos y descripciones.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
+    <div class="tabs-demo-container">
+      <div class="tabs-demo-section">
+        <h2 class="tabs-demo-title">Track - Estados</h2>
+        <p class="tabs-demo-subtitle">
+          Línea verde inferior. Sin iconos. 48px altura × 152px ancho.
+        </p>
 
-        <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--horizontal">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
+        <div class="tabs-demo-specs">
+          <ul>
+            <li><strong>Altura:</strong> 48px</li>
+            <li><strong>Ancho:</strong> 152px</li>
+            <li><strong>Indicador:</strong> Border-bottom verde (3px)</li>
+            <li><strong>Iconos:</strong> NO</li>
+            <li><strong>Font Title:</strong> 0.875rem (14px)</li>
+            <li><strong>Font Description:</strong> 0.6875rem (11px)</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- ========================================
-           HORIZONTAL - Solo títulos
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Track - Horizontal (Solo Títulos)</h2>
-        <p class="tabs-subtitle">Tabs horizontales solo con títulos, sin iconos ni descripciones.</p>
-        <span class="demo-label">Solo títulos</span>
-
-        <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--horizontal">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Home</span>
-            </div>
+        <div class="sb-ui-tabs sb-ui-tabs--track">
+          <button
+            class="sb-ui-tabs__item sb-ui-tabs__item--active"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <span class="sb-ui-tabs__title">Seguros</span>
+            <span class="sb-ui-tabs__description">Protección total</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Profile</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <span class="sb-ui-tabs__title">Inversiones</span>
+            <span class="sb-ui-tabs__description">Haz crecer dinero</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Settings</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <span class="sb-ui-tabs__title">Créditos</span>
+            <span class="sb-ui-tabs__description">Financia proyectos</span>
           </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Disabled</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <span class="sb-ui-tabs__title">Ahorros</span>
+            <span class="sb-ui-tabs__description">Planifica futuro</span>
           </button>
-        </div>
-      </div>
-
-      <!-- ========================================
-           VERTICAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Track - Vertical (Completo)</h2>
-        <p class="tabs-subtitle">Tabs verticales con iconos y descripciones.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
-
-        <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--vertical">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <span class="sb-ui-tabs__title">Pensiones</span>
+            <span class="sb-ui-tabs__description">Retiro seguro</span>
           </button>
         </div>
       </div>
@@ -375,33 +340,21 @@ export const TrackVariant: Story = {
 };
 
 /**
- * ## Button Variant - Matriz Completa
+ * ## Button Variant (72px)
  *
- * Variante con fondo amarillo/crema cuando está activo.
- * Muestra combinaciones de Horizontal/Vertical con/sin iconos y descripciones.
+ * Tabs con apariencia de botones y fondo amarillo cuando están activos.
+ * Altura de 72px, ancho de 146px. **Incluye iconos de 20px**.
  */
 export const ButtonVariant: Story = {
-  parameters: {
-    docs: {
-      source: {
-        format: 'dedent',
-        language: 'html',
-      },
-    },
-  },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
-      .tabs-container {
+      .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+        background: #fafafa;
       }
 
-      .tabs-section {
+      .tabs-demo-section {
         margin-bottom: 3rem;
         background: white;
         padding: 2rem;
@@ -409,113 +362,142 @@ export const ButtonVariant: Story = {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .tabs-title {
-        font-size: 1.75rem;
+      .tabs-demo-title {
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: var(--sb-ui-color-secondary-base, #ffe16f);
+        color: #ffe16f;
       }
 
-      .tabs-subtitle {
-        font-size: 1rem;
-        color: var(--sb-ui-color-grayscale-base, #666);
+      .tabs-demo-subtitle {
+        font-size: 0.875rem;
+        color: #666;
         margin-bottom: 2rem;
       }
 
-      .demo-label {
+      .tabs-demo-specs {
+        background: #fffaf0;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #ffe16f;
+      }
+
+      .tabs-demo-specs ul {
+        margin: 0;
+        padding-left: 1.5rem;
         font-size: 0.875rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D200, #333);
-        padding: 0.5rem 0;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        color: #333;
+      }
+
+      .tabs-demo-specs li {
+        margin-bottom: 0.25rem;
       }
     </style>
 
-    <div class="tabs-container">
-      <!-- ========================================
-           HORIZONTAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Button - Horizontal (Completo)</h2>
-        <p class="tabs-subtitle">Tabs horizontales con fondo amarillo cuando están activos.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
+    <div class="tabs-demo-container">
+      <div class="tabs-demo-section">
+        <h2 class="tabs-demo-title">Button - Estados</h2>
+        <p class="tabs-demo-subtitle">
+          Fondo amarillo activo. Con iconos. 72px altura × 146px ancho.
+        </p>
 
-        <div class="sb-ui-tabs sb-ui-tabs--button sb-ui-tabs--horizontal">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
+        <div class="tabs-demo-specs">
+          <ul>
+            <li><strong>Altura:</strong> 72px</li>
+            <li><strong>Ancho:</strong> 146px</li>
+            <li><strong>Border-radius:</strong> 8px</li>
+            <li><strong>Iconos:</strong> SÍ (20px)</li>
+            <li><strong>Active BG:</strong> Amarillo (#FFE16F)</li>
+            <li><strong>Active Text:</strong> Verde (#038450), bold</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- ========================================
-           VERTICAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Button - Vertical (Completo)</h2>
-        <p class="tabs-subtitle">Tabs verticales con fondo amarillo cuando están activos.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
-
-        <div class="sb-ui-tabs sb-ui-tabs--button sb-ui-tabs--vertical">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+        <div class="sb-ui-tabs sb-ui-tabs--button">
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Seguros</span>
+            <span class="sb-ui-tabs__description">Protección total</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Inversiones</span>
+            <span class="sb-ui-tabs__description">Haz crecer dinero</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Créditos</span>
+            <span class="sb-ui-tabs__description">Financia proyectos</span>
           </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Ahorros</span>
+            <span class="sb-ui-tabs__description">Planifica futuro</span>
+          </button>
+          <button
+            class="sb-ui-tabs__item sb-ui-tabs__item--active"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Pensiones</span>
+            <span class="sb-ui-tabs__description">Retiro seguro</span>
           </button>
         </div>
       </div>
@@ -524,33 +506,21 @@ export const ButtonVariant: Story = {
 };
 
 /**
- * ## Folder Variant - Matriz Completa
+ * ## Folder Variant (72px)
  *
- * Variante estilo carpeta sin indicador visible.
- * Muestra combinaciones de Horizontal/Vertical con/sin iconos y descripciones.
+ * Tabs estilo carpeta con border-radius solo en la parte superior.
+ * Altura de 72px, ancho de 146px. **Incluye iconos de 20px**.
  */
 export const FolderVariant: Story = {
-  parameters: {
-    docs: {
-      source: {
-        format: 'dedent',
-        language: 'html',
-      },
-    },
-  },
   render: () => html`
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <style>
-      .tabs-container {
+      .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+        background: #fafafa;
       }
 
-      .tabs-section {
+      .tabs-demo-section {
         margin-bottom: 3rem;
         background: white;
         padding: 2rem;
@@ -558,106 +528,142 @@ export const FolderVariant: Story = {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .tabs-title {
-        font-size: 1.75rem;
+      .tabs-demo-title {
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: var(--sb-ui-color-grayscale-D200, #333);
+        color: #038450;
       }
 
-      .tabs-subtitle {
-        font-size: 1rem;
-        color: var(--sb-ui-color-grayscale-base, #666);
+      .tabs-demo-subtitle {
+        font-size: 0.875rem;
+        color: #666;
         margin-bottom: 2rem;
       }
 
-      .demo-label {
+      .tabs-demo-specs {
+        background: #f2f9f6;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #038450;
+      }
+
+      .tabs-demo-specs ul {
+        margin: 0;
+        padding-left: 1.5rem;
         font-size: 0.875rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D200, #333);
-        padding: 0.5rem 0;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        color: #333;
+      }
+
+      .tabs-demo-specs li {
+        margin-bottom: 0.25rem;
       }
     </style>
 
-    <div class="tabs-container">
-      <!-- ========================================
-           HORIZONTAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Folder - Horizontal (Completo)</h2>
-        <p class="tabs-subtitle">Tabs horizontales estilo carpeta sin indicador.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
+    <div class="tabs-demo-container">
+      <div class="tabs-demo-section">
+        <h2 class="tabs-demo-title">Folder - Estados</h2>
+        <p class="tabs-demo-subtitle">
+          Estilo carpeta con border-radius solo arriba. 72px altura × 146px ancho.
+        </p>
 
-        <div class="sb-ui-tabs sb-ui-tabs--folder sb-ui-tabs--horizontal">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
-          </button>
+        <div class="tabs-demo-specs">
+          <ul>
+            <li><strong>Altura:</strong> 72px</li>
+            <li><strong>Ancho:</strong> 146px</li>
+            <li><strong>Border-radius:</strong> 8px 8px 0 0 (solo arriba)</li>
+            <li><strong>Iconos:</strong> SÍ (20px)</li>
+            <li><strong>Active BG:</strong> Verde claro (#F2F9F6)</li>
+            <li><strong>Active Text:</strong> Verde (#038450), bold</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- ========================================
-           VERTICAL - Con iconos y descripciones
-           ======================================== -->
-      <div class="tabs-section">
-        <h2 class="tabs-title">Folder - Vertical (Completo)</h2>
-        <p class="tabs-subtitle">Tabs verticales estilo carpeta sin indicador.</p>
-        <span class="demo-label">Con iconos y descripciones</span>
-
-        <div class="sb-ui-tabs sb-ui-tabs--folder sb-ui-tabs--vertical">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+        <div class="sb-ui-tabs sb-ui-tabs--folder">
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Seguros</span>
+            <span class="sb-ui-tabs__description">Protección total</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Inversiones</span>
+            <span class="sb-ui-tabs__description">Haz crecer dinero</span>
           </button>
-          <button class="sb-ui-tabs__item">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Créditos</span>
+            <span class="sb-ui-tabs__description">Financia proyectos</span>
           </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled">
-            <i class="sb-ui-tabs__icon fa-solid fa-globe"></i>
-            <div class="sb-ui-tabs__content">
-              <span class="sb-ui-tabs__title">Title</span>
-              <span class="sb-ui-tabs__description">Description</span>
-            </div>
+          <button
+            class="sb-ui-tabs__item"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Ahorros</span>
+            <span class="sb-ui-tabs__description">Planifica futuro</span>
+          </button>
+          <button
+            class="sb-ui-tabs__item sb-ui-tabs__item--active"
+            @click="${(e: Event) => {
+              const target = e.currentTarget as HTMLElement;
+              const parent = target.parentElement;
+              if (parent) {
+                parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                  item.classList.remove('sb-ui-tabs__item--active');
+                });
+                target.classList.add('sb-ui-tabs__item--active');
+              }
+            }}"
+          >
+            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Pensiones</span>
+            <span class="sb-ui-tabs__description">Retiro seguro</span>
           </button>
         </div>
       </div>
@@ -665,3 +671,206 @@ export const FolderVariant: Story = {
   `,
 };
 
+/**
+ * ## Comparación de las 3 Variantes
+ *
+ * Vista lado a lado de las 3 variantes para comparar sus diferencias visuales y dimensiones.
+ */
+export const Comparison: Story = {
+  render: () => html`
+    <style>
+      .comparison-container {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        padding: 2rem;
+        background: #fafafa;
+      }
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .comparison-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .comparison-item h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .comparison-item .spec-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .comparison-item--track h3 {
+        color: #038450;
+      }
+      .comparison-item--track .spec-badge {
+        background: #f2f9f6;
+        color: #038450;
+      }
+
+      .comparison-item--button h3 {
+        color: #c99700;
+      }
+      .comparison-item--button .spec-badge {
+        background: #fffaf0;
+        color: #c99700;
+      }
+
+      .comparison-item--folder h3 {
+        color: #666;
+      }
+      .comparison-item--folder .spec-badge {
+        background: #f5f5f5;
+        color: #666;
+      }
+    </style>
+
+    <div class="comparison-container">
+      <h2 style="margin-bottom: 2rem; color: #038450; text-align: center;">
+        Comparación de Variantes
+      </h2>
+
+      <div class="comparison-grid">
+        <!-- Track -->
+        <div class="comparison-item comparison-item--track">
+          <h3>Track</h3>
+          <span class="spec-badge">48px × 152px | No iconos</span>
+
+          <div class="sb-ui-tabs sb-ui-tabs--track">
+            <button
+              class="sb-ui-tabs__item sb-ui-tabs__item--active"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button
+              class="sb-ui-tabs__item"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="comparison-item comparison-item--button">
+          <h3>Button</h3>
+          <span class="spec-badge">72px × 146px | Con iconos 20px</span>
+
+          <div class="sb-ui-tabs sb-ui-tabs--button">
+            <button
+              class="sb-ui-tabs__item sb-ui-tabs__item--active"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button
+              class="sb-ui-tabs__item"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Folder -->
+        <div class="comparison-item comparison-item--folder">
+          <h3>Folder</h3>
+          <span class="spec-badge">72px × 146px | Con iconos 20px</span>
+
+          <div class="sb-ui-tabs sb-ui-tabs--folder">
+            <button
+              class="sb-ui-tabs__item sb-ui-tabs__item--active"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button
+              class="sb-ui-tabs__item"
+              @click="${(e: Event) => {
+                const target = e.currentTarget as HTMLElement;
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.querySelectorAll('.sb-ui-tabs__item').forEach((item) => {
+                    item.classList.remove('sb-ui-tabs__item--active');
+                  });
+                  target.classList.add('sb-ui-tabs__item--active');
+                }
+              }}"
+            >
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+};

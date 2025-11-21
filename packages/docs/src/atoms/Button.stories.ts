@@ -4,7 +4,26 @@ import { html } from 'lit';
 /**
  * # Button Component
  *
+ * <div style="display: inline-flex; gap: 0.5rem; margin-bottom: 1rem;">
+ *   <span style="background: #E3F2FD; color: #1976D2; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">🎨 CSS PURO</span>
+ *   <span style="background: #F3E5F5; color: #7B1FA2; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">❌ NO requiere JS</span>
+ *   <span style="background: #E8F5E9; color: #388E3C; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">✅ Solo HTML + CSS</span>
+ * </div>
+ *
  * Componente de botón CSS puro del Seguros Bolivar UI Design System.
+ * **No requiere importación de JavaScript**, solo incluye el CSS y usa las clases correctas.
+ *
+ * ## 🚀 Instalación Rápida
+ *
+ * ```html
+ * <!-- Solo necesitas esto: -->
+ * <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+ *
+ * <!-- Luego usa el HTML: -->
+ * <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+ *   Mi Botón
+ * </button>
+ * ```
  *
  * ## 📋 Referencia Rápida de Clases
  *
