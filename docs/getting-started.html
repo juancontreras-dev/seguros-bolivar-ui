@@ -11,6 +11,9 @@
   <!-- Design System CSS -->
   <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css?v=2.0">
   
+  <!-- Design System Web Components -->
+  <script type="module" src="dist/sb-ui-components.min.js"></script>
+  
   <style>
     :root {
       --sb-ui-color-primary-base: #038450;
@@ -29,24 +32,32 @@
       min-height: 100vh;
     }
 
-    /* Fix para componentes del Design System */
-    .sb-ui-input,
-    .sb-ui-select,
-    .sb-ui-checkbox,
-    .sb-ui-toggle,
-    .sb-ui-button {
-      all: revert;
-      box-sizing: border-box;
-    }
-
-    /* Asegurar que los inputs tengan padding */
+    /* ========================================
+       FIX: Componentes del Design System
+       ======================================== */
+    
+    /* Inputs y Selects */
     .sb-ui-input,
     .sb-ui-select {
-      padding: 0.75rem 1rem !important;
+      display: block !important;
+      width: 100% !important;
+      padding: 12px 16px !important;
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+      color: #1b1b1b !important;
+      background-color: #ffffff !important;
       border: 1px solid #d0d0d0 !important;
       border-radius: 4px !important;
-      font-size: 1rem !important;
-      transition: border-color 0.2s ease !important;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .sb-ui-input:hover,
+    .sb-ui-select:hover {
+      border-color: #9b9b9b !important;
     }
 
     .sb-ui-input:focus,
@@ -56,18 +67,607 @@
       box-shadow: 0 0 0 3px rgba(3, 132, 80, 0.1) !important;
     }
 
-    /* Checkboxes y toggles */
-    .sb-ui-checkbox,
-    .sb-ui-toggle {
-      width: 20px !important;
-      height: 20px !important;
-      cursor: pointer !important;
-      flex-shrink: 0 !important;
+    .sb-ui-input::placeholder {
+      color: #9b9b9b !important;
+      opacity: 1 !important;
     }
 
+    /* Select específico */
+    .sb-ui-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235b5b5b' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 12px center !important;
+      background-size: 12px !important;
+      padding-right: 40px !important;
+    }
+
+    /* Checkboxes */
+    .sb-ui-checkbox {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+      margin: 0 !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+      border: 2px solid #d0d0d0 !important;
+      border-radius: 3px !important;
+      background-color: #ffffff !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+      position: relative !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .sb-ui-checkbox:hover {
+      border-color: #9b9b9b !important;
+    }
+
+    .sb-ui-checkbox:checked {
+      background-color: #038450 !important;
+      border-color: #038450 !important;
+    }
+
+    .sb-ui-checkbox:checked::after {
+      content: '✓' !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      color: white !important;
+      font-size: 14px !important;
+      font-weight: bold !important;
+    }
+
+    /* Toggles */
     .sb-ui-toggle {
       width: 44px !important;
       height: 24px !important;
+      min-width: 44px !important;
+      min-height: 24px !important;
+      margin: 0 !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+      background-color: #d0d0d0 !important;
+      border: none !important;
+      border-radius: 12px !important;
+      position: relative !important;
+      transition: background-color 0.3s ease !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .sb-ui-toggle::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 2px !important;
+      left: 2px !important;
+      width: 20px !important;
+      height: 20px !important;
+      background-color: white !important;
+      border-radius: 50% !important;
+      transition: transform 0.3s ease !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .sb-ui-toggle:checked {
+      background-color: #038450 !important;
+    }
+
+    .sb-ui-toggle:checked::after {
+      transform: translateX(20px) !important;
+    }
+
+    /* Botones */
+    .sb-ui-button {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      padding: 12px 24px !important;
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      line-height: 1.5 !important;
+      text-decoration: none !important;
+      border: 1px solid transparent !important;
+      border-radius: 50px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .sb-ui-button--primary.sb-ui-button--fill {
+      background-color: #FFE16F !important;
+      color: #038450 !important;
+      border-color: #FFE16F !important;
+    }
+
+    .sb-ui-button--primary.sb-ui-button--fill:hover {
+      background-color: #ffd740 !important;
+      border-color: #ffd740 !important;
+    }
+
+    .sb-ui-button--secondary {
+      background-color: white !important;
+      color: #038450 !important;
+      border-color: #038450 !important;
+    }
+
+    .sb-ui-button--secondary:hover {
+      background-color: #f2f9f6 !important;
+    }
+
+    .sb-ui-button--secondary.sb-ui-button--text {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      text-decoration: underline !important;
+    }
+
+    .sb-ui-button--secondary.sb-ui-button--text:hover {
+      background-color: transparent !important;
+      color: #026d42 !important;
+    }
+
+    .sb-ui-button--small {
+      padding: 8px 16px !important;
+      font-size: 14px !important;
+    }
+
+    /* ========================================
+       Datepicker Component Styles (Exactos de Seguros Bolívar)
+       ======================================== */
+    sb-ui-datepicker {
+      display: block !important;
+      width: 100% !important;
+    }
+
+    /* Tamaños de inputs según size del datepicker */
+    .sb-ui-datepicker[size="small"] .sb-ui-datepicker__input {
+      font-size: 0.8125rem !important;
+      padding-inline: 0.75rem !important;
+      padding-block: 0.5rem !important;
+      min-block-size: 32px !important;
+    }
+
+    .sb-ui-datepicker[size="small"] .sb-ui-datepicker__trigger {
+      inline-size: 32px !important;
+      block-size: 32px !important;
+      font-size: 0.875rem !important;
+    }
+
+    .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__input,
+    .sb-ui-datepicker:not([size]) .sb-ui-datepicker__input {
+      font-size: 0.9375rem !important;
+      padding-inline: 1rem !important;
+      padding-block: 0.625rem !important;
+      min-block-size: 40px !important;
+    }
+
+    .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__trigger,
+    .sb-ui-datepicker:not([size]) .sb-ui-datepicker__trigger {
+      inline-size: 40px !important;
+      block-size: 40px !important;
+      font-size: 1rem !important;
+    }
+
+    .sb-ui-datepicker[size="large"] .sb-ui-datepicker__input {
+      font-size: 1.0625rem !important;
+      padding-inline: 1.25rem !important;
+      padding-block: 0.75rem !important;
+      min-block-size: 48px !important;
+    }
+
+    .sb-ui-datepicker[size="large"] .sb-ui-datepicker__trigger {
+      inline-size: 48px !important;
+      block-size: 48px !important;
+      font-size: 1.125rem !important;
+    }
+
+    /* Ajustar tamaño del datepicker desplegado - Compacto y sin desbordes */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar {
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Size SMALL - Más compacto */
+    .sb-ui-datepicker[size="small"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+      --sb-ui-calendar-inline-size: 320px;
+      inline-size: 320px !important;
+      max-block-size: 340px !important;
+      block-size: 340px !important;
+      --sb-ui-calendar-padding: 10px;
+      --sb-ui-calendar-gap: 3px;
+      --sb-ui-calendar-grid-gap: 1px;
+      --sb-ui-calendar-day-size: 34px;
+      --sb-ui-calendar-day-font-size: 11px;
+      --sb-ui-calendar-weekday-font-size: 9px;
+      --sb-ui-calendar-weekday-padding-block: 3px;
+      --sb-ui-calendar-header-padding-block: 3px;
+      --sb-ui-calendar-nav-size: 26px;
+      --sb-ui-calendar-month-font-size: 11px;
+    }
+
+    /* Size MEDIUM (default) */
+    .sb-ui-datepicker:not([size]) .sb-ui-datepicker__dropdown .sb-ui-calendar,
+    .sb-ui-datepicker[size="medium"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+      --sb-ui-calendar-inline-size: 368px;
+      inline-size: 368px !important;
+      max-block-size: 388px !important;
+      block-size: 388px !important;
+      --sb-ui-calendar-padding: 12px;
+      --sb-ui-calendar-gap: 4px;
+      --sb-ui-calendar-grid-gap: 2px;
+      --sb-ui-calendar-day-size: 40px;
+      --sb-ui-calendar-day-font-size: 13px;
+      --sb-ui-calendar-weekday-font-size: 10px;
+      --sb-ui-calendar-weekday-padding-block: 4px;
+      --sb-ui-calendar-header-padding-block: 4px;
+      --sb-ui-calendar-nav-size: 30px;
+      --sb-ui-calendar-month-font-size: 13px;
+    }
+
+    /* Size LARGE - Más grande */
+    .sb-ui-datepicker[size="large"] .sb-ui-datepicker__dropdown .sb-ui-calendar {
+      --sb-ui-calendar-inline-size: 420px;
+      inline-size: 420px !important;
+      max-block-size: 440px !important;
+      block-size: 440px !important;
+      --sb-ui-calendar-padding: 16px;
+      --sb-ui-calendar-gap: 5px;
+      --sb-ui-calendar-grid-gap: 3px;
+      --sb-ui-calendar-day-size: 46px;
+      --sb-ui-calendar-day-font-size: 15px;
+      --sb-ui-calendar-weekday-font-size: 12px;
+      --sb-ui-calendar-weekday-padding-block: 5px;
+      --sb-ui-calendar-header-padding-block: 5px;
+      --sb-ui-calendar-nav-size: 34px;
+      --sb-ui-calendar-month-font-size: 15px;
+    }
+
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__grid {
+      gap: var(--sb-ui-calendar-grid-gap) !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Ajustar header para que sea más compacto */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__header {
+      padding-block-end: var(--sb-ui-calendar-header-padding-block) !important;
+      margin-block-end: var(--sb-ui-calendar-gap) !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Ajustar weekdays para que sean más compactos */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__weekdays {
+      margin-block-end: 2px !important;
+      flex-shrink: 0 !important;
+    }
+    
+    /* Asegurar que el contenido del calendario no se desborde */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar > * {
+      flex-shrink: 0 !important;
+    }
+
+    /* Footer - distribuir botones a los lados, siempre dentro del datepicker */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      border: none !important;
+      flex-shrink: 0 !important;
+      min-block-size: auto !important;
+    }
+
+    /* Footer - SMALL */
+    .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer {
+      padding-block: 4px !important;
+      padding-inline: 4px !important;
+      margin-block-start: 2px !important;
+      margin-block-end: 0 !important;
+    }
+
+    /* Footer - MEDIUM */
+    .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer,
+    .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer {
+      padding-block: 6px !important;
+      padding-inline: 6px !important;
+      margin-block-start: 2px !important;
+      margin-block-end: 0 !important;
+    }
+
+    /* Footer - LARGE */
+    .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer {
+      padding-block: 8px !important;
+      padding-inline: 8px !important;
+      margin-block-start: 4px !important;
+      margin-block-end: 0 !important;
+    }
+
+    /* Botones del footer - estilo TEXT Primary Button - Base */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button,
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button {
+      /* Reset estilos de FILL y SECONDARY */
+      background-color: transparent !important;
+      color: #038450 !important;
+      border: none !important;
+      box-shadow: none !important;
+      
+      /* Estilos TEXT Primary */
+      font-weight: 700 !important;
+      min-block-size: auto !important;
+      min-inline-size: auto !important;
+      border-radius: 50px !important;
+      cursor: pointer !important;
+      transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease !important;
+      font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif) !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+      
+      /* ✨ Underline característico de TEXT buttons */
+      text-decoration: underline !important;
+      text-underline-offset: 1px !important;
+      text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+    }
+
+    /* Botones footer - SMALL */
+    .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer button,
+    .sb-ui-datepicker[size="small"] .sb-ui-calendar__footer .sb-ui-button {
+      font-size: 11px !important;
+      padding-inline: 4px !important;
+      padding-block: 3px !important;
+    }
+
+    /* Botones footer - MEDIUM */
+    .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer button,
+    .sb-ui-datepicker[size="medium"] .sb-ui-calendar__footer .sb-ui-button,
+    .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer button,
+    .sb-ui-datepicker:not([size]) .sb-ui-calendar__footer .sb-ui-button {
+      font-size: 13px !important;
+      padding-inline: 6px !important;
+      padding-block: 4px !important;
+    }
+
+    /* Botones footer - LARGE */
+    .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer button,
+    .sb-ui-datepicker[size="large"] .sb-ui-calendar__footer .sb-ui-button {
+      font-size: 15px !important;
+      padding-inline: 8px !important;
+      padding-block: 5px !important;
+    }
+
+    /* Hover - TEXT Primary (sin fondo) */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button:hover,
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button:hover {
+      background-color: transparent !important;
+      color: #038450 !important;
+      border: none !important;
+      box-shadow: none !important;
+      text-decoration: underline !important;
+      text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+      opacity: 0.8 !important;
+    }
+
+    /* Active - TEXT Primary (sin fondo) */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer button:active,
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer .sb-ui-button:active {
+      background-color: transparent !important;
+      color: #038450 !important;
+      border: none !important;
+      box-shadow: none !important;
+      text-decoration: underline !important;
+      text-decoration-color: var(--sb-ui-color-primary-D100, #038450) !important;
+      opacity: 0.6 !important;
+    }
+
+    /* Hacer circular solo los días seleccionados */
+    .sb-ui-calendar__day--selected,
+    .sb-ui-calendar__day--range-start,
+    .sb-ui-calendar__day--range-end,
+    .sb-ui-calendar__day--in-range {
+      border-radius: 50% !important;
+    }
+
+    /* Quitar completamente el estilo del día actual */
+    .sb-ui-calendar__day--today {
+      background-color: transparent !important;
+      border: none !important;
+      color: inherit !important;
+      font-weight: 400 !important;
+    }
+
+    /* Día seleccionado: fondo amarillo circular */
+    .sb-ui-calendar__day--selected,
+    .sb-ui-calendar__day--range-start,
+    .sb-ui-calendar__day--range-end,
+    .sb-ui-calendar__day--in-range {
+      background-color: var(--sb-ui-calendar-day-selected-bg, #FFE16F) !important;
+      color: var(--sb-ui-calendar-day-selected-color, #000) !important;
+      border: none !important;
+      font-weight: 400 !important;
+    }
+
+    /* Hover de los días: fondo gris claro circular */
+    .sb-ui-calendar__day:hover:not(.sb-ui-calendar__day--disabled):not(.sb-ui-calendar__day--outside) {
+      background-color: #F5F5F5 !important;
+      border-radius: 50% !important;
+    }
+
+    /* Días fuera de rango o deshabilitados */
+    .sb-ui-calendar__day--disabled,
+    .sb-ui-calendar__day--outside {
+      opacity: 0.3 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Spinner */
+    .sb-ui-spinner {
+      display: inline-block !important;
+      width: 40px !important;
+      height: 40px !important;
+      border: 4px solid #f3f3f3 !important;
+      border-top: 4px solid #038450 !important;
+      border-radius: 50% !important;
+      animation: spin 1s linear infinite !important;
+    }
+
+    .sb-ui-spinner--fast {
+      animation-duration: 0.5s !important;
+    }
+
+    .sb-ui-spinner--slow {
+      animation-duration: 2s !important;
+    }
+
+    .sb-ui-spinner--icon {
+      border: none !important;
+      width: auto !important;
+      height: auto !important;
+      font-size: 32px !important;
+      color: #038450 !important;
+    }
+
+    .sb-ui-spinner--icon-text {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      border: none !important;
+      width: auto !important;
+      height: auto !important;
+    }
+
+    .sb-ui-spinner--icon-text i {
+      font-size: 24px !important;
+      color: #038450 !important;
+      animation: spin 1s linear infinite !important;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Accordion */
+    .sb-ui-accordion {
+      border: 1px solid #e1e1e1 !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+    .sb-ui-accordion__header {
+      display: flex !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      padding: 1rem !important;
+      background-color: white !important;
+      cursor: pointer !important;
+      transition: background-color 0.2s ease !important;
+    }
+
+    .sb-ui-accordion__header:hover {
+      background-color: #fafafa !important;
+    }
+
+    .sb-ui-accordion[open] .sb-ui-accordion__header {
+      background-color: #f2f9f6 !important;
+      color: #038450 !important;
+      border-color: #038450 !important;
+    }
+
+    .sb-ui-accordion__icon-start {
+      font-size: 20px !important;
+      color: #038450 !important;
+    }
+
+    .sb-ui-accordion__label {
+      flex: 1 !important;
+      font-weight: 500 !important;
+    }
+
+    .sb-ui-accordion__icon-end {
+      font-size: 16px !important;
+      transition: transform 0.2s ease !important;
+    }
+
+    .sb-ui-accordion[open] .sb-ui-accordion__icon-end {
+      transform: rotate(180deg) !important;
+    }
+
+    .sb-ui-accordion__content {
+      padding: 1rem !important;
+      border-top: 1px solid #e1e1e1 !important;
+    }
+
+    /* Toast Notifications */
+    .sb-ui-alert--toast {
+      position: fixed !important;
+      top: 1rem !important;
+      right: 1rem !important;
+      z-index: 9999 !important;
+      min-width: 320px !important;
+      max-width: 400px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+      animation: slideInRight 0.3s ease !important;
+    }
+
+    .sb-ui-alert--toast + .sb-ui-alert--toast {
+      margin-top: 0.5rem !important;
+    }
+
+    .sb-ui-alert--fade-in {
+      animation: fadeIn 0.3s ease !important;
+    }
+
+    .sb-ui-alert--fade-out {
+      animation: fadeOut 0.3s ease forwards !important;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .sb-ui-alert-close {
+      background: transparent !important;
+      border: none !important;
+      font-size: 24px !important;
+      line-height: 1 !important;
+      cursor: pointer !important;
+      color: inherit !important;
+      padding: 0 !important;
+      width: 24px !important;
+      height: 24px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      opacity: 0.6 !important;
+      transition: opacity 0.2s ease !important;
+    }
+
+    .sb-ui-alert-close:hover {
+      opacity: 1 !important;
     }
 
     /* Header */
@@ -784,8 +1384,23 @@ import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';</div>
                 id="demo-datepicker"
                 placeholder="DD/MM/YYYY"
                 size="medium"
-                style="width: 100%;"
               ></sb-ui-datepicker>
+            </div>
+
+            <!-- Período de Cobertura - Datepicker de Rango -->
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #1b1b1b;">
+                Período de Cobertura del Seguro <span style="color: #e53935;">*</span>
+              </label>
+              <sb-ui-datepicker
+                id="demo-datepicker-range"
+                placeholder="Fecha inicio - Fecha fin"
+                variant="range"
+                size="medium"
+              ></sb-ui-datepicker>
+              <small style="color: #9b9b9b; margin-top: 0.5rem; display: block;">
+                <i class="fa-solid fa-calendar-days"></i> Selecciona el rango de fechas de vigencia de tu seguro
+              </small>
             </div>
 
             <!-- Tipo de Seguro -->
@@ -1552,13 +2167,6 @@ window.addEventListener('DOMContentLoaded', () => {
         info: 'Recuerda verificar tu correo electrónico'
       };
 
-      const icons = {
-        success: '<i class="fa-solid fa-check"></i>',
-        error: '<i class="fa-solid fa-xmark"></i>',
-        warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
-        info: '<i class="fa-solid fa-info-circle"></i>'
-      };
-
       const titles = {
         success: 'Éxito',
         error: 'Error',
@@ -1571,8 +2179,9 @@ window.addEventListener('DOMContentLoaded', () => {
       toast.className = `sb-ui-alert sb-ui-alert--${type} sb-ui-alert--toast sb-ui-alert--fade-in`;
       toast.setAttribute('role', 'alert');
       
+      // IMPORTANTE: sb-ui-alert-icon debe estar VACÍO, el CSS genera el icono automáticamente
       toast.innerHTML = `
-        <div class="sb-ui-alert-icon">${icons[type]}</div>
+        <div class="sb-ui-alert-icon"></div>
         <div class="sb-ui-alert-content">
           <div class="sb-ui-alert-title">${titles[type]}</div>
           <div class="sb-ui-alert-message">${messages[type]}</div>
@@ -1627,6 +2236,35 @@ window.addEventListener('DOMContentLoaded', () => {
             // Opcional: Limpiar formulario
             // form.reset();
           }, 2000);
+        });
+      }
+
+      // ========================================
+      // Demo: Datepicker Configuration
+      // ========================================
+      
+      // Configurar datepickers
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayStr = today.toISOString().split('T')[0];
+      
+      // Datepicker de fecha de nacimiento (máximo = hoy)
+      const datepickerBirth = document.getElementById('demo-datepicker');
+      if (datepickerBirth) {
+        datepickerBirth.setAttribute('max-date', todayStr);
+        
+        datepickerBirth.addEventListener('change', (e) => {
+          console.log('📅 Fecha de Nacimiento:', e.target.value);
+        });
+      }
+      
+      // Datepicker de rango (mínimo = hoy)
+      const datepickerRange = document.getElementById('demo-datepicker-range');
+      if (datepickerRange) {
+        datepickerRange.setAttribute('min-date', todayStr);
+        
+        datepickerRange.addEventListener('change', (e) => {
+          console.log('📅 Período de Cobertura:', e.target.value);
         });
       }
     });
