@@ -21,7 +21,7 @@
     "build": "tsc && vite build",
     "dev": "vite",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "lint": "eslint src/",
     "test": "vitest run",
     "test:watch": "vitest",

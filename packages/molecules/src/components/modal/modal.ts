@@ -32,7 +32,7 @@ import { customElement, property } from 'lit/decorators.js';
  * ```
  */
 @customElement('sb-ui-modal')
-export class SbModal extends LitElement {
+export class SbUiModal extends LitElement {
   static override styles = css`
     :host {
       --sb-ui-modal-backdrop-bg: rgba(0, 0, 0, 0.5);
@@ -280,6 +280,6 @@ export class SbModal extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sb-ui-modal': SbModal;
+    'sb-ui-modal': SbUiModal;
   }
 }

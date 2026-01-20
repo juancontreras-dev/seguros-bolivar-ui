@@ -8,7 +8,7 @@ import { customElement, property } from 'lit/decorators.js';
  * @element sb-ui-dropdown
  */
 @customElement('sb-ui-dropdown')
-export class SbDropdown extends LitElement {
+export class SbUiDropdown extends LitElement {
   static override styles = css`
     :host {
       display: inline-block;
@@ -54,6 +54,6 @@ export class SbDropdown extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sb-ui-dropdown': SbDropdown;
+    'sb-ui-dropdown': SbUiDropdown;
   }
 }

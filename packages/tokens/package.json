@@ -1,6 +1,7 @@
 {
   "name": "@seguros-bolivar-ui/tokens",
   "version": "1.0.0",
+  "type": "module",
   "description": "Design tokens multi-brand para Seguros Bolivar UI Design System",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +26,7 @@
   "scripts": {
     "build": "tsx src/builder.ts",
     "dev": "tsx watch src/builder.ts",
-    "clean": "rm -rf dist",
+    "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "lint": "eslint src/"
   },
   "keywords": [

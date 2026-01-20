@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: davivienda | Theme: light
- * Generated: 2025-11-21T19:53:51.984Z
+ * Generated: 2026-01-20T13:35:56.221Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -4469,11 +4469,34 @@
   .sb-ui-datepicker--block {
     inline-size: 100%;
   }
-  
+
   .sb-ui-datepicker--with-label {
     display: flex;
     flex-direction: column;
     gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+  }
+
+  /* Label */
+  .sb-ui-datepicker__label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--sb-ui-color-grayscale-black, #000);
+    margin-block-end: 0.25rem;
+  }
+
+  /* Helper text */
+  .sb-ui-datepicker__helper {
+    font-size: 0.75rem;
+    color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    margin-block-start: 0.25rem;
+  }
+
+  /* Error message */
+  .sb-ui-datepicker__error {
+    font-size: 0.75rem;
+    color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    margin-block-start: 0.25rem;
   }
 }
 /* ========================================

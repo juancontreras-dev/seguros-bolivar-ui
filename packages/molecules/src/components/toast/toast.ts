@@ -37,7 +37,7 @@ import { customElement, property, state } from 'lit/decorators.js';
  * ```
  */
 @customElement('sb-ui-toast')
-export class SbToast extends LitElement {
+export class SbUiToast extends LitElement {
   static override styles = css`
     :host {
       /* Importar estilos base de alert.css mediante CSS custom properties */
@@ -631,6 +631,6 @@ export class SbToast extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sb-ui-toast': SbToast;
+    'sb-ui-toast': SbUiToast;
   }
 }
