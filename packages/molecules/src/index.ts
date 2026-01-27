@@ -5,9 +5,9 @@
 
 export { SbUiCalendar } from './components/Calendar.js';
 export { SbUiDatePicker } from './components/DatePicker.js';
-export { SbDatePicker as SbUiDatePickerOld } from './components/date-picker/date-picker.js';
-export { SbDropdown as SbUiDropdown } from './components/dropdown/dropdown.js';
-export { SbModal as SbUiModal } from './components/modal/modal.js';
+// Dropdown placeholder removido hasta que esté completamente implementado
+// export { SbUiDropdown } from './components/dropdown/dropdown.js';
+export { SbUiModal } from './components/modal/modal.js';
 export {
   hideAllToasts,
   hideToast,
@@ -22,4 +22,4 @@ export {
   type ToastInstance,
   type ToastOptions,
 } from './components/toast/toast-manager.js';
-export { SbToast as SbUiToast } from './components/toast/toast.js';
+export { SbUiToast } from './components/toast/toast.js';

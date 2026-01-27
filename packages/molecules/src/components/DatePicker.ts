@@ -167,37 +167,40 @@ export class SbUiDatePicker extends LitElement {
     }
   };
 
-  private handleCalendarChange(e: CustomEvent) {
+  private handleCalendarChange(e: CustomEvent): void {
     const detail = e.detail;
     let formattedValue = '';
+    let shouldClose = false;
 
-    // Update value
-    if (this.variant === 'single') {
-      this.value = detail.date;
-      formattedValue = this.formatDate(detail.date);
-      this.updateInputValue(formattedValue);
-      // Auto-close after selecting a date
+    switch (this.variant) {
+      case 'single':
+        this.value = detail.date;
+        formattedValue = this.formatDate(detail.date);
+        shouldClose = true;
+        break;
+
+      case 'range':
+        if (detail.start && detail.end) {
+          this.value = `${detail.start},${detail.end}`;
+          formattedValue = `${this.formatDate(detail.start)} - ${this.formatDate(detail.end)}`;
+          shouldClose = true;
+        }
+        break;
+
+      case 'multiple':
+        this.value = detail.dates?.join(',');
+        formattedValue = detail.dates?.map((d: string) => this.formatDate(d)).join(', ');
+        break;
+    }
+
+    this.updateInputValue(formattedValue);
+
+    if (shouldClose) {
       setTimeout(() => {
         this.isOpen = false;
       }, 300);
-    } else if (this.variant === 'range') {
-      if (detail.start && detail.end) {
-        this.value = `${detail.start},${detail.end}`;
-        formattedValue = `${this.formatDate(detail.start)} - ${this.formatDate(detail.end)}`;
-        this.updateInputValue(formattedValue);
-        // Auto-close on range complete
-        setTimeout(() => {
-          this.isOpen = false;
-        }, 300);
-      }
-    } else if (this.variant === 'multiple') {
-      this.value = detail.dates?.join(',');
-      formattedValue = detail.dates?.map((d: string) => this.formatDate(d)).join(', ');
-      this.updateInputValue(formattedValue);
-      // Multiple mode stays open for selecting more dates
     }
 
-    // Dispatch change event
     this.dispatchEvent(
       new CustomEvent('datepicker-change', {
         detail: {
@@ -288,41 +291,10 @@ export class SbUiDatePicker extends LitElement {
       .filter(Boolean)
       .join(' ');
 
-    const calendarProps: any = {
-      variant: this.variant,
-      locale: this.locale,
-      'show-footer': true,
-      size: this.size,
-    };
-
-    if (this.variant === 'single' && this.value) {
-      calendarProps['selected-date'] = this.value;
-    } else if (this.variant === 'range' && this.value) {
-      const [start, end] = this.value.split(',');
-      if (start) calendarProps['range-start'] = start;
-      if (end) calendarProps['range-end'] = end;
-    } else if (this.variant === 'multiple' && this.value) {
-      calendarProps['selected-dates'] = this.value;
-    }
-
-    if (this.minDate) calendarProps['min-date'] = this.minDate;
-    if (this.maxDate) calendarProps['max-date'] = this.maxDate;
-    if (this.disabledDates) calendarProps['disabled-dates'] = this.disabledDates;
-
     return html`
       <div class=${classes}>
         ${this.label
-          ? html`
-              <label class="sb-ui-datepicker__label" style="
-                  display: block;
-                  font-weight: 600;
-                  font-size: 0.875rem;
-                  color: var(--sb-ui-color-grayscale-black);
-                  margin-bottom: 0.25rem;
-                ">
-                ${this.label}
-              </label>
-            `
+          ? html`<label class="sb-ui-datepicker__label">${this.label}</label>`
           : nothing}
 
         <div class="sb-ui-datepicker__wrapper">
@@ -367,32 +339,10 @@ export class SbUiDatePicker extends LitElement {
         </div>
 
         ${this.helperText && !this.error
-          ? html`
-              <div
-                class="sb-ui-datepicker__helper"
-                style="
-                  font-size: 0.75rem;
-                  color: var(--sb-ui-color-grayscale-base);
-                  margin-top: 0.25rem;
-                "
-              >
-                ${this.helperText}
-              </div>
-            `
+          ? html`<div class="sb-ui-datepicker__helper">${this.helperText}</div>`
           : nothing}
         ${this.error && this.errorMessage
-          ? html`
-              <div
-                class="sb-ui-datepicker__error"
-                style="
-                  font-size: 0.75rem;
-                  color: var(--sb-ui-color-feedback-error-base);
-                  margin-top: 0.25rem;
-                "
-              >
-                ${this.errorMessage}
-              </div>
-            `
+          ? html`<div class="sb-ui-datepicker__error">${this.errorMessage}</div>`
           : nothing}
       </div>
     `;

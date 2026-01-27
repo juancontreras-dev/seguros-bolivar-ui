@@ -7,26 +7,10 @@ import postcssImport from 'postcss-import';
 import postcssNesting from 'postcss-nesting';
 import { fileURLToPath } from 'url';
 import { brotliCompressSync, gzipSync } from 'zlib';
+import { BRANDS, THEMES, type Brand, type Theme } from '@seguros-bolivar-ui/tokens';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * Configuración de marcas y temas
- */
-const BRANDS = [
-  'white-label',
-  'jelpit',
-  'davivienda',
-  'cien-cuadras',
-  'doctor-aki',
-  'seguros-bolivar',
-] as const;
-
-const THEMES = ['light', 'dark'] as const;
-
-type Brand = (typeof BRANDS)[number];
-type Theme = (typeof THEMES)[number];
 
 /**
  * Paths de los packages

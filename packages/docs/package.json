@@ -7,7 +7,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "clean": "rm -rf storybook-static"
+    "clean": "node -e \"require('fs').rmSync('storybook-static', {recursive:true, force:true})\""
   },
   "dependencies": {
     "@seguros-bolivar-ui/atoms": "workspace:*",

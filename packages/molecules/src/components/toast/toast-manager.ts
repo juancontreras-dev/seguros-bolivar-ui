@@ -1,4 +1,4 @@
-import { SbToast } from './toast.js';
+import { SbUiToast } from './toast.js';
 
 export interface ToastOptions {
   type?: 'info' | 'success' | 'warning' | 'error';
@@ -20,7 +20,7 @@ export interface ToastOptions {
 
 export interface ToastInstance {
   id: string;
-  element: SbToast;
+  element: SbUiToast;
   container: HTMLElement;
 }
 
@@ -55,7 +55,7 @@ export class ToastManager {
     const position = options.position || 'top-right';
 
     // Create toast element
-    const toast = document.createElement('sb-ui-toast') as SbToast;
+    const toast = document.createElement('sb-ui-toast') as SbUiToast;
 
     // Set properties
     if (options.type) toast.type = options.type;
@@ -271,7 +271,7 @@ export class ToastManager {
     this.applyContainerStyles(container, position);
   }
 
-  private setupToastEventListeners(id: string, toast: SbToast): void {
+  private setupToastEventListeners(id: string, toast: SbUiToast): void {
     // Auto-remove when hidden
     toast.addEventListener('sb-ui-toast-hide', () => {
       setTimeout(() => {
