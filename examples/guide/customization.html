@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalización - Guía de Inicio - Seguros Bolívar UI</title>
+
+  <script>
+    (function () {
+      try {
+        var path = window.location.pathname || '';
+        if (/\/guide\/personalizacion\.html?$/.test(path)) {
+          var base = path.replace(/\/guide\/personalizacion\.html?$/, '/');
+          var newUrl = base + '?view=guide/personalizacion.html';
+          window.location.replace(newUrl);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css">
+  
+  <style>
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .content-container h2 {
+      color: var(--sb-ui-color-primary-base, #038450);
+      font-size: 2rem;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .content-container h3 {
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem 0;
+    }
+    
+    .content-container p {
+      color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: white;
+    }
+    
+    .doc-table th,
+    .doc-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+    }
+    
+    .doc-table th {
+      background: var(--sb-ui-color-grayscale-L400, #f5f5f5);
+      font-weight: 600;
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+    }
+    
+    .doc-table code {
+      background: var(--sb-ui-color-grayscale-L300, #f0f0f0);
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      color: var(--sb-ui-color-accent, #d63384);
+    }
+    
+    .code-block {
+      background: var(--sb-ui-color-bg-dark, #1e1e1e);
+      color: var(--sb-ui-color-grayscale-L300, #d4d4d4);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    
+    .info-box {
+      background: var(--sb-ui-color-feedback-info-L400, #e7f5ef);
+      border-left: 4px solid var(--sb-ui-color-primary-base, #038450);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+    
+    .info-box strong {
+      color: var(--sb-ui-color-primary-base, #038450);
+    }
+    
+    .info-box ul {
+      margin: 0.5rem 0 0 0;
+      padding-left: 1.25rem;
+      color: #1b1b1b;
+    }
+    
+    .info-box li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-box.error {
+      background: var(--sb-ui-color-feedback-error-L400, #ffeef0);
+      border-left-color: var(--sb-ui-color-error-base, #e53935);
+    }
+
+    .info-box.error strong {
+      color: var(--sb-ui-color-error-D700, #c62828);
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .feature-card {
+      background: white;
+      border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .feature-card h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+    }
+    
+    .feature-card p {
+      margin: 0;
+      font-size: 0.875rem;
+    }
+    
+    .feature-card i {
+      font-size: 2rem;
+      color: var(--sb-ui-color-primary-base, #038450);
+      margin-bottom: 1rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Personalización</h2>
+    
+    <h3>Variables CSS</h3>
+    <p>Todos los componentes usan CSS Variables (Custom Properties) que puedes sobrescribir:</p>
+
+    <div class="code-block">/* Sobrescribir colores principales */
+:root {
+  --sb-ui-color-primary-base: #your-color;
+  --sb-ui-color-secondary-base: #your-color;
+}
+
+/* Sobrescribir espaciado de un componente específico */
+.sb-ui-button {
+  --sb-ui-button-padding-inline: 2rem;
+  --sb-ui-button-padding-block: 1rem;
+  --sb-ui-button-border-radius: 8px;
+}</div>
+
+    <h3>Tokens Principales</h3>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Token</th>
+          <th>Descripción</th>
+          <th>Ejemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>--sb-ui-color-primary-base</code></td>
+          <td>Color primario de la marca</td>
+          <td><code>#038450</code> (Seguros Bolívar)</td>
+        </tr>
+        <tr>
+          <td><code>--sb-ui-color-secondary-base</code></td>
+          <td>Color secundario de la marca</td>
+          <td><code>#FFE16F</code> (Seguros Bolívar)</td>
+        </tr>
+        <tr>
+          <td><code>--sb-ui-typography-fontFamily</code></td>
+          <td>Familia tipográfica</td>
+          <td><code>'Roboto', sans-serif</code></td>
+        </tr>
+        <tr>
+          <td><code>--sb-ui-spacing-base</code></td>
+          <td>Espaciado base</td>
+          <td><code>1rem</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Crear Tu Propia Marca</h3>
+    <p>Puedes extender el Design System creando tus propios brand overrides:</p>
+
+    <div class="code-block">/* mi-marca.css */
+:root {
+  /* Colores */
+  --sb-ui-color-primary-base: #1e88e5;
+  --sb-ui-color-secondary-base: #ffa726;
+  
+  /* Tipografía */
+  --sb-ui-typography-fontFamily: 'Open Sans', sans-serif;
+  
+  /* Espaciado */
+  --sb-ui-button-padding-inline: 2rem;
+  --sb-ui-button-border-radius: 12px;
+}
+
+/* Personalización específica de componentes */
+.sb-ui-button--primary {
+  --sb-ui-button-bg: var(--sb-ui-color-primary-base);
+  --sb-ui-button-text: white;
+}</div>
+
+    <p>Luego carga tu CSS personalizado después del CSS del Design System:</p>
+
+    <div class="code-block">&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-white-label-light.min.css"&gt;
+&lt;link rel="stylesheet" href="mi-marca.css"&gt;</div>
+
+    <h3><i class="fa-solid fa-check-circle"></i> Mejores Prácticas</h3>
+    
+    <div class="info-box">
+      <strong>Hacer (Do's)</strong>
+      <ul>
+        <li>✅ <strong>Usa las clases CSS directamente</strong> - No crees wrappers innecesarios</li>
+        <li>✅ <strong>Combina modificadores</strong> - <code>.sb-ui-button--primary.sb-ui-button--small</code></li>
+        <li>✅ <strong>Usa variables CSS</strong> - Para personalización consistente</li>
+        <li>✅ <strong>Sigue BEM</strong> - Respeta la nomenclatura del sistema</li>
+        <li>✅ <strong>Prueba accesibilidad</strong> - Usa lectores de pantalla</li>
+        <li>✅ <strong>Mobile-first</strong> - Diseña primero para móvil</li>
+        <li>✅ <strong>Usa CDN para prototipos</strong> - NPM para producción</li>
+        <li>✅ <strong>Versiona tu CSS</strong> - Usa <code>@1.0.0</code> en lugar de <code>@latest</code> en producción</li>
+      </ul>
+    </div>
+
+    <div class="info-box error">
+      <strong>No Hacer (Don'ts)</strong>
+      <ul>
+        <li>❌ <strong>No sobrescribas con !important</strong> - Usa CSS Variables</li>
+        <li>❌ <strong>No modifiques las clases base</strong> - Crea nuevos modificadores</li>
+        <li>❌ <strong>No mezcles estilos</strong> - Usa solo el Design System</li>
+        <li>❌ <strong>No uses IDs para estilos</strong> - Solo clases</li>
+        <li>❌ <strong>No ignores la accesibilidad</strong> - Siempre usa atributos ARIA</li>
+        <li>❌ <strong>No uses <code>@latest</code> en producción</strong> - Puede romper tu app</li>
+        <li>❌ <strong>No cargues múltiples marcas</strong> - Solo una por página</li>
+      </ul>
+    </div>
+
+    <h3><i class="fa-solid fa-shield-halved"></i> Accesibilidad</h3>
+    <p>El Design System está diseñado con accesibilidad en mente. Asegúrate de:</p>
+
+    <div class="code-block">&lt;!-- Botones con texto descriptivo --&gt;
+&lt;button class="sb-ui-button sb-ui-button--primary" aria-label="Cerrar sesión"&gt;
+  &lt;i class="fa-solid fa-sign-out"&gt;&lt;/i&gt;
+  Cerrar Sesión
+&lt;/button&gt;
+
+&lt;!-- Inputs con labels --&gt;
+&lt;label for="email"&gt;Correo Electrónico&lt;/label&gt;
+&lt;input id="email" type="email" class="sb-ui-input" required&gt;
+
+&lt;!-- Modales con foco automático --&gt;
+&lt;sb-ui-modal id="modal" title="Confirmación" role="dialog" aria-labelledby="modal-title"&gt;
+  &lt;p id="modal-title"&gt;¿Estás seguro?&lt;/p&gt;
+&lt;/sb-ui-modal&gt;</div>
+
+    <h3><i class="fa-solid fa-bolt"></i> Performance</h3>
+    
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-compress"></i>
+        <h4>Tamaño Optimizado</h4>
+        <p>CSS: ~23-27 KB (gzipped)<br>JS: ~16 KB (gzipped)<br><strong>Total: ~40 KB</strong></p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-rocket"></i>
+        <h4>Carga Rápida</h4>
+        <p>Servido desde CDN global<br>Cache automático<br>HTTP/2 enabled</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-tree"></i>
+        <h4>Tree-shaking</h4>
+        <p>Con NPM puedes importar solo lo que uses<br>Optimización automática</p>
+      </div>
+    </div>
+
+    <h3><i class="fa-solid fa-code-compare"></i> Versionado</h3>
+    <p>Siempre especifica una versión en producción:</p>
+
+    <div class="code-block">&lt;!-- ❌ NO en producción - puede cambiar sin aviso --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+
+&lt;!-- ✅ SÍ en producción - versión fija --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@1.0.0/dist/sb-ui-seguros-bolivar-light.min.css"&gt;</div>
+
+  </div>
+</body>
+</html>

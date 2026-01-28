@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toggle Component - Seguros Bolívar UI</title>
 
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,76 +66,7 @@
         color: var(--sb-ui-color-grayscale-base, #666);
       }
 
-      /* Brand & Theme Controls */
-      .brand-controls {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: 1.5rem;
-        align-items: center;
-        margin-block-end: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--sb-ui-color-grayscale-white) 0%,
-          var(--sb-ui-color-grayscale-L400) 100%
-        );
-        border-radius: 16px;
-        box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.08),
-          0 1px 3px rgba(0, 0, 0, 0.05);
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-      }
-
-      .brand-controls:hover {
-        box-shadow:
-          0 8px 30px rgba(0, 0, 0, 0.12),
-          0 2px 6px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .brand-controls-group {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .brand-controls label {
-        font-weight: 600;
-        font-size: 0.8125rem;
-        color: var(--sb-ui-color-grayscale-D300);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-      }
-
-      .theme-toggle {
-        display: flex;
-        gap: 0.5rem;
-        background: var(--sb-ui-color-grayscale-L300);
-        padding: 0.25rem;
-        border-radius: 50px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      @media (max-width: 768px) {
-        .brand-controls {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .brand-controls-group {
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .theme-toggle {
-          width: 100%;
-        }
-      }
+      
 
       /* Sections */
       .matrix-section {
@@ -262,39 +194,6 @@
   </head>
   <body>
     <div class="matrix-container">
-      <!-- Brand & Theme Controls -->
-      <div class="brand-controls">
-        <button
-          onclick="window.location.href='../index.html'"
-          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-          style="text-decoration: none"
-        >
-          ← Volver
-        </button>
-
-        <div class="brand-controls-group">
-          <label for="brandSelect">📦 Marca:</label>
-          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-            <option value="white-label">White Label</option>
-            <option value="jelpit">Jelpit</option>
-            <option value="davivienda">Davivienda</option>
-            <option value="cien-cuadras">Cien Cuadras</option>
-            <option value="doctor-aki">Doctor Aki</option>
-            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
-          </select>
-
-          <label for="themeToggle">🌓 Tema:</label>
-          <div class="theme-toggle">
-            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              ☀️ Light
-            </button>
-            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-              🌙 Dark
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Header -->
       <header class="matrix-header">
         <h1>Toggle Component</h1>
@@ -598,69 +497,6 @@
     <!-- /matrix-container -->
 
     <!-- JavaScript para Brand/Theme Switching -->
-    <script>
-      // Referencias
-      const brandSelect = document.getElementById('brandSelect');
-      const lightBtn = document.getElementById('lightBtn');
-      const darkBtn = document.getElementById('darkBtn');
-      const html = document.documentElement;
-      const body = document.body;
-      const brandCss = document.getElementById('brand-css');
-
-      // Load saved values or defaults
-      let currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
-      let currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
-
-      // Function to update everything
-      function updateBrandAndTheme() {
-        // Update data attributes
-        html.setAttribute('data-brand', currentBrand);
-        html.setAttribute('data-theme', currentTheme);
-        body.setAttribute('data-brand', currentBrand);
-
-        // Save to localStorage
-        localStorage.setItem('sb-ui-brand', currentBrand);
-        localStorage.setItem('sb-ui-theme', currentTheme);
-
-        // Update CSS bundle (tokens + atoms + overrides)
-        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
-
-        // Sync select
-        brandSelect.value = currentBrand;
-
-        // Update button states
-        if (currentTheme === 'light') {
-          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-        } else {
-          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-        }
-
-        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
-        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
-        console.log(`💾 Sincronizado con localStorage`);
-      }
-
-      // Event Listeners
-      brandSelect.addEventListener('change', (e) => {
-        currentBrand = e.target.value;
-        updateBrandAndTheme();
-      });
-
-      lightBtn.addEventListener('click', () => {
-        currentTheme = 'light';
-        updateBrandAndTheme();
-      });
-
-      darkBtn.addEventListener('click', () => {
-        currentTheme = 'dark';
-        updateBrandAndTheme();
-      });
-
-      // Initialize on page load
-      updateBrandAndTheme();
-    </script>
   </body>
 </html>
 

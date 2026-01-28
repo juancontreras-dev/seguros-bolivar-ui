@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Description - Seguros Bolívar UI Design System</title>
+
+  <script>
+    (function () {
+      try {
+        var path = window.location.pathname || '';
+        if (/\/description\.html?$/.test(path)) {
+          var base = path.replace(/\/description\.html?$/, '/');
+          var newUrl = base + '?view=description.html';
+          window.location.replace(newUrl);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css">
+</head>
+<body>
+  <div class="content-inner">
+    <!-- HERO SECTION -->
+    <div class="hero-section" style="background: linear-gradient(135deg, var(--sb-ui-color-primary-base) 0%, var(--sb-ui-color-primary-D100) 100%); border-radius: 16px; padding: 3rem; margin-bottom: 2rem; color: white; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+      <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
+      <div style="position: relative; z-index: 1;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">
+          <i class="fas fa-cubes" style="margin-right: 0.75rem;"></i>
+          Seguros Bolívar UI
+        </h1>
+        <p style="font-size: 1.25rem; opacity: 0.95; margin-bottom: 1.5rem; max-width: 700px; line-height: 1.6;">
+          El Design System oficial de Seguros Bolívar para construir interfaces digitales consistentes, accesibles y escalables.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" data-path="guide/installation.html" style="padding: 0.75rem 1.5rem;">
+            <i class="fas fa-rocket"></i> Comenzar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ¿QUÉ ES? -->
+    <div style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-circle-info" style="color: var(--sb-ui-color-primary-base);"></i>
+        ¿Qué es Seguros Bolívar UI?
+      </h2>
+      <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100); margin-bottom: 1.5rem;">
+        <strong>Seguros Bolívar UI</strong> es una librería transversal de componentes frontend diseñada para 
+        <strong>estandarizar, acelerar y gobernar</strong> la construcción de interfaces digitales de la compañía. 
+        Es el <strong>lenguaje visual y técnico común</strong> de todos los productos digitales de Seguros Bolívar.
+      </p>
+      <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100); margin-bottom: 1.5rem;">
+        La librería ofrece <strong>dos tipos de componentes</strong>:
+      </p>
+      <ul style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100); margin-bottom: 1.5rem; padding-left: 1.5rem;">
+        <li><strong>Componentes HTML + CSS:</strong> Clases CSS reutilizables con nomenclatura BEM, ideales para cualquier proyecto sin dependencias de JavaScript.</li>
+        <li><strong>Web Components:</strong> Elementos personalizados con funcionalidad interactiva encapsulada (calendarios, datepickers, etc.) que funcionan en cualquier framework.</li>
+      </ul>
+      <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100); margin-bottom: 1.5rem;">
+        Además incluye tokens de diseño y un sistema de temas (theming) configurable. Es <strong>independiente de framework</strong> 
+        (no está atada a Angular, React u otro), lo que la convierte en la base ideal para construir frontends corporativos consistentes.
+      </p>
+      <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100);">
+        La librería es <strong>multimarca</strong>: soporta aliados actuales (<strong>Seguros Bolívar, Davivienda, 
+        Jelpit, Cien Cuadras y Doctor Aki</strong>) y futuros, permitiendo cambios globales desde un solo lugar 
+        mediante temas y tokens. Además, es <strong>escalable en el tiempo</strong> sin necesidad de actualización 
+        de versiones obligatorias.
+      </p>
+    </div>
+
+    <!-- BENEFICIOS CLAVE -->
+    <div style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-trophy" style="color: var(--sb-ui-color-primary-base);"></i>
+        Beneficios Clave para la Compañía
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <!-- Estandarización -->
+        <div style="background: linear-gradient(135deg, #038450 0%, #026d42 100%); border-radius: 12px; padding: 1.5rem; color: white;">
+          <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-check-double" style="font-size: 1.25rem; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: white;">Estandarización</h3>
+          <ul style="font-size: 0.9375rem; line-height: 1.6; margin: 0; padding-left: 1.25rem; opacity: 0.95;">
+            <li>Look & feel unificado en todos los productos</li>
+            <li>Reducción de inconsistencias visuales y técnicas</li>
+          </ul>
+        </div>
+        <!-- Velocidad -->
+        <div style="background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%); border-radius: 12px; padding: 1.5rem; color: white;">
+          <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-rocket" style="font-size: 1.25rem; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: white;">Velocidad</h3>
+          <ul style="font-size: 0.9375rem; line-height: 1.6; margin: 0; padding-left: 1.25rem; opacity: 0.95;">
+            <li>Menor time-to-market</li>
+            <li>Equipos construyen pantallas completas en menos tiempo</li>
+          </ul>
+        </div>
+        <!-- IA como acelerador -->
+        <div style="background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%); border-radius: 12px; padding: 1.5rem; color: white;">
+          <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-wand-magic-sparkles" style="font-size: 1.25rem; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: white;">IA como Acelerador</h3>
+          <p style="font-size: 0.9375rem; line-height: 1.6; margin: 0 0 0.5rem 0; opacity: 0.95;">
+            Ideal para trabajar con <strong>Cursor + IA</strong>, generando frontends:
+          </p>
+          <ul style="font-size: 0.9375rem; line-height: 1.6; margin: 0; padding-left: 1.25rem; opacity: 0.95;">
+            <li>Rápidos</li>
+            <li>Correctos</li>
+            <li>Alineados a estándares corporativos</li>
+          </ul>
+        </div>
+        <!-- Escalabilidad -->
+        <div style="background: linear-gradient(135deg, #F57C00 0%, #EF6C00 100%); border-radius: 12px; padding: 1.5rem; color: white;">
+          <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-chart-line" style="font-size: 1.25rem; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: white;">Escalabilidad</h3>
+          <ul style="font-size: 0.9375rem; line-height: 1.6; margin: 0; padding-left: 1.25rem; opacity: 0.95;">
+            <li>Fácil incorporación de nuevos aliados (multimarca)</li>
+            <li>Cambios globales desde un solo lugar (temas y tokens)</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; background: var(--sb-ui-color-primary-L400); border-left: 4px solid var(--sb-ui-color-primary-base); padding: 1rem; border-radius: 8px;">
+        <p style="margin: 0; color: var(--sb-ui-color-primary-D100); font-size: 1rem; font-weight: 500;">
+          <i class="fas fa-lightbulb" style="margin-right: 0.5rem; color: var(--sb-ui-color-primary-base);"></i>
+          👉 <strong>Menos retrabajo, más foco en negocio.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- CARACTERÍSTICAS TÉCNICAS -->
+    <div style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-cogs" style="color: var(--sb-ui-color-primary-base);"></i>
+        Características Técnicas
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <!-- Card 1 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-palette" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">+15 Componentes</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            Botones, inputs, selects, modales, calendarios, tablas y más. Todos probados y optimizados para producción.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-building" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">Multi-Marca</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            Soporte nativo para Seguros Bolívar, Davivienda, Jelpit, Cien Cuadras, Doctor Aki y White Label.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-swatchbook" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">Sistema de Theming</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            Temas claro y oscuro configurables. Cambios globales mediante tokens de diseño.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-plug" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">Framework Agnostic</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            No está atada a Angular, React u otro. Compatible con cualquier tecnología frontend.
+          </p>
+        </div>
+        <!-- Card 5 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-bolt" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">Ligero y Rápido</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            ~25KB CSS + ~16KB JS (gzipped). Sin dependencias externas pesadas.
+          </p>
+        </div>
+        <!-- Card 6 -->
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <div style="width: 48px; height: 48px; background: var(--sb-ui-color-primary-L400); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-universal-access" style="font-size: 1.25rem; color: var(--sb-ui-color-primary-base);"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-black);">Accesible (WCAG 2.1)</h3>
+          <p style="font-size: 0.9375rem; color: var(--sb-ui-color-grayscale-D100); line-height: 1.6;">
+            Componentes diseñados siguiendo las mejores prácticas de accesibilidad web.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMENZAR RÁPIDO -->
+    <div style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-code" style="color: var(--sb-ui-color-primary-base);"></i>
+        Comenzar es Fácil
+      </h2>
+      <div style="background: #1e1e1e; border-radius: 12px; padding: 1.5rem; overflow-x: auto;">
+        <pre style="margin: 0; color: #d4d4d4; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem; line-height: 1.6;"><span style="color: #6A9955;">/* Solo agrega esto en tu HTML */</span>
+
+<span style="color: #569cd6;">&lt;link</span> <span style="color: #9cdcfe;">rel</span>=<span style="color: #ce9178;">"stylesheet"</span> 
+      <span style="color: #9cdcfe;">href</span>=<span style="color: #ce9178;">"https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"</span><span style="color: #569cd6;">&gt;</span>
+
+<span style="color: #569cd6;">&lt;script</span> <span style="color: #9cdcfe;">type</span>=<span style="color: #ce9178;">"module"</span> 
+        <span style="color: #9cdcfe;">src</span>=<span style="color: #ce9178;">"https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"</span><span style="color: #569cd6;">&gt;&lt;/script&gt;</span>
+
+<span style="color: #6A9955;">/* ¡Y empieza a usar los componentes! */</span>
+<span style="color: #569cd6;">&lt;button</span> <span style="color: #9cdcfe;">class</span>=<span style="color: #ce9178;">"sb-ui-button sb-ui-button--primary sb-ui-button--fill"</span><span style="color: #569cd6;">&gt;</span>
+  ¡Hola Mundo!
+<span style="color: #569cd6;">&lt;/button&gt;</span></pre>
+      </div>
+    </div>
+
+    <!-- SECCIONES DE GUÍA -->
+    <div style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-book-open" style="color: var(--sb-ui-color-primary-base);"></i>
+        Explora la Documentación
+      </h2>
+      <div class="guide-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <button class="component-card" data-path="guide/installation.html" style="text-align: center;">
+          <div class="component-icon" style="margin: 0 auto 0.75rem;">
+            <i class="fas fa-download"></i>
+          </div>
+          <h3 class="component-title">Instalación</h3>
+          <p class="component-description">CDN, NPM o descarga directa</p>
+        </button>
+        <button class="component-card" data-path="guide/basic-usage.html" style="text-align: center;">
+          <div class="component-icon" style="margin: 0 auto 0.75rem;">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="component-title">Uso Básico</h3>
+          <p class="component-description">Estructura HTML y nomenclatura BEM</p>
+        </button>
+        <button class="component-card" data-path="guide/components.html" style="text-align: center;">
+          <div class="component-icon" style="margin: 0 auto 0.75rem;">
+            <i class="fas fa-puzzle-piece"></i>
+          </div>
+          <h3 class="component-title">Componentes</h3>
+          <p class="component-description">Catálogo completo de UI</p>
+        </button>
+        <button class="component-card" data-path="guide/brands.html" style="text-align: center;">
+          <div class="component-icon" style="margin: 0 auto 0.75rem;">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3 class="component-title">Marcas y Temas</h3>
+          <p class="component-description">Multi-marca y theming</p>
+        </button>
+        <button class="component-card" data-path="guide/customization.html" style="text-align: center;">
+          <div class="component-icon" style="margin: 0 auto 0.75rem;">
+            <i class="fas fa-wand-magic-sparkles"></i>
+          </div>
+          <h3 class="component-title">Personalización</h3>
+          <p class="component-description">Variables CSS y mejores prácticas</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- BROWSER COMPATIBILITY -->
+    <div style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-globe" style="color: var(--sb-ui-color-primary-base);"></i>
+        Browser Compatibility
+      </h2>
+      <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--sb-ui-color-grayscale-D100); margin-bottom: 1.5rem;">
+        Seguros Bolívar UI está diseñado para funcionar en todos los navegadores modernos. Utilizamos CSS Variables, Flexbox, Grid y Web Components estándar.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+        <!-- Chrome -->
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <i class="fab fa-chrome" style="font-size: 2.5rem; color: #4285F4; margin-bottom: 0.75rem; display: block;"></i>
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--sb-ui-color-grayscale-black);">Chrome</h4>
+          <span style="font-size: 0.875rem; color: var(--sb-ui-color-primary-base); font-weight: 500;">≥ 88</span>
+        </div>
+        <!-- Firefox -->
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <i class="fab fa-firefox-browser" style="font-size: 2.5rem; color: #FF7139; margin-bottom: 0.75rem; display: block;"></i>
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--sb-ui-color-grayscale-black);">Firefox</h4>
+          <span style="font-size: 0.875rem; color: var(--sb-ui-color-primary-base); font-weight: 500;">≥ 78</span>
+        </div>
+        <!-- Safari -->
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <i class="fab fa-safari" style="font-size: 2.5rem; color: #006CFF; margin-bottom: 0.75rem; display: block;"></i>
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--sb-ui-color-grayscale-black);">Safari</h4>
+          <span style="font-size: 0.875rem; color: var(--sb-ui-color-primary-base); font-weight: 500;">≥ 14</span>
+        </div>
+        <!-- Edge -->
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <i class="fab fa-edge" style="font-size: 2.5rem; color: #0078D7; margin-bottom: 0.75rem; display: block;"></i>
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--sb-ui-color-grayscale-black);">Edge</h4>
+          <span style="font-size: 0.875rem; color: var(--sb-ui-color-primary-base); font-weight: 500;">≥ 88</span>
+        </div>
+        <!-- Opera -->
+        <div style="background: white; border-radius: 12px; padding: 1.25rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid var(--sb-ui-color-grayscale-L300);">
+          <i class="fab fa-opera" style="font-size: 2.5rem; color: #FF1B2D; margin-bottom: 0.75rem; display: block;"></i>
+          <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--sb-ui-color-grayscale-black);">Opera</h4>
+          <span style="font-size: 0.875rem; color: var(--sb-ui-color-primary-base); font-weight: 500;">≥ 74</span>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; border-radius: 8px;">
+        <p style="margin: 0; color: #856404; font-size: 0.9375rem;">
+          <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem;"></i>
+          <strong>Internet Explorer:</strong> No soportado. IE no es compatible con CSS Variables ni Web Components.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

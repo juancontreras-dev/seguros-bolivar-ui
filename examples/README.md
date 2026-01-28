@@ -1,6 +1,22 @@
-# 🎨 Seguros Bolivar UI Design System - Examples
+# 📊 Seguros Bolívar UI - Ejemplos & Demostraciones
 
-Ejemplos interactivos del sistema de diseño.
+## 🎯 ACTUALIZACIÓN: 28 de enero 2026
+
+### ✨ **index.html - RENOVADO**
+
+La página principal (`index.html`) ha sido completamente modernizada con:
+
+- ✅ **Header profesional**: Logo, notificaciones (badge), perfil usuario
+- ✅ **Sidebar inteligente**: 27 componentes en 4 categorías bien organizadas
+- ✅ **Navegación mejorada**: Enlaces directos a cada demo
+- ✅ **Layout responsive**: Mobile, tablet, desktop con hamburger menu
+- ✅ **Auto-detección**: Marca activo según URL actual
+- ✅ **Documentación integrada**: Descripciones y badges informativos
+- ✅ **Footer completo**: Enlaces a recursos y componentes
+
+---
+
+## 📁 Estructura Actualizada
 
 ---
 

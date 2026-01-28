@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Inicio - Seguros Bolívar UI</title>
+
+  <script>
+    // Redirige esta demo standalone al layout maestro
+    (function () {
+      try {
+        var path = window.location.pathname || '';
+        if (/\/guide\/?$/.test(path)) {
+          var base = path.replace(/\/guide\/?$/, '/');
+          var newUrl = base + '?view=guide/';
+          window.location.replace(newUrl);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css">
+  
+  <style>
+    .guide-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .guide-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, var(--sb-ui-color-primary-base, #038450) 0%, var(--sb-ui-color-primary-D700, #026d42) 100%);
+      color: white;
+      border-radius: 16px;
+    }
+    
+    .guide-header h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 0;
+    }
+    
+    .guide-header p {
+      font-size: 1.125rem;
+      opacity: 0.95;
+      margin: 0;
+    }
+    
+    .guide-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .guide-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    
+    .guide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      border-color: var(--sb-ui-color-primary-base, #038450);
+    }
+    
+    .guide-card-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--sb-ui-color-grayscale-L300, #f0f7f4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--sb-ui-color-primary-base, #038450);
+      margin-bottom: 1rem;
+    }
+    
+    .guide-card h3 {
+      font-size: 1.125rem;
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .guide-card p {
+      font-size: 0.875rem;
+      color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+      margin: 0;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <div class="guide-header">
+      <h1><i class="fa-solid fa-rocket"></i> Guía de Inicio</h1>
+      <p>Todo lo que necesitas para empezar a usar Seguros Bolívar UI Design System</p>
+    </div>
+    
+    <div class="guide-sections">
+      <a href="instalacion.html" class="guide-card" data-path="guide/instalacion.html">
+        <div class="guide-card-icon">
+          <i class="fa-solid fa-download"></i>
+        </div>
+        <h3>Instalación</h3>
+        <p>Aprende a instalar el Design System via CDN, NPM o descarga directa.</p>
+      </a>
+      
+      <a href="uso-basico.html" class="guide-card" data-path="guide/uso-basico.html">
+        <div class="guide-card-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <h3>Uso Básico</h3>
+        <p>Estructura HTML mínima y nomenclatura BEM del sistema.</p>
+      </a>
+      
+      <a href="componentes.html" class="guide-card" data-path="guide/componentes.html">
+        <div class="guide-card-icon">
+          <i class="fa-solid fa-puzzle-piece"></i>
+        </div>
+        <h3>Componentes</h3>
+        <p>Catálogo completo de atoms y molecules disponibles.</p>
+      </a>
+      
+      <a href="marcas.html" class="guide-card" data-path="guide/marcas.html">
+        <div class="guide-card-icon">
+          <i class="fa-solid fa-palette"></i>
+        </div>
+        <h3>Marcas</h3>
+        <p>Configuración de las 6 marcas disponibles y sus temas.</p>
+      </a>
+      
+      <a href="personalizacion.html" class="guide-card" data-path="guide/personalizacion.html">
+        <div class="guide-card-icon">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <h3>Personalización</h3>
+        <p>Variables CSS y cómo crear tu propia marca personalizada.</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

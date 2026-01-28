@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modal Component - Seguros Bolívar UI</title>
 
+    <script>
+      (function () {
+        try {
+          var path = window.location.pathname || '';
+          if (/\/modal\/?$/.test(path)) {
+            var base = path.replace(/\/modal\/?$/, '/');
+            var newUrl = base + '?view=modal/';
+            window.location.replace(newUrl);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

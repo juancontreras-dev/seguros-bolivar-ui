@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes - Guía de Inicio - Seguros Bolívar UI</title>
+
+  <script>
+    (function () {
+      try {
+        var path = window.location.pathname || '';
+        if (/\/guide\/components\.html?$/.test(path)) {
+          var base = path.replace(/\/guide\/components\.html?$/, '/');
+          var newUrl = base + '?view=guide/components.html';
+          window.location.replace(newUrl);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css">
+  
+  <style>
+    .content-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .content-container h2 {
+      color: var(--sb-ui-color-primary-base, #038450);
+      font-size: 2rem;
+      margin: 0 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .content-container > p {
+      color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    
+    .section-title {
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+    }
+    
+    .section-title i {
+      color: var(--sb-ui-color-primary-base, #038450);
+    }
+    
+    .section-description {
+      color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+      margin-bottom: 1.5rem;
+    }
+    
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    
+    @media (max-width: 1200px) {
+      .component-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .component-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .component-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .component-card {
+      background: white;
+      border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      aspect-ratio: 1;
+    }
+    
+    .component-card:hover {
+      border-color: var(--sb-ui-color-primary-base, #038450);
+      box-shadow: 0 4px 12px var(--sb-ui-color-primary-L400, rgba(3, 132, 80, 0.15));
+      transform: translateY(-2px);
+    }
+    
+    .component-card .icon {
+      width: 56px;
+      height: 56px;
+      background: var(--sb-ui-color-feedback-info-L400, #e7f5ef);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .component-card .icon i {
+      font-size: 1.5rem;
+      color: var(--sb-ui-color-primary-base, #038450);
+    }
+    
+    .component-card .info h4 {
+      margin: 0 0 0.25rem 0;
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    
+    .component-card .info p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--sb-ui-color-grayscale-D200, #757575);
+      line-height: 1.4;
+    }
+    
+    .info-box {
+      background: var(--sb-ui-color-feedback-info-L400, #e7f5ef);
+      border-left: 4px solid var(--sb-ui-color-primary-base, #038450);
+      padding: 1rem 1.25rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+    
+    .info-box strong {
+      color: var(--sb-ui-color-primary-base, #038450);
+    }
+    
+    .info-box p {
+      margin: 0.5rem 0 0 0;
+      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+    <h2><i class="fa-solid fa-puzzle-piece"></i> Componentes</h2>
+    <p>El Design System incluye más de 15 componentes divididos en dos categorías principales según su implementación técnica.</p>
+
+    <!-- HTML + CSS Section -->
+    <h3 class="section-title"><i class="fa-solid fa-code"></i> Componentes HTML + CSS</h3>
+    <p class="section-description">Componentes básicos que solo requieren clases CSS. Sin JavaScript adicional.</p>
+
+    <div class="component-grid">
+      <a class="component-card" data-path="button/primary.html">
+        <div class="icon"><i class="fas fa-square"></i></div>
+        <div class="info">
+          <h4>Botones - Primary</h4>
+          <p>Botones principales de acción</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="button/secondary.html">
+        <div class="icon"><i class="fas fa-circle-notch"></i></div>
+        <div class="info">
+          <h4>Botones - Secondary</h4>
+          <p>Botones de acción secundaria</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="button/error.html">
+        <div class="icon"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="info">
+          <h4>Botones - Error</h4>
+          <p>Botones para acciones destructivas</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="input/">
+        <div class="icon"><i class="fas fa-keyboard"></i></div>
+        <div class="info">
+          <h4>Inputs</h4>
+          <p>Campos de texto con validación</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="textarea/">
+        <div class="icon"><i class="fas fa-file-lines"></i></div>
+        <div class="info">
+          <h4>Textarea</h4>
+          <p>Áreas de texto multilínea</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="select/">
+        <div class="icon"><i class="fas fa-list"></i></div>
+        <div class="info">
+          <h4>Selects</h4>
+          <p>Listas desplegables estilizadas</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="checkbox/">
+        <div class="icon"><i class="fas fa-check-square"></i></div>
+        <div class="info">
+          <h4>Checkboxes</h4>
+          <p>Casillas de verificación accesibles</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="radio/">
+        <div class="icon"><i class="fas fa-circle"></i></div>
+        <div class="info">
+          <h4>Radio Buttons</h4>
+          <p>Botones de selección única</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="toggle/">
+        <div class="icon"><i class="fas fa-toggle-on"></i></div>
+        <div class="info">
+          <h4>Toggle</h4>
+          <p>Interruptores on/off</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="table/">
+        <div class="icon"><i class="fas fa-table"></i></div>
+        <div class="info">
+          <h4>Tablas</h4>
+          <p>Tablas con paginación y estilos</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="alert/">
+        <div class="icon"><i class="fas fa-triangle-exclamation"></i></div>
+        <div class="info">
+          <h4>Alerts</h4>
+          <p>Notificaciones y mensajes</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="file-upload/">
+        <div class="icon"><i class="fas fa-cloud-arrow-up"></i></div>
+        <div class="info">
+          <h4>File Upload</h4>
+          <p>Carga de archivos con drag & drop</p>
+        </div>
+        
+      </a>
+    </div>
+
+    <!-- Web Components Section -->
+    <h3 class="section-title"><i class="fa-solid fa-cube"></i> Web Components</h3>
+    <p class="section-description">Componentes interactivos avanzados implementados con Web Components (Lit Element).</p>
+
+    <div class="component-grid">
+      <a class="component-card" data-path="modal/">
+        <div class="icon"><i class="fas fa-window-maximize"></i></div>
+        <div class="info">
+          <h4>Modal</h4>
+          <p>Ventanas modales con overlay</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="dropdown/">
+        <div class="icon"><i class="fas fa-bars"></i></div>
+        <div class="info">
+          <h4>Dropdown</h4>
+          <p>Menús desplegables interactivos</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="calendar/">
+        <div class="icon"><i class="fas fa-calendar"></i></div>
+        <div class="info">
+          <h4>Calendar</h4>
+          <p>Selector de fechas con calendario</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="tabs/">
+        <div class="icon"><i class="fas fa-folder-open"></i></div>
+        <div class="info">
+          <h4>Tabs</h4>
+          <p>Navegación por pestañas</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="stepper/">
+        <div class="icon"><i class="fas fa-arrow-down-1-9"></i></div>
+        <div class="info">
+          <h4>Stepper</h4>
+          <p>Indicador de pasos de proceso</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="breadcrumb/">
+        <div class="icon"><i class="fas fa-arrow-right"></i></div>
+        <div class="info">
+          <h4>Breadcrumb</h4>
+          <p>Navegación jerárquica</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="spinner/">
+        <div class="icon"><i class="fas fa-spinner"></i></div>
+        <div class="info">
+          <h4>Spinner</h4>
+          <p>Indicadores de carga</p>
+        </div>
+        
+      </a>
+
+      <a class="component-card" data-path="accordion/">
+        <div class="icon"><i class="fas fa-chevron-down"></i></div>
+        <div class="info">
+          <h4>Accordion</h4>
+          <p>Paneles desplegables</p>
+        </div>
+        
+      </a>
+    </div>
+
+    <div class="info-box">
+      <strong><i class="fa-solid fa-lightbulb"></i> Tip</strong>
+      <p>Haz clic en cualquier componente para ver ejemplos detallados con código y variantes de uso.</p>
+    </div>
+  </div>
+</body>
+</html>

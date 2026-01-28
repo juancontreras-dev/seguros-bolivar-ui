@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar Component - Seguros Bolívar UI Design System</title>
 
+    <script>
+      (function () {
+        try {
+          var path = window.location.pathname || '';
+          if (/\/calendar\/?$/.test(path)) {
+            var base = path.replace(/\/calendar\/?$/, '/');
+            var newUrl = base + '?view=calendar/';
+            window.location.replace(newUrl);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- ============================================
          TOKENS + ATOMS + BRAND OVERRIDES
          ============================================ -->

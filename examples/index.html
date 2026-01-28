@@ -3,19 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seguros Bolívar UI Design System - Demo</title>
+    <title>Componentes - Seguros Bolívar UI Design System</title>
 
-    <!-- 🚀 ARCHIVOS OPTIMIZADOS Y MINIFICADOS -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- 1. BUNDLE COMPLETO - Marca y tema (tokens + atoms + overrides) -->
-    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <!-- Design System CSS -->
     <link rel="preload" href="dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
     <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
 
-    <!-- 2. WEB COMPONENTS - Lógica JavaScript (30KB → 8.6KB gzip) -->
+    <!-- Web Components -->
     <script type="module" src="dist/sb-ui-components.min.js"></script>
-
-    <!-- 💡 Tamaño total: ~10KB gzip - Todo incluido en un solo archivo CSS -->
 
     <style>
       * {
@@ -24,312 +22,795 @@
         box-sizing: border-box;
       }
 
+      html, body {
+        height: 100%;
+      }
+
       body {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         background: var(--sb-ui-color-grayscale-L400);
         color: var(--sb-ui-color-grayscale-black);
-        min-height: 100vh;
-        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* Container */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      /* Header */
-      .header {
+      /* ========================================
+         HEADER (Top Navigation)
+         ======================================== */
+      .app-header {
         background: var(--sb-ui-color-grayscale-white);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        margin-bottom: 0;
         border-bottom: 1px solid var(--sb-ui-color-grayscale-L300);
-        padding: 1rem 0;
+        padding: 0.5rem 1.25rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
       }
 
-      .header-content {
+      .app-header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 1.5rem;
-        flex-wrap: wrap;
+        max-width: 100%;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+      }
+
+      .hamburger-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--sb-ui-color-grayscale-base);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+
+      .hamburger-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
       }
 
       .header-logo {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.4rem;
+        flex: 1;
+      }
+
+      .header-logo img {
+        height: 44px;
+        width: 260px;
+        object-fit: contain;
+      }
+
+      .header-logo-img {
+        height: 44px;
+        width: 260px;
+        object-fit: contain;
       }
 
       .header-logo h1 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         font-weight: 700;
         color: var(--sb-ui-color-primary-base);
         margin: 0;
         white-space: nowrap;
+        letter-spacing: -0.01em;
       }
 
-      .header-logo .logo-icon {
-        font-size: 1.75rem;
-      }
-
-      .header-nav {
+      .header-right {
         display: flex;
-        gap: 0.75rem;
         align-items: center;
+        gap: 1.5rem;
+        flex: 0 0 auto;
       }
 
-      .header-nav .sb-ui-button {
-        padding-inline: 1rem !important;
-        padding-block: 0.5rem !important;
+      /* Brand & Theme Controls in Header */
+      .header-brand-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.25rem 0.75rem;
+        background: var(--sb-ui-color-grayscale-L400);
+        border-radius: 8px;
+        border: 1px solid var(--sb-ui-color-grayscale-L300);
       }
 
-      /* Hero Section */
-      .hero {
-        background: linear-gradient(
-          135deg,
-          var(--sb-ui-color-primary-base) 0%,
-          var(--sb-ui-color-primary-D100) 100%
-        );
-        padding: 4rem 0;
-        margin-bottom: 3rem;
-        text-align: center;
+      .header-brand-controls .control-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header-brand-controls label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+
+      .header-brand-controls select {
+        appearance: none;
+        background: var(--sb-ui-color-grayscale-white);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        border-radius: 6px;
+        padding: 0.375rem 2rem 0.375rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--sb-ui-color-grayscale-D300);
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .header-brand-controls select:hover {
+        border-color: var(--sb-ui-color-primary-L100);
+      }
+
+      .header-brand-controls select:focus {
+        outline: none;
+        border-color: var(--sb-ui-color-primary-base);
+        box-shadow: 0 0 0 2px var(--sb-ui-color-primary-L300);
+      }
+
+      .header-theme-toggle {
+        display: flex;
+        background: var(--sb-ui-color-grayscale-L300);
+        border-radius: 6px;
+        padding: 0.125rem;
+        gap: 0.125rem;
+      }
+
+      .header-theme-toggle button {
+        background: transparent;
+        border: none;
+        padding: 0.375rem 0.625rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s, color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .header-theme-toggle button.active {
+        background: var(--sb-ui-color-primary-base);
+        color: white;
+      }
+
+      .header-theme-toggle button:not(.active) {
+        color: var(--sb-ui-color-grayscale-D200);
+      }
+
+      .header-theme-toggle button:not(.active):hover {
+        background: var(--sb-ui-color-grayscale-L200);
+      }
+
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .header-icon-btn {
+        background: none;
+        border: none;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: var(--sb-ui-color-grayscale-base);
         position: relative;
-        overflow: hidden;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background-color 0.2s;
       }
 
-      .hero::before {
-        content: '';
+      .header-icon-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+      }
+
+      .notification-badge {
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
-        bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background: var(--sb-ui-color-warning-base);
+        color: white;
+        font-size: 0.625rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 10px;
+        min-width: 18px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .header-user-container {
+        position: relative;
+      }
+
+      .header-user {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .header-user:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--sb-ui-color-primary-base);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+      }
+
+      .user-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-black);
+      }
+
+      .user-company {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      .header-dropdown-icon {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100);
+        transition: transform 0.2s;
+      }
+
+      .header-user-container.open .header-dropdown-icon {
+        transform: rotate(180deg);
+      }
+
+      .user-dropdown {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        background: var(--sb-ui-color-grayscale-white);
+        border: 1px solid var(--sb-ui-color-grayscale-L300);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        min-width: 180px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+        z-index: 1001;
+      }
+
+      .header-user-container.open .user-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .user-dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: var(--sb-ui-color-grayscale-D300);
+        transition: background-color 0.2s;
+        text-align: left;
+      }
+
+      .user-dropdown-item:hover {
+        background-color: var(--sb-ui-color-grayscale-L400);
+      }
+
+      .user-dropdown-item:first-child {
+        border-radius: 8px 8px 0 0;
+      }
+
+      .user-dropdown-item:last-child {
+        border-radius: 0 0 8px 8px;
+      }
+
+      .user-dropdown-item.logout {
+        color: var(--sb-ui-color-error-base);
+        border-top: 1px solid var(--sb-ui-color-grayscale-L300);
+      }
+
+      .user-dropdown-item.logout:hover {
+        background-color: var(--sb-ui-color-error-L400);
+      }
+
+      /* ========================================
+         MAIN LAYOUT (Sidebar + Content)
+         ======================================== */
+      .main-layout {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        margin-top: 64px; /* compensa la altura fija del header para que no lo tape */
+      }
+
+      /* ========================================
+         SIDEBAR
+         ======================================== */
+      .sidebar {
+        width: 280px;
+        background: var(--sb-ui-color-grayscale-white);
+        border-right: 1px solid var(--sb-ui-color-grayscale-L300);
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition: transform 0.3s ease, width 0.3s ease;
+        z-index: 100;
+      }
+
+      .sidebar-content {
+        padding: 1.5rem 0;
+      }
+
+      .sidebar-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar-section-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--sb-ui-color-grayscale-D100);
+        padding: 0.75rem 1.5rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.75rem;
+      }
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .sidebar-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-base);
+        background: none;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        width: 100%;
+        text-align: left;
+        position: relative;
+      }
+
+      .sidebar-nav-item:hover {
+        background-color: var(--sb-ui-color-grayscale-L400);
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .sidebar-nav-item.active {
+        background-color: var(--sb-ui-color-primary-L400);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-primary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-nav-item i {
+        width: 20px;
+        text-align: center;
+        font-size: 1.125rem;
+      }
+
+      .sidebar-nav-item span {
+        flex: 1;
+      }
+
+      .sidebar-nav-item .badge {
+        background: var(--sb-ui-color-warning-base);
+        color: white;
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        min-width: 20px;
+        text-align: center;
+      }
+
+      /* Desktop: sidebar fijo al hacer scroll */
+      @media (min-width: 769px) {
+        .sidebar {
+          position: sticky;
+          top: 60px; /* altura aproximada del header */
+          height: calc(100vh - 60px);
+        }
+      }
+
+      /* Collapsed sidebar (desktop) */
+      .sidebar-collapsed .sidebar {
+        width: 110px; /* un poco más ancho para dejar ver títulos con padding */
+        overflow-y: auto; /* seguir permitiendo scroll vertical */
+        overflow-x: visible; /* permitir que los tooltips se muestren fuera del sidebar horizontalmente */
+      }
+
+      /* En modo colapsado, permitir que los tooltips se vean fuera del layout principal */
+      .sidebar-collapsed .main-layout {
+        overflow: visible;
+      }
+
+      .sidebar-collapsed .sidebar-section-title {
+        text-align: center;
+        padding-inline: 0.5rem;
+        font-size: 0.55rem; /* un poco más pequeño solo en colapsado */
+        line-height: 1.2;
+        white-space: normal; /* permitir que la palabra haga salto de línea */
+        overflow: visible;
+        text-overflow: clip;
+      }
+
+      .sidebar-collapsed .sidebar-nav-item,
+      .sidebar-collapsed .sidebar-submenu-btn,
+      .sidebar-collapsed .sidebar-submenu-item {
+        padding-inline: 0.75rem;
+        justify-content: center;
+      }
+
+      .sidebar-collapsed .sidebar-nav-item span,
+      .sidebar-collapsed .sidebar-submenu-btn span,
+      .sidebar-collapsed .sidebar-submenu-item span,
+      .sidebar-collapsed .sidebar-nav-item .badge {
+        display: none;
+      }
+
+      /* Ocultar flecha grande del submenú cuando está colapsado */
+      .sidebar-collapsed .sidebar-submenu-toggle {
+        display: none;
+      }
+
+      /* Centrar icono en botones con submenú cuando está colapsado */
+      .sidebar-collapsed .sidebar-submenu-btn {
+        justify-content: center;
+        position: relative;
+      }
+
+      .sidebar-collapsed .sidebar-submenu-btn i:first-child {
+        margin: 0;
+      }
+
+      /* Mini flecha indicadora de submenú en modo colapsado */
+      .sidebar-collapsed .sidebar-submenu-btn::after {
+        content: '';
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid currentColor;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+      }
+
+      .sidebar-collapsed .sidebar-submenu-btn:hover::after {
+        opacity: 0.8;
+      }
+
+      .sidebar-collapsed .sidebar-submenu-btn.active::after {
         opacity: 1;
       }
+      
+      /* In collapsed mode, allow submenus to seguir funcionando cuando están .open */
+      .sidebar-collapsed .sidebar-submenu {
+        margin-left: 0;
+        border-left: none;
+      }
 
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 900px;
+      /* ========================================
+         SIDEBAR TOOLTIP BUBBLE (COLLAPSED)
+         ======================================== */
+      .sidebar-tooltip {
+        position: fixed;
+        background: var(--sb-ui-color-grayscale-D200, #4a4a4a);
+        color: var(--sb-ui-color-grayscale-white, #ffffff);
+        padding: 0.35rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-50%) translateX(4px);
+        transition: opacity 0.08s ease-out, transform 0.08s ease-out;
+        z-index: 2000;
+      }
+
+      .sidebar-tooltip::before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: transparent var(--sb-ui-color-grayscale-D200, #4a4a4a) transparent transparent;
+      }
+
+      .sidebar-tooltip.visible {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+
+      /* ========================================
+         CONTENT AREA
+         ======================================== */
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: var(--sb-ui-color-grayscale-L400);
+        padding: 1.5rem;
+      }
+
+      .content-inner {
+        padding: 2rem 2rem;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 0 1.5rem;
+        width: 100%;
+        background: var(--sb-ui-color-grayscale-white);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        min-height: calc(100vh - 64px - 3rem);
       }
 
-      .hero h1 {
-        color: var(--sb-ui-color-grayscale-white);
-        margin: 0 0 0.75rem 0;
-        font-size: clamp(1.75rem, 4vw, 2.75rem);
+      /* ========================================
+         DYNAMIC CONTENT ISOLATION
+         ======================================== */
+      .dynamic-content {
+        /* Reset inherited styles that might be affected by dynamic CSS */
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      /* Ensure dynamic content doesn't affect the page width */
+      .dynamic-content * {
+        box-sizing: border-box;
+      }
+
+      .page-header {
+        margin-bottom: 2rem;
+      }
+
+      .page-title {
+        font-size: 1.875rem;
         font-weight: 800;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        letter-spacing: -0.02em;
+        color: var(--sb-ui-color-primary-base);
+        margin: 0 0 0.5rem 0;
+        letter-spacing: -0.01em;
       }
 
-      .hero p {
-        color: var(--sb-ui-color-grayscale-white);
-        font-size: clamp(0.9rem, 2vw, 1.125rem);
+      .page-subtitle {
+        font-size: 1rem;
+        color: var(--sb-ui-color-grayscale-D100);
         margin: 0;
-        opacity: 0.95;
-        font-weight: 400;
+        line-height: 1.5;
       }
 
-      /* Featured Section */
-      .featured-section {
+      /* Components Grid */
+      .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
         margin-bottom: 3rem;
       }
 
-      .featured-card {
-        background: linear-gradient(
-          135deg,
-          var(--sb-ui-color-primary-base) 0%,
-          var(--sb-ui-color-primary-D100) 100%
-        );
-        border-radius: 16px;
-        padding: 2.5rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
+      .component-card {
+        background: var(--sb-ui-color-grayscale-white);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: all 0.2s ease;
+        border: 1px solid var(--sb-ui-color-grayscale-L300);
+        display: flex;
+        flex-direction: column;
         text-decoration: none;
-        display: block;
+        color: inherit;
+        cursor: pointer;
       }
 
-      .featured-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
-      }
-
-      .featured-card:hover {
+      .component-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-color: var(--sb-ui-color-primary-base);
       }
 
-      .featured-content {
+      /* ========================================
+         SIDEBAR SUBMENUS
+         ======================================== */
+      .sidebar-submenu-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-base);
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        width: 100%;
+        text-align: left;
+      }
+
+      .sidebar-submenu-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L400);
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .sidebar-submenu-btn.active {
+        background-color: var(--sb-ui-color-primary-L400);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-primary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-submenu-btn i:first-child {
+        width: 20px;
+        text-align: center;
+        font-size: 1.125rem;
+      }
+
+      .sidebar-submenu-btn span {
+        flex: 1;
+      }
+
+      .sidebar-submenu-toggle {
+        font-size: 0.75rem;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+      }
+
+      .sidebar-submenu-toggle.open {
+        transform: rotate(90deg);
+      }
+
+      .sidebar-submenu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: var(--sb-ui-color-grayscale-L400);
+        border-left: 2px solid var(--sb-ui-color-primary-L300);
+        margin-left: 1.5rem;
+      }
+
+      .sidebar-submenu.open {
+        display: flex;
+      }
+
+      .sidebar-submenu-item {
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-D100);
+        text-decoration: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+        font-weight: 400;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
         position: relative;
-        z-index: 1;
       }
 
-      .featured-header {
+      .sidebar-submenu-item:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-secondary-base);
+      }
+
+      .sidebar-submenu-item.active {
+        background-color: var(--sb-ui-color-grayscale-L200);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-secondary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-submenu-item i {
+        width: 16px;
+        text-align: center;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+      }
+
+      .component-card-header {
         display: flex;
         align-items: center;
         gap: 1rem;
         margin-bottom: 1rem;
       }
 
-      .featured-icon {
-        font-size: 3rem;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-      }
-
-      .featured-title {
-        margin: 0;
-        color: var(--sb-ui-color-grayscale-white);
-        font-size: clamp(1.5rem, 3vw, 2rem);
-        font-weight: 800;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        letter-spacing: -0.01em;
-      }
-
-      .featured-description {
-        color: var(--sb-ui-color-grayscale-white);
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 1.25rem;
-        opacity: 0.95;
-      }
-
-      .featured-badges {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        margin-bottom: 1.25rem;
-      }
-
-      .featured-badge {
-        padding: 0.5rem 1rem;
-        background: var(--sb-ui-color-grayscale-white);
+      .component-icon {
+        font-size: 1.75rem;
         color: var(--sb-ui-color-primary-base);
-        border-radius: 20px;
-        font-size: 0.8125rem;
-        font-weight: 700;
-        display: inline-flex;
+        width: 50px;
+        height: 50px;
+        display: flex;
         align-items: center;
-        gap: 0.375rem;
+        justify-content: center;
+        background: var(--sb-ui-color-primary-L400);
+        border-radius: 8px;
       }
 
-      .featured-badge.new {
-        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-        color: #000;
-      }
-
-      .featured-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.625rem;
-        color: var(--sb-ui-color-grayscale-white);
+      .component-title {
         font-size: 1.125rem;
         font-weight: 700;
-        text-decoration: none;
-      }
-
-      .featured-arrow {
-        font-size: 1.5rem;
-        transition: transform 0.3s ease;
-      }
-
-      .featured-card:hover .featured-arrow {
-        transform: translateX(6px);
-      }
-
-      /* Section Headers */
-      .section-header {
-        margin-bottom: 2rem;
-      }
-
-      .section-title {
-        font-size: clamp(1.5rem, 3vw, 2rem);
         color: var(--sb-ui-color-primary-base);
-        margin: 0 0 0.5rem 0;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-      }
-
-      .section-subtitle {
-        font-size: 1rem;
-        color: var(--sb-ui-color-grayscale-base);
         margin: 0;
-        line-height: 1.5;
-      }
-
-      /* Demos Navigation */
-      .demos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-      }
-
-      .demo-card {
-        background: var(--sb-ui-color-grayscale-white);
-        border-radius: 12px;
-        padding: 1.75rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        transition: all 0.2s ease;
-        border: 1px solid var(--sb-ui-color-grayscale-L300);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .demo-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        border-color: var(--sb-ui-color-primary-L300);
-      }
-
-      .demo-card h3 {
-        margin: 0 0 0.75rem 0;
-        color: var(--sb-ui-color-primary-base);
-        font-size: 1.25rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.625rem;
         letter-spacing: -0.01em;
       }
 
-      .demo-card .icon {
-        font-size: 1.5rem;
-      }
-
-      .demo-card p {
+      .component-description {
         color: var(--sb-ui-color-grayscale-D100);
         margin: 0 0 1rem 0;
         line-height: 1.5;
-        flex-grow: 1;
         font-size: 0.9375rem;
+        flex: 1;
       }
 
-      .demo-card .meta {
+      .component-meta {
         display: flex;
-        gap: 0.375rem;
-        margin-bottom: 1.25rem;
+        gap: 0.5rem;
         flex-wrap: wrap;
       }
 
-      .demo-card .badge {
-        display: inline-block;
-        padding: 0.3125rem 0.75rem;
+      .component-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.75rem;
         background: var(--sb-ui-color-primary-L400);
         color: var(--sb-ui-color-primary-base);
         border-radius: 12px;
@@ -339,815 +820,830 @@
         letter-spacing: 0.3px;
       }
 
-      /* Footer */
-      .footer {
-        background: var(--sb-ui-color-grayscale-D200);
-        color: var(--sb-ui-color-grayscale-white);
-        padding: 2.5rem 0 1.5rem;
-        margin-top: 4rem;
+      .component-badge.web-component {
+        background: #e3f2fd;
+        color: #1976d2;
       }
 
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-bottom: 1.5rem;
+      .component-badge.css {
+        background: #f3e5f5;
+        color: #7b1fa2;
       }
 
-      .footer-section h3 {
-        color: var(--sb-ui-color-secondary-base);
-        margin-bottom: 0.75rem;
-        font-size: 1rem;
-        font-weight: 700;
+      /* ========================================
+         RESPONSIVE
+         ======================================== */
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: 240px;
+        }
       }
 
-      .footer-section p,
-      .footer-section a {
-        color: var(--sb-ui-color-grayscale-L300);
-        text-decoration: none;
-        line-height: 1.7;
-        display: block;
-        font-size: 0.875rem;
-        margin-bottom: 0.375rem;
-      }
-
-      .footer-section a:hover {
-        color: var(--sb-ui-color-secondary-L300);
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 1.5rem;
-        text-align: center;
-        color: var(--sb-ui-color-grayscale-L200);
-        font-size: 0.8125rem;
-      }
-
-      /* Responsive */
       @media (max-width: 768px) {
+        .hamburger-btn {
+          display: block;
+        }
+
         .header-content {
-          justify-content: center;
+          flex-wrap: nowrap;
         }
 
         .header-logo h1 {
-          font-size: 1.125rem;
+          font-size: 1rem;
         }
 
-        .hero {
-          padding: 3rem 0;
+        .header-brand-controls {
+          display: none;
         }
 
-        .featured-card {
-          padding: 2rem;
+        .header-icons {
+          display: none;
         }
 
-        .featured-header {
+        .sidebar {
+          position: fixed;
+          left: 0;
+          top: 60px;
+          height: calc(100vh - 60px);
+          z-index: 999;
+          transform: translateX(-100%);
+          width: 250px;
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .main-layout {
           flex-direction: column;
-          text-align: center;
-          gap: 0.75rem;
         }
 
-        .demos-grid {
+        .components-grid {
           grid-template-columns: 1fr;
-          gap: 1rem;
         }
 
-        .container {
-          padding: 0 1rem;
+        .user-info {
+          display: none;
         }
 
-        .footer-content {
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
+        .content-inner {
+          padding: 1.5rem 1rem;
+        }
+
+        .page-title {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .header-brand-controls label {
+          display: none;
         }
       }
 
       @media (max-width: 480px) {
-        .hero h1 {
-          font-size: 1.5rem;
+        .header-left {
+          gap: 0.75rem;
         }
 
-        .hero p {
+        .header-logo h1 {
+          font-size: 0.9rem;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .sidebar-nav-item {
+          padding: 0.75rem 1rem;
           font-size: 0.875rem;
         }
 
-        .demo-card {
-          padding: 1.5rem;
+        .page-title {
+          font-size: 1.25rem;
         }
 
-        .header {
-          padding: 0.75rem 0;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* ============================================
-         ESTILOS ADICIONALES PARA INPUTS Y COMPONENTES
-         ============================================ */
-
-      /* Input Container */
-      .sb-ui-input-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-      }
-
-      /* Input Label */
-      .sb-ui-input-label {
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--sb-ui-color-grayscale-black);
-        margin-bottom: 0.25rem;
-      }
-
-      .sb-ui-input-label--required::after {
-        content: ' *';
-        color: var(--sb-ui-color-feedback-error-base);
-      }
-
-      .sb-ui-input-label--optional::after {
-        content: ' (opcional)';
-        color: var(--sb-ui-color-grayscale-base);
-        font-weight: 400;
-        font-size: 0.75rem;
-      }
-
-      /* Input Helper Text */
-      .sb-ui-input-helper {
-        display: flex;
-        align-items: center;
-        gap: 0.375rem;
-        font-size: 0.75rem;
-        color: var(--sb-ui-color-grayscale-base);
-        margin-top: 0.25rem;
-      }
-
-      .sb-ui-input-helper i {
-        font-size: 0.875rem;
-        flex-shrink: 0;
-      }
-
-      /* Input con íconos - posicionamiento relativo */
-      .icon-wrapper {
-        position: relative;
-        display: block;
-        width: 100%;
-      }
-
-      .input-icon {
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        color: var(--sb-ui-color-grayscale-base);
-        font-size: 18px;
-        line-height: 1;
-        z-index: 1;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .input-icon i {
-        font-size: 18px;
-      }
-
-      /* Estilos para meta badges en demo-card */
-      .demo-card .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .demo-card .badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        background: var(--sb-ui-color-primary-L400);
-        color: var(--sb-ui-color-primary-D200);
-        border-radius: 12px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        white-space: nowrap;
-      }
-
-      /* Mejoras para responsividad */
-      @media (max-width: 640px) {
-        .demos-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .demo-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding: 2rem 1.5rem;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .demo-card {
-          padding: 1.5rem;
-        }
-
-        .card {
+        .component-card {
           padding: 1rem;
         }
       }
 
-      /* Mejoras para accesibilidad y hover states */
-      .demo-card a {
-        text-decoration: none;
-        color: inherit;
+      /* Scrollbar Styling */
+      .sidebar::-webkit-scrollbar,
+      .content::-webkit-scrollbar {
+        width: 8px;
       }
 
-      .demo-card button {
-        width: 100%;
-        margin-top: 0.5rem;
+      .sidebar::-webkit-scrollbar-track,
+      .content::-webkit-scrollbar-track {
+        background: transparent;
       }
 
-      /* Asegurar que los inputs dentro de cards se vean bien */
-      .card .sb-ui-input {
-        width: 100%;
+      .sidebar::-webkit-scrollbar-thumb,
+      .content::-webkit-scrollbar-thumb {
+        background: var(--sb-ui-color-grayscale-L300);
+        border-radius: 4px;
       }
 
-      .card .sb-ui-input-container {
-        width: 100%;
+      .sidebar::-webkit-scrollbar-thumb:hover,
+      .content::-webkit-scrollbar-thumb:hover {
+        background: var(--sb-ui-color-grayscale-D100);
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="container header-content">
-        <div class="header-logo">
-          <span class="logo-icon">🎨</span>
-          <h1>Seguros Bolívar Design System</h1>
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+    <header class="app-header">
+      <div class="app-header-content">
+        <!-- Left: Logo + Menu -->
+        <div class="header-left">
+          <div class="header-logo">
+            <img src="assets/images/logo-lib.png" alt="Seguros Bolívar" class="header-logo-img" />
+          </div>
+          <button class="hamburger-btn" id="hamburger" title="Mostrar/ocultar menú de navegación">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
-        <nav class="header-nav">
-          <a href="getting-started.html" class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">
-            📖 Documentación
-          </a>
-          <a href="https://github.com/seguros-bolivar" target="_blank" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-            GitHub
-          </a>
-          <a href="form-demo.html" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-            Ver Formulario
-          </a>
-        </nav>
+
+        <!-- Right: Brand Controls + Icons + User Profile -->
+        <div class="header-right">
+          <!-- Brand & Theme Controls -->
+          <div class="header-brand-controls">
+            <div class="control-group">
+              <label for="headerBrandSelect">Marca</label>
+              <select id="headerBrandSelect">
+                <option value="seguros-bolivar" selected>Seguros Bolívar</option>
+                <option value="davivienda">Davivienda</option>
+                <option value="jelpit">Jelpit</option>
+                <option value="cien-cuadras">Cien Cuadras</option>
+                <option value="doctor-aki">Doctor Aki</option>
+                <option value="white-label">White Label</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label>Tema</label>
+              <div class="header-theme-toggle">
+                <button id="headerLightBtn" class="active" title="Tema claro">
+                  <i class="fas fa-sun"></i>
+                </button>
+                <button id="headerDarkBtn" title="Tema oscuro">
+                  <i class="fas fa-moon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-user-container" id="userDropdownContainer">
+            <div class="header-user" id="userDropdownToggle">
+              <div class="user-avatar">CC</div>
+              <div class="user-info">
+                <div class="user-name">Camilo Contreras</div>
+                <div class="user-company">Seguros Bolivar</div>
+              </div>
+              <div class="header-dropdown-icon">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="user-dropdown">
+              <button class="user-dropdown-item">
+                <i class="fas fa-user"></i>
+                <span>Mi Perfil</span>
+              </button>
+              <button class="user-dropdown-item logout" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar Sesión</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <div class="hero">
-      <div class="hero-content">
-        <h1>🎨 Seguros Bolívar UI Design System</h1>
-        <p>Sistema de Diseño Multi-Marca · 6 Marcas · 2 Temas · Componentes Modernos</p>
-      </div>
+    <!-- ========================================
+         MAIN LAYOUT
+         ======================================== -->
+    <div class="main-layout">
+      <!-- ========================================
+           SIDEBAR
+           ======================================== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+          <!-- INICIO SECTION (antes llamada "Otros") -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Inicio</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="description.html">
+                <i class="fas fa-house"></i>
+                <span>Inicio</span>
+              </button>
+
+              <!-- Submenú para Guía de Inicio -->
+              <button class="sidebar-submenu-btn sidebar-nav-item" data-submenu="getting-started-submenu">
+                <i class="fas fa-rocket"></i>
+                <span>Guía de inicio</span>
+                <i class="fas fa-chevron-right sidebar-submenu-toggle"></i>
+              </button>
+              <div class="sidebar-submenu" id="getting-started-submenu">
+                <button class="sidebar-submenu-item" data-path="guide/installation.html">
+                  <i class="fas fa-download"></i>
+                  <span>Instalación</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="guide/basic-usage.html">
+                  <i class="fas fa-code"></i>
+                  <span>Uso básico</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="guide/components.html">
+                  <i class="fas fa-puzzle-piece"></i>
+                  <span>Componentes</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="guide/brands.html">
+                  <i class="fas fa-palette"></i>
+                  <span>Marcas</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="guide/customization.html">
+                  <i class="fas fa-wand-magic-sparkles"></i>
+                  <span>Personalización</span>
+                </button>
+              </div>
+
+              <button class="sidebar-nav-item" data-path="form-demo.html">
+                <i class="fas fa-file-invoice"></i>
+                <span>Demo</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- COMPONENTES SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Componentes HTML + CSS</div>
+            <nav class="sidebar-nav">
+              <!-- Button with Submenu -->
+              <button class="sidebar-submenu-btn sidebar-nav-item" data-submenu="button-submenu">
+                <i class="fas fa-square"></i>
+                <span>Botones</span>
+                <i class="fas fa-chevron-right sidebar-submenu-toggle"></i>
+              </button>
+              <div class="sidebar-submenu" id="button-submenu">
+                <button class="sidebar-submenu-item" data-path="button/primary.html">
+                  <i class="fas fa-star"></i>
+                  <span>Primary</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="button/secondary.html">
+                  <i class="fas fa-circle-notch"></i>
+                  <span>Secondary</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="button/error.html">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <span>Error</span>
+                </button>
+              </div>
+
+              <button class="sidebar-nav-item" data-path="input/">
+                <i class="fas fa-keyboard"></i>
+                <span>Inputs</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="textarea/">
+                <i class="fas fa-file-lines"></i>
+                <span>Textarea</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="select/">
+                <i class="fas fa-list"></i>
+                <span>Selects</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="checkbox/">
+                <i class="fas fa-check-square"></i>
+                <span>Checkboxes</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="radio/">
+                <i class="fas fa-circle"></i>
+                <span>Radio Buttons</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="toggle/">
+                <i class="fas fa-toggle-on"></i>
+                <span>Toggle</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="table/">
+                <i class="fas fa-table"></i>
+                <span>Tablas</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="alert/">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span>Alerts</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="file-upload/">
+                <i class="fas fa-cloud-arrow-up"></i>
+                <span>File Upload</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- WEB COMPONENTS SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Web Components</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="modal/">
+                <i class="fas fa-window-maximize"></i>
+                <span>Modal</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="dropdown/">
+                <i class="fas fa-bars"></i>
+                <span>Dropdown</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="calendar/">
+                <i class="fas fa-calendar"></i>
+                <span>Calendar</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="tabs/">
+                <i class="fas fa-folder-open"></i>
+                <span>Tabs</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="stepper/">
+                <i class="fas fa-arrow-down-1-9"></i>
+                <span>Stepper</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="breadcrumb/">
+                <i class="fas fa-arrow-right"></i>
+                <span>Breadcrumb</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="spinner/">
+                <i class="fas fa-spinner"></i>
+                <span>Spinner</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="accordion/">
+                <i class="fas fa-chevron-down"></i>
+                <span>Accordion</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ========================================
+           CONTENT
+           ======================================== -->
+      <main class="content">
+        <div class="content-inner">
+          <!-- El contenido se carga dinámicamente desde inicio.html u otras páginas -->
+        </div>
+      </main>
     </div>
 
-    <!-- Main Content -->
-    <div class="container">
-      <!-- Featured: Getting Started -->
-      <section class="featured-section">
-        <a href="getting-started.html" class="featured-card">
-          <div class="featured-content">
-            <div class="featured-header">
-              <span class="featured-icon">🚀</span>
-              <h2 class="featured-title">Guía de Inicio Rápido</h2>
-            </div>
-            <p class="featured-description">
-              ¿Primera vez usando el Design System? Aprende cómo instalarlo, usar los componentes, 
-              cambiar entre marcas y personalizar estilos. Incluye ejemplos en vivo y mejores prácticas.
-            </p>
-            <div class="featured-badges">
-              <span class="featured-badge new">📖 Documentación</span>
-              <span class="featured-badge">✅ CDN Setup</span>
-              <span class="featured-badge">✅ NPM Install</span>
-              <span class="featured-badge">✅ Ejemplos en Vivo</span>
-            </div>
-            <div class="featured-cta">
-              Comenzar Ahora
-              <span class="featured-arrow">→</span>
-            </div>
-          </div>
-        </a>
-      </section>
+    <script>
+      const contentInner = document.querySelector('.content-inner');
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.getElementById('hamburger');
 
-      <!-- Featured: Form Demo -->
-      <section class="featured-section">
-        <a href="form-demo.html" class="featured-card">
-          <div class="featured-content">
-            <div class="featured-header">
-              <span class="featured-icon">📝</span>
-              <h2 class="featured-title">Formulario Completo Interactivo</h2>
-            </div>
-            <p class="featured-description">
-              Explora un formulario de registro completo que integra TODOS los componentes del Design
-              System: inputs, textarea, select, checkbox, radio, buttons, spinner y validaciones en
-              tiempo real con estados visuales (error/success).
-            </p>
-            <div class="featured-badges">
-              <span class="featured-badge new">🔥 NUEVO</span>
-              <span class="featured-badge">✅ 8 Componentes</span>
-              <span class="featured-badge">✅ Validaciones en Tiempo Real</span>
-              <span class="featured-badge">✅ Estados Visuales</span>
-            </div>
-            <div class="featured-cta">
-              Ver Demo Completo
-              <span class="featured-arrow">→</span>
-            </div>
-          </div>
-        </a>
-      </section>
+      // Base path where this examples index lives (e.g. /examples/)
+      const BASE_PATH = (function () {
+        const path = window.location.pathname;
+        // If ends with '/', keep as is; otherwise strip the last segment (file name)
+        if (path.endsWith('/')) return path;
+        return path.replace(/[^/]+$/, '');
+      })();
 
-      <!-- Demos Navigation -->
-      <section>
-        <div class="section-header">
-          <h2 class="section-title">🎨 Demos de Componentes</h2>
-          <p class="section-subtitle">
-            Explora matrices completas de componentes con todos sus estados y variantes
-          </p>
-        </div>
+      // ========================================
+      // DYNAMIC CONTENT LOADING
+      // ========================================
+      function loadContent(path, options = { pushState: true }) {
+        // Show loading state
+        contentInner.innerHTML = '<div style="padding: 2rem; text-align: center;"><i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i><p>Cargando...</p></div>';
 
-      <div class="demos-grid">
-        <!-- Demo: Botones Primarios -->
-        <a href="button/primary.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🟡</span>
-              Botones Primarios
-            </h3>
-            <p>
-              Matriz completa de botones primarios con todas las variantes (fill, stroke, text) y
-              estados (default, hover, active, focus, loading, disabled).
-            </p>
-            <div class="meta">
-              <span class="badge">Primary</span>
-              <span class="badge">3 Variantes</span>
-              <span class="badge">6 Estados</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        // Normalizar path (sin slash inicial)
+        const normalizedPath = (path || 'description.html').replace(/^\/+/, '');
 
-        <!-- Demo: Botones Secundarios -->
-        <a href="button/secondary.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🟢</span>
-              Botones Secundarios
-            </h3>
-            <p>
-              Matriz completa de botones primarios con todas las variantes (fill, stroke, text) y
-              estados (default, hover, active, focus, loading, disabled)
-            </p>
-            <div class="meta">
-              <span class="badge">Secondary</span>
-              <span class="badge">3 Variantes</span>
-              <span class="badge">Override SB</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        // Siempre cargamos los archivos desde BASE_PATH, pero
+        // la URL del navegador se mantiene en index.html usando ?view=...
+        const targetPath = BASE_PATH + normalizedPath;
 
-        <!-- Demo: Botones Error -->
-        <a href="button/error.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🔴</span>
-              Botones Error
-            </h3>
-            <p>
-              Matriz completa de botones de error con todas las variantes (fill, stroke, text) y
-              estados. Usa la paleta feedback-error para acciones destructivas.
-            </p>
-            <div class="meta">
-              <span class="badge">Error</span>
-              <span class="badge">3 Variantes</span>
-              <span class="badge">Base Universal</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--error sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        if (options.pushState) {
+          const url = new URL(window.location.href);
+          if (normalizedPath === 'description.html') {
+            url.searchParams.delete('view');
+          } else {
+            url.searchParams.set('view', normalizedPath);
+          }
+          window.history.pushState({ path: normalizedPath }, '', url.pathname + (url.search ? url.search : ''));
+        }
 
-        <!-- Demo: Accordion -->
-        <a href="accordion/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📂</span>
-              Accordion
-            </h3>
-            <p>
-              Componente acordeón expandible/colapsable con soporte para iconos, botones de acción 
-              y múltiples estados. Ideal para FAQs, secciones de información y contenido agrupado.
-            </p>
-            <div class="meta">
-              <span class="badge">Expandible</span>
-              <span class="badge">2 Variantes</span>
-              <span class="badge">3 Tamaños</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        // Fetch siempre contra la misma base
+        fetch(targetPath)
+          .then(response => {
+            if (!response.ok) throw new Error('Error loading page');
+            return response.text();
+          })
+          .then(html => {
+            // Parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get the main content (adjust selector based on structure)
+            let content =
+              doc.querySelector('.content-inner') ||
+              doc.querySelector('.matrix-container') ||
+              doc.querySelector('.demo-container') ||
+              doc.querySelector('.container') ||
+              doc.querySelector('main') ||
+              doc.body;
+            
+            // Extract styles from the loaded page to inject them INSIDE the dynamic container
+            const styles = doc.querySelectorAll('style');
+            let dynamicStyles = '';
+            styles.forEach(style => {
+              let css = style.textContent;
+              
+              // Remove CSS rules that apply to global selectors using regex patterns
+              // This removes entire blocks like: * { ... }, body { ... }, html { ... }, etc.
+              
+              // Remove: * { ... }
+              css = css.replace(/\*\s*\{[^}]*\}/gs, '');
+              
+              // Remove: html { ... }
+              css = css.replace(/html\s*\{[^}]*\}/gs, '');
+              
+              // Remove: body { ... }
+              css = css.replace(/body\s*\{[^}]*\}/gs, '');
+              
+              // Remove: html, body { ... }
+              css = css.replace(/html\s*,\s*body\s*\{[^}]*\}/gs, '');
+              
+              // Remove: main, header, footer, nav selectors
+              css = css.replace(/main\s*\{[^}]*\}/gs, '');
+              css = css.replace(/header\s*\{[^}]*\}/gs, '');
+              css = css.replace(/footer\s*\{[^}]*\}/gs, '');
+              css = css.replace(/nav\s*\{[^}]*\}/gs, '');
+              
+              // Remove: html.something { ... } patterns
+              css = css.replace(/html\w*\s*\{[^}]*\}/gs, '');
 
-        <!-- Demo: Breadcrumb -->
-        <a href="breadcrumb/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🧭</span>
-              Breadcrumb
-            </h3>
-            <p>
-              Componente de navegación tipo "migas de pan" con links verdes y auto-collapse en
-              móvil. Accesible con aria-label y estados completos (default, hover, focus, loading).
-            </p>
-            <div class="meta">
-              <span class="badge">Navegación</span>
-              <span class="badge">Auto-collapse</span>
-              <span class="badge">Accesible</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+              // Remove: :root { ... } to avoid overriding global CSS variables of master layout
+              css = css.replace(/:root\s*\{[^}]*\}/gs, '');
 
-        <!-- Demo: Checkbox -->
-        <a href="checkbox/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">☑️</span>
-              Checkbox
-            </h3>
-            <p>
-              Componente checkbox con efecto halo Material Design. Matriz completa 2×2
-              (unchecked/checked × enabled/disabled) con estados interactivos (hover, pressed,
-              focus).
-            </p>
-            <div class="meta">
-              <span class="badge">Matriz 2×2</span>
-              <span class="badge">Halos MD</span>
-              <span class="badge">Error State</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+              // Remove rules that target generic layout classes used by the master page
+              // like .content to prevent them from overriding the main layout
+              css = css.replace(/(^|})\s*\.content[^\{]*\{[^}]*\}/gs, '$1');
+              
+              // Remove lines that are just whitespace or comments
+              css = css.split('\n').filter(line => line.trim().length > 0).join('\n');
+              
+              dynamicStyles += css;
+            });
 
-        <!-- Demo: Radio Button -->
-        <a href="radio/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🔘</span>
-              Radio Button
-            </h3>
-            <p>
-              Componente radio button con efecto halo Material Design. Selección única entre
-              opciones con estados interactivos (hover, pressed, focus) y variantes de tamaño.
-            </p>
-            <div class="meta">
-              <span class="badge">Selección Única</span>
-              <span class="badge">Halos MD</span>
-              <span class="badge">3 Tamaños</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+            // Extract inline scripts so they can be executed after injecting the content
+            const scripts = doc.querySelectorAll('script');
+            const inlineScripts = [];
+            scripts.forEach(script => {
+              if (!script.src && script.textContent.trim()) {
+                inlineScripts.push(script.textContent);
+              }
+            });
+            
+            // Build the HTML with styles injected inside the container
+            let dynamicHTML = '';
+            if (dynamicStyles) {
+              dynamicHTML = '<style>' + dynamicStyles + '</style>';
+            }
+            dynamicHTML += content.innerHTML;
+            
+            // Insert the content wrapped in a container
+            contentInner.innerHTML = '<div class="dynamic-content">' + dynamicHTML + '</div>';
 
-        <!-- Demo: Input Component -->
-        <a href="input/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">✏️</span>
-              Input Component
-            </h3>
-            <p>
-              Matriz completa de inputs con todos sus estados (default, hover, focus, disabled,
-              success, error, warning), tamaños y tipos con Font Awesome icons.
-            </p>
-            <div class="meta">
-              <span class="badge">Input</span>
-              <span class="badge">8 Estados</span>
-              <span class="badge">Font Awesome</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+            // Execute inline scripts from the loaded page so that
+            // interactive docs like "getting-started" work inside the master layout
+            const dynamicContainer = contentInner.querySelector('.dynamic-content');
+            inlineScripts.forEach(code => {
+              const s = document.createElement('script');
+              s.textContent = code;
+              dynamicContainer.appendChild(s);
+            });
+            
+            // Re-initialize any scripts or styles if needed
+            initializeLoadedContent();
+            
+            // Close sidebar on mobile
+            if (window.innerWidth <= 768) {
+              sidebar.classList.remove('open');
+            }
+          })
+          .catch(error => {
+            console.error('Error loading content:', error);
+            contentInner.innerHTML = '<div style="padding: 2rem; text-align: center; color: red;"><i class="fas fa-exclamation-circle"></i><p>Error al cargar la página</p></div>';
+          });
+      }
 
-        <!-- Demo: TextArea Component -->
-        <a href="textarea/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📝</span>
-              TextArea Component
-            </h3>
-            <p>
-              Componente textarea con todos sus estados (default, hover, focus, active, disabled,
-              success, error), tamaños y modifiers siguiendo el sistema de diseño.
-            </p>
-            <div class="meta">
-              <span class="badge">TextArea</span>
-              <span class="badge">8 Estados</span>
-              <span class="badge">Font Awesome</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      // Function to reinitialize content after loading
+      function initializeLoadedContent() {
+        // You can add any initialization code here for loaded content
+        // For example, reinitialize event listeners, animations, etc.
+      }
 
-        <!-- Demo: Spinner Component -->
-        <a href="spinner/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🔄</span>
-              Spinner Component
-            </h3>
-            <p>
-              Indicador de carga circular con 4 tipos (basic, integrated, icon, icon-text) y 4
-              estados de progreso (25%, 50%, 75%, 100%). Con gradiente verde y animación fluida.
-            </p>
-            <div class="meta">
-              <span class="badge">Spinner</span>
-              <span class="badge">4 Tipos</span>
-              <span class="badge">4 Progress</span>
-              <span class="badge">✅ Basic</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      // Add tooltips to sidebar items using their label text
+      function addSidebarTooltips() {
+        const items = document.querySelectorAll('.sidebar-nav-item, .sidebar-submenu-item, .sidebar-submenu-btn');
+        items.forEach(item => {
+          const label = item.querySelector('span');
+          if (label && label.textContent.trim()) {
+            const text = label.textContent.trim();
+            // Usamos data-tooltip para el tooltip custom con flecha
+            item.setAttribute('data-tooltip', text);
+            // Quitamos cualquier title para evitar el tooltip nativo por defecto
+            if (item.hasAttribute('title')) {
+              item.removeAttribute('title');
+            }
+          }
+        });
+      }
 
-        <!-- Demo: Tabs Component -->
-        <a href="tabs/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🗂️</span>
-              Tabs Component
-            </h3>
-            <p>
-              Componente de pestañas con 3 variantes (Track, Button, Folder) y 2 layouts (Horizontal/Vertical). 
-              Con indicador verde activo, fondo amarillo en hover y estados completos.
-            </p>
-            <div class="meta">
-              <span class="badge">Tabs</span>
-              <span class="badge">3 Variantes</span>
-              <span class="badge">2 Layouts</span>
-              <span class="badge">Indicador</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      // Create a single tooltip element for the sidebar
+      const sidebarTooltip = document.createElement('div');
+      sidebarTooltip.className = 'sidebar-tooltip';
+      document.body.appendChild(sidebarTooltip);
 
-        <!-- Demo: Toggle Component -->
-        <a href="toggle/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🔘</span>
-              Toggle Component
-            </h3>
-            <p>
-              Componente toggle/switch con todos sus estados (default, hover, pressed, focus, disabled, error), 
-              modos ON/OFF y con/sin texto siguiendo el sistema de diseño de Seguros Bolívar.
-            </p>
-            <div class="meta">
-              <span class="badge">Toggle</span>
-              <span class="badge">6 Estados</span>
-              <span class="badge">ON/OFF</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      function attachSidebarTooltipHandlers() {
+        const items = document.querySelectorAll('.sidebar-nav-item, .sidebar-submenu-item, .sidebar-submenu-btn');
+        items.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            if (!document.body.classList.contains('sidebar-collapsed')) return;
+            const text = item.getAttribute('data-tooltip');
+            if (!text) return;
+            const rect = item.getBoundingClientRect();
+            sidebarTooltip.textContent = text;
+            const top = rect.top + rect.height / 2;
+            const left = rect.right + 8;
+            sidebarTooltip.style.top = `${top}px`;
+            sidebarTooltip.style.left = `${left}px`;
+            sidebarTooltip.classList.add('visible');
+          });
 
-        <!-- Demo: DatePicker Component -->
-        <a href="calendar/datepicker.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📅</span>
-              DatePicker Component
-            </h3>
-            <p>
-              Input con calendario dropdown para selección de fechas. 3 modos (single, range, multiple), 
-              validación, i18n (ES/EN), estados completos y Web Component interactivo.
-            </p>
-            <div class="meta">
-              <span class="badge">DatePicker</span>
-              <span class="badge">3 Modos</span>
-              <span class="badge">Dropdown</span>
-              <span class="badge">Validación</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+          item.addEventListener('mouseleave', () => {
+            sidebarTooltip.classList.remove('visible');
+          });
+        });
+      }
 
-        <!-- Demo: Alert & Toast Component -->
-        <a href="alert/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🔔</span>
-              Alert & Toast Component
-            </h3>
-            <p>
-              Componente de alertas y notificaciones toast. 4 variantes (success, info, warning, error), 
-              múltiples tamaños, posiciones configurables y animaciones suaves.
-            </p>
-            <div class="meta">
-              <span class="badge">Alert</span>
-              <span class="badge">Toast</span>
-              <span class="badge">4 Variantes</span>
-              <span class="badge">Animaciones</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      // Abre automáticamente el submenu que contiene el item activo
+      function openParentSubmenuForPath(path) {
+        if (!path) return;
 
-        <!-- Demo: Modal Component -->
-        <a href="modal/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🪟</span>
-              Modal Component
-            </h3>
-            <p>
-              Ventanas modales interactivas. Web Component con slots personalizables, cierre por ESC/backdrop,
-              bloqueo de scroll, animaciones y múltiples casos de uso (confirmación, formularios, info).
-            </p>
-            <div class="meta">
-              <span class="badge">Modal</span>
-              <span class="badge">Web Component</span>
-              <span class="badge">Slots</span>
-              <span class="badge">Accesible</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        // Buscar el botón de submenu que tenga como hijo un item con ese data-path
+        const submenuItem = document.querySelector(`.sidebar-submenu-item[data-path="${path}"]`);
+        if (!submenuItem) return;
 
-        <!-- Demo: Dropdown & Select Component -->
-        <a href="dropdown/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📋</span>
-              Dropdown & Select Component
-            </h3>
-            <p>
-              Componentes de selección desplegable. Incluye select nativo estilizado con grupos, 
-              multi-select y Web Component dropdown en desarrollo con soporte completo del Design System.
-            </p>
-            <div class="meta">
-              <span class="badge">Select</span>
-              <span class="badge">Dropdown</span>
-              <span class="badge">Multi-select</span>
-              <span class="badge">Grupos</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        const submenu = submenuItem.closest('.sidebar-submenu');
+        if (!submenu) return;
 
-        <!-- Demo: Stepper Component -->
-        <a href="stepper/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">🚀</span>
-              Stepper Component
-            </h3>
-            <p>
-              Componente de pasos progresivos para formularios multi-paso y wizards. Solo CSS con 
-              3 tipos (Number, Icon, Mix), 2 orientaciones (Horizontal, Vertical) y múltiples estados visuales.
-            </p>
-            <div class="meta">
-              <span class="badge">Stepper</span>
-              <span class="badge">Solo CSS</span>
-              <span class="badge">3 Tipos</span>
-              <span class="badge">Responsive</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        const submenuId = submenu.id;
+        const submenuBtn = document.querySelector(`.sidebar-submenu-btn[data-submenu="${submenuId}"]`);
+        const toggle = submenuBtn ? submenuBtn.querySelector('.sidebar-submenu-toggle') : null;
 
-        <!-- Demo: File Upload Component -->
-        <a href="file-upload/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📂</span>
-              File Upload Component
-            </h3>
-            <p>
-              Componente de carga de archivos con drag & drop, barra de progreso y múltiples estados 
-              (uploading, uploaded, success, error). Incluye validación de tipos y tamaños de archivo.
-            </p>
-            <div class="meta">
-              <span class="badge">Upload</span>
-              <span class="badge">Drag & Drop</span>
-              <span class="badge">Progress Bar</span>
-              <span class="badge">4 Estados</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+        if (submenu) {
+          submenu.classList.add('open');
+        }
+        if (toggle) {
+          toggle.classList.add('open');
+        }
+      }
 
-        <!-- Demo: Table Component -->
-        <a href="table/index.html" style="text-decoration: none; color: inherit">
-          <div class="demo-card">
-            <h3>
-              <span class="icon">📊</span>
-              Table Component
-            </h3>
-            <p>
-              Componente de tabla con paginación, checkboxes, inputs y múltiples variantes (striped, 
-              bordered, hover, compact). Incluye paginación con botones circulares amarillos estilo Bootstrap.
-            </p>
-            <div class="meta">
-              <span class="badge">Table</span>
-              <span class="badge">Paginación</span>
-              <span class="badge">5 Variantes</span>
-              <span class="badge">Responsive</span>
-            </div>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              Ver Demo Completo →
-            </button>
-          </div>
-        </a>
+      // ========================================
+      // SIDEBAR NAVIGATION
+      // ========================================
+      // Get all navigation items (buttons with data-path)
+      const navButtons = document.querySelectorAll('[data-path]');
+      
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = btn.getAttribute('data-path');
+          
+          // Remove active class from all nav items
+          navButtons.forEach(b => b.classList.remove('active'));
+          
+          // Add active class to clicked button
+          btn.classList.add('active');
 
-      </div>
-      </section>
-    </div>
+          // Si es un item dentro de un submenu, aseguramos que ese submenu quede abierto
+          openParentSubmenuForPath(path);
+          
+          // Load the content
+          loadContent(path);
+        });
+      });
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h3>🎨 Design System</h3>
-            <p>Sistema de Diseño Multi-Marca construido con tecnologías web modernas, CSS puro y Web Components.</p>
-          </div>
-          <div class="footer-section">
-            <h3>🔗 Enlaces Rápidos</h3>
-            <a href="form-demo.html">Formulario Completo</a>
-            <a href="button/primary.html">Botones</a>
-            <a href="toggle/index.html">Toggle</a>
-            <a href="calendar/datepicker.html">Calendar</a>
-          </div>
-          <div class="footer-section">
-            <h3>📚 Componentes</h3>
-            <a href="input/index.html">Inputs</a>
-            <a href="select/index.html">Select</a>
-            <a href="spinner/index.html">Spinner</a>
-            <a href="stepper/index.html">Stepper</a>
-            <a href="table/index.html">Table</a>
-          </div>
-          <div class="footer-section">
-            <h3>🚀 Recursos</h3>
-            <a href="https://github.com/seguros-bolivar" target="_blank">GitHub</a>
-            <a href="#">Documentación</a>
-            <a href="#">Contribuir</a>
-            <a href="#">Changelog</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2025 Seguros Bolívar · Design System v3.0 · Hecho con ❤️ en Colombia</p>
-        </div>
-      </div>
-    </footer>
+      // Initialize tooltips for sidebar items (useful cuando está colapsado)
+      addSidebarTooltips();
+      attachSidebarTooltipHandlers();
+
+      // ========================================
+      // SUBMENU FUNCTIONALITY
+      // ========================================
+      const submenuButtons = document.querySelectorAll('.sidebar-submenu-btn');
+      
+      submenuButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const submenuId = btn.getAttribute('data-submenu');
+          const submenu = document.getElementById(submenuId);
+          const toggle = btn.querySelector('.sidebar-submenu-toggle');
+          
+          // Close other open submenus
+          document.querySelectorAll('.sidebar-submenu').forEach(m => {
+            if (m.id !== submenuId) {
+              m.classList.remove('open');
+            }
+          });
+          
+          document.querySelectorAll('.sidebar-submenu-toggle').forEach(t => {
+            if (t !== toggle) {
+              t.classList.remove('open');
+            }
+          });
+          
+          // Toggle current submenu
+          submenu.classList.toggle('open');
+          toggle.classList.toggle('open');
+        });
+      });
+
+      // Sidebar toggle functionality
+      hamburger.addEventListener('click', () => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          // Mobile: slide sidebar in/out
+          sidebar.classList.toggle('open');
+        } else {
+          // Desktop: collapse/expand sidebar to icon-only
+          document.body.classList.toggle('sidebar-collapsed');
+        }
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', (e) => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+        
+        // Event delegation for dynamically loaded content with data-path
+        const clickedElement = e.target.closest('[data-path]');
+        if (clickedElement && contentInner.contains(clickedElement)) {
+          e.preventDefault();
+          const path = clickedElement.getAttribute('data-path');
+          
+          // Update sidebar active state
+          const navButtons = document.querySelectorAll('.sidebar [data-path]');
+          navButtons.forEach(b => b.classList.remove('active'));
+          const matchingNavBtn = document.querySelector(`.sidebar [data-path="${path}"]`);
+          if (matchingNavBtn) {
+            matchingNavBtn.classList.add('active');
+          }
+          
+          openParentSubmenuForPath(path);
+          loadContent(path);
+        }
+      });
+
+      // Initialize: load default content based on URL
+      window.addEventListener('popstate', (e) => {
+        const url = new URL(window.location.href);
+        const viewParam = url.searchParams.get('view');
+        const path = viewParam || e.state?.path || 'index.html';
+        const navBtn = document.querySelector(`[data-path="${path}"]`);
+        if (navBtn) {
+          navBtn.classList.add('active');
+          document.querySelectorAll('[data-path]').forEach(b => {
+            if (b !== navBtn) b.classList.remove('active');
+          });
+        }
+
+        // Mantener abierto el submenu correspondiente al item activo
+        openParentSubmenuForPath(path);
+        loadContent(path, { pushState: false });
+      });
+
+      // Load initial content when page loads
+      function loadInitialContent() {
+        const url = new URL(window.location.href);
+        const viewParam = url.searchParams.get('view');
+
+        if (viewParam) {
+          const navBtn = document.querySelector(`[data-path="${viewParam}"]`);
+          if (navBtn) {
+            navBtn.classList.add('active');
+          }
+
+          // Abrir submenu si el item inicial pertenece a alguno
+          openParentSubmenuForPath(viewParam);
+          loadContent(viewParam, { pushState: false });
+        } else {
+          const homeBtn = document.querySelector('[data-path="description.html"]');
+          if (homeBtn) {
+            homeBtn.classList.add('active');
+          }
+          loadContent('description.html', { pushState: false });
+        }
+      }
+
+      // Load initial content after a brief delay to ensure DOM is ready
+      setTimeout(loadInitialContent, 100);
+
+      // CSS animation for loading spinner
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // ========================================
+      // BRAND & THEME CONTROLS
+      // ========================================
+      const brandCSS = document.getElementById('brand-css');
+      const headerBrandSelect = document.getElementById('headerBrandSelect');
+      const headerLightBtn = document.getElementById('headerLightBtn');
+      const headerDarkBtn = document.getElementById('headerDarkBtn');
+
+      // Map brand names to CSS file names
+      const brandMap = {
+        'seguros-bolivar': 'seguros-bolivar',
+        'davivienda': 'davivienda',
+        'jelpit': 'jelpit',
+        'cien-cuadras': 'cien-cuadras',
+        'doctor-aki': 'doctor-aki',
+        'white-label': 'white-label'
+      };
+
+      let currentBrand = 'seguros-bolivar';
+      let currentTheme = 'light';
+
+      function updateBrandCSS() {
+        const cssFileName = `sb-ui-${brandMap[currentBrand]}-${currentTheme}.min.css`;
+        const newHref = `dist/${cssFileName}?v=${Date.now()}`;
+        
+        if (brandCSS) {
+          brandCSS.href = newHref;
+        }
+        
+        // Update data attributes on html element
+        document.documentElement.setAttribute('data-brand', currentBrand);
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Update theme buttons state
+        if (currentTheme === 'light') {
+          headerLightBtn.classList.add('active');
+          headerDarkBtn.classList.remove('active');
+        } else {
+          headerLightBtn.classList.remove('active');
+          headerDarkBtn.classList.add('active');
+        }
+      }
+
+      // Brand select change
+      headerBrandSelect.addEventListener('change', (e) => {
+        currentBrand = e.target.value;
+        updateBrandCSS();
+      });
+
+      // Theme toggle buttons
+      headerLightBtn.addEventListener('click', () => {
+        currentTheme = 'light';
+        updateBrandCSS();
+      });
+
+      headerDarkBtn.addEventListener('click', () => {
+        currentTheme = 'dark';
+        updateBrandCSS();
+      });
+
+      // Initialize brand CSS on load
+      updateBrandCSS();
+
+      // ========================================
+      // USER DROPDOWN
+      // ========================================
+      const userDropdownContainer = document.getElementById('userDropdownContainer');
+      const userDropdownToggle = document.getElementById('userDropdownToggle');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      userDropdownToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdownContainer.classList.toggle('open');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!userDropdownContainer.contains(e.target)) {
+          userDropdownContainer.classList.remove('open');
+        }
+      });
+
+      // Logout button action
+      logoutBtn.addEventListener('click', () => {
+        alert('Sesión cerrada');
+        userDropdownContainer.classList.remove('open');
+      });
+    </script>
   </body>
 </html>

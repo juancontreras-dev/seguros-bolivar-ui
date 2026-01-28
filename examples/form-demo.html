@@ -160,65 +160,6 @@
         font-weight: 700;
       }
 
-      /* Brand controls */
-      .brand-controls {
-        background: white;
-        padding-block: 1rem;
-        padding-inline: 1.5rem;
-        border-radius: 12px;
-        margin-block-end: 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .brand-controls-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      .brand-controls label {
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-dark, #333);
-        font-size: 0.875rem;
-      }
-
-      #brandSelect {
-        padding-block: 0.5rem;
-        padding-inline-start: 1rem;
-        padding-inline-end: 2.5rem;
-        border: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: 8px;
-        background: white;
-        font-size: 0.875rem;
-        font-weight: 500;
-        cursor: pointer;
-        appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.75rem center;
-      }
-
-      #brandSelect:hover {
-        border-color: var(--sb-ui-color-primary-base, #038450);
-      }
-
-      #brandSelect:focus {
-        outline: none;
-        border-color: var(--sb-ui-color-primary-base, #038450);
-        box-shadow: 0 0 0 3px var(--sb-ui-color-primary-L400, rgba(3, 132, 80, 0.1));
-      }
-
-      .theme-toggle {
-        display: flex;
-        gap: 0.5rem;
-      }
-
       /* Form card */
       .form-card {
         background: white;
@@ -302,8 +243,7 @@
 
       /* Transiciones suaves */
       .sb-ui-input,
-      .sb-ui-textarea,
-      #brandSelect {
+      .sb-ui-textarea {
         transition:
           border-color 0.3s ease,
           box-shadow 0.3s ease;
@@ -412,38 +352,6 @@
   </head>
   <body>
     <div class="demo-container">
-      <!-- Brand & Theme Controls -->
-      <div class="brand-controls">
-        <button
-          onclick="window.location.href='index.html'"
-          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-        >
-          ← Volver
-        </button>
-
-        <div class="brand-controls-group">
-          <label for="brandSelect">📦 Marca:</label>
-          <select id="brandSelect">
-            <option value="white-label">White Label</option>
-            <option value="jelpit">Jelpit</option>
-            <option value="davivienda">Davivienda</option>
-            <option value="cien-cuadras">Cien Cuadras</option>
-            <option value="doctor-aki">Doctor Aki</option>
-            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
-          </select>
-
-          <label for="themeToggle">🌓 Tema:</label>
-          <div class="theme-toggle">
-            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              ☀️ Light
-            </button>
-            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-              🌙 Dark
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Form -->
       <form id="registrationForm" class="form-card">
         <!-- Sección 1: Información Personal -->
@@ -781,392 +689,53 @@
 
     <script>
       // ==============================================
-      // BRAND & THEME SWITCHER
-      // ==============================================
-      const brandSelect = document.getElementById('brandSelect');
-      const lightBtn = document.getElementById('lightBtn');
-      const darkBtn = document.getElementById('darkBtn');
-      const linkElement = document.querySelector('link[id="brand-css"]');
-      const html = document.documentElement;
-
-      let currentBrand = 'seguros-bolivar';
-      let currentTheme = 'light';
-
-      function updateStylesheet() {
-        linkElement.href = `dist/sb-ui-${currentBrand}-${currentTheme}.min.css`;
-        html.setAttribute('data-brand', currentBrand);
-        html.setAttribute('data-theme', currentTheme);
-
-        // Update button states
-        if (currentTheme === 'light') {
-          lightBtn.classList.remove('sb-ui-button--tertiary');
-          lightBtn.classList.add('sb-ui-button--primary');
-          darkBtn.classList.remove('sb-ui-button--primary');
-          darkBtn.classList.add('sb-ui-button--tertiary');
-        } else {
-          darkBtn.classList.remove('sb-ui-button--tertiary');
-          darkBtn.classList.add('sb-ui-button--primary');
-          lightBtn.classList.remove('sb-ui-button--primary');
-          lightBtn.classList.add('sb-ui-button--tertiary');
-        }
-      }
-
-      brandSelect.addEventListener('change', (e) => {
-        currentBrand = e.target.value;
-        updateStylesheet();
-      });
-
-      lightBtn.addEventListener('click', () => {
-        currentTheme = 'light';
-        updateStylesheet();
-      });
-
-      darkBtn.addEventListener('click', () => {
-        currentTheme = 'dark';
-        updateStylesheet();
-      });
-
-      // ==============================================
-      // FORM VALIDATION
+      // FORM FUNCTIONALITY
       // ==============================================
       const form = document.getElementById('registrationForm');
       const loadingOverlay = document.getElementById('loadingOverlay');
       const successModal = document.getElementById('successModal');
       const closeModalBtn = document.getElementById('closeModalBtn');
+      const fillBtn = document.getElementById('fillBtn');
       const resetBtn = document.getElementById('resetBtn');
 
-      // Helper functions
-      function setInputState(input, helper, isValid, message) {
-        if (isValid) {
-          input.classList.remove('sb-ui-input--error', 'sb-ui-textarea--error');
-          input.classList.add('sb-ui-input--success', 'sb-ui-textarea--success');
-          helper.classList.remove('sb-ui-input-helper--error', 'sb-ui-textarea-helper--error');
-          helper.classList.add('sb-ui-input-helper--success', 'sb-ui-textarea-helper--success');
-          helper.innerHTML = `<i class="fa-solid fa-circle-check"></i>${message}`;
-        } else {
-          input.classList.remove('sb-ui-input--success', 'sb-ui-textarea--success');
-          input.classList.add('sb-ui-input--error', 'sb-ui-textarea--error');
-          helper.classList.remove('sb-ui-input-helper--success', 'sb-ui-textarea-helper--success');
-          helper.classList.add('sb-ui-input-helper--error', 'sb-ui-textarea-helper--error');
-          helper.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>${message}`;
-        }
-      }
-
-      function resetInputState(input, helper, defaultMessage) {
-        input.classList.remove(
-          'sb-ui-input--error',
-          'sb-ui-input--success',
-          'sb-ui-textarea--error',
-          'sb-ui-textarea--success'
-        );
-        helper.classList.remove(
-          'sb-ui-input-helper--error',
-          'sb-ui-input-helper--success',
-          'sb-ui-textarea-helper--error',
-          'sb-ui-textarea-helper--success'
-        );
-        helper.innerHTML = `<i class="fa-solid fa-circle-info"></i>${defaultMessage}`;
-      }
-
-      // Validation functions
-      function validateName(value) {
-        return value.trim().length >= 2;
-      }
-
-      function validateEmail(value) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(value);
-      }
-
-      function validatePhone(value) {
-        const re = /^\+?\d{10,}$/;
-        return re.test(value.replace(/\s/g, ''));
-      }
-
-      function validatePassword(value) {
-        // Mínimo 8 caracteres, 1 mayúscula, 1 número
-        const re = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-        return re.test(value);
-      }
-
-      // Debounce utility
-      function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-          const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-          };
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-        };
-      }
-
-      // ==============================================
-      // CONFIGURATION CONSTANTS
-      // ==============================================
-      const CONFIG = {
-        loadingDelay: 2000,
-        validationDelay: 300,
-        demoData: {
-          firstName: 'Jhon',
-          lastName: 'Moofarrif',
-          email: 'jhon.moofarrif@segurosbolivar.com',
-          phone: '+57 300 123 4567',
-          password: 'Password123',
-          company: 'Seguros Bolívar',
-          comments: 'Este es un comentario de prueba para el formulario de registro.',
-          accountType: 'business',
-          interests: ['insurance'],
-        },
-      };
-
-      // ==============================================
-      // VALIDATION SETUP (DRY)
-      // ==============================================
-      const validators = {
-        firstName: {
-          element: document.getElementById('firstName'),
-          helper: document.getElementById('firstNameHelper'),
-          validate: validateName,
-          messages: {
-            empty: 'Mínimo 2 caracteres',
-            success: 'Correcto',
-            error: 'Mínimo 2 caracteres',
-          },
-        },
-        lastName: {
-          element: document.getElementById('lastName'),
-          helper: document.getElementById('lastNameHelper'),
-          validate: validateName,
-          messages: {
-            empty: 'Mínimo 2 caracteres',
-            success: 'Correcto',
-            error: 'Mínimo 2 caracteres',
-          },
-        },
-        email: {
-          element: document.getElementById('email'),
-          helper: document.getElementById('emailHelper'),
-          validate: validateEmail,
-          messages: {
-            empty: 'Usaremos este email para contactarlo',
-            success: 'Email válido',
-            error: 'Email inválido',
-          },
-        },
-        phone: {
-          element: document.getElementById('phone'),
-          helper: document.getElementById('phoneHelper'),
-          validate: validatePhone,
-          messages: {
-            empty: 'Formato: +57 XXX XXX XXXX',
-            success: 'Teléfono válido',
-            error: 'Teléfono inválido (mín. 10 dígitos)',
-          },
-        },
-        password: {
-          element: document.getElementById('password'),
-          helper: document.getElementById('passwordHelper'),
-          validate: validatePassword,
-          messages: {
-            empty: 'Mínimo 8 caracteres, 1 mayúscula, 1 número',
-            success: 'Contraseña segura',
-            error: 'Mínimo 8 caracteres, 1 mayúscula, 1 número',
-          },
-        },
-      };
-
-      // Setup validation listeners with debounce
-      Object.entries(validators).forEach(([fieldName, config]) => {
-        const validateInput = debounce((e) => {
-          const value = e.target.value;
-          if (value.length === 0) {
-            resetInputState(config.element, config.helper, config.messages.empty);
-          } else if (config.validate(value)) {
-            setInputState(config.element, config.helper, true, config.messages.success);
-          } else {
-            setInputState(config.element, config.helper, false, config.messages.error);
-          }
-        }, CONFIG.validationDelay);
-
-        config.element.addEventListener('input', validateInput);
-      });
-
-      // Special case: confirmPassword
-      const confirmPassword = document.getElementById('confirmPassword');
-      const confirmPasswordHelper = document.getElementById('confirmPasswordHelper');
-      const password = validators.password.element;
-
-      const validateConfirmPassword = debounce((e) => {
-        const value = e.target.value;
-        if (value.length === 0) {
-          resetInputState(
-            confirmPassword,
-            confirmPasswordHelper,
-            'Debe coincidir con la contraseña'
-          );
-        } else if (value === password.value) {
-          setInputState(confirmPassword, confirmPasswordHelper, true, 'Las contraseñas coinciden');
-        } else {
-          setInputState(
-            confirmPassword,
-            confirmPasswordHelper,
-            false,
-            'Las contraseñas no coinciden'
-          );
-        }
-      }, CONFIG.validationDelay);
-
-      confirmPassword.addEventListener('input', validateConfirmPassword);
-
-      // Shortcuts for backward compatibility
-      const firstName = validators.firstName.element;
-      const firstNameHelper = validators.firstName.helper;
-      const lastName = validators.lastName.element;
-      const lastNameHelper = validators.lastName.helper;
-      const email = validators.email.element;
-      const emailHelper = validators.email.helper;
-      const phone = validators.phone.element;
-      const phoneHelper = validators.phone.helper;
-      const passwordHelper = validators.password.helper;
-
-      // Form submission
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Validate all required fields
-        const isFirstNameValid = validateName(firstName.value);
-        const isLastNameValid = validateName(lastName.value);
-        const isEmailValid = validateEmail(email.value);
-        const isPhoneValid = validatePhone(phone.value);
-        const isPasswordValid = validatePassword(password.value);
-        const isConfirmPasswordValid = confirmPassword.value === password.value;
-        const termsCheckbox = document.querySelector('input[name="terms"]');
-        const isTermsAccepted = termsCheckbox.checked;
-
-        if (!isFirstNameValid) {
-          setInputState(firstName, firstNameHelper, false, 'Mínimo 2 caracteres');
-          firstName.focus();
-          return;
-        }
-
-        if (!isLastNameValid) {
-          setInputState(lastName, lastNameHelper, false, 'Mínimo 2 caracteres');
-          lastName.focus();
-          return;
-        }
-
-        if (!isEmailValid) {
-          setInputState(email, emailHelper, false, 'Email inválido');
-          email.focus();
-          return;
-        }
-
-        if (!isPhoneValid) {
-          setInputState(phone, phoneHelper, false, 'Teléfono inválido');
-          phone.focus();
-          return;
-        }
-
-        if (!isPasswordValid) {
-          setInputState(password, passwordHelper, false, 'Contraseña inválida');
-          password.focus();
-          return;
-        }
-
-        if (!isConfirmPasswordValid) {
-          setInputState(
-            confirmPassword,
-            confirmPasswordHelper,
-            false,
-            'Las contraseñas no coinciden'
-          );
-          confirmPassword.focus();
-          return;
-        }
-
-        if (!isTermsAccepted) {
-          alert('Debe aceptar los términos y condiciones');
-          return;
-        }
-
-        // Show loading overlay
-        loadingOverlay.classList.add('active');
-
-        // Simulate API call
-        setTimeout(() => {
-          loadingOverlay.classList.remove('active');
-          successModal.classList.add('active');
-        }, CONFIG.loadingDelay);
-      });
-
-      // Fill form with demo data
-      const fillBtn = document.getElementById('fillBtn');
-
+      // Demo data to fill form
       fillBtn.addEventListener('click', () => {
-        // Fill personal information from CONFIG
-        firstName.value = CONFIG.demoData.firstName;
-        lastName.value = CONFIG.demoData.lastName;
-        email.value = CONFIG.demoData.email;
-        phone.value = CONFIG.demoData.phone;
-        password.value = CONFIG.demoData.password;
-        confirmPassword.value = CONFIG.demoData.password;
-
-        // Fill additional information
-        document.getElementById('company').value = CONFIG.demoData.company;
-        document.getElementById('comments').value = CONFIG.demoData.comments;
-
-        // Select account type
-        document.querySelector(
-          `input[name="accountType"][value="${CONFIG.demoData.accountType}"]`
-        ).checked = true;
-
-        // Check interests
-        CONFIG.demoData.interests.forEach((interest) => {
-          const checkbox = document.querySelector(`input[name="interests"][value="${interest}"]`);
-          if (checkbox) checkbox.checked = true;
-        });
-
-        // Accept terms
+        document.getElementById('firstName').value = 'Juan';
+        document.getElementById('lastName').value = 'Pérez';
+        document.getElementById('email').value = 'juan.perez@email.com';
+        document.getElementById('phone').value = '3001234567';
+        document.querySelector('textarea[name="comments"]').value = 'Este es un comentario de prueba para demostrar el funcionamiento del formulario.';
         document.querySelector('input[name="terms"]').checked = true;
-
-        // Trigger validation for all inputs
-        Object.values(validators).forEach(({ element }) => {
-          element.dispatchEvent(new Event('input'));
-        });
-        confirmPassword.dispatchEvent(new Event('input'));
       });
 
       // Reset form
       resetBtn.addEventListener('click', () => {
-        if (confirm('¿Estás seguro de que deseas limpiar el formulario?')) {
-          form.reset();
-          // Reset all input states
-          resetInputState(firstName, firstNameHelper, 'Mínimo 2 caracteres');
-          resetInputState(lastName, lastNameHelper, 'Mínimo 2 caracteres');
-          resetInputState(email, emailHelper, 'Usaremos este email para contactarlo');
-          resetInputState(phone, phoneHelper, 'Formato: +57 XXX XXX XXXX');
-          resetInputState(password, passwordHelper, 'Mínimo 8 caracteres, 1 mayúscula, 1 número');
-          resetInputState(
-            confirmPassword,
-            confirmPasswordHelper,
-            'Debe coincidir con la contraseña'
-          );
-        }
+        form.reset();
+      });
+
+      // Form submission
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        loadingOverlay.style.display = 'grid';
+        
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+          successModal.style.display = 'grid';
+        }, 2000);
       });
 
       // Close modal
       closeModalBtn.addEventListener('click', () => {
-        successModal.classList.remove('active');
+        successModal.style.display = 'none';
         form.reset();
-        // Reset all input states
-        resetInputState(firstName, firstNameHelper, 'Mínimo 2 caracteres');
-        resetInputState(lastName, lastNameHelper, 'Mínimo 2 caracteres');
-        resetInputState(email, emailHelper, 'Usaremos este email para contactarlo');
-        resetInputState(phone, phoneHelper, 'Formato: +57 XXX XXX XXXX');
-        resetInputState(password, passwordHelper, 'Mínimo 8 caracteres, 1 mayúscula, 1 número');
-        resetInputState(confirmPassword, confirmPasswordHelper, 'Debe coincidir con la contraseña');
+      });
+
+      // Close modal on outside click
+      successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) {
+          successModal.style.display = 'none';
+          form.reset();
+        }
       });
     </script>
   </body>

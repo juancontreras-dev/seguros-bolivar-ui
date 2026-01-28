@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alert & Toast Component - Seguros Bolívar UI</title>
 
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,76 +66,7 @@
         color: var(--sb-ui-color-grayscale-base, #666);
       }
 
-      /* Brand & Theme Controls */
-      .brand-controls {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: 1.5rem;
-        align-items: center;
-        margin-block-end: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--sb-ui-color-grayscale-white) 0%,
-          var(--sb-ui-color-grayscale-L400) 100%
-        );
-        border-radius: 16px;
-        box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.08),
-          0 1px 3px rgba(0, 0, 0, 0.05);
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-      }
-
-      .brand-controls:hover {
-        box-shadow:
-          0 8px 30px rgba(0, 0, 0, 0.12),
-          0 2px 6px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .brand-controls-group {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .brand-controls label {
-        font-weight: 600;
-        font-size: 0.8125rem;
-        color: var(--sb-ui-color-grayscale-D300);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-      }
-
-      .theme-toggle {
-        display: flex;
-        gap: 0.5rem;
-        background: var(--sb-ui-color-grayscale-L300);
-        padding: 0.25rem;
-        border-radius: 50px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      @media (max-width: 768px) {
-        .brand-controls {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .brand-controls-group {
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .theme-toggle {
-          width: 100%;
-        }
-      }
+      
 
       /* Sections */
       .matrix-section {
@@ -256,39 +188,6 @@
   </head>
   <body>
     <div class="matrix-container">
-      <!-- Brand & Theme Controls -->
-      <div class="brand-controls">
-        <button
-          onclick="window.location.href='../index.html'"
-          class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-          style="text-decoration: none"
-        >
-          ← Volver
-        </button>
-
-        <div class="brand-controls-group">
-          <label for="brandSelect">📦 Marca:</label>
-          <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-            <option value="white-label">White Label</option>
-            <option value="jelpit">Jelpit</option>
-            <option value="davivienda">Davivienda</option>
-            <option value="cien-cuadras">Cien Cuadras</option>
-            <option value="doctor-aki">Doctor Aki</option>
-            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
-          </select>
-
-          <label for="themeToggle">🌓 Tema:</label>
-          <div class="theme-toggle">
-            <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-              ☀️ Light
-            </button>
-            <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-              🌙 Dark
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Header -->
       <header class="matrix-header">
         <h1>🔔 Alert & Toast Component</h1>
@@ -574,180 +473,10 @@
     </div>
 
     <!-- JavaScript para Brand/Theme Switching y Toast Management -->
-    <script>
-      // Referencias
-      const brandSelect = document.getElementById('brandSelect');
-      const lightBtn = document.getElementById('lightBtn');
-      const darkBtn = document.getElementById('darkBtn');
-      const html = document.documentElement;
-      const body = document.body;
-      const brandCss = document.getElementById('brand-css');
-
-      // Load saved values or defaults
-      let currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
-      let currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
-
-      // Function to update everything
-      function updateBrandAndTheme() {
-        // Update data attributes
-        html.setAttribute('data-brand', currentBrand);
-        html.setAttribute('data-theme', currentTheme);
-        body.setAttribute('data-brand', currentBrand);
-
-        // Save to localStorage
-        localStorage.setItem('sb-ui-brand', currentBrand);
-        localStorage.setItem('sb-ui-theme', currentTheme);
-
-        // Update CSS bundle (tokens + atoms + overrides)
-        brandCss.href = `../dist/sb-ui-${currentBrand}-${currentTheme}.min.css?v=${Date.now()}`;
-
-        // Sync select
-        brandSelect.value = currentBrand;
-
-        // Update button states
-        if (currentTheme === 'light') {
-          lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-          darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-        } else {
-          lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-          darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-        }
-
-        console.log(`✅ Marca: ${currentBrand} | Tema: ${currentTheme}`);
-        console.log(`📦 Bundle: dist/sb-ui-${currentBrand}-${currentTheme}.min.css`);
-        console.log(`💾 Sincronizado con localStorage`);
-      }
-
-      // Event Listeners
-      brandSelect.addEventListener('change', (e) => {
-        currentBrand = e.target.value;
-        updateBrandAndTheme();
-      });
-
-      lightBtn.addEventListener('click', () => {
-        currentTheme = 'light';
-        updateBrandAndTheme();
-      });
-
-      darkBtn.addEventListener('click', () => {
-        currentTheme = 'dark';
-        updateBrandAndTheme();
-      });
-
-      // Initialize on page load
-      updateBrandAndTheme();
-    </script>
 
     <!-- Toast Management - Separate script for global scope -->
-    <script>
-      // Toast Management - Definiciones globales
-      window.toastMessages = {
-        success: {
-          title: '¡Operación exitosa!',
-          message: 'Tu solicitud ha sido procesada correctamente.'
-        },
-        info: {
-          title: 'Información',
-          message: 'Tienes una nueva notificación importante.'
-        },
-        warning: {
-          title: 'Advertencia',
-          message: 'Por favor, revisa los datos antes de continuar.'
-        },
-        error: {
-          title: 'Error',
-          message: 'No se pudo completar la operación. Intenta nuevamente.'
-        }
-      };
-
-      window.positionClasses = {
-        'top-left': 'sb-ui-alert--toast-top-left',
-        'top-center': 'sb-ui-alert--toast-top-center',
-        'top-right': '',  // Default
-        'bottom-left': 'sb-ui-alert--toast-bottom-left',
-        'bottom-center': 'sb-ui-alert--toast-bottom-center',
-        'bottom-right': 'sb-ui-alert--toast-bottom-right'
-      };
-
-      // Función para mostrar toast (global para onclick)
-      window.showToast = function(type, position) {
-        console.log('🔔 showToast called with:', { type, position });
-        
-        const message = window.toastMessages[type];
-        if (!message) {
-          console.error('❌ Tipo de toast no válido:', type);
-          console.error('Tipos disponibles:', Object.keys(window.toastMessages));
-          return;
-        }
-        
-        const positionClass = window.positionClasses[position] || '';
-        console.log('✅ Message:', message);
-        console.log('✅ Position class:', positionClass);
-        
-        // Create toast element
-        const toast = document.createElement('div');
-        toast.className = `sb-ui-alert sb-ui-alert--${type} sb-ui-alert--toast ${positionClass} sb-ui-alert--fade-in`;
-        toast.setAttribute('role', 'alert');
-        
-        toast.innerHTML = `
-          <div class="sb-ui-alert-icon"></div>
-          <div class="sb-ui-alert-content">
-            <div class="sb-ui-alert-title">${message.title}</div>
-            <div class="sb-ui-alert-message">${message.message}</div>
-          </div>
-          <button class="sb-ui-alert-close" aria-label="Cerrar notificación">×</button>
-        `;
-        
-        // Add to body
-        document.body.appendChild(toast);
-        console.log('✅ Toast agregado al DOM');
-        
-        // Close button handler
-        const closeBtn = toast.querySelector('.sb-ui-alert-close');
-        if (closeBtn) {
-          closeBtn.addEventListener('click', () => {
-            window.removeToast(toast);
-          });
-        }
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-          if (document.body.contains(toast)) {
-            window.removeToast(toast);
-          }
-        }, 5000);
-      };
-
-      window.removeToast = function(toast) {
-        console.log('🗑️ Removiendo toast');
-        toast.classList.add('sb-ui-alert--fade-out');
-        setTimeout(() => {
-          if (toast.parentNode) {
-            toast.parentNode.removeChild(toast);
-            console.log('✅ Toast removido del DOM');
-          }
-        }, 300);
-      };
-
-      // Ensure script is loaded
-      console.log('✅ Toast script loaded. showToast is available:', typeof window.showToast === 'function');
-    </script>
 
     <!-- Close button handlers for static alerts -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.sb-ui-alert-close').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const alert = e.target.closest('.sb-ui-alert');
-            if (alert && !alert.classList.contains('sb-ui-alert--toast')) {
-              alert.style.display = 'none';
-            }
-          });
-        });
-        
-        console.log('✅ Alert close handlers initialized');
-      });
-    </script>
   </body>
 </html>
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Select Component - Seguros Bolívar UI Design System</title>
 
+
     <!-- Google Fonts - Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,43 +66,6 @@
         color: #1b1b1b;
       }
 
-      .brand-controls {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-      }
-
-      .brand-controls select {
-        padding: 0.5rem 1rem;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        font-family: 'Roboto', sans-serif;
-        cursor: pointer;
-      }
-
-      .theme-toggle {
-        display: flex;
-        gap: 0.5rem;
-        background: #f0f0f0;
-        padding: 0.25rem;
-        border-radius: 50px;
-      }
-
-      .theme-toggle button {
-        padding: 0.5rem 1rem;
-        border: none;
-        background: transparent;
-        border-radius: 50px;
-        cursor: pointer;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 500;
-        transition: all 0.2s ease;
-      }
-
-      .theme-toggle button.active {
-        background: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
 
       h2 {
         font-size: 1.5rem;
@@ -204,20 +168,6 @@
       <!-- Header -->
       <div class="header">
         <h1>🎨 Select Component</h1>
-        <div class="brand-controls">
-          <select id="brandSelect">
-            <option value="white-label">White Label</option>
-            <option value="seguros-bolivar" selected>Seguros Bolívar</option>
-            <option value="davivienda">Davivienda</option>
-            <option value="jelpit">Jelpit</option>
-            <option value="cien-cuadras">Cien Cuadras</option>
-            <option value="doctor-aki">Doctor Aki</option>
-          </select>
-          <div class="theme-toggle">
-            <button id="lightBtn" class="active">☀️ Light</button>
-            <button id="darkBtn">🌙 Dark</button>
-          </div>
-        </div>
       </div>
 
       <!-- Info Box -->
@@ -484,62 +434,6 @@
       </section>
     </div>
 
-    <script>
-      // Brand and Theme Switching
-      const html = document.documentElement;
-      const brandSelect = document.getElementById('brandSelect');
-      const lightBtn = document.getElementById('lightBtn');
-      const darkBtn = document.getElementById('darkBtn');
-      const brandCSS = document.getElementById('brand-css');
-
-      // Load saved preferences
-      const savedBrand = localStorage.getItem('selectedBrand') || 'seguros-bolivar';
-      const savedTheme = localStorage.getItem('selectedTheme') || 'light';
-
-      function updateBrandAndTheme() {
-        const brand = brandSelect.value;
-        const theme = savedTheme;
-
-        // Update data attributes
-        html.setAttribute('data-brand', brand);
-        html.setAttribute('data-theme', theme);
-
-        // Update CSS file with cache busting
-        const timestamp = new Date().getTime();
-        brandCSS.href = `../dist/sb-ui-${brand}-${theme}.min.css?v=${timestamp}`;
-
-        // Save to localStorage
-        localStorage.setItem('selectedBrand', brand);
-      }
-
-      function updateTheme(theme) {
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('selectedTheme', theme);
-
-        // Update CSS file with cache busting
-        const timestamp = new Date().getTime();
-        brandCSS.href = `../dist/sb-ui-${brandSelect.value}-${theme}.min.css?v=${timestamp}`;
-
-        // Update active button
-        if (theme === 'light') {
-          lightBtn.classList.add('active');
-          darkBtn.classList.remove('active');
-        } else {
-          darkBtn.classList.add('active');
-          lightBtn.classList.remove('active');
-        }
-      }
-
-      // Initialize
-      brandSelect.value = savedBrand;
-      updateBrandAndTheme();
-      updateTheme(savedTheme);
-
-      // Event listeners
-      brandSelect.addEventListener('change', updateBrandAndTheme);
-      lightBtn.addEventListener('click', () => updateTheme('light'));
-      darkBtn.addEventListener('click', () => updateTheme('dark'));
-    </script>
   </body>
 </html>
 

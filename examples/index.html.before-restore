@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seguros Bolívar UI Design System - Componentes</title>
+
+    <!-- Font Awesome Icons - 6.4.0 para 35+ iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- 🚀 ARCHIVOS OPTIMIZADOS Y MINIFICADOS -->
+    <!-- 1. BUNDLE COMPLETO - Marca y tema (tokens + atoms + overrides) -->
+    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <link rel="preload" href="dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
+
+    <!-- 2. WEB COMPONENTS - Lógica JavaScript (30KB → 8.6KB gzip) -->
+    <!-- Tamaño total: ~10KB gzip - Todo incluido en un solo archivo CSS -->
+
+    <!-- Web Components -->
+    <script type="module" src="dist/sb-ui-components.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        background: var(--sb-ui-color-grayscale-L400);
+        color: var(--sb-ui-color-grayscale-black);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ========================================
+         HEADER (Top Navigation)
+         ======================================== */
+      .header {
+        background: var(--sb-ui-color-grayscale-white);
+        border-bottom: 1px solid var(--sb-ui-color-grayscale-L300);
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+        max-width: 100%;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 0 auto;
+      }
+
+      .hamburger-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--sb-ui-color-grayscale-base);
+        display: none;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+
+      .hamburger-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+      }
+
+      .header-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex: 1;
+      }
+
+      .header-logo img {
+        height: 60px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .header-logo-img {
+        height: 60px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .header-logo h1 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base);
+        margin: 0;
+        white-space: nowrap;
+        letter-spacing: -0.01em;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 0 auto;
+      }
+
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .header-icon-btn {
+        background: none;
+        border: none;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: var(--sb-ui-color-grayscale-base);
+        position: relative;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+
+      .header-icon-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--sb-ui-color-warning-base);
+        color: white;
+        font-size: 0.625rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 10px;
+        min-width: 18px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .header-user {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .header-user:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--sb-ui-color-primary-base);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+      }
+
+      .user-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-black);
+      }
+
+      .user-company {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      .header-dropdown-icon {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      /* ========================================
+         MAIN LAYOUT (Sidebar + Content)
+         ======================================== */
+      .main-layout {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* ========================================
+         SIDEBAR
+         ======================================== */
+      .sidebar {
+        width: 280px;
+        background: var(--sb-ui-color-grayscale-white);
+        border-right: 1px solid var(--sb-ui-color-grayscale-L300);
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition: transform 0.3s ease;
+        z-index: 100;
+      }
+
+      .sidebar-content {
+        padding: 1.5rem 0;
+      }
+
+      .sidebar-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar-section-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--sb-ui-color-grayscale-D100);
+        padding: 0.75rem 1.5rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.75rem;
+      }
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .sidebar-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-base);
+        text-decoration: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        width: 100%;
+        text-align: left;
+      }
+
+      .sidebar-nav-item:hover {
+        background-color: var(--sb-ui-color-grayscale-L400);
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .sidebar-nav-item.active {
+        background-color: var(--sb-ui-color-primary-L400);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-primary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-nav-item i {
+        width: 20px;
+        text-align: center;
+        font-size: 1.125rem;
+      }
+
+      .sidebar-nav-item span {
+        flex: 1;
+      }
+
+      .sidebar-nav-item .badge {
+        background: var(--sb-ui-color-warning-base);
+        color: white;
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        min-width: 20px;
+        text-align: center;
+      }
+
+      /* ========================================
+         SIDEBAR SUBMENUS
+         ======================================== */
+      .sidebar-submenu-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-base);
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        width: 100%;
+        text-align: left;
+      }
+
+      .sidebar-submenu-btn:hover {
+        background-color: var(--sb-ui-color-grayscale-L400);
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .sidebar-submenu-btn.active {
+        background-color: var(--sb-ui-color-primary-L400);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-primary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-submenu-btn i:first-child {
+        width: 20px;
+        text-align: center;
+        font-size: 1.125rem;
+      }
+
+      .sidebar-submenu-btn span {
+        flex: 1;
+      }
+
+      .sidebar-submenu-toggle {
+        font-size: 0.75rem;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+      }
+
+      .sidebar-submenu-toggle.open {
+        transform: rotate(90deg);
+      }
+
+      .sidebar-submenu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: var(--sb-ui-color-grayscale-L400);
+        border-left: 2px solid var(--sb-ui-color-primary-L300);
+        margin-left: 1.5rem;
+      }
+
+      .sidebar-submenu.open {
+        display: flex;
+      }
+
+      .sidebar-submenu-item {
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 1.5rem;
+        color: var(--sb-ui-color-grayscale-D100);
+        text-decoration: none;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+        font-weight: 400;
+      }
+
+      .sidebar-submenu-item:hover {
+        background-color: var(--sb-ui-color-grayscale-L300);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-secondary-base);
+      }
+
+      .sidebar-submenu-item.active {
+        background-color: var(--sb-ui-color-grayscale-L200);
+        color: var(--sb-ui-color-primary-base);
+        border-left-color: var(--sb-ui-color-secondary-base);
+        font-weight: 600;
+      }
+
+      .sidebar-submenu-item i {
+        width: 16px;
+        text-align: center;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+      }
+
+      /* ========================================
+         CONTENT AREA
+         ======================================== */
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .content-inner {
+        padding: 2rem 1.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .page-header {
+        margin-bottom: 2rem;
+      }
+
+      .page-title {
+        font-size: 1.875rem;
+        font-weight: 800;
+        color: var(--sb-ui-color-primary-base);
+        margin: 0 0 0.5rem 0;
+        letter-spacing: -0.01em;
+      }
+
+      .page-subtitle {
+        font-size: 1rem;
+        color: var(--sb-ui-color-grayscale-D100);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* Components Grid */
+      .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .component-card {
+        background: var(--sb-ui-color-grayscale-white);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: all 0.2s ease;
+        border: 1px solid var(--sb-ui-color-grayscale-L300);
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .component-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-color: var(--sb-ui-color-primary-base);
+      }
+
+      .component-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .component-icon {
+        font-size: 1.75rem;
+        color: var(--sb-ui-color-primary-base);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--sb-ui-color-primary-L400);
+        border-radius: 8px;
+      }
+
+      .component-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base);
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .component-description {
+        color: var(--sb-ui-color-grayscale-D100);
+        margin: 0 0 1rem 0;
+        line-height: 1.5;
+        font-size: 0.9375rem;
+        flex: 1;
+      }
+
+      .component-meta {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .component-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.75rem;
+        background: var(--sb-ui-color-primary-L400);
+        color: var(--sb-ui-color-primary-base);
+        border-radius: 12px;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      .component-badge.web-component {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .component-badge.css {
+        background: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      /* ========================================
+         RESPONSIVE
+         ======================================== */
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: 240px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hamburger-btn {
+          display: block;
+        }
+
+        .header-content {
+          flex-wrap: nowrap;
+        }
+
+        .header-logo h1 {
+          font-size: 1rem;
+        }
+
+        .sidebar {
+          position: fixed;
+          left: 0;
+          top: 60px;
+          height: calc(100vh - 60px);
+          z-index: 999;
+          transform: translateX(-100%);
+          width: 250px;
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .main-layout {
+          flex-direction: column;
+        }
+
+        .components-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .user-info {
+          display: none;
+        }
+
+        .content-inner {
+          padding: 1.5rem 1rem;
+        }
+
+        .page-title {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-left {
+          gap: 0.75rem;
+        }
+
+        .header-logo h1 {
+          font-size: 0.9rem;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .sidebar-nav-item {
+          padding: 0.75rem 1rem;
+          font-size: 0.875rem;
+        }
+
+        .page-title {
+          font-size: 1.25rem;
+        }
+
+        .component-card {
+          padding: 1rem;
+        }
+      }
+
+      /* Scrollbar Styling */
+      .sidebar::-webkit-scrollbar,
+      .content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .sidebar::-webkit-scrollbar-track,
+      .content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb,
+      .content::-webkit-scrollbar-thumb {
+        background: var(--sb-ui-color-grayscale-L300);
+        border-radius: 4px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover,
+      .content::-webkit-scrollbar-thumb:hover {
+        background: var(--sb-ui-color-grayscale-D100);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+    <header class="header">
+      <div class="header-content">
+        <!-- Left: Menu + Logo -->
+        <div class="header-left">
+          <button class="hamburger-btn" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="header-logo">
+            <img src="assets/images/logo-lib.png" alt="Seguros Bolívar" class="header-logo-img" />
+          </div>
+        </div>
+
+        <!-- Right: Icons + User Profile -->
+        <div class="header-right">
+          <div class="header-icons">
+            <button class="header-icon-btn" title="Notificaciones">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+            <button class="header-icon-btn" title="Mensajes">
+              <i class="fas fa-envelope"></i>
+            </button>
+            <button class="header-icon-btn" title="Configuración">
+              <i class="fas fa-cog"></i>
+            </button>
+          </div>
+          <div class="header-user">
+            <div class="user-avatar">FC</div>
+            <div class="user-info">
+              <div class="user-name">Felipe Contreras</div>
+              <div class="user-company">Seguros Bolivar</div>
+            </div>
+            <div class="header-dropdown-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================
+         MAIN LAYOUT
+         ======================================== -->
+    <div class="main-layout">
+      <!-- ========================================
+           SIDEBAR
+           ======================================== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+          <!-- COMPONENTES SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Componentes</div>
+            <nav class="sidebar-nav">
+              <!-- Button with Submenu -->
+              <button class="sidebar-submenu-btn sidebar-nav-item" data-submenu="button-submenu">
+                <i class="fas fa-square"></i>
+                <span>Botones</span>
+                <i class="fas fa-chevron-right sidebar-submenu-toggle"></i>
+              </button>
+              <div class="sidebar-submenu" id="button-submenu">
+                <button class="sidebar-submenu-item" data-path="button/primary.html">
+                  <i class="fas fa-star"></i>
+                  <span>Primary</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="button/secondary.html">
+                  <i class="fas fa-circle-notch"></i>
+                  <span>Secondary</span>
+                </button>
+                <button class="sidebar-submenu-item" data-path="button/error.html">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <span>Error</span>
+                </button>
+              </div>
+
+              <button class="sidebar-nav-item" data-path="input/">
+                <i class="fas fa-keyboard"></i>
+                <span>Inputs</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="textarea/">
+                <i class="fas fa-file-lines"></i>
+                <span>Textarea</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="select/">
+                <i class="fas fa-list"></i>
+                <span>Selects</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="checkbox/">
+                <i class="fas fa-check-square"></i>
+                <span>Checkboxes</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="radio/">
+                <i class="fas fa-circle"></i>
+                <span>Radio Buttons</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="toggle/">
+                <i class="fas fa-toggle-on"></i>
+                <span>Toggle</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- COMPONENTES COMPLEJOS SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Componentes Complejos</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="modal/">
+                <i class="fas fa-window-maximize"></i>
+                <span>Modal</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="dropdown/">
+                <i class="fas fa-bars"></i>
+                <span>Dropdown</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="calendar/">
+                <i class="fas fa-calendar"></i>
+                <span>Calendar</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="tabs/">
+                <i class="fas fa-folder-open"></i>
+                <span>Tabs</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="stepper/">
+                <i class="fas fa-arrow-down-1-9"></i>
+                <span>Stepper</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="breadcrumb/">
+                <i class="fas fa-arrow-right"></i>
+                <span>Breadcrumb</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- DATOS Y FEEDBACK SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Datos & Feedback</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="table/">
+                <i class="fas fa-table"></i>
+                <span>Tablas</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="alert/">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span>Alerts</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="spinner/">
+                <i class="fas fa-spinner"></i>
+                <span>Spinner</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="accordion/">
+                <i class="fas fa-chevron-down"></i>
+                <span>Accordion</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="file-upload/">
+                <i class="fas fa-cloud-arrow-up"></i>
+                <span>File Upload</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- OTROS SECTION -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Otros</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="index.html">
+                <i class="fas fa-house"></i>
+                <span>Inicio</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="getting-started.html">
+                <i class="fas fa-rocket"></i>
+                <span>Guía Inicio</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="form-demo.html">
+                <i class="fas fa-file-invoice"></i>
+                <span>Demo Formulario</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ========================================
+           CONTENT
+           ======================================== -->
+      <main class="content">
+        <div class="content-inner">
+          <div class="page-header">
+            <h1 class="page-title">Componentes UI</h1>
+            <p class="page-subtitle">
+              Explora todos los componentes disponibles en el Design System de Seguros Bolívar
+            </p>
+          </div>
+
+          <!-- COMPONENTES BÁSICOS -->
+          <div style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--sb-ui-color-primary-base);">
+              <i class="fas fa-shapes" style="margin-right: 0.75rem; color: var(--sb-ui-color-primary-base);"></i>
+              Componentes Básicos
+            </h2>
+            <div class="components-grid">
+              <button class="component-card" data-path="button/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-square"></i>
+                  </div>
+                  <h3 class="component-title">Botones</h3>
+                </div>
+                <p class="component-description">
+                  Botones con múltiples variantes, tamaños y estados. Soporta iconos, loading y disabled.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="input/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-keyboard"></i>
+                  </div>
+                  <h3 class="component-title">Inputs</h3>
+                </div>
+                <p class="component-description">
+                  Campos de entrada de texto con validación, iconos y estados.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="textarea/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-file-lines"></i>
+                  </div>
+                  <h3 class="component-title">Textarea</h3>
+                </div>
+                <p class="component-description">
+                  Área de texto redimensionable con contador de caracteres.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="select/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-list"></i>
+                  </div>
+                  <h3 class="component-title">Selects</h3>
+                </div>
+                <p class="component-description">
+                  Dropdowns nativos y personalizados con búsqueda.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="checkbox/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-check-square"></i>
+                  </div>
+                  <h3 class="component-title">Checkboxes</h3>
+                </div>
+                <p class="component-description">
+                  Casillas de verificación con múltiples estados.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="radio/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                  <h3 class="component-title">Radio Buttons</h3>
+                </div>
+                <p class="component-description">
+                  Botones de opción para selecciones únicas.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="toggle/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-toggle-on"></i>
+                  </div>
+                  <h3 class="component-title">Toggle</h3>
+                </div>
+                <p class="component-description">
+                  Interruptores ON/OFF con animaciones suaves.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Básico</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="alert/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-triangle-exclamation"></i>
+                  </div>
+                  <h3 class="component-title">Alerts</h3>
+                </div>
+                <p class="component-description">
+                  Alertas de información, éxito, advertencia y error.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Feedback</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- COMPONENTES COMPLEJOS -->
+          <div style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--sb-ui-color-grayscale-black); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--sb-ui-color-primary-base);">
+              <i class="fas fa-cubes" style="margin-right: 0.75rem; color: var(--sb-ui-color-primary-base);"></i>
+              Componentes Complejos
+            </h2>
+            <div class="components-grid">
+              <button class="component-card" data-path="modal/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-window-maximize"></i>
+                  </div>
+                  <h3 class="component-title">Modal</h3>
+                </div>
+                <p class="component-description">
+                  Diálogos modales con Web Components. Soporta overlay, animaciones y cerrar con ESC.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge web-component"><i class="fas fa-code"></i>Web Component</span>
+                  <span class="component-badge">Interactivo</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="dropdown/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-bars"></i>
+                  </div>
+                  <h3 class="component-title">Dropdown</h3>
+                </div>
+                <p class="component-description">
+                  Menús desplegables inteligentes con posicionamiento automático.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge web-component"><i class="fas fa-code"></i>Web Component</span>
+                  <span class="component-badge">Interactivo</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="calendar/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-calendar"></i>
+                  </div>
+                  <h3 class="component-title">Calendar & DatePicker</h3>
+                </div>
+                <p class="component-description">
+                  Selector de fechas interactivo con navegación entre meses.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge web-component"><i class="fas fa-code"></i>Web Component</span>
+                  <span class="component-badge">Interactivo</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="stepper/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-arrow-down-1-9"></i>
+                  </div>
+                  <h3 class="component-title">Stepper</h3>
+                </div>
+                <p class="component-description">
+                  Pasos numerados para procesos multi-etapa.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge web-component"><i class="fas fa-code"></i>Web Component</span>
+                  <span class="component-badge">Flujo</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="tabs/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <h3 class="component-title">Tabs</h3>
+                </div>
+                <p class="component-description">
+                  Pestañas para organizar contenido en secciones.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Organización</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="breadcrumb/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <h3 class="component-title">Breadcrumb</h3>
+                </div>
+                <p class="component-description">
+                  Rutas de navegación para indicar la ubicación actual.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Navegación</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="table/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-table"></i>
+                  </div>
+                  <h3 class="component-title">Tablas</h3>
+                </div>
+                <p class="component-description">
+                  Tablas con estilos responsivos y estados interactivos.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Datos</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="accordion/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <h3 class="component-title">Accordion</h3>
+                </div>
+                <p class="component-description">
+                  Paneles colapsables para organizar contenido.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Organización</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="spinner/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-spinner"></i>
+                  </div>
+                  <h3 class="component-title">Spinner</h3>
+                </div>
+                <p class="component-description">
+                  Indicadores de carga con animaciones.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Feedback</span>
+                </div>
+              </button>
+
+              <button class="component-card" data-path="file-upload/">
+                <div class="component-card-header">
+                  <div class="component-icon">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                  </div>
+                  <h3 class="component-title">File Upload</h3>
+                </div>
+                <p class="component-description">
+                  Carga de archivos con drag & drop.
+                </p>
+                <div class="component-meta">
+                  <span class="component-badge css"><i class="fas fa-palette"></i>CSS</span>
+                  <span class="component-badge">Entrada</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const contentInner = document.querySelector('.content-inner');
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.getElementById('hamburger');
+
+      // ========================================
+      // DYNAMIC CONTENT LOADING
+      // ========================================
+      function loadContent(path) {
+        // Show loading state
+        contentInner.innerHTML = '<div style="padding: 2rem; text-align: center;"><i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i><p>Cargando...</p></div>';
+        
+        // Fetch the HTML file
+        fetch(path)
+          .then(response => {
+            if (!response.ok) throw new Error('Error loading page');
+            return response.text();
+          })
+          .then(html => {
+            // Parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get the main content (adjust selector based on structure)
+            let content = doc.querySelector('.content-inner');
+            if (!content) {
+              content = doc.querySelector('main');
+            }
+            if (!content) {
+              content = doc.body;
+            }
+            
+            // Insert the content
+            contentInner.innerHTML = content.innerHTML;
+            
+            // Re-initialize any scripts or styles if needed
+            initializeLoadedContent();
+            
+            // Close sidebar on mobile
+            if (window.innerWidth <= 768) {
+              sidebar.classList.remove('open');
+            }
+          })
+          .catch(error => {
+            console.error('Error loading content:', error);
+            contentInner.innerHTML = '<div style="padding: 2rem; text-align: center; color: red;"><i class="fas fa-exclamation-circle"></i><p>Error al cargar la página</p></div>';
+          });
+      }
+
+      // Function to reinitialize content after loading
+      function initializeLoadedContent() {
+        // You can add any initialization code here for loaded content
+        // For example, reinitialize event listeners, animations, etc.
+      }
+
+      // ========================================
+      // SIDEBAR NAVIGATION
+      // ========================================
+      // Get all navigation items (buttons with data-path)
+      const navButtons = document.querySelectorAll('[data-path]');
+      
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = btn.getAttribute('data-path');
+          
+          // Remove active class from all nav items
+          navButtons.forEach(b => b.classList.remove('active'));
+          
+          // Add active class to clicked button
+          btn.classList.add('active');
+          
+          // Load the content
+          loadContent(path);
+        });
+      });
+
+      // Sidebar toggle functionality
+      hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', (e) => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+      });
+
+      // ========================================
+      // SUBMENU FUNCTIONALITY
+      // ========================================
+      const submenuButtons = document.querySelectorAll('.sidebar-submenu-btn');
+      
+      submenuButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const submenuId = btn.getAttribute('data-submenu');
+          const submenu = document.getElementById(submenuId);
+          const toggle = btn.querySelector('.sidebar-submenu-toggle');
+          
+          // Close other open submenus
+          document.querySelectorAll('.sidebar-submenu').forEach(m => {
+            if (m.id !== submenuId) {
+              m.classList.remove('open');
+            }
+          });
+          
+          document.querySelectorAll('.sidebar-submenu-toggle').forEach(t => {
+            if (t !== toggle) {
+              t.classList.remove('open');
+            }
+          });
+          
+          // Toggle current submenu
+          submenu.classList.toggle('open');
+          toggle.classList.toggle('open');
+        });
+      });
+
+      // Initialize: load default content (Inicio)
+      const inicioBtn = document.querySelector('[data-path="index.html"]');
+      if (inicioBtn) {
+        inicioBtn.classList.add('active');
+      }
+
+      // CSS animation for loading spinner
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

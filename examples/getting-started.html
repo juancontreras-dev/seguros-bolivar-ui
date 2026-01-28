@@ -1032,28 +1032,6 @@
 
   <!-- Main Content -->
   <main class="main-container">
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs">
-      <button class="nav-tab active" onclick="showSection('instalacion')">
-        <i class="fa-solid fa-download"></i> Instalación
-      </button>
-      <button class="nav-tab" onclick="showSection('uso-basico')">
-        <i class="fa-solid fa-code"></i> Uso Básico
-      </button>
-      <button class="nav-tab" onclick="showSection('componentes')">
-        <i class="fa-solid fa-puzzle-piece"></i> Componentes
-      </button>
-      <button class="nav-tab" onclick="showSection('marcas')">
-        <i class="fa-solid fa-palette"></i> Marcas
-      </button>
-      <button class="nav-tab" onclick="showSection('personalizacion')">
-        <i class="fa-solid fa-wand-magic-sparkles"></i> Personalización
-      </button>
-      <button class="nav-tab" onclick="showSection('mejores-practicas')">
-        <i class="fa-solid fa-star"></i> Mejores Prácticas
-      </button>
-    </nav>
-
     <!-- Section: Instalación -->
     <section id="instalacion" class="content-section active">
       <h2><i class="fa-solid fa-download"></i> Instalación</h2>
@@ -2128,16 +2106,21 @@ window.addEventListener('DOMContentLoaded', () => {
         section.classList.remove('active');
       });
       
-      // Remove active from all tabs
+      // Remove active from all tabs (si existen en algún contexto)
       document.querySelectorAll('.nav-tab').forEach(tab => {
         tab.classList.remove('active');
       });
       
       // Show selected section
-      document.getElementById(sectionId).classList.add('active');
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
       
-      // Mark tab as active
-      event.target.classList.add('active');
+      // Marcar pestaña activa solo si hay un evento disponible (uso standalone)
+      if (typeof event !== 'undefined' && event && event.target && event.target.classList) {
+        event.target.classList.add('active');
+      }
       
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2358,6 +2341,67 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     `;
     document.head.appendChild(style);
+
+    // Seleccionar sección inicial cuando se carga (standalone o dentro del layout maestro)
+    (function inicializarSeccionDesdeURL() {
+      const sections = document.querySelectorAll('.content-section');
+      if (!sections.length) return;
+
+      let sectionId = 'instalacion';
+
+      try {
+        const url = new URL(window.location.href);
+        const viewParam = url.searchParams.get('view') || '';
+
+        if (viewParam) {
+          // Ej: view=getting-started.html#uso-basico
+          const hashIndex = viewParam.indexOf('#');
+          if (hashIndex !== -1 && hashIndex < viewParam.length - 1) {
+            sectionId = viewParam.slice(hashIndex + 1);
+          }
+        } else if (window.location.hash) {
+          // Uso directo de la guía: getting-started.html#uso-basico
+          sectionId = window.location.hash.substring(1);
+        }
+      } catch (e) {
+        // Si algo falla, usamos la sección por defecto
+      }
+
+      showSection(sectionId);
+    })();
+
+    // Seleccionar sección inicial cuando se carga dentro del layout maestro
+    (function inicializarSeccionDesdeURL() {
+      // Asegurar que existan secciones en la página
+      const sections = document.querySelectorAll('.content-section');
+      if (!sections.length) return;
+
+      try {
+        const url = new URL(window.location.href);
+        const viewParam = url.searchParams.get('view') || '';
+
+        // Valor por defecto
+        let sectionId = 'instalacion';
+
+        // Si el parámetro view hace referencia a getting-started con sección, la extraemos
+        // Ej: view=getting-started.html?section=uso-basico
+        if (viewParam) {
+          const innerQueryIndex = viewParam.indexOf('?');
+          if (innerQueryIndex !== -1) {
+            const innerQuery = viewParam.slice(innerQueryIndex + 1);
+            const innerParams = new URLSearchParams(innerQuery);
+            const sectionFromView = innerParams.get('section');
+            if (sectionFromView) {
+              sectionId = sectionFromView;
+            }
+          }
+        }
+
+        showSection(sectionId);
+      } catch (e) {
+        // En caso de error, dejamos la sección por defecto definida en el HTML
+      }
+    })();
   </script>
 </body>
 </html>

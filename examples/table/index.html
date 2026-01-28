@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Table Component - Seguros Bolivar UI</title>
+    <script>
+      (function () {
+        try {
+          var path = window.location.pathname || '';
+          if (/\/table\/?$/.test(path)) {
+            var base = path.replace(/\/table\/?$/, '/');
+            var newUrl = base + '?view=table/';
+            window.location.replace(newUrl);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css?v=1.0.0"
@@ -50,84 +62,7 @@
         padding-bottom: 0.5rem;
       }
 
-      /* ============================================
-         BRAND & THEME CONTROLS
-         ============================================ */
-      .brand-controls {
-        position: sticky;
-        top: 1rem;
-        z-index: 100;
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: 1.5rem;
-        align-items: center;
-        margin-bottom: 2rem;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1400px;
-        padding: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--sb-ui-color-grayscale-white) 0%,
-          var(--sb-ui-color-grayscale-L400) 100%
-        );
-        border-radius: 16px;
-        box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.08),
-          0 1px 3px rgba(0, 0, 0, 0.05);
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-      }
-
-      .brand-controls:hover {
-        box-shadow:
-          0 8px 30px rgba(0, 0, 0, 0.12),
-          0 2px 6px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .brand-controls-group {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .brand-controls label {
-        font-weight: 600;
-        font-size: 0.8125rem;
-        color: var(--sb-ui-color-grayscale-D300);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-      }
-
-      .theme-toggle {
-        display: flex;
-        gap: 0.5rem;
-        background: var(--sb-ui-color-grayscale-L300);
-        padding: 0.25rem;
-        border-radius: 50px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      @media (max-width: 768px) {
-        .brand-controls {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .brand-controls-group {
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .theme-toggle {
-          width: 100%;
-        }
-      }
+      
 
       /* Main Content */
       .section {
@@ -218,39 +153,6 @@
     </style>
   </head>
   <body data-brand="seguros-bolivar">
-    <!-- Brand & Theme Controls -->
-    <div class="brand-controls">
-      <button
-        onclick="window.location.href='../index.html'"
-        class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-        style="text-decoration: none"
-      >
-        ← Volver
-      </button>
-
-      <div class="brand-controls-group">
-        <label for="brandSelect">📦 Marca:</label>
-        <select id="brandSelect" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-          <option value="white-label">White Label</option>
-          <option value="jelpit">Jelpit</option>
-          <option value="davivienda">Davivienda</option>
-          <option value="cien-cuadras">Cien Cuadras</option>
-          <option value="doctor-aki">Doctor Aki</option>
-          <option value="seguros-bolivar" selected>Seguros Bolívar</option>
-        </select>
-
-        <label for="themeToggle">🌓 Tema:</label>
-        <div class="theme-toggle">
-          <button id="lightBtn" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-            ☀️ Light
-          </button>
-          <button id="darkBtn" class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-            🌙 Dark
-          </button>
-        </div>
-      </div>
-    </div>
-
     <div class="demo-container">
       <!-- Header -->
       <h1 style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: #1b1b1b">📊 Table Component</h1>
@@ -722,74 +624,6 @@
 
     <!-- JavaScript -->
     <script>
-      // ============================================
-      // BRAND & THEME MANAGEMENT
-      // ============================================
-      const brandSelect = document.getElementById('brandSelect');
-      const lightBtn = document.getElementById('lightBtn');
-      const darkBtn = document.getElementById('darkBtn');
-      const brandCSS = document.getElementById('brand-css');
-
-      // Load saved state
-      const savedBrand = localStorage.getItem('sb-ui-selected-brand') || 'seguros-bolivar';
-      const savedTheme = localStorage.getItem('sb-ui-selected-theme') || 'light';
-
-      // Apply saved state
-      document.body.setAttribute('data-brand', savedBrand);
-      document.body.setAttribute('data-theme', savedTheme);
-      brandSelect.value = savedBrand;
-      updateThemeButtons(savedTheme);
-      updateStylesheet(savedBrand, savedTheme);
-
-      // Brand selector change
-      brandSelect.addEventListener('change', () => {
-        const brand = brandSelect.value;
-        document.body.setAttribute('data-brand', brand);
-        localStorage.setItem('sb-ui-selected-brand', brand);
-        
-        const currentTheme = document.body.getAttribute('data-theme');
-        updateStylesheet(brand, currentTheme);
-      });
-
-      // Light theme button
-      lightBtn.addEventListener('click', () => {
-        document.body.setAttribute('data-theme', 'light');
-        localStorage.setItem('sb-ui-selected-theme', 'light');
-        updateThemeButtons('light');
-        
-        const currentBrand = document.body.getAttribute('data-brand');
-        updateStylesheet(currentBrand, 'light');
-      });
-
-      // Dark theme button
-      darkBtn.addEventListener('click', () => {
-        document.body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('sb-ui-selected-theme', 'dark');
-        updateThemeButtons('dark');
-        
-        const currentBrand = document.body.getAttribute('data-brand');
-        updateStylesheet(currentBrand, 'dark');
-      });
-
-      function updateThemeButtons(theme) {
-        if (theme === 'light') {
-          lightBtn.classList.remove('sb-ui-button--tertiary');
-          lightBtn.classList.add('sb-ui-button--primary');
-          darkBtn.classList.remove('sb-ui-button--primary');
-          darkBtn.classList.add('sb-ui-button--tertiary');
-        } else {
-          darkBtn.classList.remove('sb-ui-button--tertiary');
-          darkBtn.classList.add('sb-ui-button--primary');
-          lightBtn.classList.remove('sb-ui-button--primary');
-          lightBtn.classList.add('sb-ui-button--tertiary');
-        }
-      }
-
-      function updateStylesheet(brand, theme) {
-        const timestamp = new Date().getTime();
-        brandCSS.href = `../dist/sb-ui-${brand}-${theme}.min.css?v=${timestamp}`;
-      }
-
       // Select All Checkbox
       document.getElementById('select-all-1').addEventListener('change', function () {
         const checkboxes = document.querySelectorAll(

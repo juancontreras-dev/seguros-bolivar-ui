@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>File Upload Component - Seguros Bolívar UI Design System</title>
 
+    <script>
+      (function () {
+        try {
+          var path = window.location.pathname || '';
+          if (/\/file-upload\/?$/.test(path)) {
+            var base = path.replace(/\/file-upload\/?$/, '/');
+            var newUrl = base + '?view=file-upload/';
+            window.location.replace(newUrl);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- CSS Bundle -->
     <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
     <link
