@@ -32,190 +32,40 @@
       href="../dist/sb-ui-seguros-bolivar-light.min.css?v=final-cleanup"
       id="brand-css"
     />
-    <style>
-      * {
-        margin-block: 0;
-        margin-inline: 0;
-        padding-block: 0;
-        padding-inline: 0;
-        box-sizing: border-box;
-      }
 
-      body {
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
+    <!-- CSS global de componentes -->
+    <link rel="stylesheet" href="../components.css" />
 
-      .matrix-container {
-        max-inline-size: 1400px;
-        margin-block: 0;
-        margin-inline: auto;
-      }
-
-      .matrix-header {
-        margin-block-end: 2rem;
-        text-align: center;
-      }
-
-      .matrix-header h1 {
-        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-        font-weight: 700;
-        color: var(--sb-ui-color-feedback-error-base, #dc3545);
-        margin-block-end: 0.5rem;
-      }
-
-      .matrix-header p {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-      }
-
-      .matrix-section {
-        margin-block-end: 4rem;
-        background: white;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .matrix-title {
-        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
-        font-weight: 700;
-        margin-block-end: 0.5rem;
-        color: var(--sb-ui-color-feedback-error-base, #dc3545);
-      }
-
-      .matrix-subtitle {
-        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-        margin-block-end: 2rem;
-      }
-
-      .matrix-table {
-        inline-size: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        overflow: hidden;
-        border-radius: 8px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-      }
-
-      .matrix-table th,
-      .matrix-table td {
-        padding-block: 1.25rem;
-        padding-inline: 1rem;
-        text-align: center;
-        border-inline-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-      }
-
-      .matrix-table th {
-        background: var(--sb-ui-color-feedback-error-base, #dc3545);
-        color: white;
-        font-weight: 700;
-        font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.95rem);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .matrix-table td:first-child {
-        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
-        font-weight: 600;
-        text-align: start;
-        padding-inline-start: 1.5rem;
-        color: var(--sb-ui-color-grayscale-D100, #333);
-      }
-
-      .matrix-table tr:last-child td {
-        border-block-end: none;
-      }
-
-      .matrix-table th:last-child,
-      .matrix-table td:last-child {
-        border-inline-end: none;
-      }
-
-      .state-label {
-        display: inline-block;
-        padding-block: 0.25rem;
-        padding-inline: 0.75rem;
-        border-radius: 4px;
-        font-size: clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
-        font-weight: 600;
-        background: var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        color: var(--sb-ui-color-grayscale-D200, #222);
-      }
-
-      .state-label.default {
-        background: var(--sb-ui-color-feedback-error-L400, #fbebec);
-        color: var(--sb-ui-color-feedback-error-D100, #c93241);
-      }
-      .state-label.loading {
-        background: var(--sb-ui-color-feedback-error-L300, #f5c2c7);
-        color: var(--sb-ui-color-feedback-error-base, #dc3545);
-      }
-      .state-label.disabled {
-        background: #eceff1;
-        color: #546e7a;
-      }
-
-      /* Estilos para iconos de Font Awesome */
-      .sb-ui-button i {
-        font-size: 1em;
-      }
-
-      .notes-section {
-        background: var(--sb-ui-color-feedback-error-L400, #fbebec);
-        border-inline-start: 4px solid var(--sb-ui-color-feedback-error-base, #dc3545);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-      }
-
-      .notes-section h3 {
-        margin-block-start: 0;
-        color: var(--sb-ui-color-feedback-error-D100, #c93241);
-        font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
-        margin-block-end: 1rem;
-      }
-
-      .notes-section ul {
-        line-height: 1.8;
-        color: #333;
-        padding-inline-start: 1.5rem;
-      }
-
-      .notes-section code {
-        background: rgba(0, 0, 0, 0.05);
-        padding-block: 0.125rem;
-        padding-inline: 0.375rem;
-        border-radius: 3px;
-        font-family: 'Courier New', monospace;
-        font-size: 0.9em;
-      }
-
-      
-    </style>
   </head>
   <body>
-    <div class="matrix-container">
-      <!-- Header -->
-      <div class="matrix-header">
-        <h1>Button - Error</h1>
-      </div>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>
+          </span>
+          <span>Botón de error</span>
+        </h2>
+        <p class="component-description">
+          Componente botón de error con todas sus variantes (FILL, STROKE, TEXT), estados interactivos
+          (default, hover, loading, disabled) y posiciones de iconos (left, right, only).
+          Compatible con todas las marcas del design system.
+        </p>
+      </header>
 
       <!-- ========================================
          SECCIÓN 1: FILL
          ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">🎨 Variante FILL - Error Button</h2>
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Fill</h3>
 
-        <table class="matrix-table">
+        <table class="states-table">
           <thead>
             <tr>
-              <th style="text-align: start; padding-inline-start: 1.5rem">Estado</th>
+              <th>Estado</th>
               <th>Icon Left</th>
               <th>Icon Right</th>
               <th>Default (Sin icono)</th>
@@ -226,7 +76,7 @@
             <!-- Default State -->
             <tr>
               <td>
-                <span class="state-label default">Default</span>
+                <span class="state-label state-label--default">Default</span>
               </td>
               <td>
                 <button
@@ -259,7 +109,7 @@
             <!-- Loading State -->
             <tr>
               <td>
-                <span class="state-label loading">Loading</span>
+                <span class="state-label state-label--loading">Loading</span>
               </td>
               <td>
                 <button
@@ -296,7 +146,7 @@
             <!-- Disabled State -->
             <tr>
               <td>
-                <span class="state-label disabled">Disabled</span>
+                <span class="state-label state-label--disabled">Disabled</span>
               </td>
               <td>
                 <button
@@ -331,18 +181,33 @@
             </tr>
           </tbody>
         </table>
-      </div>
+        
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--fill"&gt;Action&lt;/button&gt;
+
+&lt;!-- Estado Loading --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--fill sb-ui-button--loading"&gt;Action&lt;/button&gt;
+
+&lt;!-- Estado Disabled --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--fill sb-ui-button--disabled"&gt;Action&lt;/button&gt;</code></pre>
+        </div>
+      </section>
 
       <!-- ========================================
          SECCIÓN 2: STROKE
          ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">🎨 Variante STROKE - Error Button (Default)</h2>
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Stroke</h3>
 
-        <table class="matrix-table">
+        <table class="states-table">
           <thead>
             <tr>
-              <th style="text-align: start; padding-inline-start: 1.5rem">Estado</th>
+              <th>Estado</th>
               <th>Icon Left</th>
               <th>Icon Right</th>
               <th>Default (Sin icono)</th>
@@ -353,7 +218,7 @@
             <!-- Default State -->
             <tr>
               <td>
-                <span class="state-label default">Default</span>
+                <span class="state-label state-label--default">Default</span>
               </td>
               <td>
                 <button
@@ -386,7 +251,7 @@
             <!-- Loading State -->
             <tr>
               <td>
-                <span class="state-label loading">Loading</span>
+                <span class="state-label state-label--loading">Loading</span>
               </td>
               <td>
                 <button
@@ -423,7 +288,7 @@
             <!-- Disabled State -->
             <tr>
               <td>
-                <span class="state-label disabled">Disabled</span>
+                <span class="state-label state-label--disabled">Disabled</span>
               </td>
               <td>
                 <button
@@ -458,18 +323,33 @@
             </tr>
           </tbody>
         </table>
-      </div>
+        
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--stroke"&gt;Error&lt;/button&gt;
+
+&lt;!-- Estado Loading --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--stroke sb-ui-button--loading"&gt;Error&lt;/button&gt;
+
+&lt;!-- Estado Disabled --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--stroke sb-ui-button--disabled"&gt;Error&lt;/button&gt;</code></pre>
+        </div>
+      </section>
 
       <!-- ========================================
          SECCIÓN 3: TEXT
          ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">🎨 Variante TEXT - Error Button</h2>
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Text</h3>
 
-        <table class="matrix-table">
+        <table class="states-table">
           <thead>
             <tr>
-              <th style="text-align: start; padding-inline-start: 1.5rem">Estado</th>
+              <th>Estado</th>
               <th>Icon Left</th>
               <th>Icon Right</th>
               <th>Default (Sin icono)</th>
@@ -480,7 +360,7 @@
             <!-- Default State -->
             <tr>
               <td>
-                <span class="state-label default">Default</span>
+                <span class="state-label state-label--default">Default</span>
               </td>
               <td>
                 <button
@@ -513,7 +393,7 @@
             <!-- Loading State -->
             <tr>
               <td>
-                <span class="state-label loading">Loading</span>
+                <span class="state-label state-label--loading">Loading</span>
               </td>
               <td>
                 <button
@@ -550,7 +430,7 @@
             <!-- Disabled State -->
             <tr>
               <td>
-                <span class="state-label disabled">Disabled</span>
+                <span class="state-label state-label--disabled">Disabled</span>
               </td>
               <td>
                 <button
@@ -585,8 +465,44 @@
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
+        
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--text"&gt;Error&lt;/button&gt;
 
+&lt;!-- Estado Loading --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--text sb-ui-button--loading"&gt;Error&lt;/button&gt;
+
+&lt;!-- Estado Disabled --&gt;
+&lt;button class="sb-ui-button sb-ui-button--error sb-ui-button--text sb-ui-button--disabled"&gt;Error&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-button--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

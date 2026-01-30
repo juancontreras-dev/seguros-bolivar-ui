@@ -1207,6 +1207,11 @@
       // DYNAMIC CONTENT LOADING
       // ========================================
       function loadContent(path, options = { pushState: true }) {
+        // Remove previously injected dynamic styles (links/styles)
+        document.querySelectorAll('[data-dynamic-link="true"]').forEach(node => {
+          node.remove();
+        });
+
         // Show loading state
         contentInner.innerHTML = '<div style="padding: 2rem; text-align: center;"><i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i><p>Cargando...</p></div>';
 
@@ -1247,6 +1252,46 @@
               doc.querySelector('main') ||
               doc.body;
             
+            // Helper to sanitize CSS by removing global selectors
+            const sanitizeCss = css => {
+              let cleaned = css;
+              cleaned = cleaned.replace(/\*\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/html\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/body\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/html\s*,\s*body\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/main\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/header\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/footer\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/nav\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/html\w*\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/:root\s*\{[^}]*\}/gs, '');
+              cleaned = cleaned.replace(/(^|})\s*\.content[^\{]*\{[^}]*\}/gs, '$1');
+              cleaned = cleaned.split('\n').filter(line => line.trim().length > 0).join('\n');
+              return cleaned;
+            };
+
+            // Extract external stylesheets and inline them safely
+            const pageLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+            const baseUrl = new URL(targetPath, window.location.origin);
+            const cssPromises = [];
+
+            pageLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (!href) return;
+
+              // Skip external URLs (fonts, CDN) and global design system CSS
+              if (/^https?:\/\//i.test(href) || href.startsWith('//')) return;
+              if (href.includes('/dist/') || href.includes('sb-ui-')) return;
+
+              const resolvedHref = new URL(href, baseUrl).href;
+              cssPromises.push(
+                fetch(resolvedHref)
+                  .then(res => (res.ok ? res.text() : ''))
+                  .then(text => sanitizeCss(text))
+                  .catch(() => '')
+              );
+            });
+
             // Extract styles from the loaded page to inject them INSIDE the dynamic container
             const styles = doc.querySelectorAll('style');
             let dynamicStyles = '';
@@ -1290,41 +1335,48 @@
               dynamicStyles += css;
             });
 
-            // Extract inline scripts so they can be executed after injecting the content
-            const scripts = doc.querySelectorAll('script');
-            const inlineScripts = [];
-            scripts.forEach(script => {
-              if (!script.src && script.textContent.trim()) {
-                inlineScripts.push(script.textContent);
+            return Promise.all(cssPromises).then(externalCssList => {
+              const externalCss = externalCssList.filter(Boolean).join('\n');
+
+              // Extract inline scripts so they can be executed after injecting the content
+              const scripts = doc.querySelectorAll('script');
+              const inlineScripts = [];
+              scripts.forEach(script => {
+                if (!script.src && script.textContent.trim()) {
+                  inlineScripts.push(script.textContent);
+                }
+              });
+              
+              // Build the HTML with styles injected inside the container
+              let dynamicHTML = '';
+              if (externalCss) {
+                dynamicHTML += '<style data-dynamic-link="true">' + externalCss + '</style>';
+              }
+              if (dynamicStyles) {
+                dynamicHTML += '<style>' + dynamicStyles + '</style>';
+              }
+              dynamicHTML += content.innerHTML;
+              
+              // Insert the content wrapped in a container
+              contentInner.innerHTML = '<div class="dynamic-content">' + dynamicHTML + '</div>';
+              
+              // Execute inline scripts from the loaded page so that
+              // interactive docs like "getting-started" work inside the master layout
+              const dynamicContainer = contentInner.querySelector('.dynamic-content');
+              inlineScripts.forEach(code => {
+                const s = document.createElement('script');
+                s.textContent = code;
+                dynamicContainer.appendChild(s);
+              });
+              
+              // Re-initialize any scripts or styles if needed
+              initializeLoadedContent();
+              
+              // Close sidebar on mobile
+              if (window.innerWidth <= 768) {
+                sidebar.classList.remove('open');
               }
             });
-            
-            // Build the HTML with styles injected inside the container
-            let dynamicHTML = '';
-            if (dynamicStyles) {
-              dynamicHTML = '<style>' + dynamicStyles + '</style>';
-            }
-            dynamicHTML += content.innerHTML;
-            
-            // Insert the content wrapped in a container
-            contentInner.innerHTML = '<div class="dynamic-content">' + dynamicHTML + '</div>';
-
-            // Execute inline scripts from the loaded page so that
-            // interactive docs like "getting-started" work inside the master layout
-            const dynamicContainer = contentInner.querySelector('.dynamic-content');
-            inlineScripts.forEach(code => {
-              const s = document.createElement('script');
-              s.textContent = code;
-              dynamicContainer.appendChild(s);
-            });
-            
-            // Re-initialize any scripts or styles if needed
-            initializeLoadedContent();
-            
-            // Close sidebar on mobile
-            if (window.innerWidth <= 768) {
-              sidebar.classList.remove('open');
-            }
           })
           .catch(error => {
             console.error('Error loading content:', error);
