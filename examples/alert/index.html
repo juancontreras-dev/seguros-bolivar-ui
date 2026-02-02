@@ -1,21 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alert & Toast Component - Seguros Bolívar UI</title>
+    <title>Alert Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <!-- CSS del Design System - Seguros Bolívar Light -->
-    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <!-- Preload CSS del Design System -->
     <link
       rel="preload"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
@@ -27,456 +35,206 @@
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      * {
-        margin-block: 0;
-        margin-inline: 0;
-        padding-block: 0;
-        padding-inline: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .matrix-container {
-        max-inline-size: 1400px;
-        margin-block: 0;
-        margin-inline: auto;
-      }
-
-      .matrix-header {
-        margin-block-end: 2rem;
-        text-align: center;
-      }
-
-      .matrix-header h1 {
-        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-        font-weight: 700;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 0.5rem;
-      }
-
-      .matrix-header p {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-      }
-
-      
-
-      /* Sections */
-      .matrix-section {
-        margin-block-end: 3rem;
-        background: white;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .matrix-title {
-        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
-        font-weight: 600;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 1.5rem;
-        padding-block-end: 0.75rem;
-        border-block-end: 2px solid var(--sb-ui-color-secondary-L300, #fff6d4);
-      }
-
-      /* Demo Grid */
-      .demo-grid {
+      /* Estilos específicos para alert demo */
+      .alert-demo-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        margin-block-start: 1.5rem;
+        margin-block-end: 2rem;
       }
 
-      .demo-grid-2 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 1.5rem;
-        margin-block-start: 1.5rem;
-      }
-
-      .demo-item {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .demo-item h3 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-primary-base);
-        margin-block-end: 0.5rem;
-      }
-
-      .demo-item p {
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-base);
-        margin-block-end: 0.5rem;
-      }
-
-      /* Badge */
-      .badge {
-        display: inline-block;
-        padding-block: 0.25rem;
-        padding-inline: 0.75rem;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-inline-end: 0.5rem;
-        margin-block-end: 0.5rem;
-      }
-
-      .badge--success {
-        background: #d4edda;
-        color: #155724;
-      }
-
-      .badge--info {
-        background: #d1ecf1;
-        color: #0c5460;
-      }
-
-      .badge--warning {
-        background: #fff3cd;
-        color: #856404;
-      }
-
-      .badge--error {
-        background: #f8d7da;
-        color: #721c24;
-      }
-
-      .badge--primary {
-        background: var(--sb-ui-color-primary-L400);
-        color: var(--sb-ui-color-primary-D200);
-      }
-
-      /* Toast container for demos */
-      .toast-controls {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-      }
-
-      /* Asegurar padding en botones de toast */
-      .toast-controls .sb-ui-button {
-        padding-inline: var(--sb-ui-button-padding-inline, 1rem) !important;
-        padding-block: var(--sb-ui-button-padding-block, 0.5rem) !important;
-      }
-
-      /* Code snippet */
-      .code-snippet {
-        background: #f5f5f5;
-        padding: 1rem;
-        border-radius: 8px;
-        font-family: 'Courier New', monospace;
-        font-size: 0.875rem;
-        overflow-x: auto;
-        margin-block-start: 1rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      @media (max-width: 768px) {
+        .alert-demo-grid {
+          gap: 1rem;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="matrix-container">
-      <!-- Header -->
-      <header class="matrix-header">
-        <h1>🔔 Alert & Toast Component</h1>
-        <p>
-          Componentes de alerta y notificaciones tipo toast. Soporta múltiples variantes (success, info, warning, error),
-          tipos (inline, toast) y posiciones configurables.
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          </span>
+          <span>Alert</span>
+        </h2>
+        <p class="component-description">
+          Componente de alertas y notificaciones con múltiples variantes (success, info, warning, error),
+          estilos (filled, outlined, subtle) y opciones de cierre.
+          Compatible con todas las marcas del design system.
         </p>
       </header>
 
-      <!-- SECTION: Variantes -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Variantes (Success, Info, Warning, Error)</h2>
-        <div class="demo-grid">
-          <!-- Success -->
-          <div class="demo-item">
-            <h3>✅ Success</h3>
-            <div class="sb-ui-alert sb-ui-alert--success">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">¡Operación exitosa!</div>
-                <div class="sb-ui-alert-message">Tu información ha sido guardada correctamente.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
+      <!-- ========================================
+           SECCIÓN 1: VARIANTES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Variantes</h3>
+        <div class="alert-demo-grid">
+          <!-- SUCCESS -->
+          <div class="sb-ui-alert sb-ui-alert--success">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-circle-check"></i>
             </div>
-          </div>
-
-          <!-- Info -->
-          <div class="demo-item">
-            <h3>ℹ️ Info</h3>
-            <div class="sb-ui-alert sb-ui-alert--info">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Información importante</div>
-                <div class="sb-ui-alert-message">Recuerda revisar tu correo para confirmar la operación.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Éxito</strong>
+              <p class="sb-ui-alert__message">La operación se completó correctamente.</p>
             </div>
-          </div>
-
-          <!-- Warning -->
-          <div class="demo-item">
-            <h3>⚠️ Warning</h3>
-            <div class="sb-ui-alert sb-ui-alert--warning">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Advertencia</div>
-                <div class="sb-ui-alert-message">Esta acción no se puede deshacer. Por favor, confirma antes de continuar.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-
-          <!-- Error -->
-          <div class="demo-item">
-            <h3>❌ Error</h3>
-            <div class="sb-ui-alert sb-ui-alert--error">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Error en la operación</div>
-                <div class="sb-ui-alert-message">No se pudo completar la operación. Por favor, intenta nuevamente.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Tamaños -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Tamaños (Small, Medium, Large)</h2>
-        <div class="demo-grid">
-          <!-- Small -->
-          <div class="demo-item">
-            <h3>📉 Small</h3>
-            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--small">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-message">Alerta pequeña compacta</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-
-          <!-- Medium (Default) -->
-          <div class="demo-item">
-            <h3>📊 Medium (Default)</h3>
-            <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--medium">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Tamaño estándar</div>
-                <div class="sb-ui-alert-message">Este es el tamaño por defecto de las alertas.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-
-          <!-- Large -->
-          <div class="demo-item">
-            <h3>📈 Large</h3>
-            <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--large">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Alerta grande destacada</div>
-                <div class="sb-ui-alert-message">Este tamaño es ideal para información muy importante que requiere atención inmediata del usuario.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Opciones de Visualización -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Opciones de Visualización</h2>
-        <div class="demo-grid">
-          <!-- Sin icono -->
-          <div class="demo-item">
-            <h3>🚫 Sin Icono</h3>
-            <div class="sb-ui-alert sb-ui-alert--info">
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Sin icono decorativo</div>
-                <div class="sb-ui-alert-message">Esta alerta no incluye icono al inicio.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-
-          <!-- Sin botón cerrar -->
-          <div class="demo-item">
-            <h3>🔒 Sin Botón Cerrar</h3>
-            <div class="sb-ui-alert sb-ui-alert--warning">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Alerta persistente</div>
-                <div class="sb-ui-alert-message">Esta alerta no puede ser cerrada por el usuario.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Solo mensaje -->
-          <div class="demo-item">
-            <h3>📝 Solo Mensaje</h3>
-            <div class="sb-ui-alert sb-ui-alert--success">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-message">Mensaje simple sin título.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-
-          <!-- Con fondo -->
-          <div class="demo-item">
-            <h3>🎨 Con Fondo de Color</h3>
-            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--with-bg">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Alerta con fondo</div>
-                <div class="sb-ui-alert-message">Esta alerta usa un fondo de color para mayor visibilidad.</div>
-              </div>
-              <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Toast Notifications -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Toast Notifications (Notificaciones Flotantes)</h2>
-        
-        <div class="demo-item" style="margin-bottom: 2rem;">
-          <h3>🍞 Mostrar Toasts</h3>
-          <p>Haz clic en los botones para mostrar notificaciones tipo toast en diferentes posiciones:</p>
-          
-          <div class="toast-controls">
-            <button class="sb-ui-button sb-ui-button--success sb-ui-button--small" onclick="showToast('success', 'top-right')">
-              Success Top Right
+            <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
+              <i class="fa-solid fa-xmark"></i>
             </button>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small" onclick="showToast('info', 'top-center')">
-              Info Top Center
+          </div>
+
+          <!-- INFO -->
+          <div class="sb-ui-alert sb-ui-alert--info">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Información</strong>
+              <p class="sb-ui-alert__message">Esta es una notificación informativa para el usuario.</p>
+            </div>
+            <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
+              <i class="fa-solid fa-xmark"></i>
             </button>
-            <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" onclick="showToast('warning', 'bottom-right')">
-              Warning Bottom Right
+          </div>
+
+          <!-- WARNING -->
+          <div class="sb-ui-alert sb-ui-alert--warning">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Advertencia</strong>
+              <p class="sb-ui-alert__message">Revise los datos antes de continuar.</p>
+            </div>
+            <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
+              <i class="fa-solid fa-xmark"></i>
             </button>
-            <button class="sb-ui-button sb-ui-button--error sb-ui-button--small" onclick="showToast('error', 'bottom-center')">
-              Error Bottom Center
-            </button>
-            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" onclick="showToast('info', 'bottom-left')">
-              Info Bottom Left
-            </button>
-            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small" onclick="showToast('success', 'top-left')">
-              Success Top Left
+          </div>
+
+          <!-- ERROR -->
+          <div class="sb-ui-alert sb-ui-alert--error">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Error</strong>
+              <p class="sb-ui-alert__message">Ha ocurrido un error. Por favor intente nuevamente.</p>
+            </div>
+            <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
+              <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
         </div>
 
-        <div class="demo-grid-2">
-          <!-- Toast Example Preview -->
-          <div class="demo-item">
-            <h3>📱 Ejemplo Visual</h3>
-            <p>Así se ven las notificaciones toast:</p>
-            <div style="position: relative; height: 200px; border: 2px dashed var(--sb-ui-color-grayscale-L200); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-              <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--toast" style="position: static; transform: none;">
-                <div class="sb-ui-alert-icon"></div>
-                <div class="sb-ui-alert-content">
-                  <div class="sb-ui-alert-title">¡Éxito!</div>
-                  <div class="sb-ui-alert-message">Operación completada</div>
-                </div>
-                <button class="sb-ui-alert-close" aria-label="Cerrar">×</button>
-              </div>
-            </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-
-          <!-- Positions -->
-          <div class="demo-item">
-            <h3>📍 Posiciones Disponibles</h3>
-            <div>
-              <span class="badge badge--primary">Top Left</span>
-              <span class="badge badge--primary">Top Center</span>
-              <span class="badge badge--primary">Top Right</span>
-              <span class="badge badge--primary">Bottom Left</span>
-              <span class="badge badge--primary">Bottom Center</span>
-              <span class="badge badge--primary">Bottom Right</span>
-            </div>
-            
-            <div class="code-snippet" style="margin-top: 1rem;">
-&lt;div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--toast sb-ui-alert--toast-top-right"&gt;
-  &lt;div class="sb-ui-alert-icon"&gt;&lt;/div&gt;
-  &lt;div class="sb-ui-alert-content"&gt;
-    &lt;div class="sb-ui-alert-title"&gt;¡Éxito!&lt;/div&gt;
-    &lt;div class="sb-ui-alert-message"&gt;Operación completada&lt;/div&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Alert Success --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--success"&gt;
+  &lt;div class="sb-ui-alert__icon"&gt;
+    &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
   &lt;/div&gt;
-  &lt;button class="sb-ui-alert-close"&gt;×&lt;/button&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Éxito&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;Operación completada.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="sb-ui-alert__close"&gt;×&lt;/button&gt;
 &lt;/div&gt;
+
+&lt;!-- Alert Error --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--error"&gt;
+  &lt;div class="sb-ui-alert__icon"&gt;
+    &lt;i class="fa-solid fa-circle-xmark"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Error&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;Ha ocurrido un error.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: SIN TÍTULO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Sin Título</h3>
+        <div class="alert-demo-grid">
+          <!-- SUCCESS -->
+          <div class="sb-ui-alert sb-ui-alert--success">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="sb-ui-alert__content">
+              <p class="sb-ui-alert__message">Los cambios han sido guardados exitosamente.</p>
+            </div>
+          </div>
+
+          <!-- WARNING -->
+          <div class="sb-ui-alert sb-ui-alert--warning">
+            <div class="sb-ui-alert__icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="sb-ui-alert__content">
+              <p class="sb-ui-alert__message">Tu sesión expirará en 5 minutos.</p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- SECTION: Características -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">✨ Características</h2>
-        <div class="demo-grid-2">
-          <div class="demo-item">
-            <h3>🎨 Theming</h3>
-            <p>Compatible con todas las marcas del Design System</p>
-            <span class="badge badge--primary">White Label</span>
-            <span class="badge badge--primary">Jelpit</span>
-            <span class="badge badge--primary">Davivienda</span>
-            <span class="badge badge--primary">Cien Cuadras</span>
-            <span class="badge badge--primary">Doctor Aki</span>
-            <span class="badge badge--primary">Seguros Bolívar</span>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-
-          <div class="demo-item">
-            <h3>♿ Accesibilidad</h3>
-            <p>ARIA labels y roles semánticos</p>
-            <span class="badge badge--success">ARIA Labels</span>
-            <span class="badge badge--success">Role Alert</span>
-            <span class="badge badge--success">Focus Management</span>
-            <span class="badge badge--success">Keyboard Nav</span>
-          </div>
-
-          <div class="demo-item">
-            <h3>🎭 Variantes</h3>
-            <p>Múltiples tipos para diferentes contextos</p>
-            <span class="badge badge--success">Success</span>
-            <span class="badge badge--info">Info</span>
-            <span class="badge badge--warning">Warning</span>
-            <span class="badge badge--error">Error</span>
-          </div>
-
-          <div class="demo-item">
-            <h3>⚡ Animaciones</h3>
-            <p>Transiciones suaves y naturales</p>
-            <span class="badge badge--primary">Fade In</span>
-            <span class="badge badge--primary">Slide In</span>
-            <span class="badge badge--primary">Fade Out</span>
-            <span class="badge badge--primary">Slide Out</span>
-          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Alert sin título --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--success"&gt;
+  &lt;div class="sb-ui-alert__icon"&gt;
+    &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;p class="sb-ui-alert__message"&gt;Operación exitosa.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
         </div>
       </section>
-    </div>
 
-    <!-- JavaScript para Brand/Theme Switching y Toast Management -->
-
-    <!-- Toast Management - Separate script for global scope -->
-
-    <!-- Close button handlers for static alerts -->
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-alert--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-

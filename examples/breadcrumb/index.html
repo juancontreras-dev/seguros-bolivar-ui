@@ -1,350 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breadcrumb Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts - Roboto -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-
+    
     <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      body,
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Bolivar', 'Roboto', sans-serif;
-        padding: 2rem;
-        background: #fafafa;
-      }
-
-      .demo-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #1b1b1b;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: #038450;
-        border-bottom: 2px solid #cce9dd;
-        padding-bottom: 0.5rem;
-      }
-
-      .demo-grid {
-        display: grid;
-        gap: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .demo-item {
+      /* Estilos específicos para breadcrumb demo */
+      .breadcrumb-demo-item {
         padding: 1.5rem;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
+        margin-block-end: 1.5rem;
       }
 
-      .demo-item h3 {
+      .breadcrumb-demo-item h4 {
         font-size: 0.875rem;
-        margin-bottom: 1rem;
-        color: #9b9b9b;
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
-      /* ============================================
-         BRAND & THEME CONTROLS
-         ============================================ */
-
-
-      @media (max-width: 768px) {
-        body {
-          padding: 1rem;
-        }
-
-        .demo-container {
-          padding: 1.5rem;
-        }
-
-
-      }
     </style>
   </head>
-  <body data-brand="seguros-bolivar" data-theme="light">
-    <div class="demo-container">
-      <!-- Header -->
-      <h1 style="text-align: center; margin-bottom: 1rem">🧭 Breadcrumb Component</h1>
-      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
-        Componente de navegación breadcrumb con separadores personalizables. Usa semántica HTML5 con &lt;nav&gt; y &lt;ol&gt; para máxima accesibilidad.
-      </p>
 
-      <!-- Default Breadcrumb -->
-      <h2>Breadcrumb Básico</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Navegación estándar con links verdes (color primario) y página actual en gris.
-      </p>
-      <div class="demo-grid">
-        <div class="demo-item">
-          <h3>Ejemplo - Directorio Médico</h3>
-              <nav class="sb-ui-breadcrumb" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Directorio médico</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#medicina" class="sb-ui-breadcrumb__link">Medicina general</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Perfil médico</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </span>
+          <span>Breadcrumb</span>
+        </h2>
+        <p class="component-description">
+          Componente de navegación jerárquica (breadcrumb) para indicar la ubicación actual dentro de la estructura del sitio.
+          Compatible con todas las marcas del design system.
+        </p>
+      </header>
 
-            <div class="demo-item">
-              <h3>Ejemplo - Navegación Profunda</h3>
-              <nav class="sb-ui-breadcrumb" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#seguros" class="sb-ui-breadcrumb__link">Seguros</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#vida" class="sb-ui-breadcrumb__link">Vida</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#cotizar" class="sb-ui-breadcrumb__link">Cotizar</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Detalles</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
+      <!-- ========================================
+           SECCIÓN 1: EJEMPLOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Ejemplos</h3>
+        
+        <div class="breadcrumb-demo-item">
+          <h4>Breadcrumb Básico</h4>
+          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item sb-ui-breadcrumb__item--active">
+                <span class="sb-ui-breadcrumb__text">Seguros de Vida</span>
+              </li>
+            </ol>
+          </nav>
         </div>
 
-      <!-- Collapsed Breadcrumb (Mobile) -->
-      <h2>Breadcrumb Colapsado</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        En móvil, el breadcrumb se colapsa automáticamente mostrando solo el primero y el último elemento.
-      </p>
-      <div class="demo-grid">
-        <div class="demo-item">
-          <h3>Auto-collapse en móvil (&lt;640px)</h3>
-              <nav class="sb-ui-breadcrumb" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level2" class="sb-ui-breadcrumb__link">Nivel 2</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level3" class="sb-ui-breadcrumb__link">Nivel 3</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level4" class="sb-ui-breadcrumb__link">Nivel 4</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Nivel 5</span>
-                  </li>
-                </ol>
-              </nav>
-              <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base);">
-                💡 Reduce el ancho de la ventana a menos de 640px para ver el efecto de colapso.
-              </p>
-            </div>
-
-            <div class="demo-item">
-              <h3>Collapse forzado (clase --collapsed)</h3>
-              <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level2" class="sb-ui-breadcrumb__link">Nivel 2</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level3" class="sb-ui-breadcrumb__link">Nivel 3</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Página actual</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
+        <div class="breadcrumb-demo-item">
+          <h4>Breadcrumb con Iconos</h4>
+          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-home"></i> Inicio
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-folder"></i> Documentos
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item sb-ui-breadcrumb__item--active">
+                <span class="sb-ui-breadcrumb__text">
+                  <i class="fa-solid fa-file"></i> Archivo.pdf
+                </span>
+              </li>
+            </ol>
+          </nav>
         </div>
 
-      <!-- States -->
-      <h2>Estados</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Diferentes estados del componente breadcrumb.
-      </p>
-      <div class="demo-grid">
-        <div class="demo-item">
-          <h3>Loading</h3>
-              <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--loading" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#category" class="sb-ui-breadcrumb__link">Categoría</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Página</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-
-            <div class="demo-item">
-              <h3>Solo 2 niveles</h3>
-              <nav class="sb-ui-breadcrumb" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Página actual</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-
-            <div class="demo-item">
-              <h3>Sin collapse en móvil</h3>
-              <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--no-collapse" aria-label="Breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level2" class="sb-ui-breadcrumb__link">Nivel 2</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#level3" class="sb-ui-breadcrumb__link">Nivel 3</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Página</span>
-                  </li>
-                </ol>
-              </nav>
-              <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base);">
-                💡 Usa <code>sb-ui-breadcrumb--no-collapse</code> para mantener todos los items visibles en móvil.
-              </p>
-            </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-
-      <!-- HTML Code -->
-      <h2>Código HTML</h2>
-      <div style="background: #1b1b1b; color: #fff; padding: 1.5rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.875rem; overflow-x: auto; margin-bottom: 2rem;">
-&lt;nav class="sb-ui-breadcrumb" aria-label="Breadcrumb"&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Breadcrumb básico --&gt;
+&lt;nav class="sb-ui-breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Directorio médico&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Medicina general&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
     &lt;/li&gt;
-    &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;
-        Perfil médico
-      &lt;/span&gt;
+    &lt;li class="sb-ui-breadcrumb__item sb-ui-breadcrumb__item--active"&gt;
+      &lt;span class="sb-ui-breadcrumb__text"&gt;Actual&lt;/span&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/nav&gt;
-          </div>
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
 
-      <!-- Features -->
-      <h2>Características</h2>
-      <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-bottom: 2rem;">
-            <div style="padding: 1rem; background: var(--sb-ui-color-grayscale-L400); border-radius: 8px;">
-              <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--sb-ui-color-primary-base);">
-                ✅ Accesible
-              </h3>
-              <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base); margin: 0;">
-                Usa <code>aria-label</code> y <code>aria-current</code> para lectores de pantalla.
-              </p>
-            </div>
-            <div style="padding: 1rem; background: var(--sb-ui-color-grayscale-L400); border-radius: 8px;">
-              <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--sb-ui-color-primary-base);">
-                📱 Responsive
-              </h3>
-              <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base); margin: 0;">
-                Se colapsa automáticamente en móvil (&lt;640px) mostrando primero...último.
-              </p>
-            </div>
-            <div style="padding: 1rem; background: var(--sb-ui-color-grayscale-L400); border-radius: 8px;">
-              <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--sb-ui-color-primary-base);">
-                🎨 Personalizable
-              </h3>
-              <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base); margin: 0;">
-                Variables CSS para colores, separadores y espaciado.
-              </p>
-            </div>
-            <div style="padding: 1rem; background: var(--sb-ui-color-grayscale-L400); border-radius: 8px;">
-              <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--sb-ui-color-primary-base);">
-                ♿ Accesibilidad
-              </h3>
-              <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base); margin: 0;">
-                Soporte para <code>prefers-contrast</code> y <code>prefers-reduced-motion</code>.
-              </p>
-            </div>
-          </div>
-    </div>
-
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/molecules-breadcrumb--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-

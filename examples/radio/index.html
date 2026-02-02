@@ -3,116 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Radio Button - Seguros Bolivar UI Design System</title>
-    <!-- Google Fonts - Roboto -->
+    <title>Radio Button - Seguros Bolívar UI Design System</title>
+
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    
     <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- CSS del Design System - Seguros Bolívar Light -->
-    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <!-- Preload CSS del Design System -->
     <link
       rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=centrado-natural"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=centrado-natural"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
+
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      * {
-        margin-block: 0;
-        margin-inline: 0;
-        padding-block: 0;
-        padding-inline: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .matrix-container {
-        max-inline-size: 1400px;
-        margin-block: 0;
-        margin-inline: auto;
-      }
-
-      .matrix-header {
-        margin-block-end: 2rem;
-        text-align: center;
-      }
-
-      .matrix-header h1 {
-        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-        font-weight: 700;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 0.5rem;
-      }
-
-      .matrix-header p {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-      }
-
-      .matrix-section {
-        margin-block-end: 3rem;
-        background: white;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .matrix-title {
-        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
-        font-weight: 700;
-        margin-block-end: 0.5rem;
-        color: var(--sb-ui-color-primary-base, #007acc);
-      }
-
-      .matrix-subtitle {
-        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-        margin-block-end: 2rem;
-      }
-
-      .example-grid {
+      /* Estilos específicos para radio demo */
+      .radio-demo-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
+        margin-block-end: 2rem;
       }
 
-      .example-card {
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      .radio-demo-card {
         padding: 1.5rem;
-        border-radius: 8px;
         border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
       }
 
-      .example-card h4 {
+      .radio-demo-card h4 {
+        font-size: 0.875rem;
         margin-block-end: 1rem;
-        color: var(--sb-ui-color-grayscale-D100, #333);
-        font-size: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+      }
+
+      .radio-demo-note {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100, #9b9b9b);
+        margin-block-end: 0.75rem;
       }
 
       .radio-group {
@@ -121,348 +78,389 @@
         gap: 1rem;
       }
 
-      .hint-text {
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-base, #999);
-        margin-block-start: 1rem;
-        font-style: italic;
-      }
-
-      .notes-section {
-        background: #fff9e6;
-        border-inline-start: 4px solid #ffa000;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        margin-block-end: 3rem;
-      }
-
-      .notes-section h3 {
-        margin-block-start: 0;
-        color: #e65100;
-        font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
-        margin-block-end: 1rem;
-      }
-
-      .notes-section ul {
-        line-height: 1.8;
-        color: #333;
-        padding-inline-start: 1.5rem;
-      }
-
-      .notes-section code {
-        background: rgba(0, 0, 0, 0.05);
-        padding-block: 0.125rem;
-        padding-inline: 0.375rem;
-        border-radius: 3px;
-        font-family: 'Courier New', monospace;
-        font-size: 0.9em;
-      }
-
-
       @media (max-width: 768px) {
-
-
-        .example-grid {
+        .radio-demo-grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
+
   <body>
-    <div class="matrix-container">
-      <!-- Header -->
-      <div class="matrix-header">
-        <h1>🔘 Radio Button Component</h1>
-        <p>Componente CSS puro con efectos hover/pressed Material Design</p>
-      </div>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-circle-dot" aria-hidden="true"></i>
+          </span>
+          <span>Radio Button</span>
+        </h2>
+        <p class="component-description">
+          Componente de selección única (single choice) con estados completos (default, hover, focus, disabled, error),
+          tamaños (small, medium, large) y variantes para formularios y casos de uso reales.
+          Compatible con todas las marcas del design system.
+        </p>
+      </header>
 
       <!-- ========================================
            SECCIÓN 1: ESTADOS BÁSICOS
            ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">1️⃣ Estados Básicos</h2>
-        <p class="matrix-subtitle">Matriz 2×2: Unselected/Selected × Enabled/Disabled</p>
-
-        <div class="example-grid">
-          <!-- ENABLED -->
-          <div class="example-card">
-            <h4>Enabled</h4>
+      <section class="variant-section">
+        <h3 class="variant-title">Estados Básicos</h3>
+        <div class="radio-demo-grid">
+          <!-- DEFAULT -->
+          <div class="radio-demo-card">
+            <h4>1. Default</h4>
             <div class="radio-group">
               <label class="sb-ui-radio">
-                <input type="radio" name="group1" class="sb-ui-radio__input" />
+                <input type="radio" class="sb-ui-radio__input" name="default-group" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Unselected option</span>
+                <span class="sb-ui-radio__label">Opción 1</span>
               </label>
 
               <label class="sb-ui-radio">
-                <input type="radio" name="group1" class="sb-ui-radio__input" checked />
+                <input type="radio" class="sb-ui-radio__input" name="default-group" checked />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Selected option</span>
+                <span class="sb-ui-radio__label">Opción 2 (selected)</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="default-group" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Opción 3</span>
               </label>
             </div>
-            <p class="hint-text">Pasa el mouse para ver el halo verde</p>
+          </div>
+
+          <!-- HOVER -->
+          <div class="radio-demo-card">
+            <h4>2. Hover</h4>
+            <p class="radio-demo-note">Pasa el mouse sobre los radio buttons</p>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="hover-group" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Hover unselected</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="hover-group" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Hover selected</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- FOCUS -->
+          <div class="radio-demo-card">
+            <h4>3. Focus</h4>
+            <p class="radio-demo-note">Click o usa Tab para ver el focus</p>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="focus-group" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Focus visible</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="focus-group" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Focus selected</span>
+              </label>
+            </div>
           </div>
 
           <!-- DISABLED -->
-          <div class="example-card">
-            <h4>Disabled</h4>
+          <div class="radio-demo-card">
+            <h4>4. Disabled</h4>
             <div class="radio-group">
               <label class="sb-ui-radio">
-                <input type="radio" name="group2" class="sb-ui-radio__input" disabled />
+                <input type="radio" class="sb-ui-radio__input" name="disabled-group" disabled />
                 <span class="sb-ui-radio__circle"></span>
                 <span class="sb-ui-radio__label">Disabled unselected</span>
               </label>
 
               <label class="sb-ui-radio">
-                <input type="radio" name="group2" class="sb-ui-radio__input" checked disabled />
+                <input type="radio" class="sb-ui-radio__input" name="disabled-group" checked disabled />
                 <span class="sb-ui-radio__circle"></span>
                 <span class="sb-ui-radio__label">Disabled selected</span>
               </label>
             </div>
-            <p class="hint-text">Círculo blanco + border gris (#9B9B9B)</p>
+          </div>
+
+          <!-- ERROR -->
+          <div class="radio-demo-card">
+            <h4>5. Error</h4>
+            <p class="radio-demo-note">Borde rojo indica validación fallida</p>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" class="sb-ui-radio__input" name="error-group" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Selecciona una opción</span>
+              </label>
+
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" class="sb-ui-radio__input" name="error-group" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Campo requerido</span>
+              </label>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;label class="sb-ui-radio"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="example" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Opción 1&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Estado Selected --&gt;
+&lt;label class="sb-ui-radio"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="example" checked /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Opción 2&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Estado Error --&gt;
+&lt;label class="sb-ui-radio sb-ui-radio--error"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="example" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Campo requerido&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </section>
 
       <!-- ========================================
            SECCIÓN 2: TAMAÑOS
            ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">2️⃣ Tamaños</h2>
-        <p class="matrix-subtitle">Small (16px), Medium (18px - default), Large (24px)</p>
-
-        <div class="example-grid">
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños</h3>
+        <div class="radio-demo-grid">
           <!-- SMALL -->
-          <div class="example-card">
-            <h4>Small (16px)</h4>
+          <div class="radio-demo-card">
+            <h4>Small (16x16px)</h4>
             <div class="radio-group">
               <label class="sb-ui-radio sb-ui-radio--small">
-                <input type="radio" name="group-small" class="sb-ui-radio__input" />
+                <input type="radio" class="sb-ui-radio__input" name="small-group" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Small unselected</span>
+                <span class="sb-ui-radio__label">Small option 1</span>
               </label>
 
               <label class="sb-ui-radio sb-ui-radio--small">
-                <input type="radio" name="group-small" class="sb-ui-radio__input" checked />
+                <input type="radio" class="sb-ui-radio__input" name="small-group" checked />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Small selected</span>
+                <span class="sb-ui-radio__label">Small option 2</span>
               </label>
             </div>
           </div>
 
-          <!-- MEDIUM -->
-          <div class="example-card">
-            <h4>Medium (18px - Default)</h4>
+          <!-- MEDIUM (default) -->
+          <div class="radio-demo-card">
+            <h4>Medium (20x20px - default)</h4>
             <div class="radio-group">
               <label class="sb-ui-radio">
-                <input type="radio" name="group-medium" class="sb-ui-radio__input" />
+                <input type="radio" class="sb-ui-radio__input" name="medium-group" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Medium unselected</span>
+                <span class="sb-ui-radio__label">Medium option 1</span>
               </label>
 
               <label class="sb-ui-radio">
-                <input type="radio" name="group-medium" class="sb-ui-radio__input" checked />
+                <input type="radio" class="sb-ui-radio__input" name="medium-group" checked />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Medium selected</span>
+                <span class="sb-ui-radio__label">Medium option 2</span>
               </label>
             </div>
           </div>
 
           <!-- LARGE -->
-          <div class="example-card">
-            <h4>Large (24px)</h4>
+          <div class="radio-demo-card">
+            <h4>Large (24x24px)</h4>
             <div class="radio-group">
               <label class="sb-ui-radio sb-ui-radio--large">
-                <input type="radio" name="group-large" class="sb-ui-radio__input" />
+                <input type="radio" class="sb-ui-radio__input" name="large-group" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Large unselected</span>
+                <span class="sb-ui-radio__label">Large option 1</span>
               </label>
 
               <label class="sb-ui-radio sb-ui-radio--large">
-                <input type="radio" name="group-large" class="sb-ui-radio__input" checked />
+                <input type="radio" class="sb-ui-radio__input" name="large-group" checked />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Large selected</span>
+                <span class="sb-ui-radio__label">Large option 2</span>
               </label>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ========================================
-           SECCIÓN 3: ESTADO ERROR
-           ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">3️⃣ Estado Error</h2>
-        <p class="matrix-subtitle">Border rojo (#DC3545) para indicar validación fallida</p>
-
-        <div class="example-grid">
-          <div class="example-card">
-            <h4>Error - Unselected</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio sb-ui-radio--error">
-                <input type="radio" name="group-error" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Campo obligatorio *</span>
-              </label>
-            </div>
-            <p class="hint-text">Border rojo, background blanco, texto gris</p>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tamaño Small --&gt;
+&lt;label class="sb-ui-radio sb-ui-radio--small"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="size" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Small&lt;/span&gt;
+&lt;/label&gt;
 
-          <div class="example-card">
-            <h4>Error - Selected</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio sb-ui-radio--error">
-                <input type="radio" name="group-error" class="sb-ui-radio__input" checked />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Error pero seleccionado</span>
-              </label>
-            </div>
-            <p class="hint-text">Point check rojo (#DC3545)</p>
-          </div>
+&lt;!-- Tamaño Medium (default) --&gt;
+&lt;label class="sb-ui-radio"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="size" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Medium&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Tamaño Large --&gt;
+&lt;label class="sb-ui-radio sb-ui-radio--large"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="size" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Large&lt;/span&gt;
+&lt;/label&gt;</code></pre>
         </div>
-      </div>
+      </section>
 
       <!-- ========================================
-           SECCIÓN 4: EFECTOS INTERACTIVOS
+           SECCIÓN 3: CASOS DE USO
            ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">4️⃣ Efectos Interactivos</h2>
-        <p class="matrix-subtitle">Halos Material Design que aparecen en hover y pressed</p>
-
-        <div class="example-grid">
-          <!-- HOVER -->
-          <div class="example-card">
-            <h4>Hover Effect</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio">
-                <input type="radio" name="group-hover" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Hover me</span>
-              </label>
-            </div>
-            <p class="hint-text">
-              Halo verde claro (#F2F9F6)<br />
-              32×32px, opacity 0.7
-            </p>
-          </div>
-
-          <!-- PRESSED -->
-          <div class="example-card">
-            <h4>Pressed Effect</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio">
-                <input type="radio" name="group-pressed" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Press me</span>
-              </label>
-            </div>
-            <p class="hint-text">
-              Doble halo concéntrico<br />
-              Outer: 32px, Inner: 28px
-            </p>
-          </div>
-
-          <!-- FOCUS -->
-          <div class="example-card">
-            <h4>Focus Effect</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio">
-                <input type="radio" name="group-focus" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Focus me with Tab</span>
-              </label>
-            </div>
-            <p class="hint-text">
-              Halo verde medio (#E5F4EE)<br />
-              32×32px, opacity 0.7
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ========================================
-           SECCIÓN 5: CASOS DE USO REALES
-           ======================================== -->
-      <div class="matrix-section">
-        <h2 class="matrix-title">5️⃣ Casos de Uso Reales</h2>
-        <p class="matrix-subtitle">Ejemplos prácticos de uso en formularios</p>
-
-        <div class="example-grid">
-          <!-- FORMULARIO DE CONTACTO -->
-          <div class="example-card">
-            <h4>Método de Contacto</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio">
-                <input type="radio" name="contact-method" class="sb-ui-radio__input" checked />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Email</span>
-              </label>
-
-              <label class="sb-ui-radio">
-                <input type="radio" name="contact-method" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Teléfono</span>
-              </label>
-
-              <label class="sb-ui-radio">
-                <input type="radio" name="contact-method" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">WhatsApp</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- PLAN DE SEGURO -->
-          <div class="example-card">
-            <h4>Plan de Seguro</h4>
-            <div class="radio-group">
-              <label class="sb-ui-radio">
-                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Plan Básico ($50/mes)</span>
-              </label>
-
-              <label class="sb-ui-radio">
-                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" checked />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Plan Premium ($100/mes)</span>
-              </label>
-
-              <label class="sb-ui-radio">
-                <input type="radio" name="insurance-plan" class="sb-ui-radio__input" />
-                <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Plan Familiar ($150/mes)</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- MÉTODO DE PAGO -->
-          <div class="example-card">
+      <section class="variant-section">
+        <h3 class="variant-title">Casos de Uso</h3>
+        <div class="radio-demo-grid">
+          <!-- Método de Pago -->
+          <div class="radio-demo-card">
             <h4>Método de Pago</h4>
             <div class="radio-group">
               <label class="sb-ui-radio">
-                <input type="radio" name="payment-method" class="sb-ui-radio__input" checked />
+                <input type="radio" class="sb-ui-radio__input" name="payment-method" checked />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Tarjeta de Crédito</span>
+                <span class="sb-ui-radio__label">Tarjeta de crédito</span>
               </label>
 
               <label class="sb-ui-radio">
-                <input type="radio" name="payment-method" class="sb-ui-radio__input" />
+                <input type="radio" class="sb-ui-radio__input" name="payment-method" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Tarjeta de Débito</span>
+                <span class="sb-ui-radio__label">Tarjeta de débito</span>
               </label>
 
               <label class="sb-ui-radio">
-                <input type="radio" name="payment-method" class="sb-ui-radio__input" disabled />
+                <input type="radio" class="sb-ui-radio__input" name="payment-method" />
                 <span class="sb-ui-radio__circle"></span>
-                <span class="sb-ui-radio__label">Efectivo (No disponible)</span>
+                <span class="sb-ui-radio__label">Transferencia bancaria</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="payment-method" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">PSE</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tipo de Seguro -->
+          <div class="radio-demo-card">
+            <h4>Tipo de Seguro</h4>
+            <div class="radio-group">
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="insurance-type" checked />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Seguro de vida</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="insurance-type" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Seguro de auto</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="insurance-type" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Seguro de hogar</span>
+              </label>
+
+              <label class="sb-ui-radio">
+                <input type="radio" class="sb-ui-radio__input" name="insurance-type" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Seguro de salud</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Con Validación -->
+          <div class="radio-demo-card">
+            <h4>Con Validación</h4>
+            <p class="radio-demo-note">Campo requerido sin seleccionar</p>
+            <div class="radio-group">
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" class="sb-ui-radio__input" name="validation" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Selecciona una opción *</span>
+              </label>
+
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" class="sb-ui-radio__input" name="validation" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Opción 1</span>
+              </label>
+
+              <label class="sb-ui-radio sb-ui-radio--error">
+                <input type="radio" class="sb-ui-radio__input" name="validation" />
+                <span class="sb-ui-radio__circle"></span>
+                <span class="sb-ui-radio__label">Opción 2</span>
               </label>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Grupo de radio buttons --&gt;
+&lt;label class="sb-ui-radio"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="payment" checked /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Tarjeta de crédito&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;label class="sb-ui-radio"&gt;
+  &lt;input type="radio" class="sb-ui-radio__input" name="payment" /&gt;
+  &lt;span class="sb-ui-radio__circle"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-radio__label"&gt;Transferencia&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-radio--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

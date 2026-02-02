@@ -1,33 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dropdown & Select Component - Seguros Bolívar UI</title>
+    <title>Dropdown Component - Seguros Bolívar UI Design System</title>
 
-    <script>
-      (function () {
-        try {
-          var path = window.location.pathname || '';
-          if (/\/dropdown\/?$/.test(path)) {
-            var base = path.replace(/\/dropdown\/?$/, '/');
-            var newUrl = base + '?view=dropdown/';
-            window.location.replace(newUrl);
-          }
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Google Fonts -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <!-- CSS del Design System - Seguros Bolívar Light -->
-    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <!-- Preload CSS del Design System -->
     <link
       rel="preload"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
@@ -39,567 +35,93 @@
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <!-- Web Components -->
     <script type="module" src="../dist/sb-ui-components.min.js"></script>
-
-    <style>
-      * {
-        margin-block: 0;
-        margin-inline: 0;
-        padding-block: 0;
-        padding-inline: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .matrix-container {
-        max-inline-size: 1400px;
-        margin-block: 0;
-        margin-inline: auto;
-      }
-
-      .matrix-header {
-        margin-block-end: 2rem;
-        text-align: center;
-      }
-
-      .matrix-header h1 {
-        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-        font-weight: 700;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 0.5rem;
-      }
-
-      .matrix-header p {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-      }
-
-      /* Sections */
-      .matrix-section {
-        margin-block-end: 3rem;
-        background: white;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .matrix-title {
-        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
-        font-weight: 600;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 1.5rem;
-        padding-block-end: 0.75rem;
-        border-block-end: 2px solid var(--sb-ui-color-secondary-L300, #fff6d4);
-      }
-
-      /* Demo Grid */
-      .demo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin-block-start: 1.5rem;
-      }
-
-      .demo-item {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: var(--sb-ui-color-grayscale-L400);
-        border-radius: 8px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      .demo-item h3 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-primary-base);
-        margin-block-end: 0.5rem;
-      }
-
-      .demo-item p {
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-base);
-        margin-block-end: 0.5rem;
-      }
-
-      .demo-item label {
-        font-weight: 600;
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-D300);
-        margin-block-end: 0.5rem;
-        display: block;
-      }
-
-      .output {
-        margin-block-start: 1rem;
-        padding: 1rem;
-        background: var(--sb-ui-color-grayscale-L300);
-        border-radius: 8px;
-        font-family: 'Courier New', monospace;
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-D300);
-        min-block-size: 60px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      /* Badge */
-      .badge {
-        display: inline-block;
-        padding-block: 0.25rem;
-        padding-inline: 0.75rem;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-inline-end: 0.5rem;
-        margin-block-end: 0.5rem;
-      }
-
-      .badge--success {
-        background: #d4edda;
-        color: #155724;
-      }
-
-      .badge--info {
-        background: #d1ecf1;
-        color: #0c5460;
-      }
-
-      .badge--warning {
-        background: #fff3cd;
-        color: #856404;
-      }
-
-      .badge--primary {
-        background: var(--sb-ui-color-primary-L400);
-        color: var(--sb-ui-color-primary-D200);
-      }
-
-      /* Code snippet */
-      .code-snippet {
-        background: #f5f5f5;
-        padding: 1rem;
-        border-radius: 8px;
-        font-family: 'Courier New', monospace;
-        font-size: 0.875rem;
-        overflow-x: auto;
-        margin-block-start: 1rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200);
-      }
-
-      /* Info banner */
-      .info-banner {
-        background: var(--sb-ui-color-feedback-info-L400);
-        border-left: 4px solid var(--sb-ui-color-feedback-info-base);
-        padding: 1rem;
-        border-radius: 8px;
-        margin-block-end: 2rem;
-      }
-
-      .info-banner strong {
-        color: var(--sb-ui-color-feedback-info-base);
-      }
-    </style>
   </head>
+
   <body>
-    <div class="matrix-container">
-      <!-- Header -->
-      <header class="matrix-header">
-        <h1>📋 Dropdown & Select Component</h1>
-        <p>
-          Componentes de selección desplegable. Incluye el componente Select nativo estilizado y
-          el Web Component Dropdown (en desarrollo) con soporte completo del Design System.
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+          </span>
+          <span>Dropdown</span>
+        </h2>
+        <p class="component-description">
+          Componente de menú desplegable para opciones y acciones contextuales.
+          Compatible con todas las marcas del design system.
         </p>
       </header>
 
-      <!-- Info Banner -->
-      <div class="info-banner">
-        <strong>ℹ️ Nota:</strong> El Web Component <code>&lt;sb-ui-dropdown&gt;</code> está actualmente en desarrollo.
-        Por ahora, recomendamos usar el componente <code>&lt;select class="sb-ui-select"&gt;</code> que está completamente
-        estilizado y funcional.
-      </div>
-
-      <!-- SECTION: Select Nativo (Recomendado) -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Select Nativo (Recomendado)</h2>
-        <div class="demo-grid">
-          <!-- Select básico -->
-          <div class="demo-item">
-            <h3>📝 Select Básico</h3>
-            <label for="select-basic">País</label>
-            <select id="select-basic" class="sb-ui-select">
-              <option value="">Seleccionar país</option>
-              <option value="co">Colombia</option>
-              <option value="mx">México</option>
-              <option value="ar">Argentina</option>
-              <option value="cl">Chile</option>
-              <option value="pe">Perú</option>
-            </select>
-            <div class="output" id="output-basic">No hay selección</div>
-          </div>
-
-          <!-- Select con grupos -->
-          <div class="demo-item">
-            <h3>📂 Select con Grupos</h3>
-            <label for="select-grouped">Categoría</label>
-            <select id="select-grouped" class="sb-ui-select">
-              <option value="">Seleccionar categoría</option>
-              <optgroup label="Seguros de Vida">
-                <option value="vida-basico">Vida Básico</option>
-                <option value="vida-premium">Vida Premium</option>
-              </optgroup>
-              <optgroup label="Seguros de Auto">
-                <option value="auto-basico">Auto Básico</option>
-                <option value="auto-premium">Auto Premium</option>
-              </optgroup>
-              <optgroup label="Seguros de Hogar">
-                <option value="hogar-basico">Hogar Básico</option>
-                <option value="hogar-premium">Hogar Premium</option>
-              </optgroup>
-            </select>
-            <div class="output" id="output-grouped">No hay selección</div>
-          </div>
-
-          <!-- Select múltiple -->
-          <div class="demo-item">
-            <h3>✅ Select Múltiple</h3>
-            <label for="select-multiple">Intereses (mantén Ctrl/Cmd)</label>
-            <select id="select-multiple" class="sb-ui-select" multiple style="min-height: 120px;">
-              <option value="deportes">Deportes</option>
-              <option value="tecnologia">Tecnología</option>
-              <option value="viajes">Viajes</option>
-              <option value="cocina">Cocina</option>
-              <option value="musica">Música</option>
-              <option value="lectura">Lectura</option>
-            </select>
-            <div class="output" id="output-multiple">No hay selección</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Estados del Select -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Estados del Select</h2>
-        <div class="demo-grid">
-          <!-- Default -->
-          <div class="demo-item">
-            <h3>✅ Default</h3>
-            <label for="select-default">Estado normal</label>
-            <select id="select-default" class="sb-ui-select">
-              <option value="">Seleccionar opción</option>
-              <option value="1">Opción 1</option>
-              <option value="2">Opción 2</option>
-              <option value="3">Opción 3</option>
-            </select>
-          </div>
-
-          <!-- Disabled -->
-          <div class="demo-item">
-            <h3>🚫 Disabled</h3>
-            <label for="select-disabled">Select deshabilitado</label>
-            <select id="select-disabled" class="sb-ui-select" disabled>
-              <option value="">Seleccionar opción</option>
-              <option value="1">Opción 1</option>
-              <option value="2">Opción 2</option>
-            </select>
-          </div>
-
-          <!-- Con valor seleccionado -->
-          <div class="demo-item">
-            <h3>✔️ Con Valor</h3>
-            <label for="select-selected">Opción preseleccionada</label>
-            <select id="select-selected" class="sb-ui-select">
-              <option value="">Seleccionar opción</option>
-              <option value="1">Opción 1</option>
-              <option value="2" selected>Opción 2 (Seleccionada)</option>
-              <option value="3">Opción 3</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Web Component Dropdown (En Desarrollo) -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Web Component Dropdown (En Desarrollo)</h2>
+      <!-- ========================================
+           SECCIÓN 1: EJEMPLO BÁSICO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Ejemplo Básico</h3>
+        <p class="component-description">Click en el botón para ver el menú desplegable</p>
         
-        <div class="info-banner" style="margin-bottom: 1.5rem;">
-          <strong>🚧 En Desarrollo:</strong> Este componente es un placeholder básico.
-          La funcionalidad completa (dropdown interactivo, búsqueda, multi-select) estará disponible en futuras versiones.
-        </div>
-
-        <div class="demo-grid">
-          <!-- Dropdown básico -->
-          <div class="demo-item">
-            <h3>📋 Dropdown Básico</h3>
-            <label>Web Component Placeholder</label>
-            <sb-ui-dropdown placeholder="Seleccionar opción"></sb-ui-dropdown>
-            <p style="color: var(--sb-ui-color-grayscale-base); font-size: 0.875rem; margin-top: 0.5rem;">
-              Este es el Web Component básico. Por ahora solo muestra el placeholder.
-            </p>
-          </div>
-
-          <!-- Dropdown con valor -->
-          <div class="demo-item">
-            <h3>✔️ Con Valor</h3>
-            <label>Web Component con valor inicial</label>
-            <sb-ui-dropdown value="Opción seleccionada"></sb-ui-dropdown>
-            <p style="color: var(--sb-ui-color-grayscale-base); font-size: 0.875rem; margin-top: 0.5rem;">
-              El componente puede recibir un valor inicial.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Código de Ejemplo -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">💻 Código de Ejemplo</h2>
-        
-        <div class="demo-item">
-          <h3>Select Nativo (Recomendado)</h3>
-          <div class="code-snippet">
-&lt;!-- HTML --&gt;
-&lt;label for="my-select"&gt;País&lt;/label&gt;
-&lt;select id="my-select" class="sb-ui-select"&gt;
-  &lt;option value=""&gt;Seleccionar país&lt;/option&gt;
-  &lt;option value="co"&gt;Colombia&lt;/option&gt;
-  &lt;option value="mx"&gt;México&lt;/option&gt;
-  &lt;option value="ar"&gt;Argentina&lt;/option&gt;
-&lt;/select&gt;
-
-&lt;script&gt;
-  // JavaScript
-  const select = document.getElementById('my-select');
-  
-  select.addEventListener('change', (e) => {
-    console.log('Seleccionado:', e.target.value);
-  });
-&lt;/script&gt;
-          </div>
-        </div>
-
-        <div class="demo-item" style="margin-top: 1.5rem;">
-          <h3>Web Component Dropdown (Placeholder)</h3>
-          <div class="code-snippet">
-&lt;!-- HTML --&gt;
-&lt;sb-ui-dropdown 
-  placeholder="Seleccionar opción"
-  value="Opción 1"&gt;
-&lt;/sb-ui-dropdown&gt;
-
-&lt;script&gt;
-  // JavaScript (en desarrollo)
-  const dropdown = document.querySelector('sb-ui-dropdown');
-  
-  // API completa estará disponible en futuras versiones
-  console.log(dropdown.value);
-&lt;/script&gt;
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION: Casos de Uso -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Casos de Uso Comunes</h2>
-        <div class="demo-grid">
-          <!-- Formulario de registro -->
-          <div class="demo-item">
-            <h3>📝 Formulario de Registro</h3>
-            <form id="form-register">
-              <div style="margin-bottom: 1rem;">
-                <label for="form-country">País</label>
-                <select id="form-country" class="sb-ui-select" required>
-                  <option value="">Seleccionar país</option>
-                  <option value="co">Colombia</option>
-                  <option value="mx">México</option>
-                  <option value="ar">Argentina</option>
-                </select>
-              </div>
-              
-              <div style="margin-bottom: 1rem;">
-                <label for="form-city">Ciudad</label>
-                <select id="form-city" class="sb-ui-select" required>
-                  <option value="">Seleccionar ciudad</option>
-                  <option value="bog">Bogotá</option>
-                  <option value="med">Medellín</option>
-                  <option value="cal">Cali</option>
-                </select>
-              </div>
-
-              <button type="submit" class="sb-ui-button sb-ui-button--primary sb-ui-button--small">
-                Registrar
-              </button>
-            </form>
-          </div>
-
-          <!-- Filtros de búsqueda -->
-          <div class="demo-item">
-            <h3>🔍 Filtros de Búsqueda</h3>
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-              <div>
-                <label for="filter-category">Categoría</label>
-                <select id="filter-category" class="sb-ui-select">
-                  <option value="">Todas</option>
-                  <option value="vida">Vida</option>
-                  <option value="auto">Auto</option>
-                  <option value="hogar">Hogar</option>
-                </select>
-              </div>
-              
-              <div>
-                <label for="filter-price">Precio</label>
-                <select id="filter-price" class="sb-ui-select">
-                  <option value="">Todos</option>
-                  <option value="low">Bajo ($0 - $100)</option>
-                  <option value="mid">Medio ($100 - $500)</option>
-                  <option value="high">Alto ($500+)</option>
-                </select>
-              </div>
-
-              <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small" onclick="applyFilters()">
-                Aplicar Filtros
-              </button>
+        <div style="padding: 2rem; border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0); border-radius: 8px; background: var(--sb-ui-color-grayscale-L50, #fafafa);">
+          <sb-ui-dropdown>
+            <button slot="trigger" class="sb-ui-button sb-ui-button--primary">
+              Opciones <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div slot="content">
+              <button class="sb-ui-dropdown__item">Editar</button>
+              <button class="sb-ui-dropdown__item">Duplicar</button>
+              <button class="sb-ui-dropdown__item">Eliminar</button>
             </div>
-          </div>
+          </sb-ui-dropdown>
+        </div>
 
-          <!-- Configuración de preferencias -->
-          <div class="demo-item">
-            <h3>⚙️ Configuración</h3>
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-              <div>
-                <label for="config-language">Idioma</label>
-                <select id="config-language" class="sb-ui-select">
-                  <option value="es" selected>Español</option>
-                  <option value="en">English</option>
-                  <option value="pt">Português</option>
-                </select>
-              </div>
-              
-              <div>
-                <label for="config-theme">Tema</label>
-                <select id="config-theme" class="sb-ui-select">
-                  <option value="light" selected>Claro</option>
-                  <option value="dark">Oscuro</option>
-                  <option value="auto">Automático</option>
-                </select>
-              </div>
-
-              <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small">
-                Guardar Configuración
-              </button>
-            </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Dropdown con Web Component --&gt;
+&lt;sb-ui-dropdown&gt;
+  &lt;button slot="trigger" class="sb-ui-button sb-ui-button--primary"&gt;
+    Opciones
+  &lt;/button&gt;
+  &lt;div slot="content"&gt;
+    &lt;button class="sb-ui-dropdown__item"&gt;Editar&lt;/button&gt;
+    &lt;button class="sb-ui-dropdown__item"&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sb-ui-dropdown&gt;</code></pre>
         </div>
       </section>
 
-      <!-- SECTION: Características -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">✨ Características</h2>
-        <div class="demo-grid">
-          <div class="demo-item">
-            <h3>🎨 Theming</h3>
-            <p>Compatible con todas las marcas del Design System</p>
-            <span class="badge badge--primary">White Label</span>
-            <span class="badge badge--primary">Jelpit</span>
-            <span class="badge badge--primary">Davivienda</span>
-            <span class="badge badge--primary">Cien Cuadras</span>
-            <span class="badge badge--primary">Doctor Aki</span>
-            <span class="badge badge--primary">Seguros Bolívar</span>
-          </div>
-
-          <div class="demo-item">
-            <h3>♿ Accesibilidad</h3>
-            <p>Soporte completo de navegación por teclado</p>
-            <span class="badge badge--success">Keyboard Nav</span>
-            <span class="badge badge--success">ARIA Labels</span>
-            <span class="badge badge--success">Focus Visible</span>
-            <span class="badge badge--success">Screen Reader</span>
-          </div>
-
-          <div class="demo-item">
-            <h3>🎭 Opciones</h3>
-            <p>Múltiples configuraciones</p>
-            <span class="badge badge--info">Single Select</span>
-            <span class="badge badge--info">Multi Select</span>
-            <span class="badge badge--info">Grouped Options</span>
-            <span class="badge badge--info">Disabled State</span>
-          </div>
-
-          <div class="demo-item">
-            <h3>⚡ Características</h3>
-            <p>Select nativo completamente funcional</p>
-            <span class="badge badge--warning">Estilizado</span>
-            <span class="badge badge--warning">Responsive</span>
-            <span class="badge badge--warning">Estados</span>
-            <span class="badge badge--warning">Validación</span>
-          </div>
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/molecules-dropdown--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
         </div>
       </section>
-    </div>
-
-    <!-- JavaScript para Brand/Theme Switching y Select Management -->
-    <script>
-      // Select Event Listeners
-      document.addEventListener('DOMContentLoaded', () => {
-        // Basic select
-        const selectBasic = document.getElementById('select-basic');
-        const outputBasic = document.getElementById('output-basic');
-        
-        selectBasic.addEventListener('change', (e) => {
-          const value = e.target.value;
-          const text = e.target.options[e.target.selectedIndex].text;
-          outputBasic.textContent = value ? `Seleccionado: ${text} (${value})` : 'No hay selección';
-        });
-
-        // Grouped select
-        const selectGrouped = document.getElementById('select-grouped');
-        const outputGrouped = document.getElementById('output-grouped');
-        
-        selectGrouped.addEventListener('change', (e) => {
-          const value = e.target.value;
-          const text = e.target.options[e.target.selectedIndex].text;
-          outputGrouped.textContent = value ? `Seleccionado: ${text} (${value})` : 'No hay selección';
-        });
-
-        // Multiple select
-        const selectMultiple = document.getElementById('select-multiple');
-        const outputMultiple = document.getElementById('output-multiple');
-        
-        selectMultiple.addEventListener('change', (e) => {
-          const selected = Array.from(e.target.selectedOptions).map(opt => opt.text);
-          outputMultiple.textContent = selected.length > 0 
-            ? `Seleccionados: ${selected.join(', ')}` 
-            : 'No hay selección';
-        });
-
-        // Form register
-        const formRegister = document.getElementById('form-register');
-        formRegister.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const country = document.getElementById('form-country').value;
-          const city = document.getElementById('form-city').value;
-          alert(`✅ Registro exitoso!\nPaís: ${country}\nCiudad: ${city}`);
-        });
-      });
-
-      // Apply filters function
-      function applyFilters() {
-        const category = document.getElementById('filter-category').value;
-        const price = document.getElementById('filter-price').value;
-        
-        console.log('Filtros aplicados:', { category, price });
-        alert(`🔍 Filtros aplicados:\nCategoría: ${category || 'Todas'}\nPrecio: ${price || 'Todos'}`);
-      }
-    </script>
+    </main>
   </body>
 </html>
-

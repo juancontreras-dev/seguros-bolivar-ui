@@ -1,502 +1,434 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle Component - Seguros Bolívar UI</title>
+    <title>Toggle Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <!-- CSS del Design System - Seguros Bolívar Light -->
-    <!-- PRELOAD: Carga el CSS más rápido (-100ms First Paint) -->
+    <!-- Preload CSS del Design System -->
     <link
       rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=clean-validation"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      * {
-        margin-block: 0;
-        margin-inline: 0;
-        padding-block: 0;
-        padding-inline: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .matrix-container {
-        max-inline-size: 1400px;
-        margin-block: 0;
-        margin-inline: auto;
-      }
-
-      .matrix-header {
-        margin-block-end: 2rem;
-        text-align: center;
-      }
-
-      .matrix-header h1 {
-        font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-        font-weight: 700;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 0.5rem;
-      }
-
-      .matrix-header p {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-      }
-
-      
-
-      /* Sections */
-      .matrix-section {
-        margin-block-end: 4rem;
-        background: white;
-        padding-block: 2rem;
-        padding-inline: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .matrix-title {
-        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
-        font-weight: 700;
-        margin-block-end: 0.5rem;
-        color: var(--sb-ui-color-primary-base, #007acc);
-      }
-
-      .matrix-subtitle {
-        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
-        color: var(--sb-ui-color-grayscale-base, #666);
-        margin-block-end: 2rem;
-      }
-
-      .demo-grid {
+      /* Estilos específicos para toggle demo */
+      .toggle-demo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
+        margin-block-end: 2rem;
       }
 
-      .demo-item {
-        padding-block: 1.5rem;
-        padding-inline: 1.5rem;
+      .toggle-demo-card {
+        padding: 1.5rem;
         border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
       }
 
-      .demo-item h3 {
-        margin-block: 0 0 1.5rem 0;
-        margin-inline: 0;
+      .toggle-demo-card h4 {
         font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-base, #666);
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
 
-      .demo-item .demo-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      /* Matrix Grid for States */
-      .matrix-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        padding-block: 1.5rem;
-        padding-inline: 1.5rem;
-        background: var(--sb-ui-color-grayscale-L400, #f9f9f9);
-        border-radius: 8px;
-      }
-
-      .matrix-column {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .matrix-column h3 {
-        text-align: center;
-        font-size: 1rem;
-        color: var(--sb-ui-color-primary-base, #007acc);
-        margin-block-end: 0.5rem;
-        padding-block: 0.75rem;
-        padding-inline: 1rem;
-        background: white;
-        border-radius: 4px;
-        font-weight: 600;
-      }
-
-      .matrix-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding-block: 1rem;
-        padding-inline: 1rem;
-        background: white;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: 4px;
-      }
-
-      .matrix-label {
-        min-inline-size: 80px;
+      .toggle-demo-note {
         font-size: 0.75rem;
-        color: var(--sb-ui-color-grayscale-base, #666);
-        font-weight: 500;
+        color: var(--sb-ui-color-grayscale-D100, #9b9b9b);
+        margin-block-end: 0.75rem;
       }
 
-      /* Focus button styling */
-      .matrix-item button {
-        padding: 4px 12px;
-        font-size: 11px;
-        background: var(--sb-ui-color-primary-base);
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        margin-inline-start: 8px;
+      .toggle-example-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
       }
 
-      .matrix-item button:hover {
-        background: var(--sb-ui-color-primary-D100);
-        transform: translateY(-1px);
-      }
-
-      .matrix-item button:active {
-        transform: translateY(0);
+      @media (max-width: 768px) {
+        .toggle-demo-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="matrix-container">
-      <!-- Header -->
-      <header class="matrix-header">
-        <h1>Toggle Component</h1>
-        <p>
-          Componente toggle con todos sus estados (default, hover, pressed, focus, disabled, error) siguiendo
-          el sistema de diseño de Seguros Bolívar.
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-toggle-on" aria-hidden="true"></i>
+          </span>
+          <span>Toggle</span>
+        </h2>
+        <p class="component-description">
+          Componente de interruptor (switch) para habilitar/deshabilitar opciones con estados completos (default, hover, focus, disabled),
+          tamaños (small, medium, large) y variantes para configuraciones y casos de uso reales.
+          Compatible con todas las marcas del design system.
         </p>
       </header>
 
-      <!-- SECTION: Estados del Toggle -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Estados del Toggle</h2>
-        <div class="matrix-grid">
-          <!-- Column: Selection OFF -->
-          <div class="matrix-column">
-            <h3>Selection: OFF</h3>
-
-            <!-- Default OFF -->
-            <div class="matrix-item">
-              <span class="matrix-label">Default</span>
+      <!-- ========================================
+           SECCIÓN 1: ESTADOS BÁSICOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estados Básicos</h3>
+        <div class="toggle-demo-grid">
+          <!-- DEFAULT OFF -->
+          <div class="toggle-demo-card">
+            <h4>1. Default (Off)</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
+                <span class="sb-ui-toggle-label">Toggle desactivado</span>
               </label>
             </div>
+          </div>
 
-            <!-- Hover OFF (simulated) -->
-            <div class="matrix-item">
-              <span class="matrix-label">Hover</span>
+          <!-- DEFAULT ON -->
+          <div class="toggle-demo-card">
+            <h4>2. Default (On)</h4>
+            <div class="toggle-example-group">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Toggle activado</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- HOVER -->
+          <div class="toggle-demo-card">
+            <h4>3. Hover</h4>
+            <p class="toggle-demo-note">Pasa el mouse sobre el toggle</p>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
+                <span class="sb-ui-toggle-label">Hover off</span>
               </label>
-              <small style="color: #999">(hover para ver efecto)</small>
-            </div>
 
-            <!-- Pressed OFF (simulated) -->
-            <div class="matrix-item">
-              <span class="matrix-label">Pressed</span>
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Hover on</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- FOCUS -->
+          <div class="toggle-demo-card">
+            <h4>4. Focus</h4>
+            <p class="toggle-demo-note">Click o usa Tab para ver el focus</p>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
+                <span class="sb-ui-toggle-label">Focus visible</span>
               </label>
-              <small style="color: #999">(click para ver efecto)</small>
             </div>
+          </div>
 
-            <!-- Focus OFF -->
-            <div class="matrix-item">
-              <span class="matrix-label">Focus</span>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" id="focus-off" />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-              <button onclick="document.getElementById('focus-off').focus()">
-                👁️ Focus
-              </button>
-            </div>
-
-            <!-- Disabled OFF -->
-            <div class="matrix-item">
-              <span class="matrix-label">Disabled</span>
+          <!-- DISABLED OFF -->
+          <div class="toggle-demo-card">
+            <h4>5. Disabled (Off)</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" disabled />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-            </div>
-
-            <!-- Error OFF -->
-            <div class="matrix-item">
-              <span class="matrix-label">Error</span>
-              <label class="sb-ui-toggle sb-ui-toggle--error">
-                <input type="checkbox" class="sb-ui-toggle-input" />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
+                <span class="sb-ui-toggle-label">Disabled off</span>
               </label>
             </div>
           </div>
 
-          <!-- Column: Selection ON -->
-          <div class="matrix-column">
-            <h3>Selection: ON</h3>
-
-            <!-- Default ON -->
-            <div class="matrix-item">
-              <span class="matrix-label">Default</span>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-            </div>
-
-            <!-- Hover ON (simulated) -->
-            <div class="matrix-item">
-              <span class="matrix-label">Hover</span>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-              <small style="color: #999">(hover para ver efecto)</small>
-            </div>
-
-            <!-- Pressed ON (simulated) -->
-            <div class="matrix-item">
-              <span class="matrix-label">Pressed</span>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-              <small style="color: #999">(click para ver efecto)</small>
-            </div>
-
-            <!-- Focus ON -->
-            <div class="matrix-item">
-              <span class="matrix-label">Focus</span>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" id="focus-on" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-              <button onclick="document.getElementById('focus-on').focus()">
-                👁️ Focus
-              </button>
-            </div>
-
-            <!-- Disabled ON -->
-            <div class="matrix-item">
-              <span class="matrix-label">Disabled</span>
+          <!-- DISABLED ON -->
+          <div class="toggle-demo-card">
+            <h4>6. Disabled (On)</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" checked disabled />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-            </div>
-
-            <!-- Error ON -->
-            <div class="matrix-item">
-              <span class="matrix-label">Error</span>
-              <label class="sb-ui-toggle sb-ui-toggle--error">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
+                <span class="sb-ui-toggle-label">Disabled on</span>
               </label>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- SECTION: Text Variants -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Text Variants</h2>
-        <div class="demo-grid">
-          <!-- With Text (Text: True) -->
-          <div class="demo-item">
-            <h3>Text: True (With Label)</h3>
-            <div class="demo-content">
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Option</span>
-              </label>
-            </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Toggle Off --&gt;
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Toggle desactivado&lt;/span&gt;
+&lt;/label&gt;
 
-          <!-- Without Text (Text: False) -->
-          <div class="demo-item">
-            <h3>Text: False (No Label)</h3>
-            <div class="demo-content">
-              <label class="sb-ui-toggle sb-ui-toggle--no-label">
-                <input type="checkbox" class="sb-ui-toggle-input" />
-                <span class="sb-ui-toggle-slider"></span>
-              </label>
-              <label class="sb-ui-toggle sb-ui-toggle--no-label">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-              </label>
-            </div>
-          </div>
+&lt;!-- Toggle On --&gt;
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" checked /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Toggle activado&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Toggle Disabled --&gt;
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" disabled /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Disabled&lt;/span&gt;
+&lt;/label&gt;</code></pre>
         </div>
       </section>
 
-      <!-- SECTION: Sizes -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Tamaños</h2>
-        <div class="demo-grid">
-          <!-- Small -->
-          <div class="demo-item">
-            <h3>Small</h3>
-            <div class="demo-content">
+      <!-- ========================================
+           SECCIÓN 2: TAMAÑOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños</h3>
+        <div class="toggle-demo-grid">
+          <!-- SMALL -->
+          <div class="toggle-demo-card">
+            <h4>Small</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle sb-ui-toggle--small">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Small Toggle</span>
+                <span class="sb-ui-toggle-label">Small off</span>
               </label>
+
               <label class="sb-ui-toggle sb-ui-toggle--small">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Small Toggle</span>
+                <span class="sb-ui-toggle-label">Small on</span>
               </label>
             </div>
           </div>
 
-          <!-- Medium (Default) -->
-          <div class="demo-item">
-            <h3>Medium (Default)</h3>
-            <div class="demo-content">
+          <!-- MEDIUM (default) -->
+          <div class="toggle-demo-card">
+            <h4>Medium (default)</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Medium Toggle</span>
+                <span class="sb-ui-toggle-label">Medium off</span>
               </label>
+
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Medium Toggle</span>
+                <span class="sb-ui-toggle-label">Medium on</span>
               </label>
             </div>
           </div>
 
-          <!-- Large -->
-          <div class="demo-item">
-            <h3>Large</h3>
-            <div class="demo-content">
+          <!-- LARGE -->
+          <div class="toggle-demo-card">
+            <h4>Large</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle sb-ui-toggle--large">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Large Toggle</span>
+                <span class="sb-ui-toggle-label">Large off</span>
               </label>
+
               <label class="sb-ui-toggle sb-ui-toggle--large">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Large Toggle</span>
+                <span class="sb-ui-toggle-label">Large on</span>
               </label>
             </div>
           </div>
         </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Small --&gt;
+&lt;label class="sb-ui-toggle sb-ui-toggle--small"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Small&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Medium (default) --&gt;
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Medium&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Large --&gt;
+&lt;label class="sb-ui-toggle sb-ui-toggle--large"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Large&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
       </section>
 
-      <!-- SECTION: Multiple Toggles -->
-      <section class="matrix-section">
-        <h2 class="matrix-title">Grupo de Toggles</h2>
-        <div class="demo-grid">
-          <!-- Vertical Group -->
-          <div class="demo-item">
-            <h3>Vertical Layout</h3>
-            <div class="sb-ui-toggle-group">
+      <!-- ========================================
+           SECCIÓN 3: CASOS DE USO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Casos de Uso</h3>
+        <div class="toggle-demo-grid">
+          <!-- Configuración -->
+          <div class="toggle-demo-card">
+            <h4>Panel de Configuración</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Notificaciones</span>
+                <span class="sb-ui-toggle-label">Notificaciones push</span>
               </label>
+
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Notificaciones email</span>
+              </label>
+
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Email</span>
-              </label>
-              <label class="sb-ui-toggle">
-                <input type="checkbox" class="sb-ui-toggle-input" checked />
-                <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">SMS</span>
+                <span class="sb-ui-toggle-label">Modo oscuro</span>
               </label>
             </div>
           </div>
 
-          <!-- Horizontal Group -->
-          <div class="demo-item">
-            <h3>Horizontal Layout</h3>
-            <div class="sb-ui-toggle-group--horizontal">
+          <!-- Privacidad -->
+          <div class="toggle-demo-card">
+            <h4>Privacidad</h4>
+            <div class="toggle-example-group">
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Notificaciones</span>
+                <span class="sb-ui-toggle-label">Perfil público</span>
               </label>
+
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">Email</span>
+                <span class="sb-ui-toggle-label">Mostrar email</span>
               </label>
+
               <label class="sb-ui-toggle">
                 <input type="checkbox" class="sb-ui-toggle-input" checked />
                 <span class="sb-ui-toggle-slider"></span>
-                <span class="sb-ui-toggle-label">SMS</span>
+                <span class="sb-ui-toggle-label">Autenticación 2FA</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Permisos -->
+          <div class="toggle-demo-card">
+            <h4>Permisos del Sistema</h4>
+            <div class="toggle-example-group">
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Acceso a cámara</span>
+              </label>
+
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" checked />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Acceso a micrófono</span>
+              </label>
+
+              <label class="sb-ui-toggle">
+                <input type="checkbox" class="sb-ui-toggle-input" disabled />
+                <span class="sb-ui-toggle-slider"></span>
+                <span class="sb-ui-toggle-label">Ubicación (deshabilitado)</span>
               </label>
             </div>
           </div>
         </div>
-      </section>
-    </div>
-    <!-- /matrix-container -->
 
-    <!-- JavaScript para Brand/Theme Switching -->
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Panel de configuración --&gt;
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" checked /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Notificaciones push&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;label class="sb-ui-toggle"&gt;
+  &lt;input type="checkbox" class="sb-ui-toggle-input" /&gt;
+  &lt;span class="sb-ui-toggle-slider"&gt;&lt;/span&gt;
+  &lt;span class="sb-ui-toggle-label"&gt;Modo oscuro&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-toggle--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-

@@ -1,439 +1,367 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Select Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts - Roboto -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      body,
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Roboto', sans-serif;
-        padding: 2rem;
-        background: #fafafa;
-      }
-
-      .demo-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid #cce9dd;
-      }
-
-      .header h1 {
-        font-size: 2rem;
-        color: #1b1b1b;
-      }
-
-
-      h2 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: #038450;
-        border-bottom: 2px solid #cce9dd;
-        padding-bottom: 0.5rem;
-      }
-
-      .demo-grid {
+      /* Estilos específicos para select demo */
+      .select-demo-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 2rem;
-        margin-bottom: 2rem;
+        margin-block-end: 2rem;
       }
 
-      .demo-item {
+      .select-demo-item {
         padding: 1.5rem;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
       }
 
-      .demo-item h3 {
+      .select-demo-item h4 {
         font-size: 0.875rem;
-        margin-bottom: 1rem;
-        color: #9b9b9b;
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
 
-      .demo-section {
-        margin-bottom: 3rem;
+      .select-demo-note {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100, #9b9b9b);
+        margin-block-end: 0.5rem;
       }
 
-      .info-box {
-        background: #e5f4ee;
-        border-left: 4px solid #009056;
-        padding: 1rem;
-        margin-bottom: 2rem;
-        border-radius: 4px;
-      }
-
-      .info-box p {
-        color: #038450;
-        font-size: 0.9375rem;
-        line-height: 1.5;
-      }
-
-      .helper-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: #9b9b9b;
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-        margin-right: 4px;
-      }
-
-      .helper-icon--success {
-        background: #28a745;
-      }
-
-      .helper-icon--error {
-        background: #dc3545;
-      }
-
-      /* Focus button styling */
-      .demo-item button {
-        padding: 4px 12px;
-        font-size: 11px;
-        background: #009056;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        margin-top: 8px;
-      }
-
-      .demo-item button:hover {
-        background: #038450;
-        transform: translateY(-1px);
-      }
-
-      .demo-item button:active {
-        transform: translateY(0);
+      @media (max-width: 768px) {
+        .select-demo-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="demo-container">
-      <!-- Header -->
-      <div class="header">
-        <h1>🎨 Select Component</h1>
-      </div>
-
-      <!-- Info Box -->
-      <div class="info-box">
-        <p>
-          <strong>Componente Select:</strong> Dropdown para selección de opciones. 
-          Estados: Default, Hover, Focus, Active, Disabled, Success, Error. 
-          Incluye label, helper text y validación según el Design System de Seguros Bolívar.
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+          </span>
+          <span>Select</span>
+        </h2>
+        <p class="component-description">
+          Componente de selección desplegable (dropdown) con múltiples estados (default, hover, focus, disabled, error),
+          tamaños (small, medium, large) y variantes para formularios y casos de uso reales.
+          Compatible con todas las marcas del design system.
         </p>
-      </div>
+      </header>
 
-      <!-- BASIC STATES -->
-      <section class="demo-section">
-        <h2>Estados Básicos</h2>
-        <div class="demo-grid">
-          <!-- Default -->
-          <div class="demo-item">
-            <h3>Default</h3>
+      <!-- ========================================
+           SECCIÓN 1: ESTADOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estados</h3>
+        <div class="select-demo-grid">
+          <!-- DEFAULT -->
+          <div class="select-demo-item">
+            <h4>1. Default</h4>
             <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
+              <label class="sb-ui-select-label">País</label>
               <select class="sb-ui-select">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
+                <option value="">Seleccione...</option>
+                <option value="co">Colombia</option>
+                <option value="mx">México</option>
+                <option value="ar">Argentina</option>
+                <option value="pe">Perú</option>
               </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
+              <span class="sb-ui-select-helper">Seleccione su país de residencia</span>
             </div>
           </div>
 
-          <!-- Hover -->
-          <div class="demo-item">
-            <h3>Hover</h3>
+          <!-- FOCUS -->
+          <div class="select-demo-item">
+            <h4>2. Focus</h4>
+            <p class="select-demo-note">Click para ver el borde verde</p>
             <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
+              <label class="sb-ui-select-label">Ciudad</label>
               <select class="sb-ui-select">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
+                <option value="">Seleccione...</option>
+                <option value="bog">Bogotá</option>
+                <option value="med">Medellín</option>
+                <option value="cal">Cali</option>
               </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
             </div>
           </div>
 
-          <!-- Focus -->
-          <div class="demo-item">
-            <h3>Focus</h3>
+          <!-- DISABLED -->
+          <div class="select-demo-item">
+            <h4>3. Disabled</h4>
             <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select" id="focus-select">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-            <button onclick="document.getElementById('focus-select').focus()">
-              👁️ Focus
-            </button>
-          </div>
-
-          <!-- Active/Selected -->
-          <div class="demo-item">
-            <h3>Active (Selected)</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select">
-                <option value="">Placeholder</option>
-                <option value="1" selected>Option</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-          </div>
-
-          <!-- Disabled -->
-          <div class="demo-item">
-            <h3>Disabled</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
+              <label class="sb-ui-select-label">Estado</label>
               <select class="sb-ui-select" disabled>
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
+                <option value="">No disponible</option>
               </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- VALIDATION STATES -->
-      <section class="demo-section">
-        <h2>Estados de Validación</h2>
-        <div class="demo-grid">
-          <!-- Success -->
-          <div class="demo-item">
-            <h3>Success</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select sb-ui-select--success">
-                <option value="">Placeholder</option>
-                <option value="1" selected>Opción válida</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon helper-icon--success">✓</span>Selection is valid
-              </span>
+              <span class="sb-ui-select-helper">Campo deshabilitado</span>
             </div>
           </div>
 
-          <!-- Error -->
-          <div class="demo-item">
-            <h3>Error</h3>
+          <!-- ERROR -->
+          <div class="select-demo-item">
+            <h4>4. Error</h4>
             <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
+              <label class="sb-ui-select-label">Tipo de documento</label>
               <select class="sb-ui-select sb-ui-select--error">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
+                <option value="">Seleccione...</option>
+                <option value="cc">Cédula de Ciudadanía</option>
+                <option value="ce">Cédula de Extranjería</option>
+                <option value="passport">Pasaporte</option>
               </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon helper-icon--error">⊗</span>Please select an option
-              </span>
+              <span class="sb-ui-select-helper">Este campo es obligatorio</span>
             </div>
           </div>
 
-          <!-- Warning -->
-          <div class="demo-item">
-            <h3>Warning</h3>
+          <!-- WITH VALUE -->
+          <div class="select-demo-item">
+            <h4>5. Con valor seleccionado</h4>
             <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select sb-ui-select--warning">
-                <option value="">Placeholder</option>
-                <option value="1" selected>Opción con advertencia</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon" style="background: #ffc107">⚠</span>Warning message
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SIZES -->
-      <section class="demo-section">
-        <h2>Tamaños</h2>
-        <div class="demo-grid">
-          <!-- Small -->
-          <div class="demo-item">
-            <h3>Small</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select sb-ui-select--small">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-          </div>
-
-          <!-- Medium (Default) -->
-          <div class="demo-item">
-            <h3>Medium (Default)</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select sb-ui-select--medium">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-          </div>
-
-          <!-- Large -->
-          <div class="demo-item">
-            <h3>Large</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Label txt</label>
-              <select class="sb-ui-select sb-ui-select--large">
-                <option value="">Placeholder</option>
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3">Opción 3</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Help text
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- MULTIPLE OPTIONS -->
-      <section class="demo-section">
-        <h2>Múltiples Opciones</h2>
-        <div class="demo-grid">
-          <!-- Multiple Select -->
-          <div class="demo-item">
-            <h3>Multiple Select</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Selecciona múltiples</label>
-              <select class="sb-ui-select" multiple size="5">
-                <option value="1">Opción 1</option>
-                <option value="2">Opción 2</option>
-                <option value="3" selected>Opción 3</option>
-                <option value="4">Opción 4</option>
-                <option value="5">Opción 5</option>
-              </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Mantén Ctrl/Cmd para seleccionar múltiples
-              </span>
-            </div>
-          </div>
-
-          <!-- With Optgroup -->
-          <div class="demo-item">
-            <h3>With Groups</h3>
-            <div class="sb-ui-select-container">
-              <label class="sb-ui-select-label">Selecciona categoría</label>
+              <label class="sb-ui-select-label">Departamento</label>
               <select class="sb-ui-select">
-                <option value="">Placeholder</option>
-                <optgroup label="Grupo 1">
-                  <option value="1-1">Opción 1.1</option>
-                  <option value="1-2">Opción 1.2</option>
-                </optgroup>
-                <optgroup label="Grupo 2">
-                  <option value="2-1">Opción 2.1</option>
-                  <option value="2-2">Opción 2.2</option>
-                </optgroup>
+                <option value="">Seleccione...</option>
+                <option value="cundinamarca" selected>Cundinamarca</option>
+                <option value="antioquia">Antioquia</option>
+                <option value="valle">Valle del Cauca</option>
               </select>
-              <span class="sb-ui-select-helper">
-                <span class="helper-icon">i</span>Opciones agrupadas por categoría
-              </span>
             </div>
           </div>
         </div>
-      </section>
-    </div>
 
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;div class="sb-ui-select-container"&gt;
+  &lt;label class="sb-ui-select-label"&gt;País&lt;/label&gt;
+  &lt;select class="sb-ui-select"&gt;
+    &lt;option value=""&gt;Seleccione...&lt;/option&gt;
+    &lt;option value="co"&gt;Colombia&lt;/option&gt;
+    &lt;option value="mx"&gt;México&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span class="sb-ui-select-helper"&gt;Texto de ayuda&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Estado Error --&gt;
+&lt;select class="sb-ui-select sb-ui-select--error"&gt;
+  &lt;option value=""&gt;Seleccione...&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: TAMAÑOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños</h3>
+        <div class="select-demo-grid">
+          <!-- SMALL -->
+          <div class="select-demo-item">
+            <h4>Small</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Opción</label>
+              <select class="sb-ui-select sb-ui-select--small">
+                <option value="">Seleccione...</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- MEDIUM (default) -->
+          <div class="select-demo-item">
+            <h4>Medium (default)</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Opción</label>
+              <select class="sb-ui-select">
+                <option value="">Seleccione...</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- LARGE -->
+          <div class="select-demo-item">
+            <h4>Large</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Opción</label>
+              <select class="sb-ui-select sb-ui-select--large">
+                <option value="">Seleccione...</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Small --&gt;
+&lt;select class="sb-ui-select sb-ui-select--small"&gt;
+  &lt;option&gt;Seleccione...&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- Medium (default) --&gt;
+&lt;select class="sb-ui-select"&gt;
+  &lt;option&gt;Seleccione...&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- Large --&gt;
+&lt;select class="sb-ui-select sb-ui-select--large"&gt;
+  &lt;option&gt;Seleccione...&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: CASOS DE USO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Casos de Uso</h3>
+        <div class="select-demo-grid">
+          <!-- País -->
+          <div class="select-demo-item">
+            <h4>Selección de País</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">País *</label>
+              <select class="sb-ui-select" required>
+                <option value="">Seleccione su país...</option>
+                <option value="co">🇨🇴 Colombia</option>
+                <option value="mx">🇲🇽 México</option>
+                <option value="ar">🇦🇷 Argentina</option>
+                <option value="pe">🇵🇪 Perú</option>
+                <option value="cl">🇨🇱 Chile</option>
+              </select>
+              <span class="sb-ui-select-helper">Campo obligatorio</span>
+            </div>
+          </div>
+
+          <!-- Tipo de Seguro -->
+          <div class="select-demo-item">
+            <h4>Tipo de Seguro</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Producto</label>
+              <select class="sb-ui-select">
+                <option value="">Seleccione un producto...</option>
+                <option value="vida">Seguro de Vida</option>
+                <option value="auto">Seguro de Auto</option>
+                <option value="hogar">Seguro de Hogar</option>
+                <option value="salud">Seguro de Salud</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Con Error -->
+          <div class="select-demo-item">
+            <h4>Con Validación</h4>
+            <div class="sb-ui-select-container">
+              <label class="sb-ui-select-label">Tipo de documento *</label>
+              <select class="sb-ui-select sb-ui-select--error" required>
+                <option value="">Seleccione...</option>
+                <option value="cc">Cédula de Ciudadanía</option>
+                <option value="ce">Cédula de Extranjería</option>
+                <option value="passport">Pasaporte</option>
+              </select>
+              <span class="sb-ui-select-helper">Debe seleccionar un tipo de documento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Select con validación --&gt;
+&lt;div class="sb-ui-select-container"&gt;
+  &lt;label class="sb-ui-select-label"&gt;País *&lt;/label&gt;
+  &lt;select class="sb-ui-select" required&gt;
+    &lt;option value=""&gt;Seleccione...&lt;/option&gt;
+    &lt;option value="co"&gt;Colombia&lt;/option&gt;
+    &lt;option value="mx"&gt;México&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span class="sb-ui-select-helper"&gt;Campo obligatorio&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-select--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-

@@ -64,6 +64,62 @@
       line-height: 1.5;
       white-space: pre-wrap;
     }
+
+    /* Estilos estandarizados para bloques de código */
+    .sb-ui-code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .sb-ui-code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      background: #2d2d2d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .sb-ui-code-block-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: #a0a0a0;
+    }
+
+    .sb-ui-code-block-badge {
+      font-size: 0.6875rem;
+      padding: 0.3125rem 0.625rem;
+      border-radius: 0.375rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+    }
+
+    .sb-ui-code-block-body {
+      margin: 0;
+      padding: 1.25rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.875rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      white-space: pre;
+      color: #d4d4d4;
+      background: #1e1e1e;
+    }
+
+    .sb-ui-code-block-body code {
+      color: #d4d4d4;
+      background: transparent;
+    }
     
     .info-box {
       background: var(--sb-ui-color-feedback-info-L400, #e7f5ef);

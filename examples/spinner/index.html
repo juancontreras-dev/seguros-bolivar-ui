@@ -3,342 +3,198 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spinner Component - Seguros Bolivar UI</title>
+    <title>Spinner Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts - Roboto -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-
+    
     <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- CSS del Design System - Seguros Bolívar Light -->
+    <!-- Preload CSS del Design System -->
     <link
       rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=spinner-final"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css?v=spinner-final"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
-    <!-- Demo styles -->
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: 'Roboto', sans-serif;
-        padding: 2rem;
-        background: #f5f5f5;
-      }
-
-      .demo-section {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .demo-section h2 {
-        margin-bottom: 1rem;
-        color: #038450;
-        font-size: 1.5rem;
-      }
-
-      .demo-section p {
-        color: #666;
-        margin-bottom: 1.5rem;
-      }
-
-      .demo-grid {
+      /* Estilos específicos para spinner demo */
+      .spinner-demo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 2rem;
-        margin-top: 1rem;
+        margin-block-end: 2rem;
       }
 
-      .demo-item {
+      .spinner-demo-item {
+        padding: 2rem 1.5rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1rem;
       }
 
-      .demo-item p {
+      .spinner-demo-item h4 {
         font-size: 0.875rem;
-        color: #666;
-        text-align: center;
-      }
-
-      .controls {
-        margin-top: 2rem;
-        padding: 1.5rem;
-        background: #f9f9f9;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-      }
-
-      .controls label {
-        display: block;
-        margin-bottom: 0.5rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
-        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
-
-      .controls input[type='range'] {
-        width: 100%;
-        margin-top: 0.5rem;
-      }
-
-      .controls .value-display {
-        display: inline-block;
-        margin-left: 0.5rem;
-        font-weight: bold;
-        color: #038450;
-        font-size: 1.2rem;
-      }
-
 
       @media (max-width: 768px) {
-
-
+        .spinner-demo-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
+
   <body>
-    <h1 style="margin-bottom: 2rem; color: #038450">🔄 Spinner Component</h1>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-circle-notch" aria-hidden="true"></i>
+          </span>
+          <span>Spinner</span>
+        </h2>
+        <p class="component-description">
+          Componente de indicador de carga (loading) con múltiples tamaños (small, medium, large) y colores (primary, secondary, white).
+          Compatible con todas las marcas del design system.
+        </p>
+      </header>
 
-    <!-- ============================================
-         CONTROL INTERACTIVO DE PROGRESO (0-100%)
-         ============================================ -->
-    <section class="demo-section">
-      <h2>🎮 Control Interactivo de Progreso (0-100%)</h2>
-      <p>Controla el progreso del spinner dinámicamente. El arco representa el % de progreso.</p>
-
-      <div style="display: flex; justify-content: center; margin-bottom: 2rem">
-        <div id="interactive-spinner" class="sb-ui-spinner" data-progress="50"></div>
-      </div>
-
-      <div class="controls">
-        <label for="progress-control">
-          Progress:
-          <span id="progress-value" class="value-display">50%</span>
-        </label>
-        <input type="range" id="progress-control" min="0" max="100" value="50" step="1" />
-      </div>
-    </section>
-
-    <!-- ============================================
-         TIPO 1: BASIC SPINNER
-         ============================================ -->
-    <section class="demo-section">
-      <h2>🔵 Tipo 1: BASIC Spinner</h2>
-      <p>Spinner circular simple con gradiente verde que rota continuamente.</p>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
-          <p><strong>25%</strong><br />Progreso 1</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="50"></div>
-          <p><strong>50%</strong><br />Progreso 2</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="75"></div>
-          <p><strong>75%</strong><br />Progreso 3</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="100"></div>
-          <p><strong>100%</strong><br />Completo</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================
-         TIPO 2: INTEGRATED SPINNER (3 Círculos)
-         ============================================ -->
-    <section class="demo-section">
-      <h2>🔄 Tipo 2: INTEGRATED Spinner</h2>
-      <p>
-        3 círculos concéntricos que rotan continuamente a <strong>velocidades diferentes</strong>:
-      </p>
-      <ul style="margin-bottom: 1rem; padding-left: 2rem">
-        <li>🟢 Verde oscuro (#009056) - 2s</li>
-        <li>🟢 Verde claro (#02D46F) - 3s</li>
-        <li>🟡 Amarillo (#FFE16F) - 1.5s</li>
-      </ul>
-      <p>
-        <strong>Nota:</strong> Este spinner <u>NO usa progreso</u>, rota continuamente sin parar.
-      </p>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
-          <p><strong>Normal</strong><br />Velocidades default</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast"></div>
-          <p><strong>Fast</strong><br />Velocidad x1.5</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow"></div>
-          <p><strong>Slow</strong><br />Velocidad x0.6</p>
-        </div>
-
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--paused"></div>
-          <p><strong>Paused</strong><br />Animación pausada</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================
-         TIPO 3: ICON SPINNER
-         ============================================ -->
-    <section class="demo-section">
-      <h2>🎯 Tipo 3: ICON Spinner</h2>
-      <p>Spinner con icono centrado fijo. El círculo rota pero el icono NO.</p>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 20px; color: #038450"></i>
-              </div>
-            </div>
+      <!-- ========================================
+           SECCIÓN 1: TAMAÑOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños</h3>
+        <div class="spinner-demo-grid">
+          <!-- SMALL -->
+          <div class="spinner-demo-item">
+            <h4>Small (16px)</h4>
+            <div class="sb-ui-spinner sb-ui-spinner--small"></div>
           </div>
-          <p><strong>Upload</strong><br />Cloud Icon</p>
-        </div>
 
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-download" style="font-size: 20px; color: #038450"></i>
-              </div>
-            </div>
+          <!-- MEDIUM -->
+          <div class="spinner-demo-item">
+            <h4>Medium (24px)</h4>
+            <div class="sb-ui-spinner"></div>
           </div>
-          <p><strong>Download</strong><br />Download Icon</p>
-        </div>
 
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-gear" style="font-size: 20px; color: #038450"></i>
-              </div>
-            </div>
+          <!-- LARGE -->
+          <div class="spinner-demo-item">
+            <h4>Large (40px)</h4>
+            <div class="sb-ui-spinner sb-ui-spinner--large"></div>
           </div>
-          <p><strong>Settings</strong><br />Gear Icon</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ============================================
-         TIPO 4: ICON-TEXT SPINNER
-         ============================================ -->
-    <section class="demo-section">
-      <h2>📝 Tipo 4: ICON-TEXT Spinner</h2>
-      <p>Spinner con icono y texto centrados. El círculo rota pero icono + texto NO.</p>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 16px; color: #038450"></i>
-              </div>
-              <span class="sb-ui-spinner__label">Upload</span>
-            </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-          <p><strong>Upload</strong><br />Con texto</p>
-        </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Small --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--small"&gt;&lt;/div&gt;
 
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-hourglass-half" style="font-size: 16px; color: #038450"></i>
-              </div>
-              <span class="sb-ui-spinner__label">Wait</span>
-            </div>
+&lt;!-- Medium (default) --&gt;
+&lt;div class="sb-ui-spinner"&gt;&lt;/div&gt;
+
+&lt;!-- Large --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--large"&gt;&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: COLORES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Colores</h3>
+        <div class="spinner-demo-grid">
+          <!-- PRIMARY -->
+          <div class="spinner-demo-item">
+            <h4>Primary</h4>
+            <div class="sb-ui-spinner sb-ui-spinner--primary"></div>
           </div>
-          <p><strong>Wait</strong><br />Processing</p>
-        </div>
 
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
-            <div class="sb-ui-spinner__content">
-              <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-circle-check" style="font-size: 16px; color: #038450"></i>
-              </div>
-              <span class="sb-ui-spinner__label">Done</span>
-            </div>
+          <!-- SECONDARY -->
+          <div class="spinner-demo-item">
+            <h4>Secondary</h4>
+            <div class="sb-ui-spinner sb-ui-spinner--secondary"></div>
           </div>
-          <p><strong>Done</strong><br />Completado</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============================================
-         VELOCIDAD DE ANIMACIÓN
-         ============================================ -->
-    <section class="demo-section">
-      <h2>⚡ Velocidad de Animación</h2>
-      <p>Controla la velocidad de rotación del spinner.</p>
-
-      <div class="demo-grid">
-        <!-- Fast -->
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--fast" data-progress="50"></div>
-          <p><strong>Fast</strong><br />0.8s</p>
+          <!-- WHITE -->
+          <div class="spinner-demo-item" style="background: #333;">
+            <h4 style="color: white;">White</h4>
+            <div class="sb-ui-spinner sb-ui-spinner--white"></div>
+          </div>
         </div>
 
-        <!-- Normal -->
-        <div class="demo-item">
-          <div class="sb-ui-spinner" data-progress="50"></div>
-          <p><strong>Normal</strong><br />1.2s</p>
-        </div>
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Spinner Primary --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--primary"&gt;&lt;/div&gt;
 
-        <!-- Slow -->
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--slow" data-progress="50"></div>
-          <p><strong>Slow</strong><br />2s</p>
+&lt;!-- Spinner White (para fondos oscuros) --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--white"&gt;&lt;/div&gt;</code></pre>
         </div>
+      </section>
 
-        <!-- Paused -->
-        <div class="demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--paused" data-progress="50"></div>
-          <p><strong>Paused</strong><br />Sin animación</p>
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-spinner--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
         </div>
-      </div>
-    </section>
-
-    <!-- JavaScript -->
+      </section>
+    </main>
   </body>
 </html>

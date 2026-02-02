@@ -1,653 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs Component - Seguros Bolívar UI Design System</title>
 
-    <script>
-      (function () {
-        try {
-          var path = window.location.pathname || '';
-          if (/\/tabs\/?$/.test(path)) {
-            var base = path.replace(/\/tabs\/?$/, '/');
-            var newUrl = base + '?view=tabs/';
-            window.location.replace(newUrl);
-          }
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Google Fonts - Roboto -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-
+    
     <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
+    <!-- Web Components -->
+    <script type="module" src="../dist/sb-ui-components.min.js"></script>
+
     <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      body,
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Roboto', sans-serif;
+      /* Estilos específicos para tabs demo */
+      .tabs-demo-item {
         padding: 2rem;
-        background: #fafafa;
-      }
-
-      .demo-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        background: white;
-        padding: 2rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
+        margin-block-end: 2rem;
       }
 
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #1b1b1b;
-        text-align: center;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-        margin-top: 3rem;
-        margin-bottom: 1rem;
-        color: #038450;
-        border-bottom: 2px solid #cce9dd;
-        padding-bottom: 0.5rem;
-      }
-
-      .description {
-        font-size: 0.9375rem;
-        line-height: 1.6;
-        color: #757575;
-        margin-bottom: 2rem;
-        text-align: center;
-      }
-
-@media (max-width: 768px) {
-        body {
-          padding: 1rem;
-        }
-
-        .demo-container {
-          padding: 1.5rem;
-        }
-      }
-
-      /* ============================================
-         TABS COMPONENT STYLES
-         ============================================ */
-      
-      .sb-ui-tabs {
-        display: flex;
-        gap: 0;
-        background: white;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 0.5rem;
-        box-sizing: border-box;
-      }
-
-      .sb-ui-tabs * {
-        box-sizing: border-box;
-      }
-
-      .sb-ui-tabs__item {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem 1rem;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        transition: all 0.2s ease;
-        min-width: 120px;
-        gap: 0.25rem;
-        outline: none;
-        text-align: center;
-      }
-
-      .sb-ui-tabs__item:focus {
-        outline: none;
-      }
-
-      .sb-ui-tabs__item:active {
-        transform: none;
-      }
-
-      .sb-ui-tabs__icon {
-        font-size: 20px;
-        color: #038450;
-      }
-
-      .sb-ui-tabs__title {
-        font-size: 0.9375rem;
-        font-weight: 600;
-        color: #1b1b1b;
-        line-height: 1.2;
-      }
-
-      .sb-ui-tabs__description {
-        font-size: 0.75rem;
-        color: #9b9b9b;
-        line-height: 1.2;
-      }
-
-      /* TRACK VARIANT - Línea horizontal abajo */
-      .sb-ui-tabs--track .sb-ui-tabs__item {
-        border-bottom: 4px solid transparent;
-        transition: all 0.2s ease;
-        height: 48px;
-        min-height: 48px;
-        max-height: 48px;
-        width: 152px;
-        max-width: 152px;
-        min-width: 152px;
-        flex: 0 0 152px;
-        padding: 0.25rem 1rem;
-        gap: 0.125rem;
-        box-sizing: border-box;
-      }
-
-      .sb-ui-tabs--track .sb-ui-tabs__item .sb-ui-tabs__title {
+      .tabs-demo-item h4 {
         font-size: 0.875rem;
-      }
-
-      .sb-ui-tabs--track .sb-ui-tabs__item .sb-ui-tabs__description {
-        font-size: 0.6875rem;
-      }
-
-      .sb-ui-tabs--track .sb-ui-tabs__item:hover {
-        background: #f5f5f5;
-      }
-
-      .sb-ui-tabs--track .sb-ui-tabs__item--active {
-        background: #F2F9F6;
-        border-bottom-color: #038450;
-      }
-
-      .sb-ui-tabs--track .sb-ui-tabs__item--active .sb-ui-tabs__title {
-        color: #038450;
-      }
-
-      /* BUTTON VARIANT - Apariencia de botones */
-      .sb-ui-tabs--button {
-        gap: 0.5rem;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item {
-        border-radius: 8px;
-        border: 1px solid transparent;
-        height: 72px;
-        min-height: 72px;
-        max-height: 72px;
-        width: 146px;
-        max-width: 146px;
-        min-width: 146px;
-        flex: 0 0 146px;
-        padding: 0.75rem 1rem;
-        gap: 0.375rem;
-        box-sizing: border-box;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item .sb-ui-tabs__icon {
-        font-size: 20px;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item:hover {
-        background: #f5f5f5;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item--active {
-        background: #FFE16F;
-        border: 1px solid #FFE16F;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item--active .sb-ui-tabs__title {
-        color: #038450;
-        font-weight: 700;
-      }
-
-      .sb-ui-tabs--button .sb-ui-tabs__item--active .sb-ui-tabs__icon {
-        color: #038450;
-      }
-
-      /* FOLDER VARIANT - Con iconos de globo */
-      .sb-ui-tabs--folder .sb-ui-tabs__item {
-        border-radius: 8px 8px 0 0;
-        height: 72px;
-        min-height: 72px;
-        max-height: 72px;
-        width: 146px;
-        max-width: 146px;
-        min-width: 146px;
-        flex: 0 0 146px;
-        padding: 0.75rem 1rem;
-        gap: 0.375rem;
-        box-sizing: border-box;
-      }
-
-      .sb-ui-tabs--folder .sb-ui-tabs__item .sb-ui-tabs__icon {
-        font-size: 20px;
-      }
-
-      .sb-ui-tabs--folder .sb-ui-tabs__item:hover {
-        background: #f5f5f5;
-      }
-
-      .sb-ui-tabs--folder .sb-ui-tabs__item--active {
-        background: #F2F9F6;
-      }
-
-      .sb-ui-tabs--folder .sb-ui-tabs__item--active .sb-ui-tabs__title {
-        color: #038450;
-        font-weight: 700;
-      }
-
-      .sb-ui-tabs--folder .sb-ui-tabs__item--active .sb-ui-tabs__icon {
-        color: #038450;
-      }
-
-      /* Demo wrapper */
-      .demo-wrapper {
-        margin-bottom: 3rem;
-      }
-
-      /* Tab panels */
-      .sb-ui-tabs-panel {
-        display: none;
-        padding: 2rem;
-        background: #F2F9F6;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        margin-top: 1rem;
-      }
-
-      .sb-ui-tabs-panel--active {
-        display: block;
-      }
-
-      .sb-ui-tabs-panel h3 {
-        color: #038450;
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
-      }
-
-      .sb-ui-tabs-panel p {
-        color: #5b5b5b;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-      }
-
-      .tabs-with-content {
-        margin-bottom: 3rem;
+        margin-block-end: 1.5rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
     </style>
   </head>
-  <body data-brand="seguros-bolivar" data-theme="light">
-    <div class="demo-container">
 
-
-      <!-- Header -->
-      <h1 style="text-align: center; margin-bottom: 1rem">📑 Tabs Component</h1>
-      <p class="description">
-        Componente de pestañas con 3 variaciones: Track (línea vertical), Button (apariencia de botones) y Folder (con iconos).
-      </p>
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          </span>
+          <span>Tabs</span>
+        </h2>
+        <p class="component-description">
+          Componente de pestañas de navegación (tabs) para organizar contenido en secciones.
+          Compatible con todas las marcas del design system.
+        </p>
+      </header>
 
       <!-- ========================================
-           TRACK VARIANT - Línea vertical indicator
+           SECCIÓN 1: EJEMPLO BÁSICO
            ======================================== -->
-      <h2>Track Variant</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Tabs con línea vertical en el borde izquierdo como indicador del tab activo.
-      </p>
-      <div class="demo-wrapper">
-        <div class="sb-ui-tabs sb-ui-tabs--track">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" onclick="setActiveTab(this)">
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
+      <section class="variant-section">
+        <h3 class="variant-title">Ejemplo Básico</h3>
+        <div class="tabs-demo-item">
+          <h4>Tabs Interactivos</h4>
+          <sb-ui-tabs active="tab1">
+            <sb-ui-tab slot="tab" tab-id="tab1">Pestaña 1</sb-ui-tab>
+            <sb-ui-tab slot="tab" tab-id="tab2">Pestaña 2</sb-ui-tab>
+            <sb-ui-tab slot="tab" tab-id="tab3">Pestaña 3</sb-ui-tab>
+            
+            <div slot="panel" data-tab="tab1">
+              <h4>Contenido de Pestaña 1</h4>
+              <p>Este es el contenido de la primera pestaña.</p>
+            </div>
+            <div slot="panel" data-tab="tab2">
+              <h4>Contenido de Pestaña 2</h4>
+              <p>Este es el contenido de la segunda pestaña.</p>
+            </div>
+            <div slot="panel" data-tab="tab3">
+              <h4>Contenido de Pestaña 3</h4>
+              <p>Este es el contenido de la tercera pestaña.</p>
+            </div>
+          </sb-ui-tabs>
         </div>
-      </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tabs con Web Component --&gt;
+&lt;sb-ui-tabs active="tab1"&gt;
+  &lt;sb-ui-tab slot="tab" tab-id="tab1"&gt;Pestaña 1&lt;/sb-ui-tab&gt;
+  &lt;sb-ui-tab slot="tab" tab-id="tab2"&gt;Pestaña 2&lt;/sb-ui-tab&gt;
+  
+  &lt;div slot="panel" data-tab="tab1"&gt;
+    Contenido de Pestaña 1
+  &lt;/div&gt;
+  &lt;div slot="panel" data-tab="tab2"&gt;
+    Contenido de Pestaña 2
+  &lt;/div&gt;
+&lt;/sb-ui-tabs&gt;</code></pre>
+        </div>
+      </section>
 
       <!-- ========================================
-           BUTTON VARIANT - Apariencia de botones
+           STORYBOOK REFERENCE
            ======================================== -->
-      <h2>Button Variant</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Tabs con apariencia de botones, el tab activo tiene fondo amarillo.
-      </p>
-      <div class="demo-wrapper">
-        <div class="sb-ui-tabs sb-ui-tabs--button">
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/molecules-tabs--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
         </div>
-      </div>
-
-      <!-- ========================================
-           FOLDER VARIANT - Con iconos de globo
-           ======================================== -->
-      <h2>Folder Variant</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Tabs con iconos de globo, el tab activo tiene fondo verde claro.
-      </p>
-      <div class="demo-wrapper">
-        <div class="sb-ui-tabs sb-ui-tabs--folder">
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" onclick="setActiveTab(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Title</span>
-            <span class="sb-ui-tabs__description">Description</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- ========================================
-           EJEMPLOS INTERACTIVOS CON CONTENIDO
-           ======================================== -->
-      <h2 style="margin-top: 4rem;">Ejemplos Interactivos con Contenido</h2>
-      <p style="color: #9b9b9b; margin-bottom: 1.5rem">
-        Ejemplos completos de tabs con paneles de contenido que cambian según el tab seleccionado.
-      </p>
-
-      <!-- Track Example with Content -->
-      <div class="tabs-with-content">
-        <h3 style="font-size: 1.125rem; margin-bottom: 1rem; color: #1b1b1b;">Track Variant - Servicios</h3>
-        <div class="sb-ui-tabs sb-ui-tabs--track" data-tabs="track-services">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" data-panel="panel-1" onclick="switchPanel(this)">
-            <span class="sb-ui-tabs__title">Seguros</span>
-            <span class="sb-ui-tabs__description">Protección total</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="panel-2" onclick="switchPanel(this)">
-            <span class="sb-ui-tabs__title">Inversiones</span>
-            <span class="sb-ui-tabs__description">Haz crecer tu dinero</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="panel-3" onclick="switchPanel(this)">
-            <span class="sb-ui-tabs__title">Créditos</span>
-            <span class="sb-ui-tabs__description">Financia tus proyectos</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="panel-4" onclick="switchPanel(this)">
-            <span class="sb-ui-tabs__title">Ahorros</span>
-            <span class="sb-ui-tabs__description">Planifica tu futuro</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="panel-5" onclick="switchPanel(this)">
-            <span class="sb-ui-tabs__title">Pensiones</span>
-            <span class="sb-ui-tabs__description">Retiro seguro</span>
-          </button>
-        </div>
-        <div class="sb-ui-tabs-panel sb-ui-tabs-panel--active" data-panel="panel-1" data-group="track-services">
-          <h3>Seguros - Protección Total</h3>
-          <p>Contamos con una amplia gama de seguros diseñados para proteger lo que más valoras: tu familia, tu hogar, tu salud y tus bienes. Con Seguros Bolívar tienes la tranquilidad de estar respaldado por más de 70 años de experiencia.</p>
-          <p>Nuestros productos incluyen seguros de vida, hogar, vehículos, salud y más. Cotiza ahora y encuentra el plan perfecto para ti.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="panel-2" data-group="track-services">
-          <h3>Inversiones - Haz Crecer tu Dinero</h3>
-          <p>Maximiza tus recursos con nuestras soluciones de inversión. Ofrecemos portafolios diversificados adaptados a tu perfil de riesgo y objetivos financieros.</p>
-          <p>Desde fondos de inversión hasta CDTs, te ayudamos a hacer crecer tu patrimonio de manera segura y rentable.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="panel-3" data-group="track-services">
-          <h3>Créditos - Financia tus Proyectos</h3>
-          <p>Haz realidad tus sueños con nuestras soluciones de crédito. Ya sea que necesites un préstamo personal, hipotecario o para tu negocio, tenemos opciones flexibles con tasas competitivas.</p>
-          <p>Aprobación rápida y proceso 100% digital. Solicita tu crédito hoy mismo.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="panel-4" data-group="track-services">
-          <h3>Ahorros - Planifica tu Futuro</h3>
-          <p>Construye tu futuro financiero con nuestras cuentas de ahorro. Disfruta de excelentes tasas de interés, sin cuota de manejo y con la seguridad de una entidad con solidez financiera.</p>
-          <p>Abre tu cuenta 100% digital en minutos y comienza a ahorrar hoy.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="panel-5" data-group="track-services">
-          <h3>Pensiones - Retiro Seguro</h3>
-          <p>Asegura un retiro tranquilo con nuestros planes de pensiones. Te ayudamos a planificar tu futuro con asesoría personalizada y productos diseñados para garantizar tu estabilidad financiera.</p>
-          <p>Invierte en tu futuro desde hoy y disfruta de tu retiro sin preocupaciones.</p>
-        </div>
-      </div>
-
-      <!-- Button Example with Content -->
-      <div class="tabs-with-content">
-        <h3 style="font-size: 1.125rem; margin-bottom: 1rem; color: #1b1b1b;">Button Variant - Categorías</h3>
-        <div class="sb-ui-tabs sb-ui-tabs--button" data-tabs="button-categories">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" data-panel="cat-1" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Global</span>
-            <span class="sb-ui-tabs__description">Alcance mundial</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="cat-2" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Nacional</span>
-            <span class="sb-ui-tabs__description">Todo el país</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="cat-3" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Regional</span>
-            <span class="sb-ui-tabs__description">Tu región</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="cat-4" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Local</span>
-            <span class="sb-ui-tabs__description">Tu ciudad</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="cat-5" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Personal</span>
-            <span class="sb-ui-tabs__description">Solo para ti</span>
-          </button>
-        </div>
-        <div class="sb-ui-tabs-panel sb-ui-tabs-panel--active" data-panel="cat-1" data-group="button-categories">
-          <h3>Cobertura Global</h3>
-          <p>Nuestros servicios están disponibles a nivel mundial. Con presencia en más de 50 países, te acompañamos donde quiera que estés.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="cat-2" data-group="button-categories">
-          <h3>Cobertura Nacional</h3>
-          <p>Presencia en todas las ciudades principales de Colombia. Más de 200 oficinas a tu disposición en todo el territorio nacional.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="cat-3" data-group="button-categories">
-          <h3>Cobertura Regional</h3>
-          <p>Servicios especializados para tu región. Conocemos las necesidades específicas de cada zona del país.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="cat-4" data-group="button-categories">
-          <h3>Cobertura Local</h3>
-          <p>Atención personalizada en tu ciudad. Encuentra la oficina más cercana y recibe asesoría especializada.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="cat-5" data-group="button-categories">
-          <h3>Atención Personal</h3>
-          <p>Servicios a tu medida. Un asesor dedicado exclusivamente a tus necesidades financieras.</p>
-        </div>
-      </div>
-
-      <!-- Folder Example with Content -->
-      <div class="tabs-with-content">
-        <h3 style="font-size: 1.125rem; margin-bottom: 1rem; color: #1b1b1b;">Folder Variant - Documentación</h3>
-        <div class="sb-ui-tabs sb-ui-tabs--folder" data-tabs="folder-docs">
-          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" data-panel="doc-1" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Inicio</span>
-            <span class="sb-ui-tabs__description">Comenzar aquí</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="doc-2" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Guías</span>
-            <span class="sb-ui-tabs__description">Paso a paso</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="doc-3" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">API</span>
-            <span class="sb-ui-tabs__description">Referencia técnica</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="doc-4" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Ejemplos</span>
-            <span class="sb-ui-tabs__description">Código de muestra</span>
-          </button>
-          <button class="sb-ui-tabs__item" data-panel="doc-5" onclick="switchPanel(this)">
-            <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Soporte</span>
-            <span class="sb-ui-tabs__description">Ayuda y recursos</span>
-          </button>
-        </div>
-        <div class="sb-ui-tabs-panel sb-ui-tabs-panel--active" data-panel="doc-1" data-group="folder-docs">
-          <h3>Bienvenido al Sistema de Diseño</h3>
-          <p>Este sistema de diseño te proporciona todos los componentes y patrones necesarios para crear experiencias digitales consistentes y accesibles.</p>
-          <p>Explora las diferentes secciones para comenzar a utilizar nuestros componentes.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="doc-2" data-group="folder-docs">
-          <h3>Guías de Uso</h3>
-          <p>Aprende a implementar cada componente con nuestras guías detalladas paso a paso. Incluye mejores prácticas y recomendaciones de accesibilidad.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="doc-3" data-group="folder-docs">
-          <h3>Referencia de API</h3>
-          <p>Documentación técnica completa de todos los componentes. Propiedades, métodos, eventos y ejemplos de código.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="doc-4" data-group="folder-docs">
-          <h3>Ejemplos de Código</h3>
-          <p>Código de ejemplo listo para usar. Copia y pega estos fragmentos para comenzar rápidamente con tu implementación.</p>
-        </div>
-        <div class="sb-ui-tabs-panel" data-panel="doc-5" data-group="folder-docs">
-          <h3>Soporte y Recursos</h3>
-          <p>¿Necesitas ayuda? Consulta nuestras FAQs, únete a la comunidad o contacta al equipo de soporte para obtener asistencia.</p>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
 
     <script>
-      // Tab functionality (for simple examples without content)
-      function setActiveTab(clickedTab) {
-        // Remove active class from all siblings
-        const parent = clickedTab.parentElement;
-        const allTabs = parent.querySelectorAll('.sb-ui-tabs__item');
-        allTabs.forEach(tab => tab.classList.remove('sb-ui-tabs__item--active'));
-        
-        // Add active class to clicked tab
-        clickedTab.classList.add('sb-ui-tabs__item--active');
+      function openModal(size) {
+        alert(`Modal ${size} - Funcionalidad en desarrollo con Web Components`);
       }
-
-      // Tab functionality with content panels
-      function switchPanel(clickedTab) {
-        // Prevent default button behavior
-        event.preventDefault();
-        event.stopPropagation();
-        
-        const parent = clickedTab.parentElement;
-        const panelId = clickedTab.getAttribute('data-panel');
-        const tabsContainer = clickedTab.closest('[data-tabs]');
-        const groupName = tabsContainer ? tabsContainer.getAttribute('data-tabs') : null;
-        
-        // Remove active class from all tabs in this group
-        const allTabs = parent.querySelectorAll('.sb-ui-tabs__item');
-        allTabs.forEach(tab => tab.classList.remove('sb-ui-tabs__item--active'));
-        
-        // Add active class to clicked tab
-        clickedTab.classList.add('sb-ui-tabs__item--active');
-        
-        // Hide all panels in this specific group
-        if (groupName) {
-          const groupPanels = document.querySelectorAll(`[data-group="${groupName}"]`);
-          groupPanels.forEach(panel => {
-            panel.classList.remove('sb-ui-tabs-panel--active');
-          });
-          
-          // Show the selected panel
-          const targetPanel = document.querySelector(`[data-panel="${panelId}"][data-group="${groupName}"]`);
-          if (targetPanel) {
-            targetPanel.classList.add('sb-ui-tabs-panel--active');
-          }
-        }
-      }
-
-
     </script>
   </body>
 </html>

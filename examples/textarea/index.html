@@ -1,476 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TextArea Component - Seguros Bolívar UI Design System</title>
+    <title>Textarea Component - Seguros Bolívar UI Design System</title>
 
-
-    <!-- Google Fonts - Roboto -->
+    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Roboto -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-
+    
     <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- Complete Seguros Bolívar Bundle (Tokens + Atoms + Brand Overrides) -->
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
     <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      body,
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Bolivar', 'Roboto', sans-serif;
-        padding: 2rem;
-        background: #fafafa;
-      }
-
-      .demo-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #1b1b1b;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: #038450;
-        border-bottom: 2px solid #cce9dd;
-        padding-bottom: 0.5rem;
-      }
-
-      .demo-grid {
+      /* Estilos específicos para textarea demo */
+      .textarea-demo-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 2rem;
-        margin-bottom: 2rem;
+        margin-block-end: 2rem;
       }
 
-      .demo-item {
+      .textarea-demo-item {
         padding: 1.5rem;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
       }
 
-      .demo-item h3 {
+      .textarea-demo-item h4 {
         font-size: 0.875rem;
-        margin-bottom: 1rem;
-        color: #9b9b9b;
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
 
-      /* Helper text icon - Font Awesome */
-      .sb-ui-textarea-helper i {
-        font-size: 14px;
-        margin-right: 10px; /* Mayor separación entre icono y texto */
-        flex-shrink: 0;
+      .textarea-demo-note {
+        font-size: 0.75rem;
+        color: var(--sb-ui-color-grayscale-D100, #9b9b9b);
+        margin-block-end: 0.5rem;
       }
 
-      /* Asegurar que helper text sea flex */
-      .sb-ui-textarea-helper {
-        display: flex;
-        align-items: center;
-        color: #5b5b5b; /* Texto gris oscuro por defecto (grayscale-D200) */
-        padding-block-start: 2px; /* Más padding superior */
+      @media (max-width: 768px) {
+        .textarea-demo-grid {
+          grid-template-columns: 1fr;
+        }
       }
-
-      code {
-        background: #f5f5f5;
-        padding: 0.125rem 0.375rem;
-        border-radius: 4px;
-        font-size: 0.875rem;
-        font-family: 'Courier New', monospace;
-      }
-
-      /* Character Counter - alineado con el helper text */
-      .sb-ui-textarea-counter {
-        position: relative !important;
-        display: inline-block !important;
-        margin-left: auto !important;
-        font-size: 0.75rem !important;
-        color: #9b9b9b !important;
-        background: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        border: none !important;
-        bottom: auto !important;
-        right: auto !important;
-      }
-
-      /* Container flex para alinear contador y helper text */
-      .sb-ui-textarea-container {
-        position: relative !important;
-      }
-
-      /* Wrapper para helper text y contador en la misma línea */
-      .textarea-footer {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        margin-top: 8px !important;
-      }
-
-      /* States del contador */
-      .sb-ui-textarea-counter--success {
-        color: var(--sb-ui-color-feedback-success-base) !important;
-      }
-
-      .sb-ui-textarea-counter--warning {
-        color: var(--sb-ui-color-feedback-warning-base) !important;
-      }
-
-      .sb-ui-textarea-counter--error {
-        color: var(--sb-ui-color-feedback-error-base) !important;
-      }
-
-      /* Ajustar padding del textarea con contador */
-      .sb-ui-textarea--with-counter {
-        padding-bottom: 8px !important;
-      }
-
-      
     </style>
   </head>
-  <body data-brand="seguros-bolivar" data-theme="light">
-    <div class="demo-container">
-      <!-- Header -->
-      <h1 style="text-align: center; margin-bottom: 1rem">📝 TextArea Component</h1>
-      <p style="margin-bottom: 2rem; color: #757575; text-align: center">
-        Componente de textarea con CSS Nesting, @layer, Logical Properties y clamp() para responsive
-        fluido.
-      </p>
 
-      <!-- ============================================
-           ESTADOS PRINCIPALES
-           ============================================ -->
-      <h2>Estados del TextArea</h2>
-      <div class="demo-grid">
-        <!-- DEFAULT -->
-        <div class="demo-item">
-          <h3>1. Default</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- HOVER -->
-        <div class="demo-item">
-          <h3>2. Hover</h3>
-          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Pasa el mouse sobre el textarea</p>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- FOCUS -->
-        <div class="demo-item">
-          <h3>3. Focus</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- ACTIVE -->
-        <div class="demo-item">
-          <h3>4. Active</h3>
-          <p style="font-size: 0.75rem; color: #9b9b9b; margin-bottom: 0.5rem">Click y escribe en el textarea</p>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea class="sb-ui-textarea">Description example</textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- DISABLED -->
-        <div class="demo-item">
-          <h3>5. Disabled</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea"
-              placeholder="Placeholder"
-              disabled
-            ></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- SUCCESS -->
-        <div class="demo-item">
-          <h3>6. Success</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--success"
-            >Description example</textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-check"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- ERROR -->
-        <div class="demo-item">
-          <h3>7. Error</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--error"
-            >Description example</textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-xmark"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- VIEW / READ-ONLY -->
-        <div class="demo-item">
-          <h3>8. View / Read-Only</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea"
-              readonly
-            >Description example</textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================
-           TAMAÑOS
-           ============================================ -->
-      <h2>Tamaños</h2>
-      <div class="demo-grid">
-        <!-- SMALL -->
-        <div class="demo-item">
-          <h3>Small</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--small"
-              placeholder="Placeholder"
-            ></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- MEDIUM (default) -->
-        <div class="demo-item">
-          <h3>Medium (default)</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea"
-              placeholder="Placeholder"
-            ></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- LARGE -->
-        <div class="demo-item">
-          <h3>Large</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--large"
-              placeholder="Placeholder"
-            ></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================
-           MODIFICADORES
-           ============================================ -->
-      <h2>Modificadores</h2>
-      <div class="demo-grid">
-        <!-- REQUIRED -->
-        <div class="demo-item">
-          <h3>Required</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label sb-ui-textarea-label--required">Label txt</label>
-            <textarea class="sb-ui-textarea" placeholder="Placeholder" required></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- OPTIONAL -->
-        <div class="demo-item">
-          <h3>Optional</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label sb-ui-textarea-label--optional">Label txt</label>
-            <textarea class="sb-ui-textarea" placeholder="Placeholder"></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- ROUNDED -->
-        <div class="demo-item">
-          <h3>Rounded</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--rounded"
-              placeholder="Placeholder"
-            ></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-
-        <!-- NO RESIZE -->
-        <div class="demo-item">
-          <h3>No Resize</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea class="sb-ui-textarea sb-ui-textarea--no-resize" placeholder="Placeholder"></textarea>
-            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Help text</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================
-           CONTADOR DE CARACTERES
-           ============================================ -->
-      <h2>Contador de Caracteres</h2>
-      <div class="demo-grid">
-        <!-- WITH COUNTER -->
-        <div class="demo-item">
-          <h3>Con Contador (500 max)</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--with-counter"
-              placeholder="Escribe aquí..."
-              maxlength="500"
-              id="textarea-counter-1"
-            ></textarea>
-            <div class="textarea-footer">
-              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 500 caracteres</span>
-              <span class="sb-ui-textarea-counter" id="counter-1">0 / 500</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- WITH COUNTER - SMALL -->
-        <div class="demo-item">
-          <h3>Contador Small (200 max)</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--small sb-ui-textarea--with-counter"
-              placeholder="Escribe aquí..."
-              maxlength="200"
-              id="textarea-counter-2"
-            ></textarea>
-            <div class="textarea-footer">
-              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 200 caracteres</span>
-              <span class="sb-ui-textarea-counter" id="counter-2">0 / 200</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- WITH COUNTER - LARGE -->
-        <div class="demo-item">
-          <h3>Contador Large (1000 max)</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--large sb-ui-textarea--with-counter"
-              placeholder="Escribe aquí..."
-              maxlength="1000"
-              id="textarea-counter-3"
-            ></textarea>
-            <div class="textarea-footer">
-              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info"></i>Máximo 1000 caracteres</span>
-              <span class="sb-ui-textarea-counter" id="counter-3">0 / 1000</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- WITH COUNTER - WARNING STATE -->
-        <div class="demo-item">
-          <h3>Con Advertencia (80% usado)</h3>
-          <div class="sb-ui-textarea-container">
-            <label class="sb-ui-textarea-label">Label txt</label>
-            <textarea
-              class="sb-ui-textarea sb-ui-textarea--with-counter"
-              placeholder="Escribe aquí..."
-              maxlength="100"
-              id="textarea-counter-4"
-            >Este texto ya tiene 81 caracteres y está cerca del límite, por lo que aparece advertencia</textarea>
-            <div class="textarea-footer">
-              <span class="sb-ui-textarea-helper"><i class="fa-solid fa-triangle-exclamation"></i>Cerca del límite</span>
-              <span class="sb-ui-textarea-counter sb-ui-textarea-counter--warning" id="counter-4">81 / 100</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================
-           EJEMPLO DE CÓDIGO
-           ============================================ -->
-      <h2>Ejemplo de Código</h2>
-      <pre><code class="language-html">
-&lt;div class="sb-ui-textarea-container"&gt;
-  &lt;label class="sb-ui-textarea-label"&gt;Label txt&lt;/label&gt;
-  &lt;textarea class="sb-ui-textarea" placeholder="Placeholder"&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;Help text&lt;/span&gt;
-&lt;/div&gt;</code></pre>
-      </div>
-
-      <!-- Footer -->
-      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e1e1e1; text-align: center">
-        <p style="color: #9b9b9b; font-size: 0.875rem">
-          © 2024 Seguros Bolívar UI Design System • Built with ❤️ and modern CSS
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+          </span>
+          <span>Textarea</span>
+        </h2>
+        <p class="component-description">
+          Componente de campo de texto multilínea con múltiples estados (default, hover, focus, disabled, success, error),
+          tamaños configurables y contador de caracteres opcional.
+          Compatible con todas las marcas del design system.
         </p>
-      </div>
-    </div>
+      </header>
 
+      <!-- ========================================
+           SECCIÓN 1: ESTADOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estados</h3>
+        <div class="textarea-demo-grid">
+          <!-- DEFAULT -->
+          <div class="textarea-demo-item">
+            <h4>1. Default</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Comentarios</label>
+              <textarea class="sb-ui-textarea" rows="4" placeholder="Escribe tus comentarios aquí..."></textarea>
+              <span class="sb-ui-textarea-helper">Campo de texto de varias líneas</span>
+            </div>
+          </div>
+
+          <!-- FOCUS -->
+          <div class="textarea-demo-item">
+            <h4>2. Focus</h4>
+            <p class="textarea-demo-note">Click para ver el borde verde</p>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Descripción</label>
+              <textarea class="sb-ui-textarea" rows="4" placeholder="Click para enfocar"></textarea>
+              <span class="sb-ui-textarea-helper">Borde verde en focus</span>
+            </div>
+          </div>
+
+          <!-- DISABLED -->
+          <div class="textarea-demo-item">
+            <h4>3. Disabled</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Campo deshabilitado</label>
+              <textarea class="sb-ui-textarea" rows="4" placeholder="Campo deshabilitado" disabled></textarea>
+              <span class="sb-ui-textarea-helper">No editable</span>
+            </div>
+          </div>
+
+          <!-- ERROR -->
+          <div class="textarea-demo-item">
+            <h4>4. Error</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Mensaje de error</label>
+              <textarea class="sb-ui-textarea sb-ui-textarea--error" rows="4" placeholder="Campo con error"></textarea>
+              <span class="sb-ui-textarea-helper">Este campo es obligatorio</span>
+            </div>
+          </div>
+
+          <!-- SUCCESS -->
+          <div class="textarea-demo-item">
+            <h4>5. Success</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Validación exitosa</label>
+              <textarea class="sb-ui-textarea sb-ui-textarea--success" rows="4" placeholder="Campo válido">Texto validado correctamente</textarea>
+              <span class="sb-ui-textarea-helper">Campo completado correctamente</span>
+            </div>
+          </div>
+
+          <!-- READ-ONLY -->
+          <div class="textarea-demo-item">
+            <h4>6. Read-only</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Solo lectura</label>
+              <textarea class="sb-ui-textarea" rows="4" readonly>Este texto es solo de lectura y no se puede editar.</textarea>
+              <span class="sb-ui-textarea-helper">Contenido no editable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+&lt;div class="sb-ui-textarea-container"&gt;
+  &lt;label class="sb-ui-textarea-label"&gt;Comentarios&lt;/label&gt;
+  &lt;textarea class="sb-ui-textarea" rows="4" placeholder="Escribe aquí..."&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;Texto de ayuda&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Estado Error --&gt;
+&lt;div class="sb-ui-textarea-container"&gt;
+  &lt;label class="sb-ui-textarea-label"&gt;Descripción&lt;/label&gt;
+  &lt;textarea class="sb-ui-textarea sb-ui-textarea--error" rows="4"&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;Este campo es obligatorio&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: TAMAÑOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños (rows)</h3>
+        <div class="textarea-demo-grid">
+          <!-- SMALL -->
+          <div class="textarea-demo-item">
+            <h4>Small (3 rows)</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Comentario breve</label>
+              <textarea class="sb-ui-textarea" rows="3" placeholder="Texto corto"></textarea>
+            </div>
+          </div>
+
+          <!-- MEDIUM -->
+          <div class="textarea-demo-item">
+            <h4>Medium (5 rows)</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Descripción</label>
+              <textarea class="sb-ui-textarea" rows="5" placeholder="Texto medio"></textarea>
+            </div>
+          </div>
+
+          <!-- LARGE -->
+          <div class="textarea-demo-item">
+            <h4>Large (8 rows)</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Comentario extenso</label>
+              <textarea class="sb-ui-textarea" rows="8" placeholder="Texto largo"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Small (3 rows) --&gt;
+&lt;textarea class="sb-ui-textarea" rows="3" placeholder="Texto corto"&gt;&lt;/textarea&gt;
+
+&lt;!-- Medium (5 rows) --&gt;
+&lt;textarea class="sb-ui-textarea" rows="5" placeholder="Texto medio"&gt;&lt;/textarea&gt;
+
+&lt;!-- Large (8 rows) --&gt;
+&lt;textarea class="sb-ui-textarea" rows="8" placeholder="Texto largo"&gt;&lt;/textarea&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: CASOS DE USO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Casos de Uso</h3>
+        <div class="textarea-demo-grid">
+          <!-- Formulario de Contacto -->
+          <div class="textarea-demo-item">
+            <h4>Formulario de Contacto</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Mensaje *</label>
+              <textarea class="sb-ui-textarea" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
+              <span class="sb-ui-textarea-helper">Mínimo 20 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Reseña de Producto -->
+          <div class="textarea-demo-item">
+            <h4>Reseña de Producto</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Tu opinión</label>
+              <textarea class="sb-ui-textarea" rows="6" placeholder="Cuéntanos tu experiencia con el producto...">Excelente producto, superó mis expectativas.</textarea>
+              <span class="sb-ui-textarea-helper">200/500 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Reporte de Incidencia -->
+          <div class="textarea-demo-item">
+            <h4>Reporte de Incidencia</h4>
+            <div class="sb-ui-textarea-container">
+              <label class="sb-ui-textarea-label">Describe el problema *</label>
+              <textarea class="sb-ui-textarea sb-ui-textarea--error" rows="6" placeholder="Describe el problema..."></textarea>
+              <span class="sb-ui-textarea-helper">Este campo es obligatorio</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Formulario de contacto --&gt;
+&lt;div class="sb-ui-textarea-container"&gt;
+  &lt;label class="sb-ui-textarea-label"&gt;Mensaje *&lt;/label&gt;
+  &lt;textarea 
+    class="sb-ui-textarea" 
+    rows="6" 
+    placeholder="Escribe tu mensaje..." 
+    required
+  &gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;Mínimo 20 caracteres&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-textarea--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-
