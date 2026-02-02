@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakpoints - Seguros Bolívar UI Design System</title>
+
+    <!-- Preconnect para fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
+    <style>
+      /* Estilos para la visualización de breakpoints */
+      .breakpoint-label {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-inline-end: 0.5rem;
+      }
+
+      .breakpoint-detector {
+        position: fixed;
+        bottom: 1.5rem;
+        inline-end: 1.5rem;
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        z-index: 999;
+        max-inline-size: 200px;
+        text-align: center;
+      }
+
+      .breakpoint-detector-title {
+        font-size: 0.75rem;
+        color: #6b7280;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-block-end: 0.5rem;
+      }
+
+      .breakpoint-detector-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #667eea;
+        margin-block-end: 0.5rem;
+      }
+
+      .breakpoint-detector-size {
+        font-size: 0.875rem;
+        color: #9ca3af;
+      }
+
+      .demo-box {
+        padding: 2rem;
+        text-align: center;
+        border-radius: 8px;
+        margin-block-end: 1.5rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      .demo-box-xs {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: block;
+      }
+
+      .demo-box-sm {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        display: none;
+      }
+
+      .demo-box-md {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        display: none;
+      }
+
+      .demo-box-lg {
+        background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        display: none;
+      }
+
+      .demo-box-xl {
+        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        display: none;
+      }
+
+      .demo-box-xxl {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        display: none;
+      }
+
+      @media (min-width: 576px) {
+        .demo-box-xs { display: none; }
+        .demo-box-sm { display: block; }
+      }
+
+      @media (min-width: 768px) {
+        .demo-box-sm { display: none; }
+        .demo-box-md { display: block; }
+      }
+
+      @media (min-width: 992px) {
+        .demo-box-md { display: none; }
+        .demo-box-lg { display: block; }
+      }
+
+      @media (min-width: 1200px) {
+        .demo-box-lg { display: none; }
+        .demo-box-xl { display: block; }
+      }
+
+      @media (min-width: 1400px) {
+        .demo-box-xl { display: none; }
+        .demo-box-xxl { display: block; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-arrows-left-right-to-line" aria-hidden="true"></i>
+          </span>
+          <span>Breakpoints (Puntos de Quiebre)</span>
+        </h2>
+        <p class="component-description">
+          Sistema de 6 breakpoints responsive del Design System. Mobile-first: xs (default), sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px).
+          Todos los componentes de layout soportan estos breakpoints para crear interfaces adaptables a cualquier pantalla.
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: TABLA DE BREAKPOINTS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Sistema de Breakpoints Completo</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Seis puntos de quiebre que definen cómo responde el diseño a diferentes tamaños de pantalla. Mobile-first: comienza en mobile y expande.
+        </p>
+
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Abreviatura</th>
+              <th>Min-width (px)</th>
+              <th>Min-width (rem)</th>
+              <th>Descripción</th>
+              <th>Casos de Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="breakpoint-label">XS</span> Extra Small</td>
+              <td><code>xs</code></td>
+              <td>0</td>
+              <td>0rem</td>
+              <td>Mobile por defecto</td>
+              <td>Teléfonos pequeños (240-375px)</td>
+            </tr>
+            <tr>
+              <td><span class="breakpoint-label">SM</span> Small</td>
+              <td><code>sm</code></td>
+              <td>576</td>
+              <td>36rem</td>
+              <td>Tablets pequeñas</td>
+              <td>Teléfonos grandes (576-767px)</td>
+            </tr>
+            <tr>
+              <td><span class="breakpoint-label">MD</span> Medium</td>
+              <td><code>md</code></td>
+              <td>768</td>
+              <td>48rem</td>
+              <td>Tablets</td>
+              <td>Tablets y pantallas medianas (768-991px)</td>
+            </tr>
+            <tr>
+              <td><span class="breakpoint-label">LG</span> Large</td>
+              <td><code>lg</code></td>
+              <td>992</td>
+              <td>62rem</td>
+              <td>Desktop pequeño</td>
+              <td>Laptops y desktops (992-1199px)</td>
+            </tr>
+            <tr style="background: #fef3c7;">
+              <td><span class="breakpoint-label" style="background: #f59e0b;">XL</span> Extra Large</td>
+              <td><code>xl</code></td>
+              <td>1200</td>
+              <td>75rem</td>
+              <td>Desktop estándar</td>
+              <td>Desktops y pantallas grandes (1200-1399px)</td>
+            </tr>
+            <tr>
+              <td><span class="breakpoint-label">XXL</span> Extra Extra Large</td>
+              <td><code>xxl</code></td>
+              <td>1400</td>
+              <td>87.5rem</td>
+              <td>Desktop grande</td>
+              <td>Monitores 4K y ultrawide (1400px+)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: DEMO INTERACTIVA
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Demo Interactiva (Redimensiona la ventana)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Observa cómo los elementos cambian de color según el breakpoint actual. El detector en la esquina inferior derecha muestra el breakpoint activo en tiempo real.
+        </p>
+
+        <div class="demo-box demo-box-xs">
+          <strong>Breakpoint: XS</strong><br>
+          <small>0px - 575px (Teléfonos)</small>
+        </div>
+
+        <div class="demo-box demo-box-sm">
+          <strong>Breakpoint: SM</strong><br>
+          <small>576px - 767px (Teléfonos grandes)</small>
+        </div>
+
+        <div class="demo-box demo-box-md">
+          <strong>Breakpoint: MD</strong><br>
+          <small>768px - 991px (Tablets)</small>
+        </div>
+
+        <div class="demo-box demo-box-lg">
+          <strong>Breakpoint: LG</strong><br>
+          <small>992px - 1199px (Desktop pequeño)</small>
+        </div>
+
+        <div class="demo-box demo-box-xl">
+          <strong>Breakpoint: XL</strong><br>
+          <small>1200px - 1399px (Desktop)</small>
+        </div>
+
+        <div class="demo-box demo-box-xxl">
+          <strong>Breakpoint: XXL</strong><br>
+          <small>1400px+ (Desktop grande/4K)</small>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: MEDIA QUERIES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Sintaxis de Media Queries</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Cómo usar los breakpoints en CSS. El sistema es mobile-first: define estilos base para móvil, luego amplía con media queries.
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Mobile-first approach (recomendado)</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">CSS</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">/* Estilos base (XS: mobile) */
+.container {
+  grid-template-columns: 1fr;
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+/* SM: 576px+ (teléfonos grandes) */
+@media (min-width: 576px) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+/* MD: 768px+ (tablets) */
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* LG: 992px+ (desktop pequeño) */
+@media (min-width: 992px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1rem;
+  }
+}
+
+/* XL: 1200px+ (desktop) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* XXL: 1400px+ (4K/ultrawide) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}</code></pre>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Con clases responsive (utilities)</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Usar sufijos de breakpoint en clases --&gt;
+&lt;div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-grid-cols-md-2 sb-ui-grid-cols-lg-3"&gt;
+  &lt;!-- 1 columna mobile, 2 tablets, 3 desktop --&gt;
+&lt;/div&gt;
+
+&lt;!-- Gap responsive --&gt;
+&lt;div class="sb-ui-gap-1 sb-ui-gap-md-3 sb-ui-gap-lg-5"&gt;
+  &lt;!-- 4px mobile, 16px tablet, 48px desktop --&gt;
+&lt;/div&gt;
+
+&lt;!-- Orden responsive --&gt;
+&lt;div class="sb-ui-col-order-2 sb-ui-col-order-md-1"&gt;
+  &lt;!-- 2º mobile, 1º tablet en adelante --&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: GUÍA DE USO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Guía de Uso por Breakpoint</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Recomendaciones de diseño y layout para cada breakpoint del sistema.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #667eea; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-mobile" style="margin-inline-end: 0.5rem;"></i>
+              XS - Mobile (0-575px)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 1 columna
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 0.5-1rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 1rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Pequeño (0.875rem)
+              </li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #10b981; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-mobile" style="margin-inline-end: 0.5rem;"></i>
+              SM - Teléfono Grande (576-767px)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 1-2 columnas
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 1-1.5rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 1.5rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Normal
+              </li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #f59e0b; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-tablet" style="margin-inline-end: 0.5rem;"></i>
+              MD - Tablet (768-991px)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 2-3 columnas
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 1.5-2rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 1.5rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Normal
+              </li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #ec4899; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-laptop" style="margin-inline-end: 0.5rem;"></i>
+              LG - Desktop Pequeño (992-1199px)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 3-4 columnas
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 2rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 2rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Grande (1rem)
+              </li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #06b6d4; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-desktop" style="margin-inline-end: 0.5rem;"></i>
+              XL - Desktop (1200-1399px)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 4+ columnas
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 2-3rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 2rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Grande
+              </li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem;">
+            <h4 style="color: #8b5cf6; font-weight: 700; margin-block-end: 1rem;">
+              <i class="fa-solid fa-tv" style="margin-inline-end: 0.5rem;"></i>
+              XXL - 4K/Ultrawide (1400px+)
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Grid:</strong> 5+ columnas
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Gap:</strong> 3rem
+              </li>
+              <li style="padding-block: 0.5rem; border-block-end: 1px solid #f3f4f6;">
+                <strong>Padding:</strong> 2-3rem
+              </li>
+              <li style="padding-block: 0.5rem;">
+                <strong>Font:</strong> Muy grande
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a
+            href="http://localhost:6007/?path=/docs/layout-breakpoints--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Breakpoint Detector Widget -->
+    <div class="breakpoint-detector">
+      <div class="breakpoint-detector-title">Breakpoint Actual</div>
+      <div class="breakpoint-detector-value" id="breakpoint-display">XS</div>
+      <div class="breakpoint-detector-size" id="breakpoint-size">0 - 575px</div>
+    </div>
+
+    <script>
+      // Función para detectar y mostrar el breakpoint actual
+      function updateBreakpoint() {
+        const width = window.innerWidth;
+        const displayEl = document.getElementById('breakpoint-display');
+        const sizeEl = document.getElementById('breakpoint-size');
+
+        let breakpoint = 'XS';
+        let sizeRange = '0 - 575px';
+
+        if (width >= 1400) {
+          breakpoint = 'XXL';
+          sizeRange = '1400px+';
+        } else if (width >= 1200) {
+          breakpoint = 'XL';
+          sizeRange = '1200 - 1399px';
+        } else if (width >= 992) {
+          breakpoint = 'LG';
+          sizeRange = '992 - 1199px';
+        } else if (width >= 768) {
+          breakpoint = 'MD';
+          sizeRange = '768 - 991px';
+        } else if (width >= 576) {
+          breakpoint = 'SM';
+          sizeRange = '576 - 767px';
+        }
+
+        displayEl.textContent = breakpoint;
+        sizeEl.textContent = sizeRange + ' (' + width + 'px)';
+      }
+
+      // Ejecutar en carga y al redimensionar
+      updateBreakpoint();
+      window.addEventListener('resize', updateBreakpoint);
+    </script>
+  </body>
+</html>

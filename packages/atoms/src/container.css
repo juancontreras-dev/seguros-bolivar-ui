@@ -1,0 +1,214 @@
+/**
+ * ============================================================================
+ * Container Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Contenedores responsive con ancho máximo controlado:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - clamp() para padding responsive
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~50
+ * 2. RESET LAYER ............................. Línea ~60
+ * 3. TOKENS LAYER ............................ Línea ~75
+ * 4. BASE LAYER .............................. Línea ~95
+ *    ├─ Container Responsive ................ Línea ~100
+ *    ├─ Container Fluid ..................... Línea ~110
+ *    └─ Breakpoint Containers ............... Línea ~120
+ * 5. UTILITIES LAYER ......................... Línea ~150
+ *    ├─ Responsive Breakpoints .............. Línea ~155
+ *    ├─ High Contrast Mode .................. Línea ~195
+ *    └─ Reduced Motion ...................... Línea ~210
+ *
+ * ============================================================================
+ * 📏 BREAKPOINTS Y MAX-WIDTHS
+ * ============================================================================
+ *
+ * XS (0px):     100% - sin max-width
+ * SM (576px):   540px max-width
+ * MD (768px):   720px max-width
+ * LG (992px):   960px max-width
+ * XL (1200px):  1140px max-width
+ * XXL (1400px): 1320px max-width
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Container responsive (default) -->
+ * <div class="sb-ui-container">Contenido centrado con max-width</div>
+ *
+ * <!-- Container fluid (100% width) -->
+ * <div class="sb-ui-container-fluid">Contenido full-width</div>
+ *
+ * <!-- Container desde breakpoint específico -->
+ * <div class="sb-ui-container-md">Responsive desde MD (768px)</div>
+ *
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+
+@layer reset, tokens, base, utilities;
+
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+
+@layer reset {
+  .sb-ui-container,
+  .sb-ui-container-fluid,
+  .sb-ui-container-sm,
+  .sb-ui-container-md,
+  .sb-ui-container-lg,
+  .sb-ui-container-xl,
+  .sb-ui-container-xxl {
+    all: unset;
+    box-sizing: border-box;
+  }
+}
+
+/* ============================================================================
+   3. TOKENS LAYER
+   ============================================================================ */
+
+@layer tokens {
+  :root {
+    /* Padding lateral responsive con clamp() */
+    --sb-ui-container-padding-inline: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+
+    /* Max-widths por breakpoint */
+    --sb-ui-container-max-inline-size-sm: 540px;
+    --sb-ui-container-max-inline-size-md: 720px;
+    --sb-ui-container-max-inline-size-lg: 960px;
+    --sb-ui-container-max-inline-size-xl: 1140px;
+    --sb-ui-container-max-inline-size-xxl: 1320px;
+  }
+}
+
+/* ============================================================================
+   4. BASE LAYER
+   ============================================================================ */
+
+@layer base {
+  /* ===== Container Responsive (default) ===== */
+  .sb-ui-container {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+
+  /* ===== Container Fluid (100% sin max-width) ===== */
+  .sb-ui-container-fluid {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+
+  /* ===== Breakpoint-specific Containers ===== */
+  .sb-ui-container-sm,
+  .sb-ui-container-md,
+  .sb-ui-container-lg,
+  .sb-ui-container-xl,
+  .sb-ui-container-xxl {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+}
+
+/* ============================================================================
+   5. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+
+@layer utilities {
+  /* ===== Responsive Max-Widths ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-container,
+    .sb-ui-container-sm {
+      max-inline-size: var(--sb-ui-container-max-inline-size-sm);
+    }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md {
+      max-inline-size: var(--sb-ui-container-max-inline-size-md);
+    }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg {
+      max-inline-size: var(--sb-ui-container-max-inline-size-lg);
+    }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl {
+      max-inline-size: var(--sb-ui-container-max-inline-size-xl);
+    }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      max-inline-size: var(--sb-ui-container-max-inline-size-xxl);
+    }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    .sb-ui-container,
+    .sb-ui-container-fluid,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      outline: 2px solid currentColor;
+      outline-offset: -2px;
+    }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-container,
+    .sb-ui-container-fluid,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      transition: none;
+      animation: none;
+    }
+  }
+}
