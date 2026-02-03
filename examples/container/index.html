@@ -44,18 +44,17 @@
     <style>
       /* Estilos para demo visual de containers */
       .container-demo {
-        background: var(--sb-ui-color-primary-base);
+        background: var(--sb-ui-color-primary-L300);
         padding-block: 2rem;
         margin-block: 2rem;
         border-radius: 8px;
-        color: var(--sb-ui-color-grayscale-white);
+        color: var(--sb-ui-color-grayscale-black);
       }
 
       .container-demo-content {
-        background: rgba(255, 255, 255, 0.1);
         padding: 1.5rem;
         border-radius: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid var(--sb-ui-color-primary-L200);
         text-align: center;
         font-weight: 500;
       }
@@ -67,13 +66,13 @@
         padding: 1rem;
         background: var(--sb-ui-color-grayscale-L400);
         border-radius: 6px;
-        border-inline-start: 4px solid var(--sb-ui-color-primary-base);
+        border-inline-start: 4px solid var(--sb-ui-color-primary-L200);
       }
 
       .breakpoint-label {
         display: inline-block;
-        background: var(--sb-ui-color-primary-base);
-        color: var(--sb-ui-color-grayscale-white);
+        background: var(--sb-ui-color-primary-L200);
+        color: var(--sb-ui-color-grayscale-black);
         padding: 0.25rem 0.75rem;
         border-radius: 4px;
         font-size: 0.75rem;
@@ -155,9 +154,9 @@
           Útil para secciones full-width que necesitan mantener márgenes laterales.
         </p>
 
-        <div class="container-demo" style="background: var(--sb-ui-color-secondary-base);">
+        <div class="container-demo" style="background: var(--sb-ui-color-secondary-L300); border: 1px solid var(--sb-ui-color-secondary-L200);">
           <div style="inline-size: 100%; padding-inline: 1rem;">
-            <div class="container-demo-content">
+            <div class="container-demo-content" style="border-color: var(--sb-ui-color-secondary-L200);">
               <strong>Container Fluid</strong><br>
               100% del ancho disponible<br>
               Con padding lateral (1rem)
@@ -225,7 +224,7 @@
               <td><span class="breakpoint-label">md</span></td>
               <td><code>md</code></td>
               <td>768px</td>
-              <td>720px</td>
+              <td>45rem</td>
               <td>720px</td>
               <td>1.5rem</td>
             </tr>
@@ -233,15 +232,15 @@
               <td><span class="breakpoint-label">lg</span></td>
               <td><code>lg</code></td>
               <td>992px</td>
-              <td>960px</td>
+              <td>60rem</td>
               <td>960px</td>
               <td>2rem</td>
             </tr>
             <tr>
-              <td><span class="breakpoint-label" style="background: var(--sb-ui-color-secondary-base);">xl</span></td>
+              <td><span class="breakpoint-label" style="background: var(--sb-ui-color-secondary-L200);">xl</span></td>
               <td><code>xl</code></td>
               <td>1200px</td>
-              <td>1140px</td>
+              <td>71.25rem</td>
               <td>1140px</td>
               <td>2rem</td>
             </tr>
@@ -249,7 +248,7 @@
               <td><span class="breakpoint-label">xxl</span></td>
               <td><code>xxl</code></td>
               <td>1400px</td>
-              <td>1320px</td>
+              <td>82.5rem</td>
               <td>1320px</td>
               <td>2rem</td>
             </tr>
@@ -272,31 +271,31 @@
         </p>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container XL (1140px máximo)</h4>
-        <div class="container-demo" style="background: var(--sb-ui-color-tertiary-base);">
-          <div style="margin-inline: auto; max-inline-size: 1140px; padding-inline: 1rem;">
-            <div class="container-demo-content">
+        <div class="container-demo" style="background: var(--sb-ui-color-tertiary-L300); border: 1px solid var(--sb-ui-color-tertiary-L200);">
+          <div class="sb-ui-container-xl">
+            <div class="container-demo-content" style="border-color: var(--sb-ui-color-tertiary-L200);">
               Max-width: 1140px (71.25rem)<br>
-              Ancho de contenedor XL
+              Clase: <code style="background: var(--sb-ui-color-grayscale-L300); padding-inline: 0.4rem; border-radius: 3px;">.sb-ui-container-xl</code>
             </div>
           </div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container LG (960px máximo)</h4>
-        <div class="container-demo" style="background: var(--sb-ui-color-error-base);">
-          <div style="margin-inline: auto; max-inline-size: 960px; padding-inline: 1rem;">
-            <div class="container-demo-content">
+        <div class="container-demo" style="background: var(--sb-ui-color-secondary-L300); border: 1px solid var(--sb-ui-color-secondary-L200);">
+          <div class="sb-ui-container-lg">
+            <div class="container-demo-content" style="border-color: var(--sb-ui-color-secondary-L200);">
               Max-width: 960px (60rem)<br>
-              Ancho de contenedor LG
+              Clase: <code style="background: var(--sb-ui-color-grayscale-L300); padding-inline: 0.4rem; border-radius: 3px;">.sb-ui-container-lg</code>
             </div>
           </div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container MD (720px máximo)</h4>
-        <div class="container-demo" style="background: var(--sb-ui-color-info-base);">
-          <div style="margin-inline: auto; max-inline-size: 720px; padding-inline: 1rem;">
-            <div class="container-demo-content">
+        <div class="container-demo" style="background: var(--sb-ui-color-feedback-info-L300); border: 1px solid var(--sb-ui-color-feedback-info-L200);">
+          <div class="sb-ui-container-md">
+            <div class="container-demo-content" style="border-color: var(--sb-ui-color-feedback-info-L200);">
               Max-width: 720px (45rem)<br>
-              Ancho de contenedor MD
+              Clase: <code style="background: var(--sb-ui-color-grayscale-L300); padding-inline: 0.4rem; border-radius: 3px;">.sb-ui-container-md</code>
             </div>
           </div>
         </div>

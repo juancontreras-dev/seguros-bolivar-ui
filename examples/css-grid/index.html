@@ -53,13 +53,14 @@
       }
 
       .demo-item {
-        background: var(--sb-ui-color-primary-base);
-        color: var(--sb-ui-color-grayscale-white);
+        background: var(--sb-ui-color-primary-L300);
+        color: var(--sb-ui-color-grayscale-black);
         padding: 1.5rem;
         border-radius: 6px;
         text-align: center;
         font-weight: 600;
-        box-shadow: 0 2px 8px var(--sb-ui-color-primary-D100);
+        border: 1px solid var(--sb-ui-color-primary-L200);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -100,20 +101,20 @@
         </p>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">2 Columnas Iguales</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+        <div class="demo-grid sb-ui-grid-cols-2 sb-ui-gap-3">
           <div class="demo-item">1/2</div>
           <div class="demo-item">1/2</div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">3 Columnas Iguales</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3">
           <div class="demo-item">1/3</div>
           <div class="demo-item">1/3</div>
           <div class="demo-item">1/3</div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">4 Columnas Iguales</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3">
           <div class="demo-item">1/4</div>
           <div class="demo-item">1/4</div>
           <div class="demo-item">1/4</div>
@@ -121,7 +122,7 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">5 Columnas Iguales</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(5, 1fr); gap: 1rem;">
+        <div class="demo-grid sb-ui-grid-cols-5 sb-ui-gap-3">
           <div class="demo-item">1/5</div>
           <div class="demo-item">1/5</div>
           <div class="demo-item">1/5</div>
@@ -130,7 +131,7 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">6 Columnas Iguales</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(6, 1fr); gap: 1rem;">
+        <div class="demo-grid sb-ui-grid-cols-6 sb-ui-gap-3">
           <div class="demo-item">1/6</div>
           <div class="demo-item">1/6</div>
           <div class="demo-item">1/6</div>
@@ -145,12 +146,15 @@
             <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Grid de 4 columnas iguales --&gt;
-&lt;div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;"&gt;
+&lt;div class="sb-ui-grid-cols-4 sb-ui-gap-3"&gt;
   &lt;div&gt;Item 1&lt;/div&gt;
   &lt;div&gt;Item 2&lt;/div&gt;
   &lt;div&gt;Item 3&lt;/div&gt;
   &lt;div&gt;Item 4&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+
+&lt;!-- Clases disponibles: sb-ui-grid-cols-1 a sb-ui-grid-cols-6 --&gt;
+&lt;!-- Combinable con gutters: sb-ui-gap-0 a sb-ui-gap-5 --&gt;</code></pre>
         </div>
       </section>
 
@@ -206,8 +210,8 @@
         </p>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Column Spanning (ocupa 2 columnas)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem;">
-          <div class="demo-item" style="grid-column: span 2;">Span 2 cols</div>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3">
+          <div class="demo-item sb-ui-grid-span-col-2">Span 2 cols</div>
           <div class="demo-item">1</div>
           <div class="demo-item">2</div>
           <div class="demo-item">3</div>
@@ -215,8 +219,8 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Row Spanning (ocupa 2 filas)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 100px); gap: 1rem;">
-          <div class="demo-item demo-item-tall" style="grid-row: span 2;">Span 2 rows</div>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3" style="grid-template-rows: repeat(3, 100px);">
+          <div class="demo-item demo-item-tall sb-ui-grid-span-row-2">Span 2 rows</div>
           <div class="demo-item">1</div>
           <div class="demo-item">2</div>
           <div class="demo-item">3</div>
@@ -226,8 +230,8 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Combinado: Colspan + Rowspan</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 100px); gap: 1rem;">
-          <div class="demo-item demo-item-tall" style="grid-column: span 2; grid-row: span 2;">Span 2x2</div>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3" style="grid-template-rows: repeat(3, 100px);">
+          <div class="demo-item demo-item-tall sb-ui-grid-span-col-2 sb-ui-grid-span-row-2">Span 2x2</div>
           <div class="demo-item">1</div>
           <div class="demo-item">2</div>
           <div class="demo-item">3</div>
@@ -241,13 +245,17 @@
             <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Colspan: ocupa 2 columnas --&gt;
-&lt;div style="grid-column: span 2;"&gt;Wide item&lt;/div&gt;
+&lt;div class="sb-ui-grid-span-col-2"&gt;Wide item&lt;/div&gt;
 
 &lt;!-- Rowspan: ocupa 2 filas --&gt;
-&lt;div style="grid-row: span 2;"&gt;Tall item&lt;/div&gt;
+&lt;div class="sb-ui-grid-span-row-2"&gt;Tall item&lt;/div&gt;
 
 &lt;!-- Combinado: 2x2 --&gt;
-&lt;div style="grid-column: span 2; grid-row: span 2;"&gt;2x2 item&lt;/div&gt;</code></pre>
+&lt;div class="sb-ui-grid-span-col-2 sb-ui-grid-span-row-2"&gt;2x2 item&lt;/div&gt;
+
+&lt;!-- Clases de spanning: --&gt;
+&lt;!-- .sb-ui-grid-span-col-2, .sb-ui-grid-span-col-3, .sb-ui-grid-span-col-full --&gt;
+&lt;!-- .sb-ui-grid-span-row-2, .sb-ui-grid-span-row-3, .sb-ui-grid-span-row-full --&gt;</code></pre>
         </div>
       </section>
 
@@ -261,27 +269,27 @@
         </p>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Items: Center (centrado)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem; place-items: center; min-block-size: 250px;">
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-items-center" style="min-block-size: 250px;">
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">1</div>
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">2</div>
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">3</div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Items: Start (superior-izquierda)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem; place-items: start; min-block-size: 250px;">
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-items-start" style="min-block-size: 250px;">
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">1</div>
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">2</div>
           <div class="demo-item" style="inline-size: 80px; block-size: 80px;">3</div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Content: Center (contenido centrado)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem; place-content: center; min-block-size: 300px;">
+        <div class="demo-grid sb-ui-grid-cols-2 sb-ui-gap-3 sb-ui-place-content-center" style="min-block-size: 300px;">
           <div class="demo-item">1</div>
           <div class="demo-item">2</div>
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Content: Space-Around (distribuido)</h4>
-        <div class="demo-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem; place-content: space-around; min-block-size: 300px;">
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-content-space-around" style="min-block-size: 300px;">
           <div class="demo-item">1</div>
           <div class="demo-item">2</div>
           <div class="demo-item">3</div>
@@ -293,19 +301,18 @@
             <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Centrar todos los items en sus celdas --&gt;
-&lt;div style="display: grid; place-items: center;"&gt;
+&lt;div class="sb-ui-grid-cols-3 sb-ui-place-items-center"&gt;
   &lt;div&gt;Centrado&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- place-items valores: start, center, end, stretch --&gt;
-&lt;!-- place-content valores: start, center, end, space-between, space-around, space-evenly --&gt;
+&lt;!-- Place-Items (alinea items en sus celdas): --&gt;
+&lt;!-- .sb-ui-place-items-start | .sb-ui-place-items-center --&gt;
+&lt;!-- .sb-ui-place-items-end   | .sb-ui-place-items-stretch --&gt;
 
-&lt;!-- Separar: align-items (vertical), justify-items (horizontal) --&gt;
-&lt;div style="
-  display: grid;
-  align-items: center;
-  justify-items: center;
-"&gt;&lt;/div&gt;</code></pre>
+&lt;!-- Place-Content (distribuye el contenido en el grid): --&gt;
+&lt;!-- .sb-ui-place-content-start | .sb-ui-place-content-center --&gt;
+&lt;!-- .sb-ui-place-content-space-between | .sb-ui-place-content-space-around --&gt;
+&lt;!-- .sb-ui-place-content-space-evenly --&gt;</code></pre>
         </div>
       </section>
 
