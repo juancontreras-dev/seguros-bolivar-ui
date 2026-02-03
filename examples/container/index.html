@@ -44,11 +44,11 @@
     <style>
       /* Estilos para demo visual de containers */
       .container-demo {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--sb-ui-color-primary-base);
         padding-block: 2rem;
         margin-block: 2rem;
         border-radius: 8px;
-        color: white;
+        color: var(--sb-ui-color-grayscale-white);
       }
 
       .container-demo-content {
@@ -65,15 +65,15 @@
         color: #6b7280;
         margin-block-start: 1rem;
         padding: 1rem;
-        background: #f3f4f6;
+        background: var(--sb-ui-color-grayscale-L400);
         border-radius: 6px;
-        border-inline-start: 4px solid #667eea;
+        border-inline-start: 4px solid var(--sb-ui-color-primary-base);
       }
 
       .breakpoint-label {
         display: inline-block;
-        background: #667eea;
-        color: white;
+        background: var(--sb-ui-color-primary-base);
+        color: var(--sb-ui-color-grayscale-white);
         padding: 0.25rem 0.75rem;
         border-radius: 4px;
         font-size: 0.75rem;
@@ -129,7 +129,7 @@
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-container"&gt;
   &lt;!-- Contenido responsive --&gt;
@@ -164,7 +164,7 @@
           Útil para secciones full-width que necesitan mantener márgenes laterales.
         </p>
 
-        <div class="container-demo" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+        <div class="container-demo" style="background: var(--sb-ui-color-secondary-base);">
           <div style="width: 100%; padding-inline: 1rem;">
             <div class="container-demo-content">
               <strong>Container Fluid</strong><br>
@@ -181,7 +181,7 @@
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-container-fluid"&gt;
   &lt;!-- Contenido 100% ancho --&gt;
@@ -253,7 +253,7 @@
               <td>2rem</td>
             </tr>
             <tr style="background: #fef3c7;">
-              <td><span class="breakpoint-label" style="background: #f59e0b;">xl</span></td>
+              <td><span class="breakpoint-label" style="background: var(--sb-ui-color-tertiary-base);">xl</span></td>
               <td><code>xl</code></td>
               <td>1200px</td>
               <td>1140px</td>
@@ -287,7 +287,7 @@
         </p>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container XL (1140px máximo)</h4>
-        <div class="container-demo" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+        <div class="container-demo" style="background: var(--sb-ui-color-tertiary-base);">
           <div style="margin-inline: auto; max-inline-size: 1140px; padding-inline: 1rem;">
             <div class="container-demo-content">
               Max-width: 1140px (71.25rem)<br>
@@ -297,7 +297,7 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container LG (960px máximo)</h4>
-        <div class="container-demo" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
+        <div class="container-demo" style="background: var(--sb-ui-color-error-base);">
           <div style="margin-inline: auto; max-inline-size: 960px; padding-inline: 1rem;">
             <div class="container-demo-content">
               Max-width: 960px (60rem)<br>
@@ -307,7 +307,7 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container MD (720px máximo)</h4>
-        <div class="container-demo" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+        <div class="container-demo" style="background: var(--sb-ui-color-info-base);">
           <div style="margin-inline: auto; max-inline-size: 720px; padding-inline: 1rem;">
             <div class="container-demo-content">
               Max-width: 720px (45rem)<br>
@@ -319,7 +319,7 @@
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Container con max-width específico --&gt;
 &lt;div class="sb-ui-container-xl"&gt;
