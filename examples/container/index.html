@@ -91,7 +91,7 @@
       <header class="component-header">
         <h2 class="variant-title">
           <span class="component-title-icon">
-            <i class="fa-solid fa-rectangle-wide" aria-hidden="true"></i>
+            <i class="fa-solid fa-border-all" aria-hidden="true"></i>
           </span>
           <span>Containers (Contenedores)</span>
         </h2>
@@ -132,25 +132,16 @@
             <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-container"&gt;
-  &lt;!-- Contenido responsive --&gt;
   &lt;h1&gt;Título principal&lt;/h1&gt;
   &lt;p&gt;Contenido que se adapta automáticamente...&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;!-- CSS base --&gt;
-&lt;style&gt;
-  .sb-ui-container {
-    margin-inline: auto;
-    padding-inline: 1rem;
-    max-inline-size: 100%;
-  }
-
-  @media (min-width: 768px) {
-    .sb-ui-container {
-      max-inline-size: 1200px;
-    }
-  }
-&lt;/style&gt;</code></pre>
+&lt;!-- Max-widths automáticos por breakpoint: --&gt;
+&lt;!-- sm (576px):  max-width 540px  --&gt;
+&lt;!-- md (768px):  max-width 720px  --&gt;
+&lt;!-- lg (992px):  max-width 960px  --&gt;
+&lt;!-- xl (1200px): max-width 1140px --&gt;
+&lt;!-- xxl(1400px): max-width 1320px --&gt;</code></pre>
         </div>
       </section>
 
@@ -165,7 +156,7 @@
         </p>
 
         <div class="container-demo" style="background: var(--sb-ui-color-secondary-base);">
-          <div style="width: 100%; padding-inline: 1rem;">
+          <div style="inline-size: 100%; padding-inline: 1rem;">
             <div class="container-demo-content">
               <strong>Container Fluid</strong><br>
               100% del ancho disponible<br>
@@ -188,14 +179,8 @@
   &lt;section&gt;Full width content&lt;/section&gt;
 &lt;/div&gt;
 
-&lt;!-- CSS --&gt;
-&lt;style&gt;
-  .sb-ui-container-fluid {
-    width: 100%;
-    padding-inline: 1rem;
-    margin-inline: auto;
-  }
-&lt;/style&gt;</code></pre>
+&lt;!-- .sb-ui-container-fluid ocupa siempre el 100% --&gt;
+&lt;!-- Solo mantiene padding-inline para separación lateral --&gt;</code></pre>
         </div>
       </section>
 
@@ -232,8 +217,8 @@
               <td><span class="breakpoint-label">sm</span></td>
               <td><code>sm</code></td>
               <td>576px</td>
-              <td>100%</td>
-              <td>100%</td>
+              <td>33.75rem</td>
+              <td>540px</td>
               <td>1.5rem</td>
             </tr>
             <tr>
@@ -252,8 +237,8 @@
               <td>960px</td>
               <td>2rem</td>
             </tr>
-            <tr style="background: #fef3c7;">
-              <td><span class="breakpoint-label" style="background: var(--sb-ui-color-tertiary-base);">xl</span></td>
+            <tr>
+              <td><span class="breakpoint-label" style="background: var(--sb-ui-color-secondary-base);">xl</span></td>
               <td><code>xl</code></td>
               <td>1200px</td>
               <td>1140px</td>
