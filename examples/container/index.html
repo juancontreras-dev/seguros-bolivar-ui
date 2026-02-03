@@ -79,6 +79,28 @@
         font-weight: 700;
         margin-inline-end: 0.5rem;
       }
+
+      /* Botón de copia en code blocks */
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #a0a0a0;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      .copy-btn.copied {
+        color: #6ee7b7;
+        border-color: rgba(110, 231, 183, 0.4);
+      }
     </style>
   </head>
 
@@ -291,9 +313,9 @@
         </div>
 
         <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Container MD (720px máximo)</h4>
-        <div class="container-demo" style="background: var(--sb-ui-color-feedback-info-L300); border: 1px solid var(--sb-ui-color-feedback-info-L200);">
+        <div class="container-demo" style="background: var(--sb-ui-color-primary-L200); border: 1px solid var(--sb-ui-color-primary-L100);">
           <div class="sb-ui-container-md">
-            <div class="container-demo-content" style="border-color: var(--sb-ui-color-feedback-info-L200);">
+            <div class="container-demo-content" style="border-color: var(--sb-ui-color-primary-L100);">
               Max-width: 720px (45rem)<br>
               Clase: <code style="background: var(--sb-ui-color-grayscale-L300); padding-inline: 0.4rem; border-radius: 3px;">.sb-ui-container-md</code>
             </div>

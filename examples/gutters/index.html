@@ -74,6 +74,28 @@
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
+
+      /* Botón de copia en code blocks */
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #a0a0a0;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      .copy-btn.copied {
+        color: #6ee7b7;
+        border-color: rgba(110, 231, 183, 0.4);
+      }
     </style>
   </head>
 
