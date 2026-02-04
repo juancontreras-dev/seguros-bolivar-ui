@@ -88,6 +88,126 @@
         color: #6ee7b7;
         border-color: rgba(110, 231, 183, 0.4);
       }
+
+      /* Etiqueta de clase dentro de texto explicativo */
+      .demo-code {
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.8125rem;
+      }
+
+      /* Indicador de breakpoint activo */
+      .bp-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        border-radius: 6px;
+        padding: 0.35rem 0.75rem;
+        margin-block-end: 1.25rem;
+        font-size: 0.8125rem;
+      }
+
+      .bp-indicator__value {
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .bp-indicator__px {
+        color: var(--sb-ui-color-grayscale-base);
+        font-size: 0.75rem;
+      }
+
+      /* Variante visual del demo item para sidebars */
+      .demo-item--sidebar {
+        background: var(--sb-ui-color-secondary-L300);
+        border-color: var(--sb-ui-color-secondary-L200);
+      }
+
+      /* Etiqueta de clases dentro de un demo item */
+      .demo-item__label {
+        font-weight: 400;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      /* Tabla de referencia de breakpoints */
+      .bp-ref-table {
+        inline-size: 100%;
+        border-collapse: collapse;
+        margin-block-end: 1.5rem;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      .bp-ref-table th,
+      .bp-ref-table td {
+        padding-block: 0.5rem;
+        padding-inline: 0.75rem;
+        text-align: start;
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      .bp-ref-table th {
+        background: var(--sb-ui-color-grayscale-L300);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      .bp-ref-table tr:last-child td {
+        border-block-end: none;
+      }
+
+      /* Preview de breakpoints simulados (3 paneles lado a lado) */
+      .responsive-preview {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-block-end: 1.5rem;
+      }
+
+      .responsive-preview__frame {
+        flex: 1;
+        min-inline-size: 0;
+      }
+
+      .responsive-preview__label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-white);
+        background: var(--sb-ui-color-primary-base);
+        text-align: center;
+        padding-block: 0.375rem 0.25rem;
+        border-radius: 6px 6px 0 0;
+        line-height: 1.4;
+      }
+
+      .responsive-preview__label-class {
+        font-weight: 400;
+        font-size: 0.6875rem;
+        opacity: 0.85;
+        font-family: 'Consolas', 'Monaco', monospace;
+      }
+
+      .responsive-preview__device {
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        border-radius: 0 0 6px 6px;
+        padding: 0.625rem;
+      }
+
+      .responsive-preview__device .demo-item {
+        min-block-size: 56px;
+        padding: 0.5rem;
+        font-size: 0.8125rem;
+      }
     </style>
   </head>
 
@@ -203,7 +323,10 @@
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Sidebar + Contenido (25/75) --&gt;
 &lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
@@ -225,39 +348,154 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Grid Responsive (Mobile → Tablet → Desktop)</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          Grids que cambian su número de columnas según el breakpoint. Mobile-first: comienza con 1 columna y expande en pantallas grandes.
+        <p style="color: #6b7280; margin-bottom: 1rem;">
+          Agrega una clase de columna por cada breakpoint que necesites, <strong>todas en el mismo elemento</strong>.
+          Sin prefijo aplica en móvil; cada prefijo se activa desde ese ancho hacia arriba.
+          Redimensiona la ventana para ver los demos en acción.
         </p>
 
-        <div class="demo-grid sb-ui-grid sb-ui-gap-2 sb-ui-gap-md-4">
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">1</div>
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">2</div>
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">3</div>
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">4</div>
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">5</div>
-          <div class="demo-item sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4">6</div>
+        <!-- Indicador de breakpoint activo -->
+        <div id="bp-indicator" class="bp-indicator">
+          <span>Breakpoint actual:</span>
+          <span id="bp-label" class="bp-indicator__value">xs</span>
+          <span id="bp-px" class="bp-indicator__px">(&lt;576px)</span>
         </div>
-        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
-          <strong>Redimensiona:</strong> Mobile 1 col (col-12) → Small 2 cols (col-sm-6) → Medium+ 3 cols (col-md-4)
-        </p>
+
+        <!-- Tabla de referencia de breakpoints -->
+        <table class="bp-ref-table">
+          <thead>
+            <tr>
+              <th>Breakpoint</th>
+              <th>Desde</th>
+              <th>Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>xs</strong> — móvil</td>
+              <td>siempre</td>
+              <td><code class="demo-code">col-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>sm</strong></td>
+              <td>≥ 576px</td>
+              <td><code class="demo-code">col-sm-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>md</strong> — tablet</td>
+              <td>≥ 768px</td>
+              <td><code class="demo-code">col-md-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>lg</strong> — desktop</td>
+              <td>≥ 992px</td>
+              <td><code class="demo-code">col-lg-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>xl</strong></td>
+              <td>≥ 1200px</td>
+              <td><code class="demo-code">col-xl-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>xxl</strong></td>
+              <td>≥ 1400px</td>
+              <td><code class="demo-code">col-xxl-{1 a 12}</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Cards responsive: como se ve en cada tamaño -->
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #374151;">Cards responsive</h4>
+
+        <div class="responsive-preview">
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Móvil &lt;576px<br>
+              <span class="responsive-preview__label-class">col-12</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-12">Card 1</div>
+              <div class="demo-item sb-ui-col-12">Card 2</div>
+              <div class="demo-item sb-ui-col-12">Card 3</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Small ≥576px<br>
+              <span class="responsive-preview__label-class">col-sm-6</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-6">Card 1</div>
+              <div class="demo-item sb-ui-col-6">Card 2</div>
+              <div class="demo-item sb-ui-col-6">Card 3</div>
+              <div class="demo-item sb-ui-col-6">Card 4</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Medium ≥768px<br>
+              <span class="responsive-preview__label-class">col-md-4</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-4">Card 1</div>
+              <div class="demo-item sb-ui-col-4">Card 2</div>
+              <div class="demo-item sb-ui-col-4">Card 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar responsive: como se ve en cada tamaño -->
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #374151;">Sidebar responsive</h4>
+
+        <div class="responsive-preview">
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Móvil &lt;992px<br>
+              <span class="responsive-preview__label-class">col-12 + col-12</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item demo-item--sidebar sb-ui-col-12">Sidebar</div>
+              <div class="demo-item sb-ui-col-12">Contenido</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Desktop ≥992px<br>
+              <span class="responsive-preview__label-class">col-lg-3 + col-lg-9</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item demo-item--sidebar sb-ui-col-3">Sidebar</div>
+              <div class="demo-item sb-ui-col-9">Contenido</div>
+            </div>
+          </div>
+        </div>
 
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Mobile: 1 col → Small: 2 cols → Medium+: 3 cols --&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Cards responsive: cada item lleva col-12 + col-sm-6 + col-md-4 --&gt;
 &lt;div class="sb-ui-grid sb-ui-gap-2 sb-ui-gap-md-4"&gt;
-  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Item 1&lt;/div&gt;
-  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Item 2&lt;/div&gt;
-  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Item 3&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 1&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 2&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 3&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 4&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 5&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 6&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Breakpoints disponibles: --&gt;
-&lt;!-- col-12: default (mobile) --&gt;
-&lt;!-- col-sm-6: desde 576px (2 columnas) --&gt;
-&lt;!-- col-md-4: desde 768px (3 columnas) --&gt;
-&lt;!-- col-lg-3: desde 992px (4 columnas) --&gt;</code></pre>
+&lt;!-- Sidebar responsive: col-12 en móvil, col-lg-3 + col-lg-9 desde desktop --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;aside class="sb-ui-col-12 sb-ui-col-lg-3"&gt;Sidebar&lt;/aside&gt;
+  &lt;main  class="sb-ui-col-12 sb-ui-col-lg-9"&gt;Contenido&lt;/main&gt;
+&lt;/div&gt;</code></pre>
         </div>
       </section>
 
@@ -303,7 +541,10 @@
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
           <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Asimétrica: 3 + 6 + 3 --&gt;
 &lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
@@ -343,5 +584,38 @@
         </div>
       </section>
     </main>
+    <script>
+      // Indicador de breakpoint activo (se actualiza al redimensionar)
+      function updateBreakpoint() {
+        const w = window.innerWidth;
+        const label = document.getElementById('bp-label');
+        const px    = document.getElementById('bp-px');
+        if (!label || !px) return;
+
+        if      (w >= 1400) { label.textContent = 'xxl'; px.textContent = '(≥1400px)'; }
+        else if (w >= 1200) { label.textContent = 'xl';  px.textContent = '(≥1200px)'; }
+        else if (w >= 992)  { label.textContent = 'lg';  px.textContent = '(≥992px)';  }
+        else if (w >= 768)  { label.textContent = 'md';  px.textContent = '(≥768px)';  }
+        else if (w >= 576)  { label.textContent = 'sm';  px.textContent = '(≥576px)';  }
+        else                { label.textContent = 'xs';  px.textContent = '(<576px)';  }
+      }
+
+      window.addEventListener('resize', updateBreakpoint);
+      updateBreakpoint();
+
+      // Copiar código al clipboard (usado por los botones .copy-btn)
+      function copyCode(btn) {
+        const codeBlock = btn.closest('.sb-ui-code-block');
+        const code = codeBlock.querySelector('code');
+        navigator.clipboard.writeText(code.textContent).then(() => {
+          btn.classList.add('copied');
+          btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
+          }, 1500);
+        });
+      }
+    </script>
   </body>
 </html>
