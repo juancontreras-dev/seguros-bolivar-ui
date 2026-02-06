@@ -25,13 +25,14 @@
     <script type="module" src="dist/sb-ui-components.min.js"></script>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
+      /* Solo box-sizing global; no resetear margin/padding en * para no pisar estilos de botones/inputs del design system */
+      *, *::before, *::after {
         box-sizing: border-box;
       }
 
       html, body {
+        margin: 0;
+        padding: 0;
         height: 100%;
       }
 
