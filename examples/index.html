@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Componentes - Seguros Bolívar UI Design System</title>
+    <!-- Base URL para GitHub Pages: rutas relativas (dist/, assets/) resuelven bien cuando la app está en un subpath -->
+    <script>
+      (function () {
+        var path = window.location.pathname;
+        if (path === '/' || path === '') return;
+        var base = path.endsWith('/') ? path : (/\/index\.html$/i.test(path) ? path.replace(/\/index\.html$/i, '/') : path + '/');
+        document.write('<base href="' + window.location.origin + base + '">');
+      })();
+    </script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -16,13 +25,14 @@
     <script type="module" src="dist/sb-ui-components.min.js"></script>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
+      /* Solo box-sizing global; no resetear margin/padding en * para no pisar estilos de botones/inputs del design system */
+      *, *::before, *::after {
         box-sizing: border-box;
       }
 
       html, body {
+        margin: 0;
+        padding: 0;
         height: 100%;
       }
 
@@ -615,6 +625,197 @@
         box-sizing: border-box;
       }
 
+      /* Estilos de páginas de componentes (modal, etc.): no inyectamos components.css para no romper el layout */
+      .dynamic-content .component-container {
+        max-inline-size: 1400px;
+        margin-block: 0;
+        margin-inline: auto;
+      }
+      .dynamic-content .component-header {
+        margin-block-end: clamp(1.5rem, 1rem + 2vw, 3rem);
+        padding-block-end: clamp(1rem, 0.5rem + 1vw, 2rem);
+        border-block-end: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+      .dynamic-content .component-title-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: 3.5rem;
+        block-size: 3.5rem;
+        font-size: 1.75rem;
+        color: var(--sb-ui-color-primary-base, #038450);
+        background: var(--sb-ui-color-secondary-L400, #fffcf0);
+        border-radius: 0.75rem;
+        flex-shrink: 0;
+      }
+      .dynamic-content .variant-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base, #038450);
+        margin-block-end: clamp(1rem, 0.5rem + 1vw, 1.5rem);
+        padding-block-end: clamp(0.5rem, 0.3rem + 0.5vw, 0.75rem);
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+      .dynamic-content .component-description {
+        font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+        color: var(--sb-ui-color-grayscale-D100, #555);
+        margin-block-start: clamp(0.5rem, 0.3rem + 0.5vw, 1rem);
+        line-height: 1.6;
+      }
+      .dynamic-content .variant-section {
+        background: var(--sb-ui-color-grayscale-white, #fff);
+        padding-block: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+        padding-inline: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+        border-radius: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-block-end: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+      }
+      .dynamic-content .states-table {
+        inline-size: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border-radius: clamp(0.5rem, 0.3rem + 0.5vw, 0.75rem);
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+      .dynamic-content .states-table th,
+      .dynamic-content .states-table td {
+        padding-block: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+        padding-inline: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
+        text-align: center;
+        border-inline-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+      .dynamic-content .states-table th {
+        background: var(--sb-ui-color-primary-base, #038450);
+        color: var(--sb-ui-color-grayscale-white, #fff);
+        font-weight: 700;
+        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .dynamic-content .states-table td:first-child {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        font-weight: 600;
+        text-align: start;
+        padding-inline-start: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+        color: var(--sb-ui-color-grayscale-D100, #333);
+      }
+      .dynamic-content .states-table tr:last-child td { border-block-end: none; }
+      .dynamic-content .states-table th:last-child,
+      .dynamic-content .states-table td:last-child { border-inline-end: none; }
+      .dynamic-content .state-label {
+        display: inline-block;
+        padding-block: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+        padding-inline: clamp(0.5rem, 0.3rem + 0.5vw, 0.875rem);
+        border-radius: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+        font-size: clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .dynamic-content .state-label--default {
+        background: var(--sb-ui-color-secondary-L300, #fff6d4);
+        color: var(--sb-ui-color-primary-D200, #014d2a);
+      }
+      .dynamic-content .state-label--loading {
+        background: var(--sb-ui-color-tertiary-L400, #e8f4f8);
+        color: var(--sb-ui-color-tertiary-D100, #0277a8);
+      }
+      .dynamic-content .state-label--disabled {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+      }
+      .dynamic-content .sb-ui-code-block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        background: #2d2d2d;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .dynamic-content .sb-ui-code-block-title {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: #a0a0a0;
+      }
+      .dynamic-content .sb-ui-code-block-badge {
+        font-size: 0.6875rem;
+        padding: 0.3125rem 0.625rem;
+        border-radius: 0.375rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+      }
+      .dynamic-content .sb-ui-code-block-body {
+        margin: 0;
+        padding: 1.25rem;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.875rem;
+        line-height: 1.75;
+        overflow-x: auto;
+        white-space: pre;
+        color: #d4d4d4;
+        background: #1e1e1e;
+      }
+      .dynamic-content .sb-ui-code-block-body code {
+        color: #d4d4d4;
+        background: transparent;
+      }
+
+      /* Sección "¿Quieres ver más detalles?" / Ver en Storybook (estaba en components.css) */
+      .dynamic-content .storybook-reference {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .dynamic-content .storybook-reference-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .dynamic-content .storybook-reference-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        opacity: 0.9;
+      }
+      .dynamic-content .storybook-reference-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: white;
+      }
+      .dynamic-content .storybook-reference-description {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        opacity: 0.95;
+      }
+      .dynamic-content .storybook-reference-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: white;
+        color: #667eea;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .dynamic-content .storybook-reference-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
       /* DatePicker/Calendar: márgenes y padding cuando se carga la vista calendar/ (el reset * los quita) */
       .dynamic-content .sb-ui-datepicker__dropdown {
         padding-inline: 1rem;
@@ -714,8 +915,6 @@
       .dynamic-content .variant-section .sb-ui-code-block {
         margin-block-start: 2rem;
       }
-
-      /* Bloques "Ejemplo de uso" en modal y otras vistas: no cargan components.css, definir aquí */
       .dynamic-content .sb-ui-code-block {
         background: #1e1e1e;
         color: #d4d4d4;
@@ -725,46 +924,6 @@
         margin-inline: 0;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
-      }
-      .dynamic-content .sb-ui-code-block-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.75rem 1.25rem;
-        background: #2d2d2d;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .dynamic-content .sb-ui-code-block-title {
-        font-size: 0.8125rem;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        color: #a0a0a0;
-      }
-      .dynamic-content .sb-ui-code-block-badge {
-        font-size: 0.6875rem;
-        padding: 0.3125rem 0.625rem;
-        border-radius: 0.375rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-weight: 700;
-        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
-      }
-      .dynamic-content .sb-ui-code-block-body {
-        margin: 0;
-        padding: 1.25rem;
-        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-        font-size: 0.875rem;
-        line-height: 1.75;
-        overflow-x: auto;
-        white-space: pre;
-        color: #d4d4d4;
-        background: #1e1e1e;
-      }
-      .dynamic-content .sb-ui-code-block-body code {
-        color: #d4d4d4;
-        background: transparent;
       }
 
       .page-header {
@@ -1378,12 +1537,13 @@
       const sidebar = document.getElementById('sidebar');
       const hamburger = document.getElementById('hamburger');
 
-      // Base path where this examples index lives (e.g. /examples/)
+      // Base path where this examples index lives (e.g. /seguros-bolivar-ui/ en GitHub Pages)
       const BASE_PATH = (function () {
         const path = window.location.pathname;
-        // If ends with '/', keep as is; otherwise strip the last segment (file name)
+        if (path === '/' || path === '') return '/';
         if (path.endsWith('/')) return path;
-        return path.replace(/[^/]+$/, '');
+        if (/\/index\.html$/i.test(path)) return path.replace(/\/index\.html$/i, '/');
+        return path + '/';
       })();
 
       // ========================================
@@ -1453,6 +1613,17 @@
               return cleaned;
             };
 
+            // Limitar los estilos inyectados a .dynamic-content para no afectar header/menú/botones del shell
+            function scopeCssToDynamicContent(css) {
+              if (!css || !css.trim()) return css;
+              return css.replace(/(^|})\s*([^@{}][^{]*?)\s*\{/g, function (m, before, sel) {
+                var trimmed = sel.trim();
+                if (!trimmed || /^(media|keyframes|import|supports|charset|font-face)/i.test(trimmed)) return m;
+                var prefixed = trimmed.split(',').map(function (s) { return '.dynamic-content ' + s.trim(); }).join(', ');
+                return before + ' ' + prefixed + ' {';
+              });
+            }
+
             // Extract external stylesheets and inline them safely
             const pageLinks = doc.querySelectorAll('link[rel="stylesheet"]');
             const baseUrl = new URL(targetPath, window.location.origin);
@@ -1465,6 +1636,8 @@
               // Skip external URLs (fonts, CDN) and global design system CSS
               if (/^https?:\/\//i.test(href) || href.startsWith('//')) return;
               if (href.includes('/dist/') || href.includes('sb-ui-')) return;
+              // No inyectar components.css: tiene reset * y body que rompen todo el layout al cargar modal/ etc.
+              if (href.includes('components.css')) return;
 
               const resolvedHref = new URL(href, baseUrl).href;
               cssPromises.push(
@@ -1520,6 +1693,8 @@
 
             return Promise.all(cssPromises).then(externalCssList => {
               const externalCss = externalCssList.filter(Boolean).join('\n');
+              const externalCssScoped = scopeCssToDynamicContent(externalCss);
+              const dynamicStylesScoped = scopeCssToDynamicContent(dynamicStyles);
 
               // Extract inline scripts so they can be executed after injecting the content
               const scripts = doc.querySelectorAll('script');
@@ -1530,13 +1705,13 @@
                 }
               });
               
-              // Build the HTML with styles injected inside the container
+              // Build the HTML with styles injected inside the container (scoped para no romper header/menú)
               let dynamicHTML = '';
-              if (externalCss) {
-                dynamicHTML += '<style data-dynamic-link="true">' + externalCss + '</style>';
+              if (externalCssScoped) {
+                dynamicHTML += '<style data-dynamic-link="true">' + externalCssScoped + '</style>';
               }
-              if (dynamicStyles) {
-                dynamicHTML += '<style>' + dynamicStyles + '</style>';
+              if (dynamicStylesScoped) {
+                dynamicHTML += '<style>' + dynamicStylesScoped + '</style>';
               }
               // Inyectar el contenedor completo (main, .demo-container, etc.) para que las clases
               // y selectores de la página inyectada sigan funcionando (?view=modal/ etc.)
@@ -1556,6 +1731,10 @@
               
               // Re-initialize any scripts or styles if needed
               initializeLoadedContent();
+              
+              // Las páginas cargadas (modal, etc.) pueden tener scripts que hacen brandCss.href = '../dist/...'
+              // y eso rompe en GitHub Pages. Restaurar la URL correcta del CSS de marca.
+              if (typeof updateBrandCSS === 'function') updateBrandCSS();
               
               // Close sidebar on mobile
               if (window.innerWidth <= 768) {
@@ -1817,7 +1996,8 @@
 
       function updateBrandCSS() {
         const cssFileName = `sb-ui-${brandMap[currentBrand]}-${currentTheme}.min.css`;
-        const newHref = `dist/${cssFileName}?v=${Date.now()}`;
+        // Usar ruta absoluta desde el origen para que funcione en GitHub Pages (subpath /seguros-bolivar-ui/)
+        const newHref = BASE_PATH + 'dist/' + cssFileName + '?v=' + Date.now();
         
         if (brandCSS) {
           brandCSS.href = newHref;

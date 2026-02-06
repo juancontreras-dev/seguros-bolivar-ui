@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: doctor-aki | Theme: dark
- * Generated: 2026-02-06T21:30:12.735Z
+ * Generated: 2026-02-06T20:57:49.751Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -8923,7 +8923,6 @@
 
     /* Colores - Border */
     --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L100, #b9b9b9);
-    --sb-ui-tabs-border-hover: var(--sb-ui-color-primary-base, #009056);
     --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base, #009056);
     --sb-ui-tabs-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
     --sb-ui-tabs-border-disabled-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
@@ -8932,7 +8931,6 @@
     --sb-ui-tabs-padding-inline: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem); /* Target: 4px */
     --sb-ui-tabs-padding-block: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
     --sb-ui-tabs-padding-block-end: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem); /* Espacio extra para línea indicadora */
-    --sb-ui-tabs-button-padding-block: clamp(0.875rem, 0.75rem + 0.5vw, 1.125rem); /* Padding vertical para button/folder */
     --sb-ui-tabs-gap: clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem); /* Target: 4px */
 
     /* Tamaños - Responsive hacia objetivos de Figma (icon 20px, radius 8px) */
@@ -8964,7 +8962,7 @@
 
     /* Border */
     --sb-ui-tabs-border-width: 1px;
-    --sb-ui-tabs-button-gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.375rem);
+    --sb-ui-tabs-button-gap: clamp(0.125rem, 0.1rem + 0.15vw, 0.25rem);
 
     /* Description */
     --sb-ui-tabs-description-font-weight: 400;
@@ -9176,15 +9174,13 @@
       text-align: center;
     }
     :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item {
-      /* Altura automática con mínimo - permite que el contenido respire */
-      block-size: auto;
-      min-block-size: var(--sb-ui-tabs-button-block-size);
+      block-size: var(--sb-ui-tabs-button-block-size);
       inline-size: var(--sb-ui-tabs-button-inline-size);
       flex: 0 0 var(--sb-ui-tabs-button-inline-size);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding-block: var(--sb-ui-tabs-button-padding-block);
+      padding-block: var(--sb-ui-tabs-padding-block);
       padding-inline: var(--sb-ui-tabs-padding-inline);
       gap: var(--sb-ui-tabs-gap);
       background: var(--sb-ui-tabs-bg-color);
@@ -9237,15 +9233,14 @@
     .sb-ui-tabs--button .sb-ui-tabs__item {
       border: var(--sb-ui-tabs-border-width) solid var(--sb-ui-tabs-border-color);
       border-radius: var(--sb-ui-tabs-border-radius);
-      gap: var(--sb-ui-tabs-button-gap);
     }
 
       :is(.sb-ui-tabs--button .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
-        border-color: var(--sb-ui-tabs-border-hover);
+        border-color: var(--sb-ui-tabs-border-active, var(--sb-ui-tabs-bg-hover));
       }
 
       .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
-        border-color: var(--sb-ui-tabs-border-active);
+        border-color: var(--sb-ui-tabs-border-active, var(--sb-ui-tabs-bg-active));
       }
 
   .sb-ui-tabs--folder {
