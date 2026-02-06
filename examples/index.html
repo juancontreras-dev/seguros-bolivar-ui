@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Componentes - Seguros Bolívar UI Design System</title>
+    <!-- Base URL para GitHub Pages: rutas relativas (dist/, assets/) resuelven bien cuando la app está en un subpath -->
+    <script>
+      (function () {
+        var path = window.location.pathname;
+        if (path === '/' || path === '') return;
+        var base = path.endsWith('/') ? path : (/\/index\.html$/i.test(path) ? path.replace(/\/index\.html$/i, '/') : path + '/');
+        document.write('<base href="' + window.location.origin + base + '">');
+      })();
+    </script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -1378,12 +1387,13 @@
       const sidebar = document.getElementById('sidebar');
       const hamburger = document.getElementById('hamburger');
 
-      // Base path where this examples index lives (e.g. /examples/)
+      // Base path where this examples index lives (e.g. /seguros-bolivar-ui/ en GitHub Pages)
       const BASE_PATH = (function () {
         const path = window.location.pathname;
-        // If ends with '/', keep as is; otherwise strip the last segment (file name)
+        if (path === '/' || path === '') return '/';
         if (path.endsWith('/')) return path;
-        return path.replace(/[^/]+$/, '');
+        if (/\/index\.html$/i.test(path)) return path.replace(/\/index\.html$/i, '/');
+        return path + '/';
       })();
 
       // ========================================
