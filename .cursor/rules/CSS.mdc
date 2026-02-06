@@ -763,6 +763,76 @@ packages/
 
 ---
 
+## 🎨 ESTILOS CORPORATIVOS - TABS TRACK (Seguros Bolívar)
+
+### Colores Corporativos del Tab Track
+
+La variante **Track** de los tabs tiene colores corporativos específicos que DEBEN respetarse:
+
+#### Estados del Tab:
+
+**Estado Normal (sin seleccionar):**
+- Fondo: `#FFFFFF` (blanco) → `var(--sb-ui-color-grayscale-white)`
+- Título: Color por defecto del sistema
+- Descripción: `#757575` (gris medio) → `var(--sb-ui-color-grayscale-D100)`
+- Línea inferior: `#B9B9B9` (gris claro) → `var(--sb-ui-color-grayscale-L100)`
+
+**Estado Hover:**
+- Fondo: `#F2F9F6` (verde muy claro) → `var(--sb-ui-color-primary-L400)`
+- Título: `#038450` (verde oscuro) → `var(--sb-ui-color-primary-D100)`
+- Descripción: `#757575` (gris medio) → `var(--sb-ui-color-grayscale-D100)`
+- Línea inferior: `#009056` (verde) → `var(--sb-ui-color-primary-base)`
+
+**Estado Activo (seleccionado):**
+- Fondo: `#F2F9F6` (verde muy claro) → `var(--sb-ui-color-primary-L400)`
+- Título: `#038450` (verde oscuro) → `var(--sb-ui-color-primary-D100)`
+- Descripción: `#757575` (gris medio) → `var(--sb-ui-color-grayscale-D100)`
+- Línea inferior: `#009056` (verde) → `var(--sb-ui-color-primary-base)`
+
+### Implementación en Brand Overrides
+
+```css
+@layer brand-overrides {
+  [data-brand='seguros-bolivar'] .sb-ui-tabs--track {
+    /* Background */
+    --sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-tabs-bg-active: var(--sb-ui-color-primary-L400, #f2f9f6);
+
+    /* Text - Título */
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100, #038450);
+
+    /* Text - Descripción */
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100, #757575);
+
+    /* Border - Línea inferior */
+    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base, #009056);
+  }
+}
+```
+
+**Nota:** El título y la descripción están centrados horizontalmente con `text-align: center` y `align-items: center`.
+
+### HTML de Ejemplo
+
+```html
+<div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
+  <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+    <span class="sb-ui-tabs__title">General</span>
+    <span class="sb-ui-tabs__description">Información general</span>
+  </button>
+  <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+    <span class="sb-ui-tabs__title">Contacto</span>
+    <span class="sb-ui-tabs__description">Datos de contacto</span>
+  </button>
+</div>
+```
+
+---
+
 ## 🎯 RECORDATORIOS FINALES
 
 1. **NUNCA** uses physical properties (width, height, left, padding-left, etc.)

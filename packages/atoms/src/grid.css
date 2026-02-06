@@ -1,0 +1,262 @@
+/**
+ * ============================================================================
+ * Grid Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Sistema de grid de 12 columnas basado en CSS Grid moderno:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Mobile-first responsive
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~45
+ * 2. RESET LAYER ............................. Línea ~55
+ * 3. TOKENS LAYER ............................ Línea ~70
+ * 4. BASE LAYER .............................. Línea ~85
+ *    ├─ Grid Container ...................... Línea ~90
+ *    ├─ Column Spans (1-12) ................. Línea ~105
+ *    └─ Auto Column ......................... Línea ~200
+ * 5. UTILITIES LAYER ......................... Línea ~210
+ *    ├─ Responsive Breakpoints .............. Línea ~215
+ *    ├─ High Contrast Mode .................. Línea ~505
+ *    └─ Reduced Motion ...................... Línea ~520
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Grid básico 50/50 -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-6">Columna 1</div>
+ *   <div class="sb-ui-col-6">Columna 2</div>
+ * </div>
+ *
+ * <!-- Grid responsive: móvil full width, tablet 2 columnas, desktop 3 -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 1</div>
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 2</div>
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 3</div>
+ * </div>
+ *
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+
+@layer reset, tokens, base, utilities;
+
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+
+@layer reset {
+  .sb-ui-grid {
+    all: unset;
+    box-sizing: border-box;
+
+    & > * {
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* ============================================================================
+   3. TOKENS LAYER
+   ============================================================================ */
+
+@layer tokens {
+  .sb-ui-grid {
+    --sb-ui-grid-columns: 12;
+    --sb-ui-grid-gap: var(--sb-ui-gap-4, 1.5rem); /* Default gap de nivel 4 */
+  }
+}
+
+/* ============================================================================
+   4. BASE LAYER
+   ============================================================================ */
+
+@layer base {
+  /* ===== Grid Container ===== */
+  .sb-ui-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--sb-ui-grid-columns), 1fr);
+    gap: var(--sb-ui-grid-gap);
+    inline-size: 100%;
+  }
+
+  /* ===== Column Spans (1-12) ===== */
+  .sb-ui-col-1 {
+    grid-column: span 1;
+  }
+
+  .sb-ui-col-2 {
+    grid-column: span 2;
+  }
+
+  .sb-ui-col-3 {
+    grid-column: span 3;
+  }
+
+  .sb-ui-col-4 {
+    grid-column: span 4;
+  }
+
+  .sb-ui-col-5 {
+    grid-column: span 5;
+  }
+
+  .sb-ui-col-6 {
+    grid-column: span 6;
+  }
+
+  .sb-ui-col-7 {
+    grid-column: span 7;
+  }
+
+  .sb-ui-col-8 {
+    grid-column: span 8;
+  }
+
+  .sb-ui-col-9 {
+    grid-column: span 9;
+  }
+
+  .sb-ui-col-10 {
+    grid-column: span 10;
+  }
+
+  .sb-ui-col-11 {
+    grid-column: span 11;
+  }
+
+  .sb-ui-col-12 {
+    grid-column: span 12;
+  }
+
+  /* ===== Auto Column (ancho automático basado en contenido) ===== */
+  .sb-ui-col-auto {
+    grid-column: auto;
+  }
+}
+
+/* ============================================================================
+   5. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+
+@layer utilities {
+  /* ===== Responsive Breakpoints ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-col-sm-1 { grid-column: span 1; }
+    .sb-ui-col-sm-2 { grid-column: span 2; }
+    .sb-ui-col-sm-3 { grid-column: span 3; }
+    .sb-ui-col-sm-4 { grid-column: span 4; }
+    .sb-ui-col-sm-5 { grid-column: span 5; }
+    .sb-ui-col-sm-6 { grid-column: span 6; }
+    .sb-ui-col-sm-7 { grid-column: span 7; }
+    .sb-ui-col-sm-8 { grid-column: span 8; }
+    .sb-ui-col-sm-9 { grid-column: span 9; }
+    .sb-ui-col-sm-10 { grid-column: span 10; }
+    .sb-ui-col-sm-11 { grid-column: span 11; }
+    .sb-ui-col-sm-12 { grid-column: span 12; }
+    .sb-ui-col-sm-auto { grid-column: auto; }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-col-md-1 { grid-column: span 1; }
+    .sb-ui-col-md-2 { grid-column: span 2; }
+    .sb-ui-col-md-3 { grid-column: span 3; }
+    .sb-ui-col-md-4 { grid-column: span 4; }
+    .sb-ui-col-md-5 { grid-column: span 5; }
+    .sb-ui-col-md-6 { grid-column: span 6; }
+    .sb-ui-col-md-7 { grid-column: span 7; }
+    .sb-ui-col-md-8 { grid-column: span 8; }
+    .sb-ui-col-md-9 { grid-column: span 9; }
+    .sb-ui-col-md-10 { grid-column: span 10; }
+    .sb-ui-col-md-11 { grid-column: span 11; }
+    .sb-ui-col-md-12 { grid-column: span 12; }
+    .sb-ui-col-md-auto { grid-column: auto; }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-col-lg-1 { grid-column: span 1; }
+    .sb-ui-col-lg-2 { grid-column: span 2; }
+    .sb-ui-col-lg-3 { grid-column: span 3; }
+    .sb-ui-col-lg-4 { grid-column: span 4; }
+    .sb-ui-col-lg-5 { grid-column: span 5; }
+    .sb-ui-col-lg-6 { grid-column: span 6; }
+    .sb-ui-col-lg-7 { grid-column: span 7; }
+    .sb-ui-col-lg-8 { grid-column: span 8; }
+    .sb-ui-col-lg-9 { grid-column: span 9; }
+    .sb-ui-col-lg-10 { grid-column: span 10; }
+    .sb-ui-col-lg-11 { grid-column: span 11; }
+    .sb-ui-col-lg-12 { grid-column: span 12; }
+    .sb-ui-col-lg-auto { grid-column: auto; }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-col-xl-1 { grid-column: span 1; }
+    .sb-ui-col-xl-2 { grid-column: span 2; }
+    .sb-ui-col-xl-3 { grid-column: span 3; }
+    .sb-ui-col-xl-4 { grid-column: span 4; }
+    .sb-ui-col-xl-5 { grid-column: span 5; }
+    .sb-ui-col-xl-6 { grid-column: span 6; }
+    .sb-ui-col-xl-7 { grid-column: span 7; }
+    .sb-ui-col-xl-8 { grid-column: span 8; }
+    .sb-ui-col-xl-9 { grid-column: span 9; }
+    .sb-ui-col-xl-10 { grid-column: span 10; }
+    .sb-ui-col-xl-11 { grid-column: span 11; }
+    .sb-ui-col-xl-12 { grid-column: span 12; }
+    .sb-ui-col-xl-auto { grid-column: auto; }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-col-xxl-1 { grid-column: span 1; }
+    .sb-ui-col-xxl-2 { grid-column: span 2; }
+    .sb-ui-col-xxl-3 { grid-column: span 3; }
+    .sb-ui-col-xxl-4 { grid-column: span 4; }
+    .sb-ui-col-xxl-5 { grid-column: span 5; }
+    .sb-ui-col-xxl-6 { grid-column: span 6; }
+    .sb-ui-col-xxl-7 { grid-column: span 7; }
+    .sb-ui-col-xxl-8 { grid-column: span 8; }
+    .sb-ui-col-xxl-9 { grid-column: span 9; }
+    .sb-ui-col-xxl-10 { grid-column: span 10; }
+    .sb-ui-col-xxl-11 { grid-column: span 11; }
+    .sb-ui-col-xxl-12 { grid-column: span 12; }
+    .sb-ui-col-xxl-auto { grid-column: auto; }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    .sb-ui-grid {
+      /* Aumentar contraste de bordes visuales si se usan */
+      outline: 2px solid currentColor;
+      outline-offset: -2px;
+
+      & > * {
+        outline: 1px solid currentColor;
+        outline-offset: -1px;
+      }
+    }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-grid,
+    .sb-ui-grid > * {
+      transition: none;
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid - Seguros Bolívar UI Design System</title>
+
+    <!-- Preconnect para fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
+    <style>
+      /* Estilos para demo visual de grid */
+      .demo-grid {
+        display: grid;
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 2px dashed var(--sb-ui-color-grayscale-L200);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        background: var(--sb-ui-color-primary-L300);
+        color: var(--sb-ui-color-grayscale-black);
+        padding: 1.5rem;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid var(--sb-ui-color-primary-L200);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 100px;
+      }
+
+      /* Botón de copia en code blocks */
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #a0a0a0;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      .copy-btn.copied {
+        color: #6ee7b7;
+        border-color: rgba(110, 231, 183, 0.4);
+      }
+
+      /* Etiqueta de clase dentro de texto explicativo */
+      .demo-code {
+        background: var(--sb-ui-color-grayscale-L300);
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.8125rem;
+      }
+
+      /* Indicador de breakpoint activo */
+      .bp-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        border-radius: 6px;
+        padding: 0.35rem 0.75rem;
+        margin-block-end: 1.25rem;
+        font-size: 0.8125rem;
+      }
+
+      .bp-indicator__value {
+        font-weight: 700;
+        color: var(--sb-ui-color-primary-base);
+      }
+
+      .bp-indicator__px {
+        color: var(--sb-ui-color-grayscale-base);
+        font-size: 0.75rem;
+      }
+
+      /* Variante visual del demo item para sidebars */
+      .demo-item--sidebar {
+        background: var(--sb-ui-color-secondary-L300);
+        border-color: var(--sb-ui-color-secondary-L200);
+      }
+
+      /* Etiqueta de clases dentro de un demo item */
+      .demo-item__label {
+        font-weight: 400;
+        font-size: 0.8125rem;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      /* Tabla de referencia de breakpoints */
+      .bp-ref-table {
+        inline-size: 100%;
+        border-collapse: collapse;
+        margin-block-end: 1.5rem;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      .bp-ref-table th,
+      .bp-ref-table td {
+        padding-block: 0.5rem;
+        padding-inline: 0.75rem;
+        text-align: start;
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200);
+      }
+
+      .bp-ref-table th {
+        background: var(--sb-ui-color-grayscale-L300);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--sb-ui-color-grayscale-D100);
+      }
+
+      .bp-ref-table tr:last-child td {
+        border-block-end: none;
+      }
+
+      /* Preview de breakpoints simulados (3 paneles lado a lado) */
+      .responsive-preview {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-block-end: 1.5rem;
+      }
+
+      .responsive-preview__frame {
+        flex: 1;
+        min-inline-size: 0;
+      }
+
+      .responsive-preview__label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-white);
+        background: var(--sb-ui-color-primary-base);
+        text-align: center;
+        padding-block: 0.375rem 0.25rem;
+        border-radius: 6px 6px 0 0;
+        line-height: 1.4;
+      }
+
+      .responsive-preview__label-class {
+        font-weight: 400;
+        font-size: 0.6875rem;
+        opacity: 0.85;
+        font-family: 'Consolas', 'Monaco', monospace;
+      }
+
+      .responsive-preview__device {
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 1px solid var(--sb-ui-color-grayscale-L200);
+        border-radius: 0 0 6px 6px;
+        padding: 0.625rem;
+      }
+
+      .responsive-preview__device .demo-item {
+        min-block-size: 56px;
+        padding: 0.5rem;
+        font-size: 0.8125rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
+          </span>
+          <span>Grid (Sistema de 12 Columnas)</span>
+        </h2>
+        <p class="component-description">
+          Sistema de grid de 12 columnas basado en CSS Grid moderno. Mobile-first y responsive. Compatible con gutters y column utilities.
+          Permite crear layouts flexibles sin necesidad de código JavaScript. Define el número de columnas según el breakpoint.
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: GRID BÁSICO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Grid Básico (12 Columnas)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Ejemplos del sistema de 12 columnas con diferentes distribuciones. Útil para crear layouts simétricos y proporcionados.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">2 Columnas (50/50)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-6">Col 6 (50%)</div>
+          <div class="demo-item sb-ui-col-6">Col 6 (50%)</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- 2 columnas 50/50 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-6"&gt;Col 6 (50%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-6"&gt;Col 6 (50%)&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">3 Columnas (33/33/33)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-4">Col 4 (33%)</div>
+          <div class="demo-item sb-ui-col-4">Col 4 (33%)</div>
+          <div class="demo-item sb-ui-col-4">Col 4 (33%)</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- 3 columnas 33/33/33 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-4"&gt;Col 4 (33%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-4"&gt;Col 4 (33%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-4"&gt;Col 4 (33%)&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">4 Columnas (25/25/25/25)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-3">Col 3 (25%)</div>
+          <div class="demo-item sb-ui-col-3">Col 3 (25%)</div>
+          <div class="demo-item sb-ui-col-3">Col 3 (25%)</div>
+          <div class="demo-item sb-ui-col-3">Col 3 (25%)</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- 4 columnas 25/25/25/25 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-3"&gt;Col 3 (25%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;Col 3 (25%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;Col 3 (25%)&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;Col 3 (25%)&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">6 Columnas (16.6% c/u)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-2">2</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- 6 columnas (16.6% c/u) --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: LAYOUTS COMUNES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Layouts Comunes</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Layouts asimétricas comúnmente usadas en diseño web. Combinaciones útiles para sidebars, héroes y más.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Sidebar 25/75 (3 + 9 columnas)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-3">Sidebar<br>25%</div>
+          <div class="demo-item sb-ui-col-9">Contenido Principal<br>75%</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Sidebar 25/75 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;aside class="sb-ui-col-3"&gt;Sidebar&lt;/aside&gt;
+  &lt;main class="sb-ui-col-9"&gt;Contenido Principal&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Layout 33/66 (4 + 8 columnas)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-4">Lateral<br>33%</div>
+          <div class="demo-item sb-ui-col-8">Contenido<br>66%</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Layout 33/66 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-4"&gt;Lateral&lt;/div&gt;
+  &lt;div class="sb-ui-col-8"&gt;Contenido&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Layout Asimétricas (2 + 5 + 5)</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-2">16%</div>
+          <div class="demo-item sb-ui-col-5">42%</div>
+          <div class="demo-item sb-ui-col-5">42%</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Layout 2 + 5 + 5 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-2"&gt;16%&lt;/div&gt;
+  &lt;div class="sb-ui-col-5"&gt;42%&lt;/div&gt;
+  &lt;div class="sb-ui-col-5"&gt;42%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: GRID RESPONSIVE
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Grid Responsive (Mobile → Tablet → Desktop)</h3>
+        <p style="color: #6b7280; margin-bottom: 1rem;">
+          Agrega una clase de columna por cada breakpoint que necesites, <strong>todas en el mismo elemento</strong>.
+          Sin prefijo aplica en móvil; cada prefijo se activa desde ese ancho hacia arriba.
+          Redimensiona la ventana para ver los demos en acción.
+        </p>
+
+        <!-- Indicador de breakpoint activo -->
+        <div id="bp-indicator" class="bp-indicator">
+          <span>Breakpoint actual:</span>
+          <span id="bp-label" class="bp-indicator__value">xs</span>
+          <span id="bp-px" class="bp-indicator__px">(&lt;576px)</span>
+        </div>
+
+        <!-- Tabla de referencia de breakpoints -->
+        <table class="bp-ref-table">
+          <thead>
+            <tr>
+              <th>Breakpoint</th>
+              <th>Desde</th>
+              <th>Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>xs</strong> — móvil</td>
+              <td>siempre</td>
+              <td><code class="demo-code">col-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>sm</strong></td>
+              <td>≥ 576px</td>
+              <td><code class="demo-code">col-sm-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>md</strong> — tablet</td>
+              <td>≥ 768px</td>
+              <td><code class="demo-code">col-md-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>lg</strong> — desktop</td>
+              <td>≥ 992px</td>
+              <td><code class="demo-code">col-lg-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>xl</strong></td>
+              <td>≥ 1200px</td>
+              <td><code class="demo-code">col-xl-{1 a 12}</code></td>
+            </tr>
+            <tr>
+              <td><strong>xxl</strong></td>
+              <td>≥ 1400px</td>
+              <td><code class="demo-code">col-xxl-{1 a 12}</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Cards responsive: como se ve en cada tamaño -->
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #374151;">Cards responsive</h4>
+
+        <div class="responsive-preview">
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Móvil &lt;576px<br>
+              <span class="responsive-preview__label-class">col-12</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-12">Card 1</div>
+              <div class="demo-item sb-ui-col-12">Card 2</div>
+              <div class="demo-item sb-ui-col-12">Card 3</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Small ≥576px<br>
+              <span class="responsive-preview__label-class">col-sm-6</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-6">Card 1</div>
+              <div class="demo-item sb-ui-col-6">Card 2</div>
+              <div class="demo-item sb-ui-col-6">Card 3</div>
+              <div class="demo-item sb-ui-col-6">Card 4</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Medium ≥768px<br>
+              <span class="responsive-preview__label-class">col-md-4</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item sb-ui-col-4">Card 1</div>
+              <div class="demo-item sb-ui-col-4">Card 2</div>
+              <div class="demo-item sb-ui-col-4">Card 3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Cards responsive: cada item lleva col-12 + col-sm-6 + col-md-4 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-2 sb-ui-gap-md-4"&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 1&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 2&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 3&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 4&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 5&lt;/div&gt;
+  &lt;div class="sb-ui-col-12 sb-ui-col-sm-6 sb-ui-col-md-4"&gt;Card 6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Sidebar responsive: como se ve en cada tamaño -->
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #374151;">Sidebar responsive</h4>
+
+        <div class="responsive-preview">
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Móvil &lt;992px<br>
+              <span class="responsive-preview__label-class">col-12 + col-12</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item demo-item--sidebar sb-ui-col-12">Sidebar</div>
+              <div class="demo-item sb-ui-col-12">Contenido</div>
+            </div>
+          </div>
+
+          <div class="responsive-preview__frame">
+            <div class="responsive-preview__label">
+              Desktop ≥992px<br>
+              <span class="responsive-preview__label-class">col-lg-3 + col-lg-9</span>
+            </div>
+            <div class="responsive-preview__device sb-ui-grid sb-ui-gap-2">
+              <div class="demo-item demo-item--sidebar sb-ui-col-3">Sidebar</div>
+              <div class="demo-item sb-ui-col-9">Contenido</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Sidebar responsive: col-12 en móvil, col-lg-3 + col-lg-9 desde desktop --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;aside class="sb-ui-col-12 sb-ui-col-lg-3"&gt;Sidebar&lt;/aside&gt;
+  &lt;main  class="sb-ui-col-12 sb-ui-col-lg-9"&gt;Contenido&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: COLUMNAS ASIMÉTRICAS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Columnas Asimétricas</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Combinaciones asimétricas de columnas para layouts más dinámicos y complejos. Mezcla de diferentes spans.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Fila 1: 4 + 8 columnas</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-4">4 cols</div>
+          <div class="demo-item sb-ui-col-8">8 cols</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Fila 1: 4 + 8 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-4"&gt;4 cols&lt;/div&gt;
+  &lt;div class="sb-ui-col-8"&gt;8 cols&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Fila 2: 3 + 6 + 3 columnas</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-3">3</div>
+          <div class="demo-item sb-ui-col-6">6</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Fila 2: 3 + 6 + 3 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-col-6"&gt;6&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Fila 3: 2 + 3 + 4 + 3 columnas</h4>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4">
+          <div class="demo-item sb-ui-col-2">2</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+          <div class="demo-item sb-ui-col-4">4</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Fila 3: 2 + 3 + 4 + 3 --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-2"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-col-4"&gt;4&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #374151;">Grid Multi-Row Complejo</h4>
+        <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
+          Un elemento puede ocupar varias filas usando <code class="demo-code">sb-ui-grid-span-row-{2|3}</code>.
+          Aquí el primer elemento ocupa 6 columnas y 2 filas; los siguientes se distribuyen en el espacio restante.
+        </p>
+        <div class="demo-grid sb-ui-grid sb-ui-gap-4" style="min-block-size: 300px;">
+          <div class="demo-item sb-ui-col-6 sb-ui-grid-span-row-2">6x2</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+          <div class="demo-item sb-ui-col-3">3</div>
+        </div>
+
+        <!-- Código: ejemplo de multi-row -->
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Multi-Row: primer elemento ocupa 6 cols × 2 filas --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-4"&gt;
+  &lt;div class="sb-ui-col-6 sb-ui-grid-span-row-2"&gt;6x2&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-col-3"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a
+            href="http://localhost:6007/?path=/docs/layout-grid--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      // Indicador de breakpoint activo (se actualiza al redimensionar)
+      function updateBreakpoint() {
+        const w = window.innerWidth;
+        const label = document.getElementById('bp-label');
+        const px    = document.getElementById('bp-px');
+        if (!label || !px) return;
+
+        if      (w >= 1400) { label.textContent = 'xxl'; px.textContent = '(≥1400px)'; }
+        else if (w >= 1200) { label.textContent = 'xl';  px.textContent = '(≥1200px)'; }
+        else if (w >= 992)  { label.textContent = 'lg';  px.textContent = '(≥992px)';  }
+        else if (w >= 768)  { label.textContent = 'md';  px.textContent = '(≥768px)';  }
+        else if (w >= 576)  { label.textContent = 'sm';  px.textContent = '(≥576px)';  }
+        else                { label.textContent = 'xs';  px.textContent = '(<576px)';  }
+      }
+
+      window.addEventListener('resize', updateBreakpoint);
+      updateBreakpoint();
+
+      // Copiar código al clipboard (usado por los botones .copy-btn)
+      function copyCode(btn) {
+        const codeBlock = btn.closest('.sb-ui-code-block');
+        const code = codeBlock.querySelector('code');
+        navigator.clipboard.writeText(code.textContent).then(() => {
+          btn.classList.add('copied');
+          btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
+          }, 1500);
+        });
+      }
+    </script>
+  </body>
+</html>

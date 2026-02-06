@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: light
- * Generated: 2026-02-06T14:29:27.514Z
+ * Generated: 2026-02-06T17:10:39.195Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -133,6 +133,1311 @@
   --sb-ui-gradient-tertiary-dark: linear-gradient(180deg, #90939e 0%, #a4a7af 100%);
   --sb-ui-gradient-tertiary-base: linear-gradient(180deg, #a4a7af 0%, #bec0c6 100%);
   --sb-ui-gradient-tertiary-light: linear-gradient(180deg, #dfe0e3 0%, #f8f9f9 100%);
+}
+
+
+
+
+@layer reset, tokens, base, utilities;
+/**
+ * ============================================================================
+ * Container Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Contenedores responsive con ancho máximo controlado:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - clamp() para padding responsive
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~50
+ * 2. RESET LAYER ............................. Línea ~60
+ * 3. TOKENS LAYER ............................ Línea ~75
+ * 4. BASE LAYER .............................. Línea ~95
+ *    ├─ Container Responsive ................ Línea ~100
+ *    ├─ Container Fluid ..................... Línea ~110
+ *    └─ Breakpoint Containers ............... Línea ~120
+ * 5. UTILITIES LAYER ......................... Línea ~150
+ *    ├─ Responsive Breakpoints .............. Línea ~155
+ *    ├─ High Contrast Mode .................. Línea ~195
+ *    └─ Reduced Motion ...................... Línea ~210
+ *
+ * ============================================================================
+ * 📏 BREAKPOINTS Y MAX-WIDTHS
+ * ============================================================================
+ *
+ * XS (0px):     100% - sin max-width
+ * SM (576px):   540px max-width
+ * MD (768px):   720px max-width
+ * LG (992px):   960px max-width
+ * XL (1200px):  1140px max-width
+ * XXL (1400px): 1320px max-width
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Container responsive (default) -->
+ * <div class="sb-ui-container">Contenido centrado con max-width</div>
+ *
+ * <!-- Container fluid (100% width) -->
+ * <div class="sb-ui-container-fluid">Contenido full-width</div>
+ *
+ * <!-- Container desde breakpoint específico -->
+ * <div class="sb-ui-container-md">Responsive desde MD (768px)</div>
+ *
+ * ============================================================================
+ */
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+@layer reset {
+  .sb-ui-container,
+  .sb-ui-container-fluid,
+  .sb-ui-container-sm,
+  .sb-ui-container-md,
+  .sb-ui-container-lg,
+  .sb-ui-container-xl,
+  .sb-ui-container-xxl {
+    all: unset;
+    box-sizing: border-box;
+  }
+}
+/* ============================================================================
+   3. TOKENS LAYER
+   ============================================================================ */
+@layer tokens {
+  :root {
+    /* Padding lateral responsive con clamp() */
+    --sb-ui-container-padding-inline: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+
+    /* Max-widths por breakpoint */
+    --sb-ui-container-max-inline-size-sm: 540px;
+    --sb-ui-container-max-inline-size-md: 720px;
+    --sb-ui-container-max-inline-size-lg: 960px;
+    --sb-ui-container-max-inline-size-xl: 1140px;
+    --sb-ui-container-max-inline-size-xxl: 1320px;
+  }
+}
+/* ============================================================================
+   4. BASE LAYER
+   ============================================================================ */
+@layer base {
+  /* ===== Container Responsive (default) ===== */
+  .sb-ui-container {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+
+  /* ===== Container Fluid (100% sin max-width) ===== */
+  .sb-ui-container-fluid {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+
+  /* ===== Breakpoint-specific Containers ===== */
+  .sb-ui-container-sm,
+  .sb-ui-container-md,
+  .sb-ui-container-lg,
+  .sb-ui-container-xl,
+  .sb-ui-container-xxl {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding-inline: var(--sb-ui-container-padding-inline);
+    margin-inline: auto;
+  }
+}
+/* ============================================================================
+   5. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+@layer utilities {
+  /* ===== Responsive Max-Widths ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-container,
+    .sb-ui-container-sm {
+      max-inline-size: var(--sb-ui-container-max-inline-size-sm);
+    }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md {
+      max-inline-size: var(--sb-ui-container-max-inline-size-md);
+    }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg {
+      max-inline-size: var(--sb-ui-container-max-inline-size-lg);
+    }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl {
+      max-inline-size: var(--sb-ui-container-max-inline-size-xl);
+    }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-container,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      max-inline-size: var(--sb-ui-container-max-inline-size-xxl);
+    }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    .sb-ui-container,
+    .sb-ui-container-fluid,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      outline: 2px solid currentColor;
+      outline-offset: -2px;
+    }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-container,
+    .sb-ui-container-fluid,
+    .sb-ui-container-sm,
+    .sb-ui-container-md,
+    .sb-ui-container-lg,
+    .sb-ui-container-xl,
+    .sb-ui-container-xxl {
+      transition: none;
+      animation: none;
+    }
+  }
+}
+
+
+
+
+@layer reset, tokens, base, utilities;
+/**
+ * ============================================================================
+ * Grid Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Sistema de grid de 12 columnas basado en CSS Grid moderno:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Mobile-first responsive
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~45
+ * 2. RESET LAYER ............................. Línea ~55
+ * 3. TOKENS LAYER ............................ Línea ~70
+ * 4. BASE LAYER .............................. Línea ~85
+ *    ├─ Grid Container ...................... Línea ~90
+ *    ├─ Column Spans (1-12) ................. Línea ~105
+ *    └─ Auto Column ......................... Línea ~200
+ * 5. UTILITIES LAYER ......................... Línea ~210
+ *    ├─ Responsive Breakpoints .............. Línea ~215
+ *    ├─ High Contrast Mode .................. Línea ~505
+ *    └─ Reduced Motion ...................... Línea ~520
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Grid básico 50/50 -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-6">Columna 1</div>
+ *   <div class="sb-ui-col-6">Columna 2</div>
+ * </div>
+ *
+ * <!-- Grid responsive: móvil full width, tablet 2 columnas, desktop 3 -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 1</div>
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 2</div>
+ *   <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item 3</div>
+ * </div>
+ *
+ * ============================================================================
+ */
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+@layer reset {
+  .sb-ui-grid {
+    all: unset;
+    box-sizing: border-box;
+  }
+
+    .sb-ui-grid > * {
+      box-sizing: border-box;
+    }
+}
+/* ============================================================================
+   3. TOKENS LAYER
+   ============================================================================ */
+@layer tokens {
+  .sb-ui-grid {
+    --sb-ui-grid-columns: 12;
+    --sb-ui-grid-gap: var(--sb-ui-gap-4, 1.5rem); /* Default gap de nivel 4 */
+  }
+}
+/* ============================================================================
+   4. BASE LAYER
+   ============================================================================ */
+@layer base {
+  /* ===== Grid Container ===== */
+  .sb-ui-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--sb-ui-grid-columns), 1fr);
+    gap: var(--sb-ui-grid-gap);
+    inline-size: 100%;
+  }
+
+  /* ===== Column Spans (1-12) ===== */
+  .sb-ui-col-1 {
+    grid-column: span 1;
+  }
+
+  .sb-ui-col-2 {
+    grid-column: span 2;
+  }
+
+  .sb-ui-col-3 {
+    grid-column: span 3;
+  }
+
+  .sb-ui-col-4 {
+    grid-column: span 4;
+  }
+
+  .sb-ui-col-5 {
+    grid-column: span 5;
+  }
+
+  .sb-ui-col-6 {
+    grid-column: span 6;
+  }
+
+  .sb-ui-col-7 {
+    grid-column: span 7;
+  }
+
+  .sb-ui-col-8 {
+    grid-column: span 8;
+  }
+
+  .sb-ui-col-9 {
+    grid-column: span 9;
+  }
+
+  .sb-ui-col-10 {
+    grid-column: span 10;
+  }
+
+  .sb-ui-col-11 {
+    grid-column: span 11;
+  }
+
+  .sb-ui-col-12 {
+    grid-column: span 12;
+  }
+
+  /* ===== Auto Column (ancho automático basado en contenido) ===== */
+  .sb-ui-col-auto {
+    grid-column: auto;
+  }
+}
+/* ============================================================================
+   5. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+@layer utilities {
+  /* ===== Responsive Breakpoints ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-col-sm-1 { grid-column: span 1; }
+    .sb-ui-col-sm-2 { grid-column: span 2; }
+    .sb-ui-col-sm-3 { grid-column: span 3; }
+    .sb-ui-col-sm-4 { grid-column: span 4; }
+    .sb-ui-col-sm-5 { grid-column: span 5; }
+    .sb-ui-col-sm-6 { grid-column: span 6; }
+    .sb-ui-col-sm-7 { grid-column: span 7; }
+    .sb-ui-col-sm-8 { grid-column: span 8; }
+    .sb-ui-col-sm-9 { grid-column: span 9; }
+    .sb-ui-col-sm-10 { grid-column: span 10; }
+    .sb-ui-col-sm-11 { grid-column: span 11; }
+    .sb-ui-col-sm-12 { grid-column: span 12; }
+    .sb-ui-col-sm-auto { grid-column: auto; }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-col-md-1 { grid-column: span 1; }
+    .sb-ui-col-md-2 { grid-column: span 2; }
+    .sb-ui-col-md-3 { grid-column: span 3; }
+    .sb-ui-col-md-4 { grid-column: span 4; }
+    .sb-ui-col-md-5 { grid-column: span 5; }
+    .sb-ui-col-md-6 { grid-column: span 6; }
+    .sb-ui-col-md-7 { grid-column: span 7; }
+    .sb-ui-col-md-8 { grid-column: span 8; }
+    .sb-ui-col-md-9 { grid-column: span 9; }
+    .sb-ui-col-md-10 { grid-column: span 10; }
+    .sb-ui-col-md-11 { grid-column: span 11; }
+    .sb-ui-col-md-12 { grid-column: span 12; }
+    .sb-ui-col-md-auto { grid-column: auto; }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-col-lg-1 { grid-column: span 1; }
+    .sb-ui-col-lg-2 { grid-column: span 2; }
+    .sb-ui-col-lg-3 { grid-column: span 3; }
+    .sb-ui-col-lg-4 { grid-column: span 4; }
+    .sb-ui-col-lg-5 { grid-column: span 5; }
+    .sb-ui-col-lg-6 { grid-column: span 6; }
+    .sb-ui-col-lg-7 { grid-column: span 7; }
+    .sb-ui-col-lg-8 { grid-column: span 8; }
+    .sb-ui-col-lg-9 { grid-column: span 9; }
+    .sb-ui-col-lg-10 { grid-column: span 10; }
+    .sb-ui-col-lg-11 { grid-column: span 11; }
+    .sb-ui-col-lg-12 { grid-column: span 12; }
+    .sb-ui-col-lg-auto { grid-column: auto; }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-col-xl-1 { grid-column: span 1; }
+    .sb-ui-col-xl-2 { grid-column: span 2; }
+    .sb-ui-col-xl-3 { grid-column: span 3; }
+    .sb-ui-col-xl-4 { grid-column: span 4; }
+    .sb-ui-col-xl-5 { grid-column: span 5; }
+    .sb-ui-col-xl-6 { grid-column: span 6; }
+    .sb-ui-col-xl-7 { grid-column: span 7; }
+    .sb-ui-col-xl-8 { grid-column: span 8; }
+    .sb-ui-col-xl-9 { grid-column: span 9; }
+    .sb-ui-col-xl-10 { grid-column: span 10; }
+    .sb-ui-col-xl-11 { grid-column: span 11; }
+    .sb-ui-col-xl-12 { grid-column: span 12; }
+    .sb-ui-col-xl-auto { grid-column: auto; }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-col-xxl-1 { grid-column: span 1; }
+    .sb-ui-col-xxl-2 { grid-column: span 2; }
+    .sb-ui-col-xxl-3 { grid-column: span 3; }
+    .sb-ui-col-xxl-4 { grid-column: span 4; }
+    .sb-ui-col-xxl-5 { grid-column: span 5; }
+    .sb-ui-col-xxl-6 { grid-column: span 6; }
+    .sb-ui-col-xxl-7 { grid-column: span 7; }
+    .sb-ui-col-xxl-8 { grid-column: span 8; }
+    .sb-ui-col-xxl-9 { grid-column: span 9; }
+    .sb-ui-col-xxl-10 { grid-column: span 10; }
+    .sb-ui-col-xxl-11 { grid-column: span 11; }
+    .sb-ui-col-xxl-12 { grid-column: span 12; }
+    .sb-ui-col-xxl-auto { grid-column: auto; }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    .sb-ui-grid {
+      /* Aumentar contraste de bordes visuales si se usan */
+      outline: 2px solid currentColor;
+      outline-offset: -2px;
+    }
+
+      .sb-ui-grid > * {
+        outline: 1px solid currentColor;
+        outline-offset: -1px;
+      }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-grid,
+    .sb-ui-grid > * {
+      transition: none;
+      animation: none;
+    }
+  }
+}
+
+
+
+
+@layer reset, base, utilities;
+/**
+ * ============================================================================
+ * Columns Utilities - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Utilities CSS modernas para alineación y ordenamiento de columnas en Grid:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Responsive breakpoints
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~35
+ * 2. RESET LAYER ............................. Línea ~45
+ * 3. BASE LAYER .............................. Línea ~55
+ *    ├─ Align Self .......................... Línea ~60
+ *    ├─ Justify Self ........................ Línea ~75
+ *    ├─ Order ............................... Línea ~90
+ *    └─ Column Start Position ............... Línea ~115
+ * 4. UTILITIES LAYER ......................... Línea ~145
+ *    ├─ Responsive Breakpoints .............. Línea ~150
+ *    ├─ High Contrast Mode .................. Línea ~285
+ *    └─ Reduced Motion ...................... Línea ~295
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Alineación vertical de una columna -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-6 sb-ui-col-align-self-center">...</div>
+ * </div>
+ *
+ * <!-- Justificación horizontal de una columna -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-4 sb-ui-col-justify-self-end">...</div>
+ * </div>
+ *
+ * <!-- Reordenamiento de columnas -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-order-2">Aparece segundo</div>
+ *   <div class="sb-ui-col-order-1">Aparece primero</div>
+ * </div>
+ *
+ * <!-- Posicionamiento explícito -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-start-7">Comienza en columna 7</div>
+ * </div>
+ *
+ * ============================================================================
+ */
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+/* No reset needed - utilities no agregan elementos al DOM */
+/* ============================================================================
+   3. BASE LAYER - Column Utilities
+   ============================================================================ */
+@layer base {
+  /* ===== Align Self (alineación vertical en grid) ===== */
+  .sb-ui-col-align-self-start {
+    align-self: start;
+  }
+
+  .sb-ui-col-align-self-center {
+    align-self: center;
+  }
+
+  .sb-ui-col-align-self-end {
+    align-self: end;
+  }
+
+  .sb-ui-col-align-self-stretch {
+    align-self: stretch;
+  }
+
+  /* ===== Justify Self (justificación horizontal en grid) ===== */
+  .sb-ui-col-justify-self-start {
+    justify-self: start;
+  }
+
+  .sb-ui-col-justify-self-center {
+    justify-self: center;
+  }
+
+  .sb-ui-col-justify-self-end {
+    justify-self: end;
+  }
+
+  .sb-ui-col-justify-self-stretch {
+    justify-self: stretch;
+  }
+
+  /* ===== Order (reordenamiento de columnas) ===== */
+  .sb-ui-col-order-first {
+    order: -1;
+  }
+
+  .sb-ui-col-order-last {
+    order: 999;
+  }
+
+  .sb-ui-col-order-1 {
+    order: 1;
+  }
+
+  .sb-ui-col-order-2 {
+    order: 2;
+  }
+
+  .sb-ui-col-order-3 {
+    order: 3;
+  }
+
+  .sb-ui-col-order-4 {
+    order: 4;
+  }
+
+  .sb-ui-col-order-5 {
+    order: 5;
+  }
+
+  /* ===== Column Start Position (posicionamiento explícito) ===== */
+  .sb-ui-col-start-1 { grid-column-start: 1; }
+  .sb-ui-col-start-2 { grid-column-start: 2; }
+  .sb-ui-col-start-3 { grid-column-start: 3; }
+  .sb-ui-col-start-4 { grid-column-start: 4; }
+  .sb-ui-col-start-5 { grid-column-start: 5; }
+  .sb-ui-col-start-6 { grid-column-start: 6; }
+  .sb-ui-col-start-7 { grid-column-start: 7; }
+  .sb-ui-col-start-8 { grid-column-start: 8; }
+  .sb-ui-col-start-9 { grid-column-start: 9; }
+  .sb-ui-col-start-10 { grid-column-start: 10; }
+  .sb-ui-col-start-11 { grid-column-start: 11; }
+  .sb-ui-col-start-12 { grid-column-start: 12; }
+
+  /* Auto start (resetear posicionamiento) */
+  .sb-ui-col-start-auto {
+    grid-column-start: auto;
+  }
+}
+/* ============================================================================
+   4. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+@layer utilities {
+  /* ===== Responsive Breakpoints ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-col-align-self-sm-start { align-self: start; }
+    .sb-ui-col-align-self-sm-center { align-self: center; }
+    .sb-ui-col-align-self-sm-end { align-self: end; }
+    .sb-ui-col-align-self-sm-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-sm-start { justify-self: start; }
+    .sb-ui-col-justify-self-sm-center { justify-self: center; }
+    .sb-ui-col-justify-self-sm-end { justify-self: end; }
+    .sb-ui-col-justify-self-sm-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-sm-first { order: -1; }
+    .sb-ui-col-order-sm-last { order: 999; }
+    .sb-ui-col-order-sm-1 { order: 1; }
+    .sb-ui-col-order-sm-2 { order: 2; }
+    .sb-ui-col-order-sm-3 { order: 3; }
+    .sb-ui-col-order-sm-4 { order: 4; }
+    .sb-ui-col-order-sm-5 { order: 5; }
+
+    .sb-ui-col-start-sm-auto { grid-column-start: auto; }
+    .sb-ui-col-start-sm-1 { grid-column-start: 1; }
+    .sb-ui-col-start-sm-2 { grid-column-start: 2; }
+    .sb-ui-col-start-sm-3 { grid-column-start: 3; }
+    .sb-ui-col-start-sm-4 { grid-column-start: 4; }
+    .sb-ui-col-start-sm-5 { grid-column-start: 5; }
+    .sb-ui-col-start-sm-6 { grid-column-start: 6; }
+    .sb-ui-col-start-sm-7 { grid-column-start: 7; }
+    .sb-ui-col-start-sm-8 { grid-column-start: 8; }
+    .sb-ui-col-start-sm-9 { grid-column-start: 9; }
+    .sb-ui-col-start-sm-10 { grid-column-start: 10; }
+    .sb-ui-col-start-sm-11 { grid-column-start: 11; }
+    .sb-ui-col-start-sm-12 { grid-column-start: 12; }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-col-align-self-md-start { align-self: start; }
+    .sb-ui-col-align-self-md-center { align-self: center; }
+    .sb-ui-col-align-self-md-end { align-self: end; }
+    .sb-ui-col-align-self-md-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-md-start { justify-self: start; }
+    .sb-ui-col-justify-self-md-center { justify-self: center; }
+    .sb-ui-col-justify-self-md-end { justify-self: end; }
+    .sb-ui-col-justify-self-md-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-md-first { order: -1; }
+    .sb-ui-col-order-md-last { order: 999; }
+    .sb-ui-col-order-md-1 { order: 1; }
+    .sb-ui-col-order-md-2 { order: 2; }
+    .sb-ui-col-order-md-3 { order: 3; }
+    .sb-ui-col-order-md-4 { order: 4; }
+    .sb-ui-col-order-md-5 { order: 5; }
+
+    .sb-ui-col-start-md-auto { grid-column-start: auto; }
+    .sb-ui-col-start-md-1 { grid-column-start: 1; }
+    .sb-ui-col-start-md-2 { grid-column-start: 2; }
+    .sb-ui-col-start-md-3 { grid-column-start: 3; }
+    .sb-ui-col-start-md-4 { grid-column-start: 4; }
+    .sb-ui-col-start-md-5 { grid-column-start: 5; }
+    .sb-ui-col-start-md-6 { grid-column-start: 6; }
+    .sb-ui-col-start-md-7 { grid-column-start: 7; }
+    .sb-ui-col-start-md-8 { grid-column-start: 8; }
+    .sb-ui-col-start-md-9 { grid-column-start: 9; }
+    .sb-ui-col-start-md-10 { grid-column-start: 10; }
+    .sb-ui-col-start-md-11 { grid-column-start: 11; }
+    .sb-ui-col-start-md-12 { grid-column-start: 12; }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-col-align-self-lg-start { align-self: start; }
+    .sb-ui-col-align-self-lg-center { align-self: center; }
+    .sb-ui-col-align-self-lg-end { align-self: end; }
+    .sb-ui-col-align-self-lg-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-lg-start { justify-self: start; }
+    .sb-ui-col-justify-self-lg-center { justify-self: center; }
+    .sb-ui-col-justify-self-lg-end { justify-self: end; }
+    .sb-ui-col-justify-self-lg-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-lg-first { order: -1; }
+    .sb-ui-col-order-lg-last { order: 999; }
+    .sb-ui-col-order-lg-1 { order: 1; }
+    .sb-ui-col-order-lg-2 { order: 2; }
+    .sb-ui-col-order-lg-3 { order: 3; }
+    .sb-ui-col-order-lg-4 { order: 4; }
+    .sb-ui-col-order-lg-5 { order: 5; }
+
+    .sb-ui-col-start-lg-auto { grid-column-start: auto; }
+    .sb-ui-col-start-lg-1 { grid-column-start: 1; }
+    .sb-ui-col-start-lg-2 { grid-column-start: 2; }
+    .sb-ui-col-start-lg-3 { grid-column-start: 3; }
+    .sb-ui-col-start-lg-4 { grid-column-start: 4; }
+    .sb-ui-col-start-lg-5 { grid-column-start: 5; }
+    .sb-ui-col-start-lg-6 { grid-column-start: 6; }
+    .sb-ui-col-start-lg-7 { grid-column-start: 7; }
+    .sb-ui-col-start-lg-8 { grid-column-start: 8; }
+    .sb-ui-col-start-lg-9 { grid-column-start: 9; }
+    .sb-ui-col-start-lg-10 { grid-column-start: 10; }
+    .sb-ui-col-start-lg-11 { grid-column-start: 11; }
+    .sb-ui-col-start-lg-12 { grid-column-start: 12; }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-col-align-self-xl-start { align-self: start; }
+    .sb-ui-col-align-self-xl-center { align-self: center; }
+    .sb-ui-col-align-self-xl-end { align-self: end; }
+    .sb-ui-col-align-self-xl-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-xl-start { justify-self: start; }
+    .sb-ui-col-justify-self-xl-center { justify-self: center; }
+    .sb-ui-col-justify-self-xl-end { justify-self: end; }
+    .sb-ui-col-justify-self-xl-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-xl-first { order: -1; }
+    .sb-ui-col-order-xl-last { order: 999; }
+    .sb-ui-col-order-xl-1 { order: 1; }
+    .sb-ui-col-order-xl-2 { order: 2; }
+    .sb-ui-col-order-xl-3 { order: 3; }
+    .sb-ui-col-order-xl-4 { order: 4; }
+    .sb-ui-col-order-xl-5 { order: 5; }
+
+    .sb-ui-col-start-xl-auto { grid-column-start: auto; }
+    .sb-ui-col-start-xl-1 { grid-column-start: 1; }
+    .sb-ui-col-start-xl-2 { grid-column-start: 2; }
+    .sb-ui-col-start-xl-3 { grid-column-start: 3; }
+    .sb-ui-col-start-xl-4 { grid-column-start: 4; }
+    .sb-ui-col-start-xl-5 { grid-column-start: 5; }
+    .sb-ui-col-start-xl-6 { grid-column-start: 6; }
+    .sb-ui-col-start-xl-7 { grid-column-start: 7; }
+    .sb-ui-col-start-xl-8 { grid-column-start: 8; }
+    .sb-ui-col-start-xl-9 { grid-column-start: 9; }
+    .sb-ui-col-start-xl-10 { grid-column-start: 10; }
+    .sb-ui-col-start-xl-11 { grid-column-start: 11; }
+    .sb-ui-col-start-xl-12 { grid-column-start: 12; }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-col-align-self-xxl-start { align-self: start; }
+    .sb-ui-col-align-self-xxl-center { align-self: center; }
+    .sb-ui-col-align-self-xxl-end { align-self: end; }
+    .sb-ui-col-align-self-xxl-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-xxl-start { justify-self: start; }
+    .sb-ui-col-justify-self-xxl-center { justify-self: center; }
+    .sb-ui-col-justify-self-xxl-end { justify-self: end; }
+    .sb-ui-col-justify-self-xxl-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-xxl-first { order: -1; }
+    .sb-ui-col-order-xxl-last { order: 999; }
+    .sb-ui-col-order-xxl-1 { order: 1; }
+    .sb-ui-col-order-xxl-2 { order: 2; }
+    .sb-ui-col-order-xxl-3 { order: 3; }
+    .sb-ui-col-order-xxl-4 { order: 4; }
+    .sb-ui-col-order-xxl-5 { order: 5; }
+
+    .sb-ui-col-start-xxl-auto { grid-column-start: auto; }
+    .sb-ui-col-start-xxl-1 { grid-column-start: 1; }
+    .sb-ui-col-start-xxl-2 { grid-column-start: 2; }
+    .sb-ui-col-start-xxl-3 { grid-column-start: 3; }
+    .sb-ui-col-start-xxl-4 { grid-column-start: 4; }
+    .sb-ui-col-start-xxl-5 { grid-column-start: 5; }
+    .sb-ui-col-start-xxl-6 { grid-column-start: 6; }
+    .sb-ui-col-start-xxl-7 { grid-column-start: 7; }
+    .sb-ui-col-start-xxl-8 { grid-column-start: 8; }
+    .sb-ui-col-start-xxl-9 { grid-column-start: 9; }
+    .sb-ui-col-start-xxl-10 { grid-column-start: 10; }
+    .sb-ui-col-start-xxl-11 { grid-column-start: 11; }
+    .sb-ui-col-start-xxl-12 { grid-column-start: 12; }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    /* Column utilities no requieren ajustes visuales en high contrast */
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    /* Column utilities no producen animaciones */
+  }
+}
+
+
+
+
+@layer reset, tokens, base, utilities;
+/**
+ * ============================================================================
+ * Gutters Utilities - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Utilities CSS modernas para spacing con CSS Grid gap:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Responsive breakpoints
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~35
+ * 2. RESET LAYER ............................. Línea ~45
+ * 3. TOKENS LAYER ............................ Línea ~55
+ *    - Escala de spacing (0-5)
+ * 4. BASE LAYER .............................. Línea ~75
+ *    - Gap utilities base
+ * 5. UTILITIES LAYER ......................... Línea ~180
+ *    ├─ Responsive Breakpoints .............. Línea ~185
+ *    ├─ High Contrast Mode .................. Línea ~310
+ *    └─ Reduced Motion ...................... Línea ~320
+ *
+ * ============================================================================
+ * 📏 ESCALA DE SPACING
+ * ============================================================================
+ *
+ * 0: 0 (sin gap)
+ * 1: 0.25rem (4px)
+ * 2: 0.5rem (8px)
+ * 3: 1rem (16px)
+ * 4: 1.5rem (24px) - default
+ * 5: 3rem (48px)
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Gap en ambas direcciones -->
+ * <div class="sb-ui-grid sb-ui-gap-3">...</div>
+ *
+ * <!-- Gap horizontal (entre columnas) -->
+ * <div class="sb-ui-grid sb-ui-gap-x-4">...</div>
+ *
+ * <!-- Gap vertical (entre filas) -->
+ * <div class="sb-ui-grid sb-ui-gap-y-2">...</div>
+ *
+ * <!-- Responsive gap -->
+ * <div class="sb-ui-grid sb-ui-gap-2 sb-ui-gap-md-4 sb-ui-gap-lg-5">...</div>
+ *
+ * ============================================================================
+ */
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+/* No reset needed - utilities no agregan elementos al DOM */
+/* ============================================================================
+   3. TOKENS LAYER - Escala de Spacing
+   ============================================================================ */
+@layer tokens {
+  :root {
+    --sb-ui-gap-0: 0;
+    --sb-ui-gap-1: 0.25rem; /* 4px */
+    --sb-ui-gap-2: 0.5rem;  /* 8px */
+    --sb-ui-gap-3: 1rem;    /* 16px */
+    --sb-ui-gap-4: 1.5rem;  /* 24px - default */
+    --sb-ui-gap-5: 3rem;    /* 48px */
+  }
+}
+/* ============================================================================
+   4. BASE LAYER - Gap Utilities
+   ============================================================================ */
+@layer base {
+  /* Gap en ambas direcciones (row-gap + column-gap) */
+  .sb-ui-gap-0 {
+    gap: var(--sb-ui-gap-0);
+  }
+
+  .sb-ui-gap-1 {
+    gap: var(--sb-ui-gap-1);
+  }
+
+  .sb-ui-gap-2 {
+    gap: var(--sb-ui-gap-2);
+  }
+
+  .sb-ui-gap-3 {
+    gap: var(--sb-ui-gap-3);
+  }
+
+  .sb-ui-gap-4 {
+    gap: var(--sb-ui-gap-4);
+  }
+
+  .sb-ui-gap-5 {
+    gap: var(--sb-ui-gap-5);
+  }
+
+  /* Gap horizontal (column-gap) - entre columnas en dirección inline */
+  .sb-ui-gap-x-0 {
+    column-gap: var(--sb-ui-gap-0);
+  }
+
+  .sb-ui-gap-x-1 {
+    column-gap: var(--sb-ui-gap-1);
+  }
+
+  .sb-ui-gap-x-2 {
+    column-gap: var(--sb-ui-gap-2);
+  }
+
+  .sb-ui-gap-x-3 {
+    column-gap: var(--sb-ui-gap-3);
+  }
+
+  .sb-ui-gap-x-4 {
+    column-gap: var(--sb-ui-gap-4);
+  }
+
+  .sb-ui-gap-x-5 {
+    column-gap: var(--sb-ui-gap-5);
+  }
+
+  /* Gap vertical (row-gap) - entre filas en dirección block */
+  .sb-ui-gap-y-0 {
+    row-gap: var(--sb-ui-gap-0);
+  }
+
+  .sb-ui-gap-y-1 {
+    row-gap: var(--sb-ui-gap-1);
+  }
+
+  .sb-ui-gap-y-2 {
+    row-gap: var(--sb-ui-gap-2);
+  }
+
+  .sb-ui-gap-y-3 {
+    row-gap: var(--sb-ui-gap-3);
+  }
+
+  .sb-ui-gap-y-4 {
+    row-gap: var(--sb-ui-gap-4);
+  }
+
+  .sb-ui-gap-y-5 {
+    row-gap: var(--sb-ui-gap-5);
+  }
+}
+/* ============================================================================
+   5. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+@layer utilities {
+  /* ===== Responsive Breakpoints ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-gap-sm-0 { gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-sm-1 { gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-sm-2 { gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-sm-3 { gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-sm-4 { gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-sm-5 { gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-x-sm-0 { column-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-x-sm-1 { column-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-x-sm-2 { column-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-x-sm-3 { column-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-x-sm-4 { column-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-x-sm-5 { column-gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-y-sm-0 { row-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-y-sm-1 { row-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-y-sm-2 { row-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-y-sm-3 { row-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-y-sm-4 { row-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-y-sm-5 { row-gap: var(--sb-ui-gap-5); }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-gap-md-0 { gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-md-1 { gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-md-2 { gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-md-3 { gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-md-4 { gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-md-5 { gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-x-md-0 { column-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-x-md-1 { column-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-x-md-2 { column-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-x-md-3 { column-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-x-md-4 { column-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-x-md-5 { column-gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-y-md-0 { row-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-y-md-1 { row-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-y-md-2 { row-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-y-md-3 { row-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-y-md-4 { row-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-y-md-5 { row-gap: var(--sb-ui-gap-5); }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-gap-lg-0 { gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-lg-1 { gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-lg-2 { gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-lg-3 { gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-lg-4 { gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-lg-5 { gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-x-lg-0 { column-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-x-lg-1 { column-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-x-lg-2 { column-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-x-lg-3 { column-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-x-lg-4 { column-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-x-lg-5 { column-gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-y-lg-0 { row-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-y-lg-1 { row-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-y-lg-2 { row-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-y-lg-3 { row-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-y-lg-4 { row-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-y-lg-5 { row-gap: var(--sb-ui-gap-5); }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-gap-xl-0 { gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-xl-1 { gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-xl-2 { gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-xl-3 { gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-xl-4 { gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-xl-5 { gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-x-xl-0 { column-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-x-xl-1 { column-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-x-xl-2 { column-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-x-xl-3 { column-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-x-xl-4 { column-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-x-xl-5 { column-gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-y-xl-0 { row-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-y-xl-1 { row-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-y-xl-2 { row-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-y-xl-3 { row-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-y-xl-4 { row-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-y-xl-5 { row-gap: var(--sb-ui-gap-5); }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-gap-xxl-0 { gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-xxl-1 { gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-xxl-2 { gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-xxl-3 { gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-xxl-4 { gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-xxl-5 { gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-x-xxl-0 { column-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-x-xxl-1 { column-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-x-xxl-2 { column-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-x-xxl-3 { column-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-x-xxl-4 { column-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-x-xxl-5 { column-gap: var(--sb-ui-gap-5); }
+
+    .sb-ui-gap-y-xxl-0 { row-gap: var(--sb-ui-gap-0); }
+    .sb-ui-gap-y-xxl-1 { row-gap: var(--sb-ui-gap-1); }
+    .sb-ui-gap-y-xxl-2 { row-gap: var(--sb-ui-gap-2); }
+    .sb-ui-gap-y-xxl-3 { row-gap: var(--sb-ui-gap-3); }
+    .sb-ui-gap-y-xxl-4 { row-gap: var(--sb-ui-gap-4); }
+    .sb-ui-gap-y-xxl-5 { row-gap: var(--sb-ui-gap-5); }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    /* Gap utilities no requieren ajustes visuales en high contrast */
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    /* Gap utilities no producen animaciones */
+  }
+}
+
+
+
+
+@layer reset, base, utilities;
+/**
+ * ============================================================================
+ * CSS Grid Utilities - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Utilities avanzadas para layouts complejos con CSS Grid:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Auto-fit, auto-fill, spanning y alineación
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~40
+ * 2. RESET LAYER ............................. Línea ~50
+ * 3. BASE LAYER .............................. Línea ~60
+ *    ├─ Grid Columns (1-6) .................. Línea ~65
+ *    ├─ Grid Rows (1-4) ..................... Línea ~90
+ *    ├─ Grid Spanning ....................... Línea ~110
+ *    └─ Placement Utilities ................. Línea ~140
+ * 4. UTILITIES LAYER ......................... Línea ~190
+ *    ├─ High Contrast Mode .................. Línea ~195
+ *    └─ Reduced Motion ...................... Línea ~210
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- 3 columnas iguales -->
+ * <div class="sb-ui-grid-cols-3">...</div>
+ *
+ * <!-- Auto-fit con mínimo 200px -->
+ * <div class="sb-ui-grid-cols-auto-fit">...</div>
+ *
+ * <!-- Spanning (colspan 2, rowspan 2) -->
+ * <div class="sb-ui-grid-span-col-2">Ocupa 2 columnas</div>
+ * <div class="sb-ui-grid-span-row-2">Ocupa 2 filas</div>
+ *
+ * <!-- Centrar contenido -->
+ * <div class="sb-ui-grid sb-ui-place-items-center">...</div>
+ *
+ * ============================================================================
+ */
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+/* No reset needed - utilities no agregan elementos al DOM */
+/* ============================================================================
+   3. BASE LAYER
+   ============================================================================ */
+@layer base {
+  /* ===== Grid Columns (N columnas iguales) ===== */
+  .sb-ui-grid-cols-1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sb-ui-grid-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sb-ui-grid-cols-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sb-ui-grid-cols-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sb-ui-grid-cols-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .sb-ui-grid-cols-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Auto-fit: ajusta automáticamente columnas al espacio disponible */
+  .sb-ui-grid-cols-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  }
+
+  /* ===== Grid Rows (N filas iguales) ===== */
+  .sb-ui-grid-rows-1 {
+    grid-template-rows: repeat(1, 1fr);
+  }
+
+  .sb-ui-grid-rows-2 {
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .sb-ui-grid-rows-3 {
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .sb-ui-grid-rows-4 {
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  /* ===== Grid Spanning (colspan/rowspan) ===== */
+  .sb-ui-grid-span-col-2 {
+    grid-column: span 2;
+  }
+
+  .sb-ui-grid-span-col-3 {
+    grid-column: span 3;
+  }
+
+  .sb-ui-grid-span-col-full {
+    grid-column: 1 / -1;
+  }
+
+  .sb-ui-grid-span-row-2 {
+    grid-row: span 2;
+  }
+
+  .sb-ui-grid-span-row-3 {
+    grid-row: span 3;
+  }
+
+  .sb-ui-grid-span-row-full {
+    grid-row: 1 / -1;
+  }
+
+  /* ===== Placement: Place Items (align + justify items) ===== */
+  .sb-ui-place-items-start {
+    place-items: start;
+  }
+
+  .sb-ui-place-items-center {
+    place-items: center;
+  }
+
+  .sb-ui-place-items-end {
+    place-items: end;
+  }
+
+  .sb-ui-place-items-stretch {
+    place-items: stretch;
+  }
+
+  /* ===== Placement: Place Content (align + justify content) ===== */
+  .sb-ui-place-content-start {
+    place-content: start;
+  }
+
+  .sb-ui-place-content-center {
+    place-content: center;
+  }
+
+  .sb-ui-place-content-end {
+    place-content: end;
+  }
+
+  .sb-ui-place-content-space-between {
+    place-content: space-between;
+  }
+
+  .sb-ui-place-content-space-around {
+    place-content: space-around;
+  }
+
+  .sb-ui-place-content-space-evenly {
+    place-content: space-evenly;
+  }
+}
+/* ============================================================================
+   4. UTILITIES LAYER - Accesibilidad
+   ============================================================================ */
+@layer utilities {
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    [class*='sb-ui-grid-'] {
+      outline: 1px solid currentColor;
+      outline-offset: -1px;
+    }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    [class*='sb-ui-grid-'],
+    [class*='sb-ui-place-'] {
+      transition: none;
+      animation: none;
+    }
+  }
 }
 
 
@@ -1363,11 +2668,17 @@
     --sb-ui-breadcrumb-link-active: var(--sb-ui-color-primary-D200);
     --sb-ui-breadcrumb-current-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-breadcrumb-separator-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-breadcrumb-icon-color: var(--sb-ui-color-primary-base);
+    --sb-ui-breadcrumb-icon-hover: var(--sb-ui-color-primary-D100);
+    --sb-ui-breadcrumb-icon-active: var(--sb-ui-color-primary-D200);
 
     /* Spacing */
     --sb-ui-breadcrumb-gap: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
     --sb-ui-breadcrumb-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
     --sb-ui-breadcrumb-padding-inline: 0;
+
+    /* Sizes - Según Figma: iconos 16px × 16px */
+    --sb-ui-breadcrumb-icon-size: clamp(14px, 0.9rem + 0.2vw, 16px);
 
     /* Separator */
     --sb-ui-breadcrumb-separator-content: '>';
@@ -1455,6 +2766,34 @@
     font-weight: 400;
     cursor: default;
     display: inline-block;
+  }
+
+  /* Icon - Según Figma: 16px × 16px */
+  .sb-ui-breadcrumb__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-breadcrumb-icon-size);
+    block-size: var(--sb-ui-breadcrumb-icon-size);
+    font-size: var(--sb-ui-breadcrumb-icon-size);
+    color: var(--sb-ui-breadcrumb-icon-color);
+    margin-inline-end: 0.375rem;
+    flex-shrink: 0;
+    transition: var(--sb-ui-breadcrumb-transition);
+  }
+
+  /* Icon colors en links */
+    .sb-ui-breadcrumb__link:hover .sb-ui-breadcrumb__icon {
+      color: var(--sb-ui-breadcrumb-icon-hover);
+    }
+
+    .sb-ui-breadcrumb__link:active .sb-ui-breadcrumb__icon {
+      color: var(--sb-ui-breadcrumb-icon-active);
+    }
+
+  /* Icon color en current (page actual) */
+  .sb-ui-breadcrumb__current .sb-ui-breadcrumb__icon {
+    color: var(--sb-ui-breadcrumb-current-color);
   }
 }
 /* ========================================
@@ -3037,6 +4376,7 @@
     /* Header */
     --sb-ui-calendar-header-padding-block: clamp(0.5rem, 0.4rem + 0.5vw, 0.875rem);
     --sb-ui-calendar-header-gap: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+    --sb-ui-calendar-header-margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
     
     /* Month/Year Display */
     --sb-ui-calendar-month-font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
@@ -3122,13 +4462,13 @@
     font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
   }
   
-  /* Header */
+  /* Header (dropdown mes/año) - margen inferior para separar del calendario */
   .sb-ui-calendar__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-block-end: var(--sb-ui-calendar-header-padding-block);
-    margin-block-end: var(--sb-ui-calendar-gap);
+    margin-block-end: var(--sb-ui-calendar-header-margin-block-end);
     gap: var(--sb-ui-calendar-header-gap);
   }
   
@@ -4279,9 +5619,12 @@
    ======================================== */
 @layer tokens {
   .sb-ui-datepicker {
-    /* Container */
+    /* Container - espaciado interno (label, wrapper, helper) */
     --sb-ui-datepicker-inline-size: clamp(200px, 100%, 300px);
-    
+    --sb-ui-datepicker-padding-inline: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-padding-block: clamp(0.375rem, 0.3rem + 0.3vw, 0.75rem);
+    --sb-ui-datepicker-gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+
     /* Trigger button (calendar icon) */
     --sb-ui-datepicker-trigger-size: clamp(36px, 2.2rem + 0.5vw, 44px);
     --sb-ui-datepicker-trigger-bg: transparent;
@@ -4289,15 +5632,19 @@
     --sb-ui-datepicker-trigger-bg-active: var(--sb-ui-color-grayscale-L300, #e8e8e8);
     --sb-ui-datepicker-trigger-color: var(--sb-ui-color-grayscale-base, #666);
     --sb-ui-datepicker-trigger-color-hover: var(--sb-ui-color-primary-base, #038450);
-    
-    /* Dropdown */
+
+    /* Dropdown - padding interno alrededor del calendario */
     --sb-ui-datepicker-dropdown-bg: var(--sb-ui-color-grayscale-white, #fff);
     --sb-ui-datepicker-dropdown-border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
     --sb-ui-datepicker-dropdown-border-width: 1px;
     --sb-ui-datepicker-dropdown-border-radius: clamp(8px, 0.5rem + 0.5vw, 12px);
     --sb-ui-datepicker-dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     --sb-ui-datepicker-dropdown-margin-block-start: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
-    
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.75rem + 0.8vw, 1.25rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
+    --sb-ui-datepicker-dropdown-footer-margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+
     /* Transitions */
     --sb-ui-datepicker-transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
@@ -4311,20 +5658,25 @@
     position: relative;
     inline-size: var(--sb-ui-datepicker-inline-size);
     font-family: var(--sb-ui-datepicker-input-font-family);
+    padding-inline: var(--sb-ui-datepicker-padding-inline);
+    padding-block: var(--sb-ui-datepicker-padding-block);
   }
-  
-  /* Input wrapper */
+
+  /* Input wrapper - margen interno entre elementos del wrapper si hubiera más de uno */
   .sb-ui-datepicker__wrapper {
     display: flex;
     position: relative;
     align-items: stretch;
-    
-    /* El input hijo (.sb-ui-input) hereda todo del componente input átomo */
-    /* Solo ajustamos el padding para el ícono */
+    gap: var(--sb-ui-datepicker-gap);
+
+    /* Input: padding explícito para que no se pierda con resets de página */
   }
     .sb-ui-datepicker__wrapper .sb-ui-input {
       flex: 1;
+      min-inline-size: 0;
       inline-size: 100%;
+      padding-inline-start: var(--sb-ui-datepicker-input-padding-inline, var(--sb-ui-input-padding-inline, 0.75rem));
+      padding-block: var(--sb-ui-datepicker-input-padding-block, var(--sb-ui-input-padding-block, 0.625rem));
       padding-inline-end: calc(var(--sb-ui-datepicker-trigger-size) + 0.5rem) !important;
       cursor: pointer;
     }
@@ -4382,31 +5734,41 @@
     fill: currentColor;
   }
   
-  /* Dropdown */
+  /* Dropdown - padding interno arriba/abajo/lados para que nada quede pegado a los bordes */
   .sb-ui-datepicker__dropdown {
     position: absolute;
     inset-block-start: 100%;
     inset-inline-start: 0;
     z-index: 1000;
-    
+
     margin-block-start: var(--sb-ui-datepicker-dropdown-margin-block-start);
-    
+    padding-inline: var(--sb-ui-datepicker-dropdown-padding-inline);
+    padding-block-start: var(--sb-ui-datepicker-dropdown-padding-block-start);
+    padding-block-end: var(--sb-ui-datepicker-dropdown-padding-block-end);
+
     background-color: var(--sb-ui-datepicker-dropdown-bg);
     border: var(--sb-ui-datepicker-dropdown-border-width) solid var(--sb-ui-datepicker-dropdown-border-color);
     border-radius: var(--sb-ui-datepicker-dropdown-border-radius);
     box-shadow: var(--sb-ui-datepicker-dropdown-shadow);
-    
+
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
-    
-    /* Calendar inside dropdown has no border/shadow */
+
+    /* Calendario dentro del dropdown: sin borde/sombra y con margen para separar de los bordes */
   }
     .sb-ui-datepicker__dropdown .sb-ui-calendar {
       border: none;
       box-shadow: none;
       inline-size: auto;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+
+    /* Margen superior del footer (entre la línea y los botones Aceptar/Cancelar) */
+    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+      padding-block-start: var(--sb-ui-datepicker-dropdown-footer-margin-block-start);
     }
   
   /* Dropdown open state */
@@ -4432,13 +5794,19 @@
     --sb-ui-datepicker-input-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
     --sb-ui-datepicker-input-padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
     --sb-ui-datepicker-trigger-size: clamp(28px, 1.8rem + 0.5vw, 36px);
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
   }
-  
+
   .sb-ui-datepicker--large {
     --sb-ui-datepicker-input-font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
     --sb-ui-datepicker-input-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
     --sb-ui-datepicker-input-padding-block: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
     --sb-ui-datepicker-trigger-size: clamp(44px, 2.6rem + 0.5vw, 52px);
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
   }
 }
 /* ========================================
@@ -6711,7 +8079,7 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con doble círculo (verde + amarillo)
+ * - integrated: Spinner con tres anillos concéntricos (verde oscuro + verde claro + amarillo)
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
@@ -6727,7 +8095,10 @@
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
+ * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
+ * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated" data-progress="50">
+ *                  <div class="sb-ui-spinner__inner-ring"></div>
+ *                </div>
  */
 /* ========================================
    KEYFRAMES - Fuera de @layer
@@ -6751,9 +8122,27 @@
    ======================================== */
 @layer tokens {
   .sb-ui-spinner {
-    /* Colores */
+    /* Colores - Basic (progreso) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-color-primary-D200, #05794a);
     --sb-ui-spinner-gradient-end: var(--sb-ui-color-primary-D100, #009056);
+
+    /* Colores - Integrated (3 anillos) */
+    --sb-ui-spinner-ring-outer: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-spinner-ring-middle: var(--sb-ui-color-tertiary-base, #02d46f);
+    --sb-ui-spinner-ring-inner: var(--sb-ui-color-secondary-base, #ffe16f);
+
+    /* Track (pista gris detrás del progreso) */
+    --sb-ui-spinner-track-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+
+    /* Icon/Text - Fondo y sombra */
+    --sb-ui-spinner-bg-color: transparent;
+    --sb-ui-spinner-shadow: none;
+    --sb-ui-spinner-icon-size: clamp(48px, 8vw, 80px);
+
+    /* Integrated - offsets para los tres anillos */
+    --sb-ui-spinner-integrated-outer-inset: 0%;
+    --sb-ui-spinner-integrated-middle-inset: 10%;
+    --sb-ui-spinner-integrated-inner-inset: 20%;
 
     /* Tamaños */
     --sb-ui-spinner-size: clamp(32px, 6vw, 40px);
@@ -6806,28 +8195,35 @@
       );
       -webkit-mask: var(--sb-ui-spinner-mask);
       mask: var(--sb-ui-spinner-mask);
+      z-index: 1;
     }
 
     .sb-ui-spinner .sb-ui-spinner__content {
       position: absolute;
-      inset: 50% auto auto 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
       display: flex;
       flex-direction: column;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       gap: 0.25rem;
+      z-index: 2;
     }
 
     .sb-ui-spinner .sb-ui-spinner__icon {
       inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
       block-size: calc(var(--sb-ui-spinner-size) * 0.5);
       display: flex;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
+      color: var(--sb-ui-spinner-gradient-start);
     }
 
-      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img {
+      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img,:is(.sb-ui-spinner .sb-ui-spinner__icon) i {
         inline-size: 100%;
         block-size: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
     .sb-ui-spinner .sb-ui-spinner__label {
@@ -6847,53 +8243,89 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* INTEGRATED - 3 círculos concéntricos con velocidades diferentes */
   .sb-ui-spinner--integrated {
-    /* Tamaño más grande para acomodar 3 círculos */
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
+    --sb-ui-spinner-duration: 2s;
+    --sb-ui-spinner-stroke-width: clamp(4px, 0.6vw, 6px);
+    --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
+    --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
 
-    /* Desactivar ::before del base (no usa progreso) */
+    /* Anillo exterior (verde oscuro) - ya está en ::before */
+
+    /* Anillo medio (verde claro - tertiary) */
   }
-    .sb-ui-spinner--integrated::before {
-      display: none;
-    }
-  .sb-ui-spinner--integrated {
-
-    /* Círculo externo (verde oscuro) - 2s */
-    border: 3px solid transparent;
-    border-top-color: #009056;
-    animation: sb-ui-spinner-rotate 2s linear infinite;
-
-    /* Círculo medio (verde claro) - 3s */
-  }
-    .sb-ui-spinner--integrated::before {
-      content: '';
-      display: block;
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #02d46f;
-      animation: sb-ui-spinner-rotate 3s linear infinite;
-    }
-
-    /* Círculo interno (amarillo) - 1.5s */
     .sb-ui-spinner--integrated::after {
       content: '';
       position: absolute;
-      inset: 15px;
+      inset: var(--sb-ui-spinner-integrated-middle-inset);
       border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #ffe16f;
-      animation: sb-ui-spinner-rotate 1.5s linear infinite;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-middle) 0%,
+        var(--sb-ui-spinner-ring-middle) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 2;
     }
 
-  /* ICON & ICON-TEXT - Contenido interno estático (no rota) */
-  .sb-ui-spinner--icon .sb-ui-spinner__content,
-  .sb-ui-spinner--icon-text .sb-ui-spinner__content {
-    animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
-    will-change: transform;
+    /* Anillo interno (amarillo) usando un elemento hijo */
+    .sb-ui-spinner--integrated .sb-ui-spinner__inner-ring {
+      content: '';
+      position: absolute;
+      inset: var(--sb-ui-spinner-integrated-inner-inset);
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-inner) 0%,
+        var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 3;
+    }
+
+  .sb-ui-spinner--icon,
+  .sb-ui-spinner--icon-text {
+    --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
+    background: var(--sb-ui-spinner-bg-color);
+    box-shadow: var(--sb-ui-spinner-shadow);
+    animation: none;
   }
+
+    :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::before {
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
+      will-change: transform;
+    }
+
+    :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--sb-ui-spinner-track-color);
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
+      z-index: 0;
+    }
 }
 /* ========================================
    MODIFIERS LAYER
@@ -6911,7 +8343,7 @@
     animation-play-state: paused;
   }
 
-    .sb-ui-spinner--paused .sb-ui-spinner__content {
+    .sb-ui-spinner--paused .sb-ui-spinner__content,.sb-ui-spinner--paused::before,.sb-ui-spinner--paused::after {
       animation-play-state: paused;
     }
 }
@@ -6919,17 +8351,11 @@
    STATES LAYER
    ======================================== */
 @layer states {
-  .sb-ui-spinner[data-progress='25'] {
-    --sb-ui-spinner-progress: 25;
-  }
-  .sb-ui-spinner[data-progress='50'] {
-    --sb-ui-spinner-progress: 50;
-  }
-  .sb-ui-spinner[data-progress='75'] {
-    --sb-ui-spinner-progress: 75;
-  }
+  .sb-ui-spinner[data-progress='25'],
+  .sb-ui-spinner[data-progress='50'],
+  .sb-ui-spinner[data-progress='75'],
   .sb-ui-spinner[data-progress='100'] {
-    --sb-ui-spinner-progress: 100;
+    --sb-ui-spinner-progress: attr(data-progress number, 25);
   }
 }
 /* ========================================
@@ -7473,22 +8899,57 @@
    ======================================== */
 @layer tokens {
   .sb-ui-tabs {
-    /* Colores BASE */
-    --sb-ui-tabs-text-color: #5b5b5b;
-    --sb-ui-tabs-text-active: #038450;
-    --sb-ui-tabs-description-color: #9b9b9b;
+    /* Colores - Background */
+    --sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-tabs-bg-active: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-tabs-bg-disabled: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L300, #f5f5f5);
 
-    --sb-ui-tabs-icon-color: #5b5b5b;
-    --sb-ui-tabs-icon-active: #038450;
+    /* Colores - Text */
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100, #757575);
 
-    --sb-ui-tabs-bg-hover: #f5f5f5;
+    /* Colores - Icons */
+    --sb-ui-tabs-icon-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-icon-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+    --sb-ui-tabs-icon-disabled-hover: var(--sb-ui-color-grayscale-L100, #b9b9b9);
 
-    /* Tipografía */
+    /* Colores - Border */
+    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-tabs-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    --sb-ui-tabs-border-disabled-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+
+    /* Espaciado - Responsive hacia objetivos de Figma (padding 4px, spacing 4px) */
+    --sb-ui-tabs-padding-inline: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem); /* Target: 4px */
+    --sb-ui-tabs-padding-block: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+    --sb-ui-tabs-padding-block-end: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem); /* Espacio extra para línea indicadora */
+    --sb-ui-tabs-gap: clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem); /* Target: 4px */
+
+    /* Tamaños - Responsive hacia objetivos de Figma (icon 20px, radius 8px) */
+    --sb-ui-tabs-track-block-size: clamp(40px, 6vw, 48px);
+    --sb-ui-tabs-track-inline-size: clamp(120px, 18vw, 152px);
+    --sb-ui-tabs-button-block-size: clamp(56px, 8vw, 72px);
+    --sb-ui-tabs-button-inline-size: clamp(110px, 16vw, 146px);
+    --sb-ui-tabs-icon-size: clamp(18px, 1rem + 0.25vw, 20px); /* Target: 20px */
+    --sb-ui-tabs-border-radius: clamp(6px, 0.5rem + 0.15vw, 8px); /* Target: 8px */
+    --sb-ui-tabs-indicator-width: 2px; /* Según Figma: 1px, pero 2px para mejor visibilidad */
+
+    /* Tipografía - clamp() */
     --sb-ui-tabs-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    --sb-ui-tabs-title-font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.875rem);
+    --sb-ui-tabs-description-font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
     --sb-ui-tabs-line-height: 1.2;
 
     /* Transiciones */
-    --sb-ui-tabs-transition: all 0.2s ease;
+    --sb-ui-tabs-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 }
 /* ========================================
@@ -7527,19 +8988,72 @@
 
     /* Hover */
   }
-    .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active) {
+    .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
       background: var(--sb-ui-tabs-bg-hover);
     }
 
+      .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+        color: var(--sb-ui-tabs-text-hover);
+      }
+
+      .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+        color: var(--sb-ui-tabs-icon-hover);
+      }
+
+    /* Active (Pressed) - Estado visual al hacer click */
+    .sb-ui-tabs__item:active:not(:disabled):not(.sb-ui-tabs__item--disabled):not(.sb-ui-tabs__item--active) {
+      background: var(--sb-ui-tabs-bg-hover);
+      opacity: 0.9;
+      transform: none;
+    }
+
     /* Focus */
-    .sb-ui-tabs__item:focus-visible {
+    .sb-ui-tabs__item:focus-visible:not(:disabled):not(.sb-ui-tabs__item--disabled) {
       outline: 3px solid var(--sb-ui-color-secondary-L100, #fffcf0);
       outline-offset: 2px;
     }
 
-    /* Active transform - prevent misalignment */
-    .sb-ui-tabs__item:active {
-      transform: none;
+    /* Disabled - Estado deshabilitado */
+    .sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled {
+      background: var(--sb-ui-tabs-bg-disabled);
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+      :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+        color: var(--sb-ui-tabs-text-disabled);
+      }
+
+      :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+        color: var(--sb-ui-tabs-icon-disabled);
+      }
+
+    /* Disabled hover - Feedback visual sutil */
+    .sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover {
+      background: var(
+        --sb-ui-tabs-bg-disabled-hover,
+        var(--sb-ui-tabs-bg-disabled)
+      );
+    }
+
+      :is(.sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover) .sb-ui-tabs__title {
+        color: var(
+          --sb-ui-tabs-text-disabled-hover,
+          var(--sb-ui-tabs-text-disabled)
+        );
+      }
+
+      :is(.sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover) .sb-ui-tabs__icon {
+        color: var(
+          --sb-ui-tabs-icon-disabled-hover,
+          var(--sb-ui-tabs-icon-disabled)
+        );
+      }
+
+    /* Disabled focus - Sin outline */
+    .sb-ui-tabs__item:disabled:focus,.sb-ui-tabs__item:disabled:focus-visible,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:focus,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:focus-visible {
+      outline: none;
     }
 
   .sb-ui-tabs__icon {
@@ -7572,175 +9086,117 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* ========================================
-     TRACK VARIANT - Línea inferior verde
-     ======================================== */
   .sb-ui-tabs--track {
     gap: 0;
   }
 
     .sb-ui-tabs--track .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 48px;
-      min-height: 48px;
-      max-height: 48px;
-      width: 152px;
-      max-width: 152px;
-      min-width: 152px;
-      flex: 0 0 152px;
-
-      /* Layout */
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-
-      /* Spacing */
-      padding: 0.25rem 1rem;
-      gap: 0.125rem;
-
-      /* Border */
-      border-bottom: 3px solid transparent;
-
-      /* Active state */
-    }
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) {
-        background: #f2f9f6;
-        border-bottom-color: #038450;
-      }
-
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
-        }
-
-    .sb-ui-tabs--track .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
-    }
-
-    .sb-ui-tabs--track .sb-ui-tabs__description {
-      font-size: 0.6875rem; /* 11px */
-    }
-
-  /* ========================================
-     BUTTON VARIANT - Fondo amarillo activo
-     ======================================== */
-  .sb-ui-tabs--button {
-    gap: 0.5rem;
-  }
-
-    .sb-ui-tabs--button .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 72px;
-      min-height: 72px;
-      max-height: 72px;
-      width: 146px;
-      max-width: 146px;
-      min-width: 146px;
-      flex: 0 0 146px;
-
-      /* Layout */
+      /* Altura automática con mínimo - permite que el contenido respire */
+      block-size: auto;
+      min-block-size: var(--sb-ui-tabs-track-block-size);
+      inline-size: var(--sb-ui-tabs-track-inline-size);
+      flex: 0 0 var(--sb-ui-tabs-track-inline-size);
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
-      /* Spacing */
-      padding: 0.75rem 1rem;
-      gap: 0.375rem;
+      /* Padding usando variables - más espacio abajo para separar texto de la línea indicadora */
+      padding-block-start: var(--sb-ui-tabs-padding-block);
+      padding-block-end: var(--sb-ui-tabs-padding-block-end);
+      padding-inline: var(--sb-ui-tabs-padding-inline);
+      gap: var(--sb-ui-tabs-gap);
 
-      /* Border */
-      background: #fff;
-      border: 1px solid transparent;
-      border-radius: 8px;
+      /* Línea indicadora simple con border-block-end - por defecto usa border-color */
+      border-block-end: var(--sb-ui-tabs-indicator-width) solid var(--sb-ui-tabs-border-color);
+      transition: var(--sb-ui-tabs-transition), border-color 0.2s ease;
 
-      /* Active state */
+      /* Hover state */
     }
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
-        background: #ffe16f;
-        border: 1px solid #ffe16f;
+      :is(.sb-ui-tabs--track .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
+        border-block-end-color: var(--sb-ui-tabs-border-active);
       }
 
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
+      /* Active state */
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) {
+        background: var(--sb-ui-tabs-bg-active);
+        border-block-end-color: var(--sb-ui-tabs-border-active);
+      }
+
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: var(--sb-ui-tabs-text-active);
+        }
+
+    .sb-ui-tabs--track .sb-ui-tabs__title {
+      font-size: var(--sb-ui-tabs-title-font-size);
+      text-align: center;
+    }
+
+    .sb-ui-tabs--track .sb-ui-tabs__description {
+      font-size: var(--sb-ui-tabs-description-font-size);
+      text-align: center;
+    }
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item {
+      block-size: var(--sb-ui-tabs-button-block-size);
+      inline-size: var(--sb-ui-tabs-button-inline-size);
+      flex: 0 0 var(--sb-ui-tabs-button-inline-size);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-block: 0.75rem;
+      padding-inline: var(--sb-ui-tabs-padding-inline);
+      gap: 0.375rem;
+      background: var(--sb-ui-tabs-bg-color);
+    }
+
+      .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) {
+        background: var(--sb-ui-tabs-bg-active);
+      }
+
+        .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: var(--sb-ui-tabs-text-active);
           font-weight: 700;
         }
 
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__icon {
-          color: #038450;
+        .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__icon {
+          color: var(--sb-ui-tabs-icon-active);
         }
 
-    .sb-ui-tabs--button .sb-ui-tabs__icon {
-      font-size: 20px;
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__icon {
+      font-size: var(--sb-ui-tabs-icon-size);
     }
 
-    .sb-ui-tabs--button .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__title {
+      font-size: var(--sb-ui-tabs-title-font-size);
       font-weight: 500;
       text-align: center;
     }
 
-    .sb-ui-tabs--button .sb-ui-tabs__description {
-      font-size: 0.75rem; /* 12px */
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__description {
+      font-size: var(--sb-ui-tabs-description-font-size);
       text-align: center;
     }
 
-  /* ========================================
-     FOLDER VARIANT - Estilo carpeta
-     ======================================== */
+  .sb-ui-tabs--button {
+    gap: 0.25rem; /* 4px según Figma (spacing entre tabs) */
+  }
+
+    .sb-ui-tabs--button .sb-ui-tabs__item {
+      border: 1px solid transparent;
+      border-radius: var(--sb-ui-tabs-border-radius);
+    }
+
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
+        border-color: var(--sb-ui-tabs-bg-active);
+      }
+
   .sb-ui-tabs--folder {
     gap: 0;
   }
 
     .sb-ui-tabs--folder .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 72px;
-      min-height: 72px;
-      max-height: 72px;
-      width: 146px;
-      max-width: 146px;
-      min-width: 146px;
-      flex: 0 0 146px;
-
-      /* Layout */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      /* Spacing */
-      padding: 0.75rem 1rem;
-      gap: 0.375rem;
-
-      /* Border */
-      background: #fff;
       border: none;
-      border-radius: 8px 8px 0 0;
-
-      /* Active state */
-    }
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) {
-        background: #f2f9f6;
-      }
-
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
-          font-weight: 700;
-        }
-
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__icon {
-          color: #038450;
-        }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__icon {
-      font-size: 20px;
-    }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__description {
-      font-size: 0.75rem; /* 12px */
-      text-align: center;
+      border-start-start-radius: var(--sb-ui-tabs-border-radius);
+      border-start-end-radius: var(--sb-ui-tabs-border-radius);
     }
 }
 /* ========================================
@@ -7752,27 +9208,19 @@
     opacity: 0.7;
   }
 }
-/* ========================================
-   UTILITIES LAYER (máxima prioridad)
-   ======================================== */
 @layer utilities {
-  /* High contrast mode support */
   @media (prefers-contrast: high) {
     .sb-ui-tabs__item {
       outline-width: 2px;
     }
   }
 
-  /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     .sb-ui-tabs {
       --sb-ui-tabs-transition: none;
     }
 
-    .sb-ui-tabs__item {
-      transition: none;
-    }
-
+    .sb-ui-tabs__item,
     .sb-ui-tabs__icon {
       transition: none;
     }

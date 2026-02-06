@@ -1,0 +1,347 @@
+/**
+ * ============================================================================
+ * Columns Utilities - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Utilities CSS modernas para alineación y ordenamiento de columnas en Grid:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Responsive breakpoints
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~35
+ * 2. RESET LAYER ............................. Línea ~45
+ * 3. BASE LAYER .............................. Línea ~55
+ *    ├─ Align Self .......................... Línea ~60
+ *    ├─ Justify Self ........................ Línea ~75
+ *    ├─ Order ............................... Línea ~90
+ *    └─ Column Start Position ............... Línea ~115
+ * 4. UTILITIES LAYER ......................... Línea ~145
+ *    ├─ Responsive Breakpoints .............. Línea ~150
+ *    ├─ High Contrast Mode .................. Línea ~285
+ *    └─ Reduced Motion ...................... Línea ~295
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Alineación vertical de una columna -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-6 sb-ui-col-align-self-center">...</div>
+ * </div>
+ *
+ * <!-- Justificación horizontal de una columna -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-4 sb-ui-col-justify-self-end">...</div>
+ * </div>
+ *
+ * <!-- Reordenamiento de columnas -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-order-2">Aparece segundo</div>
+ *   <div class="sb-ui-col-order-1">Aparece primero</div>
+ * </div>
+ *
+ * <!-- Posicionamiento explícito -->
+ * <div class="sb-ui-grid">
+ *   <div class="sb-ui-col-start-7">Comienza en columna 7</div>
+ * </div>
+ *
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+
+@layer reset, base, utilities;
+
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+
+/* No reset needed - utilities no agregan elementos al DOM */
+
+/* ============================================================================
+   3. BASE LAYER - Column Utilities
+   ============================================================================ */
+
+@layer base {
+  /* ===== Align Self (alineación vertical en grid) ===== */
+  .sb-ui-col-align-self-start {
+    align-self: start;
+  }
+
+  .sb-ui-col-align-self-center {
+    align-self: center;
+  }
+
+  .sb-ui-col-align-self-end {
+    align-self: end;
+  }
+
+  .sb-ui-col-align-self-stretch {
+    align-self: stretch;
+  }
+
+  /* ===== Justify Self (justificación horizontal en grid) ===== */
+  .sb-ui-col-justify-self-start {
+    justify-self: start;
+  }
+
+  .sb-ui-col-justify-self-center {
+    justify-self: center;
+  }
+
+  .sb-ui-col-justify-self-end {
+    justify-self: end;
+  }
+
+  .sb-ui-col-justify-self-stretch {
+    justify-self: stretch;
+  }
+
+  /* ===== Order (reordenamiento de columnas) ===== */
+  .sb-ui-col-order-first {
+    order: -1;
+  }
+
+  .sb-ui-col-order-last {
+    order: 999;
+  }
+
+  .sb-ui-col-order-1 {
+    order: 1;
+  }
+
+  .sb-ui-col-order-2 {
+    order: 2;
+  }
+
+  .sb-ui-col-order-3 {
+    order: 3;
+  }
+
+  .sb-ui-col-order-4 {
+    order: 4;
+  }
+
+  .sb-ui-col-order-5 {
+    order: 5;
+  }
+
+  /* ===== Column Start Position (posicionamiento explícito) ===== */
+  .sb-ui-col-start-1 { grid-column-start: 1; }
+  .sb-ui-col-start-2 { grid-column-start: 2; }
+  .sb-ui-col-start-3 { grid-column-start: 3; }
+  .sb-ui-col-start-4 { grid-column-start: 4; }
+  .sb-ui-col-start-5 { grid-column-start: 5; }
+  .sb-ui-col-start-6 { grid-column-start: 6; }
+  .sb-ui-col-start-7 { grid-column-start: 7; }
+  .sb-ui-col-start-8 { grid-column-start: 8; }
+  .sb-ui-col-start-9 { grid-column-start: 9; }
+  .sb-ui-col-start-10 { grid-column-start: 10; }
+  .sb-ui-col-start-11 { grid-column-start: 11; }
+  .sb-ui-col-start-12 { grid-column-start: 12; }
+
+  /* Auto start (resetear posicionamiento) */
+  .sb-ui-col-start-auto {
+    grid-column-start: auto;
+  }
+}
+
+/* ============================================================================
+   4. UTILITIES LAYER - Responsive & Accesibilidad
+   ============================================================================ */
+
+@layer utilities {
+  /* ===== Responsive Breakpoints ===== */
+
+  /* Small (sm): 576px */
+  @media (min-inline-size: 576px) {
+    .sb-ui-col-align-self-sm-start { align-self: start; }
+    .sb-ui-col-align-self-sm-center { align-self: center; }
+    .sb-ui-col-align-self-sm-end { align-self: end; }
+    .sb-ui-col-align-self-sm-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-sm-start { justify-self: start; }
+    .sb-ui-col-justify-self-sm-center { justify-self: center; }
+    .sb-ui-col-justify-self-sm-end { justify-self: end; }
+    .sb-ui-col-justify-self-sm-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-sm-first { order: -1; }
+    .sb-ui-col-order-sm-last { order: 999; }
+    .sb-ui-col-order-sm-1 { order: 1; }
+    .sb-ui-col-order-sm-2 { order: 2; }
+    .sb-ui-col-order-sm-3 { order: 3; }
+    .sb-ui-col-order-sm-4 { order: 4; }
+    .sb-ui-col-order-sm-5 { order: 5; }
+
+    .sb-ui-col-start-sm-auto { grid-column-start: auto; }
+    .sb-ui-col-start-sm-1 { grid-column-start: 1; }
+    .sb-ui-col-start-sm-2 { grid-column-start: 2; }
+    .sb-ui-col-start-sm-3 { grid-column-start: 3; }
+    .sb-ui-col-start-sm-4 { grid-column-start: 4; }
+    .sb-ui-col-start-sm-5 { grid-column-start: 5; }
+    .sb-ui-col-start-sm-6 { grid-column-start: 6; }
+    .sb-ui-col-start-sm-7 { grid-column-start: 7; }
+    .sb-ui-col-start-sm-8 { grid-column-start: 8; }
+    .sb-ui-col-start-sm-9 { grid-column-start: 9; }
+    .sb-ui-col-start-sm-10 { grid-column-start: 10; }
+    .sb-ui-col-start-sm-11 { grid-column-start: 11; }
+    .sb-ui-col-start-sm-12 { grid-column-start: 12; }
+  }
+
+  /* Medium (md): 768px */
+  @media (min-inline-size: 768px) {
+    .sb-ui-col-align-self-md-start { align-self: start; }
+    .sb-ui-col-align-self-md-center { align-self: center; }
+    .sb-ui-col-align-self-md-end { align-self: end; }
+    .sb-ui-col-align-self-md-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-md-start { justify-self: start; }
+    .sb-ui-col-justify-self-md-center { justify-self: center; }
+    .sb-ui-col-justify-self-md-end { justify-self: end; }
+    .sb-ui-col-justify-self-md-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-md-first { order: -1; }
+    .sb-ui-col-order-md-last { order: 999; }
+    .sb-ui-col-order-md-1 { order: 1; }
+    .sb-ui-col-order-md-2 { order: 2; }
+    .sb-ui-col-order-md-3 { order: 3; }
+    .sb-ui-col-order-md-4 { order: 4; }
+    .sb-ui-col-order-md-5 { order: 5; }
+
+    .sb-ui-col-start-md-auto { grid-column-start: auto; }
+    .sb-ui-col-start-md-1 { grid-column-start: 1; }
+    .sb-ui-col-start-md-2 { grid-column-start: 2; }
+    .sb-ui-col-start-md-3 { grid-column-start: 3; }
+    .sb-ui-col-start-md-4 { grid-column-start: 4; }
+    .sb-ui-col-start-md-5 { grid-column-start: 5; }
+    .sb-ui-col-start-md-6 { grid-column-start: 6; }
+    .sb-ui-col-start-md-7 { grid-column-start: 7; }
+    .sb-ui-col-start-md-8 { grid-column-start: 8; }
+    .sb-ui-col-start-md-9 { grid-column-start: 9; }
+    .sb-ui-col-start-md-10 { grid-column-start: 10; }
+    .sb-ui-col-start-md-11 { grid-column-start: 11; }
+    .sb-ui-col-start-md-12 { grid-column-start: 12; }
+  }
+
+  /* Large (lg): 992px */
+  @media (min-inline-size: 992px) {
+    .sb-ui-col-align-self-lg-start { align-self: start; }
+    .sb-ui-col-align-self-lg-center { align-self: center; }
+    .sb-ui-col-align-self-lg-end { align-self: end; }
+    .sb-ui-col-align-self-lg-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-lg-start { justify-self: start; }
+    .sb-ui-col-justify-self-lg-center { justify-self: center; }
+    .sb-ui-col-justify-self-lg-end { justify-self: end; }
+    .sb-ui-col-justify-self-lg-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-lg-first { order: -1; }
+    .sb-ui-col-order-lg-last { order: 999; }
+    .sb-ui-col-order-lg-1 { order: 1; }
+    .sb-ui-col-order-lg-2 { order: 2; }
+    .sb-ui-col-order-lg-3 { order: 3; }
+    .sb-ui-col-order-lg-4 { order: 4; }
+    .sb-ui-col-order-lg-5 { order: 5; }
+
+    .sb-ui-col-start-lg-auto { grid-column-start: auto; }
+    .sb-ui-col-start-lg-1 { grid-column-start: 1; }
+    .sb-ui-col-start-lg-2 { grid-column-start: 2; }
+    .sb-ui-col-start-lg-3 { grid-column-start: 3; }
+    .sb-ui-col-start-lg-4 { grid-column-start: 4; }
+    .sb-ui-col-start-lg-5 { grid-column-start: 5; }
+    .sb-ui-col-start-lg-6 { grid-column-start: 6; }
+    .sb-ui-col-start-lg-7 { grid-column-start: 7; }
+    .sb-ui-col-start-lg-8 { grid-column-start: 8; }
+    .sb-ui-col-start-lg-9 { grid-column-start: 9; }
+    .sb-ui-col-start-lg-10 { grid-column-start: 10; }
+    .sb-ui-col-start-lg-11 { grid-column-start: 11; }
+    .sb-ui-col-start-lg-12 { grid-column-start: 12; }
+  }
+
+  /* Extra Large (xl): 1200px */
+  @media (min-inline-size: 1200px) {
+    .sb-ui-col-align-self-xl-start { align-self: start; }
+    .sb-ui-col-align-self-xl-center { align-self: center; }
+    .sb-ui-col-align-self-xl-end { align-self: end; }
+    .sb-ui-col-align-self-xl-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-xl-start { justify-self: start; }
+    .sb-ui-col-justify-self-xl-center { justify-self: center; }
+    .sb-ui-col-justify-self-xl-end { justify-self: end; }
+    .sb-ui-col-justify-self-xl-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-xl-first { order: -1; }
+    .sb-ui-col-order-xl-last { order: 999; }
+    .sb-ui-col-order-xl-1 { order: 1; }
+    .sb-ui-col-order-xl-2 { order: 2; }
+    .sb-ui-col-order-xl-3 { order: 3; }
+    .sb-ui-col-order-xl-4 { order: 4; }
+    .sb-ui-col-order-xl-5 { order: 5; }
+
+    .sb-ui-col-start-xl-auto { grid-column-start: auto; }
+    .sb-ui-col-start-xl-1 { grid-column-start: 1; }
+    .sb-ui-col-start-xl-2 { grid-column-start: 2; }
+    .sb-ui-col-start-xl-3 { grid-column-start: 3; }
+    .sb-ui-col-start-xl-4 { grid-column-start: 4; }
+    .sb-ui-col-start-xl-5 { grid-column-start: 5; }
+    .sb-ui-col-start-xl-6 { grid-column-start: 6; }
+    .sb-ui-col-start-xl-7 { grid-column-start: 7; }
+    .sb-ui-col-start-xl-8 { grid-column-start: 8; }
+    .sb-ui-col-start-xl-9 { grid-column-start: 9; }
+    .sb-ui-col-start-xl-10 { grid-column-start: 10; }
+    .sb-ui-col-start-xl-11 { grid-column-start: 11; }
+    .sb-ui-col-start-xl-12 { grid-column-start: 12; }
+  }
+
+  /* Extra Extra Large (xxl): 1400px */
+  @media (min-inline-size: 1400px) {
+    .sb-ui-col-align-self-xxl-start { align-self: start; }
+    .sb-ui-col-align-self-xxl-center { align-self: center; }
+    .sb-ui-col-align-self-xxl-end { align-self: end; }
+    .sb-ui-col-align-self-xxl-stretch { align-self: stretch; }
+
+    .sb-ui-col-justify-self-xxl-start { justify-self: start; }
+    .sb-ui-col-justify-self-xxl-center { justify-self: center; }
+    .sb-ui-col-justify-self-xxl-end { justify-self: end; }
+    .sb-ui-col-justify-self-xxl-stretch { justify-self: stretch; }
+
+    .sb-ui-col-order-xxl-first { order: -1; }
+    .sb-ui-col-order-xxl-last { order: 999; }
+    .sb-ui-col-order-xxl-1 { order: 1; }
+    .sb-ui-col-order-xxl-2 { order: 2; }
+    .sb-ui-col-order-xxl-3 { order: 3; }
+    .sb-ui-col-order-xxl-4 { order: 4; }
+    .sb-ui-col-order-xxl-5 { order: 5; }
+
+    .sb-ui-col-start-xxl-auto { grid-column-start: auto; }
+    .sb-ui-col-start-xxl-1 { grid-column-start: 1; }
+    .sb-ui-col-start-xxl-2 { grid-column-start: 2; }
+    .sb-ui-col-start-xxl-3 { grid-column-start: 3; }
+    .sb-ui-col-start-xxl-4 { grid-column-start: 4; }
+    .sb-ui-col-start-xxl-5 { grid-column-start: 5; }
+    .sb-ui-col-start-xxl-6 { grid-column-start: 6; }
+    .sb-ui-col-start-xxl-7 { grid-column-start: 7; }
+    .sb-ui-col-start-xxl-8 { grid-column-start: 8; }
+    .sb-ui-col-start-xxl-9 { grid-column-start: 9; }
+    .sb-ui-col-start-xxl-10 { grid-column-start: 10; }
+    .sb-ui-col-start-xxl-11 { grid-column-start: 11; }
+    .sb-ui-col-start-xxl-12 { grid-column-start: 12; }
+  }
+
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    /* Column utilities no requieren ajustes visuales en high contrast */
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    /* Column utilities no producen animaciones */
+  }
+}

@@ -17,13 +17,18 @@
     "./checkbox.css": "./dist/checkbox.css",
     "./radio.css": "./dist/radio.css",
     "./badge.css": "./dist/badge.css",
-    "./card.css": "./dist/card.css"
+    "./card.css": "./dist/card.css",
+    "./container.css": "./dist/container.css",
+    "./grid.css": "./dist/grid.css",
+    "./columns.css": "./dist/columns.css",
+    "./gutters.css": "./dist/gutters.css",
+    "./css-grid.css": "./dist/css-grid.css"
   },
   "scripts": {
     "build": "npm run clean && npm run build:copy && npm run build:bundle",
     "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "build:copy": "node -e \"require('fs').mkdirSync('dist', {recursive:true}); require('fs').cpSync('src', 'dist', {recursive:true})\"",
-    "build:bundle": "node -e \"const fs=require('fs'); const files=['button','input','textArea','select','calendar','datepicker','spinner','toggle','alert','checkbox','radio','tabs','stepper'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
+    "build:bundle": "node -e \"const fs=require('fs'); const files=['container','grid','columns','gutters','css-grid','button','input','textArea','select','calendar','datepicker','spinner','toggle','alert','checkbox','radio','tabs','stepper'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
     "dev": "npm run build",
     "lint": "stylelint 'src/**/*.css'"
   },
@@ -41,7 +46,12 @@
     "checkbox",
     "radio",
     "badge",
-    "card"
+    "card",
+    "container",
+    "grid",
+    "columns",
+    "gutters",
+    "layout"
   ],
   "author": "Seguros Bolivar UI",
   "license": "MIT",

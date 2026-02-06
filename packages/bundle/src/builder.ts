@@ -108,6 +108,11 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
 
   // 2. Leer componentes base (atoms)
   const atomsFiles = [
+    'container.css',
+    'grid.css',
+    'columns.css',
+    'gutters.css',
+    'css-grid.css',
     'accordion.css',
     'alert.css',
     'breadcrumb.css',

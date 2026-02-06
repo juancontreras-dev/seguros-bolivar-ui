@@ -1,0 +1,207 @@
+/**
+ * ============================================================================
+ * CSS Grid Utilities - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Utilities avanzadas para layouts complejos con CSS Grid:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Auto-fit, auto-fill, spanning y alineación
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~40
+ * 2. RESET LAYER ............................. Línea ~50
+ * 3. BASE LAYER .............................. Línea ~60
+ *    ├─ Grid Columns (1-6) .................. Línea ~65
+ *    ├─ Grid Rows (1-4) ..................... Línea ~90
+ *    ├─ Grid Spanning ....................... Línea ~110
+ *    └─ Placement Utilities ................. Línea ~140
+ * 4. UTILITIES LAYER ......................... Línea ~190
+ *    ├─ High Contrast Mode .................. Línea ~195
+ *    └─ Reduced Motion ...................... Línea ~210
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- 3 columnas iguales -->
+ * <div class="sb-ui-grid-cols-3">...</div>
+ *
+ * <!-- Auto-fit con mínimo 200px -->
+ * <div class="sb-ui-grid-cols-auto-fit">...</div>
+ *
+ * <!-- Spanning (colspan 2, rowspan 2) -->
+ * <div class="sb-ui-grid-span-col-2">Ocupa 2 columnas</div>
+ * <div class="sb-ui-grid-span-row-2">Ocupa 2 filas</div>
+ *
+ * <!-- Centrar contenido -->
+ * <div class="sb-ui-grid sb-ui-place-items-center">...</div>
+ *
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+
+@layer reset, base, utilities;
+
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+
+/* No reset needed - utilities no agregan elementos al DOM */
+
+/* ============================================================================
+   3. BASE LAYER
+   ============================================================================ */
+
+@layer base {
+  /* ===== Grid Columns (N columnas iguales) ===== */
+  .sb-ui-grid-cols-1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sb-ui-grid-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sb-ui-grid-cols-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sb-ui-grid-cols-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sb-ui-grid-cols-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .sb-ui-grid-cols-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Auto-fit: ajusta automáticamente columnas al espacio disponible */
+  .sb-ui-grid-cols-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  }
+
+  /* ===== Grid Rows (N filas iguales) ===== */
+  .sb-ui-grid-rows-1 {
+    grid-template-rows: repeat(1, 1fr);
+  }
+
+  .sb-ui-grid-rows-2 {
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .sb-ui-grid-rows-3 {
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .sb-ui-grid-rows-4 {
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  /* ===== Grid Spanning (colspan/rowspan) ===== */
+  .sb-ui-grid-span-col-2 {
+    grid-column: span 2;
+  }
+
+  .sb-ui-grid-span-col-3 {
+    grid-column: span 3;
+  }
+
+  .sb-ui-grid-span-col-full {
+    grid-column: 1 / -1;
+  }
+
+  .sb-ui-grid-span-row-2 {
+    grid-row: span 2;
+  }
+
+  .sb-ui-grid-span-row-3 {
+    grid-row: span 3;
+  }
+
+  .sb-ui-grid-span-row-full {
+    grid-row: 1 / -1;
+  }
+
+  /* ===== Placement: Place Items (align + justify items) ===== */
+  .sb-ui-place-items-start {
+    place-items: start;
+  }
+
+  .sb-ui-place-items-center {
+    place-items: center;
+  }
+
+  .sb-ui-place-items-end {
+    place-items: end;
+  }
+
+  .sb-ui-place-items-stretch {
+    place-items: stretch;
+  }
+
+  /* ===== Placement: Place Content (align + justify content) ===== */
+  .sb-ui-place-content-start {
+    place-content: start;
+  }
+
+  .sb-ui-place-content-center {
+    place-content: center;
+  }
+
+  .sb-ui-place-content-end {
+    place-content: end;
+  }
+
+  .sb-ui-place-content-space-between {
+    place-content: space-between;
+  }
+
+  .sb-ui-place-content-space-around {
+    place-content: space-around;
+  }
+
+  .sb-ui-place-content-space-evenly {
+    place-content: space-evenly;
+  }
+}
+
+/* ============================================================================
+   4. UTILITIES LAYER - Accesibilidad
+   ============================================================================ */
+
+@layer utilities {
+  /* ===== Accesibilidad: High Contrast Mode ===== */
+  @media (prefers-contrast: high) {
+    [class*='sb-ui-grid-'] {
+      outline: 1px solid currentColor;
+      outline-offset: -1px;
+    }
+  }
+
+  /* ===== Accesibilidad: Reduced Motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    [class*='sb-ui-grid-'],
+    [class*='sb-ui-place-'] {
+      transition: none;
+      animation: none;
+    }
+  }
+}

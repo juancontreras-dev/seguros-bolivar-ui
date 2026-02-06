@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gutters - Seguros Bolívar UI Design System</title>
+
+    <!-- Preconnect para fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
+    <style>
+      /* Estilos para demo visual de gutters */
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 2px dashed var(--sb-ui-color-grayscale-L200);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        background: var(--sb-ui-color-primary-L300);
+        color: var(--sb-ui-color-grayscale-black);
+        padding: 1.5rem;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid var(--sb-ui-color-primary-L200);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+      }
+
+      .spacing-label {
+        display: inline-block;
+        background: var(--sb-ui-color-secondary-base);
+        color: var(--sb-ui-color-grayscale-white);
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Botón de copia en code blocks */
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #a0a0a0;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      .copy-btn.copied {
+        color: #6ee7b7;
+        border-color: rgba(110, 231, 183, 0.4);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i>
+          </span>
+          <span>Gutters (Espaciado)</span>
+        </h2>
+        <p class="component-description">
+          Utilities CSS para controlar el espaciado entre elementos de un grid mediante la propiedad <code>gap</code>.
+          Compatible con CSS Grid y Flexbox. Incluye escala de 6 niveles (0-5) y variantes responsive para todos los breakpoints.
+          Usa propiedades lógicas para soporte RTL/LTR automático.
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: ESCALA DE SPACING
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Escala de Spacing</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          El sistema de gutters usa una escala consistente de 6 niveles (0-5) basada en múltiplos de 4px:
+        </p>
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Nivel</th>
+              <th>Variable CSS</th>
+              <th>Valor (rem)</th>
+              <th>Valor (px)</th>
+              <th>Uso Recomendado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="spacing-label">0</span></td>
+              <td><code>--sb-ui-gap-0</code></td>
+              <td>0</td>
+              <td>0px</td>
+              <td>Sin espaciado</td>
+            </tr>
+            <tr>
+              <td><span class="spacing-label">1</span></td>
+              <td><code>--sb-ui-gap-1</code></td>
+              <td>0.25rem</td>
+              <td>4px</td>
+              <td>Espaciado muy compacto</td>
+            </tr>
+            <tr>
+              <td><span class="spacing-label">2</span></td>
+              <td><code>--sb-ui-gap-2</code></td>
+              <td>0.5rem</td>
+              <td>8px</td>
+              <td>Espaciado compacto</td>
+            </tr>
+            <tr>
+              <td><span class="spacing-label">3</span></td>
+              <td><code>--sb-ui-gap-3</code></td>
+              <td>1rem</td>
+              <td>16px</td>
+              <td>Espaciado estándar</td>
+            </tr>
+            <tr>
+              <td><span class="spacing-label" style="background: var(--sb-ui-color-secondary-base);">4</span></td>
+              <td><code>--sb-ui-gap-4</code></td>
+              <td>1.5rem</td>
+              <td>24px</td>
+              <td>Espaciado cómodo (default)</td>
+            </tr>
+            <tr>
+              <td><span class="spacing-label">5</span></td>
+              <td><code>--sb-ui-gap-5</code></td>
+              <td>3rem</td>
+              <td>48px</td>
+              <td>Espaciado amplio</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: GAP EN AMBAS DIRECCIONES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Gap en Ambas Direcciones (.sb-ui-gap-*)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Aplica espaciado uniforme entre filas y columnas usando la propiedad <code>gap</code>.
+        </p>
+
+        <div class="demo-grid sb-ui-gap-1">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>sb-ui-gap-1</strong> (4px) - Espaciado muy compacto
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-grid sb-ui-gap-1"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-grid sb-ui-gap-3">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>sb-ui-gap-3</strong> (16px) - Espaciado estándar
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-grid sb-ui-gap-3"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-grid sb-ui-gap-5">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>sb-ui-gap-5</strong> (48px) - Espaciado amplio
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-grid sb-ui-gap-5"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: GAP HORIZONTAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Gap Horizontal (.sb-ui-gap-x-*)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Aplica espaciado solo entre columnas usando <code>column-gap</code>. Las filas permanecen juntas.
+        </p>
+
+        <div class="demo-grid sb-ui-gap-x-4">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+          <div class="demo-item">5</div>
+          <div class="demo-item">6</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>sb-ui-gap-x-4</strong> (24px) - Solo espaciado horizontal entre columnas
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Gap horizontal de 24px (1.5rem) --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-x-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: GAP VERTICAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Gap Vertical (.sb-ui-gap-y-*)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Aplica espaciado solo entre filas usando <code>row-gap</code>. Las columnas permanecen juntas.
+        </p>
+
+        <div class="demo-grid sb-ui-gap-y-4">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+          <div class="demo-item">5</div>
+          <div class="demo-item">6</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>sb-ui-gap-y-4</strong> (24px) - Solo espaciado vertical entre filas
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Gap vertical de 24px (1.5rem) --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-y-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 5: RESPONSIVE GUTTERS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Gutters Responsive</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Combina clases de gutters con sufijos de breakpoint para espaciado responsive. Mobile-first: comienza con gap pequeño y aumenta en pantallas grandes.
+        </p>
+
+        <div class="demo-grid sb-ui-gap-1 sb-ui-gap-md-3 sb-ui-gap-lg-5">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+        </div>
+        <p style="font-size: 0.875rem; color: #6b7280; margin-top: -1rem; margin-bottom: 1.5rem;">
+          <strong>Responsive:</strong> 4px mobile → 16px tablet (md) → 48px desktop (lg)
+        </p>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Mobile: 4px, Tablet (md): 16px, Desktop (lg): 48px --&gt;
+&lt;div class="sb-ui-grid sb-ui-gap-1 sb-ui-gap-md-3 sb-ui-gap-lg-5"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Breakpoints disponibles: sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px) --&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a
+            href="http://localhost:6007/?path=/docs/layout-gutters--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      function copyCode(btn) {
+        const code = btn.closest('.sb-ui-code-block').querySelector('code');
+        if (!code) return;
+        navigator.clipboard.writeText(code.textContent).then(() => {
+          const icon = btn.querySelector('i');
+          icon.classList.replace('fa-copy', 'fa-check');
+          setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 1500);
+        });
+      }
+    </script>
+  </body>
+</html>

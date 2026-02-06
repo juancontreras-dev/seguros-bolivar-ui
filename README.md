@@ -268,6 +268,32 @@ Cada bundle incluye:
 
 ## 🧩 Componentes
 
+### Layout (Sistema de Grid y Contenedores)
+
+| Componente | Clase Base | Descripción |
+|------------|------------|-------------|
+| **Container** | `.sb-ui-container` | Contenedores responsive con max-width (sm: 540px, md: 720px, lg: 960px, xl: 1140px, xxl: 1320px) |
+| **Grid** | `.sb-ui-grid` | Sistema de 12 columnas con CSS Grid moderno |
+| **Columns** | `.sb-ui-col-{1-12}` | Clases de columnas con spans responsive (`.sb-ui-col-md-6`, `.sb-ui-col-lg-4`) |
+| **Gutters** | `.sb-ui-gap-{0-5}` | Utilities de espaciado entre elementos (gap, gap-x, gap-y) con escala 0-5 |
+| **CSS Grid** | `.sb-ui-grid-cols-{1-6}` | Utilities avanzadas de CSS Grid (auto-fit, spanning, place-content) |
+| **Breakpoints** | - | Sistema de 6 breakpoints: xs (0px), sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px) |
+
+**Ejemplo de uso:**
+
+```html
+<!-- Container responsive -->
+<div class="sb-ui-container">
+  <!-- Grid de 12 columnas -->
+  <div class="sb-ui-grid sb-ui-gap-4">
+    <!-- Mobile: full width, Tablet: 50%, Desktop: 33% -->
+    <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Columna 1</div>
+    <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Columna 2</div>
+    <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Columna 3</div>
+  </div>
+</div>
+```
+
 ### Atoms (CSS puro)
 
 | Componente | Clase Base | Variantes |

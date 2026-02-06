@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Grid - Seguros Bolívar UI Design System</title>
+
+    <!-- Preconnect para fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Preload CSS del Design System -->
+    <link
+      rel="preload"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      id="brand-css"
+    />
+
+    <!-- CSS global de componentes -->
+    <link
+      rel="stylesheet"
+      href="../components.css"
+    />
+
+    <style>
+      /* Estilos para demo visual de CSS Grid */
+      .demo-grid {
+        display: grid;
+        background: var(--sb-ui-color-grayscale-L400);
+        border: 2px dashed var(--sb-ui-color-grayscale-L200);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-block-end: 2rem;
+      }
+
+      .demo-item {
+        background: var(--sb-ui-color-primary-L300);
+        color: var(--sb-ui-color-grayscale-black);
+        padding: 1.5rem;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid var(--sb-ui-color-primary-L200);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 100px;
+      }
+
+      .demo-item-tall {
+        min-block-size: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="component-container">
+      <!-- ========================================
+           HEADER CON TÍTULO E ÍCONO
+           ======================================== -->
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-grip" aria-hidden="true"></i>
+          </span>
+          <span>CSS Grid (Utilities Avanzadas)</span>
+        </h2>
+        <p class="component-description">
+          Utilities CSS avanzadas para layouts complejos con CSS Grid. Auto-fit, auto-fill, spanning, y alineación de contenido.
+          Para casos más allá del sistema de 12 columnas. Define grids personalizadas con máxima flexibilidad.
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: GRID-COLS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Grid-Cols: Columnas Iguales (.sb-ui-grid-cols-*)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Crea un grid con N columnas iguales. Distribuye el espacio disponible equitativamente entre todos los items.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">2 Columnas Iguales</h4>
+        <div class="demo-grid sb-ui-grid-cols-2 sb-ui-gap-3">
+          <div class="demo-item">1/2</div>
+          <div class="demo-item">1/2</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">3 Columnas Iguales</h4>
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3">
+          <div class="demo-item">1/3</div>
+          <div class="demo-item">1/3</div>
+          <div class="demo-item">1/3</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">4 Columnas Iguales</h4>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3">
+          <div class="demo-item">1/4</div>
+          <div class="demo-item">1/4</div>
+          <div class="demo-item">1/4</div>
+          <div class="demo-item">1/4</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">5 Columnas Iguales</h4>
+        <div class="demo-grid sb-ui-grid-cols-5 sb-ui-gap-3">
+          <div class="demo-item">1/5</div>
+          <div class="demo-item">1/5</div>
+          <div class="demo-item">1/5</div>
+          <div class="demo-item">1/5</div>
+          <div class="demo-item">1/5</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">6 Columnas Iguales</h4>
+        <div class="demo-grid sb-ui-grid-cols-6 sb-ui-gap-3">
+          <div class="demo-item">1/6</div>
+          <div class="demo-item">1/6</div>
+          <div class="demo-item">1/6</div>
+          <div class="demo-item">1/6</div>
+          <div class="demo-item">1/6</div>
+          <div class="demo-item">1/6</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Grid de 4 columnas iguales --&gt;
+&lt;div class="sb-ui-grid-cols-4 sb-ui-gap-3"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+  &lt;div&gt;Item 4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Clases disponibles: sb-ui-grid-cols-1 a sb-ui-grid-cols-6 --&gt;
+&lt;!-- Combinable con gutters: sb-ui-gap-0 a sb-ui-gap-5 --&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: GRID-ROWS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Grid-Rows: Filas Iguales (.sb-ui-grid-rows-*)</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Crea un grid con N filas iguales. Útil para layouts verticales o tabulares donde cada fila tiene la misma altura.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">3 Filas Iguales (3 Items en vertical)</h4>
+        <div class="demo-grid" style="grid-template-rows: repeat(3, 150px); gap: 1rem; grid-auto-flow: column;">
+          <div class="demo-item">Fila 1</div>
+          <div class="demo-item">Fila 2</div>
+          <div class="demo-item">Fila 3</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">4 Filas con 2 Columnas</h4>
+        <div class="demo-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 120px); gap: 1rem;">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Grid con 3 filas iguales --&gt;
+&lt;div style="
+  display: grid;
+  grid-template-rows: repeat(3, 150px);
+  gap: 1rem;
+"&gt;
+  &lt;div&gt;Fila 1&lt;/div&gt;
+  &lt;div&gt;Fila 2&lt;/div&gt;
+  &lt;div&gt;Fila 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: GRID SPANNING
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Grid Spanning: Colspan y Rowspan</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Elementos que ocupan múltiples columnas o filas. Crea layouts asimétricos donde un item abarca el espacio de varios.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Column Spanning (ocupa 2 columnas)</h4>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3">
+          <div class="demo-item sb-ui-grid-span-col-2">Span 2 cols</div>
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Row Spanning (ocupa 2 filas)</h4>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3" style="grid-template-rows: repeat(3, 100px);">
+          <div class="demo-item demo-item-tall sb-ui-grid-span-row-2">Span 2 rows</div>
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+          <div class="demo-item">5</div>
+          <div class="demo-item">6</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Combinado: Colspan + Rowspan</h4>
+        <div class="demo-grid sb-ui-grid-cols-4 sb-ui-gap-3" style="grid-template-rows: repeat(3, 100px);">
+          <div class="demo-item demo-item-tall sb-ui-grid-span-col-2 sb-ui-grid-span-row-2">Span 2x2</div>
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+          <div class="demo-item">4</div>
+          <div class="demo-item">5</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Colspan: ocupa 2 columnas --&gt;
+&lt;div class="sb-ui-grid-span-col-2"&gt;Wide item&lt;/div&gt;
+
+&lt;!-- Rowspan: ocupa 2 filas --&gt;
+&lt;div class="sb-ui-grid-span-row-2"&gt;Tall item&lt;/div&gt;
+
+&lt;!-- Combinado: 2x2 --&gt;
+&lt;div class="sb-ui-grid-span-col-2 sb-ui-grid-span-row-2"&gt;2x2 item&lt;/div&gt;
+
+&lt;!-- Clases de spanning: --&gt;
+&lt;!-- .sb-ui-grid-span-col-2, .sb-ui-grid-span-col-3, .sb-ui-grid-span-col-full --&gt;
+&lt;!-- .sb-ui-grid-span-row-2, .sb-ui-grid-span-row-3, .sb-ui-grid-span-row-full --&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: ALINEACIÓN
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Alineación: Place-Items y Place-Content</h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem;">
+          Controla cómo se alinean los items dentro del grid y cómo se distribuyen en el espacio disponible.
+        </p>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Items: Center (centrado)</h4>
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-items-center" style="min-block-size: 250px;">
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">1</div>
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">2</div>
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">3</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Items: Start (superior-izquierda)</h4>
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-items-start" style="min-block-size: 250px;">
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">1</div>
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">2</div>
+          <div class="demo-item" style="inline-size: 80px; block-size: 80px;">3</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Content: Center (contenido centrado)</h4>
+        <div class="demo-grid sb-ui-grid-cols-2 sb-ui-gap-3 sb-ui-place-content-center" style="min-block-size: 300px;">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Place-Content: Space-Around (distribuido)</h4>
+        <div class="demo-grid sb-ui-grid-cols-3 sb-ui-gap-3 sb-ui-place-content-space-around" style="min-block-size: 300px;">
+          <div class="demo-item">1</div>
+          <div class="demo-item">2</div>
+          <div class="demo-item">3</div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Centrar todos los items en sus celdas --&gt;
+&lt;div class="sb-ui-grid-cols-3 sb-ui-place-items-center"&gt;
+  &lt;div&gt;Centrado&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Place-Items (alinea items en sus celdas): --&gt;
+&lt;!-- .sb-ui-place-items-start | .sb-ui-place-items-center --&gt;
+&lt;!-- .sb-ui-place-items-end   | .sb-ui-place-items-stretch --&gt;
+
+&lt;!-- Place-Content (distribuye el contenido en el grid): --&gt;
+&lt;!-- .sb-ui-place-content-start | .sb-ui-place-content-center --&gt;
+&lt;!-- .sb-ui-place-content-space-between | .sb-ui-place-content-space-around --&gt;
+&lt;!-- .sb-ui-place-content-space-evenly --&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a
+            href="http://localhost:6007/?path=/docs/layout-css-grid--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
