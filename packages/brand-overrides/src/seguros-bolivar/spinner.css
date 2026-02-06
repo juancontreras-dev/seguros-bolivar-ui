@@ -1,0 +1,15 @@
+/**
+ * Seguros Bolívar - Spinner Component Overrides
+ */
+
+@layer brand-overrides {
+  [data-brand='seguros-bolivar'] {
+    & .sb-ui-spinner--icon,
+    & .sb-ui-spinner--icon-text {
+      --sb-ui-spinner-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+      --sb-ui-spinner-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.16),
+        0 1px 2px rgba(51, 51, 51, 0.16);
+    }
+  }
+}

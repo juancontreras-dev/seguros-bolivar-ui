@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: davivienda | Theme: light
- * Generated: 2026-02-04T13:30:09.471Z
+ * Generated: 2026-02-06T15:42:53.155Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -2689,11 +2689,17 @@
     --sb-ui-breadcrumb-link-active: var(--sb-ui-color-primary-D200);
     --sb-ui-breadcrumb-current-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-breadcrumb-separator-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-breadcrumb-icon-color: var(--sb-ui-color-primary-base);
+    --sb-ui-breadcrumb-icon-hover: var(--sb-ui-color-primary-D100);
+    --sb-ui-breadcrumb-icon-active: var(--sb-ui-color-primary-D200);
 
     /* Spacing */
     --sb-ui-breadcrumb-gap: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
     --sb-ui-breadcrumb-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
     --sb-ui-breadcrumb-padding-inline: 0;
+
+    /* Sizes - Según Figma: iconos 16px × 16px */
+    --sb-ui-breadcrumb-icon-size: clamp(14px, 0.9rem + 0.2vw, 16px);
 
     /* Separator */
     --sb-ui-breadcrumb-separator-content: '>';
@@ -2781,6 +2787,34 @@
     font-weight: 400;
     cursor: default;
     display: inline-block;
+  }
+
+  /* Icon - Según Figma: 16px × 16px */
+  .sb-ui-breadcrumb__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-breadcrumb-icon-size);
+    block-size: var(--sb-ui-breadcrumb-icon-size);
+    font-size: var(--sb-ui-breadcrumb-icon-size);
+    color: var(--sb-ui-breadcrumb-icon-color);
+    margin-inline-end: 0.375rem;
+    flex-shrink: 0;
+    transition: var(--sb-ui-breadcrumb-transition);
+  }
+
+  /* Icon colors en links */
+    .sb-ui-breadcrumb__link:hover .sb-ui-breadcrumb__icon {
+      color: var(--sb-ui-breadcrumb-icon-hover);
+    }
+
+    .sb-ui-breadcrumb__link:active .sb-ui-breadcrumb__icon {
+      color: var(--sb-ui-breadcrumb-icon-active);
+    }
+
+  /* Icon color en current (page actual) */
+  .sb-ui-breadcrumb__current .sb-ui-breadcrumb__icon {
+    color: var(--sb-ui-breadcrumb-current-color);
   }
 }
 /* ========================================
@@ -8037,7 +8071,7 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con doble círculo (verde + amarillo)
+ * - integrated: Spinner con tres anillos concéntricos (verde oscuro + verde claro + amarillo)
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
@@ -8053,7 +8087,10 @@
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
+ * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
+ * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated" data-progress="50">
+ *                  <div class="sb-ui-spinner__inner-ring"></div>
+ *                </div>
  */
 /* ========================================
    KEYFRAMES - Fuera de @layer
@@ -8077,9 +8114,27 @@
    ======================================== */
 @layer tokens {
   .sb-ui-spinner {
-    /* Colores */
+    /* Colores - Basic (progreso) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-color-primary-D200, #05794a);
     --sb-ui-spinner-gradient-end: var(--sb-ui-color-primary-D100, #009056);
+
+    /* Colores - Integrated (3 anillos) */
+    --sb-ui-spinner-ring-outer: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-spinner-ring-middle: var(--sb-ui-color-tertiary-base, #02d46f);
+    --sb-ui-spinner-ring-inner: var(--sb-ui-color-secondary-base, #ffe16f);
+
+    /* Track (pista gris detrás del progreso) */
+    --sb-ui-spinner-track-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+
+    /* Icon/Text - Fondo y sombra */
+    --sb-ui-spinner-bg-color: transparent;
+    --sb-ui-spinner-shadow: none;
+    --sb-ui-spinner-icon-size: clamp(48px, 8vw, 80px);
+
+    /* Integrated - offsets para los tres anillos */
+    --sb-ui-spinner-integrated-outer-inset: 0%;
+    --sb-ui-spinner-integrated-middle-inset: 10%;
+    --sb-ui-spinner-integrated-inner-inset: 20%;
 
     /* Tamaños */
     --sb-ui-spinner-size: clamp(32px, 6vw, 40px);
@@ -8132,28 +8187,35 @@
       );
       -webkit-mask: var(--sb-ui-spinner-mask);
       mask: var(--sb-ui-spinner-mask);
+      z-index: 1;
     }
 
     .sb-ui-spinner .sb-ui-spinner__content {
       position: absolute;
-      inset: 50% auto auto 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
       display: flex;
       flex-direction: column;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       gap: 0.25rem;
+      z-index: 2;
     }
 
     .sb-ui-spinner .sb-ui-spinner__icon {
       inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
       block-size: calc(var(--sb-ui-spinner-size) * 0.5);
       display: flex;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
+      color: var(--sb-ui-spinner-gradient-start);
     }
 
-      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img {
+      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img,:is(.sb-ui-spinner .sb-ui-spinner__icon) i {
         inline-size: 100%;
         block-size: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
     .sb-ui-spinner .sb-ui-spinner__label {
@@ -8173,53 +8235,89 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* INTEGRATED - 3 círculos concéntricos con velocidades diferentes */
   .sb-ui-spinner--integrated {
-    /* Tamaño más grande para acomodar 3 círculos */
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
+    --sb-ui-spinner-duration: 2s;
+    --sb-ui-spinner-stroke-width: clamp(4px, 0.6vw, 6px);
+    --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
+    --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
 
-    /* Desactivar ::before del base (no usa progreso) */
+    /* Anillo exterior (verde oscuro) - ya está en ::before */
+
+    /* Anillo medio (verde claro - tertiary) */
   }
-    .sb-ui-spinner--integrated::before {
-      display: none;
-    }
-  .sb-ui-spinner--integrated {
-
-    /* Círculo externo (verde oscuro) - 2s */
-    border: 3px solid transparent;
-    border-top-color: #009056;
-    animation: sb-ui-spinner-rotate 2s linear infinite;
-
-    /* Círculo medio (verde claro) - 3s */
-  }
-    .sb-ui-spinner--integrated::before {
-      content: '';
-      display: block;
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #02d46f;
-      animation: sb-ui-spinner-rotate 3s linear infinite;
-    }
-
-    /* Círculo interno (amarillo) - 1.5s */
     .sb-ui-spinner--integrated::after {
       content: '';
       position: absolute;
-      inset: 15px;
+      inset: var(--sb-ui-spinner-integrated-middle-inset);
       border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #ffe16f;
-      animation: sb-ui-spinner-rotate 1.5s linear infinite;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-middle) 0%,
+        var(--sb-ui-spinner-ring-middle) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 2;
     }
 
-  /* ICON & ICON-TEXT - Contenido interno estático (no rota) */
-  .sb-ui-spinner--icon .sb-ui-spinner__content,
-  .sb-ui-spinner--icon-text .sb-ui-spinner__content {
-    animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
-    will-change: transform;
+    /* Anillo interno (amarillo) usando un elemento hijo */
+    .sb-ui-spinner--integrated .sb-ui-spinner__inner-ring {
+      content: '';
+      position: absolute;
+      inset: var(--sb-ui-spinner-integrated-inner-inset);
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-inner) 0%,
+        var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 3;
+    }
+
+  .sb-ui-spinner--icon,
+  .sb-ui-spinner--icon-text {
+    --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
+    background: var(--sb-ui-spinner-bg-color);
+    box-shadow: var(--sb-ui-spinner-shadow);
+    animation: none;
   }
+
+    :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::before {
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
+      will-change: transform;
+    }
+
+    :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--sb-ui-spinner-track-color);
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
+      z-index: 0;
+    }
 }
 /* ========================================
    MODIFIERS LAYER
@@ -8237,7 +8335,7 @@
     animation-play-state: paused;
   }
 
-    .sb-ui-spinner--paused .sb-ui-spinner__content {
+    .sb-ui-spinner--paused .sb-ui-spinner__content,.sb-ui-spinner--paused::before,.sb-ui-spinner--paused::after {
       animation-play-state: paused;
     }
 }
@@ -8245,17 +8343,11 @@
    STATES LAYER
    ======================================== */
 @layer states {
-  .sb-ui-spinner[data-progress='25'] {
-    --sb-ui-spinner-progress: 25;
-  }
-  .sb-ui-spinner[data-progress='50'] {
-    --sb-ui-spinner-progress: 50;
-  }
-  .sb-ui-spinner[data-progress='75'] {
-    --sb-ui-spinner-progress: 75;
-  }
+  .sb-ui-spinner[data-progress='25'],
+  .sb-ui-spinner[data-progress='50'],
+  .sb-ui-spinner[data-progress='75'],
   .sb-ui-spinner[data-progress='100'] {
-    --sb-ui-spinner-progress: 100;
+    --sb-ui-spinner-progress: attr(data-progress number, 25);
   }
 }
 /* ========================================
@@ -8328,22 +8420,57 @@
    ======================================== */
 @layer tokens {
   .sb-ui-tabs {
-    /* Colores BASE */
-    --sb-ui-tabs-text-color: #5b5b5b;
-    --sb-ui-tabs-text-active: #038450;
-    --sb-ui-tabs-description-color: #9b9b9b;
+    /* Colores - Background */
+    --sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    --sb-ui-tabs-bg-active: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-tabs-bg-disabled: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L300, #f5f5f5);
 
-    --sb-ui-tabs-icon-color: #5b5b5b;
-    --sb-ui-tabs-icon-active: #038450;
+    /* Colores - Text */
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
 
-    --sb-ui-tabs-bg-hover: #f5f5f5;
+    /* Colores - Icons */
+    --sb-ui-tabs-icon-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-icon-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+    --sb-ui-tabs-icon-disabled-hover: var(--sb-ui-color-grayscale-L100, #b9b9b9);
 
-    /* Tipografía */
+    /* Colores - Border */
+    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    --sb-ui-tabs-border-disabled-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+
+    /* Espaciado - Responsive hacia objetivos de Figma (padding 4px, spacing 4px) */
+    --sb-ui-tabs-padding-inline: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem); /* Target: 4px */
+    --sb-ui-tabs-padding-block: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+    --sb-ui-tabs-padding-block-end: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem); /* Espacio extra para línea indicadora */
+    --sb-ui-tabs-gap: clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem); /* Target: 4px */
+
+    /* Tamaños - Responsive hacia objetivos de Figma (icon 20px, radius 8px) */
+    --sb-ui-tabs-track-block-size: clamp(40px, 6vw, 48px);
+    --sb-ui-tabs-track-inline-size: clamp(120px, 18vw, 152px);
+    --sb-ui-tabs-button-block-size: clamp(56px, 8vw, 72px);
+    --sb-ui-tabs-button-inline-size: clamp(110px, 16vw, 146px);
+    --sb-ui-tabs-icon-size: clamp(18px, 1rem + 0.25vw, 20px); /* Target: 20px */
+    --sb-ui-tabs-border-radius: clamp(6px, 0.5rem + 0.15vw, 8px); /* Target: 8px */
+    --sb-ui-tabs-indicator-width: 2px; /* Según Figma: 1px, pero 2px para mejor visibilidad */
+
+    /* Tipografía - clamp() */
     --sb-ui-tabs-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    --sb-ui-tabs-title-font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.875rem);
+    --sb-ui-tabs-description-font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
     --sb-ui-tabs-line-height: 1.2;
 
     /* Transiciones */
-    --sb-ui-tabs-transition: all 0.2s ease;
+    --sb-ui-tabs-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 }
 /* ========================================
@@ -8382,19 +8509,72 @@
 
     /* Hover */
   }
-    .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active) {
+    .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
       background: var(--sb-ui-tabs-bg-hover);
     }
 
+      .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+        color: var(--sb-ui-tabs-text-hover);
+      }
+
+      .sb-ui-tabs__item:hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+        color: var(--sb-ui-tabs-icon-hover);
+      }
+
+    /* Active (Pressed) - Estado visual al hacer click */
+    .sb-ui-tabs__item:active:not(:disabled):not(.sb-ui-tabs__item--disabled):not(.sb-ui-tabs__item--active) {
+      background: var(--sb-ui-tabs-bg-hover);
+      opacity: 0.9;
+      transform: none;
+    }
+
     /* Focus */
-    .sb-ui-tabs__item:focus-visible {
+    .sb-ui-tabs__item:focus-visible:not(:disabled):not(.sb-ui-tabs__item--disabled) {
       outline: 3px solid var(--sb-ui-color-secondary-L100, #fffcf0);
       outline-offset: 2px;
     }
 
-    /* Active transform - prevent misalignment */
-    .sb-ui-tabs__item:active {
-      transform: none;
+    /* Disabled - Estado deshabilitado */
+    .sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled {
+      background: var(--sb-ui-tabs-bg-disabled);
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+      :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+        color: var(--sb-ui-tabs-text-disabled);
+      }
+
+      :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+        color: var(--sb-ui-tabs-icon-disabled);
+      }
+
+    /* Disabled hover - Feedback visual sutil */
+    .sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover {
+      background: var(
+        --sb-ui-tabs-bg-disabled-hover,
+        var(--sb-ui-tabs-bg-disabled)
+      );
+    }
+
+      :is(.sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover) .sb-ui-tabs__title {
+        color: var(
+          --sb-ui-tabs-text-disabled-hover,
+          var(--sb-ui-tabs-text-disabled)
+        );
+      }
+
+      :is(.sb-ui-tabs__item:disabled:hover,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:hover) .sb-ui-tabs__icon {
+        color: var(
+          --sb-ui-tabs-icon-disabled-hover,
+          var(--sb-ui-tabs-icon-disabled)
+        );
+      }
+
+    /* Disabled focus - Sin outline */
+    .sb-ui-tabs__item:disabled:focus,.sb-ui-tabs__item:disabled:focus-visible,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:focus,.sb-ui-tabs__item.sb-ui-tabs__item--disabled:focus-visible {
+      outline: none;
     }
 
   .sb-ui-tabs__icon {
@@ -8427,175 +8607,109 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* ========================================
-     TRACK VARIANT - Línea inferior verde
-     ======================================== */
   .sb-ui-tabs--track {
     gap: 0;
   }
 
     .sb-ui-tabs--track .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 48px;
-      min-height: 48px;
-      max-height: 48px;
-      width: 152px;
-      max-width: 152px;
-      min-width: 152px;
-      flex: 0 0 152px;
-
-      /* Layout */
+      /* Altura automática con mínimo - permite que el contenido respire */
+      block-size: auto;
+      min-block-size: var(--sb-ui-tabs-track-block-size);
+      inline-size: var(--sb-ui-tabs-track-inline-size);
+      flex: 0 0 var(--sb-ui-tabs-track-inline-size);
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
 
-      /* Spacing */
-      padding: 0.25rem 1rem;
-      gap: 0.125rem;
+      /* Padding usando variables - más espacio abajo para separar texto de la línea indicadora */
+      padding-block-start: var(--sb-ui-tabs-padding-block);
+      padding-block-end: var(--sb-ui-tabs-padding-block-end);
+      padding-inline: var(--sb-ui-tabs-padding-inline);
+      gap: var(--sb-ui-tabs-gap);
 
-      /* Border */
-      border-bottom: 3px solid transparent;
-
-      /* Active state */
+      /* Línea indicadora simple con border-block-end */
+      border-block-end: var(--sb-ui-tabs-indicator-width) solid transparent;
+      transition: var(--sb-ui-tabs-transition), border-color 0.2s ease;
     }
+
       .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) {
-        background: #f2f9f6;
-        border-bottom-color: #038450;
+        background: var(--sb-ui-tabs-bg-active);
+        border-block-end-color: var(--sb-ui-tabs-border-active);
       }
 
         .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
+          color: var(--sb-ui-tabs-text-active);
         }
 
     .sb-ui-tabs--track .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
+      font-size: var(--sb-ui-tabs-title-font-size);
     }
 
     .sb-ui-tabs--track .sb-ui-tabs__description {
-      font-size: 0.6875rem; /* 11px */
+      font-size: var(--sb-ui-tabs-description-font-size);
     }
-
-  /* ========================================
-     BUTTON VARIANT - Fondo amarillo activo
-     ======================================== */
-  .sb-ui-tabs--button {
-    gap: 0.5rem;
-  }
-
-    .sb-ui-tabs--button .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 72px;
-      min-height: 72px;
-      max-height: 72px;
-      width: 146px;
-      max-width: 146px;
-      min-width: 146px;
-      flex: 0 0 146px;
-
-      /* Layout */
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item {
+      block-size: var(--sb-ui-tabs-button-block-size);
+      inline-size: var(--sb-ui-tabs-button-inline-size);
+      flex: 0 0 var(--sb-ui-tabs-button-inline-size);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      /* Spacing */
-      padding: 0.75rem 1rem;
+      padding-block: 0.75rem;
+      padding-inline: var(--sb-ui-tabs-padding-inline);
       gap: 0.375rem;
-
-      /* Border */
-      background: #fff;
-      border: 1px solid transparent;
-      border-radius: 8px;
-
-      /* Active state */
+      background: var(--sb-ui-tabs-bg-color);
     }
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
-        background: #ffe16f;
-        border: 1px solid #ffe16f;
+
+      .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) {
+        background: var(--sb-ui-tabs-bg-active);
       }
 
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
+        .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__title {
+          color: var(--sb-ui-tabs-text-active);
           font-weight: 700;
         }
 
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) .sb-ui-tabs__icon {
-          color: #038450;
+        .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__icon {
+          color: var(--sb-ui-tabs-icon-active);
         }
 
-    .sb-ui-tabs--button .sb-ui-tabs__icon {
-      font-size: 20px;
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__icon {
+      font-size: var(--sb-ui-tabs-icon-size);
     }
 
-    .sb-ui-tabs--button .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__title {
+      font-size: var(--sb-ui-tabs-title-font-size);
       font-weight: 500;
       text-align: center;
     }
 
-    .sb-ui-tabs--button .sb-ui-tabs__description {
-      font-size: 0.75rem; /* 12px */
+    :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__description {
+      font-size: var(--sb-ui-tabs-description-font-size);
       text-align: center;
     }
 
-  /* ========================================
-     FOLDER VARIANT - Estilo carpeta
-     ======================================== */
+  .sb-ui-tabs--button {
+    gap: 0.25rem; /* 4px según Figma (spacing entre tabs) */
+  }
+
+    .sb-ui-tabs--button .sb-ui-tabs__item {
+      border: 1px solid transparent;
+      border-radius: var(--sb-ui-tabs-border-radius);
+    }
+
+      .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
+        border-color: var(--sb-ui-tabs-bg-active);
+      }
+
   .sb-ui-tabs--folder {
     gap: 0;
   }
 
     .sb-ui-tabs--folder .sb-ui-tabs__item {
-      /* Dimensiones específicas */
-      height: 72px;
-      min-height: 72px;
-      max-height: 72px;
-      width: 146px;
-      max-width: 146px;
-      min-width: 146px;
-      flex: 0 0 146px;
-
-      /* Layout */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      /* Spacing */
-      padding: 0.75rem 1rem;
-      gap: 0.375rem;
-
-      /* Border */
-      background: #fff;
       border: none;
-      border-radius: 8px 8px 0 0;
-
-      /* Active state */
-    }
-      .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) {
-        background: #f2f9f6;
-      }
-
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__title {
-          color: #038450;
-          font-weight: 700;
-        }
-
-        .sb-ui-tabs__item--active:is(.sb-ui-tabs--folder .sb-ui-tabs__item) .sb-ui-tabs__icon {
-          color: #038450;
-        }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__icon {
-      font-size: 20px;
-    }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__title {
-      font-size: 0.875rem; /* 14px */
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .sb-ui-tabs--folder .sb-ui-tabs__description {
-      font-size: 0.75rem; /* 12px */
-      text-align: center;
+      border-start-start-radius: var(--sb-ui-tabs-border-radius);
+      border-start-end-radius: var(--sb-ui-tabs-border-radius);
     }
 }
 /* ========================================
@@ -8607,27 +8721,19 @@
     opacity: 0.7;
   }
 }
-/* ========================================
-   UTILITIES LAYER (máxima prioridad)
-   ======================================== */
 @layer utilities {
-  /* High contrast mode support */
   @media (prefers-contrast: high) {
     .sb-ui-tabs__item {
       outline-width: 2px;
     }
   }
 
-  /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     .sb-ui-tabs {
       --sb-ui-tabs-transition: none;
     }
 
-    .sb-ui-tabs__item {
-      transition: none;
-    }
-
+    .sb-ui-tabs__item,
     .sb-ui-tabs__icon {
       transition: none;
     }

@@ -7,7 +7,7 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con doble círculo (verde + amarillo)
+ * - integrated: Spinner con tres anillos concéntricos (verde oscuro + verde claro + amarillo)
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
@@ -23,7 +23,10 @@
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
+ * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
+ * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated" data-progress="50">
+ *                  <div class="sb-ui-spinner__inner-ring"></div>
+ *                </div>
  */
 
 @layer reset, tokens, base, variants, modifiers, states, utilities;
@@ -52,9 +55,27 @@
    ======================================== */
 @layer tokens {
   .sb-ui-spinner {
-    /* Colores */
+    /* Colores - Basic (progreso) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-color-primary-D200, #05794a);
     --sb-ui-spinner-gradient-end: var(--sb-ui-color-primary-D100, #009056);
+
+    /* Colores - Integrated (3 anillos) */
+    --sb-ui-spinner-ring-outer: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-spinner-ring-middle: var(--sb-ui-color-tertiary-base, #02d46f);
+    --sb-ui-spinner-ring-inner: var(--sb-ui-color-secondary-base, #ffe16f);
+
+    /* Track (pista gris detrás del progreso) */
+    --sb-ui-spinner-track-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+
+    /* Icon/Text - Fondo y sombra */
+    --sb-ui-spinner-bg-color: transparent;
+    --sb-ui-spinner-shadow: none;
+    --sb-ui-spinner-icon-size: clamp(48px, 8vw, 80px);
+
+    /* Integrated - offsets para los tres anillos */
+    --sb-ui-spinner-integrated-outer-inset: 0%;
+    --sb-ui-spinner-integrated-middle-inset: 10%;
+    --sb-ui-spinner-integrated-inner-inset: 20%;
 
     /* Tamaños */
     --sb-ui-spinner-size: clamp(32px, 6vw, 40px);
@@ -107,28 +128,36 @@
       );
       -webkit-mask: var(--sb-ui-spinner-mask);
       mask: var(--sb-ui-spinner-mask);
+      z-index: 1;
     }
 
     & .sb-ui-spinner__content {
       position: absolute;
-      inset: 50% auto auto 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
       display: flex;
       flex-direction: column;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       gap: 0.25rem;
+      z-index: 2;
     }
 
     & .sb-ui-spinner__icon {
       inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
       block-size: calc(var(--sb-ui-spinner-size) * 0.5);
       display: flex;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
+      color: var(--sb-ui-spinner-gradient-start);
 
       & svg,
-      & img {
+      & img,
+      & i {
         inline-size: 100%;
         block-size: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -151,50 +180,88 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* INTEGRATED - 3 círculos concéntricos con velocidades diferentes */
   .sb-ui-spinner--integrated {
-    /* Tamaño más grande para acomodar 3 círculos */
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
+    --sb-ui-spinner-duration: 2s;
+    --sb-ui-spinner-stroke-width: clamp(4px, 0.6vw, 6px);
+    --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
+    --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
 
-    /* Desactivar ::before del base (no usa progreso) */
-    &::before {
-      display: none;
-    }
+    /* Anillo exterior (verde oscuro) - ya está en ::before */
 
-    /* Círculo externo (verde oscuro) - 2s */
-    border: 3px solid transparent;
-    border-top-color: #009056;
-    animation: sb-ui-spinner-rotate 2s linear infinite;
-
-    /* Círculo medio (verde claro) - 3s */
-    &::before {
-      content: '';
-      display: block;
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #02d46f;
-      animation: sb-ui-spinner-rotate 3s linear infinite;
-    }
-
-    /* Círculo interno (amarillo) - 1.5s */
+    /* Anillo medio (verde claro - tertiary) */
     &::after {
       content: '';
       position: absolute;
-      inset: 15px;
+      inset: var(--sb-ui-spinner-integrated-middle-inset);
       border-radius: 50%;
-      border: 3px solid transparent;
-      border-top-color: #ffe16f;
-      animation: sb-ui-spinner-rotate 1.5s linear infinite;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-middle) 0%,
+        var(--sb-ui-spinner-ring-middle) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 2;
+    }
+
+    /* Anillo interno (amarillo) usando un elemento hijo */
+    & .sb-ui-spinner__inner-ring {
+      content: '';
+      position: absolute;
+      inset: var(--sb-ui-spinner-integrated-inner-inset);
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--sb-ui-spinner-ring-inner) 0%,
+        var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
+        transparent var(--sb-ui-spinner-angle)
+      );
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
+        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
+      );
+      z-index: 3;
     }
   }
 
-  /* ICON & ICON-TEXT - Contenido interno estático (no rota) */
-  .sb-ui-spinner--icon .sb-ui-spinner__content,
-  .sb-ui-spinner--icon-text .sb-ui-spinner__content {
-    animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
-    will-change: transform;
+  .sb-ui-spinner--icon,
+  .sb-ui-spinner--icon-text {
+    --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
+    background: var(--sb-ui-spinner-bg-color);
+    box-shadow: var(--sb-ui-spinner-shadow);
+    animation: none;
+
+    &::before {
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
+      will-change: transform;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--sb-ui-spinner-track-color);
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
+      z-index: 0;
+    }
   }
 }
 
@@ -213,7 +280,9 @@
   .sb-ui-spinner--paused {
     animation-play-state: paused;
 
-    & .sb-ui-spinner__content {
+    & .sb-ui-spinner__content,
+    &::before,
+    &::after {
       animation-play-state: paused;
     }
   }
@@ -223,17 +292,11 @@
    STATES LAYER
    ======================================== */
 @layer states {
-  .sb-ui-spinner[data-progress='25'] {
-    --sb-ui-spinner-progress: 25;
-  }
-  .sb-ui-spinner[data-progress='50'] {
-    --sb-ui-spinner-progress: 50;
-  }
-  .sb-ui-spinner[data-progress='75'] {
-    --sb-ui-spinner-progress: 75;
-  }
+  .sb-ui-spinner[data-progress='25'],
+  .sb-ui-spinner[data-progress='50'],
+  .sb-ui-spinner[data-progress='75'],
   .sb-ui-spinner[data-progress='100'] {
-    --sb-ui-spinner-progress: 100;
+    --sb-ui-spinner-progress: attr(data-progress number, 25);
   }
 }
 
