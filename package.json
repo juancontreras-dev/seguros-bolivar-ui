@@ -29,6 +29,7 @@
     "check": "pnpm run lint  --fix && pnpm run format:check && pnpm run test",
     "clean": "pnpm exec turbo run clean && node -e \"const fs=require('fs'); ['.turbo','node_modules/.cache','docs'].forEach(d=>fs.rmSync(d,{recursive:true,force:true})); ['examples/dist','packages/docs/.storybook'].forEach(d=>{try{fs.readdirSync(d).filter(f=>f.includes('.min.')).forEach(f=>fs.unlinkSync(d+'/'+f))}catch(e){}})\"",
     "demo": "pnpm run build && cd examples && npx serve -p 3000",
+    "demo:subpath": "npx serve . -p 3080",
     "deploy": "pnpm run build:site && node scripts/deploy-gh-pages.js",
     "dev": "./scripts/dev.sh",
     "dev:bundle": "pnpm --filter @seguros-bolivar-ui/bundle dev",
