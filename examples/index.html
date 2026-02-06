@@ -1732,6 +1732,10 @@
               // Re-initialize any scripts or styles if needed
               initializeLoadedContent();
               
+              // Las páginas cargadas (modal, etc.) pueden tener scripts que hacen brandCss.href = '../dist/...'
+              // y eso rompe en GitHub Pages. Restaurar la URL correcta del CSS de marca.
+              if (typeof updateBrandCSS === 'function') updateBrandCSS();
+              
               // Close sidebar on mobile
               if (window.innerWidth <= 768) {
                 sidebar.classList.remove('open');
