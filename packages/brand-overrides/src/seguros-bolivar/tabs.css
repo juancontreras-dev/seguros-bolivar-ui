@@ -58,18 +58,21 @@
      ======================================== */
   [data-brand='seguros-bolivar'] .sb-ui-tabs--track {
     /* Background */
-    --sb-ui-tabs-bg-color: transparent;
-    --sb-ui-tabs-bg-hover: var(--sb-ui-color-secondary-L400);
-    --sb-ui-tabs-bg-active: transparent;
+    --sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-tabs-bg-active: var(--sb-ui-color-primary-L400, #f2f9f6);
     --sb-ui-tabs-bg-disabled: var(--sb-ui-color-grayscale-L300);
     --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L200);
 
-    /* Text */
+    /* Text - Título */
     --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200);
-    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D200);
-    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-base);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100, #038450);
     --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base);
+
+    /* Text - Descripción */
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100, #757575);
 
     /* Icons */
     --sb-ui-tabs-icon-color: var(--sb-ui-color-grayscale-base);
@@ -78,9 +81,9 @@
     --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100);
     --sb-ui-tabs-icon-disabled-hover: var(--sb-ui-color-grayscale-L100);
 
-    /* Border */
-    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L200);
-    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base);
+    /* Border - Línea inferior */
+    --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+    --sb-ui-tabs-border-active: var(--sb-ui-color-primary-base, #009056);
     --sb-ui-tabs-border-disabled: var(--sb-ui-color-grayscale-L200);
     --sb-ui-tabs-border-disabled-hover: var(--sb-ui-color-grayscale-L200);
   }
