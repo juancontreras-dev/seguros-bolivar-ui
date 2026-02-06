@@ -1992,7 +1992,8 @@
 
       function updateBrandCSS() {
         const cssFileName = `sb-ui-${brandMap[currentBrand]}-${currentTheme}.min.css`;
-        const newHref = `dist/${cssFileName}?v=${Date.now()}`;
+        // Usar ruta absoluta desde el origen para que funcione en GitHub Pages (subpath /seguros-bolivar-ui/)
+        const newHref = BASE_PATH + 'dist/' + cssFileName + '?v=' + Date.now();
         
         if (brandCSS) {
           brandCSS.href = newHref;
