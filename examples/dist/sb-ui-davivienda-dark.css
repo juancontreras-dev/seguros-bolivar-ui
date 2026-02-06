@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: davivienda | Theme: dark
- * Generated: 2026-02-06T17:10:43.371Z
+ * Generated: 2026-02-06T20:22:56.931Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -8942,11 +8942,33 @@
     --sb-ui-tabs-border-radius: clamp(6px, 0.5rem + 0.15vw, 8px); /* Target: 8px */
     --sb-ui-tabs-indicator-width: 2px; /* Según Figma: 1px, pero 2px para mejor visibilidad */
 
-    /* Tipografía - clamp() */
+    /* Tipografía */
     --sb-ui-tabs-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
     --sb-ui-tabs-title-font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.875rem);
+    --sb-ui-tabs-title-font-weight: 500;
+    --sb-ui-tabs-title-font-weight-active: 700;
     --sb-ui-tabs-description-font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
     --sb-ui-tabs-line-height: 1.2;
+
+    /* Focus */
+    --sb-ui-tabs-focus-outline-width: 3px;
+    --sb-ui-tabs-focus-outline-color: var(--sb-ui-color-secondary-L100, #fffcf0);
+    --sb-ui-tabs-focus-outline-offset: 2px;
+
+    /* Opacidad */
+    --sb-ui-tabs-active-press-opacity: 0.9;
+    --sb-ui-tabs-disabled-opacity: 0.6;
+    --sb-ui-tabs-loading-opacity: 0.7;
+
+    /* Border */
+    --sb-ui-tabs-border-width: 1px;
+    --sb-ui-tabs-button-gap: clamp(0.125rem, 0.1rem + 0.15vw, 0.25rem);
+
+    /* Description */
+    --sb-ui-tabs-description-font-weight: 400;
+
+    /* Accesibilidad */
+    --sb-ui-tabs-high-contrast-outline-width: 2px;
 
     /* Transiciones */
     --sb-ui-tabs-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -9003,14 +9025,14 @@
     /* Active (Pressed) - Estado visual al hacer click */
     .sb-ui-tabs__item:active:not(:disabled):not(.sb-ui-tabs__item--disabled):not(.sb-ui-tabs__item--active) {
       background: var(--sb-ui-tabs-bg-hover);
-      opacity: 0.9;
+      opacity: var(--sb-ui-tabs-active-press-opacity);
       transform: none;
     }
 
     /* Focus */
     .sb-ui-tabs__item:focus-visible:not(:disabled):not(.sb-ui-tabs__item--disabled) {
-      outline: 3px solid var(--sb-ui-color-secondary-L100, #fffcf0);
-      outline-offset: 2px;
+      outline: var(--sb-ui-tabs-focus-outline-width) solid var(--sb-ui-tabs-focus-outline-color);
+      outline-offset: var(--sb-ui-tabs-focus-outline-offset);
     }
 
     /* Disabled - Estado deshabilitado */
@@ -9018,7 +9040,7 @@
       background: var(--sb-ui-tabs-bg-disabled);
       cursor: not-allowed;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: var(--sb-ui-tabs-disabled-opacity);
     }
 
       :is(.sb-ui-tabs__item:disabled,.sb-ui-tabs__item.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
@@ -9072,13 +9094,13 @@
 
   .sb-ui-tabs__title {
     /* Typography */
-    font-weight: 700;
+    font-weight: var(--sb-ui-tabs-title-font-weight-active);
     color: var(--sb-ui-tabs-text-color);
   }
 
   .sb-ui-tabs__description {
     /* Typography */
-    font-weight: 400;
+    font-weight: var(--sb-ui-tabs-description-font-weight);
     color: var(--sb-ui-tabs-description-color);
   }
 }
@@ -9106,6 +9128,9 @@
       padding-inline: var(--sb-ui-tabs-padding-inline);
       gap: var(--sb-ui-tabs-gap);
 
+      /* Background */
+      background: var(--sb-ui-tabs-bg-color);
+
       /* Línea indicadora simple con border-block-end - por defecto usa border-color */
       border-block-end: var(--sb-ui-tabs-indicator-width) solid var(--sb-ui-tabs-border-color);
       transition: var(--sb-ui-tabs-transition), border-color 0.2s ease;
@@ -9113,8 +9138,17 @@
       /* Hover state */
     }
       :is(.sb-ui-tabs--track .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
+        background: var(--sb-ui-tabs-bg-hover);
         border-block-end-color: var(--sb-ui-tabs-border-active);
       }
+
+        :is(.sb-ui-tabs--track .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+          color: var(--sb-ui-tabs-text-hover);
+        }
+
+        :is(.sb-ui-tabs--track .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+          color: var(--sb-ui-tabs-icon-hover);
+        }
 
       /* Active state */
       .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) {
@@ -9124,6 +9158,10 @@
 
         .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__title {
           color: var(--sb-ui-tabs-text-active);
+        }
+
+        .sb-ui-tabs__item--active:is(.sb-ui-tabs--track .sb-ui-tabs__item) .sb-ui-tabs__icon {
+          color: var(--sb-ui-tabs-icon-active);
         }
 
     .sb-ui-tabs--track .sb-ui-tabs__title {
@@ -9142,11 +9180,23 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding-block: 0.75rem;
+      padding-block: var(--sb-ui-tabs-padding-block);
       padding-inline: var(--sb-ui-tabs-padding-inline);
-      gap: 0.375rem;
+      gap: var(--sb-ui-tabs-gap);
       background: var(--sb-ui-tabs-bg-color);
     }
+
+      :is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
+        background: var(--sb-ui-tabs-bg-hover);
+      }
+
+        :is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__title {
+          color: var(--sb-ui-tabs-text-hover);
+        }
+
+        :is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) .sb-ui-tabs__icon {
+          color: var(--sb-ui-tabs-icon-hover);
+        }
 
       .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) {
         background: var(--sb-ui-tabs-bg-active);
@@ -9154,7 +9204,7 @@
 
         .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__title {
           color: var(--sb-ui-tabs-text-active);
-          font-weight: 700;
+          font-weight: var(--sb-ui-tabs-title-font-weight-active);
         }
 
         .sb-ui-tabs__item--active:is(:is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__item) .sb-ui-tabs__icon {
@@ -9167,7 +9217,7 @@
 
     :is(.sb-ui-tabs--button,.sb-ui-tabs--folder) .sb-ui-tabs__title {
       font-size: var(--sb-ui-tabs-title-font-size);
-      font-weight: 500;
+      font-weight: var(--sb-ui-tabs-title-font-weight);
       text-align: center;
     }
 
@@ -9177,16 +9227,20 @@
     }
 
   .sb-ui-tabs--button {
-    gap: 0.25rem; /* 4px según Figma (spacing entre tabs) */
+    gap: var(--sb-ui-tabs-button-gap);
   }
 
     .sb-ui-tabs--button .sb-ui-tabs__item {
-      border: 1px solid transparent;
+      border: var(--sb-ui-tabs-border-width) solid var(--sb-ui-tabs-border-color);
       border-radius: var(--sb-ui-tabs-border-radius);
     }
 
+      :is(.sb-ui-tabs--button .sb-ui-tabs__item):hover:not(.sb-ui-tabs__item--active):not(:disabled):not(.sb-ui-tabs__item--disabled) {
+        border-color: var(--sb-ui-tabs-border-active, var(--sb-ui-tabs-bg-hover));
+      }
+
       .sb-ui-tabs__item--active:is(.sb-ui-tabs--button .sb-ui-tabs__item) {
-        border-color: var(--sb-ui-tabs-bg-active);
+        border-color: var(--sb-ui-tabs-border-active, var(--sb-ui-tabs-bg-active));
       }
 
   .sb-ui-tabs--folder {
@@ -9205,13 +9259,13 @@
 @layer states {
   .sb-ui-tabs--loading {
     pointer-events: none;
-    opacity: 0.7;
+    opacity: var(--sb-ui-tabs-loading-opacity);
   }
 }
 @layer utilities {
   @media (prefers-contrast: high) {
     .sb-ui-tabs__item {
-      outline-width: 2px;
+      outline-width: var(--sb-ui-tabs-high-contrast-outline-width);
     }
   }
 
