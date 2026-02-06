@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spinner Animation Test</title>
+  <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" />
+  <link rel="stylesheet" href="../components.css" />
+  <style>
+    body { padding: 2rem; background: #fff; }
+    .row { display: flex; gap: 3rem; align-items: center; margin-block-end: 2rem; }
+    .label { font-family: sans-serif; font-size: 0.875rem; min-width: 180px; }
+    /* Test: red box that animates independently */
+    @keyframes spin-test { to { transform: rotate(360deg); } }
+    .red-box {
+      width: 50px; height: 50px;
+      background: red;
+      animation: spin-test 1s linear infinite;
+    }
+
+    /* Mostrar el valor de prefers-reduced-motion */
+    .motion-status { font-family: monospace; font-size: 0.9rem; margin-block-end: 1.5rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .motion-status { background: #fee; border: 2px solid red; padding: 0.5rem; }
+      .motion-status::after { content: ' → ACTIVO (reduce)'; color: red; font-weight: bold; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .motion-status { background: #efe; border: 2px solid green; padding: 0.5rem; }
+      .motion-status::after { content: ' → no-preference (normal)'; color: green; font-weight: bold; }
+    }
+  </style>
+</head>
+<body>
+  <div class="motion-status">prefers-reduced-motion:</div>
+
+  <div class="row">
+    <span class="label">Red box (animation nativa):</span>
+    <div class="red-box"></div>
+  </div>
+
+  <div class="row">
+    <span class="label">Basic spinner (data-progress=50):</span>
+    <div class="sb-ui-spinner" role="status" data-progress="50"></div>
+  </div>
+
+  <div class="row">
+    <span class="label">Integrated spinner (data-progress=50):</span>
+    <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" data-progress="50"></div>
+  </div>
+
+  <div class="row">
+    <span class="label">Icon spinner (data-progress=50):</span>
+    <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" data-progress="50">
+      <div class="sb-ui-spinner__content">
+        <div class="sb-ui-spinner__icon">★</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -818,6 +818,40 @@ Genera un reporte con:
 
 ---
 
+## 🎨 COLORES CORPORATIVOS - SEGUROS BOLÍVAR
+
+### Tab Button (Variante Button)
+
+**Estados Visuales:**
+
+| Estado | Background | Border | Título | Descripción |
+|--------|------------|--------|--------|-------------|
+| **Default** | `#FFFFFF` | `#E1E1E1` | `#038450` | `#757575` |
+| **Hover** | `#FFEA9A` | `#B9B9B9` | `#038450` | `#757575` |
+| **Active/Selected** | `#FFEA9A` | `#B9B9B9` | `#038450` | `#757575` |
+
+**Tokens CSS:**
+```css
+/* Default State */
+--sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white); /* #FFFFFF */
+--sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L200); /* #E1E1E1 */
+--sb-ui-tabs-text-color: var(--sb-ui-color-primary-D100); /* #038450 */
+--sb-ui-tabs-icon-color: var(--sb-ui-color-primary-D100); /* #038450 */
+--sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100); /* #757575 */
+
+/* Hover & Active - Los textos e iconos mantienen su color verde corporativo */
+--sb-ui-tabs-bg-hover: var(--sb-ui-color-secondary-L100); /* #FFEA9A */
+--sb-ui-tabs-bg-active: var(--sb-ui-color-secondary-L100); /* #FFEA9A */
+--sb-ui-tabs-border-hover: var(--sb-ui-color-grayscale-L100); /* #B9B9B9 */
+--sb-ui-tabs-border-active: var(--sb-ui-color-grayscale-L100); /* #B9B9B9 */
+--sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100); /* #038450 - NO cambia */
+--sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100); /* #038450 - NO cambia */
+--sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-D100); /* #038450 - NO cambia */
+--sb-ui-tabs-icon-active: var(--sb-ui-color-primary-D100); /* #038450 - NO cambia */
+```
+
+---
+
 ## 📚 REFERENCIAS
 
 - Componente base: `packages/atoms/src/button.css`
