@@ -1,48 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar Component - Seguros Bolívar UI Design System</title>
 
-    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Google Fonts - Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- Font Awesome 6 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- Preload CSS del Design System -->
-    <link
-      rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
-      as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
-      id="brand-css"
-    />
-
-    <!-- CSS global de componentes -->
-    <link
-      rel="stylesheet"
-      href="../components.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
+    <link rel="stylesheet" href="../components.css" />
+    <script type="module" src="../dist/sb-ui-components.min.js"></script>
 
     <style>
-      /* Estilos específicos para calendar demo */
+      /* Estilos específicos para calendar demo (mismo patrón que input) */
       .calendar-demo-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -66,15 +39,22 @@
         letter-spacing: 0.5px;
       }
 
-      .calendar-demo-item p {
+      .calendar-demo-note {
         font-size: 0.75rem;
         color: var(--sb-ui-color-grayscale-D100, #9b9b9b);
-        margin-block-end: 1rem;
+        margin-block-end: 0.5rem;
       }
 
-      .calendar-wrapper {
+      .datepicker-demo-wrapper {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+
+      .datepicker-demo-wrapper sb-ui-datepicker {
+        display: inline-block;
+        min-width: 280px;
       }
 
       .sb-ui-calendar__nav-icon {
@@ -83,575 +63,262 @@
         fill: currentColor;
       }
 
+      /* DatePicker: padding y márgenes (el reset de components.css lo quita) */
+      .component-container .sb-ui-datepicker__wrapper .sb-ui-input,
+      .component-container .sb-ui-datepicker__input {
+        padding-inline: 1rem;
+        padding-block: 0.625rem;
+      }
+      .component-container .sb-ui-datepicker__wrapper .sb-ui-input {
+        padding-inline-end: calc(44px + 0.5rem);
+      }
+      .component-container .sb-ui-datepicker__dropdown {
+        padding-inline: 1rem;
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+      }
+      .component-container .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+        padding-block-start: 0.75rem;
+      }
+      .component-container .sb-ui-datepicker__dropdown .sb-ui-calendar__header {
+        margin-block-end: 1rem;
+      }
+
       @media (max-width: 768px) {
-        .calendar-demo-grid {
-          grid-template-columns: 1fr;
-        }
+        .calendar-demo-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
-
-  <body>
+  <body data-brand="seguros-bolivar">
     <main class="component-container">
-      <!-- ========================================
-           HEADER CON TÍTULO E ÍCONO
-           ======================================== -->
       <header class="component-header">
         <h2 class="variant-title">
           <span class="component-title-icon">
             <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
           </span>
-          <span>Calendar</span>
+          <span>Calendario</span>
         </h2>
         <p class="component-description">
-          Componente de calendario para selección de fechas con tres variantes principales: Single (selección única), Range (rango de fechas) y Multiple (múltiples fechas independientes).
-          Compatible con todas las marcas del design system.
+          Componente de calendario y selector de fechas. Incluye DatePicker (input + calendario desplegable) con variantes single, range y multiple, tamaños small/medium/large y soporte para todas las marcas del design system.
         </p>
       </header>
 
-      <!-- ========================================
-           SECCIÓN 1: SINGLE DATE PICKER
-           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Selección de Fecha Única</h3>
-        <p class="component-description">Permite al usuario seleccionar una sola fecha. Ideal para campos de formulario como "Fecha de Nacimiento" o "Fecha de Cita".</p>
-        
+        <h3 class="variant-title">DatePicker con input</h3>
+        <p class="component-description" style="margin-block-end: 1rem;">
+          Campo de texto con ícono de calendario. Al hacer clic en el input o en el ícono se abre el calendario. La fecha seleccionada se muestra en el input.
+        </p>
         <div class="calendar-demo-grid">
-          <!-- Default -->
           <div class="calendar-demo-item">
-            <h4>1. Default</h4>
-            <p>Calendario simple con un día seleccionado (15 de Marzo)</p>
-            <div class="calendar-wrapper">
-              <div class="sb-ui-calendar" data-variant="single">
-                <!-- Header -->
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes anterior">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Marzo - 2024</div>
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes siguiente">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- Weekdays -->
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">Do</div>
-                  <div class="sb-ui-calendar__weekday">Lu</div>
-                  <div class="sb-ui-calendar__weekday">Ma</div>
-                  <div class="sb-ui-calendar__weekday">Mi</div>
-                  <div class="sb-ui-calendar__weekday">Ju</div>
-                  <div class="sb-ui-calendar__weekday">Vi</div>
-                  <div class="sb-ui-calendar__weekday">Sa</div>
-                </div>
-
-                <!-- Days Grid -->
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>29</button>
-                  <button class="sb-ui-calendar__day">1</button>
-                  <button class="sb-ui-calendar__day">2</button>
-                  <button class="sb-ui-calendar__day">3</button>
-                  <button class="sb-ui-calendar__day">4</button>
-                  <button class="sb-ui-calendar__day">5</button>
-                  <button class="sb-ui-calendar__day">6</button>
-                  <button class="sb-ui-calendar__day">7</button>
-                  <button class="sb-ui-calendar__day">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--selected">15</button>
-                  <button class="sb-ui-calendar__day">16</button>
-                  <button class="sb-ui-calendar__day">17</button>
-                  <button class="sb-ui-calendar__day">18</button>
-                  <button class="sb-ui-calendar__day">19</button>
-                  <button class="sb-ui-calendar__day">20</button>
-                  <button class="sb-ui-calendar__day">21</button>
-                  <button class="sb-ui-calendar__day">22</button>
-                  <button class="sb-ui-calendar__day">23</button>
-                  <button class="sb-ui-calendar__day">24</button>
-                  <button class="sb-ui-calendar__day">25</button>
-                  <button class="sb-ui-calendar__day">26</button>
-                  <button class="sb-ui-calendar__day">27</button>
-                  <button class="sb-ui-calendar__day">28</button>
-                  <button class="sb-ui-calendar__day">29</button>
-                  <button class="sb-ui-calendar__day">30</button>
-                  <button class="sb-ui-calendar__day">31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>3</button>
-                </div>
-
-                <!-- Footer -->
-                <div class="sb-ui-calendar__footer">
-                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Cancelar</button>
-                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small">Aceptar</button>
-                </div>
-              </div>
+            <h4>Fecha única</h4>
+            <p class="calendar-demo-note">Input con placeholder. Clic en el campo o en el ícono para abrir.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" placeholder="Seleccionar fecha" label="Fecha"></sb-ui-datepicker>
             </div>
           </div>
-
-          <!-- Con indicador de Today -->
           <div class="calendar-demo-item">
-            <h4>2. Con Indicador de Hoy</h4>
-            <p>El día actual (15) tiene un borde verde para facilitar la orientación</p>
-            <div class="calendar-wrapper">
-              <div class="sb-ui-calendar" data-variant="single">
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes anterior">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Marzo - 2024</div>
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes siguiente">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">Do</div>
-                  <div class="sb-ui-calendar__weekday">Lu</div>
-                  <div class="sb-ui-calendar__weekday">Ma</div>
-                  <div class="sb-ui-calendar__weekday">Mi</div>
-                  <div class="sb-ui-calendar__weekday">Ju</div>
-                  <div class="sb-ui-calendar__weekday">Vi</div>
-                  <div class="sb-ui-calendar__weekday">Sa</div>
-                </div>
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>29</button>
-                  <button class="sb-ui-calendar__day">1</button>
-                  <button class="sb-ui-calendar__day">2</button>
-                  <button class="sb-ui-calendar__day">3</button>
-                  <button class="sb-ui-calendar__day">4</button>
-                  <button class="sb-ui-calendar__day">5</button>
-                  <button class="sb-ui-calendar__day">6</button>
-                  <button class="sb-ui-calendar__day">7</button>
-                  <button class="sb-ui-calendar__day">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--today sb-ui-calendar__day--selected">15</button>
-                  <button class="sb-ui-calendar__day">16</button>
-                  <button class="sb-ui-calendar__day">17</button>
-                  <button class="sb-ui-calendar__day">18</button>
-                  <button class="sb-ui-calendar__day">19</button>
-                  <button class="sb-ui-calendar__day">20</button>
-                  <button class="sb-ui-calendar__day">21</button>
-                  <button class="sb-ui-calendar__day">22</button>
-                  <button class="sb-ui-calendar__day">23</button>
-                  <button class="sb-ui-calendar__day">24</button>
-                  <button class="sb-ui-calendar__day">25</button>
-                  <button class="sb-ui-calendar__day">26</button>
-                  <button class="sb-ui-calendar__day">27</button>
-                  <button class="sb-ui-calendar__day">28</button>
-                  <button class="sb-ui-calendar__day">29</button>
-                  <button class="sb-ui-calendar__day">30</button>
-                  <button class="sb-ui-calendar__day">31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>3</button>
-                </div>
-                <div class="sb-ui-calendar__footer">
-                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small">Cancelar</button>
-                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small">Aceptar</button>
-                </div>
-              </div>
+            <h4>Con valor inicial</h4>
+            <p class="calendar-demo-note">Input con fecha ya seleccionada (15/03/2024).</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" value="2024-03-15" placeholder="DD/MM/YYYY" label="Fecha de cita"></sb-ui-datepicker>
             </div>
           </div>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          <div class="calendar-demo-item">
+            <h4>Tamaño small</h4>
+            <p class="calendar-demo-note">DatePicker compacto.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" size="small" placeholder="Fecha" label="Small"></sb-ui-datepicker>
+            </div>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Single Date Picker --&gt;
-&lt;div class="sb-ui-calendar" data-variant="single"&gt;
-  &lt;div class="sb-ui-calendar__header"&gt;
-    &lt;button class="sb-ui-calendar__nav-button"&gt;◀&lt;/button&gt;
-    &lt;div class="sb-ui-calendar__month-year"&gt;Marzo - 2024&lt;/div&gt;
-    &lt;button class="sb-ui-calendar__nav-button"&gt;▶&lt;/button&gt;
-  &lt;/div&gt;
-  
-  &lt;div class="sb-ui-calendar__weekdays"&gt;
-    &lt;div class="sb-ui-calendar__weekday"&gt;Do&lt;/div&gt;
-    &lt;!-- ... más días ... --&gt;
-  &lt;/div&gt;
-  
-  &lt;div class="sb-ui-calendar__days"&gt;
-    &lt;button class="sb-ui-calendar__day sb-ui-calendar__day--selected"&gt;15&lt;/button&gt;
-    &lt;!-- ... más días ... --&gt;
-  &lt;/div&gt;
-  
-  &lt;div class="sb-ui-calendar__footer"&gt;
-    &lt;button class="sb-ui-button sb-ui-button--secondary"&gt;Cancelar&lt;/button&gt;
-    &lt;button class="sb-ui-button sb-ui-button--primary"&gt;Aceptar&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
         </div>
       </section>
 
-      <!-- ========================================
-           SECCIÓN 2: RANGE DATE PICKER
-           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Selección de Rango de Fechas</h3>
-        <p class="component-description">Permite seleccionar un rango de fechas (inicio y fin). Útil para reservas, reportes y filtros de búsqueda.</p>
-        
-        <div style="padding: 2rem; border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0); border-radius: 8px; background: var(--sb-ui-color-grayscale-L50, #fafafa); margin-block-end: 2rem;">
-          <div class="calendar-wrapper">
-            <div class="sb-ui-calendar sb-ui-calendar--double" data-variant="range">
-              <!-- Mes 1 -->
-              <div class="sb-ui-calendar__month">
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes anterior">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Marzo - 2024</div>
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes siguiente" style="visibility: hidden;">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">Do</div>
-                  <div class="sb-ui-calendar__weekday">Lu</div>
-                  <div class="sb-ui-calendar__weekday">Ma</div>
-                  <div class="sb-ui-calendar__weekday">Mi</div>
-                  <div class="sb-ui-calendar__weekday">Ju</div>
-                  <div class="sb-ui-calendar__weekday">Vi</div>
-                  <div class="sb-ui-calendar__weekday">Sa</div>
-                </div>
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>29</button>
-                  <button class="sb-ui-calendar__day">1</button>
-                  <button class="sb-ui-calendar__day">2</button>
-                  <button class="sb-ui-calendar__day">3</button>
-                  <button class="sb-ui-calendar__day">4</button>
-                  <button class="sb-ui-calendar__day">5</button>
-                  <button class="sb-ui-calendar__day">6</button>
-                  <button class="sb-ui-calendar__day">7</button>
-                  <button class="sb-ui-calendar__day">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--range-start">15</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">16</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">17</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">18</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">19</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">20</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">21</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">22</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">23</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">24</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">25</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">26</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">27</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">28</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">29</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">30</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range sb-ui-calendar__day--outside" disabled>3</button>
-                </div>
-              </div>
-
-              <!-- Mes 2 -->
-              <div class="sb-ui-calendar__month">
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes anterior" style="visibility: hidden;">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Abril - 2024</div>
-                  <button class="sb-ui-calendar__nav-button" aria-label="Mes siguiente">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">Do</div>
-                  <div class="sb-ui-calendar__weekday">Lu</div>
-                  <div class="sb-ui-calendar__weekday">Ma</div>
-                  <div class="sb-ui-calendar__weekday">Mi</div>
-                  <div class="sb-ui-calendar__weekday">Ju</div>
-                  <div class="sb-ui-calendar__weekday">Vi</div>
-                  <div class="sb-ui-calendar__weekday">Sa</div>
-                </div>
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">3</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">4</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">5</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">6</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--in-range">7</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--range-end">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day">15</button>
-                  <button class="sb-ui-calendar__day">16</button>
-                  <button class="sb-ui-calendar__day">17</button>
-                  <button class="sb-ui-calendar__day">18</button>
-                  <button class="sb-ui-calendar__day">19</button>
-                  <button class="sb-ui-calendar__day">20</button>
-                  <button class="sb-ui-calendar__day">21</button>
-                  <button class="sb-ui-calendar__day">22</button>
-                  <button class="sb-ui-calendar__day">23</button>
-                  <button class="sb-ui-calendar__day">24</button>
-                  <button class="sb-ui-calendar__day">25</button>
-                  <button class="sb-ui-calendar__day">26</button>
-                  <button class="sb-ui-calendar__day">27</button>
-                  <button class="sb-ui-calendar__day">28</button>
-                  <button class="sb-ui-calendar__day">29</button>
-                  <button class="sb-ui-calendar__day">30</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>3</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>4</button>
-                </div>
-              </div>
+        <h3 class="variant-title">Selección de fecha única (Single)</h3>
+        <p class="component-description" style="margin-block-end: 1rem;">
+          Permite seleccionar una sola fecha. Ideal para formularios como "Fecha de Nacimiento" o "Fecha de Cita". Todos incluyen input.
+        </p>
+        <div class="calendar-demo-grid">
+          <div class="calendar-demo-item">
+            <h4>Default</h4>
+            <p class="calendar-demo-note">Input + calendario. Clic en el campo o ícono para abrir.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" placeholder="Seleccionar fecha" label="Fecha única"></sb-ui-datepicker>
             </div>
           </div>
-          <div style="margin-top: 2rem; text-align: center;">
-            <div class="sb-ui-calendar__footer" style="justify-content: center;">
-              <button class="sb-ui-button sb-ui-button--secondary">Cancelar</button>
-              <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Aceptar</button>
+          <div class="calendar-demo-item">
+            <h4>Con valor inicial</h4>
+            <p class="calendar-demo-note">Input con fecha ya seleccionada (15/03/2024).</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" value="2024-03-15" placeholder="DD/MM/YYYY" label="Fecha"></sb-ui-datepicker>
             </div>
           </div>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
-          </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Range Date Picker (dos meses) --&gt;
-&lt;div class="sb-ui-calendar sb-ui-calendar--double" data-variant="range"&gt;
-  &lt;!-- Mes 1 --&gt;
-  &lt;div class="sb-ui-calendar__month"&gt;
-    &lt;!-- ... Header y días ... --&gt;
-    &lt;button class="sb-ui-calendar__day sb-ui-calendar__day--range-start"&gt;15&lt;/button&gt;
-    &lt;button class="sb-ui-calendar__day sb-ui-calendar__day--in-range"&gt;16&lt;/button&gt;
-    &lt;!-- ... más días en rango ... --&gt;
-  &lt;/div&gt;
-  
-  &lt;!-- Mes 2 --&gt;
-  &lt;div class="sb-ui-calendar__month"&gt;
-    &lt;!-- ... Header y días ... --&gt;
-    &lt;button class="sb-ui-calendar__day sb-ui-calendar__day--in-range"&gt;1&lt;/button&gt;
-    &lt;button class="sb-ui-calendar__day sb-ui-calendar__day--range-end"&gt;8&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
         </div>
       </section>
 
-      <!-- ========================================
-           SECCIÓN 3: TAMAÑOS
-           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Selección de rango (Range)</h3>
+        <p class="component-description" style="margin-block-end: 1rem;">
+          Permite seleccionar un rango de fechas (inicio y fin). Útil para reservas, reportes, filtros. Incluye input donde se muestra el rango.
+        </p>
+        <div class="calendar-demo-grid">
+          <div class="calendar-demo-item">
+            <h4>Rango con input</h4>
+            <p class="calendar-demo-note">Input + calendario de rango. Clic en el campo o ícono para abrir.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="range" placeholder="DD/MM/YYYY - DD/MM/YYYY" label="Período"></sb-ui-datepicker>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Selección múltiple (Multiple)</h3>
+        <p class="component-description" style="margin-block-end: 1rem;">
+          Permite seleccionar múltiples fechas. Útil para agendar varias citas o días laborables. Incluye input donde se muestran las fechas.
+        </p>
+        <div class="calendar-demo-grid">
+          <div class="calendar-demo-item">
+            <h4>Múltiples fechas con input</h4>
+            <p class="calendar-demo-note">Input + calendario. Selecciona varias fechas; se muestran en el campo.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="multiple" placeholder="Seleccionar fechas" label="Días"></sb-ui-datepicker>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="variant-section">
         <h3 class="variant-title">Tamaños</h3>
+        <p class="component-description" style="margin-block-end: 1rem;">
+          El datepicker soporta 3 tamaños: small, medium (default) y large. Todos con input visible.
+        </p>
         <div class="calendar-demo-grid">
-          <!-- Small -->
           <div class="calendar-demo-item">
             <h4>Small</h4>
-            <div class="calendar-wrapper">
-              <div class="sb-ui-calendar sb-ui-calendar--small">
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Mar - 2024</div>
-                  <button class="sb-ui-calendar__nav-button">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">D</div>
-                  <div class="sb-ui-calendar__weekday">L</div>
-                  <div class="sb-ui-calendar__weekday">M</div>
-                  <div class="sb-ui-calendar__weekday">M</div>
-                  <div class="sb-ui-calendar__weekday">J</div>
-                  <div class="sb-ui-calendar__weekday">V</div>
-                  <div class="sb-ui-calendar__weekday">S</div>
-                </div>
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>29</button>
-                  <button class="sb-ui-calendar__day">1</button>
-                  <button class="sb-ui-calendar__day">2</button>
-                  <button class="sb-ui-calendar__day">3</button>
-                  <button class="sb-ui-calendar__day">4</button>
-                  <button class="sb-ui-calendar__day">5</button>
-                  <button class="sb-ui-calendar__day">6</button>
-                  <button class="sb-ui-calendar__day">7</button>
-                  <button class="sb-ui-calendar__day">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--selected">15</button>
-                  <button class="sb-ui-calendar__day">16</button>
-                  <button class="sb-ui-calendar__day">17</button>
-                  <button class="sb-ui-calendar__day">18</button>
-                  <button class="sb-ui-calendar__day">19</button>
-                  <button class="sb-ui-calendar__day">20</button>
-                  <button class="sb-ui-calendar__day">21</button>
-                  <button class="sb-ui-calendar__day">22</button>
-                  <button class="sb-ui-calendar__day">23</button>
-                  <button class="sb-ui-calendar__day">24</button>
-                  <button class="sb-ui-calendar__day">25</button>
-                  <button class="sb-ui-calendar__day">26</button>
-                  <button class="sb-ui-calendar__day">27</button>
-                  <button class="sb-ui-calendar__day">28</button>
-                  <button class="sb-ui-calendar__day">29</button>
-                  <button class="sb-ui-calendar__day">30</button>
-                  <button class="sb-ui-calendar__day">31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>3</button>
-                </div>
-              </div>
+            <p class="calendar-demo-note">Input y botón compactos.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" size="small" placeholder="Fecha" label="Small"></sb-ui-datepicker>
             </div>
           </div>
-
-          <!-- Large -->
+          <div class="calendar-demo-item">
+            <h4>Medium (default)</h4>
+            <p class="calendar-demo-note">Tamaño estándar.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" placeholder="Seleccionar fecha" label="Medium"></sb-ui-datepicker>
+            </div>
+          </div>
           <div class="calendar-demo-item">
             <h4>Large</h4>
-            <div class="calendar-wrapper">
-              <div class="sb-ui-calendar sb-ui-calendar--large">
-                <div class="sb-ui-calendar__header">
-                  <button class="sb-ui-calendar__nav-button">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                    </svg>
-                  </button>
-                  <div class="sb-ui-calendar__month-year">Marzo - 2024</div>
-                  <button class="sb-ui-calendar__nav-button">
-                    <svg class="sb-ui-calendar__nav-icon" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="sb-ui-calendar__weekdays">
-                  <div class="sb-ui-calendar__weekday">Dom</div>
-                  <div class="sb-ui-calendar__weekday">Lun</div>
-                  <div class="sb-ui-calendar__weekday">Mar</div>
-                  <div class="sb-ui-calendar__weekday">Mié</div>
-                  <div class="sb-ui-calendar__weekday">Jue</div>
-                  <div class="sb-ui-calendar__weekday">Vie</div>
-                  <div class="sb-ui-calendar__weekday">Sáb</div>
-                </div>
-                <div class="sb-ui-calendar__days">
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>29</button>
-                  <button class="sb-ui-calendar__day">1</button>
-                  <button class="sb-ui-calendar__day">2</button>
-                  <button class="sb-ui-calendar__day">3</button>
-                  <button class="sb-ui-calendar__day">4</button>
-                  <button class="sb-ui-calendar__day">5</button>
-                  <button class="sb-ui-calendar__day">6</button>
-                  <button class="sb-ui-calendar__day">7</button>
-                  <button class="sb-ui-calendar__day">8</button>
-                  <button class="sb-ui-calendar__day">9</button>
-                  <button class="sb-ui-calendar__day">10</button>
-                  <button class="sb-ui-calendar__day">11</button>
-                  <button class="sb-ui-calendar__day">12</button>
-                  <button class="sb-ui-calendar__day">13</button>
-                  <button class="sb-ui-calendar__day">14</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--selected">15</button>
-                  <button class="sb-ui-calendar__day">16</button>
-                  <button class="sb-ui-calendar__day">17</button>
-                  <button class="sb-ui-calendar__day">18</button>
-                  <button class="sb-ui-calendar__day">19</button>
-                  <button class="sb-ui-calendar__day">20</button>
-                  <button class="sb-ui-calendar__day">21</button>
-                  <button class="sb-ui-calendar__day">22</button>
-                  <button class="sb-ui-calendar__day">23</button>
-                  <button class="sb-ui-calendar__day">24</button>
-                  <button class="sb-ui-calendar__day">25</button>
-                  <button class="sb-ui-calendar__day">26</button>
-                  <button class="sb-ui-calendar__day">27</button>
-                  <button class="sb-ui-calendar__day">28</button>
-                  <button class="sb-ui-calendar__day">29</button>
-                  <button class="sb-ui-calendar__day">30</button>
-                  <button class="sb-ui-calendar__day">31</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>1</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>2</button>
-                  <button class="sb-ui-calendar__day sb-ui-calendar__day--outside" disabled>3</button>
-                </div>
-                <div class="sb-ui-calendar__footer">
-                  <button class="sb-ui-button sb-ui-button--secondary">Cancelar</button>
-                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Aceptar</button>
-                </div>
-              </div>
+            <p class="calendar-demo-note">Input y botón más grandes.</p>
+            <div class="datepicker-demo-wrapper">
+              <sb-ui-datepicker variant="single" size="large" placeholder="DD/MM/YYYY" label="Large"></sb-ui-datepicker>
             </div>
           </div>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
-          </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tamaños --&gt;
-&lt;div class="sb-ui-calendar sb-ui-calendar--small"&gt;...&lt;/div&gt;
-&lt;div class="sb-ui-calendar"&gt;...&lt;/div&gt; &lt;!-- Medium (default) --&gt;
-&lt;div class="sb-ui-calendar sb-ui-calendar--large"&gt;...&lt;/div&gt;</code></pre>
         </div>
       </section>
 
-      <!-- ========================================
-           STORYBOOK REFERENCE
-           ======================================== -->
-      <section class="variant-section storybook-reference">
-        <div class="storybook-reference-content">
-          <i class="fa-solid fa-book storybook-reference-icon"></i>
-          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
-          <p class="storybook-reference-description">
-            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
-          </p>
-          <a 
-            href="http://localhost:6007/?path=/docs/atoms-calendar--docs" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="storybook-reference-link"
-          >
-            <i class="fa-solid fa-external-link-alt"></i>
-            Ver en Storybook
-          </a>
+      <section class="variant-section">
+        <h3 class="variant-title">Uso del componente</h3>
+        <div class="calendar-demo-item" style="margin-block-end: 1.5rem;">
+          <h4>HTML básico (todos con input)</h4>
+          <div class="sb-ui-code-block">
+            <div class="sb-ui-code-block-header">
+              <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+              <span class="sb-ui-code-block-badge">HTML</span>
+            </div>
+            <pre class="sb-ui-code-block-body"><code>&lt;!-- Single --&gt;
+&lt;sb-ui-datepicker variant="single" placeholder="Seleccionar fecha" label="Fecha"&gt;&lt;/sb-ui-datepicker&gt;
+
+&lt;!-- Range --&gt;
+&lt;sb-ui-datepicker variant="range" placeholder="DD/MM/YYYY - DD/MM/YYYY" label="Período"&gt;&lt;/sb-ui-datepicker&gt;
+
+&lt;!-- Multiple --&gt;
+&lt;sb-ui-datepicker variant="multiple" placeholder="Seleccionar fechas" label="Días"&gt;&lt;/sb-ui-datepicker&gt;
+
+&lt;!-- Tamaños --&gt;
+&lt;sb-ui-datepicker variant="single" size="small" label="Small"&gt;&lt;/sb-ui-datepicker&gt;</code></pre>
+          </div>
+        </div>
+        <div class="calendar-demo-item" style="margin-block-end: 1.5rem;">
+          <h4>Clases disponibles</h4>
+          <div class="sb-ui-code-block">
+            <div class="sb-ui-code-block-header">
+              <span class="sb-ui-code-block-title">Clases CSS</span>
+              <span class="sb-ui-code-block-badge">CSS</span>
+            </div>
+            <pre class="sb-ui-code-block-body"><code>.sb-ui-calendar                 /* Base */
+.sb-ui-calendar--small          /* Tamaño pequeño */
+.sb-ui-calendar--large          /* Tamaño grande */
+.sb-ui-calendar--double         /* Dos calendarios (range) */
+.sb-ui-calendar--inline         /* Sin border ni shadow */
+.sb-ui-calendar--no-footer      /* Sin botones de acción */
+.sb-ui-calendar__day            /* Día */
+.sb-ui-calendar__day--today     /* Día actual */
+.sb-ui-calendar__day--selected  /* Seleccionado */
+.sb-ui-calendar__day--range-start / --range-end / --in-range
+.sb-ui-calendar__day--outside   /* Fuera del mes */
+.sb-ui-calendar__day--disabled  /* Deshabilitado */</code></pre>
+          </div>
+        </div>
+        <div class="calendar-demo-item">
+          <h4>Tokens CSS personalizables</h4>
+          <div class="sb-ui-code-block">
+            <div class="sb-ui-code-block-header">
+              <span class="sb-ui-code-block-title">Variables</span>
+              <span class="sb-ui-code-block-badge">CSS</span>
+            </div>
+            <pre class="sb-ui-code-block-body"><code>--sb-ui-calendar-day-selected-bg: var(--sb-ui-color-secondary-base);
+--sb-ui-calendar-day-range-start-bg: var(--sb-ui-color-secondary-base);
+--sb-ui-calendar-day-in-range-bg: var(--sb-ui-color-secondary-L400);
+--sb-ui-calendar-day-size: clamp(36px, 2.2rem + 0.5vw, 44px);
+--sb-ui-calendar-border-radius: clamp(8px, 0.5rem + 0.5vw, 16px);</code></pre>
+          </div>
         </div>
       </section>
     </main>
+
+    <script>
+      (function() {
+        var months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        var calendars = document.querySelectorAll('.sb-ui-calendar');
+        calendars.forEach(function(cal) {
+          var header = cal.querySelector('.sb-ui-calendar__header');
+          if (!header) return;
+          var monthYearEl = header.querySelector('.sb-ui-calendar__month-year');
+          var navBtns = header.querySelectorAll('.sb-ui-calendar__nav-button');
+          if (monthYearEl && navBtns.length >= 2) {
+            var parts = monthYearEl.textContent.trim().split(/\s*-\s*/);
+            var monthName = parts[0] || 'Marzo';
+            var year = parseInt(parts[1], 10) || 2024;
+            var monthIndex = months.indexOf(monthName);
+            if (monthIndex < 0) monthIndex = 2;
+            navBtns[0].addEventListener('click', function() {
+              monthIndex = monthIndex <= 0 ? 11 : monthIndex - 1;
+              if (monthIndex === 11) year--;
+              monthYearEl.textContent = months[monthIndex] + ' - ' + year;
+            });
+            navBtns[1].addEventListener('click', function() {
+              monthIndex = monthIndex >= 11 ? 0 : monthIndex + 1;
+              if (monthIndex === 0) year++;
+              monthYearEl.textContent = months[monthIndex] + ' - ' + year;
+            });
+          }
+          var daysContainer = cal.querySelector('.sb-ui-calendar__days');
+          if (daysContainer) {
+            daysContainer.addEventListener('click', function(e) {
+              var dayBtn = e.target.closest('.sb-ui-calendar__day');
+              if (!dayBtn || dayBtn.disabled || dayBtn.classList.contains('sb-ui-calendar__day--outside')) return;
+              var variant = cal.getAttribute('data-variant') || 'single';
+              if (variant === 'single') {
+                daysContainer.querySelectorAll('.sb-ui-calendar__day--selected').forEach(function(d) { d.classList.remove('sb-ui-calendar__day--selected'); });
+                dayBtn.classList.add('sb-ui-calendar__day--selected');
+              }
+            });
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
+

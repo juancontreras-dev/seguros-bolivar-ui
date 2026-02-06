@@ -125,6 +125,7 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
     'radio.css',
     'select.css',
     'spinner.css',
+    'stepper.css',
     'tabs.css',
     'textArea.css',
     'toggle.css',

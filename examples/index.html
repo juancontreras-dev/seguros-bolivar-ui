@@ -615,6 +615,158 @@
         box-sizing: border-box;
       }
 
+      /* DatePicker/Calendar: márgenes y padding cuando se carga la vista calendar/ (el reset * los quita) */
+      .dynamic-content .sb-ui-datepicker__dropdown {
+        padding-inline: 1rem;
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+      }
+      .dynamic-content .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+        padding-block-start: 0.75rem;
+      }
+      .dynamic-content .sb-ui-datepicker__dropdown .sb-ui-calendar__header {
+        margin-block-end: 1rem;
+      }
+      .dynamic-content .sb-ui-datepicker__wrapper .sb-ui-input,
+      .dynamic-content .sb-ui-datepicker__input {
+        padding-inline: 1rem;
+        padding-block: 0.625rem;
+      }
+      .dynamic-content .sb-ui-datepicker__wrapper .sb-ui-input {
+        padding-inline-end: calc(44px + 0.5rem);
+      }
+
+      /* Modal (?view=modal/): grid, ítems y botones (los estilos del head de modal/index.html no se inyectan) */
+      .dynamic-content .modal-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-block-end: 2rem;
+      }
+      .dynamic-content .modal-demo-item {
+        padding: 1.5rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
+      }
+      .dynamic-content .modal-demo-item h4 {
+        font-size: 0.875rem;
+        margin-block-end: 1rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .dynamic-content .modal-demo-item p {
+        font-size: 0.875rem;
+        color: var(--sb-ui-color-grayscale-D100, #666);
+        margin-block-end: 0.75rem;
+      }
+      .dynamic-content .modal-demo-item .sb-ui-button,
+      .dynamic-content .modal-demo-item button {
+        padding-left: clamp(0.8rem, 0.5rem + 1.5vw, 2rem) !important;
+        padding-right: clamp(0.8rem, 0.5rem + 1.5vw, 2rem) !important;
+        padding-top: clamp(0.4rem, 0.3rem + 0.5vw, 0.875rem) !important;
+        padding-bottom: clamp(0.4rem, 0.3rem + 0.5vw, 0.875rem) !important;
+        box-sizing: border-box;
+      }
+      .dynamic-content sb-ui-modal [slot="footer"] button,
+      .dynamic-content sb-ui-modal [slot="footer"] .sb-ui-button {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.75rem !important;
+        box-sizing: border-box;
+      }
+
+      /* Accordion (?view=accordion/): padding y márgenes (los estilos están en accordion/index.html head, no se inyectan) */
+      .dynamic-content .accordion-demo-item {
+        padding: 2rem;
+        margin-block-end: 2rem;
+      }
+      .dynamic-content .accordion-demo-item h4 {
+        margin-block-end: 1.25rem;
+      }
+      .dynamic-content .accordion-demo-item .accordion-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 600px;
+      }
+      .dynamic-content .sb-ui-accordion__header {
+        padding-inline: 1.25rem !important;
+        padding-block: 1rem !important;
+        min-block-size: 52px;
+      }
+      .dynamic-content .sb-ui-accordion__content {
+        padding-inline: 1.25rem !important;
+        padding-block: 1.25rem !important;
+      }
+      .dynamic-content .sb-ui-accordion__content p {
+        margin-block-end: 0.75em;
+      }
+      .dynamic-content .sb-ui-accordion__content p:last-child {
+        margin-block-end: 0;
+      }
+      .dynamic-content .variant-section > .component-description {
+        margin-block-end: 1.5rem;
+      }
+      .dynamic-content .variant-section .sb-ui-code-block {
+        margin-block-start: 2rem;
+      }
+
+      /* Bloques "Ejemplo de uso" en modal y otras vistas: no cargan components.css, definir aquí */
+      .dynamic-content .sb-ui-code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        margin-block: 1.5rem;
+        margin-inline: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+      }
+      .dynamic-content .sb-ui-code-block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        background: #2d2d2d;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .dynamic-content .sb-ui-code-block-title {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: #a0a0a0;
+      }
+      .dynamic-content .sb-ui-code-block-badge {
+        font-size: 0.6875rem;
+        padding: 0.3125rem 0.625rem;
+        border-radius: 0.375rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+      }
+      .dynamic-content .sb-ui-code-block-body {
+        margin: 0;
+        padding: 1.25rem;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.875rem;
+        line-height: 1.75;
+        overflow-x: auto;
+        white-space: pre;
+        color: #d4d4d4;
+        background: #1e1e1e;
+      }
+      .dynamic-content .sb-ui-code-block-body code {
+        color: #d4d4d4;
+        background: transparent;
+      }
+
       .page-header {
         margin-bottom: 2rem;
       }
@@ -1066,6 +1218,10 @@
                   <i class="fas fa-wand-magic-sparkles"></i>
                   <span>Personalización</span>
                 </button>
+                <button class="sidebar-submenu-item" data-path="guide/cursor-ai-rules.html">
+                  <i class="fas fa-robot"></i>
+                  <span>Reglas Cursor AI</span>
+                </button>
               </div>
 
               <button class="sidebar-nav-item" data-path="form-demo.html">
@@ -1177,10 +1333,6 @@
               <button class="sidebar-nav-item" data-path="modal/">
                 <i class="fas fa-window-maximize"></i>
                 <span>Modal</span>
-              </button>
-              <button class="sidebar-nav-item" data-path="dropdown/">
-                <i class="fas fa-bars"></i>
-                <span>Dropdown</span>
               </button>
               <button class="sidebar-nav-item" data-path="calendar/">
                 <i class="fas fa-calendar"></i>
@@ -1386,7 +1538,9 @@
               if (dynamicStyles) {
                 dynamicHTML += '<style>' + dynamicStyles + '</style>';
               }
-              dynamicHTML += content.innerHTML;
+              // Inyectar el contenedor completo (main, .demo-container, etc.) para que las clases
+              // y selectores de la página inyectada sigan funcionando (?view=modal/ etc.)
+              dynamicHTML += content === doc.body ? content.innerHTML : content.outerHTML;
               
               // Insert the content wrapped in a container
               contentInner.innerHTML = '<div class="dynamic-content">' + dynamicHTML + '</div>';

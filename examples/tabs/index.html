@@ -60,26 +60,23 @@
         letter-spacing: 0.5px;
       }
 
-      /* Botón de copia en code blocks */
-      .copy-btn {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: #a0a0a0;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.75rem;
-        transition: background 0.15s, color 0.15s;
+      .tab-content {
+        padding: 1.5rem;
+        background: white;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
       }
 
-      .copy-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
-        color: #fff;
+      .tab-panel h4 {
+        color: var(--sb-ui-color-primary-base, #038450);
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
       }
 
-      .copy-btn.copied {
-        color: #6ee7b7;
-        border-color: rgba(110, 231, 183, 0.4);
+      .tab-panel p {
+        color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+        line-height: 1.6;
       }
     </style>
   </head>
@@ -104,33 +101,41 @@
       </header>
 
       <!-- ========================================
-           SECCIÓN 1: VARIANTES PRINCIPALES
+           SECCIÓN 1: VARIANTE TRACK
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Variantes Principales</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          El componente tabs cuenta con 3 variantes visuales: <strong>Track</strong> (línea indicadora inferior),
-          <strong>Button</strong> (fondo completo), y <strong>Folder</strong> (estilo carpeta).
-        </p>
-
-        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Track (Línea Indicadora)</h4>
-        <div class="tabs-demo-container">
-          <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist" aria-label="Track tabs">
-            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
-              <i class="fa-solid fa-home sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Inicio</span>
-              <span class="sb-ui-tabs__description">Principal</span>
+        <h3 class="variant-title">Variante Track</h3>
+        <p class="component-description">Línea inferior verde que indica la pestaña activa</p>
+        <div class="tabs-demo-item">
+          <h4>Track Tabs</h4>
+          <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'track', 0)">
+              <span class="sb-ui-tabs__title">General</span>
+              <span class="sb-ui-tabs__description">Información general</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
-              <i class="fa-solid fa-chart-line sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Estadísticas</span>
-              <span class="sb-ui-tabs__description">Métricas</span>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 1)">
+              <span class="sb-ui-tabs__title">Contacto</span>
+              <span class="sb-ui-tabs__description">Datos de contacto</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
-              <i class="fa-solid fa-cog sb-ui-tabs__icon"></i>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 2)">
               <span class="sb-ui-tabs__title">Configuración</span>
-              <span class="sb-ui-tabs__description">Ajustes</span>
+              <span class="sb-ui-tabs__description">Ajustes y opciones</span>
             </button>
+          </div>
+          
+          <div class="tab-content" style="margin-top: 2rem;">
+            <div class="tab-panel active" id="track-panel-0">
+              <h4>Información General</h4>
+              <p>Este es el contenido de la pestaña General.</p>
+            </div>
+            <div class="tab-panel" id="track-panel-1" style="display: none;">
+              <h4>Datos de Contacto</h4>
+              <p>Este es el contenido de la pestaña Contacto.</p>
+            </div>
+            <div class="tab-panel" id="track-panel-2" style="display: none;">
+              <h4>Configuración</h4>
+              <p>Este es el contenido de la pestaña Configuración.</p>
+            </div>
           </div>
         </div>
 
@@ -142,102 +147,141 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-tabs sb-ui-tabs--track" role="tablist"&gt;
-  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
-    &lt;i class="fa-solid fa-home sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Inicio&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Principal&lt;/span&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tabs Track --&gt;
+&lt;div class="sb-ui-tabs sb-ui-tabs--track"&gt;
+  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active"&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;General&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Información general&lt;/span&gt;
   &lt;/button&gt;
-  &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
-    &lt;i class="fa-solid fa-chart-line sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Estadísticas&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Métricas&lt;/span&gt;
+  &lt;button class="sb-ui-tabs__item"&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Contacto&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Datos de contacto&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
+      </section>
 
-        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Button (Fondo Completo)</h4>
-        <div class="tabs-demo-container">
-          <div class="sb-ui-tabs sb-ui-tabs--button" role="tablist" aria-label="Button tabs">
-            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+      <!-- ========================================
+           SECCIÓN 2: VARIANTE BUTTON
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Button</h3>
+        <p class="component-description">Fondo amarillo activo con iconos</p>
+        <div class="tabs-demo-item">
+          <h4>Button Tabs</h4>
+          <div class="sb-ui-tabs sb-ui-tabs--button" role="tablist">
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'button', 0)">
               <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Global</span>
-              <span class="sb-ui-tabs__description">Mundial</span>
+              <span class="sb-ui-tabs__title">Web</span>
+              <span class="sb-ui-tabs__description">Sitio web</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
-              <i class="fa-solid fa-user sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Perfil</span>
-              <span class="sb-ui-tabs__description">Personal</span>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 1)">
+              <i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Móvil</span>
+              <span class="sb-ui-tabs__description">Aplicación móvil</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
-              <i class="fa-solid fa-bell sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Notificaciones</span>
-              <span class="sb-ui-tabs__description">Alertas</span>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 2)">
+              <i class="fa-solid fa-desktop sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Desktop</span>
+              <span class="sb-ui-tabs__description">Aplicación de escritorio</span>
             </button>
+          </div>
+          
+          <div class="tab-content" style="margin-top: 2rem;">
+            <div class="tab-panel active" id="button-panel-0">
+              <h4>Sitio Web</h4>
+              <p>Contenido relacionado con el sitio web.</p>
+            </div>
+            <div class="tab-panel" id="button-panel-1" style="display: none;">
+              <h4>Aplicación Móvil</h4>
+              <p>Contenido relacionado con la aplicación móvil.</p>
+            </div>
+            <div class="tab-panel" id="button-panel-2" style="display: none;">
+              <h4>Aplicación de Escritorio</h4>
+              <p>Contenido relacionado con la aplicación de escritorio.</p>
+            </div>
           </div>
         </div>
 
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
-            </div>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-tabs sb-ui-tabs--button" role="tablist"&gt;
-  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tabs Button --&gt;
+&lt;div class="sb-ui-tabs sb-ui-tabs--button"&gt;
+  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Global&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Mundial&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Web&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Sitio web&lt;/span&gt;
   &lt;/button&gt;
-  &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
-    &lt;i class="fa-solid fa-user sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Perfil&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Personal&lt;/span&gt;
+  &lt;button class="sb-ui-tabs__item"&gt;
+    &lt;i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"&gt;&lt;/i&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Móvil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Aplicación móvil&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
+      </section>
 
-        <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 1rem; color: #374151;">Folder (Estilo Carpeta)</h4>
-        <div class="tabs-demo-container">
-          <div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist" aria-label="Folder tabs">
-            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
-              <i class="fa-solid fa-folder sb-ui-tabs__icon"></i>
+      <!-- ========================================
+           SECCIÓN 3: VARIANTE FOLDER
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Folder</h3>
+        <p class="component-description">Estilo carpeta con iconos</p>
+        <div class="tabs-demo-item">
+          <h4>Folder Tabs</h4>
+          <div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist">
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'folder', 0)">
+              <i class="fa-solid fa-file-lines sb-ui-tabs__icon"></i>
               <span class="sb-ui-tabs__title">Documentos</span>
-              <span class="sb-ui-tabs__description">Archivos</span>
+              <span class="sb-ui-tabs__description">Archivos y carpetas</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'folder', 1)">
               <i class="fa-solid fa-image sb-ui-tabs__icon"></i>
               <span class="sb-ui-tabs__title">Imágenes</span>
-              <span class="sb-ui-tabs__description">Fotos</span>
+              <span class="sb-ui-tabs__description">Fotos y gráficos</span>
             </button>
-            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'folder', 2)">
               <i class="fa-solid fa-video sb-ui-tabs__icon"></i>
               <span class="sb-ui-tabs__title">Videos</span>
-              <span class="sb-ui-tabs__description">Multimedia</span>
+              <span class="sb-ui-tabs__description">Contenido multimedia</span>
             </button>
+          </div>
+          
+          <div class="tab-content" style="margin-top: 2rem;">
+            <div class="tab-panel active" id="folder-panel-0">
+              <h4>Documentos</h4>
+              <p>Contenido relacionado con documentos.</p>
+            </div>
+            <div class="tab-panel" id="folder-panel-1" style="display: none;">
+              <h4>Imágenes</h4>
+              <p>Contenido relacionado con imágenes.</p>
+            </div>
+            <div class="tab-panel" id="folder-panel-2" style="display: none;">
+              <h4>Videos</h4>
+              <p>Contenido relacionado con videos.</p>
+            </div>
           </div>
         </div>
 
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
-            </div>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist"&gt;
-  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
-    &lt;i class="fa-solid fa-folder sb-ui-tabs__icon"&gt;&lt;/i&gt;
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Tabs Folder --&gt;
+&lt;div class="sb-ui-tabs sb-ui-tabs--folder"&gt;
+  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active"&gt;
+    &lt;i class="fa-solid fa-file-lines sb-ui-tabs__icon"&gt;&lt;/i&gt;
     &lt;span class="sb-ui-tabs__title"&gt;Documentos&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Archivos&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Archivos y carpetas&lt;/span&gt;
   &lt;/button&gt;
-  &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
+  &lt;button class="sb-ui-tabs__item"&gt;
     &lt;i class="fa-solid fa-image sb-ui-tabs__icon"&gt;&lt;/i&gt;
     &lt;span class="sb-ui-tabs__title"&gt;Imágenes&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Fotos&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Fotos y gráficos&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -267,18 +311,34 @@
     </main>
 
     <script>
-      // Función para copiar código
-      function copyCode(btn) {
-        const codeBlock = btn.closest('.sb-ui-code-block');
-        const code = codeBlock.querySelector('code');
-        navigator.clipboard.writeText(code.textContent).then(() => {
-          btn.classList.add('copied');
-          btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-          setTimeout(() => {
-            btn.classList.remove('copied');
-            btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
-          }, 1500);
+      function changeTab(event, variant, index) {
+        const button = event.currentTarget;
+        const tabsContainer = button.closest('.sb-ui-tabs');
+        
+        // Remover active de todos los botones
+        tabsContainer.querySelectorAll('.sb-ui-tabs__item').forEach(item => {
+          item.classList.remove('sb-ui-tabs__item--active');
+          item.setAttribute('aria-selected', 'false');
         });
+        
+        // Agregar active al botón clickeado
+        button.classList.add('sb-ui-tabs__item--active');
+        button.setAttribute('aria-selected', 'true');
+        
+        // Ocultar todos los paneles
+        const contentContainer = tabsContainer.nextElementSibling;
+        if (contentContainer && contentContainer.classList.contains('tab-content')) {
+          const panels = contentContainer.querySelectorAll('.tab-panel');
+          panels.forEach(panel => {
+            panel.style.display = 'none';
+          });
+          
+          // Mostrar el panel correspondiente
+          const activePanel = document.getElementById(`${variant}-panel-${index}`);
+          if (activePanel) {
+            activePanel.style.display = 'block';
+          }
+        }
       }
 
       // Interactividad básica para tabs

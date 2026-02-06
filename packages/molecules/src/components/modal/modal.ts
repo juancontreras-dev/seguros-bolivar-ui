@@ -119,6 +119,15 @@ export class SbUiModal extends LitElement {
       justify-content: flex-end;
     }
 
+    /* Contenedor del footer (nodo slotted): flex para los botones */
+    .footer::slotted(*) {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;

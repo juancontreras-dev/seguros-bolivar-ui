@@ -5,8 +5,6 @@
 
 export { SbUiCalendar } from './components/Calendar.js';
 export { SbUiDatePicker } from './components/DatePicker.js';
-// Dropdown placeholder removido hasta que esté completamente implementado
-// export { SbUiDropdown } from './components/dropdown/dropdown.js';
 export { SbUiModal } from './components/modal/modal.js';
 export {
   hideAllToasts,

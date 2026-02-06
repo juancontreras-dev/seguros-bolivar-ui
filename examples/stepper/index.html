@@ -41,8 +41,30 @@
       href="../components.css"
     />
 
-    <!-- Web Components -->
-    <script type="module" src="../dist/sb-ui-components.min.js"></script>
+    <style>
+      /* Estilos específicos para stepper demo */
+      .stepper-demo-item {
+        padding: 2rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
+        margin-block-end: 2rem;
+      }
+
+      .stepper-demo-item h4 {
+        font-size: 0.875rem;
+        margin-block-end: 1.5rem;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Para demos verticales */
+      .stepper-vertical-demo {
+        max-width: 500px;
+      }
+    </style>
   </head>
 
   <body>
@@ -59,22 +81,167 @@
         </h2>
         <p class="component-description">
           Componente de indicador de progreso paso a paso (stepper) para guiar usuarios a través de procesos multi-paso.
-          Compatible con todas las marcas del design system.
+          Soporta 3 tipos (números, iconos, mix), 2 orientaciones (horizontal, vertical) y múltiples estados.
         </p>
       </header>
 
       <!-- ========================================
-           SECCIÓN 1: EJEMPLO BÁSICO
+           STEPPER FUNCIONAL (interactivo)
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Ejemplo Básico</h3>
+        <h3 class="variant-title">Stepper Funcional</h3>
+        <p class="component-description">Usa los botones o haz clic en un paso completado para navegar. El paso actual y los completados se actualizan automáticamente.</p>
         
-        <div style="padding: 2rem; border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0); border-radius: 8px; background: var(--sb-ui-color-grayscale-L50, #fafafa); margin-block-end: 2rem;">
-          <sb-ui-stepper current-step="2">
-            <sb-ui-step step="1" status="completed">Información Personal</sb-ui-step>
-            <sb-ui-step step="2" status="active">Datos de Contacto</sb-ui-step>
-            <sb-ui-step step="3" status="pending">Confirmación</sb-ui-step>
-          </sb-ui-stepper>
+        <div class="stepper-demo-item" id="stepper-functional-demo">
+          <h4>Proceso de Registro - Interactivo</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal" id="stepper-demo-1" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1">1</div>
+              <span class="sb-ui-stepper__step-label">Información Personal</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2">2</div>
+              <span class="sb-ui-stepper__step-label">Datos de Contacto</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">3</div>
+              <span class="sb-ui-stepper__step-label">Confirmación</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">4</div>
+              <span class="sb-ui-stepper__step-label">Finalizar</span>
+            </div>
+          </div>
+          <div class="stepper-actions" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" id="stepper-prev" aria-label="Paso anterior">
+              <i class="fa-solid fa-arrow-left"></i> Anterior
+            </button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" id="stepper-next" aria-label="Siguiente paso">
+              Siguiente <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" id="stepper-reset" aria-label="Reiniciar al paso 1">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+            <span class="stepper-step-indicator" style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">
+              Paso <strong id="stepper-current-label">1</strong> de 4
+            </span>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">// Actualizar estado visual del stepper
+function updateStepper(container, currentStep) {
+  const steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+  steps.forEach(function(stepEl) {
+    const stepNum = parseInt(stepEl.getAttribute('data-step'), 10);
+    stepEl.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+    const circle = stepEl.querySelector('.sb-ui-stepper__step-circle');
+    if (stepNum &lt; currentStep) {
+      stepEl.classList.add('sb-ui-stepper__step--filled-default');
+      circle.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;';
+    } else if (stepNum === currentStep) {
+      stepEl.classList.add('sb-ui-stepper__step--empty-active');
+      circle.textContent = stepNum;
+    } else {
+      circle.textContent = stepNum;
+    }
+  });
+  container.setAttribute('data-current-step', currentStep);
+}
+
+// Botones y clic en pasos
+var stepper = document.getElementById('stepper-demo-1');
+var current = 1;
+updateStepper(stepper, current);
+document.getElementById('stepper-next').onclick = function() {
+  if (current &lt; 4) { current++; updateStepper(stepper, current); }
+};
+document.getElementById('stepper-prev').onclick = function() {
+  if (current &gt; 1) { current--; updateStepper(stepper, current); }
+};
+stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+    if (step &lt;= current + 1) { current = step; updateStepper(stepper, current); }
+  });
+});</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 1: TIPO NÚMERO - HORIZONTAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tipo: Números - Horizontal</h3>
+        <p class="component-description">Stepper horizontal con números. Estados: Empty Default (pendiente), Empty Active (actual), Filled Default (completado)</p>
+        
+        <div class="stepper-demo-item">
+          <h4>Proceso de Registro - Track Sólido</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal" id="stepper-demo-2" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1">1</div>
+              <span class="sb-ui-stepper__step-label">Información Personal</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2">2</div>
+              <span class="sb-ui-stepper__step-label">Datos de Contacto</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">3</div>
+              <span class="sb-ui-stepper__step-label">Confirmación</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">4</div>
+              <span class="sb-ui-stepper__step-label">Finalizar</span>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-2" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"> <i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="stepper-demo-item">
+          <h4>Track Punteado (Dash) - Líneas verdes sólidas tras completados, punteadas hacia pendientes</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash" id="stepper-demo-3" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1">1</div>
+              <span class="sb-ui-stepper__step-label">Paso 1</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2">2</div>
+              <span class="sb-ui-stepper__step-label">Paso 2</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">3</div>
+              <span class="sb-ui-stepper__step-label">Paso 3</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">4</div>
+              <span class="sb-ui-stepper__step-label">Paso 4</span>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-3" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
         </div>
 
         <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
@@ -82,12 +249,430 @@
             <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
             <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper con Web Component --&gt;
-&lt;sb-ui-stepper current-step="2"&gt;
-  &lt;sb-ui-step step="1" status="completed"&gt;Paso 1&lt;/sb-ui-step&gt;
-  &lt;sb-ui-step step="2" status="active"&gt;Paso 2&lt;/sb-ui-step&gt;
-  &lt;sb-ui-step step="3" status="pending"&gt;Paso 3&lt;/sb-ui-step&gt;
-&lt;/sb-ui-stepper&gt;</code></pre>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Horizontal con Números --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal"&gt;
+  &lt;!-- Completado --&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 1&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Activo --&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;2&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 2&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Pendiente (Empty Default) --&gt;
+  &lt;div class="sb-ui-stepper__step"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;3&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 3&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Track Punteado --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash"&gt;
+  ...
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: TIPO ICONO - HORIZONTAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tipo: Iconos - Horizontal</h3>
+        <p class="component-description">Stepper horizontal con iconos personalizados (tamaño 62px desktop, 46px mobile)</p>
+        
+        <div class="stepper-demo-item">
+          <h4>Proceso de Compra con Iconos</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-icon" id="stepper-demo-4" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1"><i class="fa-solid fa-cart-shopping"></i></div>
+              <span class="sb-ui-stepper__step-label">Carrito</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2"><i class="fa-solid fa-credit-card"></i></div>
+              <span class="sb-ui-stepper__step-label">Pago</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3"><i class="fa-solid fa-truck"></i></div>
+              <span class="sb-ui-stepper__step-label">Envío</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4"><i class="fa-solid fa-circle-check"></i></div>
+              <span class="sb-ui-stepper__step-label">Confirmación</span>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-4" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper con Iconos --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-icon"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Carrito&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;i class="fa-solid fa-credit-card"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Pago&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sb-ui-stepper__step"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;i class="fa-solid fa-truck"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Envío&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: TIPO MIX - HORIZONTAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Tipo: Mix (Icono + Badge) - Horizontal</h3>
+        <p class="component-description">Stepper con icono en el círculo y badge con número arriba (tamaño 62px desktop, 46px mobile)</p>
+        
+        <div class="stepper-demo-item">
+          <h4>Proceso con Icono + Badge Numérico</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix" id="stepper-demo-5" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1">
+                <span class="sb-ui-stepper__step-circle-badge">1</span>
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <span class="sb-ui-stepper__step-label">Usuario</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2">
+                <span class="sb-ui-stepper__step-circle-badge">2</span>
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <span class="sb-ui-stepper__step-label">Seguro</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">
+                <span class="sb-ui-stepper__step-circle-badge">3</span>
+                <i class="fa-solid fa-file-contract"></i>
+              </div>
+              <span class="sb-ui-stepper__step-label">Contrato</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">
+                <span class="sb-ui-stepper__step-circle-badge">4</span>
+                <i class="fa-solid fa-check-double"></i>
+              </div>
+              <span class="sb-ui-stepper__step-label">Finalizar</span>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-5" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Mix (Icono + Badge) --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;span class="sb-ui-stepper__step-circle-badge"&gt;1&lt;/span&gt;
+      &lt;i class="fa-solid fa-user"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Usuario&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sb-ui-stepper__step"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;span class="sb-ui-stepper__step-circle-badge"&gt;2&lt;/span&gt;
+      &lt;i class="fa-solid fa-shield-halved"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Seguro&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: VERTICAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Orientación: Vertical</h3>
+        <p class="component-description">Stepper vertical para formularios extendidos o procesos detallados</p>
+        
+        <div class="stepper-demo-item">
+          <h4>Proceso de Solicitud - Vertical con Números</h4>
+          <div class="stepper-vertical-demo">
+            <div class="sb-ui-stepper sb-ui-stepper--vertical" id="stepper-demo-6" data-current-step="1">
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1">1</div>
+                <span class="sb-ui-stepper__step-label">Datos Personales Completados</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2">2</div>
+                <span class="sb-ui-stepper__step-label">Documentación en Progreso</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">3</div>
+                <span class="sb-ui-stepper__step-label">Revisión Pendiente</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">4</div>
+                <span class="sb-ui-stepper__step-label">Aprobación Final</span>
+              </div>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-6" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="stepper-demo-item">
+          <h4>Vertical con Iconos</h4>
+          <div class="stepper-vertical-demo">
+            <div class="sb-ui-stepper sb-ui-stepper--vertical sb-ui-stepper--type-icon" id="stepper-demo-7" data-current-step="1">
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1"><i class="fa-solid fa-file-lines"></i></div>
+                <span class="sb-ui-stepper__step-label">Formulario Enviado</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2"><i class="fa-solid fa-folder-open"></i></div>
+                <span class="sb-ui-stepper__step-label">Documentos Verificados</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <span class="sb-ui-stepper__step-label">Análisis de Riesgo</span>
+                <div class="sb-ui-stepper__step-track"></div>
+              </div>
+              <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+                <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4"><i class="fa-solid fa-circle-check"></i></div>
+                <span class="sb-ui-stepper__step-label">Póliza Emitida</span>
+              </div>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-7" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Vertical --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--vertical"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;
+      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 1&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;2&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 2&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sb-ui-stepper__step"&gt;
+    &lt;div class="sb-ui-stepper__step-circle"&gt;3&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 3&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 5: ESTADOS INTERACTIVOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estados Interactivos</h3>
+        <p class="component-description">Estados clickable y disabled para navegación interactiva</p>
+        
+        <div class="stepper-demo-item">
+          <h4>Steps Clickables (Hover para ver efectos)</h4>
+          <div class="sb-ui-stepper sb-ui-stepper--horizontal" id="stepper-demo-8" data-current-step="1">
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Ir a paso 1">1</div>
+              <span class="sb-ui-stepper__step-label">Clickable</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso actual">2</div>
+              <span class="sb-ui-stepper__step-label">Actual</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3">3</div>
+              <span class="sb-ui-stepper__step-label">Deshabilitado (ejemplo)</span>
+              <div class="sb-ui-stepper__step-track"></div>
+            </div>
+            <div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4">
+              <div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4">4</div>
+              <span class="sb-ui-stepper__step-label">Bloqueado (ejemplo)</span>
+            </div>
+          </div>
+          <div class="stepper-actions" data-stepper-target="stepper-demo-8" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;">
+            <button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev aria-label="Paso anterior"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next aria-label="Siguiente paso">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            <button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset aria-label="Reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <span style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-D200);">Paso <strong data-stepper-label>1</strong> de 4</span>
+          </div>
+        </div>
+
+        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Step Clickable --&gt;
+&lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default sb-ui-stepper__step--clickable"&gt;
+  &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
+    &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;span class="sb-ui-stepper__step-label"&gt;Clickable&lt;/span&gt;
+  &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Step Deshabilitado --&gt;
+&lt;div class="sb-ui-stepper__step sb-ui-stepper__step--disabled"&gt;
+  &lt;div class="sb-ui-stepper__step-circle" aria-disabled="true"&gt;2&lt;/div&gt;
+  &lt;span class="sb-ui-stepper__step-label"&gt;Deshabilitado&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 6: RESUMEN DE CLASES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Guía de Clases BEM</h3>
+        
+        <div class="stepper-demo-item">
+          <h4>Estructura de Clases</h4>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+            <thead>
+              <tr style="background: var(--sb-ui-color-grayscale-L100); text-align: left;">
+                <th style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Clase</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Contenedor principal del stepper</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper--horizontal</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Orientación horizontal (default)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper--vertical</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Orientación vertical</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper--type-icon</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Tipo icono (62px)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper--type-mix</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Tipo mixto: icono + badge numérico</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper--track-dash</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Track punteado (verdes sólidas tras completados)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Paso individual (empty default - pendiente)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step--empty-active</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Paso activo sin completar (amarillo)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step--filled-default</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Paso completado (verde)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step--filled-active</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Completado + seleccionado (verde borde oscuro)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step--clickable</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Paso clickable con hover effects</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step--disabled</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Paso deshabilitado (opacity 0.5)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step-circle</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Círculo del paso</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step-circle-badge</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Badge numérico (solo en type-mix)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step-label</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Etiqueta descriptiva</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-stepper__step-track</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Línea conectora (siempre verde)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -113,5 +698,118 @@
         </div>
       </section>
     </main>
+
+    <script>
+      (function() {
+        var totalSteps = 4;
+
+        // Actualización genérica: cachea el contenido inicial de cada paso (para iconos/mix) y actualiza estados
+        function updateStepperGeneric(container, currentStep, labelEl) {
+          var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+          if (!steps.length) return;
+          if (!container._stepContents) {
+            container._stepContents = {};
+            steps.forEach(function(stepEl) {
+              var n = parseInt(stepEl.getAttribute('data-step'), 10);
+              var circle = stepEl.querySelector('.sb-ui-stepper__step-circle');
+              if (circle) container._stepContents[n] = circle.innerHTML;
+            });
+          }
+          steps.forEach(function(stepEl) {
+            var stepNum = parseInt(stepEl.getAttribute('data-step'), 10);
+            stepEl.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active', 'sb-ui-stepper__step--disabled');
+            var circle = stepEl.querySelector('.sb-ui-stepper__step-circle');
+            if (!circle) return;
+            if (stepNum < currentStep) {
+              stepEl.classList.add('sb-ui-stepper__step--filled-default');
+              circle.innerHTML = '<i class="fa-solid fa-check"></i>';
+            } else if (stepNum === currentStep) {
+              stepEl.classList.add('sb-ui-stepper__step--empty-active');
+              circle.innerHTML = container._stepContents[stepNum] || String(stepNum);
+            } else {
+              circle.innerHTML = container._stepContents[stepNum] || String(stepNum);
+            }
+          });
+          container.setAttribute('data-current-step', currentStep);
+          if (labelEl) labelEl.textContent = currentStep;
+        }
+
+        // Inicializar todos los controles con data-stepper-target (demos 2 a 8)
+        document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+          var targetId = controlsEl.getAttribute('data-stepper-target');
+          var stepperEl = document.getElementById(targetId);
+          if (!stepperEl) return;
+          var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+          var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+          var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+          var labelEl = controlsEl.querySelector('[data-stepper-label]');
+          var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+          function update() { updateStepperGeneric(stepperEl, current, labelEl); }
+
+          if (prevBtn) prevBtn.addEventListener('click', function() {
+            if (current > 1) { current--; update(); }
+          });
+          if (nextBtn) nextBtn.addEventListener('click', function() {
+            if (current < totalSteps) { current++; update(); }
+          });
+          if (resetBtn) resetBtn.addEventListener('click', function() {
+            current = 1; update();
+          });
+
+          stepperEl.querySelectorAll('.sb-ui-stepper__step[data-step]').forEach(function(stepEl) {
+            var circle = stepEl.querySelector('.sb-ui-stepper__step-circle');
+            if (!circle) return;
+            circle.addEventListener('click', function() {
+              var step = parseInt(stepEl.getAttribute('data-step'), 10);
+              if (step <= current + 1) { current = step; update(); }
+            });
+            circle.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var step = parseInt(stepEl.getAttribute('data-step'), 10);
+                if (step <= current + 1) { current = step; update(); }
+              }
+            });
+          });
+
+          update();
+        });
+
+        // Demo 1: controles por id (mantener compatibilidad)
+        var stepper1 = document.getElementById('stepper-demo-1');
+        var prevBtn1 = document.getElementById('stepper-prev');
+        var nextBtn1 = document.getElementById('stepper-next');
+        var resetBtn1 = document.getElementById('stepper-reset');
+        var labelEl1 = document.getElementById('stepper-current-label');
+        if (stepper1 && prevBtn1 && nextBtn1 && labelEl1) {
+          var current1 = parseInt(stepper1.getAttribute('data-current-step'), 10) || 1;
+          function update1() { updateStepperGeneric(stepper1, current1, labelEl1); }
+          prevBtn1.addEventListener('click', function() {
+            if (current1 > 1) { current1--; update1(); }
+          });
+          nextBtn1.addEventListener('click', function() {
+            if (current1 < totalSteps) { current1++; update1(); }
+          });
+          if (resetBtn1) resetBtn1.addEventListener('click', function() { current1 = 1; update1(); });
+          stepper1.querySelectorAll('.sb-ui-stepper__step[data-step]').forEach(function(stepEl) {
+            var circle = stepEl.querySelector('.sb-ui-stepper__step-circle');
+            if (!circle) return;
+            circle.addEventListener('click', function() {
+              var step = parseInt(stepEl.getAttribute('data-step'), 10);
+              if (step <= current1 + 1) { current1 = step; update1(); }
+            });
+            circle.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var step = parseInt(stepEl.getAttribute('data-step'), 10);
+                if (step <= current1 + 1) { current1 = step; update1(); }
+              }
+            });
+          });
+          update1();
+        }
+      })();
+    </script>
   </body>
 </html>

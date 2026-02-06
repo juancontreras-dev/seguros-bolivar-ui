@@ -5,51 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accordion Component - Seguros Bolívar UI Design System</title>
 
-    <!-- Preconnect para fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Google Fonts - Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- Font Awesome 6 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
+    <link rel="stylesheet" href="../components.css" />
 
-    <!-- Preload CSS del Design System -->
-    <link
-      rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
-      as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
-      id="brand-css"
-    />
-
-    <!-- CSS global de componentes -->
-    <link
-      rel="stylesheet"
-      href="../components.css"
-    />
-
-    <!-- Web Components -->
-    <script type="module" src="../dist/sb-ui-components.min.js"></script>
+    <style>
+      /* Espaciado general: secciones y descripciones */
+      .accordion-demo-item {
+        padding: 2rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
+        margin-block-end: 2rem;
+        margin-block-start: 0;
+      }
+      .accordion-demo-item h4 {
+        font-size: 0.875rem;
+        margin-block-end: 1.25rem;
+        margin-block-start: 0;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      /* Espacio claro entre cada acordeón (cada <details>) */
+      .accordion-demo-item .accordion-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 600px;
+      }
+      /* Override: padding generoso en header y contenido del acordeón (el reset global puede quitarlos) */
+      .component-container .sb-ui-accordion__header {
+        padding-inline: 1.25rem !important;
+        padding-block: 1rem !important;
+        min-block-size: 52px;
+      }
+      .component-container .sb-ui-accordion__content {
+        padding-inline: 1.25rem !important;
+        padding-block: 1.25rem !important;
+      }
+      .component-container .sb-ui-accordion__content p {
+        margin-block-end: 0.75em;
+      }
+      .component-container .sb-ui-accordion__content p:last-child {
+        margin-block-end: 0;
+      }
+      /* Separación entre párrafo intro y el bloque de demo */
+      .variant-section > .component-description {
+        margin-block-end: 1.5rem;
+      }
+      /* Espacio entre bloque de demo y bloque de código */
+      .variant-section .sb-ui-code-block {
+        margin-block-start: 2rem;
+      }
+    </style>
   </head>
 
   <body>
     <main class="component-container">
-      <!-- ========================================
-           HEADER CON TÍTULO E ÍCONO
-           ======================================== -->
       <header class="component-header">
         <h2 class="variant-title">
           <span class="component-title-icon">
@@ -58,64 +76,210 @@
           <span>Accordion</span>
         </h2>
         <p class="component-description">
-          Componente de acordeón para mostrar y ocultar contenido de forma colapsable.
-          Compatible con todas las marcas del design system.
+          Componente de acordeón para mostrar y ocultar contenido. Usa el elemento nativo
+          <code>&lt;details&gt;</code> y <code>&lt;summary&gt;</code> (sin JavaScript). Compatible con todas las marcas del design system.
         </p>
       </header>
 
-      <!-- ========================================
-           SECCIÓN 1: EJEMPLO BÁSICO
-           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Ejemplo Básico</h3>
-        <p class="component-description">Click en los títulos para expandir/colapsar</p>
-        
-        <sb-ui-accordion>
-          <sb-ui-accordion-item open>
-            <div slot="title">¿Qué es Seguros Bolívar UI?</div>
-            <div slot="content">
-              <p>Es un design system completo con componentes reutilizables para crear interfaces de usuario consistentes.</p>
-            </div>
-          </sb-ui-accordion-item>
+        <h3 class="variant-title">Ejemplo básico (Primary)</h3>
+        <p class="component-description">Haz clic en cada título para expandir o colapsar. El primero viene abierto por defecto.</p>
 
-          <sb-ui-accordion-item>
-            <div slot="title">¿Cómo puedo instalar el design system?</div>
-            <div slot="content">
-              <p>Puedes instalarlo vía NPM o usar el CDN. Revisa la guía de instalación para más detalles.</p>
-            </div>
-          </sb-ui-accordion-item>
+        <div class="accordion-demo-item">
+          <h4>Preguntas frecuentes</h4>
+          <div class="accordion-group">
+            <details class="sb-ui-accordion sb-ui-accordion--primary" open>
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">¿Qué es Seguros Bolívar UI?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Es un design system completo con componentes reutilizables para crear interfaces de usuario consistentes.</p>
+              </div>
+            </details>
 
-          <sb-ui-accordion-item>
-            <div slot="title">¿Es compatible con todas las marcas?</div>
-            <div slot="content">
-              <p>Sí, el design system soporta 6 marcas: Seguros Bolívar, Davivienda, Jelpit, Cien Cuadras, Doctor Aki y White Label.</p>
-            </div>
-          </sb-ui-accordion-item>
-        </sb-ui-accordion>
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">¿Cómo puedo instalar el design system?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Puedes instalarlo vía NPM o usar el CDN. Revisa la guía de instalación para más detalles.</p>
+              </div>
+            </details>
 
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">¿Es compatible con todas las marcas?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Sí, el design system soporta 6 marcas: Seguros Bolívar, Davivienda, Jelpit, Cien Cuadras, Doctor Aki y White Label.</p>
+              </div>
+            </details>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Accordion con Web Component --&gt;
-&lt;sb-ui-accordion&gt;
-  &lt;sb-ui-accordion-item open&gt;
-    &lt;div slot="title"&gt;Título 1&lt;/div&gt;
-    &lt;div slot="content"&gt;Contenido 1&lt;/div&gt;
-  &lt;/sb-ui-accordion-item&gt;
+        </div>
 
-  &lt;sb-ui-accordion-item&gt;
-    &lt;div slot="title"&gt;Título 2&lt;/div&gt;
-    &lt;div slot="content"&gt;Contenido 2&lt;/div&gt;
-  &lt;/sb-ui-accordion-item&gt;
-&lt;/sb-ui-accordion&gt;</code></pre>
+        <div class="sb-ui-code-block">
+          <div class="sb-ui-code-block-header">
+            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+            <span class="sb-ui-code-block-badge">HTML</span>
+          </div>
+          <pre class="sb-ui-code-block-body"><code>&lt;details class="sb-ui-accordion sb-ui-accordion--primary" open&gt;
+  &lt;summary class="sb-ui-accordion__header"&gt;
+    &lt;span class="sb-ui-accordion__label"&gt;¿Tu pregunta?&lt;/span&gt;
+    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
+  &lt;/summary&gt;
+  &lt;div class="sb-ui-accordion__content"&gt;
+    Contenido del acordeón.
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre>
         </div>
       </section>
 
-      <!-- ========================================
-           STORYBOOK REFERENCE
-           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Con icono al inicio (Primary)</h3>
+        <p class="component-description">Incluye un icono opcional al inicio del header.</p>
+
+        <div class="accordion-demo-item">
+          <div class="accordion-group">
+            <details class="sb-ui-accordion sb-ui-accordion--primary">
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-shield-halved sb-ui-accordion__icon-start" aria-hidden="true"></i>
+                <span class="sb-ui-accordion__label">¿Qué coberturas incluye?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Las coberturas dependen del producto. Revisa la póliza o contacta a tu asesor.</p>
+              </div>
+            </details>
+
+            <details class="sb-ui-accordion sb-ui-accordion--primary" open>
+              <summary class="sb-ui-accordion__header">
+                <i class="fa-solid fa-clock sb-ui-accordion__icon-start" aria-hidden="true"></i>
+                <span class="sb-ui-accordion__label">¿Cuánto tarda la aprobación?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>El proceso suele tomar entre 24 y 72 horas hábiles según el tipo de trámite.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Variante Secondary</h3>
+        <p class="component-description">Mismo comportamiento con la variante de color secundaria.</p>
+
+        <div class="accordion-demo-item">
+          <div class="accordion-group">
+            <details class="sb-ui-accordion sb-ui-accordion--secondary">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">¿Puedo modificar mi póliza?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Sí, puedes solicitar cambios a través del canal digital o con un asesor.</p>
+              </div>
+            </details>
+
+            <details class="sb-ui-accordion sb-ui-accordion--secondary">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">¿Cómo hago un reclamo?</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">
+                <p>Ingresa a la app o portal, sección Reclamos, y sigue los pasos indicados.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Tamaños (Small y Large)</h3>
+        <p class="component-description">Clases <code>sb-ui-accordion--small</code> y <code>sb-ui-accordion--large</code>.</p>
+
+        <div class="accordion-demo-item">
+          <h4>Small</h4>
+          <div class="accordion-group">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--small">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">Acordeón pequeño</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">Contenido compacto.</div>
+            </details>
+          </div>
+        </div>
+
+        <div class="accordion-demo-item">
+          <h4>Large</h4>
+          <div class="accordion-group">
+            <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--large">
+              <summary class="sb-ui-accordion__header">
+                <span class="sb-ui-accordion__label">Acordeón grande</span>
+                <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+              </summary>
+              <div class="sb-ui-accordion__content">Contenido con más espacio tipográfico.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Guía de clases</h3>
+        <div class="accordion-demo-item">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+            <thead>
+              <tr style="background: var(--sb-ui-color-grayscale-L100); text-align: left;">
+                <th style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Clase</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Contenedor (usar en <code>&lt;details&gt;</code>)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion--primary</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Variante primaria (borde verde)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion--secondary</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Variante secundaria</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion--small</code> / <code>--large</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Tamaño pequeño o grande</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion__header</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Cabecera clickeable (usar en <code>&lt;summary&gt;</code>)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion__label</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Texto del título</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion__icon-end</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Icono chevron (rota al abrir)</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>.sb-ui-accordion__content</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Contenido expandible</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);"><code>open</code></td>
+                <td style="padding: 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200);">Atributo en <code>&lt;details&gt;</code> para abierto por defecto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section class="variant-section storybook-reference">
         <div class="storybook-reference-content">
           <i class="fa-solid fa-book storybook-reference-icon"></i>
@@ -123,12 +287,7 @@
           <p class="storybook-reference-description">
             En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
           </p>
-          <a 
-            href="http://localhost:6007/?path=/docs/molecules-accordion--docs" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="storybook-reference-link"
-          >
+          <a href="http://localhost:6007/?path=/docs/atoms-accordion--docs" target="_blank" rel="noopener noreferrer" class="storybook-reference-link">
             <i class="fa-solid fa-external-link-alt"></i>
             Ver en Storybook
           </a>

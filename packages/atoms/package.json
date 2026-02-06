@@ -28,7 +28,7 @@
     "build": "npm run clean && npm run build:copy && npm run build:bundle",
     "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "build:copy": "node -e \"require('fs').mkdirSync('dist', {recursive:true}); require('fs').cpSync('src', 'dist', {recursive:true})\"",
-    "build:bundle": "node -e \"const fs=require('fs'); const files=['container','grid','columns','gutters','css-grid','button','input','textArea','select','calendar','datepicker','spinner','toggle','alert','checkbox','radio'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
+    "build:bundle": "node -e \"const fs=require('fs'); const files=['button','input','textArea','select','calendar','datepicker','spinner','toggle','alert','checkbox','radio','tabs','stepper'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
     "dev": "npm run build",
     "lint": "stylelint 'src/**/*.css'"
   },
