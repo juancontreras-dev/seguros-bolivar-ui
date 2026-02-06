@@ -768,6 +768,53 @@
         background: transparent;
       }
 
+      /* Sección "¿Quieres ver más detalles?" / Ver en Storybook (estaba en components.css) */
+      .dynamic-content .storybook-reference {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .dynamic-content .storybook-reference-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .dynamic-content .storybook-reference-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        opacity: 0.9;
+      }
+      .dynamic-content .storybook-reference-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: white;
+      }
+      .dynamic-content .storybook-reference-description {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        opacity: 0.95;
+      }
+      .dynamic-content .storybook-reference-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: white;
+        color: #667eea;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .dynamic-content .storybook-reference-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
       /* DatePicker/Calendar: márgenes y padding cuando se carga la vista calendar/ (el reset * los quita) */
       .dynamic-content .sb-ui-datepicker__dropdown {
         padding-inline: 1rem;
@@ -1565,6 +1612,17 @@
               return cleaned;
             };
 
+            // Limitar los estilos inyectados a .dynamic-content para no afectar header/menú/botones del shell
+            function scopeCssToDynamicContent(css) {
+              if (!css || !css.trim()) return css;
+              return css.replace(/(^|})\s*([^@{}][^{]*?)\s*\{/g, function (m, before, sel) {
+                var trimmed = sel.trim();
+                if (!trimmed || /^(media|keyframes|import|supports|charset|font-face)/i.test(trimmed)) return m;
+                var prefixed = trimmed.split(',').map(function (s) { return '.dynamic-content ' + s.trim(); }).join(', ');
+                return before + ' ' + prefixed + ' {';
+              });
+            }
+
             // Extract external stylesheets and inline them safely
             const pageLinks = doc.querySelectorAll('link[rel="stylesheet"]');
             const baseUrl = new URL(targetPath, window.location.origin);
@@ -1634,6 +1692,8 @@
 
             return Promise.all(cssPromises).then(externalCssList => {
               const externalCss = externalCssList.filter(Boolean).join('\n');
+              const externalCssScoped = scopeCssToDynamicContent(externalCss);
+              const dynamicStylesScoped = scopeCssToDynamicContent(dynamicStyles);
 
               // Extract inline scripts so they can be executed after injecting the content
               const scripts = doc.querySelectorAll('script');
@@ -1644,13 +1704,13 @@
                 }
               });
               
-              // Build the HTML with styles injected inside the container
+              // Build the HTML with styles injected inside the container (scoped para no romper header/menú)
               let dynamicHTML = '';
-              if (externalCss) {
-                dynamicHTML += '<style data-dynamic-link="true">' + externalCss + '</style>';
+              if (externalCssScoped) {
+                dynamicHTML += '<style data-dynamic-link="true">' + externalCssScoped + '</style>';
               }
-              if (dynamicStyles) {
-                dynamicHTML += '<style>' + dynamicStyles + '</style>';
+              if (dynamicStylesScoped) {
+                dynamicHTML += '<style>' + dynamicStylesScoped + '</style>';
               }
               // Inyectar el contenedor completo (main, .demo-container, etc.) para que las clases
               // y selectores de la página inyectada sigan funcionando (?view=modal/ etc.)
