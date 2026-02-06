@@ -99,7 +99,7 @@
    ALERT CONTENT
    ======================================== */
 
-.sb-ui-alert-content {
+.sb-ui-alert__content {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -107,7 +107,7 @@
   min-width: 0; /* Permite que el contenido se encoja */
 }
 
-.sb-ui-alert-title {
+.sb-ui-alert__title {
   font-size: var(--sb-ui-alert-title-font-size);
   font-weight: var(--sb-ui-alert-title-font-weight);
   line-height: var(--sb-ui-alert-line-height);
@@ -115,7 +115,7 @@
   color: inherit;
 }
 
-.sb-ui-alert-message {
+.sb-ui-alert__message {
   font-size: var(--sb-ui-alert-message-font-size);
   font-weight: var(--sb-ui-alert-message-font-weight);
   line-height: var(--sb-ui-alert-line-height);
@@ -128,7 +128,7 @@
    ALERT ICON
    ======================================== */
 
-.sb-ui-alert-icon {
+.sb-ui-alert__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,7 +144,7 @@
    ALERT CLOSE BUTTON
    ======================================== */
 
-.sb-ui-alert-close {
+.sb-ui-alert__close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,14 +162,15 @@
   flex-shrink: 0;
   margin-top: -0.125rem; /* Alineación visual */
   margin-right: -0.25rem; /* Espaciado visual */
+  padding: 0.25rem;
 }
 
-.sb-ui-alert-close:hover {
+.sb-ui-alert__close:hover {
   color: var(--sb-ui-alert-close-color-hover);
   background-color: var(--sb-ui-color-grayscale-L400, rgba(247, 247, 247, 0.5));
 }
 
-.sb-ui-alert-close:focus {
+.sb-ui-alert__close:focus {
   outline: 2px solid var(--sb-ui-color-primary-base, #007acc);
   outline-offset: 2px;
 }
@@ -186,22 +187,12 @@
   --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-success);
 }
 
-.sb-ui-alert--success .sb-ui-alert-icon::before {
-  content: '✓';
-}
-
 /* Info state */
 .sb-ui-alert--info {
   --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-info);
   --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-info);
   --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-info);
   --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-info);
-}
-
-.sb-ui-alert--info .sb-ui-alert-icon::before {
-  content: 'i';
-  font-style: italic;
-  font-weight: 600;
 }
 
 /* Warning state */
@@ -212,20 +203,12 @@
   --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-warning);
 }
 
-.sb-ui-alert--warning .sb-ui-alert-icon::before {
-  content: '⚠';
-}
-
 /* Error state */
 .sb-ui-alert--error {
   --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-error);
   --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-error);
   --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-error);
   --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-error);
-}
-
-.sb-ui-alert--error .sb-ui-alert-icon::before {
-  content: '✕';
 }
 
 /* ========================================
@@ -252,7 +235,7 @@
 }
 
 /* Without close icon */
-.sb-ui-alert--no-close .sb-ui-alert-close {
+.sb-ui-alert--no-close .sb-ui-alert__close {
   display: none;
 }
 
@@ -579,7 +562,7 @@
     position: static !important;
   }
 
-  .sb-ui-alert-close {
+  .sb-ui-alert__close {
     display: none !important;
   }
 }
@@ -588,7 +571,7 @@
    FOCUS VISIBLE (keyboard navigation)
    ======================================== */
 
-.sb-ui-alert-close:focus-visible {
+.sb-ui-alert__close:focus-visible {
   outline: 2px solid var(--sb-ui-color-primary-base, #007acc);
   outline-offset: 2px;
 }
@@ -617,7 +600,7 @@
   z-index: 3;
 }
 
-.sb-ui-alert--loading .sb-ui-alert-close {
+.sb-ui-alert--loading .sb-ui-alert__close {
   display: none;
 }
 
@@ -642,7 +625,7 @@
     --sb-ui-alert-bg-color: var(--sb-ui-color-grayscale-D200, #6e6e6e);
   }
 
-  .sb-ui-alert-close:hover {
+  .sb-ui-alert__close:hover {
     background-color: var(--sb-ui-color-grayscale-D100, rgba(74, 74, 74, 0.5));
   }
 }
@@ -741,14 +724,10 @@
    ALERT CUSTOM ICONS
    ======================================== */
 
-.sb-ui-alert-icon--custom {
+.sb-ui-alert__icon--custom {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.sb-ui-alert-icon--custom::before {
-  display: none;
 }
 
 /* ========================================

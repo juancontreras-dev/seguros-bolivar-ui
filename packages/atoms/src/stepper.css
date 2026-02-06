@@ -1,0 +1,475 @@
+/**
+ * Stepper Component - Seguros Bolivar UI Design System
+ * - CSS Nesting nativo con &
+ * - @layer para control de cascada
+ * - Logical Properties (RTL/LTR)
+ * - clamp() para responsive fluido
+ *
+ * Uso: <div class="sb-ui-stepper sb-ui-stepper--horizontal">...</div>
+ *
+ * IMPORTANTE: NO usar & con elementos BEM (__element)
+ * Solo usar & con modificadores (--modifier) y pseudo-clases (:hover)
+ */
+
+@layer reset, tokens, base, variants, modifiers, states, utilities;
+
+/* ========================================
+   RESET LAYER
+   ======================================== */
+@layer reset {
+  .sb-ui-stepper {
+    all: unset;
+    box-sizing: border-box;
+
+    & * {
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* ========================================
+   TOKENS LAYER - Variables CSS
+   ======================================== */
+@layer tokens {
+  .sb-ui-stepper {
+    /* ============================================
+       STEP (círculo) - Tamaños responsive
+       ============================================ */
+    /* Desktop: 54px (number), 62px (icon/mix) */
+    /* Mobile: 40px (number), 46px (icon/mix) */
+    --sb-ui-stepper-step-size-number: clamp(40px, 8vw + 20px, 54px);
+    --sb-ui-stepper-step-size-icon: clamp(46px, 8vw + 26px, 62px);
+    --sb-ui-stepper-step-size-mix: clamp(46px, 8vw + 26px, 62px);
+
+    /* Border radius (siempre círculo) */
+    --sb-ui-stepper-step-radius: 50%;
+
+    /* Border width */
+    --sb-ui-stepper-step-border-width: 2px;
+
+    /* ============================================
+       STEP - Colores Empty Default (pendiente)
+       Imagen: Círculo blanco, borde gris claro, texto/icono gris
+       ============================================ */
+    --sb-ui-stepper-step-empty-default-bg: #ffffff;
+    --sb-ui-stepper-step-empty-default-border: #e1e1e1;
+    --sb-ui-stepper-step-empty-default-text: #9b9b9b;
+    --sb-ui-stepper-step-empty-default-icon: #9b9b9b;
+
+    /* ============================================
+       STEP - Colores Empty Active (paso actual sin completar)
+       Imagen: Círculo amarillo, borde amarillo oscuro, número/icono VERDE OSCURO
+       ============================================ */
+    --sb-ui-stepper-step-empty-active-bg: #ffe16f;
+    --sb-ui-stepper-step-empty-active-border: #ffd543;
+    --sb-ui-stepper-step-empty-active-text: #038450;
+    --sb-ui-stepper-step-empty-active-icon: #038450;
+
+    /* ============================================
+       STEP - Colores Filled Default (completado)
+       Imagen: Círculo verde, icono check blanco, label gris
+       ============================================ */
+    --sb-ui-stepper-step-filled-default-bg: #038450;
+    --sb-ui-stepper-step-filled-default-border: #038450;
+    --sb-ui-stepper-step-filled-default-text: #ffffff;
+    --sb-ui-stepper-step-filled-default-icon: #ffffff;
+
+    /* ============================================
+       STEP - Colores Filled Active (completado + seleccionado)
+       Imagen: Círculo verde con borde verde oscuro, icono blanco, label negro bold
+       ============================================ */
+    --sb-ui-stepper-step-filled-active-bg: #038450;
+    --sb-ui-stepper-step-filled-active-border: #05794a;
+    --sb-ui-stepper-step-filled-active-text: #ffffff;
+    --sb-ui-stepper-step-filled-active-icon: #ffffff;
+
+    /* ============================================
+       TRACK (línea conectora) - 2px VERDE SIEMPRE
+       Según Figma: TODAS las líneas son verdes #009056
+       - Sólida: después de steps completados
+       - Punteada: hacia steps pendientes
+       ============================================ */
+    --sb-ui-stepper-track-height: 2px;
+    --sb-ui-stepper-track-color: #009056;
+
+    /* Track style: solid o dash */
+    --sb-ui-stepper-track-style-solid: solid;
+    --sb-ui-stepper-track-style-dash: dashed;
+
+    /* ============================================
+       LABEL (descripción bajo el step)
+       ============================================ */
+    --sb-ui-stepper-label-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    --sb-ui-stepper-label-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+    --sb-ui-stepper-label-line-height: 1.4;
+    --sb-ui-stepper-label-margin-block-start: clamp(8px, 1vw, 12px);
+
+    /* Label colores - Según imagen: gris para todos excepto active que es negro bold */
+    --sb-ui-stepper-label-default-color: #757575;
+    --sb-ui-stepper-label-active-color: #1b1b1b;
+    --sb-ui-stepper-label-active-weight: 700;
+    --sb-ui-stepper-label-default-weight: 400;
+
+    /* ============================================
+       BADGE (número en variante mix)
+       Según Figma: arriba centrado, 16px, color #FFCE29
+       ============================================ */
+    --sb-ui-stepper-badge-size: clamp(14px, 2vw + 10px, 18px);
+    --sb-ui-stepper-badge-bg: #ffce29;
+    --sb-ui-stepper-badge-text: #038450;
+    --sb-ui-stepper-badge-font-size: clamp(10px, 1.2vw + 6px, 12px);
+    --sb-ui-stepper-badge-font-weight: 700;
+    --sb-ui-stepper-badge-border: 2px solid #ffce29;
+
+    /* ============================================
+       SPACING - Gap entre steps
+       ============================================ */
+    --sb-ui-stepper-gap: clamp(16px, 3vw, 32px);
+
+    /* ============================================
+       TRANSITIONS
+       ============================================ */
+    --sb-ui-stepper-transition:
+      background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+}
+
+/* ========================================
+   BASE LAYER - Estilos base
+   ======================================== */
+@layer base {
+  .sb-ui-stepper {
+    /* Layout */
+    display: flex;
+    position: relative;
+
+    /* Font base */
+    font-family: var(--sb-ui-stepper-label-font-family);
+  }
+
+  /* ============================================
+     STEP ITEM (contenedor de cada paso)
+     ============================================ */
+  .sb-ui-stepper__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+
+    /* Transiciones */
+    transition: var(--sb-ui-stepper-transition);
+  }
+
+  /* ============================================
+     STEP CIRCLE (círculo del paso)
+     ============================================ */
+  .sb-ui-stepper__step-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+
+    /* Tamaño por defecto (number) */
+    inline-size: var(--sb-ui-stepper-step-size-number);
+    block-size: var(--sb-ui-stepper-step-size-number);
+
+    /* Forma circular */
+    border-radius: var(--sb-ui-stepper-step-radius);
+
+    /* Border */
+    border-width: var(--sb-ui-stepper-step-border-width);
+    border-style: solid;
+
+    /* Colores default (empty default) */
+    background-color: var(--sb-ui-stepper-step-empty-default-bg);
+    border-color: var(--sb-ui-stepper-step-empty-default-border);
+    color: var(--sb-ui-stepper-step-empty-default-text);
+
+    /* Tipografía */
+    font-size: clamp(16px, 2vw + 8px, 24px);
+    font-weight: 700;
+    line-height: 1;
+
+    /* Transiciones */
+    transition: var(--sb-ui-stepper-transition);
+
+    /* Cursor */
+    cursor: default;
+
+    /* SVG dentro del círculo */
+    & svg {
+      inline-size: clamp(20px, 3vw + 10px, 32px);
+      block-size: clamp(20px, 3vw + 10px, 32px);
+      fill: currentColor;
+    }
+  }
+
+  /* ============================================
+     BADGE (número en variante mix)
+     Posicionado ARRIBA CENTRADO del círculo
+     ============================================ */
+  .sb-ui-stepper__step-circle-badge {
+    position: absolute;
+    inset-block-start: -8px;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+
+    /* Tamaño */
+    inline-size: var(--sb-ui-stepper-badge-size);
+    block-size: var(--sb-ui-stepper-badge-size);
+
+    /* Forma circular */
+    border-radius: 50%;
+
+    /* Colores */
+    background-color: var(--sb-ui-stepper-badge-bg);
+    color: var(--sb-ui-stepper-badge-text);
+
+    /* Tipografía */
+    font-size: var(--sb-ui-stepper-badge-font-size);
+    font-weight: var(--sb-ui-stepper-badge-font-weight);
+    line-height: 1;
+
+    /* Centrar texto dentro del badge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ============================================
+     LABEL (texto descriptivo)
+     ============================================ */
+  .sb-ui-stepper__step-label {
+    margin-block-start: var(--sb-ui-stepper-label-margin-block-start);
+    font-size: var(--sb-ui-stepper-label-font-size);
+    line-height: var(--sb-ui-stepper-label-line-height);
+    color: var(--sb-ui-stepper-label-default-color);
+    font-weight: var(--sb-ui-stepper-label-default-weight);
+    text-align: center;
+    max-inline-size: clamp(80px, 15vw, 120px);
+  }
+
+  /* ============================================
+     TRACK (línea conectora entre steps)
+     Por defecto usa background-color VERDE sólido
+     ============================================ */
+  .sb-ui-stepper__step-track {
+    position: absolute;
+    inset-block-start: calc(var(--sb-ui-stepper-step-size-number) / 2);
+    inset-inline-start: 50%;
+    inline-size: 100%;
+    block-size: var(--sb-ui-stepper-track-height);
+    background-color: var(--sb-ui-stepper-track-color);
+    z-index: 1;
+
+    /* Sin border por defecto (usa background) */
+    border: none;
+
+    /* Transiciones */
+    transition: var(--sb-ui-stepper-transition);
+  }
+
+  /* Último step no tiene track */
+  .sb-ui-stepper__step:last-child .sb-ui-stepper__step-track {
+    display: none;
+  }
+}
+
+/* ========================================
+   VARIANTS LAYER - Estados de los steps
+   ======================================== */
+@layer variants {
+  /* ============================================
+     EMPTY ACTIVE (paso actual sin completar)
+     ============================================ */
+  .sb-ui-stepper__step--empty-active .sb-ui-stepper__step-circle {
+    background-color: var(--sb-ui-stepper-step-empty-active-bg);
+    border-color: var(--sb-ui-stepper-step-empty-active-border);
+    color: var(--sb-ui-stepper-step-empty-active-text);
+  }
+
+  .sb-ui-stepper__step--empty-active .sb-ui-stepper__step-label {
+    color: var(--sb-ui-stepper-label-active-color);
+    font-weight: var(--sb-ui-stepper-label-active-weight);
+  }
+
+  /* ============================================
+     FILLED DEFAULT (completado)
+     ============================================ */
+  .sb-ui-stepper__step--filled-default .sb-ui-stepper__step-circle {
+    background-color: var(--sb-ui-stepper-step-filled-default-bg);
+    border-color: var(--sb-ui-stepper-step-filled-default-border);
+    color: var(--sb-ui-stepper-step-filled-default-text);
+  }
+
+  /* Track permanece verde (no cambia color, solo estilo solid/dash en modifiers) */
+
+  /* ============================================
+     FILLED ACTIVE (completado + seleccionado)
+     ============================================ */
+  .sb-ui-stepper__step--filled-active .sb-ui-stepper__step-circle {
+    background-color: var(--sb-ui-stepper-step-filled-active-bg);
+    border-color: var(--sb-ui-stepper-step-filled-active-border);
+    color: var(--sb-ui-stepper-step-filled-active-text);
+  }
+
+  .sb-ui-stepper__step--filled-active .sb-ui-stepper__step-label {
+    color: var(--sb-ui-stepper-label-active-color);
+    font-weight: var(--sb-ui-stepper-label-active-weight);
+  }
+
+  /* Track permanece verde (no cambia color, solo estilo solid/dash en modifiers) */
+}
+
+/* ========================================
+   MODIFIERS LAYER - Variantes de tipo
+   ======================================== */
+@layer modifiers {
+  /* ============================================
+     ORIENTATION - Horizontal (default)
+     ============================================ */
+  .sb-ui-stepper--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--sb-ui-stepper-gap);
+  }
+
+  /* ============================================
+     ORIENTATION - Vertical
+     ============================================ */
+  .sb-ui-stepper--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sb-ui-stepper-gap);
+  }
+
+  .sb-ui-stepper--vertical .sb-ui-stepper__step {
+    flex-direction: row;
+    inline-size: 100%;
+  }
+
+  .sb-ui-stepper--vertical .sb-ui-stepper__step-track {
+    inset-block-start: 100%;
+    inset-inline-start: calc(var(--sb-ui-stepper-step-size-number) / 2);
+    inline-size: var(--sb-ui-stepper-track-height);
+    block-size: 100%;
+  }
+
+  .sb-ui-stepper--vertical .sb-ui-stepper__step-label {
+    margin-block-start: 0;
+    margin-inline-start: clamp(12px, 2vw, 20px);
+    text-align: start;
+    max-inline-size: none;
+  }
+
+  /* ============================================
+     TYPE - Icon (62px en desktop, 46px en mobile)
+     ============================================ */
+  .sb-ui-stepper--type-icon .sb-ui-stepper__step-circle {
+    inline-size: var(--sb-ui-stepper-step-size-icon);
+    block-size: var(--sb-ui-stepper-step-size-icon);
+  }
+
+  .sb-ui-stepper--type-icon .sb-ui-stepper__step-track {
+    inset-block-start: calc(var(--sb-ui-stepper-step-size-icon) / 2);
+  }
+
+  /* ============================================
+     TYPE - Mix (62px en desktop, 46px en mobile + badge)
+     ============================================ */
+  .sb-ui-stepper--type-mix .sb-ui-stepper__step-circle {
+    inline-size: var(--sb-ui-stepper-step-size-mix);
+    block-size: var(--sb-ui-stepper-step-size-mix);
+  }
+
+  .sb-ui-stepper--type-mix .sb-ui-stepper__step-track {
+    inset-block-start: calc(var(--sb-ui-stepper-step-size-mix) / 2);
+  }
+
+  /* ============================================
+     TRACK STYLE - Dash (línea punteada VERDE)
+     Todas las líneas son verdes, solo cambia solid/dash
+     ============================================ */
+  .sb-ui-stepper--track-dash .sb-ui-stepper__step-track {
+    border-block-start: var(--sb-ui-stepper-track-height) var(--sb-ui-stepper-track-style-dash)
+      var(--sb-ui-stepper-track-color);
+    background-color: transparent;
+  }
+
+  /* Líneas después de steps completados = sólidas */
+  .sb-ui-stepper--track-dash .sb-ui-stepper__step--filled-default .sb-ui-stepper__step-track,
+  .sb-ui-stepper--track-dash .sb-ui-stepper__step--filled-active .sb-ui-stepper__step-track {
+    border-block-start-style: solid;
+  }
+}
+
+/* ========================================
+   STATES LAYER - Estados interactivos
+   ======================================== */
+@layer states {
+  /* ============================================
+     CLICKABLE - Steps clicables
+     ============================================ */
+  .sb-ui-stepper__step--clickable .sb-ui-stepper__step-circle {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--sb-ui-color-secondary-L100);
+      outline-offset: 4px;
+    }
+  }
+
+  /* ============================================
+     DISABLED - Steps deshabilitados
+     ============================================ */
+  .sb-ui-stepper__step--disabled .sb-ui-stepper__step-circle {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .sb-ui-stepper__step--disabled .sb-ui-stepper__step-label {
+    opacity: 0.5;
+  }
+}
+
+/* ========================================
+   UTILITIES LAYER (máxima prioridad)
+   ======================================== */
+@layer utilities {
+  /* High contrast mode support - OBLIGATORIO */
+  @media (prefers-contrast: high) {
+    .sb-ui-stepper {
+      --sb-ui-stepper-step-border-width: 3px;
+      --sb-ui-stepper-track-height: 3px;
+    }
+  }
+
+  /* Reduced motion support - OBLIGATORIO */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-stepper {
+      --sb-ui-stepper-transition: none;
+    }
+
+    .sb-ui-stepper__step-circle {
+      transition: none;
+    }
+  }
+
+  /* Mobile responsive - ajustar gaps */
+  @media (max-width: 640px) {
+    .sb-ui-stepper {
+      --sb-ui-stepper-gap: clamp(8px, 2vw, 16px);
+    }
+  }
+}

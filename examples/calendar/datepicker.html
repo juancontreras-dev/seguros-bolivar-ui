@@ -85,6 +85,21 @@
         font-size: 1.125rem !important;
       }
 
+      /* Dropdown: márgenes internos (fecha separada del borde superior, botones del inferior) */
+      .sb-ui-datepicker__dropdown {
+        padding-inline: 1rem !important;
+        padding-block-start: 1rem !important;
+        padding-block-end: 1rem !important;
+      }
+      /* Margen superior entre la línea del footer y los botones Aceptar/Cancelar */
+      .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+        padding-block-start: 0.75rem !important;
+      }
+      /* Margen inferior del header (dropdown mes/año) al calendario de días */
+      .sb-ui-datepicker__dropdown .sb-ui-calendar__header {
+        margin-block-end: 1rem !important;
+      }
+
       /* Ajustar tamaño del datepicker desplegado - Compacto y sin desbordes */
       .sb-ui-datepicker__dropdown .sb-ui-calendar {
         overflow: hidden !important;

@@ -47,6 +47,7 @@
     /* Header */
     --sb-ui-calendar-header-padding-block: clamp(0.5rem, 0.4rem + 0.5vw, 0.875rem);
     --sb-ui-calendar-header-gap: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+    --sb-ui-calendar-header-margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
     
     /* Month/Year Display */
     --sb-ui-calendar-month-font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
@@ -133,13 +134,13 @@
     font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
   }
   
-  /* Header */
+  /* Header (dropdown mes/año) - margen inferior para separar del calendario */
   .sb-ui-calendar__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-block-end: var(--sb-ui-calendar-header-padding-block);
-    margin-block-end: var(--sb-ui-calendar-gap);
+    margin-block-end: var(--sb-ui-calendar-header-margin-block-end);
     gap: var(--sb-ui-calendar-header-gap);
   }
   
