@@ -26,12 +26,12 @@
     <!-- Preload CSS del Design System -->
     <link
       rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      href="../dist/sb-ui-seguros-bolivar-light.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
+      href="../dist/sb-ui-seguros-bolivar-light.css"
       id="brand-css"
     />
 
@@ -109,32 +109,48 @@
         <div class="tabs-demo-item">
           <h4>Track Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
-            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'track', 0)">
-              <span class="sb-ui-tabs__title">General</span>
-              <span class="sb-ui-tabs__description">Información general</span>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 0)">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 1)">
-              <span class="sb-ui-tabs__title">Contacto</span>
-              <span class="sb-ui-tabs__description">Datos de contacto</span>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 2)">
-              <span class="sb-ui-tabs__title">Configuración</span>
-              <span class="sb-ui-tabs__description">Ajustes y opciones</span>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'track', 3)">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'track', 4)">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
           </div>
-          
+
           <div class="tab-content" style="margin-top: 2rem;">
-            <div class="tab-panel active" id="track-panel-0">
-              <h4>Información General</h4>
-              <p>Este es el contenido de la pestaña General.</p>
+            <div class="tab-panel" id="track-panel-0" style="display: none;">
+              <h4>Panel 1</h4>
+              <p>Contenido del primer tab.</p>
             </div>
             <div class="tab-panel" id="track-panel-1" style="display: none;">
-              <h4>Datos de Contacto</h4>
-              <p>Este es el contenido de la pestaña Contacto.</p>
+              <h4>Panel 2</h4>
+              <p>Contenido del segundo tab.</p>
             </div>
             <div class="tab-panel" id="track-panel-2" style="display: none;">
-              <h4>Configuración</h4>
-              <p>Este es el contenido de la pestaña Configuración.</p>
+              <h4>Panel 3</h4>
+              <p>Contenido del tercer tab.</p>
+            </div>
+            <div class="tab-panel" id="track-panel-3" style="display: none;">
+              <h4>Panel 4</h4>
+              <p>Contenido del cuarto tab.</p>
+            </div>
+            <div class="tab-panel active" id="track-panel-4">
+              <h4>Panel 5</h4>
+              <p>Contenido del quinto tab (activo).</p>
             </div>
           </div>
         </div>
@@ -170,35 +186,53 @@
         <div class="tabs-demo-item">
           <h4>Button Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--button" role="tablist">
-            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'button', 0)">
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 0)">
               <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Web</span>
-              <span class="sb-ui-tabs__description">Sitio web</span>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 1)">
-              <i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Móvil</span>
-              <span class="sb-ui-tabs__description">Aplicación móvil</span>
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 2)">
-              <i class="fa-solid fa-desktop sb-ui-tabs__icon"></i>
-              <span class="sb-ui-tabs__title">Desktop</span>
-              <span class="sb-ui-tabs__description">Aplicación de escritorio</span>
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false" onclick="changeTab(event, 'button', 3)">
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true" onclick="changeTab(event, 'button', 4)">
+              <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
             </button>
           </div>
-          
+
           <div class="tab-content" style="margin-top: 2rem;">
-            <div class="tab-panel active" id="button-panel-0">
-              <h4>Sitio Web</h4>
-              <p>Contenido relacionado con el sitio web.</p>
+            <div class="tab-panel" id="button-panel-0" style="display: none;">
+              <h4>Panel 1</h4>
+              <p>Contenido del primer tab.</p>
             </div>
             <div class="tab-panel" id="button-panel-1" style="display: none;">
-              <h4>Aplicación Móvil</h4>
-              <p>Contenido relacionado con la aplicación móvil.</p>
+              <h4>Panel 2</h4>
+              <p>Contenido del segundo tab.</p>
             </div>
             <div class="tab-panel" id="button-panel-2" style="display: none;">
-              <h4>Aplicación de Escritorio</h4>
-              <p>Contenido relacionado con la aplicación de escritorio.</p>
+              <h4>Panel 3</h4>
+              <p>Contenido del tercer tab.</p>
+            </div>
+            <div class="tab-panel" id="button-panel-3" style="display: none;">
+              <h4>Panel 4</h4>
+              <p>Contenido del cuarto tab.</p>
+            </div>
+            <div class="tab-panel active" id="button-panel-4">
+              <h4>Panel 5</h4>
+              <p>Contenido del quinto tab (activo).</p>
             </div>
           </div>
         </div>
