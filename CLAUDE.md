@@ -6,6 +6,58 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Seguros Bolívar UI** is a multi-brand enterprise Design System supporting 6 brands (Seguros Bolívar, Davivienda, Jelpit, Cien Cuadras, Doctor Aki, White Label) with light/dark themes. Built with modern CSS (Nesting, @layer, Logical Properties, clamp()) and Lit web components.
 
+## 🎯 Project Philosophy
+
+This is a **copy-paste ready CSS library**. Users include the library and copy example code to replicate components immediately - no build step, no configuration.
+
+### User Flow
+1. Include CSS bundle via CDN → 2. Copy HTML from examples/ → 3. Component works ✅
+
+### Critical Development Rules
+
+**MANDATORY**: When working on this project, understand these non-negotiable principles:
+
+1. **CSS Standards are OBLIGATORY**:
+   - **ALWAYS follow** `.cursor/rules/CSS.mdc` (v3.3.0)
+   - **ALWAYS follow** `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` (v2.1.0)
+   - These are NOT suggestions - they are requirements
+   - ✅ Logical Properties ONLY (inline-size, block-size, padding-inline)
+   - ✅ clamp() for responsive (NO media queries for sizes)
+   - ✅ @layer system (8-10 layers)
+   - ✅ CSS Nesting with &
+   - ✅ All classes/variables prefixed sb-ui- / --sb-ui-
+   - ❌ NEVER physical properties (width, height, left, right, padding-left)
+   - ❌ NEVER hardcoded colors (use var(--sb-ui-color-*))
+   - ❌ NEVER !important (use @layer brand-overrides instead)
+
+2. **Examples/ is Primary Documentation**:
+   - `examples/` folder is NOT for testing - it's user-facing docs
+   - If it's not in examples/, users won't know it exists
+   - Every component needs complete, working HTML examples
+   - Users copy these examples directly into production
+
+3. **Mandatory Workflow for Component Changes**:
+   ```
+   a) Update CSS (packages/atoms/ or molecules/)
+   b) Run: pnpm run build
+   c) Update examples/{component}/index.html
+   d) Test: Open HTML, verify all variants work
+   e) Commit: CSS + examples together (NEVER separately)
+   ```
+
+4. **Example Quality Requirements**:
+   - ✅ ALL variants (primary, secondary, disabled, etc.)
+   - ✅ ALL states visible (hover, active, disabled)
+   - ✅ Code blocks with exact copy-paste HTML
+   - ✅ Working copy buttons (`onclick="copyCode(this)"`)
+   - ✅ Corporate colors via CSS variables
+   - ✅ Real data-brand attributes
+   - ❌ NO demo-only styles
+   - ❌ NO incomplete examples
+   - ❌ NEVER commit CSS without examples
+
+**Golden Rule**: CSS changes without example updates = INCOMPLETE WORK
+
 ## Build & Development Commands
 
 ### Setup
