@@ -236,7 +236,7 @@
   }
 
   /* Mobile styles - collapse to first and last */
-  @media (max-width: 640px) {
+  @media (max-inline-size: 640px) {
     .sb-ui-breadcrumb {
       --sb-ui-breadcrumb-font-size: 0.875rem;
     }

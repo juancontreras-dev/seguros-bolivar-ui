@@ -335,13 +335,4 @@
     .sb-ui-col-start-xxl-12 { grid-column-start: 12; }
   }
 
-  /* ===== Accesibilidad: High Contrast Mode ===== */
-  @media (prefers-contrast: high) {
-    /* Column utilities no requieren ajustes visuales en high contrast */
-  }
-
-  /* ===== Accesibilidad: Reduced Motion ===== */
-  @media (prefers-reduced-motion: reduce) {
-    /* Column utilities no producen animaciones */
-  }
 }

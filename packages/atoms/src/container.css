@@ -98,23 +98,9 @@
    ============================================================================ */
 
 @layer base {
-  /* ===== Container Responsive (default) ===== */
-  .sb-ui-container {
-    inline-size: 100%;
-    max-inline-size: 100%;
-    padding-inline: var(--sb-ui-container-padding-inline);
-    margin-inline: auto;
-  }
-
-  /* ===== Container Fluid (100% sin max-width) ===== */
-  .sb-ui-container-fluid {
-    inline-size: 100%;
-    max-inline-size: 100%;
-    padding-inline: var(--sb-ui-container-padding-inline);
-    margin-inline: auto;
-  }
-
-  /* ===== Breakpoint-specific Containers ===== */
+  /* ===== All containers share base layout ===== */
+  .sb-ui-container,
+  .sb-ui-container-fluid,
   .sb-ui-container-sm,
   .sb-ui-container-md,
   .sb-ui-container-lg,

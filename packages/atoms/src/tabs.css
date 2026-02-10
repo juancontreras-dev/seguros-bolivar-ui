@@ -430,28 +430,8 @@
     }
   }
 
-  /* Variante Button Horizontal - Menor altura (más compacto) */
-  .sb-ui-tabs--button-horizontal {
-    & .sb-ui-tabs__item {
-      min-block-size: clamp(32px, 4vw, 36px);
-      padding-block: clamp(0.25rem, 0.2rem + 0.15vw, 0.375rem);
-      gap: clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem);
-    }
-
-    & .sb-ui-tabs__icon {
-      font-size: clamp(14px, 0.8rem + 0.15vw, 16px);
-    }
-
-    & .sb-ui-tabs__title {
-      font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-    }
-
-    & .sb-ui-tabs__description {
-      font-size: clamp(0.625rem, 0.6rem + 0.12vw, 0.6875rem);
-    }
-  }
-
-  /* Variante Folder Horizontal - Menor altura (más compacto) */
+  /* Variantes Button/Folder Horizontal - Menor altura (más compacto) */
+  .sb-ui-tabs--button-horizontal,
   .sb-ui-tabs--folder-horizontal {
     & .sb-ui-tabs__item {
       min-block-size: clamp(32px, 4vw, 36px);

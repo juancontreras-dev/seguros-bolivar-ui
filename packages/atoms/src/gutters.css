@@ -289,13 +289,4 @@
     .sb-ui-gap-y-xxl-5 { row-gap: var(--sb-ui-gap-5); }
   }
 
-  /* ===== Accesibilidad: High Contrast Mode ===== */
-  @media (prefers-contrast: high) {
-    /* Gap utilities no requieren ajustes visuales en high contrast */
-  }
-
-  /* ===== Accesibilidad: Reduced Motion ===== */
-  @media (prefers-reduced-motion: reduce) {
-    /* Gap utilities no producen animaciones */
-  }
 }
