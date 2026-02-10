@@ -56,12 +56,67 @@
       </header>
 
       <!-- ========================================
-           EJEMPLO 1: CON ICONO IZQUIERDO
+           EJEMPLO 1: BREADCRUMB CON ICONO INICIAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Breadcrumb con icono inicial</h3>
+        <p class="demo-description">
+          Breadcrumb con icono solo en el primer elemento, los siguientes elementos son solo texto.
+        </p>
+
+        <div class="demo-card">
+          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Option
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Option</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Option</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="sb-ui-code-block">
+          <div class="sb-ui-code-block-header">
+            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+            <div class="sb-ui-code-block-actions">
+              <span class="sb-ui-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="sb-ui-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+  &lt;ol class="sb-ui-breadcrumb__list"&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Option
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Option&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Option&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           EJEMPLO 2: CON ICONO IZQUIERDO
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Con icono izquierdo</h3>
         <p class="demo-description">
-          Breadcrumb con icono a la izquierda del texto.
+          Breadcrumb con icono a la izquierda del texto en todos los elementos.
         </p>
 
         <div class="demo-card">
@@ -123,12 +178,12 @@
       </section>
 
       <!-- ========================================
-           EJEMPLO 2: SIN ICONO IZQUIERDO
+           EJEMPLO 3: SIN ICONO IZQUIERDO
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Sin icono izquierdo</h3>
         <p class="demo-description">
-          Breadcrumb sin icono, solo texto.
+          Breadcrumb sin icono, solo texto en todos los elementos.
         </p>
 
         <div class="demo-card">
