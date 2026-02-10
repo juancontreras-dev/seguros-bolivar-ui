@@ -594,8 +594,8 @@ export const FolderVariant: Story = {
             }}"
           >
             <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Seguros</span>
-            <span class="sb-ui-tabs__description">Protección total</span>
+            <span class="sb-ui-tabs__title">Title</span>
+            <span class="sb-ui-tabs__description">Description</span>
           </button>
           <button
             class="sb-ui-tabs__item"
@@ -611,8 +611,8 @@ export const FolderVariant: Story = {
             }}"
           >
             <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Inversiones</span>
-            <span class="sb-ui-tabs__description">Haz crecer dinero</span>
+            <span class="sb-ui-tabs__title">Title</span>
+            <span class="sb-ui-tabs__description">Description</span>
           </button>
           <button
             class="sb-ui-tabs__item"
@@ -628,8 +628,8 @@ export const FolderVariant: Story = {
             }}"
           >
             <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Créditos</span>
-            <span class="sb-ui-tabs__description">Financia proyectos</span>
+            <span class="sb-ui-tabs__title">Title</span>
+            <span class="sb-ui-tabs__description">Description</span>
           </button>
           <button
             class="sb-ui-tabs__item"
@@ -645,8 +645,8 @@ export const FolderVariant: Story = {
             }}"
           >
             <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Ahorros</span>
-            <span class="sb-ui-tabs__description">Planifica futuro</span>
+            <span class="sb-ui-tabs__title">Title</span>
+            <span class="sb-ui-tabs__description">Description</span>
           </button>
           <button
             class="sb-ui-tabs__item sb-ui-tabs__item--active"
@@ -662,8 +662,8 @@ export const FolderVariant: Story = {
             }}"
           >
             <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
-            <span class="sb-ui-tabs__title">Pensiones</span>
-            <span class="sb-ui-tabs__description">Retiro seguro</span>
+            <span class="sb-ui-tabs__title">Title</span>
+            <span class="sb-ui-tabs__description">Description</span>
           </button>
         </div>
       </div>

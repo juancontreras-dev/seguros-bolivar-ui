@@ -28,12 +28,12 @@
    ============================================================================ */
 [data-brand='seguros-bolivar'] .sb-ui-tabs {
   /* Espaciado de tabs (muy compactos según diseño) */
-  --sb-ui-tabs-padding-inline: clamp(0.625rem, 0.5rem + 0.5vw, 0.875rem);
-  --sb-ui-tabs-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.625rem);
-  --sb-ui-tabs-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
-  
-  /* Espaciado específico para tab button - Mayor padding superior para separar borde del icono */
-  --sb-ui-tabs-button-padding-block: clamp(1rem, 0.875rem + 0.5vw, 1.25rem);
+  --sb-ui-tabs-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+  --sb-ui-tabs-padding-block: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+  --sb-ui-tabs-gap: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+
+  /* Espaciado específico para tab button - Balance entre compacto y legible */
+  --sb-ui-tabs-button-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
   
   /* Espaciado del panel de contenido (espacioso) */
   --sb-ui-tabs-panel-padding-inline: clamp(2.5rem, 2rem + 2.5vw, 4rem);
@@ -68,14 +68,14 @@
     --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L200);
 
     /* Text - Título */
-    --sb-ui-tabs-text-color: var(--sb-ui-color-primary-D100, #038450);
-    --sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100, #038450);
-    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D300);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D300);
+    --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base);
 
     /* Text - Descripción */
-    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100);
 
     /* Icons */
     --sb-ui-tabs-icon-color: var(--sb-ui-color-primary-D100, #038450);
@@ -93,50 +93,36 @@
 
   /* ========================================
      BUTTON VARIANT - Colores corporativos Seguros Bolívar
-     
-     Colores corporativos según especificación:
-     - Fondo default: #FFFFFF (blanco)
-     - Fondo hover/active: #FFEA9A (amarillo corporativo)
-     - Título: #038450 (verde corporativo - siempre)
-     - Descripción: #757575 (gris corporativo - siempre)
-     - Borde default: #E1E1E1 (gris claro)
-     - Borde hover/active: #B9B9B9 (gris medio)
-     - Iconos: #038450 (verde corporativo - siempre)
-     
-     Estados:
-     - Default: Fondo blanco, borde gris claro
-     - Hover: Fondo amarillo, borde gris medio
-     - Active: Fondo amarillo, borde gris medio
      ======================================== */
   [data-brand='seguros-bolivar'] .sb-ui-tabs--button {
-    /* Background - Blanco por defecto, amarillo corporativo en hover/active */
+    /* Background */
     --sb-ui-tabs-bg-color: var(--sb-ui-color-grayscale-white);
-    --sb-ui-tabs-bg-hover: var(--sb-ui-color-secondary-L100);
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-grayscale-L300);
     --sb-ui-tabs-bg-active: var(--sb-ui-color-secondary-L100);
     --sb-ui-tabs-bg-disabled: var(--sb-ui-color-grayscale-L300);
     --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L200);
 
-    /* Text - Título siempre verde corporativo #038450 */
-    --sb-ui-tabs-text-color: var(--sb-ui-color-primary-D100);
-    --sb-ui-tabs-text-hover: var(--sb-ui-color-primary-D100);
+    /* Text - Título */
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D300);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D300);
     --sb-ui-tabs-text-active: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base);
 
-    /* Text - Descripción siempre gris corporativo #757575 */
+    /* Text - Descripción */
     --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100);
 
-    /* Icons - Siempre verde corporativo #038450 */
+    /* Icons */
     --sb-ui-tabs-icon-color: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-icon-active: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100);
     --sb-ui-tabs-icon-disabled-hover: var(--sb-ui-color-grayscale-L100);
 
-    /* Border - Gris claro #E1E1E1 por defecto, gris medio #B9B9B9 en hover/active */
+    /* Border */
     --sb-ui-tabs-border-color: var(--sb-ui-color-grayscale-L200);
     --sb-ui-tabs-border-hover: var(--sb-ui-color-grayscale-L100);
-    --sb-ui-tabs-border-active: var(--sb-ui-color-grayscale-L100);
+    --sb-ui-tabs-border-active: var(--sb-ui-color-secondary-L100);
     --sb-ui-tabs-border-disabled: var(--sb-ui-color-grayscale-L200);
     --sb-ui-tabs-border-disabled-hover: var(--sb-ui-color-grayscale-L200);
   }
@@ -147,20 +133,23 @@
   [data-brand='seguros-bolivar'] .sb-ui-tabs--folder {
     /* Background */
     --sb-ui-tabs-bg-color: transparent;
-    --sb-ui-tabs-bg-hover: var(--sb-ui-color-secondary-L400);
-    --sb-ui-tabs-bg-active: transparent;
+    --sb-ui-tabs-bg-hover: var(--sb-ui-color-grayscale-L300);
+    --sb-ui-tabs-bg-active: var(--sb-ui-color-primary-L400);
     --sb-ui-tabs-bg-disabled: var(--sb-ui-color-grayscale-L300);
     --sb-ui-tabs-bg-disabled-hover: var(--sb-ui-color-grayscale-L200);
 
     /* Text */
-    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D200);
-    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D200);
+    --sb-ui-tabs-text-color: var(--sb-ui-color-grayscale-D300);
+    --sb-ui-tabs-text-hover: var(--sb-ui-color-grayscale-D300);
     --sb-ui-tabs-text-active: var(--sb-ui-color-primary-base);
     --sb-ui-tabs-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-tabs-text-disabled-hover: var(--sb-ui-color-grayscale-base);
 
+    /* Description */
+    --sb-ui-tabs-description-color: var(--sb-ui-color-grayscale-D100);
+
     /* Icons */
-    --sb-ui-tabs-icon-color: var(--sb-ui-color-grayscale-base);
+    --sb-ui-tabs-icon-color: var(--sb-ui-color-primary-D100);
     --sb-ui-tabs-icon-hover: var(--sb-ui-color-primary-base);
     --sb-ui-tabs-icon-active: var(--sb-ui-color-primary-base);
     --sb-ui-tabs-icon-disabled: var(--sb-ui-color-grayscale-L100);

@@ -207,12 +207,12 @@ body {
   font-size: 0.6875rem;
   padding: 0.3125rem 0.625rem;
   border-radius: 0.375rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--sb-ui-color-primary-base, #009056);
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 700;
-  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 144, 86, 0.25);
 }
 
 .sb-ui-code-block-body {
@@ -236,7 +236,7 @@ body {
    STORYBOOK REFERENCE SECTION
    ======================================== */
 .storybook-reference {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--sb-ui-color-primary-base, #009056) 0%, var(--sb-ui-color-primary-D100, #038450) 100%);
   color: white;
   text-align: center;
   padding: 1.5rem;
@@ -285,6 +285,71 @@ body {
 .storybook-reference-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   TAB CONTENT & PANELS
+   ======================================== */
+.tabs-demo-item {
+  margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.tabs-demo-item h4 {
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  font-weight: 600;
+  color: var(--sb-ui-color-primary-base, #038450);
+  margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+}
+
+.tab-content {
+  padding: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+  background: var(--sb-ui-color-grayscale-white, #fff);
+  border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+  border-radius: clamp(0.5rem, 0.3rem + 0.3vw, 0.75rem);
+  margin-block-start: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+}
+
+/* Ocultar todos los paneles por defecto */
+.tab-content .tab-panel {
+  display: none;
+}
+
+/* Mostrar solo el panel activo */
+.tab-content .tab-panel.active {
+  display: block;
+}
+
+.tab-panel h4 {
+  color: var(--sb-ui-color-primary-base, #038450);
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  margin-block-end: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+  font-weight: 600;
+}
+
+.tab-panel p {
+  color: var(--sb-ui-color-grayscale-D300, #5b5b5b);
+  line-height: 1.6;
+  font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+}
+
+/* ========================================
+   COPY BUTTON (dentro de code blocks)
+   ======================================== */
+.copy-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #a0a0a0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 /* ========================================
