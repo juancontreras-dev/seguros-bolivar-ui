@@ -63,7 +63,9 @@
    2. RESET LAYER
    ============================================================================ */
 
-/* No reset needed - utilities no agregan elementos al DOM */
+@layer reset {
+  /* Utilities de columnas: se aplican a hijos de .sb-ui-grid; no requieren reset */
+}
 
 /* ============================================================================
    3. BASE LAYER - Column Utilities

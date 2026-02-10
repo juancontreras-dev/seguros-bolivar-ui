@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: dark
- * Generated: 2026-02-06T20:57:47.284Z
+ * Generated: 2026-02-10T19:05:43.141Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -663,7 +663,9 @@
 /* ============================================================================
    2. RESET LAYER
    ============================================================================ */
-/* No reset needed - utilities no agregan elementos al DOM */
+@layer reset {
+  /* Utilities de columnas: se aplican a hijos de .sb-ui-grid; no requieren reset */
+}
 /* ============================================================================
    3. BASE LAYER - Column Utilities
    ============================================================================ */
@@ -6397,7 +6399,15 @@
  * - Logical Properties (RTL/LTR)
  * - clamp() para responsive fluido
  *
- * Uso: <input class="sb-ui-input" type="text" placeholder="Placeholder">
+ * Uso:
+ *   <div class="sb-ui-input-container">
+ *     <label class="sb-ui-input-label">Label</label>
+ *     <div class="sb-ui-input-wrapper">
+ *       <input class="sb-ui-input" type="text" placeholder="Placeholder" />
+ *       <span class="sb-ui-input-icon" aria-hidden="true"><!-- icon --></span>
+ *     </div>
+ *     <span class="sb-ui-input-helper">Help text</span>
+ *   </div>
  */
 /* ========================================
    RESET LAYER
@@ -6423,6 +6433,10 @@
   }
 
   .sb-ui-input-icon {
+    box-sizing: border-box;
+  }
+
+  .sb-ui-input-wrapper {
     box-sizing: border-box;
   }
 }
@@ -6490,6 +6504,9 @@
     --sb-ui-input-icon-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
     --sb-ui-input-icon-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-input-icon-inset-inline-end: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+
+    /* Helper con ícono (gap entre ícono y texto) */
+    --sb-ui-input-helper-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
   }
 }
 /* ========================================
@@ -6501,6 +6518,17 @@
     display: block;
     position: relative;
     inline-size: 100%;
+  }
+
+  /* Wrapper input + ícono (para posicionar el ícono sobre el input) */
+  .sb-ui-input-wrapper {
+    display: block;
+    position: relative;
+    inline-size: 100%;
+  }
+
+  .sb-ui-input-container:focus-within .sb-ui-input-helper {
+    color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
   }
 
   /* Input field */
@@ -6594,9 +6622,12 @@
       font-weight: 400;
     }
 
-  /* Helper text */
+  /* Helper text (soporta ícono + texto con flex) */
   .sb-ui-input-helper {
-    display: block;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sb-ui-input-helper-gap);
     margin-block-start: var(--sb-ui-input-helper-margin-block-start);
     font-family: var(--sb-ui-input-font-family);
     font-size: var(--sb-ui-input-helper-font-size);
@@ -6604,7 +6635,13 @@
     line-height: 1.25;
   }
 
-  /* Ícono del input (derecha) */
+  .sb-ui-input-helper i,
+  .sb-ui-input-helper [class^="fa-"] {
+    font-size: 0.875em;
+    flex-shrink: 0;
+  }
+
+  /* Ícono del input (derecha, dentro de .sb-ui-input-wrapper) */
   .sb-ui-input-icon {
     position: absolute;
     inset-block-start: 50%;
@@ -6614,6 +6651,11 @@
     color: var(--sb-ui-input-icon-color);
     pointer-events: none;
     transition: var(--sb-ui-input-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.25em;
+    block-size: 1.25em;
   }
 }
 /* ========================================
