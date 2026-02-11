@@ -600,7 +600,7 @@
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
-        background: var(--sb-ui-color-grayscale-L400);
+        background: var(--sb-ui-color-grayscale-L400, #f5f5f5);
         padding: 1.5rem;
       }
 
@@ -609,7 +609,7 @@
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
-        background: var(--sb-ui-color-grayscale-white);
+        background: var(--sb-ui-color-grayscale-white, #ffffff);
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         min-height: calc(100vh - 64px - 3rem);
@@ -627,6 +627,11 @@
       /* Ensure dynamic content doesn't affect the page width */
       .dynamic-content * {
         box-sizing: border-box;
+      }
+      .content-inner .dynamic-content,
+      .content-inner .component-container {
+        max-width: 100%;
+        width: 100%;
       }
 
       /* Estilos de páginas de componentes (modal, etc.): no inyectamos components.css para no romper el layout */
@@ -676,6 +681,14 @@
         border-radius: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         margin-block-end: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+      }
+      /* Evitar barra/cuadro negro a la derecha: quitar outline del grid */
+      .dynamic-content .sb-ui-grid,
+      .dynamic-content .sb-ui-grid > * { outline: none !important; }
+      /* Evitar cuadro/barra negra: quitar outline en modo alto contraste en todo el contenido inyectado */
+      @media (prefers-contrast: high) {
+        .dynamic-content,
+        .dynamic-content * { outline: none !important; }
       }
       .dynamic-content .states-table {
         inline-size: 100%;
@@ -1785,7 +1798,7 @@
         }
       }
 
-      /* Scrollbar Styling */
+      /* Scrollbar Styling (fallbacks para evitar cuadro negro cuando las variables no aplican) */
       .sidebar::-webkit-scrollbar,
       .content::-webkit-scrollbar {
         width: 8px;
@@ -1793,18 +1806,25 @@
 
       .sidebar::-webkit-scrollbar-track,
       .content::-webkit-scrollbar-track {
-        background: transparent;
+        background: var(--sb-ui-color-grayscale-L400, #f5f5f5);
       }
 
       .sidebar::-webkit-scrollbar-thumb,
       .content::-webkit-scrollbar-thumb {
-        background: var(--sb-ui-color-grayscale-L300);
+        background: var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 4px;
       }
 
       .sidebar::-webkit-scrollbar-thumb:hover,
       .content::-webkit-scrollbar-thumb:hover {
-        background: var(--sb-ui-color-grayscale-D100);
+        background: var(--sb-ui-color-grayscale-base, #9b9b9b);
+      }
+
+      /* Firefox: evitar scrollbar oscuro */
+      .sidebar,
+      .content {
+        scrollbar-color: #e0e0e0 #f5f5f5;
+        scrollbar-width: thin;
       }
     </style>
   </head>
@@ -1967,11 +1987,10 @@
             </nav>
           </div>
 
-          <!-- COMPONENTES SECTION -->
+          <!-- COMPONENTES HTML + CSS (solo estilos, sin script de librería) -->
           <div class="sidebar-section">
             <div class="sidebar-section-title">Componentes HTML + CSS</div>
             <nav class="sidebar-nav">
-              <!-- Button with Submenu -->
               <button class="sidebar-submenu-btn sidebar-nav-item" data-submenu="button-submenu">
                 <i class="fas fa-square"></i>
                 <span>Botones</span>
@@ -1991,10 +2010,9 @@
                   <span>Error</span>
                 </button>
               </div>
-
               <button class="sidebar-nav-item" data-path="input/">
                 <i class="fas fa-keyboard"></i>
-                <span>Inputs</span>
+                <span>Input</span>
               </button>
               <button class="sidebar-nav-item" data-path="textarea/">
                 <i class="fas fa-file-lines"></i>
@@ -2002,15 +2020,15 @@
               </button>
               <button class="sidebar-nav-item" data-path="select/">
                 <i class="fas fa-list"></i>
-                <span>Selects</span>
+                <span>Select</span>
               </button>
               <button class="sidebar-nav-item" data-path="checkbox/">
                 <i class="fas fa-check-square"></i>
-                <span>Checkboxes</span>
+                <span>Checkbox</span>
               </button>
               <button class="sidebar-nav-item" data-path="radio/">
                 <i class="fas fa-circle"></i>
-                <span>Radio Buttons</span>
+                <span>Radio</span>
               </button>
               <button class="sidebar-nav-item" data-path="toggle/">
                 <i class="fas fa-toggle-on"></i>
@@ -2018,30 +2036,11 @@
               </button>
               <button class="sidebar-nav-item" data-path="table/">
                 <i class="fas fa-table"></i>
-                <span>Tablas</span>
+                <span>Tabla</span>
               </button>
               <button class="sidebar-nav-item" data-path="alert/">
                 <i class="fas fa-triangle-exclamation"></i>
-                <span>Alerts</span>
-              </button>
-              <button class="sidebar-nav-item" data-path="file-upload/">
-                <i class="fas fa-cloud-arrow-up"></i>
-                <span>File Upload</span>
-              </button>
-            </nav>
-          </div>
-
-          <!-- WEB COMPONENTS SECTION -->
-          <div class="sidebar-section">
-            <div class="sidebar-section-title">Web Components</div>
-            <nav class="sidebar-nav">
-              <button class="sidebar-nav-item" data-path="modal/">
-                <i class="fas fa-window-maximize"></i>
-                <span>Modal</span>
-              </button>
-              <button class="sidebar-nav-item" data-path="calendar/">
-                <i class="fas fa-calendar"></i>
-                <span>Calendar</span>
+                <span>Alert</span>
               </button>
               <button class="sidebar-nav-item" data-path="tabs/">
                 <i class="fas fa-folder-open"></i>
@@ -2062,6 +2061,33 @@
               <button class="sidebar-nav-item" data-path="accordion/">
                 <i class="fas fa-chevron-down"></i>
                 <span>Accordion</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- WEB COMPONENTS (requieren script de la librería) -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Web Components</div>
+            <nav class="sidebar-nav">
+              <button class="sidebar-nav-item" data-path="modal/">
+                <i class="fas fa-window-maximize"></i>
+                <span>Modal</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="calendar/">
+                <i class="fas fa-calendar"></i>
+                <span>Calendar</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="calendar/datepicker.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>DatePicker</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="toast/">
+                <i class="fas fa-bell"></i>
+                <span>Toast</span>
+              </button>
+              <button class="sidebar-nav-item" data-path="file-upload/">
+                <i class="fas fa-cloud-arrow-up"></i>
+                <span>File Upload</span>
               </button>
             </nav>
           </div>

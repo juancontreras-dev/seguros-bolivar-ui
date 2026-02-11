@@ -298,6 +298,14 @@
       <p class="tip-text">
         <i class="fa-solid fa-lightbulb"></i> <strong>Tip:</strong> No olvides agregar <code>data-brand="seguros-bolivar"</code> y <code>data-theme="light"</code> al <code>&lt;html&gt;</code>
       </p>
+
+      <div class="info-box" style="margin-top: 1rem;">
+        <strong><i class="fa-solid fa-paste"></i> Uso con CDN – Copy-Paste de componentes</strong>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+          <li>Los <strong>snippets</strong> que se muestran en cada página de componente (Columns, Breadcrumb, Tabs, etc.) son los que debes copiar: <strong>solo requieren el CSS del bundle</strong> (y el script si usas Web Components).</li>
+          <li>El aspecto de la <strong>página completa</strong> del demo (títulos, secciones, recuadros, bloques de código) no está en el bundle y <strong>no es necesario</strong> para usar el componente; es solo presentación de la documentación.</li>
+        </ul>
+      </div>
     </div>
 
     <p>Existen tres formas principales de usar Seguros Bolívar UI en tu proyecto. Elige la que mejor se adapte a tus necesidades:</p>
@@ -339,6 +347,11 @@
         <li>✅ Ideal para prototipos y demos</li>
         <li>✅ Sin gestión de dependencias</li>
       </ul>
+    </div>
+
+    <div class="warning-box">
+      <strong><i class="fa-solid fa-layer-group"></i> Tus propios estilos y la cascada CSS</strong>
+      <p>La librería usa <code>@layer</code> para sus estilos. Las reglas CSS <strong>sin capa</strong> (tus hojas o estilos inline) tienen prioridad sobre las que están dentro de una capa. Si tus estilos “rompen” un componente, evita selectores que apunten a los mismos elementos que la librería (p. ej. <code>div { display: block; }</code> puede anular el <code>display: grid</code> del grid). Opcional: pon tus estilos en una capa que venga antes, p. ej. <code>@layer user;</code> y carga el bundle después.</p>
     </div>
 
     <h3>2. NPM (Recomendado para Producción)</h3>

@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: light
- * Generated: 2026-02-11T14:46:37.163Z
+ * Generated: 2026-02-11T16:57:43.829Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -6427,6 +6427,10 @@
   .sb-ui-input-icon {
     box-sizing: border-box;
   }
+
+  .sb-ui-input-inner {
+    box-sizing: border-box;
+  }
 }
 /* ========================================
    TOKENS LAYER - Variables CSS
@@ -6503,6 +6507,12 @@
     display: block;
     position: relative;
     inline-size: 100%;
+  }
+
+  /* Inner wrapper: agrupa input + ícono para que el ícono se posicione respecto al campo (no al label+input) */
+  .sb-ui-input-inner {
+    position: relative;
+    display: block;
   }
 
   /* Input field */
