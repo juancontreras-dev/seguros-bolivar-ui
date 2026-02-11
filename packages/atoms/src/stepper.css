@@ -463,7 +463,7 @@
   }
 
   /* Mobile responsive - ajustar gaps */
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
     .sb-ui-stepper {
       --sb-ui-stepper-gap: clamp(8px, 2vw, 16px);
     }

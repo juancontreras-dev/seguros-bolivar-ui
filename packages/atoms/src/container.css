@@ -121,7 +121,7 @@
   /* ===== Responsive Max-Widths ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-container,
     .sb-ui-container-sm {
       max-inline-size: var(--sb-ui-container-max-inline-size-sm);
@@ -129,7 +129,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md {
@@ -138,7 +138,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -148,7 +148,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -159,7 +159,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,

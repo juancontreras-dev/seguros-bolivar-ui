@@ -649,7 +649,7 @@
     }
   }
 
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
     .sb-ui-alert--toast {
       inset-block-start: 0.5rem;
       inset-inline-end: 0.5rem;
@@ -671,7 +671,7 @@
     }
   }
 
-  @media (min-inline-size: 641px) {
+  @media (min-width: 641px) {
     .sb-ui-alert--toast {
       max-inline-size: 450px;
     }

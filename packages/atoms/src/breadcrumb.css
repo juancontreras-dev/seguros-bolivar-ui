@@ -215,7 +215,7 @@
     }
   }
 
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
     .sb-ui-breadcrumb:not(.sb-ui-breadcrumb--no-collapse) {
       & .sb-ui-breadcrumb__item:not(:first-child):not(:last-child) {
         display: none;

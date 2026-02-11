@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: dark
- * Generated: 2026-02-10T19:35:31.311Z
+ * Generated: 2026-02-11T13:53:42.139Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -251,7 +251,7 @@
   /* ===== Responsive Max-Widths ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-container,
     .sb-ui-container-sm {
       max-inline-size: var(--sb-ui-container-max-inline-size-sm);
@@ -259,7 +259,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md {
@@ -268,7 +268,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -278,7 +278,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -289,7 +289,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -477,7 +477,7 @@
   /* ===== Responsive Breakpoints ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-col-sm-1 { grid-column: span 1; }
     .sb-ui-col-sm-2 { grid-column: span 2; }
     .sb-ui-col-sm-3 { grid-column: span 3; }
@@ -494,7 +494,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-col-md-1 { grid-column: span 1; }
     .sb-ui-col-md-2 { grid-column: span 2; }
     .sb-ui-col-md-3 { grid-column: span 3; }
@@ -511,7 +511,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-col-lg-1 { grid-column: span 1; }
     .sb-ui-col-lg-2 { grid-column: span 2; }
     .sb-ui-col-lg-3 { grid-column: span 3; }
@@ -528,7 +528,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-col-xl-1 { grid-column: span 1; }
     .sb-ui-col-xl-2 { grid-column: span 2; }
     .sb-ui-col-xl-3 { grid-column: span 3; }
@@ -545,7 +545,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-col-xxl-1 { grid-column: span 1; }
     .sb-ui-col-xxl-2 { grid-column: span 2; }
     .sb-ui-col-xxl-3 { grid-column: span 3; }
@@ -743,7 +743,7 @@
   /* ===== Responsive Breakpoints ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-col-align-self-sm-start { align-self: start; }
     .sb-ui-col-align-self-sm-center { align-self: center; }
     .sb-ui-col-align-self-sm-end { align-self: end; }
@@ -778,7 +778,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-col-align-self-md-start { align-self: start; }
     .sb-ui-col-align-self-md-center { align-self: center; }
     .sb-ui-col-align-self-md-end { align-self: end; }
@@ -813,7 +813,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-col-align-self-lg-start { align-self: start; }
     .sb-ui-col-align-self-lg-center { align-self: center; }
     .sb-ui-col-align-self-lg-end { align-self: end; }
@@ -848,7 +848,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-col-align-self-xl-start { align-self: start; }
     .sb-ui-col-align-self-xl-center { align-self: center; }
     .sb-ui-col-align-self-xl-end { align-self: end; }
@@ -883,7 +883,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-col-align-self-xxl-start { align-self: start; }
     .sb-ui-col-align-self-xxl-center { align-self: center; }
     .sb-ui-col-align-self-xxl-end { align-self: end; }
@@ -1084,7 +1084,7 @@
   /* ===== Responsive Breakpoints ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-gap-sm-0 { gap: var(--sb-ui-gap-0); }
     .sb-ui-gap-sm-1 { gap: var(--sb-ui-gap-1); }
     .sb-ui-gap-sm-2 { gap: var(--sb-ui-gap-2); }
@@ -1108,7 +1108,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-gap-md-0 { gap: var(--sb-ui-gap-0); }
     .sb-ui-gap-md-1 { gap: var(--sb-ui-gap-1); }
     .sb-ui-gap-md-2 { gap: var(--sb-ui-gap-2); }
@@ -1132,7 +1132,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-gap-lg-0 { gap: var(--sb-ui-gap-0); }
     .sb-ui-gap-lg-1 { gap: var(--sb-ui-gap-1); }
     .sb-ui-gap-lg-2 { gap: var(--sb-ui-gap-2); }
@@ -1156,7 +1156,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-gap-xl-0 { gap: var(--sb-ui-gap-0); }
     .sb-ui-gap-xl-1 { gap: var(--sb-ui-gap-1); }
     .sb-ui-gap-xl-2 { gap: var(--sb-ui-gap-2); }
@@ -1180,7 +1180,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-gap-xxl-0 { gap: var(--sb-ui-gap-0); }
     .sb-ui-gap-xxl-1 { gap: var(--sb-ui-gap-1); }
     .sb-ui-gap-xxl-2 { gap: var(--sb-ui-gap-2); }
@@ -2430,7 +2430,7 @@
     }
   }
 
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
     .sb-ui-alert--toast {
       inset-block-start: 0.5rem;
       inset-inline-end: 0.5rem;
@@ -2452,7 +2452,7 @@
     }
   }
 
-  @media (min-inline-size: 641px) {
+  @media (min-width: 641px) {
     .sb-ui-alert--toast {
       max-inline-size: 450px;
     }
@@ -2705,7 +2705,7 @@
     }
   }
 
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
       .sb-ui-breadcrumb:not(.sb-ui-breadcrumb--no-collapse) .sb-ui-breadcrumb__item:not(:first-child):not(:last-child) {
         display: none;
       }
@@ -4164,14 +4164,14 @@
   }
 
   /* Mobile - Full width by default (excepto icon-only y circle) */
-  @media (inline-size <= 640px) {
+  @media (max-width: 640px) {
     .sb-ui-button:not(.sb-ui-button--icon-only):not(.sb-ui-button--circle) {
       inline-size: 100%;
     }
   }
 
   /* Desktop - Auto width */
-  @media (inline-size >= 641px) {
+  @media (min-width: 641px) {
     .sb-ui-button:not(.sb-ui-button--block) {
       inline-size: auto;
     }
@@ -6594,7 +6594,7 @@
   }
 
   /* Mobile styles - Font size 16px para prevenir zoom en iOS */
-  @media (inline-size <= 640px) {
+  @media (max-width: 640px) {
     .sb-ui-input {
       font-size: max(16px, var(--sb-ui-input-font-size));
     }
@@ -8699,7 +8699,7 @@
   }
 
   /* Mobile responsive - ajustar gaps */
-  @media (max-inline-size: 640px) {
+  @media (max-width: 640px) {
     .sb-ui-stepper {
       --sb-ui-stepper-gap: clamp(8px, 2vw, 16px);
     }

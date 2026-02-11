@@ -41,7 +41,7 @@ async function minifyCSS(css: string): Promise<string> {
           calc: { precision: 5 },
           convertValues: { length: true },
           mergeLonghand: false, // DESACTIVADO: estaba simplificando border-radius incorrectamente
-          mergeRules: true,
+          mergeRules: false, // DESACTIVADO: estaba eliminando media queries del grid responsive
           minifySelectors: true,
           reduceIdents: false, // Mantener nombres de animaciones/keyframes
           svgo: false,

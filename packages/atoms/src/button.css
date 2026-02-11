@@ -1511,14 +1511,14 @@
   }
 
   /* Mobile - Full width by default (excepto icon-only y circle) */
-  @media (inline-size <= 640px) {
+  @media (max-width: 640px) {
     .sb-ui-button:not(.sb-ui-button--icon-only):not(.sb-ui-button--circle) {
       inline-size: 100%;
     }
   }
 
   /* Desktop - Auto width */
-  @media (inline-size >= 641px) {
+  @media (min-width: 641px) {
     .sb-ui-button:not(.sb-ui-button--block) {
       inline-size: auto;
     }
