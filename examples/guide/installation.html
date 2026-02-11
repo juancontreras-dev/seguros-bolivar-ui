@@ -185,7 +185,7 @@
     }
 
     /* Estilos estandarizados para bloques de código */
-    .demo-code-block {
+    .sb-ui-code-block {
       background: #1e1e1e;
       color: #d4d4d4;
       border-radius: 8px;
@@ -195,7 +195,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
-    .demo-code-block-header {
+    .sb-ui-code-block-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -204,14 +204,14 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .demo-code-block-title {
+    .sb-ui-code-block-title {
       font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: 0.3px;
       color: #a0a0a0;
     }
 
-    .demo-code-block-badge {
+    .sb-ui-code-block-badge {
       font-size: 0.6875rem;
       padding: 0.3125rem 0.625rem;
       border-radius: 0.375rem;
@@ -223,7 +223,7 @@
       box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
     }
 
-    .demo-code-block-body {
+    .sb-ui-code-block-body {
       margin: 0;
       padding: 1.25rem;
       font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -235,7 +235,7 @@
       background: #1e1e1e;
     }
 
-    .demo-code-block-body code {
+    .sb-ui-code-block-body code {
       color: #d4d4d4;
       background: transparent;
     }
@@ -273,11 +273,11 @@
     <!-- SECCIÓN RÁPIDA: SOLO CDN -->
     <div class="quick-start-box">
       <h3><i class="fa-solid fa-bolt"></i> Inicio Rápido - Solo CDN</h3>
-      <p>Un solo <code>&lt;link&gt;</code> y todo funciona. Fuentes (Roboto + Bolivar) e iconos (Font Awesome) se incluyen automaticamente:</p>
-
+      <p>Copia y pega estas etiquetas en el <code>&lt;head&gt;</code> de tu HTML:</p>
+      
       <div class="code-snippet">
         <div class="label">
-          <strong><i class="fa-solid fa-palette"></i> 1. CSS del Design System (incluye fuentes e iconos):</strong>
+          <strong><i class="fa-solid fa-palette"></i> CSS (Estilos):</strong>
           <button class="copy-btn" onclick="navigator.clipboard.writeText('<link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css&quot;>')">
             <i class="fa-solid fa-copy"></i> Copiar
           </button>
@@ -287,7 +287,7 @@
 
       <div class="code-snippet">
         <div class="label">
-          <strong><i class="fa-brands fa-js"></i> 2. JavaScript Web Components (opcional):</strong>
+          <strong><i class="fa-brands fa-js"></i> JavaScript (Web Components - opcional):</strong>
           <button class="copy-btn" onclick="navigator.clipboard.writeText('<script type=&quot;module&quot; src=&quot;https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js&quot;></script>')">
             <i class="fa-solid fa-copy"></i> Copiar
           </button>
@@ -298,6 +298,14 @@
       <p class="tip-text">
         <i class="fa-solid fa-lightbulb"></i> <strong>Tip:</strong> No olvides agregar <code>data-brand="seguros-bolivar"</code> y <code>data-theme="light"</code> al <code>&lt;html&gt;</code>
       </p>
+
+      <div class="info-box" style="margin-top: 1rem;">
+        <strong><i class="fa-solid fa-paste"></i> Uso con CDN – Copy-Paste de componentes</strong>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+          <li>Los <strong>snippets</strong> que se muestran en cada página de componente (Columns, Breadcrumb, Tabs, etc.) son los que debes copiar: <strong>solo requieren el CSS del bundle</strong> (y el script si usas Web Components).</li>
+          <li>El aspecto de la <strong>página completa</strong> del demo (títulos, secciones, recuadros, bloques de código) no está en el bundle y <strong>no es necesario</strong> para usar el componente; es solo presentación de la documentación.</li>
+        </ul>
+      </div>
     </div>
 
     <p>Existen tres formas principales de usar Seguros Bolívar UI en tu proyecto. Elige la que mejor se adapte a tus necesidades:</p>
@@ -314,9 +322,9 @@
     <div class="code-block">&lt;!DOCTYPE html&gt;
 &lt;html lang="es" data-brand="seguros-bolivar" data-theme="light"&gt;
 &lt;head&gt;
-  &lt;!-- CSS del Design System (incluye fuentes e iconos automaticamente) --&gt;
+  &lt;!-- CSS del Design System --&gt;
   &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
-
+  
   &lt;!-- Web Components (opcional) --&gt;
   &lt;script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
@@ -342,8 +350,8 @@
     </div>
 
     <div class="warning-box">
-      <strong><i class="fa-solid fa-layer-group"></i> CSS @layer y Reset CSS</strong>
-      <p>Seguros Bolivar UI utiliza <code>@layer</code> para organizar la cascada CSS. Si utilizas un reset CSS propio (ej: Normalize.css, CSS Reset), envuelvelo en <code>@layer reset { ... }</code> para evitar conflictos de especificidad con la libreria. Los estilos fuera de cualquier <code>@layer</code> siempre tienen mayor prioridad que los estilos dentro de layers.</p>
+      <strong><i class="fa-solid fa-layer-group"></i> Tus propios estilos y la cascada CSS</strong>
+      <p>La librería usa <code>@layer</code> para sus estilos. Las reglas CSS <strong>sin capa</strong> (tus hojas o estilos inline) tienen prioridad sobre las que están dentro de una capa. Si tus estilos “rompen” un componente, evita selectores que apunten a los mismos elementos que la librería (p. ej. <code>div { display: block; }</code> puede anular el <code>display: grid</code> del grid). Opcional: pon tus estilos en una capa que venga antes, p. ej. <code>@layer user;</code> y carga el bundle después.</p>
     </div>
 
     <h3>2. NPM (Recomendado para Producción)</h3>
