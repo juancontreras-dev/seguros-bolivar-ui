@@ -69,19 +69,19 @@
     
     .component-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
     
-    @media (max-width: 1200px) {
+    @media (min-width: 1400px) {
       .component-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
       }
     }
     
-    @media (max-width: 992px) {
+    @media (max-width: 1024px) {
       .component-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     
@@ -176,7 +176,7 @@
 
     <!-- HTML + CSS Section -->
     <h3 class="section-title"><i class="fa-solid fa-code"></i> Componentes HTML + CSS</h3>
-    <p class="section-description">Componentes básicos que solo requieren clases CSS. Sin JavaScript adicional.</p>
+    <p class="section-description">Componentes que usan clases CSS de la librería. No requieren el script <code>sb-ui-components.min.js</code>. Algunos (p. ej. File Upload) pueden necesitar JavaScript propio para la lógica (drag & drop, input), pero no el de la librería.</p>
 
     <div class="component-grid">
       <a class="component-card" data-path="button/primary.html">
@@ -282,15 +282,61 @@
         <div class="icon"><i class="fas fa-cloud-arrow-up"></i></div>
         <div class="info">
           <h4>File Upload</h4>
-          <p>Carga de archivos con drag & drop</p>
+          <p>Estilos para zona de carga; la lógica (input/drag) la implementas tú</p>
         </div>
-        
       </a>
     </div>
 
-    <!-- Web Components Section -->
-    <h3 class="section-title"><i class="fa-solid fa-cube"></i> Web Components</h3>
-    <p class="section-description">Componentes interactivos avanzados implementados con Web Components (Lit Element).</p>
+    <!-- HTML + CSS: Tabs, Stepper, Breadcrumb, Spinner, Accordion (solo clases CSS, sin JS de librería) -->
+    <h3 class="section-title"><i class="fa-solid fa-code"></i> Más componentes HTML + CSS</h3>
+    <p class="section-description">Estos componentes usan solo clases CSS. No requieren el script <code>sb-ui-components.min.js</code>.</p>
+
+    <div class="component-grid">
+      <a class="component-card" data-path="tabs/">
+        <div class="icon"><i class="fas fa-folder-open"></i></div>
+        <div class="info">
+          <h4>Tabs</h4>
+          <p>Navegación por pestañas</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="stepper/">
+        <div class="icon"><i class="fas fa-arrow-down-1-9"></i></div>
+        <div class="info">
+          <h4>Stepper</h4>
+          <p>Indicador de pasos de proceso</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="breadcrumb/">
+        <div class="icon"><i class="fas fa-arrow-right"></i></div>
+        <div class="info">
+          <h4>Breadcrumb</h4>
+          <p>Navegación jerárquica</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="spinner/">
+        <div class="icon"><i class="fas fa-spinner"></i></div>
+        <div class="info">
+          <h4>Spinner</h4>
+          <p>Indicadores de carga</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="accordion/">
+        <div class="icon"><i class="fas fa-chevron-down"></i></div>
+        <div class="info">
+          <h4>Accordion</h4>
+          <p>Paneles desplegables (details/summary)</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Web Components Section: requieren sb-ui-components.min.js -->
+    <h3 class="section-title"><i class="fa-solid fa-cube"></i> Web Components (requieren JavaScript de la librería)</h3>
+    <p class="section-description">Implementados con Web Components (Lit). Para que funcionen debes incluir el script de la librería.</p>
+
+    <div class="info-box" style="margin-bottom: 1.5rem;">
+      <strong><i class="fa-solid fa-code"></i> Script requerido</strong>
+      <p>Incluye en tu HTML: <code>&lt;script type="module" src="ruta/sb-ui-components.min.js"&gt;&lt;/script&gt;</code></p>
+    </div>
 
     <div class="component-grid">
       <a class="component-card" data-path="modal/">
@@ -299,70 +345,20 @@
           <h4>Modal</h4>
           <p>Ventanas modales con overlay</p>
         </div>
-        
       </a>
-
-      <a class="component-card" data-path="dropdown/">
-        <div class="icon"><i class="fas fa-bars"></i></div>
-        <div class="info">
-          <h4>Dropdown</h4>
-          <p>Menús desplegables interactivos</p>
-        </div>
-        
-      </a>
-
       <a class="component-card" data-path="calendar/">
         <div class="icon"><i class="fas fa-calendar"></i></div>
         <div class="info">
           <h4>Calendar</h4>
-          <p>Selector de fechas con calendario</p>
+          <p>Calendario interactivo</p>
         </div>
-        
       </a>
-
-      <a class="component-card" data-path="tabs/">
-        <div class="icon"><i class="fas fa-folder-open"></i></div>
+      <a class="component-card" data-path="calendar/datepicker.html">
+        <div class="icon"><i class="fas fa-calendar-day"></i></div>
         <div class="info">
-          <h4>Tabs</h4>
-          <p>Navegación por pestañas</p>
+          <h4>DatePicker</h4>
+          <p>Selector de fechas con input</p>
         </div>
-        
-      </a>
-
-      <a class="component-card" data-path="stepper/">
-        <div class="icon"><i class="fas fa-arrow-down-1-9"></i></div>
-        <div class="info">
-          <h4>Stepper</h4>
-          <p>Indicador de pasos de proceso</p>
-        </div>
-        
-      </a>
-
-      <a class="component-card" data-path="breadcrumb/">
-        <div class="icon"><i class="fas fa-arrow-right"></i></div>
-        <div class="info">
-          <h4>Breadcrumb</h4>
-          <p>Navegación jerárquica</p>
-        </div>
-        
-      </a>
-
-      <a class="component-card" data-path="spinner/">
-        <div class="icon"><i class="fas fa-spinner"></i></div>
-        <div class="info">
-          <h4>Spinner</h4>
-          <p>Indicadores de carga</p>
-        </div>
-        
-      </a>
-
-      <a class="component-card" data-path="accordion/">
-        <div class="icon"><i class="fas fa-chevron-down"></i></div>
-        <div class="info">
-          <h4>Accordion</h4>
-          <p>Paneles desplegables</p>
-        </div>
-        
       </a>
     </div>
 

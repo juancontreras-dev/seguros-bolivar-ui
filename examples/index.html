@@ -1639,6 +1639,152 @@
         }
       }
 
+      /* ========================================
+         PÁGINA COMPONENTES (guide/components.html) - RESPONSIVE
+         Desktop: 4-5 columnas; tablet/móvil: 2 columnas para no desbordar.
+         ======================================== */
+      .dynamic-content .content-container {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      /* Desktop: 4 columnas por defecto */
+      .dynamic-content .content-container .component-grid {
+        grid-template-columns: repeat(4, 1fr);
+        min-width: 0;
+      }
+      /* Pantallas muy anchas: 5 columnas */
+      @media (min-width: 1400px) {
+        .dynamic-content .content-container .component-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+      .dynamic-content .component-grid {
+        min-width: 0;
+      }
+      .dynamic-content .content-container .component-card {
+        min-width: 0;
+      }
+      .dynamic-content .content-container .component-card .info {
+        min-width: 0;
+      }
+      .dynamic-content .content-container .component-card .info h4,
+      .dynamic-content .content-container .component-card .info p {
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      @media (max-width: 1024px) {
+        .dynamic-content .content-container {
+          padding: 1.5rem 1rem;
+        }
+        .dynamic-content .content-container h2 {
+          font-size: 1.5rem;
+        }
+        .dynamic-content .section-title {
+          font-size: 1.25rem;
+          margin: 2rem 0 0.75rem 0;
+        }
+        .dynamic-content .content-container .component-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+      }
+
+      /* Tablet: 2 cards por fila */
+      @media (max-width: 768px) {
+        .dynamic-content .content-container {
+          padding: 1.25rem 1rem;
+        }
+        .dynamic-content .content-container h2 {
+          font-size: 1.375rem;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .dynamic-content .content-container > p {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+        .dynamic-content .section-title {
+          font-size: 1.125rem;
+          margin: 1.5rem 0 0.75rem 0;
+          padding-bottom: 0.5rem;
+        }
+        .dynamic-content .section-description {
+          margin-bottom: 1rem;
+          font-size: 0.9375rem;
+        }
+        .dynamic-content .content-container .component-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+        .dynamic-content .content-container .component-card {
+          padding: 0.75rem;
+          aspect-ratio: auto;
+          min-height: auto;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+        }
+        .dynamic-content .content-container .component-card .icon {
+          width: 40px;
+          height: 40px;
+        }
+        .dynamic-content .content-container .component-card .icon i {
+          font-size: 1.125rem;
+        }
+        .dynamic-content .content-container .component-card .info h4 {
+          font-size: 0.8125rem;
+        }
+        .dynamic-content .content-container .component-card .info p {
+          font-size: 0.6875rem;
+        }
+        .dynamic-content .content-container .info-box {
+          padding: 0.875rem 1rem;
+          margin: 1.5rem 0;
+          font-size: 0.9375rem;
+        }
+      }
+
+      /* Mobile: 1 card por fila (selector específico para ganar sobre estilos inyectados) */
+      @media (max-width: 480px) {
+        .dynamic-content .content-container {
+          padding: 1rem 0.5rem;
+        }
+        .dynamic-content .content-container h2 {
+          font-size: 1.25rem;
+        }
+        .dynamic-content .section-title {
+          font-size: 1rem;
+          margin: 1.25rem 0 0.5rem 0;
+        }
+        .dynamic-content .content-container .component-grid {
+          grid-template-columns: 1fr !important;
+          gap: 0.75rem;
+        }
+        .dynamic-content .content-container .component-card {
+          padding: 1rem 1.25rem;
+        }
+        .dynamic-content .content-container .component-card .icon {
+          width: 48px;
+          height: 48px;
+        }
+        .dynamic-content .content-container .component-card .icon i {
+          font-size: 1.25rem;
+        }
+        .dynamic-content .content-container .component-card .info h4 {
+          font-size: 0.9375rem;
+        }
+        .dynamic-content .content-container .component-card .info p {
+          font-size: 0.8125rem;
+        }
+        .dynamic-content .content-container .info-box {
+          padding: 0.75rem 1rem;
+          margin: 1.25rem 0;
+        }
+      }
+
       /* Scrollbar Styling */
       .sidebar::-webkit-scrollbar,
       .content::-webkit-scrollbar {
