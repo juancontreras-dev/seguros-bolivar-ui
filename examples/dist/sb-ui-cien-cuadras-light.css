@@ -1,7 +1,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: light
- * Generated: 2026-02-11T16:57:43.829Z
+ * Generated: 2026-02-11T18:52:24.827Z
  *
  * Includes:
  * - Design Tokens (variables CSS)
@@ -4340,12 +4340,16 @@
  * - Logical Properties (RTL/LTR)
  * - clamp() para responsive fluido
  *
- * Uso: <div class="sb-ui-calendar" data-variant="single|range|multiple">
+ * Incluye:
+ * 1) Calendario (sb-ui-calendar): grid de días, header mes/año, navegación, footer.
+ *    Uso: <div class="sb-ui-calendar" data-variant="single|range|multiple">
+ *    Variantes: single, range, multiple.
+ *    Tamaños: --small, --large. Modificadores: --double, --no-footer, --inline.
+ *    Estados: --loading, --error.
  *
- * Variantes:
- * - single: Selección de un solo día
- * - range: Selección de rango de fechas (inicio-fin)
- * - multiple: Selección de múltiples días
+ * 2) Datepicker (sb-ui-datepicker): input + botón trigger + dropdown con calendario.
+ *    Uso: contenedor .sb-ui-datepicker con __wrapper (input + trigger), __dropdown (.sb-ui-calendar).
+ *    Tamaños: --small, --large. Modificadores: --block, --with-label. Estados: --disabled, --loading, --open.
  */
 /* ========================================
    RESET LAYER
@@ -4775,6 +4779,247 @@
     .sb-ui-calendar--double {
       flex-direction: column;
     }
+  }
+}
+/* ========================================
+   DATEPICKER (input + trigger + dropdown con calendario)
+   Mismo componente Calendario: campo de fecha con desplegable
+   ======================================== */
+@layer tokens {
+  .sb-ui-datepicker {
+    --sb-ui-datepicker-input-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    --sb-ui-datepicker-inline-size: clamp(200px, 100%, 300px);
+    --sb-ui-datepicker-padding-inline: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-padding-block: clamp(0.375rem, 0.3rem + 0.3vw, 0.75rem);
+    --sb-ui-datepicker-gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+    --sb-ui-datepicker-trigger-size: clamp(36px, 2.2rem + 0.5vw, 44px);
+    --sb-ui-datepicker-trigger-bg: transparent;
+    --sb-ui-datepicker-trigger-bg-hover: var(--sb-ui-color-grayscale-L400, #f5f5f5);
+    --sb-ui-datepicker-trigger-bg-active: var(--sb-ui-color-grayscale-L300, #e8e8e8);
+    --sb-ui-datepicker-trigger-color: var(--sb-ui-color-grayscale-base, #666);
+    --sb-ui-datepicker-trigger-color-hover: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-datepicker-dropdown-bg: var(--sb-ui-color-grayscale-white, #fff);
+    --sb-ui-datepicker-dropdown-border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+    --sb-ui-datepicker-dropdown-border-width: 1px;
+    --sb-ui-datepicker-dropdown-border-radius: clamp(8px, 0.5rem + 0.5vw, 12px);
+    --sb-ui-datepicker-dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --sb-ui-datepicker-dropdown-margin-block-start: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.75rem + 0.8vw, 1.25rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
+    --sb-ui-datepicker-dropdown-footer-margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+}
+@layer base {
+  .sb-ui-datepicker {
+    display: inline-block;
+    position: relative;
+    inline-size: var(--sb-ui-datepicker-inline-size);
+    font-family: var(--sb-ui-datepicker-input-font-family);
+    padding-inline: var(--sb-ui-datepicker-padding-inline);
+    padding-block: var(--sb-ui-datepicker-padding-block);
+  }
+
+  .sb-ui-datepicker__wrapper {
+    display: flex;
+    position: relative;
+    align-items: stretch;
+    gap: var(--sb-ui-datepicker-gap);
+  }
+
+  .sb-ui-datepicker__wrapper .sb-ui-input {
+    flex: 1;
+    min-inline-size: 0;
+    inline-size: 100%;
+    padding-inline-start: var(--sb-ui-datepicker-input-padding-inline, var(--sb-ui-input-padding-inline, 0.75rem));
+    padding-block: var(--sb-ui-datepicker-input-padding-block, var(--sb-ui-input-padding-block, 0.625rem));
+    padding-inline-end: calc(var(--sb-ui-datepicker-trigger-size) + 0.5rem) !important;
+    cursor: pointer;
+  }
+
+  .sb-ui-datepicker__trigger {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: 0;
+    block-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-datepicker-trigger-size);
+    background-color: var(--sb-ui-datepicker-trigger-bg);
+    color: var(--sb-ui-datepicker-trigger-color);
+    border: none;
+    border-start-end-radius: var(--sb-ui-input-border-radius, 6px);
+    border-end-end-radius: var(--sb-ui-input-border-radius, 6px);
+    cursor: pointer;
+    transition: var(--sb-ui-datepicker-transition);
+    font-size: 1.25rem;
+  }
+
+  .sb-ui-datepicker__trigger:hover:not(:disabled) {
+    background-color: var(--sb-ui-datepicker-trigger-bg-hover);
+    color: var(--sb-ui-datepicker-trigger-color-hover);
+  }
+
+  .sb-ui-datepicker__trigger:active:not(:disabled) {
+    background-color: var(--sb-ui-datepicker-trigger-bg-active);
+  }
+
+  .sb-ui-datepicker__trigger:focus-visible {
+    outline: 3px solid var(--sb-ui-color-secondary-L100);
+    outline-offset: -3px;
+    z-index: 1;
+  }
+
+  .sb-ui-datepicker__trigger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .sb-ui-datepicker__icon {
+    display: block;
+    inline-size: 20px;
+    block-size: 20px;
+    fill: currentColor;
+  }
+
+  .sb-ui-datepicker__dropdown {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    z-index: 1000;
+    margin-block-start: var(--sb-ui-datepicker-dropdown-margin-block-start);
+    padding-inline: var(--sb-ui-datepicker-dropdown-padding-inline);
+    padding-block-start: var(--sb-ui-datepicker-dropdown-padding-block-start);
+    padding-block-end: var(--sb-ui-datepicker-dropdown-padding-block-end);
+    background-color: var(--sb-ui-datepicker-dropdown-bg);
+    border: var(--sb-ui-datepicker-dropdown-border-width) solid var(--sb-ui-datepicker-dropdown-border-color);
+    border-radius: var(--sb-ui-datepicker-dropdown-border-radius);
+    box-shadow: var(--sb-ui-datepicker-dropdown-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+  }
+
+  .sb-ui-datepicker__dropdown .sb-ui-calendar {
+    border: none;
+    box-shadow: none;
+    inline-size: auto;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
+    padding-block-start: var(--sb-ui-datepicker-dropdown-footer-margin-block-start);
+  }
+
+  .sb-ui-datepicker--open .sb-ui-datepicker__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+}
+@layer sizes {
+  .sb-ui-datepicker--small {
+    --sb-ui-datepicker-input-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+    --sb-ui-datepicker-input-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    --sb-ui-datepicker-input-padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
+    --sb-ui-datepicker-trigger-size: clamp(28px, 1.8rem + 0.5vw, 36px);
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+  }
+
+  .sb-ui-datepicker--large {
+    --sb-ui-datepicker-input-font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    --sb-ui-datepicker-input-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+    --sb-ui-datepicker-input-padding-block: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+    --sb-ui-datepicker-trigger-size: clamp(44px, 2.6rem + 0.5vw, 52px);
+    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
+    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+  }
+}
+@layer modifiers {
+  .sb-ui-datepicker--block {
+    inline-size: 100%;
+  }
+
+  .sb-ui-datepicker--with-label {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
+  }
+
+  .sb-ui-datepicker__label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--sb-ui-color-grayscale-black, #000);
+    margin-block-end: 0.25rem;
+  }
+
+  .sb-ui-datepicker__helper {
+    font-size: 0.75rem;
+    color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    margin-block-start: 0.25rem;
+  }
+
+  .sb-ui-datepicker__error {
+    font-size: 0.75rem;
+    color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    margin-block-start: 0.25rem;
+  }
+}
+@layer states {
+  .sb-ui-datepicker--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .sb-ui-datepicker--loading {
+    pointer-events: none;
+  }
+
+  .sb-ui-datepicker--loading .sb-ui-datepicker__trigger::after {
+    content: '';
+    display: block;
+    inline-size: 16px;
+    block-size: 16px;
+    border: 2px solid currentColor;
+    border-block-start-color: transparent;
+    border-radius: 50%;
+    animation: sb-ui-calendar-picker-spin 0.6s linear infinite;
+  }
+
+  .sb-ui-datepicker--loading .sb-ui-datepicker__icon {
+    display: none;
+  }
+}
+@layer utilities {
+  @media (prefers-contrast: high) {
+    .sb-ui-datepicker__wrapper .sb-ui-input {
+      border-width: 2px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-datepicker,
+    .sb-ui-datepicker__wrapper .sb-ui-input,
+    .sb-ui-datepicker__trigger,
+    .sb-ui-datepicker__dropdown {
+      --sb-ui-datepicker-transition: none;
+      animation: none;
+      transition: none;
+    }
+  }
+}
+@keyframes sb-ui-calendar-picker-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -5585,329 +5830,6 @@
     opacity: 0.3;
   }
 }
-
-
-
-
-@layer reset, tokens, base, variants, sizes, modifiers, states, utilities;
-/**
- * DatePicker Component - Seguros Bolivar UI Design System
- * Input field + Calendar dropdown
- * - CSS Nesting nativo con &
- * - @layer para control de cascada
- * - Logical Properties (RTL/LTR)
- * - clamp() para responsive fluido
- *
- * Uso: 
- * <div class="sb-ui-datepicker">
- *   <div class="sb-ui-datepicker__wrapper">
- *     <input type="text" class="sb-ui-input" placeholder="DD/MM/YYYY" readonly />
- *     <button class="sb-ui-datepicker__trigger">📅</button>
- *   </div>
- *   <div class="sb-ui-datepicker__dropdown">
- *     <!-- Calendar component here -->
- *   </div>
- * </div>
- */
-/* ========================================
-   RESET LAYER
-   ======================================== */
-@layer reset {
-  /* El datepicker es solo un contenedor, NO resetea sus hijos */
-  /* Los componentes hijos (sb-ui-input, sb-ui-calendar) mantienen sus propios estilos */
-}
-/* ========================================
-   TOKENS LAYER - Variables CSS
-   ======================================== */
-@layer tokens {
-  .sb-ui-datepicker {
-    /* Container - espaciado interno (label, wrapper, helper) */
-    --sb-ui-datepicker-inline-size: clamp(200px, 100%, 300px);
-    --sb-ui-datepicker-padding-inline: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
-    --sb-ui-datepicker-padding-block: clamp(0.375rem, 0.3rem + 0.3vw, 0.75rem);
-    --sb-ui-datepicker-gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
-
-    /* Trigger button (calendar icon) */
-    --sb-ui-datepicker-trigger-size: clamp(36px, 2.2rem + 0.5vw, 44px);
-    --sb-ui-datepicker-trigger-bg: transparent;
-    --sb-ui-datepicker-trigger-bg-hover: var(--sb-ui-color-grayscale-L400, #f5f5f5);
-    --sb-ui-datepicker-trigger-bg-active: var(--sb-ui-color-grayscale-L300, #e8e8e8);
-    --sb-ui-datepicker-trigger-color: var(--sb-ui-color-grayscale-base, #666);
-    --sb-ui-datepicker-trigger-color-hover: var(--sb-ui-color-primary-base, #038450);
-
-    /* Dropdown - padding interno alrededor del calendario */
-    --sb-ui-datepicker-dropdown-bg: var(--sb-ui-color-grayscale-white, #fff);
-    --sb-ui-datepicker-dropdown-border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
-    --sb-ui-datepicker-dropdown-border-width: 1px;
-    --sb-ui-datepicker-dropdown-border-radius: clamp(8px, 0.5rem + 0.5vw, 12px);
-    --sb-ui-datepicker-dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --sb-ui-datepicker-dropdown-margin-block-start: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
-    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.75rem + 0.8vw, 1.25rem);
-    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
-    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
-    --sb-ui-datepicker-dropdown-footer-margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-
-    /* Transitions */
-    --sb-ui-datepicker-transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  }
-}
-/* ========================================
-   BASE LAYER - Estilos base
-   ======================================== */
-@layer base {
-  .sb-ui-datepicker {
-    display: inline-block;
-    position: relative;
-    inline-size: var(--sb-ui-datepicker-inline-size);
-    font-family: var(--sb-ui-datepicker-input-font-family);
-    padding-inline: var(--sb-ui-datepicker-padding-inline);
-    padding-block: var(--sb-ui-datepicker-padding-block);
-  }
-
-  /* Input wrapper - margen interno entre elementos del wrapper si hubiera más de uno */
-  .sb-ui-datepicker__wrapper {
-    display: flex;
-    position: relative;
-    align-items: stretch;
-    gap: var(--sb-ui-datepicker-gap);
-
-    /* Input: padding explícito para que no se pierda con resets de página */
-  }
-    .sb-ui-datepicker__wrapper .sb-ui-input {
-      flex: 1;
-      min-inline-size: 0;
-      inline-size: 100%;
-      padding-inline-start: var(--sb-ui-datepicker-input-padding-inline, var(--sb-ui-input-padding-inline, 0.75rem));
-      padding-block: var(--sb-ui-datepicker-input-padding-block, var(--sb-ui-input-padding-block, 0.625rem));
-      padding-inline-end: calc(var(--sb-ui-datepicker-trigger-size) + 0.5rem) !important;
-      cursor: pointer;
-    }
-  
-  /* Trigger button */
-  .sb-ui-datepicker__trigger {
-    position: absolute;
-    inset-inline-end: 0;
-    inset-block-start: 0;
-    block-size: 100%;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    inline-size: var(--sb-ui-datepicker-trigger-size);
-    
-    background-color: var(--sb-ui-datepicker-trigger-bg);
-    color: var(--sb-ui-datepicker-trigger-color);
-    
-    border: none;
-    border-start-end-radius: var(--sb-ui-input-border-radius, 6px);
-    border-end-end-radius: var(--sb-ui-input-border-radius, 6px);
-    
-    cursor: pointer;
-    transition: var(--sb-ui-datepicker-transition);
-    font-size: 1.25rem;
-  }
-    
-    .sb-ui-datepicker__trigger:hover:not(:disabled) {
-      background-color: var(--sb-ui-datepicker-trigger-bg-hover);
-      color: var(--sb-ui-datepicker-trigger-color-hover);
-    }
-    
-    .sb-ui-datepicker__trigger:active:not(:disabled) {
-      background-color: var(--sb-ui-datepicker-trigger-bg-active);
-    }
-    
-    .sb-ui-datepicker__trigger:focus-visible {
-      outline: 3px solid var(--sb-ui-color-secondary-L100);
-      outline-offset: -3px;
-      z-index: 1;
-    }
-    
-    .sb-ui-datepicker__trigger:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  
-  /* Icon */
-  .sb-ui-datepicker__icon {
-    display: block;
-    inline-size: 20px;
-    block-size: 20px;
-    fill: currentColor;
-  }
-  
-  /* Dropdown - padding interno arriba/abajo/lados para que nada quede pegado a los bordes */
-  .sb-ui-datepicker__dropdown {
-    position: absolute;
-    inset-block-start: 100%;
-    inset-inline-start: 0;
-    z-index: 1000;
-
-    margin-block-start: var(--sb-ui-datepicker-dropdown-margin-block-start);
-    padding-inline: var(--sb-ui-datepicker-dropdown-padding-inline);
-    padding-block-start: var(--sb-ui-datepicker-dropdown-padding-block-start);
-    padding-block-end: var(--sb-ui-datepicker-dropdown-padding-block-end);
-
-    background-color: var(--sb-ui-datepicker-dropdown-bg);
-    border: var(--sb-ui-datepicker-dropdown-border-width) solid var(--sb-ui-datepicker-dropdown-border-color);
-    border-radius: var(--sb-ui-datepicker-dropdown-border-radius);
-    box-shadow: var(--sb-ui-datepicker-dropdown-shadow);
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
-
-    /* Calendario dentro del dropdown: sin borde/sombra y con margen para separar de los bordes */
-  }
-    .sb-ui-datepicker__dropdown .sb-ui-calendar {
-      border: none;
-      box-shadow: none;
-      inline-size: auto;
-      margin-block-start: 0;
-      margin-block-end: 0;
-    }
-
-    /* Margen superior del footer (entre la línea y los botones Aceptar/Cancelar) */
-    .sb-ui-datepicker__dropdown .sb-ui-calendar__footer {
-      padding-block-start: var(--sb-ui-datepicker-dropdown-footer-margin-block-start);
-    }
-  
-  /* Dropdown open state */
-  .sb-ui-datepicker--open .sb-ui-datepicker__dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-}
-/* ========================================
-   VARIANTS LAYER
-   ======================================== */
-@layer variants {
-  /* Error state - delegates to sb-ui-input */
-}
-/* ========================================
-   SIZES LAYER
-   ======================================== */
-@layer sizes {
-  .sb-ui-datepicker--small {
-    --sb-ui-datepicker-input-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-    --sb-ui-datepicker-input-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-    --sb-ui-datepicker-input-padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
-    --sb-ui-datepicker-trigger-size: clamp(28px, 1.8rem + 0.5vw, 36px);
-    --sb-ui-datepicker-dropdown-padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-    --sb-ui-datepicker-dropdown-padding-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-    --sb-ui-datepicker-dropdown-padding-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-  }
-
-  .sb-ui-datepicker--large {
-    --sb-ui-datepicker-input-font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
-    --sb-ui-datepicker-input-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
-    --sb-ui-datepicker-input-padding-block: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
-    --sb-ui-datepicker-trigger-size: clamp(44px, 2.6rem + 0.5vw, 52px);
-    --sb-ui-datepicker-dropdown-padding-inline: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
-    --sb-ui-datepicker-dropdown-padding-block-start: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
-    --sb-ui-datepicker-dropdown-padding-block-end: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
-  }
-}
-/* ========================================
-   MODIFIERS LAYER
-   ======================================== */
-@layer modifiers {
-  .sb-ui-datepicker--block {
-    inline-size: 100%;
-  }
-
-  .sb-ui-datepicker--with-label {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
-  }
-
-  /* Label */
-  .sb-ui-datepicker__label {
-    display: block;
-    font-weight: 600;
-    font-size: 0.875rem;
-    color: var(--sb-ui-color-grayscale-black, #000);
-    margin-block-end: 0.25rem;
-  }
-
-  /* Helper text */
-  .sb-ui-datepicker__helper {
-    font-size: 0.75rem;
-    color: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    margin-block-start: 0.25rem;
-  }
-
-  /* Error message */
-  .sb-ui-datepicker__error {
-    font-size: 0.75rem;
-    color: var(--sb-ui-color-feedback-error-base, #dc3545);
-    margin-block-start: 0.25rem;
-  }
-}
-/* ========================================
-   STATES LAYER
-   ======================================== */
-@layer states {
-  .sb-ui-datepicker--disabled {
-    pointer-events: none;
-    opacity: 0.6;
-  }
-  
-  .sb-ui-datepicker--loading {
-    pointer-events: none;
-  }
-    
-    .sb-ui-datepicker--loading .sb-ui-datepicker__trigger::after {
-      content: '';
-      display: block;
-      inline-size: 16px;
-      block-size: 16px;
-      border: 2px solid currentColor;
-      border-block-start-color: transparent;
-      border-radius: 50%;
-      animation: sb-ui-datepicker-spin 0.6s linear infinite;
-    }
-    
-    .sb-ui-datepicker--loading .sb-ui-datepicker__icon {
-      display: none;
-    }
-}
-/* ========================================
-   UTILITIES LAYER (máxima prioridad)
-   ======================================== */
-@layer utilities {
-  /* High contrast mode support - el input hereda de sb-ui-input */
-  @media (prefers-contrast: high) {
-    .sb-ui-datepicker__wrapper .sb-ui-input {
-      border-width: 2px;
-    }
-  }
-  
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    .sb-ui-datepicker,
-    .sb-ui-datepicker__wrapper .sb-ui-input,
-    .sb-ui-datepicker__trigger,
-    .sb-ui-datepicker__dropdown {
-      --sb-ui-datepicker-transition: none;
-      animation: none;
-      transition: none;
-    }
-  }
-}
-/* ========================================
-   ANIMATIONS
-   ======================================== */
-@keyframes sb-ui-datepicker-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 
 

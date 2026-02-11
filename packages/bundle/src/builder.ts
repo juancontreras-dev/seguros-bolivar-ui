@@ -119,7 +119,6 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
     'button.css',
     'calendar.css',
     'checkbox.css',
-    'datepicker.css',
     'file-upload.css',
     'input.css',
     'radio.css',
