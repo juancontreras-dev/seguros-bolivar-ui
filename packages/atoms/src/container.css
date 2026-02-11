@@ -56,7 +56,7 @@
    1. LAYERS DECLARATION
    ============================================================================ */
 
-@layer reset, tokens, base, utilities;
+@layer reset, tokens, base, variants, style-variants, brand-overrides, sizes, modifiers, icon-positions, states, utilities;
 
 /* ============================================================================
    2. RESET LAYER

@@ -15,14 +15,13 @@
  *
  * 1. LAYERS DECLARATION ...................... Línea ~40
  * 2. RESET LAYER ............................. Línea ~50
- * 3. BASE LAYER .............................. Línea ~60
+ * 3. UTILITIES LAYER ......................... Línea ~60
  *    ├─ Grid Columns (1-6) .................. Línea ~65
  *    ├─ Grid Rows (1-4) ..................... Línea ~90
  *    ├─ Grid Spanning ....................... Línea ~110
- *    └─ Placement Utilities ................. Línea ~140
- * 4. UTILITIES LAYER ......................... Línea ~190
- *    ├─ High Contrast Mode .................. Línea ~195
- *    └─ Reduced Motion ...................... Línea ~210
+ *    ├─ Placement Utilities ................. Línea ~140
+ *    ├─ High Contrast Mode .................. Línea ~190
+ *    └─ Reduced Motion ...................... Línea ~200
  *
  * ============================================================================
  * 💡 EJEMPLOS DE USO
@@ -48,7 +47,7 @@
    1. LAYERS DECLARATION
    ============================================================================ */
 
-@layer reset, base, utilities;
+@layer reset, utilities;
 
 /* ============================================================================
    2. RESET LAYER
@@ -57,10 +56,10 @@
 /* No reset needed - utilities no agregan elementos al DOM */
 
 /* ============================================================================
-   3. BASE LAYER
+   3. UTILITIES LAYER - Grid Utilities + Accesibilidad
    ============================================================================ */
 
-@layer base {
+@layer utilities {
   /* ===== Grid Columns (N columnas iguales) ===== */
   .sb-ui-grid-cols-1 {
     display: grid;
@@ -181,13 +180,8 @@
   .sb-ui-place-content-space-evenly {
     place-content: space-evenly;
   }
-}
 
-/* ============================================================================
-   4. UTILITIES LAYER - Accesibilidad
-   ============================================================================ */
-
-@layer utilities {
+  /* ===== Accesibilidad ===== */
   /* ===== Accesibilidad: High Contrast Mode ===== */
   @media (prefers-contrast: high) {
     [class*='sb-ui-grid-'] {
