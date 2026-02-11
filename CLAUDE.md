@@ -6,303 +6,134 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Seguros Bolívar UI** is a multi-brand enterprise Design System supporting 6 brands (Seguros Bolívar, Davivienda, Jelpit, Cien Cuadras, Doctor Aki, White Label) with light/dark themes. Built with modern CSS (Nesting, @layer, Logical Properties, clamp()) and Lit web components.
 
-## 🎯 Project Philosophy
-
-This is a **copy-paste ready CSS library**. Users include the library and copy example code to replicate components immediately - no build step, no configuration.
-
-### User Flow
-1. Include CSS bundle via CDN → 2. Copy HTML from examples/ → 3. Component works ✅
-
-### Critical Development Rules
-
-**MANDATORY**: When working on this project, understand these non-negotiable principles:
-
-1. **CSS Standards are OBLIGATORY**:
-   - **ALWAYS follow** `.cursor/rules/CSS.mdc` (v3.3.0)
-   - **ALWAYS follow** `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` (v2.1.0)
-   - These are NOT suggestions - they are requirements
-   - ✅ Logical Properties ONLY (inline-size, block-size, padding-inline)
-   - ✅ clamp() for responsive (NO media queries for sizes)
-   - ✅ @layer system (8-10 layers)
-   - ✅ CSS Nesting with &
-   - ✅ All classes/variables prefixed sb-ui- / --sb-ui-
-   - ❌ NEVER physical properties (width, height, left, right, padding-left)
-   - ❌ NEVER hardcoded colors (use var(--sb-ui-color-*))
-   - ❌ NEVER !important (use @layer brand-overrides instead)
-
-2. **Examples/ is Primary Documentation**:
-   - `examples/` folder is NOT for testing - it's user-facing docs
-   - If it's not in examples/, users won't know it exists
-   - Every component needs complete, working HTML examples
-   - Users copy these examples directly into production
-
-3. **Mandatory Workflow for Component Changes**:
-   ```
-   a) Update CSS (packages/atoms/ or molecules/)
-   b) Run: pnpm run build
-   c) Update examples/{component}/index.html
-   d) Test: Open HTML, verify all variants work
-   e) Commit: CSS + examples together (NEVER separately)
-   ```
-
-4. **Example Quality Requirements**:
-   - ✅ ALL variants (primary, secondary, disabled, etc.)
-   - ✅ ALL states visible (hover, active, disabled)
-   - ✅ Code blocks with exact copy-paste HTML
-   - ✅ Working copy buttons (`onclick="copyCode(this)"`)
-   - ✅ Corporate colors via CSS variables
-   - ✅ Real data-brand attributes
-   - ❌ NO demo-only styles
-   - ❌ NO incomplete examples
-   - ❌ NEVER commit CSS without examples
-
-**Golden Rule**: CSS changes without example updates = INCOMPLETE WORK
+This is a **copy-paste ready CSS library**. Users include the CSS bundle via CDN, copy HTML from `examples/`, and get a working component — no build step, no configuration.
 
 ## Build & Development Commands
 
-### Setup
 ```bash
-pnpm install          # Install dependencies (pnpm 8.0.0+ required)
-./scripts/setup.sh    # Initial project setup
-```
-
-### Development
-```bash
-pnpm run dev          # Start development mode (runs ./scripts/dev.sh)
-pnpm run dev:storybook # Build + launch Storybook on port 6006
-pnpm run demo         # Build + serve examples on port 3000
-```
-
-### Building
-```bash
-pnpm run build        # Clean + build all packages via Turbo + copy bundle assets
-pnpm run clean        # Remove all build artifacts (.turbo, node_modules/.cache, docs, dist)
-```
-
-### Testing & Quality
-```bash
-pnpm run test         # Run all tests via Turbo
-pnpm run test:watch   # Watch mode for tests
-pnpm run test:ui      # Vitest UI interface
-pnpm run lint         # Lint all packages via Turbo
-pnpm run lint:fix     # Fix linting issues + format code
-pnpm run format       # Format with Prettier
-pnpm run check        # Run lint --fix + format:check + test
-```
-
-### Publishing & Deployment
-```bash
-pnpm run build:site   # Build production site (bundle + Storybook + static site)
-pnpm run deploy       # Deploy to GitHub Pages
-pnpm run version      # Update package versions (changesets)
-pnpm run release      # Publish packages to npm (changesets)
+pnpm install                # Install dependencies (pnpm 8.0.0+, Node 18+)
+pnpm run build              # Clean + build all packages (always --force --no-cache) + copy assets
+pnpm run demo               # Build + serve examples on port 3000
+pnpm run dev:storybook      # Build + launch Storybook on port 6006
+pnpm run test               # Run all tests via Turbo
+pnpm run lint:fix           # Fix linting + format
+pnpm run check              # lint --fix + format:check + test
 ```
 
 ## Architecture
 
-### Monorepo Structure (Turborepo + pnpm workspaces)
+### Monorepo (Turborepo + pnpm workspaces)
 
-```
-packages/
-├── tokens/           # Design tokens (JSON) → CSS variables
-├── atoms/            # CSS-only components:
-│   ├── Layout:       container, grid, columns, gutters, css-grid
-│   └── UI:           button, input, select, table, etc.
-├── molecules/        # Lit web components (modal, datepicker, toast)
-├── brand-overrides/  # Brand-specific CSS variable overrides
-├── bundle/           # CDN bundles (combines all packages)
-└── docs/             # Storybook documentation
-```
+Build order follows dependency graph: **tokens → atoms → molecules → brand-overrides → bundle → docs**
 
-### Package Dependencies
-- **tokens** → Foundation (no dependencies)
-- **atoms** → Depends on tokens
-- **molecules** → Depends on atoms + tokens (uses Lit)
-- **brand-overrides** → Depends on atoms (overrides CSS variables)
-- **bundle** → Depends on atoms + molecules + tokens (builds CDN files)
-- **docs** → Depends on all packages (Storybook)
+| Package | Purpose |
+|---------|---------|
+| `packages/tokens/` | Design tokens (JSON) → CSS variables |
+| `packages/atoms/` | CSS-only components (button, input, tabs, layout system, etc.) |
+| `packages/molecules/` | Lit 3 web components (modal, datepicker, toast, etc.) |
+| `packages/brand-overrides/` | Brand-specific CSS variable overrides per component |
+| `packages/bundle/` | CDN bundles: 6 brands × 2 themes = 12 CSS files |
+| `packages/docs/` | Storybook documentation |
 
-### Build Process
+### Bundle Generation (`packages/bundle/src/builder.ts`)
 
-1. **Turbo Pipeline** (turbo.json): Orchestrates builds with dependency graph
-   - Build order: tokens → atoms → molecules → brand-overrides → bundle → docs
-   - Caching: All build outputs cached except `dev` and `clean` tasks
-
-2. **Bundle Generation** (packages/bundle/src/builder.ts):
-   - Creates 12 CSS bundles: 6 brands × 2 themes (light/dark)
-   - Minifies CSS with cssnano + PurgeCSS
-   - Bundles web components with esbuild
-   - Output: `dist/sb-ui-{brand}-{theme}.min.css` + `dist/sb-ui-components.min.js`
-
-3. **Asset Distribution** (scripts/copy-assets.js):
-   - Copies bundles to `examples/dist/` and `packages/docs/.storybook/`
-   - Run via `pnpm --filter @seguros-bolivar-ui/bundle run copy:all`
+- Combines tokens + atoms + molecules + brand-overrides into 12 CSS bundles
+- Output: `dist/sb-ui-{brand}-{theme}.min.css` + `dist/sb-ui-components.min.js`
+- `scripts/copy-assets.js` copies bundles to `examples/dist/` and `packages/docs/.storybook/`
+- **`examples/dist/` files are build artifacts** — never edit them manually, always rebuild
 
 ### CSS Architecture
 
-**Critical: Always follow `.cursor/rules/CSS.mdc` (v3.3.0) and `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` (v2.1.0)**
+**CSS standards are defined in two Cursor rules files that apply automatically:**
+- `.cursor/rules/CSS.mdc` (v3.3.0) — Mandatory CSS architecture rules
+- `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` (v2.1.0) — Brand override rules
 
-#### Core Principles
-- **CSS @layer System**: 8-10 layers controlling cascade priority
-  - Order: `reset → tokens → base → variants → style-variants → brand-overrides → sizes → modifiers → icon-positions → states → utilities`
-  - Brand overrides use `@layer brand-overrides` (no `!important` needed)
+**Non-negotiable principles:**
+- **Logical Properties ONLY**: `inline-size`, `block-size`, `padding-inline`, `margin-block-start` — NEVER `width`, `height`, `padding-left`, `margin-top`
+- **clamp() for responsive**: NEVER media queries for sizing — e.g. `font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem)`
+- **@layer system** (8-10 layers): `reset → tokens → base → variants → style-variants → brand-overrides → sizes → modifiers → icon-positions → states → utilities`
+- **CSS Nesting** with `&` (max 3 levels deep)
+- **Prefixes**: all classes `sb-ui-*`, all variables `--sb-ui-*`, BEM format
+- **No hardcoded colors**: always `var(--sb-ui-color-*, fallback)`
+- **No `!important`**: use `@layer brand-overrides` instead
+- **5 states** when defining interactive variables: default, hover, active, disabled, disabled-hover
 
-- **Logical Properties Only**: Never use physical properties
-  - ❌ `width`, `height`, `padding-left`, `margin-top`
-  - ✅ `inline-size`, `block-size`, `padding-inline-start`, `margin-block-start`
+### Brand Override System
 
-- **Responsive with clamp()**: No media queries for sizing
-  - Example: `font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);`
-
-- **CSS Nesting**: Always use `&` (max 3 levels deep)
-
-- **Naming Convention**: All classes/variables prefixed `sb-ui-` or `--sb-ui-`
-  - Classes: BEM format `.sb-ui-button--primary`
-  - Variables: `--sb-ui-button-bg-color`
-
-#### Brand Override System
-
-Brands customize components by overriding CSS variables via data attributes:
+Brands customize components via data attributes and CSS variable overrides:
 
 ```html
 <html data-brand="seguros-bolivar" data-theme="light">
 ```
 
-Brand overrides in `packages/brand-overrides/src/{brand}/{component}.css`:
+Override files: `packages/brand-overrides/src/{brand}/{component}.css`
+
 ```css
 @layer brand-overrides {
   [data-brand='seguros-bolivar'] .sb-ui-button--primary {
     --sb-ui-button-primary-stroke-text: var(--sb-ui-color-primary-D100);
-    --sb-ui-button-primary-stroke-text-hover: var(--sb-ui-color-secondary-D100);
   }
 }
 ```
 
-**Variable Naming Pattern**: `--sb-ui-{component}-{variant}-{style}-{property}-{state}`
-- Example: `--sb-ui-button-primary-fill-bg-hover`
-- States: default, hover, active, disabled, disabled-hover (new in v2.1.0)
+Variable naming: `--sb-ui-{component}-{variant}-{style}-{property}-{state}`
 
-### Web Components (Molecules)
+Selector patterns by style-variant:
+- STROKE (default): `.sb-ui-button--primary`
+- FILL: `.sb-ui-button--fill.sb-ui-button--primary`
+- TEXT: `.sb-ui-button--text.sb-ui-button--primary`
 
-Built with Lit (version 3.1.2+), located in `packages/molecules/src/components/`:
-- **Components**: Modal, DatePicker, Calendar, Dropdown, Toast, ToastManager, Stepper
-- **Custom Elements**: Registered as `<sb-ui-modal>`, `<sb-ui-datepicker>`, etc.
-- **Build**: TypeScript → Vite → bundled ES modules
-- **Testing**: Vitest for unit tests
+## Mandatory Workflow for Component Changes
 
-### Design Tokens
+```
+1. Update CSS in packages/atoms/src/ or packages/molecules/src/
+2. Run: pnpm run build
+3. Update examples/{component}/index.html
+4. Verify: open HTML in browser, check all variants
+5. Commit CSS + examples together (NEVER separately)
+```
 
-JSON tokens in `packages/tokens/src/` converted to CSS variables:
-- **Structure**: `primitives/brands/{brand}.json` → brand-specific colors
-- **Output**: CSS variables like `--sb-ui-color-primary-base`, `--sb-ui-color-grayscale-L100`
-- **Tokens**: Colors, typography, spacing, shadows, radius
+**Golden Rule**: CSS changes without example updates = INCOMPLETE WORK
 
-## Key Patterns
+### Examples Quality (`examples/` folder)
 
-### Layout System Components
+The `examples/` folder is **user-facing documentation**, not testing. Users copy HTML directly into production.
 
-The design system includes a comprehensive layout system with 6 components:
-
-**1. Breakpoints (Documentation Only)**
-- 6 responsive breakpoints: xs (0px), sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px)
-- Mobile-first approach: all responsive utilities use `min-inline-size` media queries
-- Example page with interactive breakpoint detector
-
-**2. Containers**
-- Responsive containers: `.sb-ui-container` (responsive), `.sb-ui-container-fluid` (100% width)
-- Breakpoint-specific: `.sb-ui-container-{sm|md|lg|xl|xxl}` for container from specific breakpoint
-- Max-widths: sm (540px), md (720px), lg (960px), xl (1140px), xxl (1320px)
-- Auto-centering with `margin-inline: auto` and responsive padding with `clamp()`
-
-**3. Grid (12-Column System)**
-- CSS Grid-based (not flexbox): `display: grid; grid-template-columns: repeat(12, 1fr)`
-- Column classes: `.sb-ui-col-{1-12}` for mobile, `.sb-ui-col-{breakpoint}-{1-12}` for responsive
-- Example: `.sb-ui-col-12 .sb-ui-col-md-6 .sb-ui-col-lg-4` (mobile full → tablet 50% → desktop 33%)
-- Auto columns: `.sb-ui-col-auto` for content-based width
-
-**4. Columns (Alignment & Ordering)**
-- Alignment: `.sb-ui-col-align-self-{start|center|end|stretch}` (vertical)
-- Justification: `.sb-ui-col-justify-self-{start|center|end|stretch}` (horizontal)
-- Ordering: `.sb-ui-col-order-{first|last|1-5}` for visual reordering
-- Positioning: `.sb-ui-col-start-{1-12}` for explicit column placement
-
-**5. Gutters (Spacing)**
-- Gap scale 0-5: `--sb-ui-gap-0` (0), `--sb-ui-gap-1` (4px), `--sb-ui-gap-2` (8px), `--sb-ui-gap-3` (16px), `--sb-ui-gap-4` (24px, default), `--sb-ui-gap-5` (48px)
-- Utilities: `.sb-ui-gap-{0-5}` (both), `.sb-ui-gap-x-{0-5}` (horizontal), `.sb-ui-gap-y-{0-5}` (vertical)
-- Responsive: `.sb-ui-gap-{breakpoint}-{0-5}` for breakpoint-specific spacing
-
-**6. CSS Grid (Advanced Utilities)**
-- Equal columns: `.sb-ui-grid-cols-{1-6}` (e.g., `.sb-ui-grid-cols-3` = 3 equal columns)
-- Auto-fit: `.sb-ui-grid-cols-auto-fit` with `minmax(min(200px, 100%), 1fr)`
-- Spanning: `.sb-ui-grid-span-col-{2|3|full}`, `.sb-ui-grid-span-row-{2|3|full}`
-- Placement: `.sb-ui-place-items-{center|start|end}`, `.sb-ui-place-content-{center|space-between|space-around}`
-
-**Important Notes:**
-- Layout components do NOT have brand overrides (structural, not visual)
-- All use logical properties (inline-size, block-size, padding-inline, margin-block)
-- Responsive with mobile-first `min-inline-size` media queries
-- Include mandatory accessibility: `prefers-reduced-motion`, `prefers-contrast`
+- Every component needs complete, working HTML examples with ALL variants and states
+- Code blocks must contain exact copy-paste HTML
+- Working copy buttons: `onclick="copyCode(this)"`
+- Must use `data-brand` and `data-theme` attributes
+- No demo-only styles, no incomplete examples
 
 ### Creating New Atom Component
 
 1. Create `packages/atoms/src/{component}.css` using template from `.cursor/rules/CSS.mdc`
-2. Define `@layer reset, tokens, base, variants, sizes, modifiers, states, utilities`
-3. Use only logical properties and clamp() for responsive values
-4. Add to exports in `packages/atoms/package.json`
-5. Add to `atomsFiles` array in `packages/bundle/src/builder.ts` for bundle inclusion
-6. Create brand overrides in `packages/brand-overrides/src/{brand}/{component}.css` if needed (NOT for layout)
+2. Add to exports in `packages/atoms/package.json`
+3. Add to `atomsFiles` array in `packages/bundle/src/builder.ts`
+4. Create brand overrides if needed (NOT for layout components)
+5. Create `examples/{component}/index.html` with all variants
 
-### Creating Brand Override
+### Adding Brand Override
 
-1. Only override CSS variables that differ from base component
-2. Always use `@layer brand-overrides { ... }`
-3. Define all 5 states when changing a property: default, hover, active, disabled, disabled-hover
-4. Use brand tokens: `var(--sb-ui-color-*)`, never hardcode colors
-5. Selector pattern:
-   - STROKE: `.sb-ui-button--primary`
-   - FILL: `.sb-ui-button--fill.sb-ui-button--primary`
-   - TEXT: `.sb-ui-button--text.sb-ui-button--primary`
-
-### Adding Web Component
-
-1. Create component in `packages/molecules/src/components/{name}/`
-2. Extend `LitElement` and define shadow DOM styles
-3. Register with `customElements.define('sb-ui-{name}', ComponentClass)`
-4. Export from `packages/molecules/src/index.ts`
-5. Add to exports in `packages/molecules/package.json`
+1. Create `packages/brand-overrides/src/{brand}/{component}.css`
+2. Wrap in `@layer brand-overrides { ... }` — only override variables that differ from base
+3. Define all 5 states when changing a property
+4. Use brand tokens `var(--sb-ui-color-*)`, never hardcode
+5. Import from `packages/brand-overrides/src/{brand}/index.css`
 
 ## Important Files
 
-- **CSS Standards**: `.cursor/rules/CSS.mdc` - MANDATORY CSS architecture rules
-- **Brand Override Standards**: `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` - Brand customization rules
-- **Build Pipeline**: `turbo.json` - Turborepo task definitions
-- **Bundle Builder**: `packages/bundle/src/builder.ts` - CDN bundle generation logic
-- **Package Manager**: `pnpm-workspace.yaml` - Workspace configuration
+- `.cursor/rules/CSS.mdc` — Mandatory CSS rules (applied automatically)
+- `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` — Brand override rules (applied automatically)
+- `packages/bundle/src/builder.ts` — Bundle generation logic and `atomsFiles` list
+- `packages/atoms/src/button.css` — Gold standard component reference
+- `packages/brand-overrides/src/seguros-bolivar/index.css` — Brand override imports
 
 ## Common Gotchas
 
-1. **Always rebuild after CSS changes**: Bundle doesn't auto-update; run `pnpm run build`
-2. **Data attributes required**: Without `data-brand` and `data-theme`, only base styles apply
-3. **Layer order matters**: Wrong `@layer` declaration breaks cascade (check console for warnings)
-4. **No physical properties**: Using `width` instead of `inline-size` violates standards
-5. **Disabled hover states**: Since v2.1.0, always define `-disabled-hover` variables for better UX
-6. **Turbo cache**: If builds seem stale, use `pnpm run build -- --force --no-cache`
-
-## CDN Usage
-
-Published to npm as `@seguros-bolivar/ui-bundle`. Users load via unpkg/jsDelivr:
-
-```html
-<html data-brand="seguros-bolivar" data-theme="light">
-  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
-  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
-</html>
-```
-
-## Reference Documentation
-
-- **README.md**: User-facing documentation, installation, usage examples
-- **PUBLISHING_GUIDE.md**: NPM publishing workflow
-- **DEPLOYMENT.md**: GitHub Pages deployment for Storybook
-- **CONTRIBUTING.md**: Contribution guidelines (CSS standards, commit conventions)
-- **packages/atoms/BUTTON_REFERENCE.md**: Complete button component example
+1. **Always rebuild after CSS changes**: `pnpm run build` — bundle doesn't auto-update
+2. **Data attributes required**: without `data-brand` and `data-theme` on `<html>`, only base styles apply
+3. **Layer order matters**: the first `@layer` declaration in the bundle sets cascade order — wrong order breaks everything
+4. **Stale Turbo cache**: if builds seem stale, build script already uses `--force --no-cache`
+5. **Layout components have no brand overrides** — they are structural, not visual
+6. **Breakpoints use `min-inline-size`** media queries (mobile-first), NOT `min-width`
