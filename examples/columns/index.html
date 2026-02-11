@@ -45,25 +45,6 @@
           <strong>no forman parte del bundle</strong>. El codigo copiable solo incluye las clases <code>sb-ui-*</code> del Design System.
           Para visualizar los efectos de alineacion, agrega <code>background</code> y <code>min-height</code> a tus propios elementos.
         </p>
-        <div class="demo-code-block" style="margin-block-start: 1rem;">
-          <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Requisitos previos</span>
-            <div class="demo-code-block-actions">
-              <span class="demo-code-block-badge">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
-            </div>
-          </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- 1. Atributos obligatorios en &lt;html&gt; para activar tokens del tema --&gt;
-&lt;html data-brand="seguros-bolivar" data-theme="light"&gt;
-
-&lt;!-- 2. Bundle CSS del Design System (incluye fuentes e iconos) --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
-
-&lt;!-- Nota: El bundle usa @layer para organizar la cascada CSS.             --&gt;
-&lt;!-- Si escribes CSS propio SIN @layer, tendra mayor prioridad que el DS. --&gt;
-&lt;!-- Para evitar conflictos, pon tu CSS en una capa posterior:             --&gt;
-&lt;!-- @layer app { .mi-clase { ... } }                                     --&gt;</code></pre>
-        </div>
       </header>
 
       <!-- ========================================
@@ -90,10 +71,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Columns: solo requiere el bundle CSS del Design System --&gt;
-&lt;!-- Tip: agrega background y min-height a tus elementos para --&gt;
-&lt;!-- visualizar el efecto de las utilidades de alineacion.     --&gt;
-&lt;div class="sb-ui-grid"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-md-4 sb-ui-col-align-self-start"&gt;
     Alineado al inicio
   &lt;/div&gt;
@@ -117,9 +95,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Tip: las columnas adyacentes necesitan mayor altura --&gt;
-&lt;!-- para que el efecto de align-self sea visible.         --&gt;
-&lt;div class="sb-ui-grid"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-md-4"&gt;Normal&lt;/div&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-md-4 sb-ui-col-align-self-center"&gt;
     Centrado
@@ -317,8 +293,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Orden extremo --&gt;
-&lt;div class="sb-ui-grid"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-sm-4 sb-ui-col-order-first"&gt;Siempre primero&lt;/div&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-sm-4"&gt;Sin order (default)&lt;/div&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-sm-4 sb-ui-col-order-last"&gt;Siempre último&lt;/div&gt;
@@ -395,8 +370,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Orden responsive --&gt;
-&lt;div class="sb-ui-grid"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-12 sb-ui-col-sm-4 sb-ui-col-order-3 sb-ui-col-order-md-1"&gt;
     Mobile: 3° → Tablet: 1°
   &lt;/div&gt;
@@ -429,21 +403,17 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Alineación vertical responsive --&gt;
-&lt;div class="sb-ui-grid"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-align-self-start sb-ui-col-align-self-md-center sb-ui-col-align-self-lg-end"&gt;
     Mobile arriba, tablet centrado, desktop abajo
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Justificación horizontal responsive --&gt;
 &lt;div class="sb-ui-grid"&gt;
   &lt;div class="sb-ui-col-justify-self-start sb-ui-col-justify-self-md-center sb-ui-col-justify-self-lg-end"&gt;
     Mobile izquierda, tablet centrado, desktop derecha
   &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Breakpoints: sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px) --&gt;</code></pre>
+&lt;/div&gt;</code></pre>
         </div>
       </section>
 

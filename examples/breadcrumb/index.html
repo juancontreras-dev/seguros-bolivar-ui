@@ -35,25 +35,6 @@
           Componente de navegacion jerarquica que muestra la ubicacion actual del usuario dentro de la estructura del sitio.
           Los breadcrumbs ayudan a los usuarios a orientarse y navegar eficientemente.
         </p>
-        <div class="demo-code-block" style="margin-block-start: 1rem;">
-          <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Requisitos previos</span>
-            <div class="demo-code-block-actions">
-              <span class="demo-code-block-badge">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
-            </div>
-          </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- 1. Atributos obligatorios en &lt;html&gt; para activar tokens del tema --&gt;
-&lt;html data-brand="seguros-bolivar" data-theme="light"&gt;
-
-&lt;!-- 2. Bundle CSS del Design System (incluye fuentes e iconos) --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
-
-&lt;!-- Nota: El bundle usa @layer para organizar la cascada CSS.             --&gt;
-&lt;!-- Si escribes CSS propio SIN @layer, tendra mayor prioridad que el DS. --&gt;
-&lt;!-- Para evitar conflictos, pon tu CSS en una capa posterior:             --&gt;
-&lt;!-- @layer app { .mi-clase { ... } }                                     --&gt;</code></pre>
-        </div>
       </header>
 
       <!-- ========================================
@@ -89,8 +70,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb: solo requiere el bundle CSS del Design System --&gt;
-&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
@@ -142,10 +122,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
-&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
-
-&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
@@ -206,10 +183,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
-&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
-
-&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
@@ -277,8 +251,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb colapsado: solo muestra primero y ultimo --&gt;
-&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
@@ -336,8 +309,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb en estado loading --&gt;
-&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--loading" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--loading" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
@@ -396,8 +368,7 @@
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Evitar colapso automatico en mobile --&gt;
-&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--no-collapse" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--no-collapse" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
