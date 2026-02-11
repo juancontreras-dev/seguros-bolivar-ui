@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: light
- * Generated: 2026-02-11T19:15:57.805Z
+ * Generated: 2026-02-11T21:48:28.704Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -410,6 +410,7 @@
 
     .sb-ui-grid > * {
       box-sizing: border-box;
+      min-inline-size: 0;
     }
 }
 /* ============================================================================
@@ -418,7 +419,7 @@
 @layer tokens {
   .sb-ui-grid {
     --sb-ui-grid-columns: 12;
-    --sb-ui-grid-gap: var(--sb-ui-gap-4, 1.5rem); /* Default gap de nivel 4 */
+    --sb-ui-grid-gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem); /* Responsive: 12px@360 → 24px@480+ */
   }
 }
 /* ============================================================================
@@ -428,7 +429,7 @@
   /* ===== Grid Container ===== */
   .sb-ui-grid {
     display: grid;
-    grid-template-columns: repeat(var(--sb-ui-grid-columns), 1fr);
+    grid-template-columns: repeat(var(--sb-ui-grid-columns), minmax(0, 1fr));
     gap: var(--sb-ui-grid-gap);
     inline-size: 100%;
   }
@@ -1042,8 +1043,8 @@
     --sb-ui-gap-1: 0.25rem; /* 4px */
     --sb-ui-gap-2: 0.5rem;  /* 8px */
     --sb-ui-gap-3: 1rem;    /* 16px */
-    --sb-ui-gap-4: 1.5rem;  /* 24px - default */
-    --sb-ui-gap-5: 3rem;    /* 48px */
+    --sb-ui-gap-4: clamp(0.5rem, -0.15rem + 3.43vw, 1.5rem);  /* ~10px@360 → 24px@768+ */
+    --sb-ui-gap-5: clamp(1rem, -0.76rem + 7.84vw, 3rem);     /* ~16px@360 → 48px@768+ */
   }
 }
 /* ============================================================================
@@ -1315,32 +1316,32 @@
   /* ===== Grid Columns (N columnas iguales) ===== */
   .sb-ui-grid-cols-1 {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   .sb-ui-grid-cols-2 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sb-ui-grid-cols-3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .sb-ui-grid-cols-4 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .sb-ui-grid-cols-5 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .sb-ui-grid-cols-6 {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   /* Auto-fit: ajusta automáticamente columnas al espacio disponible */
@@ -7916,7 +7917,7 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con tres anillos concéntricos (verde oscuro + verde claro + amarillo)
+ * - integrated: Spinner con doble círculo (verde + amarillo)
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
@@ -7932,10 +7933,7 @@
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
- * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated" data-progress="50">
- *                  <div class="sb-ui-spinner__inner-ring"></div>
- *                </div>
+ * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
  */
 /* ========================================
    KEYFRAMES - Fuera de @layer
@@ -7976,10 +7974,8 @@
     --sb-ui-spinner-shadow: none;
     --sb-ui-spinner-icon-size: clamp(48px, 8vw, 80px);
 
-    /* Integrated - offsets para los tres anillos */
-    --sb-ui-spinner-integrated-outer-inset: 0%;
-    --sb-ui-spinner-integrated-middle-inset: 10%;
-    --sb-ui-spinner-integrated-inner-inset: 20%;
+    /* Integrated - offset del anillo interno */
+    --sb-ui-spinner-integrated-inset: 22%;
 
     /* Tamaños */
     --sb-ui-spinner-size: clamp(32px, 6vw, 40px);
@@ -8037,30 +8033,26 @@
 
     .sb-ui-spinner .sb-ui-spinner__content {
       position: absolute;
-      inset: 0;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
       gap: 0.25rem;
-      z-index: 2;
     }
 
     .sb-ui-spinner .sb-ui-spinner__icon {
       inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
       block-size: calc(var(--sb-ui-spinner-size) * 0.5);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
       color: var(--sb-ui-spinner-gradient-start);
     }
 
-      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img,:is(.sb-ui-spinner .sb-ui-spinner__icon) i {
+      :is(.sb-ui-spinner .sb-ui-spinner__icon) svg,:is(.sb-ui-spinner .sb-ui-spinner__icon) img {
         inline-size: 100%;
         block-size: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
     .sb-ui-spinner .sb-ui-spinner__label {
@@ -8080,46 +8072,21 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
+  /* INTEGRATED - 2 anillos concéntricos de progreso */
   .sb-ui-spinner--integrated {
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
     --sb-ui-spinner-duration: 2s;
-    --sb-ui-spinner-stroke-width: clamp(4px, 0.6vw, 6px);
+
+    /* Anillo externo: ::before de base con color sólido (sin gradiente) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
     --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
 
-    /* Anillo exterior (verde oscuro) - ya está en ::before */
-
-    /* Anillo medio (verde claro - tertiary) */
+    /* Anillo interno (amarillo) - concéntrico al exterior */
   }
     .sb-ui-spinner--integrated::after {
       content: '';
       position: absolute;
-      inset: var(--sb-ui-spinner-integrated-middle-inset);
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        var(--sb-ui-spinner-ring-middle) 0%,
-        var(--sb-ui-spinner-ring-middle) var(--sb-ui-spinner-angle),
-        transparent var(--sb-ui-spinner-angle)
-      );
-      -webkit-mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      z-index: 2;
-    }
-
-    /* Anillo interno (amarillo) usando un elemento hijo */
-    .sb-ui-spinner--integrated .sb-ui-spinner__inner-ring {
-      content: '';
-      position: absolute;
-      inset: var(--sb-ui-spinner-integrated-inner-inset);
+      inset: var(--sb-ui-spinner-integrated-inset);
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
@@ -8127,32 +8094,19 @@
         var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
         transparent var(--sb-ui-spinner-angle)
       );
-      -webkit-mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      z-index: 3;
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
     }
 
+  /* ICON & ICON-TEXT - Con track y fondo */
   .sb-ui-spinner--icon,
   .sb-ui-spinner--icon-text {
     --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
     background: var(--sb-ui-spinner-bg-color);
     box-shadow: var(--sb-ui-spinner-shadow);
-    animation: none;
+
+    /* Track - anillo gris completo detrás del arco de progreso */
   }
-
-    :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::before {
-      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
-      will-change: transform;
-    }
-
     :is(.sb-ui-spinner--icon,.sb-ui-spinner--icon-text)::after {
       content: '';
       position: absolute;
@@ -8163,6 +8117,13 @@
       mask: var(--sb-ui-spinner-mask);
       z-index: 0;
     }
+
+  /* ICON & ICON-TEXT - Contenido interno estático (no rota) */
+  .sb-ui-spinner--icon .sb-ui-spinner__content,
+  .sb-ui-spinner--icon-text .sb-ui-spinner__content {
+    animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
+    will-change: transform;
+  }
 }
 /* ========================================
    MODIFIERS LAYER
@@ -8180,7 +8141,15 @@
     animation-play-state: paused;
   }
 
-    .sb-ui-spinner--paused .sb-ui-spinner__content,.sb-ui-spinner--paused::before,.sb-ui-spinner--paused::after {
+    .sb-ui-spinner--paused .sb-ui-spinner__content {
+      animation-play-state: paused;
+    }
+
+    .sb-ui-spinner--paused::before {
+      animation-play-state: paused;
+    }
+
+    .sb-ui-spinner--paused::after {
       animation-play-state: paused;
     }
 }
@@ -8188,11 +8157,17 @@
    STATES LAYER
    ======================================== */
 @layer states {
-  .sb-ui-spinner[data-progress='25'],
-  .sb-ui-spinner[data-progress='50'],
-  .sb-ui-spinner[data-progress='75'],
+  .sb-ui-spinner[data-progress='25'] {
+    --sb-ui-spinner-progress: 25;
+  }
+  .sb-ui-spinner[data-progress='50'] {
+    --sb-ui-spinner-progress: 50;
+  }
+  .sb-ui-spinner[data-progress='75'] {
+    --sb-ui-spinner-progress: 75;
+  }
   .sb-ui-spinner[data-progress='100'] {
-    --sb-ui-spinner-progress: attr(data-progress number, 25);
+    --sb-ui-spinner-progress: 100;
   }
 }
 /* ========================================
@@ -8200,10 +8175,8 @@
    ======================================== */
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
-    .sb-ui-spinner,
-    .sb-ui-spinner .sb-ui-spinner__content,
-    .sb-ui-spinner::before {
-      animation: none;
+    .sb-ui-spinner {
+      --sb-ui-spinner-duration: 4s;
     }
   }
 

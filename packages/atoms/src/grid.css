@@ -62,6 +62,7 @@
 
     & > * {
       box-sizing: border-box;
+      min-inline-size: 0;
     }
   }
 }
@@ -73,7 +74,7 @@
 @layer tokens {
   .sb-ui-grid {
     --sb-ui-grid-columns: 12;
-    --sb-ui-grid-gap: var(--sb-ui-gap-4, 1.5rem); /* Default gap de nivel 4 */
+    --sb-ui-grid-gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem); /* Responsive: 12px@360 → 24px@480+ */
   }
 }
 
@@ -85,7 +86,7 @@
   /* ===== Grid Container ===== */
   .sb-ui-grid {
     display: grid;
-    grid-template-columns: repeat(var(--sb-ui-grid-columns), 1fr);
+    grid-template-columns: repeat(var(--sb-ui-grid-columns), minmax(0, 1fr));
     gap: var(--sb-ui-grid-gap);
     inline-size: 100%;
   }

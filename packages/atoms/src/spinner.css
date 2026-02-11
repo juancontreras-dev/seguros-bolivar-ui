@@ -7,7 +7,7 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con tres anillos concéntricos (verde oscuro + verde claro + amarillo)
+ * - integrated: Spinner con doble círculo (verde + amarillo)
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
@@ -23,10 +23,7 @@
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
- * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated" data-progress="50">
- *                  <div class="sb-ui-spinner__inner-ring"></div>
- *                </div>
+ * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
  */
 
 @layer reset, tokens, base, variants, modifiers, states, utilities;
@@ -72,10 +69,8 @@
     --sb-ui-spinner-shadow: none;
     --sb-ui-spinner-icon-size: clamp(48px, 8vw, 80px);
 
-    /* Integrated - offsets para los tres anillos */
-    --sb-ui-spinner-integrated-outer-inset: 0%;
-    --sb-ui-spinner-integrated-middle-inset: 10%;
-    --sb-ui-spinner-integrated-inner-inset: 20%;
+    /* Integrated - offset del anillo interno */
+    --sb-ui-spinner-integrated-inset: 22%;
 
     /* Tamaños */
     --sb-ui-spinner-size: clamp(32px, 6vw, 40px);
@@ -133,31 +128,26 @@
 
     & .sb-ui-spinner__content {
       position: absolute;
-      inset: 0;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
       gap: 0.25rem;
-      z-index: 2;
     }
 
     & .sb-ui-spinner__icon {
       inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
       block-size: calc(var(--sb-ui-spinner-size) * 0.5);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
       color: var(--sb-ui-spinner-gradient-start);
 
       & svg,
-      & img,
-      & i {
+      & img {
         inline-size: 100%;
         block-size: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
     }
 
@@ -180,45 +170,20 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
+  /* INTEGRATED - 2 anillos concéntricos de progreso */
   .sb-ui-spinner--integrated {
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
     --sb-ui-spinner-duration: 2s;
-    --sb-ui-spinner-stroke-width: clamp(4px, 0.6vw, 6px);
+
+    /* Anillo externo: ::before de base con color sólido (sin gradiente) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
     --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
 
-    /* Anillo exterior (verde oscuro) - ya está en ::before */
-
-    /* Anillo medio (verde claro - tertiary) */
+    /* Anillo interno (amarillo) - concéntrico al exterior */
     &::after {
       content: '';
       position: absolute;
-      inset: var(--sb-ui-spinner-integrated-middle-inset);
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        var(--sb-ui-spinner-ring-middle) 0%,
-        var(--sb-ui-spinner-ring-middle) var(--sb-ui-spinner-angle),
-        transparent var(--sb-ui-spinner-angle)
-      );
-      -webkit-mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      z-index: 2;
-    }
-
-    /* Anillo interno (amarillo) usando un elemento hijo */
-    & .sb-ui-spinner__inner-ring {
-      content: '';
-      position: absolute;
-      inset: var(--sb-ui-spinner-integrated-inner-inset);
+      inset: var(--sb-ui-spinner-integrated-inset);
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
@@ -226,32 +191,19 @@
         var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
         transparent var(--sb-ui-spinner-angle)
       );
-      -webkit-mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - var(--sb-ui-spinner-stroke-width) - 1px),
-        #fff calc(100% - var(--sb-ui-spinner-stroke-width))
-      );
-      z-index: 3;
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
     }
   }
 
+  /* ICON & ICON-TEXT - Con track y fondo */
   .sb-ui-spinner--icon,
   .sb-ui-spinner--icon-text {
     --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
     background: var(--sb-ui-spinner-bg-color);
     box-shadow: var(--sb-ui-spinner-shadow);
-    animation: none;
 
-    &::before {
-      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
-      will-change: transform;
-    }
-
+    /* Track - anillo gris completo detrás del arco de progreso */
     &::after {
       content: '';
       position: absolute;
@@ -262,6 +214,13 @@
       mask: var(--sb-ui-spinner-mask);
       z-index: 0;
     }
+  }
+
+  /* ICON & ICON-TEXT - Contenido interno estático (no rota) */
+  .sb-ui-spinner--icon .sb-ui-spinner__content,
+  .sb-ui-spinner--icon-text .sb-ui-spinner__content {
+    animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
+    will-change: transform;
   }
 }
 
@@ -280,8 +239,14 @@
   .sb-ui-spinner--paused {
     animation-play-state: paused;
 
-    & .sb-ui-spinner__content,
-    &::before,
+    & .sb-ui-spinner__content {
+      animation-play-state: paused;
+    }
+
+    &::before {
+      animation-play-state: paused;
+    }
+
     &::after {
       animation-play-state: paused;
     }
@@ -292,11 +257,17 @@
    STATES LAYER
    ======================================== */
 @layer states {
-  .sb-ui-spinner[data-progress='25'],
-  .sb-ui-spinner[data-progress='50'],
-  .sb-ui-spinner[data-progress='75'],
+  .sb-ui-spinner[data-progress='25'] {
+    --sb-ui-spinner-progress: 25;
+  }
+  .sb-ui-spinner[data-progress='50'] {
+    --sb-ui-spinner-progress: 50;
+  }
+  .sb-ui-spinner[data-progress='75'] {
+    --sb-ui-spinner-progress: 75;
+  }
   .sb-ui-spinner[data-progress='100'] {
-    --sb-ui-spinner-progress: attr(data-progress number, 25);
+    --sb-ui-spinner-progress: 100;
   }
 }
 
@@ -305,10 +276,8 @@
    ======================================== */
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
-    .sb-ui-spinner,
-    .sb-ui-spinner .sb-ui-spinner__content,
-    .sb-ui-spinner::before {
-      animation: none;
+    .sb-ui-spinner {
+      --sb-ui-spinner-duration: 4s;
     }
   }
 

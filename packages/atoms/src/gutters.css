@@ -76,8 +76,8 @@
     --sb-ui-gap-1: 0.25rem; /* 4px */
     --sb-ui-gap-2: 0.5rem;  /* 8px */
     --sb-ui-gap-3: 1rem;    /* 16px */
-    --sb-ui-gap-4: 1.5rem;  /* 24px - default */
-    --sb-ui-gap-5: 3rem;    /* 48px */
+    --sb-ui-gap-4: clamp(0.5rem, -0.15rem + 3.43vw, 1.5rem);  /* ~10px@360 → 24px@768+ */
+    --sb-ui-gap-5: clamp(1rem, -0.76rem + 7.84vw, 3rem);     /* ~16px@360 → 48px@768+ */
   }
 }
 
