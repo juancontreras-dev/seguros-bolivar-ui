@@ -3,7 +3,7 @@
  * Compatible con Windows, Linux y macOS
  */
 
-import { existsSync, mkdirSync, readdirSync, copyFileSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync, copyFileSync, cpSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -40,6 +40,15 @@ function copyToExamples() {
   });
 
   console.log(`✅ ${copied} archivos copiados a examples/dist/`);
+
+  // Copiar carpeta de fuentes (dist/fonts/ → examples/dist/fonts/)
+  const fontsSrc = join(BUNDLE_DIST, 'fonts');
+  const fontsDest = join(EXAMPLES_DIST, 'fonts');
+  if (existsSync(fontsSrc)) {
+    cpSync(fontsSrc, fontsDest, { recursive: true });
+    const fontFiles = readdirSync(fontsSrc).filter(f => f.endsWith('.woff2'));
+    console.log(`✅ ${fontFiles.length} font files copiados a examples/dist/fonts/`);
+  }
 }
 
 function copyToStorybook() {

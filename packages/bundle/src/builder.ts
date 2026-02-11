@@ -23,6 +23,8 @@ const ATOMS_DIST = path.join(PACKAGES_DIR, 'atoms/dist');
 const MOLECULES_SRC = path.join(PACKAGES_DIR, 'molecules/src');
 const MOLECULES_DIST = path.join(PACKAGES_DIR, 'molecules/dist');
 const BRAND_OVERRIDES_SRC = path.join(PACKAGES_DIR, 'brand-overrides/src');
+const FONTS_SRC = path.resolve(__dirname, '../../../examples/assets/fonts/bolivar');
+const FONTS_DIST = path.join(DIST_DIR, 'fonts');
 
 /**
  * CSS Minifier con cssnano (optimización avanzada)
@@ -88,6 +90,60 @@ async function readCSSFile(filePath: string): Promise<string> {
     console.warn(`⚠️  Could not read ${filePath}:`, error instanceof Error ? error.message : error);
     return '';
   }
+}
+
+/**
+ * Copia archivos .woff2 de la fuente Bolivar al directorio dist/fonts/
+ */
+async function copyFontFiles(): Promise<void> {
+  console.log('\n🔤 Copying Bolivar font files...');
+  await fs.mkdir(FONTS_DIST, { recursive: true });
+
+  const files = await fs.readdir(FONTS_SRC);
+  const woff2Files = files.filter((f) => f.endsWith('.woff2'));
+  let copied = 0;
+
+  for (const file of woff2Files) {
+    await fs.copyFile(path.join(FONTS_SRC, file), path.join(FONTS_DIST, file));
+    copied++;
+  }
+
+  console.log(`  ✅ ${copied} font files copied to dist/fonts/`);
+}
+
+/**
+ * Genera las declaraciones @font-face para la fuente Bolivar
+ */
+function generateFontFaceCSS(): string {
+  const fontWeights: Array<{ file: string; weight: number; style: string }> = [
+    { file: 'Bolivar-Light', weight: 300, style: 'normal' },
+    { file: 'Bolivar-Light-Italic', weight: 300, style: 'italic' },
+    { file: 'Bolivar-Regular', weight: 400, style: 'normal' },
+    { file: 'Bolivar-Italic', weight: 400, style: 'italic' },
+    { file: 'Bolivar-SemiBold', weight: 600, style: 'normal' },
+    { file: 'Bolivar-SemiBold-Italic', weight: 600, style: 'italic' },
+    { file: 'Bolivar-Bold', weight: 700, style: 'normal' },
+    { file: 'Bolivar-Bold-Italic', weight: 700, style: 'italic' },
+    { file: 'Bolivar-ExtraBold', weight: 800, style: 'normal' },
+    { file: 'Bolivar-ExtraBold-Italic', weight: 800, style: 'italic' },
+  ];
+
+  return fontWeights
+    .map(
+      ({ file, weight, style }) =>
+        `@font-face { font-family: 'Bolivar'; src: url('fonts/${file}.woff2') format('woff2'); font-weight: ${weight}; font-style: ${style}; font-display: swap; }`
+    )
+    .join('\n');
+}
+
+/**
+ * Genera los @import externos para Roboto y Font Awesome
+ */
+function generateExternalImports(): string {
+  return [
+    "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');",
+    "@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');",
+  ].join('\n');
 }
 
 /**
@@ -171,19 +227,25 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
   // Combinar todo
   const combinedCSS = cssFiles.filter(Boolean).join('\n\n');
 
-  // Agregar header con metadatos
+  // Agregar @import externos + @font-face + header con metadatos
+  // Los @import DEBEN ir al inicio del archivo CSS (requerimiento CSS)
+  const externalImports = generateExternalImports();
+  const fontFaceCSS = generateFontFaceCSS();
   const header = `/**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: ${brand} | Theme: ${theme}
  * Generated: ${new Date().toISOString()}
  *
  * Includes:
+ * - External fonts (Roboto via Google Fonts)
+ * - External icons (Font Awesome 6)
+ * - Custom fonts (Bolivar @font-face)
  * - Design Tokens (variables CSS)
  * - Base Components (atoms)
  * - Complex Components (molecules)
  * - Brand Overrides (if any)
  *
- * Usage:
+ * Usage (one link, everything works):
  * <link rel="stylesheet" href="sb-ui-${brand}-${theme}.min.css">
  * <script type="module" src="sb-ui-components.min.js"></script>
  *
@@ -193,7 +255,7 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
 
 `;
 
-  const cssWithHeader = header + combinedCSS;
+  const cssWithHeader = externalImports + '\n\n' + fontFaceCSS + '\n\n' + header + combinedCSS;
 
   // Minificar CSS con cssnano
   const minified = await minifyCSS(cssWithHeader);
@@ -298,6 +360,9 @@ async function build(): Promise<void> {
 
   // Crear directorio dist
   await fs.mkdir(DIST_DIR, { recursive: true });
+
+  // 0. Copiar archivos de fuentes Bolivar a dist/fonts/
+  await copyFontFiles();
 
   // 1. Build complete bundles para cada marca/tema (tokens + atoms + overrides)
   for (const brand of BRANDS) {

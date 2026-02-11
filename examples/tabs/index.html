@@ -5,25 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs - Seguros Bolívar UI Design System</title>
 
-    <!-- Preconnect para fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts - Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome 6 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- Preload CSS del Design System -->
+    <!-- Preload CSS del Design System (incluye fuentes e iconos) -->
     <link
       rel="preload"
       href="../dist/sb-ui-seguros-bolivar-light.css"
@@ -59,15 +41,34 @@
           que se utilizan para organizar y presentar contenido de manera estructurada y accesible. Permiten a los usuarios
           cambiar entre diferentes secciones o categorías de contenido sin tener que abandonar la página actual.
         </p>
+        <div class="demo-code-block" style="margin-block-start: 1rem;">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Requisitos previos</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- 1. Atributos obligatorios en &lt;html&gt; para activar tokens del tema --&gt;
+&lt;html data-brand="seguros-bolivar" data-theme="light"&gt;
+
+&lt;!-- 2. Bundle CSS del Design System (incluye fuentes e iconos) --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+
+&lt;!-- Nota: El bundle usa @layer para organizar la cascada CSS.             --&gt;
+&lt;!-- Si escribes CSS propio SIN @layer, tendra mayor prioridad que el DS. --&gt;
+&lt;!-- Para evitar conflictos, pon tu CSS en una capa posterior:             --&gt;
+&lt;!-- @layer app { .mi-clase { ... } }                                     --&gt;</code></pre>
+        </div>
       </header>
 
       <!-- ========================================
-           SECCIÓN 1: VARIANTE TRACK
+           SECCIÓN 1: VARIANTE TRACK (SOLO TEXTO)
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Variante Track</h3>
-        <p class="component-description">Línea inferior verde que indica la pestaña activa</p>
-        <div class="tabs-demo-item">
+        <h3 class="variant-title">Variante Track (Solo Texto)</h3>
+        <p class="component-description">Linea inferior verde que indica la pestana activa. Funciona unicamente con el bundle CSS, sin dependencias externas.</p>
+        <div>
           <h4>Track Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false" >
@@ -93,19 +94,19 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Tabs Track --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Tabs Track: solo requiere el bundle CSS del Design System --&gt;
 &lt;div class="sb-ui-tabs sb-ui-tabs--track" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
     &lt;span class="sb-ui-tabs__title"&gt;General&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Información general&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Informacion general&lt;/span&gt;
   &lt;/button&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;span class="sb-ui-tabs__title"&gt;Contacto&lt;/span&gt;
@@ -120,8 +121,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Variante Button</h3>
-        <p class="component-description">Fondo amarillo activo con iconos</p>
-        <div class="tabs-demo-item">
+        <p class="component-description">Fondo amarillo activo con iconos. Requiere <strong>Font Awesome 6</strong>.</p>
+        <div>
           <h4>Button Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--button" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
@@ -152,15 +153,17 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Tabs Button --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
 &lt;div class="sb-ui-tabs sb-ui-tabs--button" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-tabs__icon"&gt;&lt;/i&gt;
@@ -169,8 +172,8 @@
   &lt;/button&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Móvil&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Aplicación móvil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Movil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Aplicacion movil&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -181,8 +184,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Variante Folder</h3>
-        <p class="component-description">Estilo carpeta con iconos</p>
-        <div class="tabs-demo-item">
+        <p class="component-description">Estilo carpeta con iconos. Requiere <strong>Font Awesome 6</strong>.</p>
+        <div>
           <h4>Folder Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
@@ -213,15 +216,17 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Tabs Folder --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
 &lt;div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-tabs__icon"&gt;&lt;/i&gt;
@@ -243,7 +248,7 @@
       <section class="variant-section">
         <h3 class="variant-title">Horizontal</h3>
         <p class="component-description">Tabs track horizontal (mayor altura)</p>
-        <div class="tabs-demo-item">
+        <div>
           <h4>Horizontal Tabs</h4>
           <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--track-horizontal" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
@@ -269,15 +274,15 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Tabs Horizontal (Track con mayor altura) --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Tabs Horizontal (Track con mayor altura) --&gt;
 &lt;div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--track-horizontal" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;span class="sb-ui-tabs__title"&gt;Title&lt;/span&gt;
@@ -296,8 +301,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Button Tabs Horizontal</h3>
-        <p class="component-description">Button tabs con altura reducida </p>
-        <div class="tabs-demo-item">
+        <p class="component-description">Button tabs con altura reducida. Requiere <strong>Font Awesome 6</strong>.</p>
+        <div>
           <h4>Button Tabs Horizontal</h4>
           <div class="sb-ui-tabs sb-ui-tabs--button sb-ui-tabs--button-horizontal" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
@@ -328,15 +333,17 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Button Tabs Horizontal (altura reducida 36px) --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
 &lt;div class="sb-ui-tabs sb-ui-tabs--button sb-ui-tabs--button-horizontal" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-tabs__icon"&gt;&lt;/i&gt;
@@ -345,8 +352,8 @@
   &lt;/button&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Móvil&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Aplicación móvil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Movil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Aplicacion movil&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -357,8 +364,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Folder Tabs Horizontal</h3>
-        <p class="component-description">Folder tabs con altura reducida</p>
-        <div class="tabs-demo-item">
+        <p class="component-description">Folder tabs con altura reducida. Requiere <strong>Font Awesome 6</strong>.</p>
+        <div>
           <h4>Folder Tabs Horizontal</h4>
           <div class="sb-ui-tabs sb-ui-tabs--folder sb-ui-tabs--folder-horizontal" role="tablist">
             <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
@@ -389,15 +396,17 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
             <div>
-              <span class="sb-ui-code-block-badge">HTML</span>
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;!-- Folder Tabs Horizontal (altura reducida) --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
 &lt;div class="sb-ui-tabs sb-ui-tabs--folder sb-ui-tabs--folder-horizontal" role="tablist"&gt;
   &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-tabs__icon"&gt;&lt;/i&gt;
@@ -406,10 +415,58 @@
   &lt;/button&gt;
   &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
     &lt;i class="fa-solid fa-mobile-screen sb-ui-tabs__icon"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-tabs__title"&gt;Móvil&lt;/span&gt;
-    &lt;span class="sb-ui-tabs__description"&gt;Aplicación móvil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Movil&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Aplicacion movil&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 7: ESTADO LOADING
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estado Loading</h3>
+        <p class="component-description">Las tabs en estado de carga tienen opacidad reducida y no responden a clicks. Util mientras se carga contenido asincrono.</p>
+        <div>
+          <h4>Track Tabs - Loading</h4>
+          <div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--loading" role="tablist">
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+            <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+              <span class="sb-ui-tabs__title">Title</span>
+              <span class="sb-ui-tabs__description">Description</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Tabs en estado loading (opacidad reducida, no clickeable) --&gt;
+&lt;div class="sb-ui-tabs sb-ui-tabs--track sb-ui-tabs--loading" role="tablist"&gt;
+  &lt;button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true"&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;General&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Cargando...&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="sb-ui-tabs__item" role="tab" aria-selected="false"&gt;
+    &lt;span class="sb-ui-tabs__title"&gt;Contacto&lt;/span&gt;
+    &lt;span class="sb-ui-tabs__description"&gt;Datos de contacto&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Funciona con todas las variantes: --track, --button, --folder --&gt;</code></pre>
         </div>
       </section>
 
@@ -457,7 +514,7 @@
 
       // Función para copiar código
       function copyCode(button) {
-        const codeBlock = button.closest('.sb-ui-code-block');
+        const codeBlock = button.closest('.demo-code-block');
         const code = codeBlock.querySelector('code').textContent;
 
         navigator.clipboard.writeText(code).then(() => {

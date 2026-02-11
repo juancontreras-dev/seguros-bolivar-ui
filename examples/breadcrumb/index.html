@@ -5,25 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breadcrumb Component - Seguros Bolivar UI Design System</title>
 
-    <!-- Preconnect para fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts - Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome 6 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- CSS del Design System -->
+    <!-- CSS del Design System (incluye fuentes e iconos) -->
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
@@ -53,18 +35,87 @@
           Componente de navegacion jerarquica que muestra la ubicacion actual del usuario dentro de la estructura del sitio.
           Los breadcrumbs ayudan a los usuarios a orientarse y navegar eficientemente.
         </p>
+        <div class="demo-code-block" style="margin-block-start: 1rem;">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Requisitos previos</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- 1. Atributos obligatorios en &lt;html&gt; para activar tokens del tema --&gt;
+&lt;html data-brand="seguros-bolivar" data-theme="light"&gt;
+
+&lt;!-- 2. Bundle CSS del Design System (incluye fuentes e iconos) --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+
+&lt;!-- Nota: El bundle usa @layer para organizar la cascada CSS.             --&gt;
+&lt;!-- Si escribes CSS propio SIN @layer, tendra mayor prioridad que el DS. --&gt;
+&lt;!-- Para evitar conflictos, pon tu CSS en una capa posterior:             --&gt;
+&lt;!-- @layer app { .mi-clase { ... } }                                     --&gt;</code></pre>
+        </div>
       </header>
 
       <!-- ========================================
-           EJEMPLO 1: BREADCRUMB CON ICONO INICIAL
+           EJEMPLO 1: SOLO TEXTO (SIN DEPENDENCIAS)
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Breadcrumb con icono inicial</h3>
+        <h3 class="variant-title">Solo Texto (sin dependencias externas)</h3>
         <p class="demo-description">
-          Breadcrumb con icono solo en el primer elemento, los siguientes elementos son solo texto.
+          Breadcrumb basico sin iconos. Funciona unicamente con el bundle CSS, sin necesidad de librerias externas.
         </p>
 
-        <div class="demo-card">
+        <div>
+          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb: solo requiere el bundle CSS del Design System --&gt;
+&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+  &lt;ol class="sb-ui-breadcrumb__list"&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Seguros&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           EJEMPLO 2: CON ICONO INICIAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Con icono inicial</h3>
+        <p class="demo-description">
+          Breadcrumb con icono solo en el primer elemento. Requiere <strong>Font Awesome 6</strong>.
+        </p>
+
+        <div>
           <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
             <ol class="sb-ui-breadcrumb__list">
               <li class="sb-ui-breadcrumb__item">
@@ -83,15 +134,18 @@
           </nav>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <div class="sb-ui-code-block-actions">
-              <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
+&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
@@ -111,15 +165,15 @@
       </section>
 
       <!-- ========================================
-           EJEMPLO 2: CON ICONO IZQUIERDO
+           EJEMPLO 3: CON ICONO EN TODOS LOS ELEMENTOS
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Con icono izquierdo</h3>
+        <h3 class="variant-title">Con icono en todos los elementos</h3>
         <p class="demo-description">
-          Breadcrumb con icono a la izquierda del texto en todos los elementos.
+          Breadcrumb con icono a la izquierda del texto en todos los elementos. Requiere <strong>Font Awesome 6</strong>.
         </p>
 
-        <div class="demo-card">
+        <div>
           <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
             <ol class="sb-ui-breadcrumb__list">
               <li class="sb-ui-breadcrumb__item">
@@ -144,15 +198,18 @@
           </nav>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <div class="sb-ui-code-block-actions">
-              <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Requiere: Font Awesome 6 --&gt;
+&lt;!-- &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"&gt; --&gt;
+
+&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
@@ -178,48 +235,181 @@
       </section>
 
       <!-- ========================================
-           EJEMPLO 3: SIN ICONO IZQUIERDO
+           EJEMPLO 4: ESTADO COLLAPSED
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Sin icono izquierdo</h3>
+        <h3 class="variant-title">Estado Collapsed (colapsado)</h3>
         <p class="demo-description">
-          Breadcrumb sin icono, solo texto en todos los elementos.
+          Fuerza el colapso del breadcrumb mostrando solo el primer y ultimo elemento, con puntos suspensivos entre ellos.
+          Util cuando la ruta es muy larga y el espacio es limitado.
         </p>
 
-        <div class="demo-card">
-          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+        <div>
+          <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb">
             <ol class="sb-ui-breadcrumb__list">
               <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Option</a>
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Inicio
+                </a>
               </li>
               <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Option</a>
+                <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
               </li>
               <li class="sb-ui-breadcrumb__item">
-                <span class="sb-ui-breadcrumb__current" aria-current="page">Option</span>
+                <a href="#" class="sb-ui-breadcrumb__link">Seguros</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Vida</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Detalle del plan</span>
               </li>
             </ol>
           </nav>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <div class="sb-ui-code-block-actions">
-              <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb colapsado: solo muestra primero y ultimo --&gt;
+&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Option&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Inicio
+      &lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Option&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Option&lt;/span&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Seguros&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Detalle&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           EJEMPLO 5: ESTADO LOADING
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Estado Loading (cargando)</h3>
+        <p class="demo-description">
+          Muestra el breadcrumb en estado de carga con opacidad reducida y puntero de espera. Los links no son clickeables.
+        </p>
+
+        <div>
+          <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--loading" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Inicio
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Cargando...</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Breadcrumb en estado loading --&gt;
+&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--loading" aria-label="breadcrumb"&gt;
+  &lt;ol class="sb-ui-breadcrumb__list"&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Cargando...&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           EJEMPLO 6: NO-COLLAPSE (MOBILE)
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Sin colapso en mobile (no-collapse)</h3>
+        <p class="demo-description">
+          Por defecto, breadcrumbs con muchos items se colapsan automaticamente en pantallas menores a 640px.
+          Usa <code>sb-ui-breadcrumb--no-collapse</code> para evitar este comportamiento y mostrar siempre todos los items.
+        </p>
+
+        <div>
+          <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--no-collapse" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Inicio
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Seguros</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Vida</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Plan familiar</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Evitar colapso automatico en mobile --&gt;
+&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--no-collapse" aria-label="breadcrumb"&gt;
+  &lt;ol class="sb-ui-breadcrumb__list"&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Seguros&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Plan familiar&lt;/span&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/nav&gt;</code></pre>
@@ -251,7 +441,7 @@
 
     <script>
       function copyCode(btn) {
-        const codeBlock = btn.closest('.sb-ui-code-block');
+        const codeBlock = btn.closest('.demo-code-block');
         const code = codeBlock.querySelector('code');
         navigator.clipboard.writeText(code.textContent).then(() => {
           btn.classList.add('copied');
