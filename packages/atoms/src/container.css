@@ -56,7 +56,7 @@
    1. LAYERS DECLARATION
    ============================================================================ */
 
-@layer reset, tokens, base, utilities;
+@layer reset, tokens, base, variants, style-variants, brand-overrides, sizes, modifiers, icon-positions, states, utilities;
 
 /* ============================================================================
    2. RESET LAYER
@@ -98,23 +98,9 @@
    ============================================================================ */
 
 @layer base {
-  /* ===== Container Responsive (default) ===== */
-  .sb-ui-container {
-    inline-size: 100%;
-    max-inline-size: 100%;
-    padding-inline: var(--sb-ui-container-padding-inline);
-    margin-inline: auto;
-  }
-
-  /* ===== Container Fluid (100% sin max-width) ===== */
-  .sb-ui-container-fluid {
-    inline-size: 100%;
-    max-inline-size: 100%;
-    padding-inline: var(--sb-ui-container-padding-inline);
-    margin-inline: auto;
-  }
-
-  /* ===== Breakpoint-specific Containers ===== */
+  /* ===== All containers share base layout ===== */
+  .sb-ui-container,
+  .sb-ui-container-fluid,
   .sb-ui-container-sm,
   .sb-ui-container-md,
   .sb-ui-container-lg,
@@ -135,7 +121,7 @@
   /* ===== Responsive Max-Widths ===== */
 
   /* Small (sm): 576px */
-  @media (min-inline-size: 576px) {
+  @media (min-width: 576px) {
     .sb-ui-container,
     .sb-ui-container-sm {
       max-inline-size: var(--sb-ui-container-max-inline-size-sm);
@@ -143,7 +129,7 @@
   }
 
   /* Medium (md): 768px */
-  @media (min-inline-size: 768px) {
+  @media (min-width: 768px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md {
@@ -152,7 +138,7 @@
   }
 
   /* Large (lg): 992px */
-  @media (min-inline-size: 992px) {
+  @media (min-width: 992px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -162,7 +148,7 @@
   }
 
   /* Extra Large (xl): 1200px */
-  @media (min-inline-size: 1200px) {
+  @media (min-width: 1200px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,
@@ -173,7 +159,7 @@
   }
 
   /* Extra Extra Large (xxl): 1400px */
-  @media (min-inline-size: 1400px) {
+  @media (min-width: 1400px) {
     .sb-ui-container,
     .sb-ui-container-sm,
     .sb-ui-container-md,

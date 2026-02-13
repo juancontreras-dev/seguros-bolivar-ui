@@ -3,172 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Breadcrumb Component - Seguros Bolívar UI Design System</title>
+    <title>Breadcrumb Component - Seguros Bolivar UI Design System</title>
 
-    <!-- Preconnect para fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts - Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome 6 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- Preload CSS del Design System -->
-    <link
-      rel="preload"
-      href="../dist/sb-ui-seguros-bolivar-light.min.css"
-      as="style"
-    />
+    <!-- CSS del Design System (incluye fuentes e iconos) -->
     <link
       rel="stylesheet"
       href="../dist/sb-ui-seguros-bolivar-light.min.css"
       id="brand-css"
     />
 
-    <!-- CSS global de componentes -->
+    <!-- CSS global de demos -->
     <link
       rel="stylesheet"
       href="../components.css"
     />
-
-    <style>
-      /* Estilos específicos para breadcrumb demo */
-      .breadcrumb-demo-item {
-        padding: 1.5rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e1e1e1);
-        border-radius: 8px;
-        background: var(--sb-ui-color-grayscale-white, #ffffff);
-        margin-block-end: 1.5rem;
-      }
-
-      .breadcrumb-demo-item h4 {
-        font-size: 0.875rem;
-        margin-block-end: 1rem;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .breadcrumb-comparison-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .breadcrumb-comparison-item {
-        padding: 1.5rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e1e1e1);
-        border-radius: 8px;
-        background: var(--sb-ui-color-grayscale-white, #ffffff);
-      }
-
-      .breadcrumb-comparison-item h4 {
-        font-size: 0.875rem;
-        margin-block-end: 1rem;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-        font-weight: 600;
-      }
-
-      /* Estilos para buenas prácticas */
-      .best-practices-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2rem;
-        margin-block-end: 2rem;
-      }
-
-      .practice-card {
-        padding: 1.5rem;
-        border-radius: 8px;
-        border: 2px solid;
-      }
-
-      .practice-card--do {
-        border-color: var(--sb-ui-color-primary-base, #009056);
-        background: var(--sb-ui-color-primary-L400, #f2f9f6);
-      }
-
-      .practice-card--dont {
-        border-color: var(--sb-ui-color-error-base, #e74c3c);
-        background: #fef2f2;
-      }
-
-      .practice-card__header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-block-end: 1rem;
-      }
-
-      .practice-card__icon {
-        inline-size: 1.5rem;
-        block-size: 1.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.875rem;
-        font-weight: bold;
-      }
-
-      .practice-card--do .practice-card__icon {
-        background: var(--sb-ui-color-primary-base, #009056);
-        color: white;
-      }
-
-      .practice-card--dont .practice-card__icon {
-        background: var(--sb-ui-color-error-base, #e74c3c);
-        color: white;
-      }
-
-      .practice-card__title {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-      }
-
-      .practice-card__description {
-        font-size: 0.875rem;
-        line-height: 1.6;
-        color: var(--sb-ui-color-grayscale-D100, #6b7280);
-        margin-block-end: 1rem;
-      }
-
-      .practice-card__example {
-        padding: 1rem;
-        background: white;
-        border-radius: 6px;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e1e1e1);
-      }
-
-      /* Mobile collapsed demo */
-      .mobile-demo {
-        max-inline-size: 400px;
-        margin-inline: auto;
-        padding: 1.5rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e1e1e1);
-        border-radius: 8px;
-        background: var(--sb-ui-color-grayscale-white, #ffffff);
-      }
-    </style>
   </head>
 
   <body>
     <main class="component-container">
       <!-- ========================================
-           HEADER CON TÍTULO E ÍCONO
+           HEADER
            ======================================== -->
       <header class="component-header">
         <h2 class="variant-title">
@@ -178,82 +32,60 @@
           <span>Breadcrumb</span>
         </h2>
         <p class="component-description">
-          Componente de navegación jerárquica que muestra la ubicación actual del usuario dentro de la estructura del sitio.
+          Componente de navegacion jerarquica que muestra la ubicacion actual del usuario dentro de la estructura del sitio.
           Los breadcrumbs ayudan a los usuarios a orientarse y navegar eficientemente.
         </p>
       </header>
 
       <!-- ========================================
-           SECCIÓN 1: VARIANTES
+           EJEMPLO 1: CON ICONO INICIAL
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Variantes</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          El breadcrumb soporta dos configuraciones principales según Figma: <strong>Con icono izquierdo</strong> (Left Icon: True)
-          y <strong>Sin icono izquierdo</strong> (Left Icon: False). Iconos de 16px × 16px según especificación.
+        <h3 class="variant-title">Con icono inicial</h3>
+        <p class="demo-description">
+          Breadcrumb con icono solo en el primer elemento. Requiere <strong>Font Awesome 6</strong>.
         </p>
 
-        <div class="breadcrumb-comparison-grid">
-          <div class="breadcrumb-comparison-item">
-            <h4>Con icono izquierdo (Left Icon: True)</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">
-                    <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                    Inicio
-                  </a>
-                </li>
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
-                </li>
-                <li class="sb-ui-breadcrumb__item">
-                  <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros de Vida</span>
-                </li>
-              </ol>
-            </nav>
-          </div>
-
-          <div class="breadcrumb-comparison-item">
-            <h4>Sin icono izquierdo (Left Icon: False)</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
-                </li>
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
-                </li>
-                <li class="sb-ui-breadcrumb__item">
-                  <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros de Vida</span>
-                </li>
-              </ol>
-            </nav>
-          </div>
+        <div>
+          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+            <ol class="sb-ui-breadcrumb__list">
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Option
+                </a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <a href="#" class="sb-ui-breadcrumb__link">Option</a>
+              </li>
+              <li class="sb-ui-breadcrumb__item">
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Option</span>
+              </li>
+            </ol>
+          </nav>
         </div>
 
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Con icono izquierdo --&gt;
-&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
-        &lt;i class="fa-solid fa-home sb-ui-breadcrumb__icon"&gt;&lt;/i&gt;
-        Inicio
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Option
       &lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Option&lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Actual&lt;/span&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Option&lt;/span&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/nav&gt;</code></pre>
@@ -261,379 +93,116 @@
       </section>
 
       <!-- ========================================
-           SECCIÓN 2: ESTADOS INTERACTIVOS
+           EJEMPLO 2: SOLO TEXTO (SIN DEPENDENCIAS)
            ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Estados Interactivos</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          Según Figma, los breadcrumb items tienen cuatro estados visuales: <strong>Default</strong>,
-          <strong>Hover</strong>, <strong>Focused</strong>, y <strong>Active</strong> (página actual).
+        <h3 class="variant-title">Solo Texto (sin dependencias externas)</h3>
+        <p class="demo-description">
+          Breadcrumb basico sin iconos. Funciona unicamente con el bundle CSS, sin necesidad de librerias externas.
         </p>
 
-        <div class="breadcrumb-comparison-grid">
-          <div class="breadcrumb-comparison-item">
-            <h4>Default</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">
-                    <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                    Inicio
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-
-          <div class="breadcrumb-comparison-item">
-            <h4>Hover (pasa el mouse)</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">
-                    <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                    Inicio
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-
-          <div class="breadcrumb-comparison-item">
-            <h4>Focused (presiona Tab)</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <a href="#" class="sb-ui-breadcrumb__link">
-                    <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                    Inicio
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-
-          <div class="breadcrumb-comparison-item">
-            <h4>Active (página actual)</h4>
-            <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-              <ol class="sb-ui-breadcrumb__list">
-                <li class="sb-ui-breadcrumb__item">
-                  <span class="sb-ui-breadcrumb__current" aria-current="page">
-                    <i class="fa-solid fa-file sb-ui-breadcrumb__icon"></i>
-                    Página Actual
-                  </span>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
-            </div>
-          </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Active state (página actual) --&gt;
-&lt;li class="sb-ui-breadcrumb__item"&gt;
-  &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Actual&lt;/span&gt;
-&lt;/li&gt;</code></pre>
-        </div>
-      </section>
-
-      <!-- ========================================
-           SECCIÓN 3: EJEMPLOS DE USO REAL
-           ======================================== -->
-      <section class="variant-section">
-        <h3 class="variant-title">Ejemplos de Uso Real</h3>
-
-        <div class="breadcrumb-demo-item">
-          <h4>Navegación Simple (2-3 niveles)</h4>
+        <div>
           <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
             <ol class="sb-ui-breadcrumb__list">
               <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                  Inicio
-                </a>
+                <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
               </li>
               <li class="sb-ui-breadcrumb__item">
                 <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
               </li>
               <li class="sb-ui-breadcrumb__item">
-                <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros de Vida</span>
+                <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros</span>
               </li>
             </ol>
           </nav>
         </div>
 
-        <div class="breadcrumb-demo-item">
-          <h4>Navegación con Iconos en Cada Nivel</h4>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+  &lt;ol class="sb-ui-breadcrumb__list"&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Inicio&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Productos&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="sb-ui-breadcrumb__item"&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Seguros&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           EJEMPLO 3: CON ICONO EN TODOS LOS ELEMENTOS
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Con icono en todos los elementos</h3>
+        <p class="demo-description">
+          Breadcrumb con icono a la izquierda del texto en todos los elementos. Requiere <strong>Font Awesome 6</strong>.
+        </p>
+
+        <div>
           <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
             <ol class="sb-ui-breadcrumb__list">
               <li class="sb-ui-breadcrumb__item">
                 <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                  Inicio
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Option
                 </a>
               </li>
               <li class="sb-ui-breadcrumb__item">
                 <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-folder sb-ui-breadcrumb__icon"></i>
-                  Documentos
-                </a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-folder-open sb-ui-breadcrumb__icon"></i>
-                  Certificados
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Option
                 </a>
               </li>
               <li class="sb-ui-breadcrumb__item">
                 <span class="sb-ui-breadcrumb__current" aria-current="page">
-                  <i class="fa-solid fa-file-pdf sb-ui-breadcrumb__icon"></i>
-                  Certificado.pdf
+                  <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                  Option
                 </span>
               </li>
             </ol>
           </nav>
         </div>
 
-        <div class="breadcrumb-demo-item">
-          <h4>Jerarquía Profunda (4+ niveles)</h4>
-          <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-            <ol class="sb-ui-breadcrumb__list">
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                  Inicio
-                </a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Estándares mínimos 0312</a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Sistema de Gestión</a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <span class="sb-ui-breadcrumb__current" aria-current="page">Repositorio de certificaciones</span>
-              </li>
-            </ol>
-          </nav>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
   &lt;ol class="sb-ui-breadcrumb__list"&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
       &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
-        &lt;i class="fa-solid fa-home sb-ui-breadcrumb__icon"&gt;&lt;/i&gt;
-        Inicio
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Option
       &lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;Nivel 2&lt;/a&gt;
+      &lt;a href="#" class="sb-ui-breadcrumb__link"&gt;
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Option
+      &lt;/a&gt;
     &lt;/li&gt;
     &lt;li class="sb-ui-breadcrumb__item"&gt;
-      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;Actual&lt;/span&gt;
+      &lt;span class="sb-ui-breadcrumb__current" aria-current="page"&gt;
+        &lt;i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"&gt;&lt;/i&gt;
+        Option
+      &lt;/span&gt;
     &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre>
-        </div>
-      </section>
-
-      <!-- ========================================
-           SECCIÓN 4: BUENAS PRÁCTICAS
-           ======================================== -->
-      <section class="variant-section">
-        <h3 class="variant-title">Buenas Prácticas</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          Según las especificaciones de Figma, estas son las mejores prácticas para usar breadcrumbs eficientemente.
-        </p>
-
-        <div class="best-practices-grid">
-          <!-- DO -->
-          <div class="practice-card practice-card--do">
-            <div class="practice-card__header">
-              <div class="practice-card__icon">✓</div>
-              <h4 class="practice-card__title">Sí hacer</h4>
-            </div>
-            <p class="practice-card__description">
-              Úselo para sitios web grandes y productos complejos que tienen páginas organizadas jerárquicamente,
-              de modo que los usuarios que llegan a la página puedan saber rápidamente dónde están.
-            </p>
-            <div class="practice-card__example">
-              <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-                <ol class="sb-ui-breadcrumb__list">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#" class="sb-ui-breadcrumb__link">
-                      <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                      Inicio
-                    </a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#" class="sb-ui-breadcrumb__link">Estándares mínimos 0312</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Repositorio de certificaciones</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-
-          <div class="practice-card practice-card--do">
-            <div class="practice-card__header">
-              <div class="practice-card__icon">✓</div>
-              <h4 class="practice-card__title">Ubicación correcta</h4>
-            </div>
-            <p class="practice-card__description">
-              Ubicar el breadcrumbs en la esquina superior izquierda de la página, bajo el título de esta.
-            </p>
-            <div class="practice-card__example">
-              <div style="border: 1px dashed var(--sb-ui-color-grayscale-L200); padding: 0.75rem; border-radius: 4px; background: #fafafa;">
-                <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--sb-ui-color-grayscale-D200);">
-                  Título de la Página
-                </div>
-                <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
-                  <ol class="sb-ui-breadcrumb__list">
-                    <li class="sb-ui-breadcrumb__item">
-                      <a href="#" class="sb-ui-breadcrumb__link">
-                        <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                        Inicio
-                      </a>
-                    </li>
-                    <li class="sb-ui-breadcrumb__item">
-                      <a href="#" class="sb-ui-breadcrumb__link">Sección</a>
-                    </li>
-                    <li class="sb-ui-breadcrumb__item">
-                      <span class="sb-ui-breadcrumb__current" aria-current="page">Actual</span>
-                    </li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-
-          <!-- DON'T -->
-          <div class="practice-card practice-card--dont">
-            <div class="practice-card__header">
-              <div class="practice-card__icon">✗</div>
-              <h4 class="practice-card__title">No hacer - Herramienta secundaria</h4>
-            </div>
-            <p class="practice-card__description">
-              Tu navegación de breadcrumbs es una herramienta secundaria a tu barra de navegación principal,
-              por lo que no debe ser demasiado grande o prominente en la página.
-            </p>
-            <div class="practice-card__example">
-              <nav class="sb-ui-breadcrumb" aria-label="breadcrumb" style="padding: 1.5rem; background: #fee; border: 2px solid #e74c3c;">
-                <ol class="sb-ui-breadcrumb__list" style="font-size: 1.5rem; font-weight: bold;">
-                  <li class="sb-ui-breadcrumb__item">
-                    <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
-                  </li>
-                  <li class="sb-ui-breadcrumb__item">
-                    <span class="sb-ui-breadcrumb__current" aria-current="page">Actual</span>
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-
-          <div class="practice-card practice-card--dont">
-            <div class="practice-card__header">
-              <div class="practice-card__icon">✗</div>
-              <h4 class="practice-card__title">No hacer - Confusión</h4>
-            </div>
-            <p class="practice-card__description">
-              Otra ubicación podría confundir la función del breadcrumbs.
-            </p>
-            <div class="practice-card__example">
-              <div style="border: 1px dashed #e74c3c; padding: 0.75rem; border-radius: 4px; background: #fee;">
-                <nav class="sb-ui-breadcrumb" aria-label="breadcrumb" style="text-align: center;">
-                  <ol class="sb-ui-breadcrumb__list" style="justify-content: center;">
-                    <li class="sb-ui-breadcrumb__item">
-                      <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
-                    </li>
-                    <li class="sb-ui-breadcrumb__item">
-                      <span class="sb-ui-breadcrumb__current" aria-current="page">Actual</span>
-                    </li>
-                  </ol>
-                </nav>
-                <div style="font-weight: 600; margin-top: 0.5rem; color: var(--sb-ui-color-grayscale-D200);">
-                  Título de la Página
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================
-           SECCIÓN 5: ESTADO COLAPSADO MÓVIL
-           ======================================== -->
-      <section class="variant-section">
-        <h3 class="variant-title">Estado Colapsado para Móviles</h3>
-        <p style="color: #6b7280; margin-bottom: 1.5rem;">
-          En pantallas pequeñas (menores a 640px), el breadcrumb automáticamente colapsa mostrando solo el primer y último nivel
-          con "..." en medio. Esto mantiene la funcionalidad sin ocupar demasiado espacio.
-        </p>
-
-        <div class="mobile-demo">
-          <h4 style="font-size: 0.875rem; margin-bottom: 1rem; color: var(--sb-ui-color-grayscale-D200); font-weight: 600;">
-            Vista móvil (< 640px)
-          </h4>
-          <nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb">
-            <ol class="sb-ui-breadcrumb__list">
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">
-                  <i class="fa-solid fa-home sb-ui-breadcrumb__icon"></i>
-                  Inicio
-                </a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Nivel 2</a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <a href="#" class="sb-ui-breadcrumb__link">Nivel 3</a>
-              </li>
-              <li class="sb-ui-breadcrumb__item">
-                <span class="sb-ui-breadcrumb__current" aria-current="page">Repositorio de certificaciones</span>
-              </li>
-            </ol>
-          </nav>
-          <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">
-            Los niveles intermedios se ocultan automáticamente, manteniendo solo inicio y página actual.
-          </p>
-        </div>
-
-        <div class="sb-ui-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="sb-ui-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="sb-ui-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="sb-ui-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: var(--sb-ui-color-primary-base); color: var(--sb-ui-color-grayscale-white); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px var(--sb-ui-color-primary-D100);">HTML</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
-            </div>
-          </div>
-          <pre class="sb-ui-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Colapsado manual con clase --&gt;
-&lt;nav class="sb-ui-breadcrumb sb-ui-breadcrumb--collapsed" aria-label="breadcrumb"&gt;
-  &lt;ol class="sb-ui-breadcrumb__list"&gt;
-    &lt;!-- Solo se muestran primer y último item --&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;
-
-&lt;!-- Auto-colapsa en móvil (< 640px) --&gt;
-&lt;nav class="sb-ui-breadcrumb" aria-label="breadcrumb"&gt;
-  &lt;ol class="sb-ui-breadcrumb__list"&gt;
-    &lt;!-- Todos los items, se ocultan automáticamente en móvil --&gt;
   &lt;/ol&gt;
 &lt;/nav&gt;</code></pre>
         </div>
@@ -645,9 +214,9 @@
       <section class="variant-section storybook-reference">
         <div class="storybook-reference-content">
           <i class="fa-solid fa-book storybook-reference-icon"></i>
-          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <h3 class="storybook-reference-title">Quieres ver mas detalles?</h3>
           <p class="storybook-reference-description">
-            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+            En <strong>Storybook</strong> puedes explorar el codigo de cada variacion del componente y ver todos los estados interactivos.
           </p>
           <a
             href="http://localhost:6007/?path=/docs/atoms-breadcrumb--docs"
@@ -663,9 +232,8 @@
     </main>
 
     <script>
-      // Función para copiar código
       function copyCode(btn) {
-        const codeBlock = btn.closest('.sb-ui-code-block');
+        const codeBlock = btn.closest('.demo-code-block');
         const code = codeBlock.querySelector('code');
         navigator.clipboard.writeText(code.textContent).then(() => {
           btn.classList.add('copied');

@@ -361,7 +361,7 @@
   }
 
   /* Mobile styles - Font size 16px para prevenir zoom en iOS */
-  @media (inline-size <= 640px) {
+  @media (max-width: 640px) {
     .sb-ui-input {
       font-size: max(16px, var(--sb-ui-input-font-size));
     }

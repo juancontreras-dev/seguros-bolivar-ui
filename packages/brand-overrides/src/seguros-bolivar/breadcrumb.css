@@ -1,21 +1,20 @@
 /**
- * Seguros Bolívar - Breadcrumb Component Overrides
+ * Seguros Bolivar - Breadcrumb Component Overrides
+ *
+ * Overrides link and icon colors to use primary-D100 as the base color
+ * instead of the default primary-base, creating a darker green appearance.
  */
 
 @layer brand-overrides {
   [data-brand='seguros-bolivar'] .sb-ui-breadcrumb {
-    /* Link colors */
+    /* Link colors - darker green base with lighter hover */
     --sb-ui-breadcrumb-link-color: var(--sb-ui-color-primary-D100, #038450);
     --sb-ui-breadcrumb-link-hover: var(--sb-ui-color-primary-base, #009056);
     --sb-ui-breadcrumb-link-active: var(--sb-ui-color-primary-D200, #05794a);
 
-    /* Icon colors */
+    /* Icon colors - match link colors */
     --sb-ui-breadcrumb-icon-color: var(--sb-ui-color-primary-D100, #038450);
     --sb-ui-breadcrumb-icon-hover: var(--sb-ui-color-primary-base, #009056);
     --sb-ui-breadcrumb-icon-active: var(--sb-ui-color-primary-D200, #05794a);
-
-    /* Current & separator colors */
-    --sb-ui-breadcrumb-current-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    --sb-ui-breadcrumb-separator-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
   }
 }

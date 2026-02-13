@@ -40,41 +40,6 @@
       rel="stylesheet"
       href="../components.css"
     />
-
-    <style>
-      /* Estilos específicos para spinner demo */
-      .spinner-demo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-block-end: 2rem;
-      }
-
-      .spinner-demo-item {
-        padding: 2rem 1.5rem;
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: 8px;
-        background: var(--sb-ui-color-grayscale-L50, #fafafa);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .spinner-demo-item h4 {
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      @media (inline-size < 768px) {
-        .spinner-demo-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
   </head>
 
   <body>
@@ -99,31 +64,31 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Básico</h3>
-        <div class="spinner-demo-grid">
-          <div class="spinner-demo-item">
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
             <h4>Progress 1 – 25%</h4>
             <div class="sb-ui-spinner" role="status" aria-label="Cargando, 25% completado" data-progress="25"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 2 – 50%</h4>
             <div class="sb-ui-spinner" role="status" aria-label="Cargando, 50% completado" data-progress="50"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 3 – 75%</h4>
             <div class="sb-ui-spinner" role="status" aria-label="Cargando, 75% completado" data-progress="75"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 4 – 100%</h4>
             <div class="sb-ui-spinner" role="status" aria-label="Cargando, 100% completado" data-progress="100"></div>
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;div class="sb-ui-spinner" role="status" aria-label="Cargando" data-progress="50"&gt;&lt;/div&gt;</code></pre>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner" role="status" aria-label="Cargando" data-progress="50"&gt;&lt;/div&gt;</code></pre>
         </div>
       </section>
 
@@ -132,26 +97,26 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Integrado</h3>
-        <div class="spinner-demo-grid">
-          <div class="spinner-demo-item">
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
             <h4>Progress 1 – 25%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando, 25% completado" data-progress="25">
               <div class="sb-ui-spinner__inner-ring"></div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 2 – 50%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando, 50% completado" data-progress="50">
               <div class="sb-ui-spinner__inner-ring"></div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 3 – 75%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando, 75% completado" data-progress="75">
               <div class="sb-ui-spinner__inner-ring"></div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 4 – 100%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando, 100% completado" data-progress="100">
               <div class="sb-ui-spinner__inner-ring"></div>
@@ -159,12 +124,12 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando" data-progress="50"&gt;
   &lt;div class="sb-ui-spinner__inner-ring"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -175,8 +140,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Icon</h3>
-        <div class="spinner-demo-grid">
-          <div class="spinner-demo-item">
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
             <h4>Progress 1 – 25%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 25% completado" data-progress="25">
               <div class="sb-ui-spinner__content">
@@ -186,7 +151,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 2 – 50%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 50% completado" data-progress="50">
               <div class="sb-ui-spinner__content">
@@ -196,7 +161,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 3 – 75%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 75% completado" data-progress="75">
               <div class="sb-ui-spinner__content">
@@ -206,7 +171,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 4 – 100%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 100% completado" data-progress="100">
               <div class="sb-ui-spinner__content">
@@ -218,12 +183,12 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando" data-progress="50"&gt;
   &lt;div class="sb-ui-spinner__content"&gt;
     &lt;div class="sb-ui-spinner__icon"&gt;
       &lt;i class="fa-solid fa-lock" aria-hidden="true"&gt;&lt;/i&gt;
@@ -238,8 +203,8 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Text</h3>
-        <div class="spinner-demo-grid">
-          <div class="spinner-demo-item">
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
             <h4>Progress 1 – 25%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando, 25% completado" data-progress="25">
               <div class="sb-ui-spinner__content">
@@ -250,7 +215,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 2 – 50%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando, 50% completado" data-progress="50">
               <div class="sb-ui-spinner__content">
@@ -261,7 +226,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 3 – 75%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando, 75% completado" data-progress="75">
               <div class="sb-ui-spinner__content">
@@ -272,7 +237,7 @@
               </div>
             </div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Progress 4 – 100%</h4>
             <div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando, 100% completado" data-progress="100">
               <div class="sb-ui-spinner__content">
@@ -285,12 +250,12 @@
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando" data-progress="50"&gt;
   &lt;div class="sb-ui-spinner__content"&gt;
     &lt;div class="sb-ui-spinner__icon"&gt;
       &lt;i class="fa-solid fa-lock" aria-hidden="true"&gt;&lt;/i&gt;
@@ -306,31 +271,31 @@
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Velocidad</h3>
-        <div class="spinner-demo-grid">
-          <div class="spinner-demo-item">
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
             <h4>Rápido (--fast)</h4>
             <div class="sb-ui-spinner sb-ui-spinner--fast" role="status" aria-label="Cargando" data-progress="50"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Normal (por defecto)</h4>
             <div class="sb-ui-spinner" role="status" aria-label="Cargando" data-progress="50"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Lento (--slow)</h4>
             <div class="sb-ui-spinner sb-ui-spinner--slow" role="status" aria-label="Cargando" data-progress="50"></div>
           </div>
-          <div class="spinner-demo-item">
+          <div class="demo-showcase-item">
             <h4>Pausado (--paused)</h4>
             <div class="sb-ui-spinner sb-ui-spinner--paused" role="status" aria-label="Cargando" data-progress="50"></div>
           </div>
         </div>
 
-        <div class="sb-ui-code-block">
-          <div class="sb-ui-code-block-header">
-            <span class="sb-ui-code-block-title">Ejemplo de uso</span>
-            <span class="sb-ui-code-block-badge">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="sb-ui-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--fast" data-progress="50"&gt;&lt;/div&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--fast" data-progress="50"&gt;&lt;/div&gt;
 &lt;div class="sb-ui-spinner sb-ui-spinner--slow" data-progress="50"&gt;&lt;/div&gt;
 &lt;div class="sb-ui-spinner sb-ui-spinner--paused" data-progress="50"&gt;&lt;/div&gt;</code></pre>
         </div>

@@ -745,7 +745,7 @@
         background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
         color: var(--sb-ui-color-grayscale-base, #9b9b9b);
       }
-      .dynamic-content .sb-ui-code-block-header {
+      .dynamic-content .demo-code-block-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -753,13 +753,13 @@
         background: #2d2d2d;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
-      .dynamic-content .sb-ui-code-block-title {
+      .dynamic-content .demo-code-block-title {
         font-size: 0.8125rem;
         font-weight: 600;
         letter-spacing: 0.3px;
         color: #a0a0a0;
       }
-      .dynamic-content .sb-ui-code-block-badge {
+      .dynamic-content .demo-code-block-badge {
         font-size: 0.6875rem;
         padding: 0.3125rem 0.625rem;
         border-radius: 0.375rem;
@@ -770,7 +770,7 @@
         font-weight: 700;
         box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
       }
-      .dynamic-content .sb-ui-code-block-body {
+      .dynamic-content .demo-code-block-body {
         margin: 0;
         padding: 1.25rem;
         font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -781,7 +781,7 @@
         color: #d4d4d4;
         background: #1e1e1e;
       }
-      .dynamic-content .sb-ui-code-block-body code {
+      .dynamic-content .demo-code-block-body code {
         color: #d4d4d4;
         background: transparent;
       }
@@ -929,10 +929,10 @@
       .dynamic-content .variant-section > .component-description {
         margin-block-end: 1.5rem;
       }
-      .dynamic-content .variant-section .sb-ui-code-block {
+      .dynamic-content .variant-section .demo-code-block {
         margin-block-start: 2rem;
       }
-      .dynamic-content .sb-ui-code-block {
+      .dynamic-content .demo-code-block {
         background: #1e1e1e;
         color: #d4d4d4;
         border-radius: 8px;
@@ -2186,7 +2186,10 @@
               if (!css || !css.trim()) return css;
               return css.replace(/(^|})\s*([^@{}][^{]*?)\s*\{/g, function (m, before, sel) {
                 var trimmed = sel.trim();
-                if (!trimmed || /^(media|keyframes|import|supports|charset|font-face)/i.test(trimmed)) return m;
+                // Skip @rules (media, keyframes, etc.) and @layer declarations
+                if (!trimmed || /^(media|keyframes|import|supports|charset|font-face|layer)/i.test(trimmed)) return m;
+                // Skip design system classes (sb-ui-*) - no necesitan scoping porque no colisionan
+                if (/\.sb-ui-/.test(trimmed)) return m;
                 var prefixed = trimmed.split(',').map(function (s) { return '.dynamic-content ' + s.trim(); }).join(', ');
                 return before + ' ' + prefixed + ' {';
               });
@@ -2204,8 +2207,8 @@
               // Skip external URLs (fonts, CDN) and global design system CSS
               if (/^https?:\/\//i.test(href) || href.startsWith('//')) return;
               if (href.includes('/dist/') || href.includes('sb-ui-')) return;
-              // No inyectar components.css: tiene reset * y body que rompen todo el layout al cargar modal/ etc.
-              if (href.includes('components.css')) return;
+              // components.css se sanitiza igual que otros CSS externos
+              // (sanitizeCss remueve *, body, html, main, header, etc.)
 
               const resolvedHref = new URL(href, baseUrl).href;
               cssPromises.push(
