@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: seguros-bolivar | Theme: light
- * Generated: 2026-02-13T14:15:38.432Z
+ * Generated: 2026-02-13T22:01:09.814Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -7917,23 +7917,29 @@
  *
  * TIPOS:
  * - basic: Solo spinner circular con gradiente
- * - integrated: Spinner con doble círculo (verde + amarillo)
+ * - integrated: Spinner con 3 anillos concéntricos que rotan en sentidos alternos
+ *   * Anillo externo (verde oscuro): 90° - Rota en sentido horario
+ *   * Anillo medio (verde claro): 90° - Rota en sentido anti-horario (reverse)
+ *   * Anillo interno (amarillo): 120° - Rota en sentido horario
  * - icon: Spinner con icono centrado
  * - icon-text: Spinner con icono y texto
  *
  * TAMAÑO:
  * - Default: 40x40px (único tamaño, no hay small/medium/large)
+ * - Integrated: 80-150px
  *
  * ESTADOS DE PROGRESO:
  * - data-progress="0-100" (dinámico con CSS variables)
  * - Ejemplos: 25% (90deg), 50% (180deg), 75% (270deg), 100% (360deg)
+ * - En integrated: los arcos tienen longitud fija y rotan en sentidos alternos
  *
  * VELOCIDAD:
  * - Default: 1.2s
  * - --fast: 0.8s
  * - --slow: 2s
  *
- * Uso: <div class="sb-ui-spinner sb-ui-spinner--basic" data-progress="25"></div>
+ * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
+ * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated"><div class="sb-ui-spinner__inner-ring"></div></div>
  */
 /* ========================================
    KEYFRAMES - Fuera de @layer
@@ -8072,30 +8078,76 @@
    VARIANTS LAYER
    ======================================== */
 @layer variants {
-  /* INTEGRATED - 2 anillos concéntricos de progreso */
+  /* INTEGRATED - 3 anillos concéntricos de progreso */
   .sb-ui-spinner--integrated {
     --sb-ui-spinner-size: clamp(80px, 12vw, 150px);
     --sb-ui-spinner-duration: 2s;
+    
+    /* Desactivar la animación del contenedor padre */
+    animation: none;
 
-    /* Anillo externo: ::before de base con color sólido (sin gradiente) */
+    /* Anillo externo (verde oscuro #009056) - ::before de base */
+    /* Arco de 90deg - Rota en sentido horario (normal) */
     --sb-ui-spinner-gradient-start: var(--sb-ui-spinner-ring-outer);
     --sb-ui-spinner-gradient-end: var(--sb-ui-spinner-ring-outer);
-
-    /* Anillo interno (amarillo) - concéntrico al exterior */
+    
+    /* Longitudes fijas para cada anillo según diseño exacto de la imagen */
+    --sb-ui-spinner-outer-angle: 95deg;    /* Verde oscuro #009056 - la más larga */
+    --sb-ui-spinner-middle-angle: 100deg;  /* Amarillo #FFE16F - mediana */
+    --sb-ui-spinner-inner-angle: 90deg;    /* Verde claro #02D46F - la más corta */
   }
+
+    .sb-ui-spinner--integrated::before {
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        var(--sb-ui-spinner-ring-outer) 2deg,
+        var(--sb-ui-spinner-ring-outer) calc(var(--sb-ui-spinner-outer-angle) - 2deg),
+        transparent var(--sb-ui-spinner-outer-angle)
+      );
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
+      filter: blur(0.5px);
+    }
+
+    /* Anillo medio (amarillo #FFE16F) - ::after */
+    /* Arco de 80deg - Rota en sentido ANTI-horario (reverse) */
     .sb-ui-spinner--integrated::after {
       content: '';
       position: absolute;
-      inset: var(--sb-ui-spinner-integrated-inset);
+      inset: 14%;
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
-        var(--sb-ui-spinner-ring-inner) 0%,
-        var(--sb-ui-spinner-ring-inner) var(--sb-ui-spinner-angle),
-        transparent var(--sb-ui-spinner-angle)
+        transparent 0deg,
+        var(--sb-ui-spinner-ring-inner) 2deg,
+        var(--sb-ui-spinner-ring-inner) calc(var(--sb-ui-spinner-middle-angle) - 2deg),
+        transparent var(--sb-ui-spinner-middle-angle)
       );
       -webkit-mask: var(--sb-ui-spinner-mask);
       mask: var(--sb-ui-spinner-mask);
+      z-index: 2;
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
+      filter: blur(0.5px);
+    }
+
+    /* Anillo interno (verde claro #02D46F) - usando elemento HTML */
+    /* Arco de 155deg - Rota en sentido horario (normal) */
+    .sb-ui-spinner--integrated .sb-ui-spinner__inner-ring {
+      position: absolute;
+      inset: 28%;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        var(--sb-ui-spinner-ring-middle) 2deg,
+        var(--sb-ui-spinner-ring-middle) calc(var(--sb-ui-spinner-inner-angle) - 2deg),
+        transparent var(--sb-ui-spinner-inner-angle)
+      );
+      -webkit-mask: var(--sb-ui-spinner-mask);
+      mask: var(--sb-ui-spinner-mask);
+      z-index: 3;
+      animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite;
+      filter: blur(0.5px);
     }
 
   /* ICON & ICON-TEXT - Con track y fondo */

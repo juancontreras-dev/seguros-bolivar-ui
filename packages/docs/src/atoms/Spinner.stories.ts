@@ -204,12 +204,13 @@ export const Basic: Story = {
 /**
  * ## Tipo 2: INTEGRATED Spinner (3 Círculos)
  *
- * Spinner con 3 círculos concéntricos que rotan a velocidades diferentes:
- * - 🟢 Verde oscuro (#009056) - 2s
- * - 🟢 Verde claro (#02D46F) - 3s
- * - 🟡 Amarillo (#FFE16F) - 1.5s
+ * Spinner con 3 círculos concéntricos que rotan en sentidos alternos:
+ * - 🟢 Verde oscuro (#009056) - Anillo externo: 90° - Rota en sentido horario
+ * - 🟢 Verde claro (#02D46F) - Anillo medio: 80° - Rota en sentido anti-horario
+ * - 🟡 Amarillo (#FFE16F) - Anillo interno: 155° - Rota en sentido horario
  *
- * **Nota:** Este spinner NO usa progreso, rota continuamente.
+ * **Nota:** Los anillos externo e interno rotan en sentido horario, mientras que el anillo medio
+ * rota en sentido anti-horario, creando un efecto visual dinámico y fluido.
  */
 export const Integrated: Story = {
   render: () => html`
@@ -245,25 +246,46 @@ export const Integrated: Story = {
     </style>
 
     <div class="spinner-demo-container">
-      <h3 style="margin-bottom: 1.5rem; color: #038450;">Diferentes Velocidades</h3>
+      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner Integrado - Rotación Alterna</h3>
+      <p style="margin-bottom: 1.5rem; color: #666;">
+        Los anillos externo e interno rotan en sentido horario, mientras que el anillo medio rota en sentido anti-horario.
+      </p>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
-          <div class="spinner-demo-label">Normal<br />Velocidades default</div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
+          <div class="spinner-demo-label">Spinner<br />Integrado</div>
+        </div>
+      </div>
+
+      <h3 style="margin: 2.5rem 0 1.5rem; color: #038450;">Diferentes Velocidades</h3>
+      <div class="spinner-demo-grid">
+        <div class="spinner-demo-item">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
+          <div class="spinner-demo-label">Normal<br />Velocidad default</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
           <div class="spinner-demo-label">Fast<br />Velocidad x1.5</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
           <div class="spinner-demo-label">Slow<br />Velocidad /2</div>
         </div>
 
         <div class="spinner-demo-item">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--paused"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--paused">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
           <div class="spinner-demo-label">Paused<br />Animación detenida</div>
         </div>
       </div>
@@ -509,7 +531,9 @@ export const CasosDeUso: Story = {
       <div class="use-case">
         <h3>Loading Overlay - Integrated Spinner</h3>
         <div class="loading-overlay">
-          <div class="sb-ui-spinner sb-ui-spinner--integrated"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
           <div class="loading-text">Cargando contenido...</div>
         </div>
       </div>
