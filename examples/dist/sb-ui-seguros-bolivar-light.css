@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: seguros-bolivar | Theme: light
- * Generated: 2026-02-13T22:01:09.814Z
+ * Generated: 2026-02-16T23:18:30.965Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -1506,18 +1506,37 @@
     --sb-ui-accordion-bg-disabled-hover: var(--sb-ui-color-grayscale-L400, #fafafa);
     --sb-ui-accordion-bg-expanded: var(--sb-ui-color-grayscale-L300, #f5f5f5);
 
-    --sb-ui-accordion-text-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-    --sb-ui-accordion-text-hover: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-    --sb-ui-accordion-text-active: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-accordion-text-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-accordion-text-hover: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-accordion-text-active: var(--sb-ui-color-grayscale-D100, #757575);
     --sb-ui-accordion-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-accordion-text-disabled-hover: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-accordion-text-expanded: var(--sb-ui-color-grayscale-D100, #757575);
 
     --sb-ui-accordion-border-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
     --sb-ui-accordion-border-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
     --sb-ui-accordion-border-active: var(--sb-ui-color-grayscale-L100, #d0d0d0);
     --sb-ui-accordion-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
     --sb-ui-accordion-border-disabled-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    --sb-ui-accordion-border-expanded: var(--sb-ui-color-grayscale-L200, #e1e1e1);
     --sb-ui-accordion-border-focus: var(--sb-ui-color-primary-base, #038450);
+
+    /* Icon start color */
+    --sb-ui-accordion-icon-start-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+    --sb-ui-accordion-icon-start-color-expanded: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+
+    /* Action pill */
+    --sb-ui-accordion-action-bg: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-bg-hover: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-bg-active: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-text: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-accordion-action-text-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-accordion-action-text-active: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-accordion-action-border-radius: clamp(12px, 0.75rem + 0.3vw, 16px);
+    --sb-ui-accordion-action-icon-gap: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
+    --sb-ui-accordion-action-padding-block: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+    --sb-ui-accordion-action-padding-inline: clamp(0.875rem, 0.75rem + 0.5vw, 1.125rem);
+    --sb-ui-accordion-action-font-weight: 500;
 
     /* Espaciado - SIEMPRE con clamp() */
     --sb-ui-accordion-padding-inline: clamp(1rem, 0.8rem + 1vw, 1.5rem);
@@ -1650,6 +1669,7 @@
 
     /* Appearance */
     font-size: var(--sb-ui-accordion-icon-size);
+    color: var(--sb-ui-accordion-icon-start-color);
   }
 
   .sb-ui-accordion__label {
@@ -1666,7 +1686,46 @@
   .sb-ui-accordion__action {
     /* Layout */
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sb-ui-accordion-action-icon-gap);
+
+    /* Spacing */
+    padding-block: var(--sb-ui-accordion-action-padding-block);
+    padding-inline: var(--sb-ui-accordion-action-padding-inline);
+
+    /* Typography */
+    font-family: var(--sb-ui-accordion-font-family);
+    font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
+    font-weight: var(--sb-ui-accordion-action-font-weight);
+    line-height: 1.2;
+
+    /* Appearance */
+    background-color: var(--sb-ui-accordion-action-bg);
+    color: var(--sb-ui-accordion-action-text);
+    border: none;
+    border-radius: var(--sb-ui-accordion-action-border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    /* Hover state */
   }
+    .sb-ui-accordion__action:hover {
+      background-color: var(--sb-ui-accordion-action-bg-hover, var(--sb-ui-accordion-action-bg));
+      color: var(--sb-ui-accordion-action-text-hover, var(--sb-ui-accordion-action-text));
+    }
+
+    /* Active/Pressed state */
+    .sb-ui-accordion__action:active {
+      background-color: var(--sb-ui-accordion-action-bg-active, var(--sb-ui-accordion-action-bg));
+      color: var(--sb-ui-accordion-action-text-active, var(--sb-ui-accordion-action-text));
+    }
+
+    /* Ícono interno */
+    .sb-ui-accordion__action i {
+      font-size: 1em;
+      color: inherit;
+    }
 
   .sb-ui-accordion__icon-end {
     /* Layout */
@@ -1714,13 +1773,17 @@
   }
 
     .sb-ui-accordion[open] .sb-ui-accordion__header {
-      background-color: var(--sb-ui-accordion-bg-expanded, #F2F9F6);
-      color: var(--sb-ui-accordion-text-expanded, var(--sb-ui-accordion-text-color));
+      background-color: var(--sb-ui-accordion-bg-expanded);
+      color: var(--sb-ui-accordion-text-expanded);
+    }
+
+    .sb-ui-accordion[open] .sb-ui-accordion__icon-start {
+      color: var(--sb-ui-accordion-icon-start-color-expanded, var(--sb-ui-accordion-icon-start-color));
     }
 
     .sb-ui-accordion[open] .sb-ui-accordion__icon-end {
       transform: rotate(180deg);
-      color: var(--sb-ui-accordion-text-expanded, var(--sb-ui-accordion-text-color));
+      color: var(--sb-ui-accordion-text-expanded);
     }
 
     .sb-ui-accordion[open] .sb-ui-accordion__content {
@@ -1731,6 +1794,7 @@
   /* Disabled state */
   .sb-ui-accordion--disabled {
     pointer-events: none;
+    opacity: 0.5;
   }
 
     .sb-ui-accordion--disabled .sb-ui-accordion__header {
@@ -1747,11 +1811,11 @@
       background-color: var(
         --sb-ui-accordion-bg-disabled-hover,
         var(--sb-ui-accordion-bg-disabled)
-      ) !important;
+      );
       color: var(
         --sb-ui-accordion-text-disabled-hover,
         var(--sb-ui-accordion-text-disabled)
-      ) !important;
+      );
     }
 }
 /* ========================================
@@ -1759,15 +1823,17 @@
    ======================================== */
 @layer variants {
   .sb-ui-accordion--primary {
-    --sb-ui-accordion-border-color: var(--sb-ui-color-primary-base);
-    --sb-ui-accordion-border-hover: var(--sb-ui-color-primary-D100);
-    --sb-ui-accordion-border-active: var(--sb-ui-color-primary-D200);
+    --sb-ui-accordion-text-expanded: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-accordion-border-expanded: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-accordion-icon-start-color-expanded: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-accordion-bg-expanded: var(--sb-ui-color-primary-L400, #f2f9f6);
   }
 
   .sb-ui-accordion--secondary {
-    --sb-ui-accordion-border-color: var(--sb-ui-color-secondary-base);
-    --sb-ui-accordion-border-hover: var(--sb-ui-color-secondary-D100);
-    --sb-ui-accordion-border-active: var(--sb-ui-color-secondary-D200);
+    --sb-ui-accordion-text-expanded: var(--sb-ui-color-secondary-D100, #c68a00);
+    --sb-ui-accordion-border-expanded: var(--sb-ui-color-secondary-base, #f0b800);
+    --sb-ui-accordion-icon-start-color-expanded: var(--sb-ui-color-secondary-D100, #c68a00);
+    --sb-ui-accordion-bg-expanded: var(--sb-ui-color-secondary-L400, #fffcf0);
   }
 }
 /* ========================================
@@ -7907,7 +7973,7 @@
 
 
 
-@layer reset, tokens, base, variants, modifiers, states, utilities;
+@layer reset, tokens, base, variants, sizes, modifiers, states, utilities;
 /**
  * Spinner Component - Seguros Bolivar UI Design System
  * - CSS Nesting nativo con &
@@ -7921,12 +7987,13 @@
  *   * Anillo externo (verde oscuro): 90° - Rota en sentido horario
  *   * Anillo medio (verde claro): 90° - Rota en sentido anti-horario (reverse)
  *   * Anillo interno (amarillo): 120° - Rota en sentido horario
- * - icon: Spinner con icono centrado
+ * - icon: Spinner con icono centrado (tamaño único: MD 48-64px)
  * - icon-text: Spinner con icono y texto
  *
  * TAMAÑO:
- * - Default: 40x40px (único tamaño, no hay small/medium/large)
- * - Integrated: 80-150px
+ * - Basic: 40x40px (único tamaño)
+ * - Integrated: 80-150px (único tamaño)
+ * - Icon/Icon-Text: MD 48-64px (único tamaño)
  *
  * ESTADOS DE PROGRESO:
  * - data-progress="0-100" (dinámico con CSS variables)
@@ -7935,11 +8002,12 @@
  *
  * VELOCIDAD:
  * - Default: 1.2s
- * - --fast: 0.8s
- * - --slow: 2s
+ * - --fast: 0.6s (muy rápido)
+ * - --slow: 2.5s (muy lento)
  *
  * Uso básico: <div class="sb-ui-spinner" data-progress="25"></div>
  * Uso integrado: <div class="sb-ui-spinner sb-ui-spinner--integrated"><div class="sb-ui-spinner__inner-ring"></div></div>
+ * Uso icon: <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="50">...</div>
  */
 /* ========================================
    KEYFRAMES - Fuera de @layer
@@ -8049,10 +8117,11 @@
     }
 
     .sb-ui-spinner .sb-ui-spinner__icon {
-      inline-size: calc(var(--sb-ui-spinner-size) * 0.5);
-      block-size: calc(var(--sb-ui-spinner-size) * 0.5);
+      inline-size: calc(var(--sb-ui-spinner-size) * 0.6);
+      block-size: calc(var(--sb-ui-spinner-size) * 0.6);
       display: flex;
       place-items: center;
+      justify-content: center;
       color: var(--sb-ui-spinner-gradient-start);
     }
 
@@ -8060,18 +8129,23 @@
         inline-size: 100%;
         block-size: 100%;
       }
+      
+      :is(.sb-ui-spinner .sb-ui-spinner__icon) i {
+        font-size: 100%;
+        line-height: 1;
+      }
 
     .sb-ui-spinner .sb-ui-spinner__label {
       font-family: var(--sb-ui-spinner-font-family);
       font-size: calc(var(--sb-ui-spinner-size) * 0.2);
       font-weight: 600;
-      line-height: 1;
+      line-height: 1.2;
       color: var(--sb-ui-spinner-gradient-start);
       text-align: center;
       max-inline-size: calc(var(--sb-ui-spinner-size) * 0.8);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 }
 /* ========================================
@@ -8154,8 +8228,8 @@
   .sb-ui-spinner--icon,
   .sb-ui-spinner--icon-text {
     --sb-ui-spinner-size: var(--sb-ui-spinner-icon-size);
-    background: var(--sb-ui-spinner-bg-color);
-    box-shadow: var(--sb-ui-spinner-shadow);
+    --sb-ui-spinner-bg-color: #ffffff;
+    --sb-ui-spinner-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 
     /* Track - anillo gris completo detrás del arco de progreso */
   }
@@ -8175,6 +8249,50 @@
   .sb-ui-spinner--icon-text .sb-ui-spinner__content {
     animation: sb-ui-spinner-rotate var(--sb-ui-spinner-duration) linear infinite reverse;
     will-change: transform;
+    inset: 8%;
+    transform: none;
+    inline-size: auto;
+    block-size: auto;
+    border-radius: 50%;
+    background: var(--sb-ui-spinner-bg-color);
+    box-shadow: var(--sb-ui-spinner-shadow);
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    gap: 0.25rem;
+  }
+  
+  /* Ajustar tamaño del icono para variante --icon */
+  .sb-ui-spinner--icon .sb-ui-spinner__icon {
+    inline-size: 45%;
+    block-size: 45%;
+  }
+
+  /* Icono más pequeño para variante --icon-text para dar espacio al texto */
+  .sb-ui-spinner--icon-text .sb-ui-spinner__icon {
+    inline-size: 25%;
+    block-size: 25%;
+  }
+
+  /* Texto más grande con más espacio */
+  .sb-ui-spinner--icon-text .sb-ui-spinner__label {
+    font-size: calc(var(--sb-ui-spinner-size) * 0.12);
+    max-inline-size: calc(var(--sb-ui-spinner-size) * 0.6);
+  }
+}
+/* ========================================
+   SIZES LAYER - Icon spinner sizes
+   ======================================== */
+@layer sizes {
+  /* Tamaño único MD para spinner icon */
+  .sb-ui-spinner--icon {
+    --sb-ui-spinner-icon-size: clamp(48px, 6vw, 64px);
+  }
+
+  /* Tamaño más grande para spinner icon-text para acomodar texto en dos líneas */
+  .sb-ui-spinner--icon-text {
+    --sb-ui-spinner-icon-size: clamp(80px, 10vw, 120px);
   }
 }
 /* ========================================
@@ -8182,12 +8300,46 @@
    ======================================== */
 @layer modifiers {
   .sb-ui-spinner--fast {
-    --sb-ui-spinner-duration: 0.8s;
+    --sb-ui-spinner-duration: 0.6s;
+    animation-duration: 0.6s;
   }
 
+    .sb-ui-spinner--fast::before {
+      animation-duration: 0.6s;
+    }
+
+    .sb-ui-spinner--fast::after {
+      animation-duration: 0.6s;
+    }
+
+    .sb-ui-spinner--fast .sb-ui-spinner__inner-ring {
+      animation-duration: 0.6s;
+    }
+
+    .sb-ui-spinner--fast .sb-ui-spinner__content {
+      animation-duration: 0.6s;
+    }
+
   .sb-ui-spinner--slow {
-    --sb-ui-spinner-duration: 2s;
+    --sb-ui-spinner-duration: 2.5s;
+    animation-duration: 2.5s !important;
   }
+
+    .sb-ui-spinner--slow::before {
+      animation-duration: 2.5s !important;
+    }
+
+    .sb-ui-spinner--slow::after {
+      animation-duration: 2.5s !important;
+    }
+
+    .sb-ui-spinner--slow .sb-ui-spinner__inner-ring {
+      animation-duration: 2.5s !important;
+    }
+
+    .sb-ui-spinner--slow .sb-ui-spinner__content {
+      animation-duration: 2.5s !important;
+    }
 
   .sb-ui-spinner--paused {
     animation-play-state: paused;
@@ -8202,6 +8354,10 @@
     }
 
     .sb-ui-spinner--paused::after {
+      animation-play-state: paused;
+    }
+
+    .sb-ui-spinner--paused .sb-ui-spinner__inner-ring {
       animation-play-state: paused;
     }
 }
@@ -11080,19 +11236,32 @@
   --sb-ui-accordion-content-padding-block: 16px;
   --sb-ui-accordion-icon-size: 18px;
   --sb-ui-accordion-font-size: 14px;
+  
+  /* Action Button - altura mínima de 28px */
+  --sb-ui-accordion-action-padding-block: 6px; /* 6px × 2 = 12px + line-height ~16px = 28px total */
+  --sb-ui-accordion-action-padding-inline: 12px;
+  --sb-ui-accordion-action-icon-gap: 4px;
+  --sb-ui-accordion-action-border-radius: 14px;
 }
 
-/* MEDIUM - 48px total (default sin modificador) */
+/* MEDIUM - 48px total (default sin modificador) - Altura compacta */
 
 [data-brand='seguros-bolivar'] .sb-ui-accordion:not(.sb-ui-accordion--small):not(.sb-ui-accordion--large) {
-  --sb-ui-accordion-padding-inline: 24px;
-  --sb-ui-accordion-padding-block: 4px; /* 4px × 2 = 8px total */
-  --sb-ui-accordion-gap: 12px;
-  --sb-ui-accordion-min-block-size: 38px; /* 38px + 8px (padding) + 2px (border) = 48px total */
+  --sb-ui-accordion-padding-inline: 16px;
+  --sb-ui-accordion-padding-block: 8px; /* 8px × 2 = 16px total */
+  --sb-ui-accordion-gap: 12px; /* Mayor espacio entre elementos del header */
+  --sb-ui-accordion-min-block-size: 32px; /* Altura del header: 48px (según spec) */
   --sb-ui-accordion-content-padding-inline: 24px;
   --sb-ui-accordion-content-padding-block: 20px;
   --sb-ui-accordion-icon-size: 22px;
   --sb-ui-accordion-font-size: 16px;
+
+  /* Action Button - Más grande y con más padding */
+  --sb-ui-accordion-action-padding-block: 10px; /* 10px × 2 = 20px + texto ≈ 36-40px */
+  --sb-ui-accordion-action-padding-inline: 20px; /* Más ancho para separar del chevron */
+  --sb-ui-accordion-action-icon-gap: 8px;
+  --sb-ui-accordion-action-border-radius: 50px;
+  --sb-ui-accordion-action-font-weight: 700; /* Bold */
 }
 
 /* LARGE - 56px total */
@@ -11106,6 +11275,12 @@
   --sb-ui-accordion-content-padding-block: 24px;
   --sb-ui-accordion-icon-size: 26px;
   --sb-ui-accordion-font-size: 18px;
+  
+  /* Action Button - altura mínima de 36px */
+  --sb-ui-accordion-action-padding-block: 10px; /* 10px × 2 = 20px + line-height ~16px = 36px total */
+  --sb-ui-accordion-action-padding-inline: 20px;
+  --sb-ui-accordion-action-icon-gap: 8px;
+  --sb-ui-accordion-action-border-radius: 18px;
 }
 
 /* ============================================================================
@@ -11122,24 +11297,32 @@
   [data-brand='seguros-bolivar'] .sb-ui-accordion--primary {
     /* Background */
     --sb-ui-accordion-bg-color: var(--sb-ui-color-grayscale-white);
-    --sb-ui-accordion-bg-hover: #FAFAFA;
-    --sb-ui-accordion-bg-active: var(--sb-ui-color-secondary-L300);
+    --sb-ui-accordion-bg-hover: var(--sb-ui-color-grayscale-L400, #fafafa);
+    --sb-ui-accordion-bg-active: var(--sb-ui-color-grayscale-L400, #fafafa);
     --sb-ui-accordion-bg-disabled: var(--sb-ui-color-grayscale-L400);
-    --sb-ui-accordion-bg-expanded: #F2F9F6;
+    --sb-ui-accordion-bg-expanded: var(--sb-ui-color-primary-L400, #f2f9f6);
 
     /* Text */
-    --sb-ui-accordion-text-color: #757575;
-    --sb-ui-accordion-text-hover: #757575;
+    --sb-ui-accordion-text-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-accordion-text-hover: var(--sb-ui-color-grayscale-D100, #757575);
     --sb-ui-accordion-text-active: var(--sb-ui-color-primary-D100);
     --sb-ui-accordion-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-accordion-text-expanded: var(--sb-ui-color-primary-base);
 
     /* Border */
-    --sb-ui-accordion-border-color: #9B9B9B;
-    --sb-ui-accordion-border-hover: #757575;
+    --sb-ui-accordion-border-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-accordion-border-hover: var(--sb-ui-color-grayscale-D100, #757575);
     --sb-ui-accordion-border-active: var(--sb-ui-color-primary-D200);
     --sb-ui-accordion-border-disabled: var(--sb-ui-color-grayscale-L200);
     --sb-ui-accordion-border-expanded: var(--sb-ui-color-primary-base);
+
+    /* Action Button - Botón "Descargar" */
+    --sb-ui-accordion-action-bg: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-bg-hover: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-bg-active: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-accordion-action-text: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-accordion-action-text-hover: var(--sb-ui-color-primary-D100, #038450);
+    --sb-ui-accordion-action-text-active: var(--sb-ui-color-primary-D100, #038450);
   }
 
   /* ========================================
@@ -11149,21 +11332,21 @@
   [data-brand='seguros-bolivar'] .sb-ui-accordion--secondary {
     /* Background */
     --sb-ui-accordion-bg-color: var(--sb-ui-color-grayscale-white);
-    --sb-ui-accordion-bg-hover: #FAFAFA;
+    --sb-ui-accordion-bg-hover: var(--sb-ui-color-grayscale-L400, #fafafa);
     --sb-ui-accordion-bg-active: var(--sb-ui-color-secondary-L300);
     --sb-ui-accordion-bg-disabled: var(--sb-ui-color-grayscale-L400);
-    --sb-ui-accordion-bg-expanded: #F2F9F6;
+    --sb-ui-accordion-bg-expanded: var(--sb-ui-color-primary-L400, #f2f9f6);
 
     /* Text */
-    --sb-ui-accordion-text-color: #757575;
-    --sb-ui-accordion-text-hover: #757575;
+    --sb-ui-accordion-text-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-accordion-text-hover: var(--sb-ui-color-grayscale-D100, #757575);
     --sb-ui-accordion-text-active: var(--sb-ui-color-primary-D100);
     --sb-ui-accordion-text-disabled: var(--sb-ui-color-grayscale-base);
     --sb-ui-accordion-text-expanded: var(--sb-ui-color-primary-base);
 
     /* Border */
-    --sb-ui-accordion-border-color: #9B9B9B;
-    --sb-ui-accordion-border-hover: #757575;
+    --sb-ui-accordion-border-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    --sb-ui-accordion-border-hover: var(--sb-ui-color-grayscale-D100, #757575);
     --sb-ui-accordion-border-active: var(--sb-ui-color-secondary-D200);
     --sb-ui-accordion-border-disabled: var(--sb-ui-color-grayscale-L200);
     --sb-ui-accordion-border-expanded: var(--sb-ui-color-primary-base);
