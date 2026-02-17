@@ -16,15 +16,18 @@
 /* UI Components */
 @import './accordion.css';
 @import './alert.css';
+@import './avatar.css';
+@import './badge.css';
 @import './breadcrumb.css';
 @import './button.css';
 @import './calendar.css';
 @import './checkbox.css';
-@import './datepicker.css';
+@import './chip.css';
 @import './file-upload.css';
 @import './input.css';
 @import './radio.css';
 @import './select.css';
+@import './slider.css';
 @import './spinner.css';
 @import './table.css';
 @import './tabs.css';

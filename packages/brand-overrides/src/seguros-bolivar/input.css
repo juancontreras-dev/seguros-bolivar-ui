@@ -53,10 +53,10 @@
   padding: 8px 16px; /* Container padding del diseño */
 }
 
-/* Ícono derecho: 24px × 24px */
+/* Ícono derecho */
 [data-brand='seguros-bolivar'] .sb-ui-input-icon {
-  --sb-ui-input-icon-size: 24px; /* Tamaño según diseño */
-  --sb-ui-input-icon-inset-inline-end: 16px; /* Posición desde el borde */
+  --sb-ui-input-icon-size: 16px; /* Tamaño del ícono */
+  --sb-ui-input-icon-inset-inline-end: 12px; /* Posición desde el borde */
 }
 
 /* ============================================================================

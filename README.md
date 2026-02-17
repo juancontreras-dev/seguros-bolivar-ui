@@ -15,6 +15,7 @@
 - [Marcas Disponibles](#-marcas-disponibles)
 - [Componentes](#-componentes)
 - [Documentación](#-documentación)
+- [Figma Code Connect](#-figma-code-connect)
 - [Desarrollo](#-desarrollo)
 - [Contribuir](#-contribuir)
 
@@ -347,6 +348,52 @@ Visita nuestra página de ejemplos para ver todos los componentes en acción:
 - 📦 [NPM Package](https://www.npmjs.com/package/@seguros-bolivar/ui-bundle)
 - 🌐 [unpkg CDN](https://unpkg.com/@seguros-bolivar/ui-bundle@latest/)
 - 🚀 [jsDelivr CDN](https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/)
+
+---
+
+## 🎨 Figma Code Connect
+
+Este Design System está conectado con Figma para mantener sincronizados diseño y código.
+
+### Archivo de Diseño
+
+- 📐 [RELUX-DSV2-143-SEGUROS-BOLÍVAR-WEB 💚](https://www.figma.com/design/eIuLFSbsNQDepIGOXWLEiW/)
+- **File Key**: `eIuLFSbsNQDepIGOXWLEiW`
+
+### Componentes Mapeados
+
+| Categoría | Cantidad | Estado |
+|-----------|----------|--------|
+| **Atoms** | 25 componentes | ✅ 21 implementados / ❌ 4 pendientes |
+| **Molecules** | 6 componentes | ✅ 6 implementados |
+| **Organisms** | 0 componentes | 🚧 Por definir |
+
+### Componentes Pendientes de Implementación
+
+- ❌ **Avatar** → `packages/atoms/src/avatar.css`
+- ❌ **Badge** → `packages/atoms/src/badge.css`
+- ❌ **Chip** → `packages/atoms/src/chip.css`
+- ❌ **Handle Slider** → `packages/atoms/src/slider.css`
+
+### Guías de Code Connect
+
+Para conectar componentes de Figma con el código, consulta:
+
+- 📖 [FIGMA_CODE_CONNECT_GUIDE.md](FIGMA_CODE_CONNECT_GUIDE.md) - Guía completa paso a paso
+- ⚡ [QUICK_REFERENCE_CODE_CONNECT.md](QUICK_REFERENCE_CODE_CONNECT.md) - Referencia rápida
+- ✅ [CODE_CONNECT_CHECKLIST.md](CODE_CONNECT_CHECKLIST.md) - Checklist de progreso
+- 🔧 `figma-code-connect-mappings.json` - Configuración JSON
+- 🐍 `setup-code-connect.py` - Script de ayuda
+
+### Uso del Script de Setup
+
+```bash
+# Ver estadísticas y lista de componentes
+python3 setup-code-connect.py
+
+# Generar checklist markdown
+python3 setup-code-connect.py --generate-checklist
+```
 
 ---
 
