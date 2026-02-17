@@ -322,6 +322,10 @@
       color: var(--sb-ui-accordion-text-expanded);
     }
 
+    & .sb-ui-accordion__label {
+      font-weight: var(--sb-ui-accordion-font-weight);
+    }
+
     & .sb-ui-accordion__icon-start {
       color: var(--sb-ui-accordion-icon-start-color-expanded, var(--sb-ui-accordion-icon-start-color));
     }

@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: dark
- * Generated: 2026-02-16T23:18:21.789Z
+ * Generated: 2026-02-17T00:15:47.049Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -1777,6 +1777,10 @@
       color: var(--sb-ui-accordion-text-expanded);
     }
 
+    .sb-ui-accordion[open] .sb-ui-accordion__label {
+      font-weight: var(--sb-ui-accordion-font-weight);
+    }
+
     .sb-ui-accordion[open] .sb-ui-accordion__icon-start {
       color: var(--sb-ui-accordion-icon-start-color-expanded, var(--sb-ui-accordion-icon-start-color));
     }
@@ -1912,50 +1916,57 @@
  * - Logical Properties (RTL/LTR)
  * - clamp() para responsive fluido
  *
- * TIPOS:
- * - success, info, warning, error
+ * ============================================================================
+ * INDICE DE NAVEGACION
+ * ============================================================================
  *
- * VARIANTES:
- * - with-bg (default), no-bg, outlined, filled, minimal
- * - toast (positioned), inline, banner
- * - compact, dense, rounded
+ * 1. LAYERS DECLARATION
+ * 2. RESET LAYER
+ * 3. TOKENS LAYER - Variables CSS
+ * 4. BASE LAYER - Estilos base y sub-elementos
+ * 5. VARIANTS LAYER - success, info, warning, error + no-bg
+ * 6. SIZES LAYER - small, medium, large
+ * 7. MODIFIERS LAYER - compact, dense, full-width, animations
+ * 8. STATES LAYER - dismissible, loading
+ * 9. KEYFRAMES - fuera de @layer
+ * 10. UTILITIES LAYER - accesibilidad, responsive, print
  *
- * TAMANIOS:
- * - small, medium (default), large
+ * ============================================================================
+ * TIPOS DE ESTADO: success, info, warning, error
+ * MODIFICADORES: with-bg (default), no-bg
+ * TAMANIOS: small, medium (default), large
  *
- * Uso:
- * <div class="sb-ui-alert sb-ui-alert--success">
- *   <div class="sb-ui-alert__icon">...</div>
- *   <div class="sb-ui-alert__content">
- *     <div class="sb-ui-alert__title">Title</div>
- *     <div class="sb-ui-alert__message">Message</div>
+ * ============================================================================
+ * EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Alert Success con fondo -->
+ * <div class="sb-ui-alert sb-ui-alert--success" role="alert">
+ *   <div class="sb-ui-alert__icon" aria-hidden="true">
+ *     <i class="fa-solid fa-circle-check"></i>
  *   </div>
- *   <button class="sb-ui-alert__close" aria-label="Close alert">&times;</button>
+ *   <div class="sb-ui-alert__content">
+ *     <strong class="sb-ui-alert__title">Exito</strong>
+ *     <p class="sb-ui-alert__message">La operacion se completo correctamente.</p>
+ *   </div>
+ *   <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
+ *     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+ *   </button>
  * </div>
+ *
+ * <!-- Alert Error sin fondo -->
+ * <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
+ *   ...
+ * </div>
+ *
+ * ============================================================================
  */
+/* ========================================
+   LAYERS - Define prioridad de cascada
+   ======================================== */
 /* ========================================
    KEYFRAMES - Fuera de @layer
    ======================================== */
-@keyframes sb-ui-alert-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes sb-ui-alert-slide-out {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-}
 @keyframes sb-ui-alert-fade-in {
   from {
     opacity: 0;
@@ -2001,64 +2012,70 @@
    ======================================== */
 @layer tokens {
   .sb-ui-alert {
-    /* Colores - Background */
+    /* Colores - Background (con fondo por defecto) */
     --sb-ui-alert-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-bg-color-success: var(--sb-ui-color-feedback-success-L400, rgba(40, 167, 69, 0.1));
-    --sb-ui-alert-bg-color-info: var(--sb-ui-color-feedback-info-L400, rgba(0, 122, 204, 0.1));
-    --sb-ui-alert-bg-color-warning: var(--sb-ui-color-feedback-warning-L400, rgba(255, 193, 7, 0.1));
-    --sb-ui-alert-bg-color-error: var(--sb-ui-color-feedback-error-L400, rgba(220, 53, 69, 0.1));
+    --sb-ui-alert-bg-color-success: var(--sb-ui-color-feedback-success-L400, #e9f6ec);
+    --sb-ui-alert-bg-color-info: var(--sb-ui-color-feedback-info-L400, #e5f2ff);
+    --sb-ui-alert-bg-color-warning: var(--sb-ui-color-feedback-warning-L400, #fff9e5);
+    --sb-ui-alert-bg-color-error: var(--sb-ui-color-feedback-error-L400, #fbebec);
 
-    /* Colores - Border */
+    /* Colores - Border (linea izquierda + borde) */
     --sb-ui-alert-border-color: var(--sb-ui-color-grayscale-L200, #edeef0);
     --sb-ui-alert-border-color-success: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-alert-border-color-info: var(--sb-ui-color-feedback-info-base, #007acc);
-    --sb-ui-alert-border-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc107);
+    --sb-ui-alert-border-color-info: var(--sb-ui-color-feedback-info-base, #007eff);
+    --sb-ui-alert-border-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc100);
     --sb-ui-alert-border-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
 
-    /* Colores - Text */
-    --sb-ui-alert-text-color: var(--sb-ui-color-grayscale-D300, #404040);
-    --sb-ui-alert-text-color-success: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-alert-text-color-info: var(--sb-ui-color-feedback-info-base, #007acc);
-    --sb-ui-alert-text-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc107);
-    --sb-ui-alert-text-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
+    /* Colores - Text (siempre oscuro, NO cambia por variante) */
+    --sb-ui-alert-text-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-alert-title-color: var(--sb-ui-color-grayscale-D300, #333333);
 
-    /* Colores - Icon */
-    --sb-ui-alert-icon-color: var(--sb-ui-color-grayscale-base, #d9d9d9);
+    /* Colores - Icon (mismo que el borde del estado) */
+    --sb-ui-alert-icon-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-alert-icon-color-success: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-alert-icon-color-info: var(--sb-ui-color-feedback-info-base, #007acc);
-    --sb-ui-alert-icon-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc107);
+    --sb-ui-alert-icon-color-info: var(--sb-ui-color-feedback-info-base, #007eff);
+    --sb-ui-alert-icon-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc100);
     --sb-ui-alert-icon-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
 
-    /* Colores - Close */
-    --sb-ui-alert-close-color: var(--sb-ui-color-grayscale-base, #d9d9d9);
+    /* Colores - Close button */
+    --sb-ui-alert-close-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-alert-close-color-hover: var(--sb-ui-color-grayscale-D300, #404040);
 
-    /* Espaciado */
-    --sb-ui-alert-padding: 1rem;
-    --sb-ui-alert-gap: 0.75rem;
-    --sb-ui-alert-border-width: 1px;
-    --sb-ui-alert-border-inline-start-width: 4px;
+    /* Espaciado - con clamp() para responsive */
+    --sb-ui-alert-padding-block: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+    --sb-ui-alert-padding-inline-start: clamp(2rem, 1.8rem + 0.8vw, 2.5rem);
+    --sb-ui-alert-padding-inline-end: clamp(0.875rem, 0.7rem + 0.8vw, 1.25rem);
+    --sb-ui-alert-gap: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+    --sb-ui-alert-content-gap: 0.25rem;
 
-    /* Tipografia */
+    /* Bordes */
+    --sb-ui-alert-border-width: 0;
+    --sb-ui-alert-border-inline-start-width: 4px;
+    --sb-ui-alert-border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
+
+    /* Tipografia - con clamp() */
     --sb-ui-alert-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-    --sb-ui-alert-title-font-size: 0.875rem;
+    --sb-ui-alert-title-font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
     --sb-ui-alert-title-font-weight: 600;
-    --sb-ui-alert-message-font-size: 0.875rem;
+    --sb-ui-alert-message-font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
     --sb-ui-alert-message-font-weight: 400;
-    --sb-ui-alert-line-height: 1.25;
+    --sb-ui-alert-line-height: 1.4;
 
     /* Tamanios */
-    --sb-ui-alert-min-block-size: 3rem;
-    --sb-ui-alert-border-radius: 8px;
-    --sb-ui-alert-icon-size: 1.25rem;
-    --sb-ui-alert-close-size: 1.5rem;
+    --sb-ui-alert-min-block-size: clamp(2.5rem, 2.2rem + 1.5vw, 3rem);
+    --sb-ui-alert-icon-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+    --sb-ui-alert-close-size: clamp(1.25rem, 1.1rem + 0.3vw, 1.5rem);
 
-    /* Sombras */
-    --sb-ui-alert-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --sb-ui-alert-shadow-toast: 0 4px 16px rgba(0, 0, 0, 0.15);
+    /* Sombra - efecto de relieve sutil */
+    --sb-ui-alert-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
 
-    /* Transiciones */
-    --sb-ui-alert-transition: all 0.2s ease;
+    /* Transiciones - NO incluir outline */
+    --sb-ui-alert-transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
   }
 }
 /* ========================================
@@ -2066,48 +2083,77 @@
    ======================================== */
 @layer base {
   .sb-ui-alert {
+    /* Layout */
     display: flex;
     align-items: flex-start;
     gap: var(--sb-ui-alert-gap);
     position: relative;
+    inline-size: 100%;
+
+    /* Spacing - Logical Properties */
+    padding-block: var(--sb-ui-alert-padding-block);
+    padding-inline-start: var(--sb-ui-alert-padding-inline-start);
+    padding-inline-end: var(--sb-ui-alert-padding-inline-end);
+
+    /* Sizing */
     min-block-size: var(--sb-ui-alert-min-block-size);
-    padding: var(--sb-ui-alert-padding);
+
+    /* Appearance */
     background-color: var(--sb-ui-alert-bg-color);
-    border: var(--sb-ui-alert-border-width) solid var(--sb-ui-alert-border-color);
-    border-inline-start: var(--sb-ui-alert-border-inline-start-width) solid var(--sb-ui-alert-border-color);
+    border: none;
     border-radius: var(--sb-ui-alert-border-radius);
     box-shadow: var(--sb-ui-alert-shadow);
+
+    /* Typography */
     font-family: var(--sb-ui-alert-font-family);
     line-height: var(--sb-ui-alert-line-height);
     color: var(--sb-ui-alert-text-color);
-    transition: var(--sb-ui-alert-transition);
-  }
 
+    /* Transition */
+    transition: var(--sb-ui-alert-transition);
+
+    /* Barra de color izquierda (pseudo-elemento) */
+  }
+    .sb-ui-alert::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0.5rem;
+      inset-block-start: 50%;
+      transform: translateY(-50%);
+      inline-size: var(--sb-ui-alert-border-inline-start-width);
+      block-size: calc(100% - 1rem);
+      background-color: var(--sb-ui-alert-border-color);
+      border-radius: 2px;
+    }
+
+  /* Content wrapper */
   .sb-ui-alert__content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--sb-ui-alert-content-gap);
     min-inline-size: 0;
   }
 
+  /* Title */
   .sb-ui-alert__title {
     font-size: var(--sb-ui-alert-title-font-size);
     font-weight: var(--sb-ui-alert-title-font-weight);
     line-height: var(--sb-ui-alert-line-height);
+    color: var(--sb-ui-alert-title-color);
     margin: 0;
-    color: inherit;
   }
 
+  /* Message */
   .sb-ui-alert__message {
     font-size: var(--sb-ui-alert-message-font-size);
     font-weight: var(--sb-ui-alert-message-font-weight);
     line-height: var(--sb-ui-alert-line-height);
+    color: var(--sb-ui-alert-text-color);
     margin: 0;
-    color: inherit;
-    opacity: 0.8;
   }
 
+  /* Icon */
   .sb-ui-alert__icon {
     display: flex;
     align-items: center;
@@ -2120,6 +2166,7 @@
     margin-block-start: 0.125rem;
   }
 
+  /* Close button */
   .sb-ui-alert__close {
     display: flex;
     align-items: center;
@@ -2129,12 +2176,11 @@
     background: none;
     border: none;
     color: var(--sb-ui-alert-close-color);
-    font-size: 1.25rem;
-    font-weight: 400;
+    font-size: 1.125rem;
     line-height: 1;
     cursor: pointer;
     border-radius: 4px;
-    transition: var(--sb-ui-alert-transition);
+    transition: color 0.2s ease, background-color 0.2s ease;
     flex-shrink: 0;
     margin-block-start: -0.125rem;
     margin-inline-end: -0.25rem;
@@ -2147,42 +2193,11 @@
     }
 
     .sb-ui-alert__close:focus-visible {
-      outline: 2px solid var(--sb-ui-color-primary-base, #007acc);
+      outline: 3px solid var(--sb-ui-color-secondary-L100);
       outline-offset: 2px;
     }
 
-  .sb-ui-alert__icon--custom {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .sb-ui-alert-progress {
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    block-size: 3px;
-    background-color: var(--sb-ui-color-primary-base, #007acc);
-    border-radius: 0 0 var(--sb-ui-alert-border-radius) var(--sb-ui-alert-border-radius);
-    transition: inline-size linear;
-  }
-
-  .sb-ui-alert-progress--success {
-    background-color: var(--sb-ui-color-feedback-success-base, #28a745);
-  }
-
-  .sb-ui-alert-progress--info {
-    background-color: var(--sb-ui-color-feedback-info-base, #007acc);
-  }
-
-  .sb-ui-alert-progress--warning {
-    background-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-  }
-
-  .sb-ui-alert-progress--error {
-    background-color: var(--sb-ui-color-feedback-error-base, #dc3545);
-  }
-
+  /* Screen reader only */
   .sb-ui-alert-sr-only {
     position: absolute;
     inline-size: 1px;
@@ -2196,42 +2211,38 @@
   }
 }
 /* ========================================
-   VARIANTS LAYER - Alert types
+   VARIANTS LAYER - Tipos de alerta
    ======================================== */
 @layer variants {
-  /* Success */
+  /* ---- Success ---- */
   .sb-ui-alert--success {
     --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-success);
     --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-success);
-    --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-success);
     --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-success);
   }
 
-  /* Info */
+  /* ---- Info ---- */
   .sb-ui-alert--info {
     --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-info);
     --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-info);
-    --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-info);
     --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-info);
   }
 
-  /* Warning */
+  /* ---- Warning ---- */
   .sb-ui-alert--warning {
     --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-warning);
     --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-warning);
-    --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-warning);
     --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-warning);
   }
 
-  /* Error */
+  /* ---- Error ---- */
   .sb-ui-alert--error {
     --sb-ui-alert-bg-color: var(--sb-ui-alert-bg-color-error);
     --sb-ui-alert-border-color: var(--sb-ui-alert-border-color-error);
-    --sb-ui-alert-text-color: var(--sb-ui-alert-text-color-error);
     --sb-ui-alert-icon-color: var(--sb-ui-alert-icon-color-error);
   }
 
-  /* No background (bordered only) */
+  /* ---- No Background ---- */
   .sb-ui-alert--no-bg {
     --sb-ui-alert-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
     --sb-ui-alert-bg-color-success: var(--sb-ui-color-grayscale-white, #ffffff);
@@ -2240,106 +2251,9 @@
     --sb-ui-alert-bg-color-error: var(--sb-ui-color-grayscale-white, #ffffff);
   }
 
-  /* Without close icon */
+  /* ---- Sin close icon ---- */
   .sb-ui-alert--no-close .sb-ui-alert__close {
     display: none;
-  }
-
-  /* Minimal alert */
-  .sb-ui-alert--minimal {
-    --sb-ui-alert-border-width: 0;
-    --sb-ui-alert-border-inline-start-width: 0;
-    --sb-ui-alert-shadow: none;
-    --sb-ui-alert-shadow-toast: none;
-  }
-
-  /* Outlined alert */
-  .sb-ui-alert--outlined {
-    --sb-ui-alert-bg-color: transparent;
-    --sb-ui-alert-bg-color-success: transparent;
-    --sb-ui-alert-bg-color-info: transparent;
-    --sb-ui-alert-bg-color-warning: transparent;
-    --sb-ui-alert-bg-color-error: transparent;
-    --sb-ui-alert-border-width: 2px;
-  }
-
-  /* Filled alert */
-  .sb-ui-alert--filled {
-    --sb-ui-alert-bg-color-success: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-alert-bg-color-info: var(--sb-ui-color-feedback-info-base, #007acc);
-    --sb-ui-alert-bg-color-warning: var(--sb-ui-color-feedback-warning-base, #ffc107);
-    --sb-ui-alert-bg-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
-    --sb-ui-alert-text-color-success: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-text-color-info: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-text-color-warning: var(--sb-ui-color-grayscale-D300, #404040);
-    --sb-ui-alert-text-color-error: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-icon-color-success: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-icon-color-info: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-icon-color-warning: var(--sb-ui-color-grayscale-D300, #404040);
-    --sb-ui-alert-icon-color-error: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-alert-border-color: transparent;
-  }
-
-  /* Inline alert */
-  .sb-ui-alert--inline {
-    display: inline-flex;
-    inline-size: auto;
-    max-inline-size: none;
-  }
-
-  /* Banner alert */
-  .sb-ui-alert--banner {
-    border-radius: 0;
-    border-inline-start: none;
-    border-inline-end: none;
-    border-block-start: none;
-    margin: 0;
-  }
-
-  /* Toast positioning */
-  .sb-ui-alert--toast {
-    position: fixed;
-    inset-block-start: 1rem;
-    inset-inline-end: 1rem;
-    z-index: 1000;
-    max-inline-size: 400px;
-    min-inline-size: 300px;
-    box-shadow: var(--sb-ui-alert-shadow-toast);
-    animation: sb-ui-alert-slide-in 0.3s ease;
-  }
-
-  .sb-ui-alert--toast-top-left {
-    inset-block-start: 1rem;
-    inset-inline-start: 1rem;
-    inset-inline-end: auto;
-  }
-
-  .sb-ui-alert--toast-top-center {
-    inset-block-start: 1rem;
-    inset-inline-start: 50%;
-    inset-inline-end: auto;
-    transform: translateX(-50%);
-  }
-
-  .sb-ui-alert--toast-bottom-right {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-end: 1rem;
-  }
-
-  .sb-ui-alert--toast-bottom-left {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-start: 1rem;
-    inset-inline-end: auto;
-  }
-
-  .sb-ui-alert--toast-bottom-center {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-start: 50%;
-    inset-inline-end: auto;
-    transform: translateX(-50%);
   }
 }
 /* ========================================
@@ -2347,129 +2261,55 @@
    ======================================== */
 @layer sizes {
   .sb-ui-alert--small {
-    --sb-ui-alert-padding: 0.75rem;
-    --sb-ui-alert-min-block-size: 2.5rem;
-    --sb-ui-alert-title-font-size: 0.8125rem;
-    --sb-ui-alert-message-font-size: 0.8125rem;
-    --sb-ui-alert-icon-size: 1rem;
-    --sb-ui-alert-close-size: 1.25rem;
-    --sb-ui-alert-gap: 0.5rem;
+    --sb-ui-alert-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    --sb-ui-alert-padding-inline-start: clamp(1.5rem, 1.3rem + 0.5vw, 2rem);
+    --sb-ui-alert-padding-inline-end: clamp(0.625rem, 0.5rem + 0.5vw, 0.875rem);
+    --sb-ui-alert-min-block-size: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+    --sb-ui-alert-title-font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+    --sb-ui-alert-message-font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+    --sb-ui-alert-icon-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+    --sb-ui-alert-close-size: clamp(1rem, 0.9rem + 0.2vw, 1.25rem);
+    --sb-ui-alert-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
   }
 
   .sb-ui-alert--medium {
-    --sb-ui-alert-padding: 1rem;
-    --sb-ui-alert-min-block-size: 3rem;
-    --sb-ui-alert-title-font-size: 0.875rem;
-    --sb-ui-alert-message-font-size: 0.875rem;
-    --sb-ui-alert-icon-size: 1.25rem;
-    --sb-ui-alert-close-size: 1.5rem;
-    --sb-ui-alert-gap: 0.75rem;
+    /* Default - ya definido en tokens */
   }
 
   .sb-ui-alert--large {
-    --sb-ui-alert-padding: 1.25rem;
-    --sb-ui-alert-min-block-size: 3.5rem;
-    --sb-ui-alert-title-font-size: 1rem;
-    --sb-ui-alert-message-font-size: 0.9375rem;
-    --sb-ui-alert-icon-size: 1.5rem;
-    --sb-ui-alert-close-size: 1.75rem;
-    --sb-ui-alert-gap: 1rem;
+    --sb-ui-alert-padding-block: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
+    --sb-ui-alert-padding-inline-start: clamp(2.5rem, 2.2rem + 1vw, 3rem);
+    --sb-ui-alert-padding-inline-end: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
+    --sb-ui-alert-min-block-size: clamp(3rem, 2.6rem + 2vw, 3.5rem);
+    --sb-ui-alert-title-font-size: clamp(0.9375rem, 0.88rem + 0.2vw, 1rem);
+    --sb-ui-alert-message-font-size: clamp(0.875rem, 0.83rem + 0.18vw, 0.9375rem);
+    --sb-ui-alert-icon-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    --sb-ui-alert-close-size: clamp(1.5rem, 1.3rem + 0.5vw, 1.75rem);
+    --sb-ui-alert-gap: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
   }
 }
 /* ========================================
    MODIFIERS LAYER
    ======================================== */
 @layer modifiers {
-  .sb-ui-alert--rounded {
-    --sb-ui-alert-border-radius: 1rem;
-  }
-
   .sb-ui-alert--compact {
-    --sb-ui-alert-padding: 0.75rem;
-    --sb-ui-alert-gap: 0.5rem;
-  }
-
-  .sb-ui-alert--dense {
-    --sb-ui-alert-padding: 0.5rem;
-    --sb-ui-alert-gap: 0.375rem;
-    --sb-ui-alert-min-block-size: 2rem;
+    --sb-ui-alert-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    --sb-ui-alert-padding-inline-start: clamp(1.5rem, 1.3rem + 0.5vw, 2rem);
+    --sb-ui-alert-padding-inline-end: clamp(0.625rem, 0.5rem + 0.5vw, 0.875rem);
+    --sb-ui-alert-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
   }
 
   .sb-ui-alert--full-width {
     inline-size: 100%;
   }
 
-  /* Animation classes */
+  /* Animaciones */
   .sb-ui-alert--fade-in {
     animation: sb-ui-alert-fade-in 0.3s ease;
   }
 
   .sb-ui-alert--fade-out {
-    animation: sb-ui-alert-fade-out 0.3s ease;
-  }
-
-  .sb-ui-alert--slide-out {
-    animation: sb-ui-alert-slide-out 0.3s ease;
-  }
-
-  /* Alert container */
-  .sb-ui-alert-container {
-    position: fixed;
-    inset-block-start: 1rem;
-    inset-inline-end: 1rem;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-inline-size: 400px;
-    min-inline-size: 300px;
-  }
-
-  .sb-ui-alert-container--top-left {
-    inset-block-start: 1rem;
-    inset-inline-start: 1rem;
-    inset-inline-end: auto;
-  }
-
-  .sb-ui-alert-container--top-center {
-    inset-block-start: 1rem;
-    inset-inline-start: 50%;
-    inset-inline-end: auto;
-    transform: translateX(-50%);
-  }
-
-  .sb-ui-alert-container--bottom-right {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-end: 1rem;
-  }
-
-  .sb-ui-alert-container--bottom-left {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-start: 1rem;
-    inset-inline-end: auto;
-  }
-
-  .sb-ui-alert-container--bottom-center {
-    inset-block-start: auto;
-    inset-block-end: 1rem;
-    inset-inline-start: 50%;
-    inset-inline-end: auto;
-    transform: translateX(-50%);
-  }
-
-  /* Alert group */
-  .sb-ui-alert-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .sb-ui-alert-group--horizontal {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
+    animation: sb-ui-alert-fade-out 0.3s ease forwards;
   }
 }
 /* ========================================
@@ -2481,12 +2321,7 @@
   }
 
     .sb-ui-alert--dismissible:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .sb-ui-alert--dismissible:active {
-      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
   .sb-ui-alert--loading {
@@ -2503,7 +2338,7 @@
       block-size: 16px;
       margin-block-start: -8px;
       border: 2px solid var(--sb-ui-color-grayscale-L200, #edeef0);
-      border-block-start-color: var(--sb-ui-color-primary-base, #007acc);
+      border-block-start-color: var(--sb-ui-color-primary-base, #007eff);
       border-radius: 50%;
       animation: sb-ui-alert-spinner 1s linear infinite;
       z-index: 3;
@@ -2512,15 +2347,12 @@
     .sb-ui-alert--loading .sb-ui-alert__close {
       display: none;
     }
-
-  .sb-ui-alert:focus-within {
-    z-index: 1001;
-  }
 }
 /* ========================================
-   UTILITIES LAYER
+   UTILITIES LAYER (maxima prioridad)
    ======================================== */
 @layer utilities {
+  /* Alto contraste - OBLIGATORIO */
   @media (prefers-contrast: high) {
     .sb-ui-alert {
       --sb-ui-alert-border-width: 2px;
@@ -2528,74 +2360,35 @@
     }
   }
 
+  /* Reduccion de movimiento - OBLIGATORIO */
   @media (prefers-reduced-motion: reduce) {
     .sb-ui-alert {
       --sb-ui-alert-transition: none;
+      animation: none;
     }
 
-    .sb-ui-alert--toast,
     .sb-ui-alert--fade-in,
-    .sb-ui-alert--fade-out,
-    .sb-ui-alert--slide-out {
+    .sb-ui-alert--fade-out {
       animation: none;
     }
   }
 
-  @media (max-width: 640px) {
-    .sb-ui-alert--toast {
-      inset-block-start: 0.5rem;
-      inset-inline-end: 0.5rem;
-      inset-inline-start: 0.5rem;
-      max-inline-size: none;
-      min-inline-size: auto;
-    }
-
-    .sb-ui-alert-container {
-      inset-block-start: 0.5rem;
-      inset-inline-end: 0.5rem;
-      inset-inline-start: 0.5rem;
-      max-inline-size: none;
-      min-inline-size: auto;
-    }
-
-    .sb-ui-alert-group--horizontal {
-      flex-direction: column;
-    }
-  }
-
-  @media (min-width: 641px) {
-    .sb-ui-alert--toast {
-      max-inline-size: 450px;
-    }
-
-    .sb-ui-alert-container {
-      max-inline-size: 450px;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
+  /* Mobile responsive */
+  @media (max-inline-size: 640px) {
     .sb-ui-alert {
-      --sb-ui-alert-bg-color: var(--sb-ui-color-grayscale-D200, #6e6e6e);
-      --sb-ui-alert-text-color: var(--sb-ui-color-grayscale-L200, #edeef0);
-      --sb-ui-alert-border-color: var(--sb-ui-color-grayscale-D100, #4a4a4a);
-    }
-
-    .sb-ui-alert--no-bg {
-      --sb-ui-alert-bg-color: var(--sb-ui-color-grayscale-D200, #6e6e6e);
-    }
-
-    .sb-ui-alert__close:hover {
-      background-color: var(--sb-ui-color-grayscale-D100, rgba(74, 74, 74, 0.5));
+      --sb-ui-alert-padding-block: 0.625rem;
+      --sb-ui-alert-padding-inline-start: 1.75rem;
+      --sb-ui-alert-padding-inline-end: 0.75rem;
     }
   }
 
+  /* Print */
   @media print {
     .sb-ui-alert {
       background: transparent;
       color: black;
       border: 1px solid black;
       box-shadow: none;
-      position: static;
     }
 
     .sb-ui-alert__close {
