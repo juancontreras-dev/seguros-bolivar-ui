@@ -3,6 +3,7 @@
  * Web Components complejos con Lit
  */
 
+import './components/alert/alert-behavior.js';
 export { SbUiCalendar } from './components/Calendar.js';
 export { SbUiDatePicker } from './components/DatePicker.js';
 export { SbUiModal } from './components/modal/modal.js';

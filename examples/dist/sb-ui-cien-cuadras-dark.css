@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: dark
- * Generated: 2026-02-17T00:15:51.250Z
+ * Generated: 2026-02-17T15:09:20.418Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -1943,7 +1943,7 @@
  * <!-- Alert Success con fondo -->
  * <div class="sb-ui-alert sb-ui-alert--success" role="alert">
  *   <div class="sb-ui-alert__icon" aria-hidden="true">
- *     <i class="fa-solid fa-circle-check"></i>
+ *     <i class="fa-regular fa-circle-check"></i>
  *   </div>
  *   <div class="sb-ui-alert__content">
  *     <strong class="sb-ui-alert__title">Exito</strong>
@@ -1954,10 +1954,47 @@
  *   </button>
  * </div>
  *
+ * <!-- Alert Info con icono outline -->
+ * <div class="sb-ui-alert sb-ui-alert--info" role="alert">
+ *   <div class="sb-ui-alert__icon" aria-hidden="true">
+ *     <i class="fa-regular fa-circle-info"></i>
+ *   </div>
+ *   <div class="sb-ui-alert__content">
+ *     <strong class="sb-ui-alert__title">Informacion</strong>
+ *     <p class="sb-ui-alert__message">Este es un mensaje informativo.</p>
+ *   </div>
+ * </div>
+ *
+ * <!-- Alert Warning -->
+ * <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
+ *   <div class="sb-ui-alert__icon" aria-hidden="true">
+ *     <i class="fa-regular fa-triangle-exclamation"></i>
+ *   </div>
+ *   <div class="sb-ui-alert__content">
+ *     <strong class="sb-ui-alert__title">Advertencia</strong>
+ *     <p class="sb-ui-alert__message">Por favor revisa la informacion.</p>
+ *   </div>
+ * </div>
+ *
  * <!-- Alert Error sin fondo -->
  * <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
- *   ...
+ *   <div class="sb-ui-alert__icon" aria-hidden="true">
+ *     <i class="fa-regular fa-circle-xmark"></i>
+ *   </div>
+ *   <div class="sb-ui-alert__content">
+ *     <strong class="sb-ui-alert__title">Error</strong>
+ *     <p class="sb-ui-alert__message">Ocurrio un error en el proceso.</p>
+ *   </div>
  * </div>
+ *
+ * ============================================================================
+ * ICONOS: Se usan iconos fa-solid de Font Awesome 6 Free:
+ * - Success: fa-solid fa-circle-check
+ * - Info: fa-solid fa-circle-info
+ * - Warning: fa-solid fa-triangle-exclamation
+ * - Error: fa-solid fa-circle-xmark
+ * - Close button: fa-solid fa-xmark
+ * ============================================================================
  *
  * ============================================================================
  */

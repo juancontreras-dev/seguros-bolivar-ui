@@ -1,0 +1,24 @@
+/**
+ * ============================================================================
+ * SEGUROS BOLÍVAR - Alert Component Overrides
+ * ============================================================================
+ *
+ * Solo se sobreescriben las variables que difieren del base.
+ * El base ya usa --sb-ui-color-feedback-* que resuelven correctamente
+ * por brand/theme, por lo que los colores de variantes no necesitan override.
+ *
+ * ============================================================================
+ */
+
+@layer brand-overrides {
+  /* Ajustes estructurales de marca */
+  [data-brand='seguros-bolivar'] .sb-ui-alert {
+    --sb-ui-alert-border-radius: 8px;
+    --sb-ui-alert-shadow: var(--sb-ui-shadow-s, 0 2px 8px rgba(0, 0, 0, 0.08));
+  }
+
+  /* Focus outline del botón de cierre — verde primario (consistente con botones) */
+  [data-brand='seguros-bolivar'] .sb-ui-alert__close:focus-visible {
+    outline-color: var(--sb-ui-color-primary-L100, #66bc9a);
+  }
+}
