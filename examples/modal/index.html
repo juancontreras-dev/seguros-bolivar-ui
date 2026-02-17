@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modal Component - Seguros Bolívar UI Design System</title>
+    <title>Modal Component - Seguros Bolivar UI Design System</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,457 +15,803 @@
     <script type="module" src="../dist/sb-ui-components.min.js"></script>
 
     <style>
-      /* Botones de la página (Abrir Modal Simple, etc.): el reset * de components.css quita el padding */
-      .component-container .sb-ui-button,
-      .component-container button.sb-ui-button {
-        padding-left: clamp(0.8rem, 0.5rem + 1.5vw, 2rem) !important;
-        padding-right: clamp(0.8rem, 0.5rem + 1.5vw, 2rem) !important;
-        padding-top: clamp(0.4rem, 0.3rem + 0.5vw, 0.875rem) !important;
-        padding-bottom: clamp(0.4rem, 0.3rem + 0.5vw, 0.875rem) !important;
-        box-sizing: border-box;
-      }
-
-      /* Estilo página Modal: mismo patrón que Input */
+      /* ========================================
+         MODAL DEMO - Estilos de pagina
+         ======================================== */
       .modal-demo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin-block-end: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+        margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
       }
 
-      .modal-demo-item {
-        padding: 1.5rem;
+      .modal-demo-card {
+        padding-block: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+        padding-inline: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
         border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: 8px;
+        border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
         background: var(--sb-ui-color-grayscale-L400, #fafafa);
       }
 
-      .modal-demo-item h4 {
-        font-size: 0.875rem;
-        margin-block-end: 1rem;
+      .modal-demo-card__title {
+        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+        margin-block-end: clamp(0.5rem, 0.3rem + 0.3vw, 0.75rem);
         color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
 
-      .modal-demo-item p {
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-D100, #666);
-        margin-block-end: 0.75rem;
+      .modal-demo-card__description {
+        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
+        color: var(--sb-ui-color-grayscale-D100, #757575);
+        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        line-height: 1.5;
       }
 
-      /* Botones en el footer del modal: padding interno (components.css * resetea padding) */
-      sb-ui-modal div[slot="footer"] button,
-      sb-ui-modal div[slot="footer"] .sb-ui-button,
-      sb-ui-modal [slot="footer"] button,
-      sb-ui-modal [slot="footer"] .sb-ui-button {
-        min-inline-size: 100px;
+      /* Size badges */
+      .modal-size-badge {
+        display: inline-block;
+        padding-block: clamp(0.15rem, 0.1rem + 0.1vw, 0.2rem);
+        padding-inline: clamp(0.4rem, 0.3rem + 0.3vw, 0.6rem);
+        border-radius: 50px;
+        font-size: clamp(0.625rem, 0.6rem + 0.1vw, 0.6875rem);
         font-weight: 700;
-        font-size: 14px;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.75rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-inline-end: clamp(0.25rem, 0.2rem + 0.2vw, 0.5rem);
+      }
+
+      .modal-size-badge--small {
+        background: var(--sb-ui-color-secondary-L300, #fff6d4);
+        color: var(--sb-ui-color-primary-D200, #014d2a);
+      }
+
+      .modal-size-badge--medium {
+        background: var(--sb-ui-color-primary-L400, #f2f9f6);
+        color: var(--sb-ui-color-primary-D100, #038450);
+      }
+
+      .modal-size-badge--large {
+        background: var(--sb-ui-color-tertiary-L400, #e8f4f8);
+        color: var(--sb-ui-color-tertiary-D100, #0277a8);
+      }
+
+      /* Specs table */
+      .modal-spec-table {
+        inline-size: 100%;
+        border-collapse: collapse;
+        margin-block-end: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+      }
+
+      .modal-spec-table th,
+      .modal-spec-table td {
+        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
+        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+        text-align: start;
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      .modal-spec-table th {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D100, #757575);
+        text-transform: uppercase;
+        font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
+        letter-spacing: 0.5px;
+      }
+
+      .modal-spec-table code {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        padding-block: 0.1rem;
+        padding-inline: clamp(0.2rem, 0.15rem + 0.1vw, 0.35rem);
+        border-radius: 3px;
+        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
+      }
+
+      /* Content inside modals */
+      .modal-content-heading {
+        font-weight: 700;
+        margin-block-end: clamp(0.375rem, 0.25rem + 0.2vw, 0.5rem);
+        color: var(--sb-ui-color-grayscale-D400, #282828);
+        font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+      }
+
+      .modal-content-heading + .modal-content-heading {
+        margin-block-start: clamp(1rem, 0.75rem + 0.5vw, 1.25rem);
+      }
+
+      .modal-content-text {
+        line-height: 1.6;
+        margin-block-end: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+      }
+
+      .modal-content-text--emphasis {
+        font-weight: 600;
+        margin-block-start: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+      }
+
+      /* Form layout inside modals */
+      .modal-form {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+      }
+
+      .modal-form__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+      }
+
+      .modal-form__field {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.25rem, 0.2rem + 0.1vw, 0.375rem);
+      }
+
+      .modal-form__label {
+        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+      }
+
+      .modal-form__input,
+      .modal-form__select,
+      .modal-form__textarea {
+        inline-size: 100%;
+        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
+        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: clamp(4px, 0.3rem + 0.2vw, 6px);
+        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
+        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+        background: var(--sb-ui-color-grayscale-white, #fff);
+        color: var(--sb-ui-color-grayscale-D400, #282828);
         box-sizing: border-box;
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--tertiary,
-      sb-ui-modal [slot="footer"] .sb-ui-button--secondary {
-        background-color: transparent !important;
-        color: #038450 !important;
-        border: 2px solid #038450 !important;
+      .modal-form__textarea {
+        resize: vertical;
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--tertiary:hover,
-      sb-ui-modal [slot="footer"] .sb-ui-button--secondary:hover {
-        background-color: #F2F9F6 !important;
-        color: #038450 !important;
-        border-color: #038450 !important;
+      /* Stats grid inside modals */
+      .modal-stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--tertiary:active,
-      sb-ui-modal [slot="footer"] .sb-ui-button--secondary:active {
-        background-color: #CCE9DD !important;
-        color: #038450 !important;
-        border-color: #038450 !important;
+      .modal-stat-card {
+        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+        padding-block: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        padding-inline: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--primary {
-        background-color: #FFE16F !important;
-        color: #038450 !important;
-        border: 2px solid #FFE16F !important;
+      .modal-stat-card__label {
+        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
+        text-transform: uppercase;
+        color: var(--sb-ui-color-grayscale-D100, #757575);
+        font-weight: 600;
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--primary:hover {
-        background-color: #FFD54F !important;
-        color: #038450 !important;
-        border-color: #FFD54F !important;
+      .modal-stat-card__value {
+        font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+        font-weight: 700;
+        margin-block-start: clamp(0.15rem, 0.1rem + 0.1vw, 0.25rem);
+        color: var(--sb-ui-color-primary-D100, #038450);
       }
 
-      sb-ui-modal [slot="footer"] .sb-ui-button--primary:active {
-        background-color: #FFC107 !important;
-        color: #038450 !important;
-        border-color: #FFC107 !important;
+      /* List inside modals */
+      .modal-content-list {
+        margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+        padding-inline-start: clamp(1rem, 0.75rem + 0.5vw, 1.25rem);
+        line-height: 1.8;
       }
 
-      .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-inline-end: 0.5rem; }
-      .badge--success { background: #d4edda; color: #155724; }
-      .badge--info { background: #d1ecf1; color: #0c5460; }
-      .badge--warning { background: #fff3cd; color: #856404; }
-      .badge--error { background: #f8d7da; color: #721c24; }
-      .badge--primary { background: var(--sb-ui-color-primary-L400); color: var(--sb-ui-color-primary-D200); }
+      /* Data table inside modals */
+      .modal-data-table {
+        inline-size: 100%;
+        border-collapse: collapse;
+        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
+        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+      }
 
-      @media (max-width: 768px) {
-        .modal-demo-grid { grid-template-columns: 1fr; }
+      .modal-data-table thead tr {
+        background: var(--sb-ui-color-primary-base, #038450);
+        color: var(--sb-ui-color-grayscale-white, #fff);
+      }
+
+      .modal-data-table th,
+      .modal-data-table td {
+        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.625rem);
+        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+        text-align: start;
+        font-weight: 600;
+      }
+
+      .modal-data-table td {
+        font-weight: 400;
+      }
+
+      .modal-data-table tbody tr {
+        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+      }
+
+      .modal-data-table .modal-data-table__align-end {
+        text-align: end;
+      }
+
+      .modal-data-table .modal-data-table__align-center {
+        text-align: center;
+      }
+
+      /* Status badge inside table */
+      .modal-status-badge {
+        display: inline-block;
+        padding-block: clamp(0.1rem, 0.05rem + 0.1vw, 0.15rem);
+        padding-inline: clamp(0.35rem, 0.25rem + 0.2vw, 0.5rem);
+        border-radius: 50px;
+        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
+        font-weight: 600;
+      }
+
+      .modal-status-badge--active {
+        background: var(--sb-ui-color-feedback-success-L400, #d4edda);
+        color: var(--sb-ui-color-feedback-success-D200, #155724);
+      }
+
+      .modal-status-badge--warning {
+        background: var(--sb-ui-color-feedback-warning-L400, #fff3cd);
+        color: var(--sb-ui-color-feedback-warning-D200, #856404);
+      }
+
+      .modal-content-note {
+        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+        color: var(--sb-ui-color-grayscale-D100, #757575);
+      }
+
+      @media (max-inline-size: 640px) {
+        .modal-demo-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .modal-form__row {
+          grid-template-columns: 1fr;
+        }
+
+        .modal-stats-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body data-brand="seguros-bolivar">
     <main class="component-container">
+      <!-- ========================================
+           HEADER
+           ======================================== -->
       <header class="component-header">
         <h2 class="variant-title">
           <span class="component-title-icon">
             <i class="fa-solid fa-window-maximize" aria-hidden="true"></i>
           </span>
-          <span>Modales</span>
+          <span>Componentes Modales</span>
         </h2>
         <p class="component-description">
-          Componente de ventanas modales interactivas. Web Component con slots personalizables,
-          cierre por ESC o backdrop, animaciones suaves y bloqueo de scroll automático.
+          Ventana modal con 3 variantes de tamano (Small, Medium, Large).
+          Web Component con slots personalizables, cierre por ESC o backdrop,
+          animaciones y bloqueo de scroll. Contenido flexible: texto, formularios, grids.
         </p>
       </header>
 
+      <!-- ========================================
+           SPECS TABLE
+           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Ejemplos Básicos</h3>
-        <div class="modal-demo-grid">
-          <div class="modal-demo-item">
-            <h4>Modal Simple</h4>
-            <p>Modal básico con título y contenido</p>
-            <button class="sb-ui-button sb-ui-button--primary" onclick="openModal('simple')">Abrir Modal Simple</button>
-          </div>
-          <div class="modal-demo-item">
-            <h4>Modal con Footer</h4>
-            <p>Modal con botones de acción en el footer</p>
-            <button class="sb-ui-button sb-ui-button--primary" onclick="openModal('with-footer')">Abrir con Footer</button>
-          </div>
-          <div class="modal-demo-item">
-            <h4>Modal Grande</h4>
-            <p>Modal con contenido extenso y scroll</p>
-            <button class="sb-ui-button sb-ui-button--primary" onclick="openModal('large')">Abrir Modal Grande</button>
-          </div>
-        </div>
+        <h3 class="variant-title">Especificaciones de Tamano</h3>
+        <table class="modal-spec-table">
+          <thead>
+            <tr>
+              <th>Variante</th>
+              <th>max-inline-size</th>
+              <th>max-block-size</th>
+              <th>Atributo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="modal-size-badge modal-size-badge--small">Small</span></td>
+              <td><code>min(464px, 90%)</code></td>
+              <td><code>45dvb</code></td>
+              <td><code>size="small"</code></td>
+            </tr>
+            <tr>
+              <td><span class="modal-size-badge modal-size-badge--medium">Medium</span></td>
+              <td><code>min(716px, 90%)</code></td>
+              <td><code>82dvb</code></td>
+              <td><code>size="medium"</code></td>
+            </tr>
+            <tr>
+              <td><span class="modal-size-badge modal-size-badge--large">Large</span></td>
+              <td><code>min(928px, 90%)</code></td>
+              <td><code>82dvb</code></td>
+              <td><code>size="large"</code></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
+      <!-- ========================================
+           SMALL MODAL
+           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Opciones de Configuración</h3>
+        <h3 class="variant-title">
+          <span class="modal-size-badge modal-size-badge--small">Small</span>
+          Modal Pequeno
+        </h3>
+        <p class="demo-description">
+          Ideal para confirmaciones, alertas breves o acciones simples. Ancho objetivo ~464px.
+        </p>
+
         <div class="modal-demo-grid">
-          <div class="modal-demo-item">
-            <h4>Sin Botón Cerrar</h4>
-            <p>Modal que solo se cierra con botón de acción</p>
-            <button class="sb-ui-button sb-ui-button--secondary" onclick="openModal('no-close-button')">Abrir Modal</button>
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Confirmacion</h4>
+            <p class="modal-demo-card__description">Modal de confirmacion con texto breve y dos acciones.</p>
+            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('small-confirm')">
+              <i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Abrir Small
+            </button>
           </div>
-          <div class="modal-demo-item">
-            <h4>No Cerrar con Backdrop</h4>
-            <p>Modal que no se cierra al hacer clic fuera</p>
-            <button class="sb-ui-button sb-ui-button--secondary" onclick="openModal('no-backdrop-close')">Abrir Modal</button>
-          </div>
-          <div class="modal-demo-item">
-            <h4>Header Personalizado</h4>
-            <p>Modal con slot de header customizado</p>
-            <button class="sb-ui-button sb-ui-button--secondary" onclick="openModal('custom-header')">Abrir Modal</button>
+
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Alerta informativa</h4>
+            <p class="modal-demo-card__description">Modal sin footer, cierre por X o ESC unicamente.</p>
+            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('small-info')">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Abrir Info
+            </button>
           </div>
         </div>
-      </section>
 
-      <section class="variant-section">
-        <h3 class="variant-title">Casos de Uso Comunes</h3>
-        <div class="modal-demo-grid">
-          <div class="modal-demo-item">
-            <h4>Confirmación</h4>
-            <p>Modal de confirmación de acción</p>
-            <button class="sb-ui-button sb-ui-button--tertiary" onclick="openModal('confirmation')">Eliminar Item</button>
-          </div>
-          <div class="modal-demo-item">
-            <h4>Formulario</h4>
-            <p>Modal con formulario completo</p>
-            <button class="sb-ui-button sb-ui-button--tertiary" onclick="openModal('form')">Nuevo Usuario</button>
-          </div>
-          <div class="modal-demo-item">
-            <h4>Información</h4>
-            <p>Modal informativo</p>
-            <button class="sb-ui-button sb-ui-button--tertiary" onclick="openModal('info')">Ver Detalles</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="variant-section">
-        <h3 class="variant-title">Código de Ejemplo</h3>
-        <div class="modal-demo-item" style="margin-block-end: 1.5rem;">
-          <h4>Uso Básico</h4>
-          <div class="demo-code-block">
-            <div class="demo-code-block-header">
-              <span class="demo-code-block-title">Ejemplo de uso</span>
+        <!-- Code block -->
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Modal Small - Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
               <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             </div>
-            <pre class="demo-code-block-body"><code>
-&lt;!-- HTML --&gt;
-&lt;button onclick="document.getElementById('myModal').openModal()"&gt;Abrir Modal&lt;/button&gt;
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="mi-modal-small" title="Confirmar accion" size="small"&gt;
+  &lt;p&gt;Cupcake ipsum dolor sit amet apple pie. Dessert sesame
+  snaps donut sesame snaps tart I love wafer I love.&lt;/p&gt;
 
-&lt;sb-ui-modal id="myModal" title="Mi Modal"&gt;
-  &lt;p&gt;Contenido del modal&lt;/p&gt;
   &lt;div slot="footer"&gt;
-    &lt;button class="sb-ui-button sb-ui-button--tertiary" onclick="document.getElementById('myModal').close()"&gt;Cancelar&lt;/button&gt;
-    &lt;button class="sb-ui-button sb-ui-button--primary" onclick="document.getElementById('myModal').close()"&gt;Aceptar&lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('mi-modal-small').close()"&gt;
+      Cancelar
+    &lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('mi-modal-small').close()"&gt;
+      Confirmar
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sb-ui-modal&gt;
+
+&lt;!-- Abrir el modal --&gt;
+&lt;button onclick="document.getElementById('mi-modal-small').openModal()"&gt;
+  Abrir Modal
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           MEDIUM MODAL
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">
+          <span class="modal-size-badge modal-size-badge--medium">Medium</span>
+          Modal Mediano
+        </h3>
+        <p class="demo-description">
+          Ideal para formularios, detalles de producto o contenido intermedio. Ancho objetivo ~716px.
+          Este es el tamano por defecto si no se especifica el atributo <code class="demo-code">size</code>.
+        </p>
+
+        <div class="modal-demo-grid">
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Formulario</h4>
+            <p class="modal-demo-card__description">Modal con formulario de contacto completo y validacion.</p>
+            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('medium-form')">
+              <i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Abrir Formulario
+            </button>
+          </div>
+
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Detalles de producto</h4>
+            <p class="modal-demo-card__description">Modal con texto largo, datos y acciones.</p>
+            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('medium-detail')">
+              <i class="fa-solid fa-eye" aria-hidden="true"></i> Ver Detalles
+            </button>
+          </div>
+
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Sin cierre por backdrop</h4>
+            <p class="modal-demo-card__description">Modal persistente que solo se cierra con botones.</p>
+            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('medium-persistent')">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i> Modal Persistente
+            </button>
+          </div>
+        </div>
+
+        <!-- Code block -->
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Modal Medium - Ejemplo con formulario</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="mi-modal-medium" title="Nuevo contacto" size="medium"&gt;
+  &lt;form class="modal-form"&gt;
+    &lt;div class="modal-form__row"&gt;
+      &lt;div class="modal-form__field"&gt;
+        &lt;label class="modal-form__label"&gt;Nombre&lt;/label&gt;
+        &lt;input type="text" class="modal-form__input" placeholder="Juan" /&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-form__field"&gt;
+        &lt;label class="modal-form__label"&gt;Apellido&lt;/label&gt;
+        &lt;input type="text" class="modal-form__input" placeholder="Perez" /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-form__field"&gt;
+      &lt;label class="modal-form__label"&gt;Correo electronico&lt;/label&gt;
+      &lt;input type="email" class="modal-form__input" placeholder="juan@ejemplo.com" /&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-form__field"&gt;
+      &lt;label class="modal-form__label"&gt;Mensaje&lt;/label&gt;
+      &lt;textarea class="modal-form__textarea" rows="3" placeholder="Escribe tu mensaje..."&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+
+  &lt;div slot="footer"&gt;
+    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('mi-modal-medium').close()"&gt;
+      Cancelar
+    &lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"&gt;
+      Enviar
+    &lt;/button&gt;
   &lt;/div&gt;
 &lt;/sb-ui-modal&gt;</code></pre>
-          </div>
-        </div>
-
-        <div class="modal-demo-item">
-          <h4>Con JavaScript</h4>
-          <div class="demo-code-block">
-            <div class="demo-code-block-header">
-              <span class="demo-code-block-title">Ejemplo de uso</span>
-              <span class="demo-code-block-badge">JavaScript</span>
-            </div>
-            <pre class="demo-code-block-body"><code>const modal = document.getElementById('myModal');
-modal.openModal();
-modal.close();
-modal.addEventListener('sb-ui-modal-open', () => console.log('Modal abierto'));
-modal.addEventListener('sb-ui-modal-close', () => console.log('Modal cerrado'));</code></pre>
-          </div>
         </div>
       </section>
 
+      <!-- ========================================
+           LARGE MODAL
+           ======================================== -->
       <section class="variant-section">
-        <h3 class="variant-title">Características</h3>
+        <h3 class="variant-title">
+          <span class="modal-size-badge modal-size-badge--large">Large</span>
+          Modal Grande
+        </h3>
+        <p class="demo-description">
+          Ideal para terminos y condiciones, contenido extenso con scroll o paneles complejos. Ancho objetivo ~928px.
+        </p>
+
         <div class="modal-demo-grid">
-          <div class="modal-demo-item">
-            <h4>Theming</h4>
-            <p>Compatible con todas las marcas del Design System</p>
-            <span class="badge badge--primary">White Label</span>
-            <span class="badge badge--primary">Jelpit</span>
-            <span class="badge badge--primary">Davivienda</span>
-            <span class="badge badge--primary">Cien Cuadras</span>
-            <span class="badge badge--primary">Doctor Aki</span>
-            <span class="badge badge--primary">Seguros Bolívar</span>
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Terminos y condiciones</h4>
+            <p class="modal-demo-card__description">Modal con contenido extenso que activa scroll vertical en el body.</p>
+            <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('large-terms')">
+              <i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Abrir Grande
+            </button>
           </div>
-          <div class="modal-demo-item">
-            <h4>Accesibilidad</h4>
-            <p>ARIA roles y gestión de foco</p>
-            <span class="badge badge--success">ARIA Modal</span>
-            <span class="badge badge--success">Role Dialog</span>
-            <span class="badge badge--success">ESC Key</span>
-            <span class="badge badge--success">Focus Trap</span>
+
+          <div class="modal-demo-card">
+            <h4 class="modal-demo-card__title">Panel de datos</h4>
+            <p class="modal-demo-card__description">Modal con tabla de datos y multiples secciones.</p>
+            <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" onclick="openModal('large-data')">
+              <i class="fa-solid fa-table" aria-hidden="true"></i> Ver Datos
+            </button>
           </div>
-          <div class="modal-demo-item">
-            <h4>Slots</h4>
-            <p>Personalizable con slots</p>
-            <span class="badge badge--info">Header Slot</span>
-            <span class="badge badge--info">Default Slot</span>
-            <span class="badge badge--info">Footer Slot</span>
+        </div>
+
+        <!-- Code block -->
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Modal Large - Ejemplo con contenido extenso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+            </div>
           </div>
-          <div class="modal-demo-item">
-            <h4>Funcionalidades</h4>
-            <p>Características avanzadas</p>
-            <span class="badge badge--warning">Backdrop Close</span>
-            <span class="badge badge--warning">Scroll Lock</span>
-            <span class="badge badge--warning">Animaciones</span>
-            <span class="badge badge--warning">Eventos Custom</span>
-          </div>
+          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="mi-modal-large" title="Terminos y condiciones" size="large"&gt;
+  &lt;h4 class="modal-content-heading"&gt;1. Aceptacion del servicio&lt;/h4&gt;
+  &lt;p class="modal-content-text"&gt;Cupcake ipsum dolor sit amet apple pie.
+  Dessert sesame snaps donut sesame snaps tart I love wafer I love.
+  Pie oat cake gingerbread chocolate bar apple pie tart danish.&lt;/p&gt;
+
+  &lt;h4 class="modal-content-heading"&gt;2. Modificaciones&lt;/h4&gt;
+  &lt;p class="modal-content-text"&gt;Sweet roll muffin cotton candy cake macaroon
+  I love sesame snaps lemon drops chocolate bar. Oat cake souffle
+  gingerbread candy dessert lollipop.&lt;/p&gt;
+
+  &lt;div slot="footer"&gt;
+    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('mi-modal-large').close()"&gt;
+      Rechazar
+    &lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('mi-modal-large').close()"&gt;
+      Aceptar terminos
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/sb-ui-modal&gt;</code></pre>
         </div>
       </section>
 
-      <!-- Modales (conservados para openModal()) -->
-      <!-- Modal Simple -->
-      <sb-ui-modal id="modal-simple" title="Modal Simple">
-      <p>Este es un modal simple con contenido básico.</p>
-      <p>Puedes cerrarlo haciendo clic en la X, presionando ESC, o haciendo clic fuera del modal.</p>
-    </sb-ui-modal>
+      <!-- ========================================
+           API / PROPIEDADES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">API del Componente</h3>
 
-    <!-- Modal con Footer -->
-    <sb-ui-modal id="modal-with-footer" title="Modal con Footer">
-      <p>Este modal incluye botones de acción en el footer.</p>
-      <p>Es ideal para formularios o acciones que requieren confirmación.</p>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" 
-                onclick="document.getElementById('modal-with-footer').close()">
-          Cancelar
-        </button>
-        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
-                onclick="document.getElementById('modal-with-footer').close()">
-          Aceptar
-        </button>
-      </div>
-    </sb-ui-modal>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Propiedades y metodos</span>
+            <span class="demo-code-block-badge">JS</span>
+          </div>
+          <pre class="demo-code-block-body"><code>// Propiedades (atributos HTML)
+// title             - String  - Titulo del modal
+// size              - String  - 'small' | 'medium' | 'large' (default: 'medium')
+// open              - Boolean - Estado abierto/cerrado
+// close-on-backdrop - Boolean - Cerrar al hacer clic fuera (default: true)
+// show-close-button - Boolean - Mostrar boton X (default: true)
 
-    <!-- Modal Grande -->
-    <sb-ui-modal id="modal-large" title="Modal con Contenido Extenso">
-      <h3>Términos y Condiciones</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <h4>1. Aceptación de los Términos</h4>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <h4>2. Modificaciones</h4>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-      <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      <h4>3. Privacidad</h4>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-      <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-                onclick="document.getElementById('modal-large').close()">
-          Rechazar
-        </button>
-        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
-                onclick="document.getElementById('modal-large').close()">
-          Aceptar Términos
-        </button>
-      </div>
-    </sb-ui-modal>
+// Metodos
+const modal = document.getElementById('mi-modal');
+modal.openModal();  // Abre el modal
+modal.close();      // Cierra el modal
 
-    <!-- Modal sin botón cerrar -->
-    <sb-ui-modal id="modal-no-close-button" title="Modal sin Botón X" show-close-button="false">
-      <p>Este modal no tiene botón de cerrar (X) en el header.</p>
-      <p>Debes usar uno de los botones de acción para cerrarlo.</p>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
-                onclick="document.getElementById('modal-no-close-button').close()">
-          Entendido
-        </button>
-      </div>
-    </sb-ui-modal>
+// Eventos
+modal.addEventListener('sb-ui-modal-open', () =&gt; console.log('Abierto'));
+modal.addEventListener('sb-ui-modal-close', () =&gt; console.log('Cerrado'));
 
-    <!-- Modal sin cerrar con backdrop -->
-    <sb-ui-modal id="modal-no-backdrop-close" title="Modal Persistente" close-on-backdrop="false">
-      <p>Este modal no se cierra al hacer clic fuera de él.</p>
-      <p>Debes usar el botón X o presionar ESC para cerrarlo.</p>
-    </sb-ui-modal>
-
-    <!-- Modal con header personalizado -->
-    <sb-ui-modal id="modal-custom-header">
-      <div slot="header" style="display: flex; align-items: center; gap: 0.5rem;">
-        <span style="font-size: 1.5rem;">🎉</span>
-        <span style="font-weight: 600; font-size: 1.25rem;">¡Header Personalizado!</span>
-      </div>
-      
-      <p>Este modal tiene un header personalizado usando el slot "header".</p>
-      <p>Puedes agregar cualquier contenido HTML en el header.</p>
-    </sb-ui-modal>
-
-    <!-- Modal de Confirmación -->
-    <sb-ui-modal id="modal-confirmation" title="Confirmar Eliminación" show-close-button="false">
-      <p>¿Estás seguro que deseas eliminar este item?</p>
-      <p style="color: var(--sb-ui-color-feedback-error-base);">
-        <strong>Esta acción no se puede deshacer.</strong>
-      </p>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-                onclick="document.getElementById('modal-confirmation').close()">
-          Cancelar
-        </button>
-        <button class="sb-ui-button sb-ui-button--error sb-ui-button--small"
-                onclick="handleDelete()">
-          Eliminar
-        </button>
-      </div>
-    </sb-ui-modal>
-
-    <!-- Modal de Formulario -->
-    <sb-ui-modal id="modal-form" title="Nuevo Usuario">
-      <form id="user-form" style="display: flex; flex-direction: column; gap: 1rem;">
-        <div>
-          <label for="name" class="sb-ui-label">Nombre completo</label>
-          <input type="text" id="name" class="sb-ui-input" placeholder="Juan Pérez" required />
+// Slots
+// (default)  - Contenido del body
+// header     - Header personalizado (reemplaza title)
+// footer     - Footer con botones de accion</code></pre>
         </div>
-        
-        <div>
-          <label for="email" class="sb-ui-label">Email</label>
-          <input type="email" id="email" class="sb-ui-input" placeholder="juan@example.com" required />
-        </div>
-        
-        <div>
-          <label for="role" class="sb-ui-label">Rol</label>
-          <select id="role" class="sb-ui-select">
-            <option>Usuario</option>
-            <option>Administrador</option>
-            <option>Editor</option>
-          </select>
-        </div>
-      </form>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-                onclick="document.getElementById('modal-form').close()">
-          Cancelar
-        </button>
-        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
-                onclick="handleFormSubmit()">
-          Crear Usuario
-        </button>
-      </div>
-    </sb-ui-modal>
+      </section>
 
-    <!-- Modal de Información -->
-    <sb-ui-modal id="modal-info" title="Detalles del Producto">
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div>
-          <strong>Nombre:</strong> Seguro de Vida Premium
+      <!-- ========================================
+           MODAL INSTANCES
+           ======================================== -->
+
+      <!-- Small: Confirmacion -->
+      <sb-ui-modal id="modal-small-confirm" title="Confirmar accion" size="small">
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love wafer I love.</p>
+        <p class="modal-content-text modal-content-text--emphasis">Esta accion no se puede deshacer.</p>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-small-confirm').close()">
+            Cancelar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-small-confirm').close()">
+            Confirmar
+          </button>
         </div>
-        <div>
-          <strong>Precio:</strong> $50,000 / año
+      </sb-ui-modal>
+
+      <!-- Small: Info -->
+      <sb-ui-modal id="modal-small-info" title="Informacion importante" size="small">
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love wafer I love. Pie oat cake gingerbread chocolate bar.</p>
+        <p class="modal-content-text">Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops.</p>
+      </sb-ui-modal>
+
+      <!-- Medium: Formulario -->
+      <sb-ui-modal id="modal-medium-form" title="Nuevo contacto" size="medium">
+        <form id="contact-form" class="modal-form">
+          <div class="modal-form__row">
+            <div class="modal-form__field">
+              <label class="modal-form__label">Nombre</label>
+              <input type="text" class="modal-form__input" placeholder="Juan" required />
+            </div>
+            <div class="modal-form__field">
+              <label class="modal-form__label">Apellido</label>
+              <input type="text" class="modal-form__input" placeholder="Perez" required />
+            </div>
+          </div>
+          <div class="modal-form__field">
+            <label class="modal-form__label">Correo electronico</label>
+            <input type="email" class="modal-form__input" placeholder="juan@ejemplo.com" required />
+          </div>
+          <div class="modal-form__field">
+            <label class="modal-form__label">Tipo de seguro</label>
+            <select class="modal-form__select">
+              <option>Seguro de Vida</option>
+              <option>Seguro Vehicular</option>
+              <option>Seguro de Hogar</option>
+              <option>Seguro de Salud</option>
+            </select>
+          </div>
+          <div class="modal-form__field">
+            <label class="modal-form__label">Mensaje</label>
+            <textarea class="modal-form__textarea" rows="3" placeholder="Describe brevemente lo que necesitas..."></textarea>
+          </div>
+        </form>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-medium-form').close()">
+            Cancelar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="handleContactForm()">
+            Enviar solicitud
+          </button>
         </div>
-        <div>
-          <strong>Cobertura:</strong> Hasta $500,000
+      </sb-ui-modal>
+
+      <!-- Medium: Detalles -->
+      <sb-ui-modal id="modal-medium-detail" title="Seguro de Vida Premium" size="medium">
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love wafer I love. Pie oat cake gingerbread chocolate bar apple pie tart danish.</p>
+        <p class="modal-content-text">Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops chocolate bar. Oat cake souffle gingerbread candy dessert lollipop. I love danish dragee I love I love.</p>
+
+        <div class="modal-stats-grid">
+          <div class="modal-stat-card">
+            <span class="modal-stat-card__label">Cobertura</span>
+            <p class="modal-stat-card__value">$500,000</p>
+          </div>
+          <div class="modal-stat-card">
+            <span class="modal-stat-card__label">Prima anual</span>
+            <p class="modal-stat-card__value">$50,000</p>
+          </div>
         </div>
-        <div>
-          <strong>Beneficios:</strong>
-          <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-            <li>Cobertura de vida completa</li>
-            <li>Asistencia médica 24/7</li>
-            <li>Cobertura de accidentes</li>
-            <li>Beneficios adicionales</li>
-          </ul>
+
+        <ul class="modal-content-list">
+          <li>Cobertura de vida completa</li>
+          <li>Asistencia medica 24/7</li>
+          <li>Cobertura de accidentes personales</li>
+          <li>Beneficiarios ilimitados</li>
+        </ul>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-medium-detail').close()">
+            Cerrar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-medium-detail').close()">
+            Contratar ahora
+          </button>
         </div>
-      </div>
-      
-      <div slot="footer">
-        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
-                onclick="document.getElementById('modal-info').close()">
-          Cerrar
-        </button>
-        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
-                onclick="document.getElementById('modal-info').close()">
-          Contratar Ahora
-        </button>
-      </div>
-    </sb-ui-modal>
+      </sb-ui-modal>
+
+      <!-- Medium: Persistente -->
+      <sb-ui-modal id="modal-medium-persistent" title="Accion requerida" size="medium" close-on-backdrop="false" show-close-button="false">
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love wafer I love.</p>
+        <p class="modal-content-text">Este modal no se cierra al hacer clic fuera ni tiene boton X. Debes usar los botones de accion.</p>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-medium-persistent').close()">
+            Rechazar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-medium-persistent').close()">
+            Aceptar
+          </button>
+        </div>
+      </sb-ui-modal>
+
+      <!-- Large: Terminos -->
+      <sb-ui-modal id="modal-large-terms" title="Terminos y condiciones del servicio" size="large">
+        <h4 class="modal-content-heading">1. Aceptacion del servicio</h4>
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love wafer I love. Pie oat cake gingerbread chocolate bar apple pie tart danish. Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops chocolate bar.</p>
+
+        <h4 class="modal-content-heading">2. Modificaciones al acuerdo</h4>
+        <p class="modal-content-text">Oat cake souffle gingerbread candy dessert lollipop. I love danish dragee I love I love. Tootsie roll jelly-o tiramisu toffee jujubes pie. Sugar plum cookie jelly beans bear claw topping gummies oat cake chupa chups.</p>
+
+        <h4 class="modal-content-heading">3. Privacidad y datos personales</h4>
+        <p class="modal-content-text">Halvah cake candy canes pastry jelly beans. Chocolate bar jelly toffee ice cream cheesecake. Croissant tart muffin chupa chups macaroon. Candy canes brownie cookie souffle pudding marzipan fruitcake sesame snaps.</p>
+
+        <h4 class="modal-content-heading">4. Responsabilidades del usuario</h4>
+        <p class="modal-content-text">Jelly beans cake bonbon gummi bears chocolate cake carrot cake wafer. Marshmallow donut sugar plum jelly-o tiramisu caramels bear claw. Cookie sweet roll gummies brownie tart muffin. Tootsie roll carrot cake candy canes toffee chocolate bar.</p>
+
+        <h4 class="modal-content-heading">5. Limitacion de responsabilidad</h4>
+        <p class="modal-content-text">Dragee liquorice brownie cake bonbon gummies. Candy canes marzipan biscuit ice cream. Chupa chups wafer cotton candy souffle chocolate bar lemon drops sweet roll cake. Pudding jelly beans cake bonbon gummi bears chocolate cake carrot cake wafer.</p>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-large-terms').close()">
+            Rechazar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-large-terms').close()">
+            Aceptar terminos
+          </button>
+        </div>
+      </sb-ui-modal>
+
+      <!-- Large: Panel de datos -->
+      <sb-ui-modal id="modal-large-data" title="Resumen de polizas activas" size="large">
+        <p class="modal-content-text">Cupcake ipsum dolor sit amet apple pie. A continuacion se presenta un resumen detallado de sus polizas vigentes.</p>
+
+        <table class="modal-data-table">
+          <thead>
+            <tr>
+              <th>Poliza</th>
+              <th>Tipo</th>
+              <th class="modal-data-table__align-end">Prima</th>
+              <th class="modal-data-table__align-center">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>VID-2024-001</td>
+              <td>Vida Premium</td>
+              <td class="modal-data-table__align-end">$50,000</td>
+              <td class="modal-data-table__align-center"><span class="modal-status-badge modal-status-badge--active">Activa</span></td>
+            </tr>
+            <tr>
+              <td>AUT-2024-015</td>
+              <td>Vehicular</td>
+              <td class="modal-data-table__align-end">$32,000</td>
+              <td class="modal-data-table__align-center"><span class="modal-status-badge modal-status-badge--active">Activa</span></td>
+            </tr>
+            <tr>
+              <td>HOG-2023-042</td>
+              <td>Hogar</td>
+              <td class="modal-data-table__align-end">$18,500</td>
+              <td class="modal-data-table__align-center"><span class="modal-status-badge modal-status-badge--warning">Renovar</span></td>
+            </tr>
+            <tr>
+              <td>SAL-2024-008</td>
+              <td>Salud</td>
+              <td class="modal-data-table__align-end">$45,000</td>
+              <td class="modal-data-table__align-center"><span class="modal-status-badge modal-status-badge--active">Activa</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="modal-content-note">Sweet roll muffin cotton candy cake macaroon. Oat cake souffle gingerbread candy dessert lollipop.</p>
+
+        <div slot="footer">
+          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-large-data').close()">
+            Cerrar
+          </button>
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+                  onclick="document.getElementById('modal-large-data').close()">
+            Descargar PDF
+          </button>
+        </div>
+      </sb-ui-modal>
     </main>
 
-    <!-- JavaScript: Brand/Theme + openModal (sin cambios) -->
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
     <script>
-      (function() {
-        // Referencias (pueden ser null si se carga la página dinámicamente en el dashboard)
-        const brandSelect = document.getElementById('brandSelect');
-        const lightBtn = document.getElementById('lightBtn');
-        const darkBtn = document.getElementById('darkBtn');
-        const html = document.documentElement;
-        const body = document.body;
-        const brandCss = document.getElementById('brand-css');
+      (function () {
+        var brandCss = document.getElementById('brand-css');
+        var htmlEl = document.documentElement;
+        var body = document.body;
 
-        let currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
-        let currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
+        var currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
+        var currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
 
         function updateBrandAndTheme() {
-          if (html) {
-            html.setAttribute('data-brand', currentBrand);
-            html.setAttribute('data-theme', currentTheme);
+          if (htmlEl) {
+            htmlEl.setAttribute('data-brand', currentBrand);
+            htmlEl.setAttribute('data-theme', currentTheme);
           }
           if (body) body.setAttribute('data-brand', currentBrand);
           localStorage.setItem('sb-ui-brand', currentBrand);
@@ -473,81 +819,69 @@ modal.addEventListener('sb-ui-modal-close', () => console.log('Modal cerrado'));
           if (brandCss) {
             brandCss.href = '../dist/sb-ui-' + currentBrand + '-' + currentTheme + '.min.css?v=' + Date.now();
           }
-          if (brandSelect) brandSelect.value = currentBrand;
-          if (lightBtn && darkBtn) {
-            if (currentTheme === 'light') {
-              lightBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-              darkBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-            } else {
-              lightBtn.className = 'sb-ui-button sb-ui-button--tertiary sb-ui-button--small';
-              darkBtn.className = 'sb-ui-button sb-ui-button--primary sb-ui-button--small';
-            }
-          }
         }
 
-        if (brandSelect) brandSelect.addEventListener('change', function(e) {
-          currentBrand = e.target.value;
-          updateBrandAndTheme();
-        });
-        if (lightBtn) lightBtn.addEventListener('click', function() {
-          currentTheme = 'light';
-          updateBrandAndTheme();
-        });
-        if (darkBtn) darkBtn.addEventListener('click', function() {
-          currentTheme = 'dark';
-          updateBrandAndTheme();
-        });
         updateBrandAndTheme();
 
-        // Modal: exponer en window para onclick desde HTML (funciona al cargar dinámicamente)
-        function openModal(type) {
-          var modalId = '';
-          switch (type) {
-            case 'simple': modalId = 'modal-simple'; break;
-            case 'with-footer': modalId = 'modal-with-footer'; break;
-            case 'large': modalId = 'modal-large'; break;
-            case 'no-close-button': modalId = 'modal-no-close-button'; break;
-            case 'no-backdrop-close': modalId = 'modal-no-backdrop-close'; break;
-            case 'custom-header': modalId = 'modal-custom-header'; break;
-            case 'confirmation': modalId = 'modal-confirmation'; break;
-            case 'form': modalId = 'modal-form'; break;
-            case 'info': modalId = 'modal-info'; break;
-          }
-          if (modalId) {
-            var modal = document.getElementById(modalId);
-            if (modal && typeof modal.openModal === 'function') modal.openModal();
-            else if (modal && modal.open !== undefined) modal.open = true;
-          }
-        }
-        function handleDelete() {
-          var m = document.getElementById('modal-confirmation');
-          if (m) m.close();
-          alert('✅ Item eliminado exitosamente');
-        }
-        function handleFormSubmit() {
-          var form = document.getElementById('user-form');
-          if (!form) return;
-          if (form.checkValidity()) {
-            var m = document.getElementById('modal-form');
-            if (m) m.close();
-            form.reset();
-            alert('✅ Usuario creado exitosamente');
-          } else {
-            alert('⚠️ Por favor completa todos los campos requeridos');
-          }
-        }
-        window.openModal = openModal;
-        window.handleDelete = handleDelete;
-        window.handleFormSubmit = handleFormSubmit;
+        // Modal helpers
+        var modalMap = {
+          'small-confirm': 'modal-small-confirm',
+          'small-info': 'modal-small-info',
+          'medium-form': 'modal-medium-form',
+          'medium-detail': 'modal-medium-detail',
+          'medium-persistent': 'modal-medium-persistent',
+          'large-terms': 'modal-large-terms',
+          'large-data': 'modal-large-data'
+        };
 
-        // Eventos de modales (ejecutar ya; en carga dinámica DOMContentLoaded pudo haber pasado)
-        var modals = document.querySelectorAll('sb-ui-modal');
-        modals.forEach(function(modal) {
-          modal.addEventListener('sb-ui-modal-open', function(e) { console.log('Modal abierto:', e.target.id); });
-          modal.addEventListener('sb-ui-modal-close', function(e) { console.log('Modal cerrado:', e.target.id); });
+        function openModal(type) {
+          var id = modalMap[type];
+          if (!id) return;
+          var modal = document.getElementById(id);
+          if (modal && typeof modal.openModal === 'function') {
+            modal.openModal();
+          } else if (modal && modal.open !== undefined) {
+            modal.open = true;
+          }
+        }
+
+        function handleContactForm() {
+          var modal = document.getElementById('modal-medium-form');
+          if (modal) modal.close();
+        }
+
+        function copyCode(btn) {
+          var block = btn.closest('.demo-code-block');
+          if (!block) return;
+          var code = block.querySelector('code');
+          if (!code) return;
+
+          var text = code.textContent || code.innerText;
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = 'Copiado!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = 'Copiar';
+              btn.classList.remove('copied');
+            }, 2000);
+          });
+        }
+
+        // Expose to window
+        window.openModal = openModal;
+        window.handleContactForm = handleContactForm;
+        window.copyCode = copyCode;
+
+        // Event listeners
+        document.querySelectorAll('sb-ui-modal').forEach(function (modal) {
+          modal.addEventListener('sb-ui-modal-open', function (e) {
+            console.log('Modal abierto:', e.target.id);
+          });
+          modal.addEventListener('sb-ui-modal-close', function (e) {
+            console.log('Modal cerrado:', e.target.id);
+          });
         });
       })();
     </script>
   </body>
 </html>
-

@@ -136,14 +136,14 @@
       </section>
 
       <!-- ========================================
-           SECCIÓN 3: ICON
+           SECCIÓN 3: ICON (4 niveles de progreso)
            ======================================== -->
       <section class="variant-section">
         <h3 class="variant-title">Icon</h3>
         <div class="demo-showcase-grid">
           <div class="demo-showcase-item">
             <h4>Progress 1 – 25%</h4>
-            <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 25% completado" data-progress="25">
+            <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando, 25% completado" data-progress="25">
               <div class="sb-ui-spinner__content">
                 <div class="sb-ui-spinner__icon">
                   <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -153,7 +153,7 @@
           </div>
           <div class="demo-showcase-item">
             <h4>Progress 2 – 50%</h4>
-            <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 50% completado" data-progress="50">
+            <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando, 50% completado" data-progress="50">
               <div class="sb-ui-spinner__content">
                 <div class="sb-ui-spinner__icon">
                   <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -163,7 +163,7 @@
           </div>
           <div class="demo-showcase-item">
             <h4>Progress 3 – 75%</h4>
-            <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 75% completado" data-progress="75">
+            <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando, 75% completado" data-progress="75">
               <div class="sb-ui-spinner__content">
                 <div class="sb-ui-spinner__icon">
                   <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -173,7 +173,7 @@
           </div>
           <div class="demo-showcase-item">
             <h4>Progress 4 – 100%</h4>
-            <div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando, 100% completado" data-progress="100">
+            <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando, 100% completado" data-progress="100">
               <div class="sb-ui-spinner__content">
                 <div class="sb-ui-spinner__icon">
                   <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -188,13 +188,19 @@
             <span class="demo-code-block-title">Ejemplo de uso</span>
             <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Tamaño MD con diferentes niveles de progreso --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando" data-progress="25"&gt;
   &lt;div class="sb-ui-spinner__content"&gt;
     &lt;div class="sb-ui-spinner__icon"&gt;
       &lt;i class="fa-solid fa-lock" aria-hidden="true"&gt;&lt;/i&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+
+&lt;!-- Cambiar el progreso: 25, 50, 75, 100 --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="50" ...&gt;...&lt;/div&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="75" ...&gt;...&lt;/div&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="100" ...&gt;...&lt;/div&gt;</code></pre>
         </div>
       </section>
 
