@@ -36,22 +36,22 @@ import { html } from 'lit';
  *
  * - **Estado por defecto**: INFO - color primario con fondo suave
  * - **Tamaño por defecto**: MEDIUM - no necesitas especificar la clase
- * - **Estructura**: Usa `sb-ui-alert-icon`, `sb-ui-alert-content`, `sb-ui-alert-title`, `sb-ui-alert-message`
+ * - **Estructura**: Usa `sb-ui-alert__icon`, `sb-ui-alert__content`, `sb-ui-alert__title`, `sb-ui-alert__message`
  * - **Iconos automáticos**: Los iconos se agregan automáticamente por CSS según el estado (✓, i, ⚠, ✕)
- * - **Elemento de icono vacío**: El `<div class="sb-ui-alert-icon">` debe estar vacío, el CSS agrega el contenido
- * - **Botón cerrar**: Usa `sb-ui-alert-close` con `aria-label="Cerrar"`
+ * - **Elemento de icono vacío**: El `<div class="sb-ui-alert__icon">` debe estar vacío y con `aria-hidden="true"`
+ * - **Botón cerrar**: Usa `sb-ui-alert__close` con `aria-label="Cerrar alerta"`
  * - **Combinaciones**: Puedes combinar estado + estilo + tamaño + modificadores
  *
  * ## 🎯 Ejemplo de Estructura Completa
  *
  * ```html
- * <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--large sb-ui-alert--dismissible">
- *   <div class="sb-ui-alert-icon"></div> <!-- ¡Vacío! El CSS agrega ✓ automáticamente -->
- *   <div class="sb-ui-alert-content">
- *     <div class="sb-ui-alert-title">Éxito</div>
- *     <div class="sb-ui-alert-message">Operación completada correctamente.</div>
+ * <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--large sb-ui-alert--dismissible" role="alert">
+ *   <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+ *   <div class="sb-ui-alert__content">
+ *     <strong class="sb-ui-alert__title">Éxito</strong>
+ *     <p class="sb-ui-alert__message">Operación completada correctamente.</p>
  *   </div>
- *   <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+ *   <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
  * </div>
  * ```
  */
@@ -188,31 +188,29 @@ export const Playground: Story = {
 
     return html`
       <div style="max-width: 600px;">
-        <div class="${classes}">
+        <div class="${classes}" role="alert">
           ${args.showIcon
-            ? html` <div class="sb-ui-alert-icon">${getIcon(args.variant)}</div> `
+            ? html` <div class="sb-ui-alert__icon" aria-hidden="true"></div> `
             : ''}
 
-          <div class="sb-ui-alert-content">
-            ${args.title ? html` <div class="sb-ui-alert-title">${args.title}</div> ` : ''}
-            ${args.message ? html` <div class="sb-ui-alert-message">${args.message}</div> ` : ''}
+          <div class="sb-ui-alert__content">
+            ${args.title ? html` <strong class="sb-ui-alert__title">${args.title}</strong> ` : ''}
+            ${args.message ? html` <p class="sb-ui-alert__message">${args.message}</p> ` : ''}
           </div>
 
           ${args.dismissible
             ? html`
                 <button
-                  class="sb-ui-alert-close"
+                  class="sb-ui-alert__close"
                   type="button"
-                  aria-label="Cerrar"
+                  aria-label="Cerrar alerta"
                   @click="${(e: Event) => {
                     const alertEl = (e.target as HTMLElement).closest('.sb-ui-alert');
                     if (alertEl) {
-                      alertEl.style.display = 'none';
+                      (alertEl as HTMLElement).style.display = 'none';
                     }
                   }}"
-                >
-                  ×
-                </button>
+                ></button>
               `
             : ''}
         </div>
@@ -299,96 +297,96 @@ export const Estados: Story = {
           <!-- INFO DEFAULT -->
           <div class="alert-demo">
             <div class="alert-demo-title">Info - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--info">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Información</div>
-                <div class="sb-ui-alert-message">Este es un mensaje informativo.</div>
+            <div class="sb-ui-alert sb-ui-alert--info" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Información</strong>
+                <p class="sb-ui-alert__message">Este es un mensaje informativo.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Info - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Información</div>
-                <div class="sb-ui-alert-message">Mensaje con botón cerrar.</div>
+            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Información</strong>
+                <p class="sb-ui-alert__message">Mensaje con botón cerrar.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- SUCCESS DEFAULT -->
           <div class="alert-demo">
             <div class="alert-demo-title">Success - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--success">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Éxito</div>
-                <div class="sb-ui-alert-message">Operación completada.</div>
+            <div class="sb-ui-alert sb-ui-alert--success" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Éxito</strong>
+                <p class="sb-ui-alert__message">Operación completada.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Success - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Éxito</div>
-                <div class="sb-ui-alert-message">Operación exitosa.</div>
+            <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Éxito</strong>
+                <p class="sb-ui-alert__message">Operación exitosa.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- WARNING DEFAULT -->
           <div class="alert-demo">
             <div class="alert-demo-title">Warning - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--warning">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Advertencia</div>
-                <div class="sb-ui-alert-message">Revisa la información.</div>
+            <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Advertencia</strong>
+                <p class="sb-ui-alert__message">Revisa la información.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Warning - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Advertencia</div>
-                <div class="sb-ui-alert-message">Revisa los datos.</div>
+            <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Advertencia</strong>
+                <p class="sb-ui-alert__message">Revisa los datos.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- ERROR DEFAULT -->
           <div class="alert-demo">
             <div class="alert-demo-title">Error - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--error">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Error</div>
-                <div class="sb-ui-alert-message">Ha ocurrido un error.</div>
+            <div class="sb-ui-alert sb-ui-alert--error" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Error</strong>
+                <p class="sb-ui-alert__message">Ha ocurrido un error.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Error - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Error</div>
-                <div class="sb-ui-alert-message">Error crítico.</div>
+            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Error</strong>
+                <p class="sb-ui-alert__message">Error crítico.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
         </div>
@@ -407,35 +405,35 @@ export const Estados: Story = {
           <!-- INFO NO-BG -->
           <div class="alert-demo">
             <div class="alert-demo-title">Info No-BG - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Información</div>
-                <div class="sb-ui-alert-message">Sin fondo, solo borde.</div>
+            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Información</strong>
+                <p class="sb-ui-alert__message">Sin fondo, solo borde.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Info No-BG - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Información</div>
-                <div class="sb-ui-alert-message">Sin fondo con cerrar.</div>
+            <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Información</strong>
+                <p class="sb-ui-alert__message">Sin fondo con cerrar.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- SUCCESS NO-BG -->
           <div class="alert-demo">
             <div class="alert-demo-title">Success No-BG - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Éxito</div>
-                <div class="sb-ui-alert-message">Éxito sin fondo.</div>
+            <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Éxito</strong>
+                <p class="sb-ui-alert__message">Éxito sin fondo.</p>
               </div>
             </div>
           </div>
@@ -444,24 +442,25 @@ export const Estados: Story = {
             <div class="alert-demo-title">Success No-BG - Con Cerrar</div>
             <div
               class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg sb-ui-alert--dismissible"
+              role="alert"
             >
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Éxito</div>
-                <div class="sb-ui-alert-message">Éxito sin fondo.</div>
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Éxito</strong>
+                <p class="sb-ui-alert__message">Éxito sin fondo.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- WARNING NO-BG -->
           <div class="alert-demo">
             <div class="alert-demo-title">Warning No-BG - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Advertencia</div>
-                <div class="sb-ui-alert-message">Advertencia sin fondo.</div>
+            <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Advertencia</strong>
+                <p class="sb-ui-alert__message">Advertencia sin fondo.</p>
               </div>
             </div>
           </div>
@@ -470,37 +469,38 @@ export const Estados: Story = {
             <div class="alert-demo-title">Warning No-BG - Con Cerrar</div>
             <div
               class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg sb-ui-alert--dismissible"
+              role="alert"
             >
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Advertencia</div>
-                <div class="sb-ui-alert-message">Advertencia sin fondo.</div>
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Advertencia</strong>
+                <p class="sb-ui-alert__message">Advertencia sin fondo.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
 
           <!-- ERROR NO-BG -->
           <div class="alert-demo">
             <div class="alert-demo-title">Error No-BG - Sin Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Error</div>
-                <div class="sb-ui-alert-message">Error sin fondo.</div>
+            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Error</strong>
+                <p class="sb-ui-alert__message">Error sin fondo.</p>
               </div>
             </div>
           </div>
 
           <div class="alert-demo">
             <div class="alert-demo-title">Error No-BG - Con Cerrar</div>
-            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg sb-ui-alert--dismissible">
-              <div class="sb-ui-alert-icon"></div>
-              <div class="sb-ui-alert-content">
-                <div class="sb-ui-alert-title">Error</div>
-                <div class="sb-ui-alert-message">Error sin fondo.</div>
+            <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg sb-ui-alert--dismissible" role="alert">
+              <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+              <div class="sb-ui-alert__content">
+                <strong class="sb-ui-alert__title">Error</strong>
+                <p class="sb-ui-alert__message">Error sin fondo.</p>
               </div>
-              <button class="sb-ui-alert-close" type="button" aria-label="Cerrar">×</button>
+              <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
             </div>
           </div>
         </div>
@@ -523,7 +523,7 @@ export const Estados: Story = {
           </li>
           <li>
             <strong>Contenedor de icono vacío:</strong> El elemento
-            <code>&lt;div class="sb-ui-alert-icon"&gt;</code> debe estar completamente vacío.
+            <code>&lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;</code> debe estar completamente vacío.
           </li>
           <li>
             <strong>Iconos por estado:</strong> Info (i), Success (✓), Warning (⚠), Error (✕) se
@@ -531,12 +531,12 @@ export const Estados: Story = {
           </li>
           <li>
             <strong>Botón cerrar:</strong> Usa <code>.sb-ui-alert--dismissible</code> para mostrar
-            el botón cerrar.
+            el botón cerrar con clase <code>.sb-ui-alert__close</code>.
           </li>
           <li>
-            <strong>Estructura:</strong> Los iconos y contenido usan <code>sb-ui-alert-icon</code>,
-            <code>sb-ui-alert-content</code>, <code>sb-ui-alert-title</code>,
-            <code>sb-ui-alert-message</code>.
+            <strong>Estructura:</strong> Los iconos y contenido usan <code>sb-ui-alert__icon</code>,
+            <code>sb-ui-alert__content</code>, <code>sb-ui-alert__title</code>,
+            <code>sb-ui-alert__message</code>.
           </li>
           <li>
             <strong>Accesibilidad:</strong> El botón cerrar incluye
