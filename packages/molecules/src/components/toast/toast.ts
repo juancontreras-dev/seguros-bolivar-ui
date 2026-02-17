@@ -141,15 +141,15 @@ export class SbUiToast extends LitElement {
       box-sizing: border-box;
       min-height: 3rem;
       min-width: 300px;
-      max-width: 400px;
-      padding: var(--sb-ui-toast-padding);
+      max-width: 484px;
+      padding: 1rem;
       background-color: var(--sb-ui-toast-bg-color);
-      border: 1px solid var(--sb-ui-toast-border-color);
-      border-left: 4px solid var(--sb-ui-toast-border-color);
+      border: 1px solid transparent;
+      border-left: 6px solid var(--sb-ui-toast-border-color);
       border-radius: var(--sb-ui-toast-border-radius);
-      box-shadow: var(--sb-ui-toast-shadow);
-      font-family: var(--sb-ui-toast-font-family);
-      line-height: 1.25;
+      box-shadow: 1px 4px 4px 0px rgba(115, 115, 115, 0.04), 1px 1px 8px 0px rgba(115, 115, 115, 0.16);
+      font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', sans-serif);
+      line-height: 1.4;
       color: var(--sb-ui-toast-text-color);
       cursor: pointer;
       transition: var(--sb-ui-toast-transition);
@@ -164,9 +164,9 @@ export class SbUiToast extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.25rem;
-      height: 1.25rem;
-      font-size: 1.25rem;
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
       flex-shrink: 0;
       margin-top: 0.125rem;
     }
@@ -175,37 +175,38 @@ export class SbUiToast extends LitElement {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 4px;
       min-width: 0;
     }
 
     .title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 1.25;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
       margin: 0;
       color: inherit;
+      font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', sans-serif);
     }
 
     .message {
-      font-size: 0.875rem;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.4;
       margin: 0;
       color: inherit;
-      opacity: 0.8;
+      font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', sans-serif);
     }
 
     .close {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 28px;
+      height: 28px;
       background: none;
       border: none;
-      color: var(--sb-ui-color-grayscale-base, #d9d9d9);
-      font-size: 1.25rem;
+      color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+      font-size: 28px;
       font-weight: 400;
       line-height: 1;
       cursor: pointer;
@@ -239,14 +240,25 @@ export class SbUiToast extends LitElement {
 
     /* Toast Type Variants */
     :host([type='success']) .toast {
-      --sb-ui-toast-bg-color: var(--sb-ui-color-feedback-success-L400, rgba(40, 167, 69, 0.1));
+      --sb-ui-toast-bg-color: var(--sb-ui-color-feedback-success-L400, #e9f6ec);
       --sb-ui-toast-border-color: var(--sb-ui-color-feedback-success-base, #28a745);
-      --sb-ui-toast-text-color: var(--sb-ui-color-feedback-success-base, #28a745);
+      --sb-ui-toast-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+      border-left-width: 6px;
     }
 
     :host([type='success']) .icon::before {
       content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--sb-ui-color-grayscale-white, #ffffff);
+      border: 2px solid var(--sb-ui-color-feedback-success-base, #28a745);
       color: var(--sb-ui-color-feedback-success-base, #28a745);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     :host([type='success']) .progress {
@@ -256,14 +268,24 @@ export class SbUiToast extends LitElement {
     :host([type='info']) .toast {
       --sb-ui-toast-bg-color: var(--sb-ui-color-feedback-info-L400, rgba(0, 122, 204, 0.1));
       --sb-ui-toast-border-color: var(--sb-ui-color-feedback-info-base, #007acc);
-      --sb-ui-toast-text-color: var(--sb-ui-color-feedback-info-base, #007acc);
+      --sb-ui-toast-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+      border-left-width: 6px;
     }
 
     :host([type='info']) .icon::before {
       content: 'i';
-      font-style: italic;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--sb-ui-color-grayscale-white, #ffffff);
+      border: 2px solid var(--sb-ui-color-feedback-info-base, #007acc);
       color: var(--sb-ui-color-feedback-info-base, #007acc);
+      font-size: 14px;
+      font-weight: 700;
+      font-style: italic;
     }
 
     :host([type='info']) .progress {
@@ -273,12 +295,23 @@ export class SbUiToast extends LitElement {
     :host([type='warning']) .toast {
       --sb-ui-toast-bg-color: var(--sb-ui-color-feedback-warning-L400, rgba(255, 193, 7, 0.1));
       --sb-ui-toast-border-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-      --sb-ui-toast-text-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
+      --sb-ui-toast-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+      border-left-width: 6px;
     }
 
     :host([type='warning']) .icon::before {
       content: '⚠';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--sb-ui-color-grayscale-white, #ffffff);
+      border: 2px solid var(--sb-ui-color-feedback-warning-base, #ffc107);
       color: var(--sb-ui-color-feedback-warning-base, #ffc107);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     :host([type='warning']) .progress {
@@ -288,12 +321,23 @@ export class SbUiToast extends LitElement {
     :host([type='error']) .toast {
       --sb-ui-toast-bg-color: var(--sb-ui-color-feedback-error-L400, rgba(220, 53, 69, 0.1));
       --sb-ui-toast-border-color: var(--sb-ui-color-feedback-error-base, #dc3545);
-      --sb-ui-toast-text-color: var(--sb-ui-color-feedback-error-base, #dc3545);
+      --sb-ui-toast-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+      border-left-width: 6px;
     }
 
     :host([type='error']) .icon::before {
       content: '✕';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--sb-ui-color-grayscale-white, #ffffff);
+      border: 2px solid var(--sb-ui-color-feedback-error-base, #dc3545);
       color: var(--sb-ui-color-feedback-error-base, #dc3545);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     :host([type='error']) .progress {
@@ -458,10 +502,12 @@ export class SbUiToast extends LitElement {
 
   override updated(changedProperties: PropertyValues): void {
     if (changedProperties.has('visible')) {
+      const previousVisible = changedProperties.get('visible');
       if (this.visible) {
         this._dispatchEvent('sb-ui-toast-show');
         this._setupAutoDismiss();
-      } else {
+      } else if (previousVisible === true) {
+        // Only fire hide if previously shown (avoids false trigger on initial render)
         this._dispatchEvent('sb-ui-toast-hide');
         this._clearTimers();
       }

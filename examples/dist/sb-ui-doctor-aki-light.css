@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: doctor-aki | Theme: light
- * Generated: 2026-02-17T15:09:21.819Z
+ * Generated: 2026-02-17T20:59:39.206Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -1940,47 +1940,38 @@
  * EJEMPLOS DE USO
  * ============================================================================
  *
- * <!-- Alert Success con fondo -->
+ * <!-- Alert Success con fondo y boton de cierre -->
+ * <!-- IMPORTANTE: NO necesitas Font Awesome, los iconos son 100% CSS puro -->
  * <div class="sb-ui-alert sb-ui-alert--success" role="alert">
- *   <div class="sb-ui-alert__icon" aria-hidden="true">
- *     <i class="fa-regular fa-circle-check"></i>
- *   </div>
+ *   <div class="sb-ui-alert__icon" aria-hidden="true"></div>
  *   <div class="sb-ui-alert__content">
  *     <strong class="sb-ui-alert__title">Exito</strong>
  *     <p class="sb-ui-alert__message">La operacion se completo correctamente.</p>
  *   </div>
- *   <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
- *     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
- *   </button>
+ *   <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
  * </div>
  *
- * <!-- Alert Info con icono outline -->
+ * <!-- Alert Info (icono SVG generado automáticamente por CSS) -->
  * <div class="sb-ui-alert sb-ui-alert--info" role="alert">
- *   <div class="sb-ui-alert__icon" aria-hidden="true">
- *     <i class="fa-regular fa-circle-info"></i>
- *   </div>
+ *   <div class="sb-ui-alert__icon" aria-hidden="true"></div>
  *   <div class="sb-ui-alert__content">
  *     <strong class="sb-ui-alert__title">Informacion</strong>
  *     <p class="sb-ui-alert__message">Este es un mensaje informativo.</p>
  *   </div>
  * </div>
  *
- * <!-- Alert Warning -->
+ * <!-- Alert Warning (icono SVG generado automáticamente por CSS) -->
  * <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
- *   <div class="sb-ui-alert__icon" aria-hidden="true">
- *     <i class="fa-regular fa-triangle-exclamation"></i>
- *   </div>
+ *   <div class="sb-ui-alert__icon" aria-hidden="true"></div>
  *   <div class="sb-ui-alert__content">
  *     <strong class="sb-ui-alert__title">Advertencia</strong>
  *     <p class="sb-ui-alert__message">Por favor revisa la informacion.</p>
  *   </div>
  * </div>
  *
- * <!-- Alert Error sin fondo -->
+ * <!-- Alert Error sin fondo (icono SVG generado automáticamente por CSS) -->
  * <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
- *   <div class="sb-ui-alert__icon" aria-hidden="true">
- *     <i class="fa-regular fa-circle-xmark"></i>
- *   </div>
+ *   <div class="sb-ui-alert__icon" aria-hidden="true"></div>
  *   <div class="sb-ui-alert__content">
  *     <strong class="sb-ui-alert__title">Error</strong>
  *     <p class="sb-ui-alert__message">Ocurrio un error en el proceso.</p>
@@ -1988,12 +1979,16 @@
  * </div>
  *
  * ============================================================================
- * ICONOS: Se usan iconos fa-solid de Font Awesome 6 Free:
- * - Success: fa-solid fa-circle-check
- * - Info: fa-solid fa-circle-info
- * - Warning: fa-solid fa-triangle-exclamation
- * - Error: fa-solid fa-circle-xmark
- * - Close button: fa-solid fa-xmark
+ * ICONOS: 100% CSS PURO - Sin Font Awesome ni librerías externas
+ * - Success: Círculo con check ✓
+ * - Info: Círculo con i
+ * - Warning: Triángulo con exclamación !
+ * - Error: Círculo con X
+ * - Close button: X simple
+ * 
+ * Los iconos se generan automáticamente usando SVG inline en data URLs
+ * con currentColor para respetar las variables CSS del design system
+ * Coinciden exactamente con el diseño de Figma (outline style)
  * ============================================================================
  *
  * ============================================================================
@@ -2064,8 +2059,8 @@
     --sb-ui-alert-border-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
 
     /* Colores - Text (siempre oscuro, NO cambia por variante) */
-    --sb-ui-alert-text-color: var(--sb-ui-color-grayscale-D100, #757575);
-    --sb-ui-alert-title-color: var(--sb-ui-color-grayscale-D300, #333333);
+    --sb-ui-alert-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+    --sb-ui-alert-title-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
 
     /* Colores - Icon (mismo que el borde del estado) */
     --sb-ui-alert-icon-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
@@ -2078,33 +2073,33 @@
     --sb-ui-alert-close-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
     --sb-ui-alert-close-color-hover: var(--sb-ui-color-grayscale-D300, #404040);
 
-    /* Espaciado - con clamp() para responsive */
-    --sb-ui-alert-padding-block: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
-    --sb-ui-alert-padding-inline-start: clamp(2rem, 1.8rem + 0.8vw, 2.5rem);
-    --sb-ui-alert-padding-inline-end: clamp(0.875rem, 0.7rem + 0.8vw, 1.25rem);
-    --sb-ui-alert-gap: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
-    --sb-ui-alert-content-gap: 0.25rem;
+    /* Espaciado - según especificación Figma */
+    --sb-ui-alert-padding-block: 1rem; /* 16px según Figma */
+    --sb-ui-alert-padding-inline-start: 2rem; /* 8px (line padding) + 8px (gap) + 16px (icon space) aproximado */
+    --sb-ui-alert-padding-inline-end: 1rem; /* 16px según Figma */
+    --sb-ui-alert-gap: 0.5rem; /* 8px según Figma */
+    --sb-ui-alert-content-gap: 0.25rem; /* 4px según Figma */
 
     /* Bordes */
     --sb-ui-alert-border-width: 0;
     --sb-ui-alert-border-inline-start-width: 4px;
     --sb-ui-alert-border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
 
-    /* Tipografia - con clamp() */
-    --sb-ui-alert-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-    --sb-ui-alert-title-font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
-    --sb-ui-alert-title-font-weight: 600;
-    --sb-ui-alert-message-font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
-    --sb-ui-alert-message-font-weight: 400;
-    --sb-ui-alert-line-height: 1.4;
+    /* Tipografia - con clamp() según especificación Figma */
+    --sb-ui-alert-font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', 'Roboto', sans-serif);
+    --sb-ui-alert-title-font-size: 0.875rem; /* 14px fijo según Figma */
+    --sb-ui-alert-title-font-weight: 700; /* Bold según Figma */
+    --sb-ui-alert-message-font-size: 0.875rem; /* 14px fijo según Figma */
+    --sb-ui-alert-message-font-weight: 400; /* Regular según Figma */
+    --sb-ui-alert-line-height: 1.4; /* Line height 1.4 según Figma */
 
-    /* Tamanios */
-    --sb-ui-alert-min-block-size: clamp(2.5rem, 2.2rem + 1.5vw, 3rem);
-    --sb-ui-alert-icon-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
-    --sb-ui-alert-close-size: clamp(1.25rem, 1.1rem + 0.3vw, 1.5rem);
+    /* Tamanios - según especificación Figma */
+    --sb-ui-alert-min-block-size: 5rem; /* altura mínima aproximada según diseño */
+    --sb-ui-alert-icon-size: 1.5rem; /* 24px según Figma */
+    --sb-ui-alert-close-size: 1.75rem; /* 28px según Figma */
 
-    /* Sombra - efecto de relieve sutil */
-    --sb-ui-alert-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    /* Sombra - Shadow S según especificación Figma */
+    --sb-ui-alert-shadow: var(--sb-ui-shadow-s);
 
     /* Transiciones - NO incluir outline */
     --sb-ui-alert-transition:
@@ -2149,18 +2144,18 @@
     /* Transition */
     transition: var(--sb-ui-alert-transition);
 
-    /* Barra de color izquierda (pseudo-elemento) */
+    /* Barra de color izquierda (pseudo-elemento) - según Figma */
   }
     .sb-ui-alert::before {
       content: '';
       position: absolute;
-      inset-inline-start: 0.5rem;
+      inset-inline-start: 0.5rem; /* 8px según Figma */
       inset-block-start: 50%;
       transform: translateY(-50%);
       inline-size: var(--sb-ui-alert-border-inline-start-width);
-      block-size: calc(100% - 1rem);
+      block-size: calc(100% - 2rem); /* Altura dinámica con 16px de margen arriba/abajo */
       background-color: var(--sb-ui-alert-border-color);
-      border-radius: 2px;
+      border-radius: 8px; /* 8px según Figma */
     }
 
   /* Content wrapper */
@@ -2197,13 +2192,86 @@
     justify-content: center;
     inline-size: var(--sb-ui-alert-icon-size);
     block-size: var(--sb-ui-alert-icon-size);
-    font-size: var(--sb-ui-alert-icon-size);
-    color: var(--sb-ui-alert-icon-color);
     flex-shrink: 0;
     margin-block-start: 0.125rem;
+    position: relative;
   }
 
-  /* Close button */
+  /* Ocultar cualquier contenido dentro del icon container (Font Awesome, etc.) */
+  .sb-ui-alert__icon > * {
+    display: none;
+  }
+
+  /* ========================================
+     ICONOS CSS PURO - SIN HARDCODEAR COLORES
+     Los colores se toman de variables CSS dinámicas usando mask-image
+     ======================================== */
+
+  /* Icono Success - Círculo con check (24px según Figma) */
+  .sb-ui-alert--success .sb-ui-alert__icon::before {
+    content: '';
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    background-color: var(--sb-ui-alert-icon-color);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cpath d='M7 12l3 3 7-7' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cpath d='M7 12l3 3 7-7' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+
+  /* Icono Info - Círculo con i (24px según Figma) */
+  .sb-ui-alert--info .sb-ui-alert__icon::before {
+    content: '';
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    background-color: var(--sb-ui-alert-icon-color);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cline x1='12' y1='11' x2='12' y2='17' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='8' r='1' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cline x1='12' y1='11' x2='12' y2='17' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='8' r='1' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+
+  /* Icono Warning - Triángulo con exclamación (24px según Figma) */
+  .sb-ui-alert--warning .sb-ui-alert__icon::before {
+    content: '';
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    background-color: var(--sb-ui-alert-icon-color);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2L2 20h20L12 2z' stroke='black' stroke-width='2' stroke-linejoin='round' fill='none'/%3E%3Cline x1='12' y1='9' x2='12' y2='14' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='17' r='1' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2L2 20h20L12 2z' stroke='black' stroke-width='2' stroke-linejoin='round' fill='none'/%3E%3Cline x1='12' y1='9' x2='12' y2='14' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='17' r='1' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+
+  /* Icono Error - Círculo con X (24px según Figma) */
+  .sb-ui-alert--error .sb-ui-alert__icon::before {
+    content: '';
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    background-color: var(--sb-ui-alert-icon-color);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cline x1='8' y1='8' x2='16' y2='16' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='16' y1='8' x2='8' y2='16' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='10' stroke='black' stroke-width='2' fill='none'/%3E%3Cline x1='8' y1='8' x2='16' y2='16' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='16' y1='8' x2='8' y2='16' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+
+  /* Close button (28px según Figma) */
   .sb-ui-alert__close {
     display: flex;
     align-items: center;
@@ -2212,26 +2280,48 @@
     block-size: var(--sb-ui-alert-close-size);
     background: none;
     border: none;
-    color: var(--sb-ui-alert-close-color);
-    font-size: 1.125rem;
-    line-height: 1;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0.25rem; /* 4px */
     transition: color 0.2s ease, background-color 0.2s ease;
     flex-shrink: 0;
-    margin-block-start: -0.125rem;
-    margin-inline-end: -0.25rem;
+    margin-block-start: 0;
+    margin-inline-end: 0;
     padding: 0.25rem;
+    position: relative;
   }
 
     .sb-ui-alert__close:hover {
-      color: var(--sb-ui-alert-close-color-hover);
       background-color: var(--sb-ui-color-grayscale-L400, rgba(247, 247, 247, 0.5));
     }
 
     .sb-ui-alert__close:focus-visible {
       outline: 3px solid var(--sb-ui-color-secondary-L100);
       outline-offset: 2px;
+    }
+
+    /* Ocultar cualquier contenido dentro (Font Awesome, etc.) */
+    .sb-ui-alert__close > * {
+      display: none;
+    }
+
+    /* Icono X con CSS puro (sin Font Awesome) usando mask-image para colores dinámicos */
+    .sb-ui-alert__close::before {
+      content: '';
+      inline-size: 1.125rem;
+      block-size: 1.125rem;
+      background-color: var(--sb-ui-alert-close-color);
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cline x1='6' y1='6' x2='18' y2='18' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='18' y1='6' x2='6' y2='18' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cline x1='6' y1='6' x2='18' y2='18' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='18' y1='6' x2='6' y2='18' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      -webkit-mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+    }
+
+    .sb-ui-alert__close:hover::before {
+      background-color: var(--sb-ui-alert-close-color-hover);
     }
 
   /* Screen reader only */
@@ -2298,31 +2388,31 @@
    ======================================== */
 @layer sizes {
   .sb-ui-alert--small {
-    --sb-ui-alert-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-    --sb-ui-alert-padding-inline-start: clamp(1.5rem, 1.3rem + 0.5vw, 2rem);
-    --sb-ui-alert-padding-inline-end: clamp(0.625rem, 0.5rem + 0.5vw, 0.875rem);
-    --sb-ui-alert-min-block-size: clamp(2rem, 1.8rem + 1vw, 2.5rem);
-    --sb-ui-alert-title-font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
-    --sb-ui-alert-message-font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
-    --sb-ui-alert-icon-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
-    --sb-ui-alert-close-size: clamp(1rem, 0.9rem + 0.2vw, 1.25rem);
-    --sb-ui-alert-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+    --sb-ui-alert-padding-block: 0.75rem; /* 12px */
+    --sb-ui-alert-padding-inline-start: 1.5rem;
+    --sb-ui-alert-padding-inline-end: 0.75rem;
+    --sb-ui-alert-min-block-size: 3.5rem;
+    --sb-ui-alert-title-font-size: 0.8125rem; /* 13px */
+    --sb-ui-alert-message-font-size: 0.8125rem; /* 13px */
+    --sb-ui-alert-icon-size: 1.25rem; /* 20px */
+    --sb-ui-alert-close-size: 1.5rem; /* 24px */
+    --sb-ui-alert-gap: 0.375rem; /* 6px */
   }
 
   .sb-ui-alert--medium {
-    /* Default - ya definido en tokens */
+    /* Default - ya definido en tokens según especificación Figma */
   }
 
   .sb-ui-alert--large {
-    --sb-ui-alert-padding-block: clamp(1rem, 0.8rem + 0.8vw, 1.25rem);
-    --sb-ui-alert-padding-inline-start: clamp(2.5rem, 2.2rem + 1vw, 3rem);
-    --sb-ui-alert-padding-inline-end: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
-    --sb-ui-alert-min-block-size: clamp(3rem, 2.6rem + 2vw, 3.5rem);
-    --sb-ui-alert-title-font-size: clamp(0.9375rem, 0.88rem + 0.2vw, 1rem);
-    --sb-ui-alert-message-font-size: clamp(0.875rem, 0.83rem + 0.18vw, 0.9375rem);
-    --sb-ui-alert-icon-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
-    --sb-ui-alert-close-size: clamp(1.5rem, 1.3rem + 0.5vw, 1.75rem);
-    --sb-ui-alert-gap: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+    --sb-ui-alert-padding-block: 1.25rem; /* 20px */
+    --sb-ui-alert-padding-inline-start: 2.5rem;
+    --sb-ui-alert-padding-inline-end: 1.25rem;
+    --sb-ui-alert-min-block-size: 6rem;
+    --sb-ui-alert-title-font-size: 1rem; /* 16px */
+    --sb-ui-alert-message-font-size: 1rem; /* 16px */
+    --sb-ui-alert-icon-size: 1.75rem; /* 28px */
+    --sb-ui-alert-close-size: 2rem; /* 32px */
+    --sb-ui-alert-gap: 0.75rem; /* 12px */
   }
 }
 /* ========================================
@@ -2330,10 +2420,10 @@
    ======================================== */
 @layer modifiers {
   .sb-ui-alert--compact {
-    --sb-ui-alert-padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-    --sb-ui-alert-padding-inline-start: clamp(1.5rem, 1.3rem + 0.5vw, 2rem);
-    --sb-ui-alert-padding-inline-end: clamp(0.625rem, 0.5rem + 0.5vw, 0.875rem);
-    --sb-ui-alert-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+    --sb-ui-alert-padding-block: 0.5rem; /* 8px */
+    --sb-ui-alert-padding-inline-start: 1.5rem;
+    --sb-ui-alert-padding-inline-end: 0.625rem;
+    --sb-ui-alert-gap: 0.375rem; /* 6px */
   }
 
   .sb-ui-alert--full-width {
@@ -2410,10 +2500,10 @@
     }
   }
 
-  /* Mobile responsive */
+  /* Mobile responsive - ajuste opcional para pantallas pequeñas */
   @media (max-inline-size: 640px) {
     .sb-ui-alert {
-      --sb-ui-alert-padding-block: 0.625rem;
+      --sb-ui-alert-padding-block: 0.75rem; /* 12px */
       --sb-ui-alert-padding-inline-start: 1.75rem;
       --sb-ui-alert-padding-inline-end: 0.75rem;
     }

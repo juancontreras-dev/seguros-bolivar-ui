@@ -11,10 +11,16 @@
  */
 
 @layer brand-overrides {
-  /* Ajustes estructurales de marca */
+  /* Ajustes de marca Seguros Bolívar - según especificación Figma */
   [data-brand='seguros-bolivar'] .sb-ui-alert {
+    /* Border radius exacto según Figma */
     --sb-ui-alert-border-radius: 8px;
-    --sb-ui-alert-shadow: var(--sb-ui-shadow-s, 0 2px 8px rgba(0, 0, 0, 0.08));
+    
+    /* Shadow S según token de diseño */
+    --sb-ui-alert-shadow: var(--sb-ui-shadow-s);
+    
+    /* Tipografía con fuente Bolivar */
+    --sb-ui-alert-font-family: var(--sb-ui-typography-fontFamily);
   }
 
   /* Focus outline del botón de cierre — verde primario (consistente con botones) */

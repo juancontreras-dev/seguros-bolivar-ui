@@ -2272,7 +2272,10 @@
               const inlineScripts = [];
               scripts.forEach(script => {
                 if (!script.src && script.textContent.trim()) {
-                  inlineScripts.push(script.textContent);
+                  inlineScripts.push({
+                    content: script.textContent,
+                    type: script.getAttribute('type') || 'text/javascript'
+                  });
                 }
               });
               
@@ -2294,9 +2297,12 @@
               // Execute inline scripts from the loaded page so that
               // interactive docs like "getting-started" work inside the master layout
               const dynamicContainer = contentInner.querySelector('.dynamic-content');
-              inlineScripts.forEach(code => {
+              inlineScripts.forEach(scriptData => {
                 const s = document.createElement('script');
-                s.textContent = code;
+                if (scriptData.type) {
+                  s.setAttribute('type', scriptData.type);
+                }
+                s.textContent = scriptData.content;
                 dynamicContainer.appendChild(s);
               });
               
