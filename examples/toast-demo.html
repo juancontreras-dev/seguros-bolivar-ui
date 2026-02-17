@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast Demo - Seguros Bolívar UI</title>
+    <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.css" />
+    <script type="module" src="dist/sb-ui-components.min.js"></script>
+    <style>
+      body {
+        font-family: 'Bolivar', 'Roboto', sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: #f5f5f5;
+      }
+      .demo-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        margin-top: 0;
+        color: #1b1b1b;
+      }
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      button {
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .btn-success {
+        background: #28a745;
+        color: white;
+      }
+      .btn-info {
+        background: #007eff;
+        color: white;
+      }
+      .btn-warning {
+        background: #ffc100;
+        color: #1b1b1b;
+      }
+      .btn-error {
+        background: #dc3545;
+        color: white;
+      }
+      .comparison {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 2px solid #edeef0;
+      }
+      .comparison h2 {
+        margin-bottom: 1rem;
+        color: #1b1b1b;
+      }
+      .alert-demo {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-container">
+      <h1>🎯 Toast Component Demo</h1>
+      <p>
+        Haz clic en los botones para ver los toasts con el nuevo diseño alineado con los alerts de
+        Figma.
+      </p>
+
+      <div class="button-grid">
+        <button class="btn-success" onclick="showSuccessToast()">✓ Success Toast</button>
+        <button class="btn-info" onclick="showInfoToast()">ℹ Info Toast</button>
+        <button class="btn-warning" onclick="showWarningToast()">⚠ Warning Toast</button>
+        <button class="btn-error" onclick="showErrorToast()">✕ Error Toast</button>
+      </div>
+
+      <div class="comparison">
+        <h2>📊 Comparación con Alerts</h2>
+        <p>Los toasts ahora tienen el mismo diseño que los alerts:</p>
+
+        <div class="alert-demo">
+          <div class="sb-ui-alert sb-ui-alert--success" role="alert">
+            <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Alert Success</strong>
+              <p class="sb-ui-alert__message">Este es un alert de éxito para comparar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-demo">
+          <div class="sb-ui-alert sb-ui-alert--info" role="alert">
+            <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+            <div class="sb-ui-alert__content">
+              <strong class="sb-ui-alert__title">Alert Info</strong>
+              <p class="sb-ui-alert__message">Este es un alert informativo para comparar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Crear toast container si no existe
+      let toastContainer = document.querySelector('sb-ui-toast-container');
+      if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.style.cssText = `
+          position: fixed;
+          top: 1rem;
+          right: 1rem;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        `;
+        document.body.appendChild(toastContainer);
+      }
+
+      function createToast(type, title, message) {
+        const toast = document.createElement('sb-ui-toast');
+        toast.setAttribute('type', type);
+        toast.setAttribute('position', 'top-right');
+        toast.setAttribute('size', 'medium');
+        toast.setAttribute('show-close', 'true');
+        toast.setAttribute('auto-dismiss', '5000');
+        toast.setAttribute('title', title);
+        toast.setAttribute('message', message);
+        toast.setAttribute('visible', 'true');
+
+        toastContainer.appendChild(toast);
+
+        // Remover el toast después de que se cierre
+        setTimeout(() => {
+          toast.remove();
+        }, 5500);
+      }
+
+      window.showSuccessToast = () => {
+        createToast('success', '¡Éxito!', 'Operación completada correctamente');
+      };
+
+      window.showInfoToast = () => {
+        createToast('info', 'Información', 'Este es un mensaje informativo');
+      };
+
+      window.showWarningToast = () => {
+        createToast('warning', 'Advertencia', 'Por favor revisa la información');
+      };
+
+      window.showErrorToast = () => {
+        createToast('error', 'Error', 'Ha ocurrido un error en el proceso');
+      };
+    </script>
+  </body>
+</html>

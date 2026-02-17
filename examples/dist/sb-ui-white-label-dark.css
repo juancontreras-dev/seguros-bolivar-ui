@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: dark
- * Generated: 2026-02-17T21:10:28.370Z
+ * Generated: 2026-02-17T22:42:01.947Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -223,8 +223,11 @@
   .sb-ui-container-lg,
   .sb-ui-container-xl,
   .sb-ui-container-xxl {
-    all: unset;
+    /* NO usar all: unset porque puede eliminar display */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    display: block;
   }
 }
 /* ============================================================================
@@ -404,7 +407,9 @@
    ============================================================================ */
 @layer reset {
   .sb-ui-grid {
-    all: unset;
+    /* NO usar all: unset porque elimina display: grid */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
 
