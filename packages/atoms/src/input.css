@@ -106,6 +106,9 @@
     /* Helper icon */
     --sb-ui-input-help-icon-size: 16px; /* Desde Figma */
 
+    /* Search: color de la X nativa de limpiar (gris oscuro del sistema) */
+    --sb-ui-input-search-cancel-color: #5b5b5b; /* Greyscale/+200 / D200 */
+
     /* Sombras */
     --sb-ui-input-shadow: none;
     --sb-ui-input-shadow-focus: 0 0 0 3px rgba(0, 144, 86, 0.1); /* Verde Bolívar con opacidad */
@@ -202,6 +205,29 @@
     /* Con ícono a la derecha */
     &.sb-ui-input--with-icon {
       padding-inline-end: var(--sb-ui-input-padding-inline-end-icon);
+    }
+
+    /* Search: botón limpiar (X) - gris #5b5b5b vía máscara (Chrome) */
+    &[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 16px !important;
+      height: 16px !important;
+      margin-inline-start: 4px !important;
+      background-color: var(--sb-ui-input-search-cancel-color, #5b5b5b) !important;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+      -webkit-mask-size: contain !important;
+      -webkit-mask-repeat: no-repeat !important;
+      -webkit-mask-position: center !important;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+      mask-size: contain !important;
+      mask-repeat: no-repeat !important;
+      mask-position: center !important;
+      cursor: pointer;
+      opacity: 0.9;
+    }
+    &[type="search"]::-webkit-search-cancel-button:hover {
+      opacity: 1;
     }
   }
 
@@ -311,23 +337,7 @@
   }
   
   .sb-ui-input-inner:has(.sb-ui-input--error) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
-  }
-
-  /* Warning state */
-  .sb-ui-input--warning {
-    --sb-ui-input-border-color: #FFC107; /* Warning color */
-    --sb-ui-input-border-focus: #FFC107;
-    --sb-ui-input-border-hover: #FFC107;
-    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(255, 193, 7, 0.1);
-  }
-
-  .sb-ui-input--warning ~ .sb-ui-input-helper {
-    color: #FFC107;
-  }
-  
-  .sb-ui-input-inner:has(.sb-ui-input--warning) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
+    color: #DC3545; /* Alerts/Error/Base */
   }
 
   /* Disabled state */
@@ -514,4 +524,30 @@
   -webkit-box-shadow: 0 0 0 30px var(--sb-ui-input-bg-color) inset !important;
   -webkit-text-fill-color: var(--sb-ui-input-text-color) !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ========================================
+   SEARCH CANCEL BUTTON - Chrome (fuera de @layer)
+   Gris #5b5b5b: máscara + background para que no use el azul nativo
+   ======================================== */
+.sb-ui-input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-inline-start: 4px !important;
+  background-color: #5b5b5b !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+  -webkit-mask-size: contain !important;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+  mask-size: contain !important;
+  mask-repeat: no-repeat !important;
+  mask-position: center !important;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.sb-ui-input[type="search"]::-webkit-search-cancel-button:hover {
+  opacity: 1;
 }

@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: seguros-bolivar | Theme: dark
- * Generated: 2026-02-17T19:45:30.723Z
+ * Generated: 2026-02-18T03:59:12.411Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -6420,23 +6420,7 @@
   }
   
   .sb-ui-input-inner:has(.sb-ui-input--error) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
-  }
-
-  /* Warning state */
-  .sb-ui-input--warning {
-    --sb-ui-input-border-color: #FFC107; /* Warning color */
-    --sb-ui-input-border-focus: #FFC107;
-    --sb-ui-input-border-hover: #FFC107;
-    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(255, 193, 7, 0.1);
-  }
-
-  .sb-ui-input--warning ~ .sb-ui-input-helper {
-    color: #FFC107;
-  }
-  
-  .sb-ui-input-inner:has(.sb-ui-input--warning) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
+    color: #DC3545; /* Alerts/Error/Base */
   }
 
   /* Disabled state */
@@ -12247,7 +12231,7 @@
  * 1. Configuración global (fuera de @layer) - padding, border-radius, etc.
  * 2. Overrides por estado (dentro de @layer brand-overrides) - colores
  *
- * ESTADOS: default, hover, focus, disabled, success, error, warning
+ * ESTADOS: default, hover, focus, disabled, success, error
  *
  * ⚠️ IMPORTANTE:
  * - Usar @layer brand-overrides para overrides de variables CSS
@@ -12265,7 +12249,7 @@
    ============================================================================ */
 
 [data-brand='seguros-bolivar'] .sb-ui-input {
-  --sb-ui-input-border-radius: 8px;
+  --sb-ui-input-border-radius: 4px; /* Desde Figma: rounded-[4px] */
   --sb-ui-input-padding-inline: 16px; /* Inner margin horizontal */
   --sb-ui-input-padding-block: 8px; /* Padding vertical según diseño */
   --sb-ui-input-min-block-size: 40px; /* Altura mínima ajustada */
@@ -12296,7 +12280,7 @@
 /* Ícono derecho */
 
 [data-brand='seguros-bolivar'] .sb-ui-input-icon {
-  --sb-ui-input-icon-size: 16px; /* Tamaño del ícono */
+  --sb-ui-input-icon-size: 18px; /* Tamaño del ícono - desde Figma: text-[18px] dentro de container 24px */
   --sb-ui-input-icon-inset-inline-end: 12px; /* Posición desde el borde */
 }
 
@@ -12344,9 +12328,9 @@
 
   /* ========================================
      LABEL - Focus state
-     Color verde cuando el input tiene foco
+     Color verde cuando el input tiene foco (excepto label requerido)
      ======================================== */
-  [data-brand='seguros-bolivar'] .sb-ui-input-container:focus-within .sb-ui-input-label {
+  [data-brand='seguros-bolivar'] .sb-ui-input-container:focus-within .sb-ui-input-label:not(.sb-ui-input-label--required) {
     color: var(--sb-ui-color-primary-base);
   }
 
@@ -12366,7 +12350,8 @@
 
   /* ========================================
      SUCCESS STATE
-     Borde verde, ícono verde, helper text verde con ✓
+     Borde verde, ícono verde primario (no cambia), helper text #279941
+     Figma: el ícono del input mantiene color #038450 en todos los estados
      ======================================== */
   [data-brand='seguros-bolivar'] .sb-ui-input--success {
     --sb-ui-input-border-color: var(--sb-ui-color-feedback-success-base);
@@ -12374,19 +12359,14 @@
     --sb-ui-input-shadow-focus: none;
   }
 
-  /* Ícono del input en success */
-  [data-brand='seguros-bolivar'] .sb-ui-input--success + .sb-ui-input-icon {
-    color: var(--sb-ui-color-feedback-success-base);
-  }
-
-  /* Helper text en success - todo verde (ícono + texto) */
+  /* Helper text en success - #279941 (Alerts/Success/+100) desde Figma */
   [data-brand='seguros-bolivar'] .sb-ui-input-container:has(.sb-ui-input--success) .sb-ui-input-helper {
-    color: var(--sb-ui-color-feedback-success-base) !important;
+    color: #279941 !important; /* Alerts/Success/+100 desde Figma */
   }
 
   /* ========================================
      ERROR STATE
-     Borde rojo, ícono rojo, helper text rojo con ⊗
+     Borde rojo, ícono rojo, helper text rojo
      ======================================== */
   [data-brand='seguros-bolivar'] .sb-ui-input--error {
     --sb-ui-input-border-color: var(--sb-ui-color-feedback-error-base);
@@ -12394,34 +12374,14 @@
     --sb-ui-input-shadow-focus: none;
   }
 
-  /* Ícono del input en error */
-  [data-brand='seguros-bolivar'] .sb-ui-input--error + .sb-ui-input-icon {
-    color: var(--sb-ui-color-feedback-error-base);
-  }
-
-  /* Helper text en error - todo rojo (ícono + texto) */
-  [data-brand='seguros-bolivar'] .sb-ui-input-container:has(.sb-ui-input--error) .sb-ui-input-helper {
+  /* Ícono del input en error - rojo */
+  [data-brand='seguros-bolivar'] .sb-ui-input-inner:has(.sb-ui-input--error) .sb-ui-input-icon {
     color: var(--sb-ui-color-feedback-error-base) !important;
   }
 
-  /* ========================================
-     WARNING STATE
-     Borde amarillo/naranja, ícono amarillo
-     ======================================== */
-  [data-brand='seguros-bolivar'] .sb-ui-input--warning {
-    --sb-ui-input-border-color: var(--sb-ui-color-feedback-warning-base);
-    --sb-ui-input-border-focus: var(--sb-ui-color-feedback-warning-base);
-    --sb-ui-input-shadow-focus: none;
-  }
-
-  /* Ícono del input en warning */
-  [data-brand='seguros-bolivar'] .sb-ui-input--warning + .sb-ui-input-icon {
-    color: var(--sb-ui-color-feedback-warning-base);
-  }
-
-  /* Helper text en warning - todo amarillo (ícono + texto) */
-  [data-brand='seguros-bolivar'] .sb-ui-input-container:has(.sb-ui-input--warning) .sb-ui-input-helper {
-    color: var(--sb-ui-color-feedback-warning-base) !important;
+  /* Helper text en error - rojo (Alerts/Error/Base) desde Figma */
+  [data-brand='seguros-bolivar'] .sb-ui-input-container:has(.sb-ui-input--error) .sb-ui-input-helper {
+    color: var(--sb-ui-color-feedback-error-base) !important;
   }
 
   /* ========================================

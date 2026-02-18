@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: light
- * Generated: 2026-02-17T19:45:29.046Z
+ * Generated: 2026-02-18T03:59:10.825Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -6420,23 +6420,7 @@
   }
   
   .sb-ui-input-inner:has(.sb-ui-input--error) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
-  }
-
-  /* Warning state */
-  .sb-ui-input--warning {
-    --sb-ui-input-border-color: #FFC107; /* Warning color */
-    --sb-ui-input-border-focus: #FFC107;
-    --sb-ui-input-border-hover: #FFC107;
-    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(255, 193, 7, 0.1);
-  }
-
-  .sb-ui-input--warning ~ .sb-ui-input-helper {
-    color: #FFC107;
-  }
-  
-  .sb-ui-input-inner:has(.sb-ui-input--warning) .sb-ui-input-icon {
-    color: #038450; /* Primary/Base - verde Bolívar */
+    color: #DC3545; /* Alerts/Error/Base */
   }
 
   /* Disabled state */
