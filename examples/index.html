@@ -942,6 +942,23 @@
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
       }
+      /* Forzar bloque de código oscuro en GitHub Pages (página de inicio y componentes) */
+      .dynamic-content .demo-code-block,
+      .dynamic-content .description-page .demo-code-block {
+        background: #1e1e1e !important;
+        color: #d4d4d4 !important;
+      }
+      .dynamic-content .demo-code-block-header {
+        background: #2d2d2d !important;
+      }
+      .dynamic-content .demo-code-block-body {
+        background: #1e1e1e !important;
+        color: #d4d4d4 !important;
+      }
+      .dynamic-content .demo-code-block-body code {
+        color: #d4d4d4 !important;
+        background: transparent !important;
+      }
 
       /* ========================================
          PÁGINA DE INICIO (?view=description.html)
