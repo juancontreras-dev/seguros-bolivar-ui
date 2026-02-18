@@ -45,6 +45,187 @@
       }
 
       /* ========================================
+         TEMA OSCURO - Layout del proyecto de ejemplo
+         Paleta: fondos #1a1a1a / #212121 / #262626, texto #e5e5e5 / #a0a0a0, bordes #383838
+         ======================================== */
+      html[data-theme="dark"] body {
+        background: #1a1a1a !important;
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .app-header {
+        background: #212121 !important;
+        border-bottom: 1px solid #383838 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      }
+      html[data-theme="dark"] .header-logo h1 {
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .hamburger-btn,
+      html[data-theme="dark"] .header-icon-btn {
+        color: #b0b0b0 !important;
+      }
+      html[data-theme="dark"] .hamburger-btn:hover,
+      html[data-theme="dark"] .header-icon-btn:hover {
+        background-color: #2d2d2d !important;
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .header-brand-controls {
+        background: #2d2d2d !important;
+        border-color: #383838 !important;
+      }
+      html[data-theme="dark"] .header-brand-controls label {
+        color: #a0a0a0 !important;
+      }
+      html[data-theme="dark"] .header-brand-controls select {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        background-color: #1a1a1a !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 0.5rem center !important;
+        background-size: 12px 12px !important;
+        border-color: #383838 !important;
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .header-brand-controls select:hover {
+        border-color: #4a4a4a !important;
+      }
+      html[data-theme="dark"] .header-theme-toggle {
+        background: #383838 !important;
+      }
+      html[data-theme="dark"] .header-theme-toggle button:not(.active) {
+        color: #a0a0a0 !important;
+      }
+      html[data-theme="dark"] .header-theme-toggle button:not(.active):hover {
+        background: #2d2d2d !important;
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .header-user:hover {
+        background-color: #2d2d2d !important;
+      }
+      html[data-theme="dark"] .user-name {
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .user-company,
+      html[data-theme="dark"] .header-dropdown-icon {
+        color: #a0a0a0 !important;
+      }
+      html[data-theme="dark"] .user-dropdown {
+        background: #262626 !important;
+        border-color: #383838 !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+      }
+      html[data-theme="dark"] .user-dropdown-item {
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .user-dropdown-item:hover {
+        background-color: #2d2d2d !important;
+      }
+      html[data-theme="dark"] .user-dropdown-item.logout {
+        color: #f87171 !important;
+        border-top-color: #383838 !important;
+      }
+      html[data-theme="dark"] .user-dropdown-item.logout:hover {
+        background-color: rgba(248, 113, 113, 0.12) !important;
+      }
+      html[data-theme="dark"] .main-layout {
+        background: #1a1a1a !important;
+      }
+      html[data-theme="dark"] .sidebar {
+        background: #212121 !important;
+        border-right-color: #383838 !important;
+      }
+      html[data-theme="dark"] .sidebar-section-title {
+        color: #808080 !important;
+      }
+      html[data-theme="dark"] .sidebar-nav-item,
+      html[data-theme="dark"] .sidebar-submenu-btn,
+      html[data-theme="dark"] .sidebar-submenu-item {
+        color: #b0b0b0 !important;
+      }
+      html[data-theme="dark"] .sidebar-nav-item:hover,
+      html[data-theme="dark"] .sidebar-submenu-btn:hover,
+      html[data-theme="dark"] .sidebar-submenu-item:hover {
+        background-color: #2d2d2d !important;
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .sidebar-nav-item.active,
+      html[data-theme="dark"] .sidebar-submenu-btn.active,
+      html[data-theme="dark"] .sidebar-submenu-item.active {
+        background-color: rgba(46, 204, 113, 0.15) !important;
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+        border-left-color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .sidebar-submenu {
+        background: #1a1a1a !important;
+      }
+      html[data-theme="dark"] .content {
+        background: #1a1a1a !important;
+      }
+      html[data-theme="dark"] .content-inner {
+        background: #262626 !important;
+        color: #e5e5e5 !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4) !important;
+      }
+      html[data-theme="dark"] .dynamic-content .component-header {
+        border-block-end-color: #383838 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .component-title-icon {
+        background: rgba(46, 204, 113, 0.15) !important;
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .dynamic-content .variant-title {
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+        border-block-end-color: #383838 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .component-description,
+      html[data-theme="dark"] .dynamic-content .variant-section .component-description {
+        color: #a0a0a0 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .variant-section {
+        background: #2d2d2d !important;
+        border-color: #383838 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .variant-section + .variant-section {
+        border-block-start-color: #383838 !important;
+      }
+      html[data-theme="dark"] .sidebar-tooltip {
+        background: #383838 !important;
+        color: #e5e5e5 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+      }
+      html[data-theme="dark"] .sidebar-tooltip::before {
+        border-color: transparent #383838 transparent transparent !important;
+      }
+      html[data-theme="dark"] .content-inner h1,
+      html[data-theme="dark"] .content-inner h2,
+      html[data-theme="dark"] .content-inner h3,
+      html[data-theme="dark"] .content-inner h4 {
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .content-inner p,
+      html[data-theme="dark"] .content-inner li {
+        color: #b0b0b0 !important;
+      }
+      html[data-theme="dark"] .content-inner a {
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .content-inner a:hover {
+        color: #4ade80 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .description-page h2 {
+        color: #e5e5e5 !important;
+      }
+      html[data-theme="dark"] .dynamic-content .description-page h2 i {
+        color: var(--sb-ui-color-primary-base, #2ecc71) !important;
+      }
+      html[data-theme="dark"] .dynamic-content .description-page p,
+      html[data-theme="dark"] .dynamic-content .description-page li {
+        color: #b0b0b0 !important;
+      }
+
+      /* ========================================
          HEADER (Top Navigation)
          ======================================== */
       .app-header {
@@ -2601,50 +2782,61 @@
         'white-label': 'white-label'
       };
 
-      let currentBrand = 'seguros-bolivar';
-      let currentTheme = 'light';
+      let currentBrand = (typeof localStorage !== 'undefined' && localStorage.getItem('sb-ui-brand')) || 'seguros-bolivar';
+      let currentTheme = (typeof localStorage !== 'undefined' && localStorage.getItem('sb-ui-theme')) || 'light';
+      if (currentTheme !== 'light' && currentTheme !== 'dark') currentTheme = 'light';
 
       function updateBrandCSS() {
         const cssFileName = `sb-ui-${brandMap[currentBrand]}-${currentTheme}.min.css`;
-        // Usar ruta absoluta desde el origen para que funcione en GitHub Pages (subpath /seguros-bolivar-ui/)
         const newHref = BASE_PATH + 'dist/' + cssFileName + '?v=' + Date.now();
-        
+
         if (brandCSS) {
           brandCSS.href = newHref;
         }
-        
-        // Update data attributes on html element
+
         document.documentElement.setAttribute('data-brand', currentBrand);
         document.documentElement.setAttribute('data-theme', currentTheme);
-        
-        // Update theme buttons state
-        if (currentTheme === 'light') {
-          headerLightBtn.classList.add('active');
-          headerDarkBtn.classList.remove('active');
-        } else {
-          headerLightBtn.classList.remove('active');
-          headerDarkBtn.classList.add('active');
+
+        try {
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('sb-ui-brand', currentBrand);
+            localStorage.setItem('sb-ui-theme', currentTheme);
+          }
+        } catch (e) {}
+
+        if (headerLightBtn && headerDarkBtn) {
+          if (currentTheme === 'light') {
+            headerLightBtn.classList.add('active');
+            headerDarkBtn.classList.remove('active');
+          } else {
+            headerLightBtn.classList.remove('active');
+            headerDarkBtn.classList.add('active');
+          }
         }
       }
 
-      // Brand select change
-      headerBrandSelect.addEventListener('change', (e) => {
-        currentBrand = e.target.value;
-        updateBrandCSS();
-      });
+      if (headerBrandSelect) {
+        headerBrandSelect.value = currentBrand;
+        headerBrandSelect.addEventListener('change', (e) => {
+          currentBrand = e.target.value;
+          updateBrandCSS();
+        });
+      }
 
-      // Theme toggle buttons
-      headerLightBtn.addEventListener('click', () => {
-        currentTheme = 'light';
-        updateBrandCSS();
-      });
+      if (headerLightBtn) {
+        headerLightBtn.addEventListener('click', () => {
+          currentTheme = 'light';
+          updateBrandCSS();
+        });
+      }
 
-      headerDarkBtn.addEventListener('click', () => {
-        currentTheme = 'dark';
-        updateBrandCSS();
-      });
+      if (headerDarkBtn) {
+        headerDarkBtn.addEventListener('click', () => {
+          currentTheme = 'dark';
+          updateBrandCSS();
+        });
+      }
 
-      // Initialize brand CSS on load
       updateBrandCSS();
 
       // ========================================
