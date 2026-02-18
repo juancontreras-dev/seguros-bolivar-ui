@@ -207,6 +207,14 @@
         "status": "✅ Exists"
       },
       {
+        "figmaComponent": "Menu",
+        "source": "packages/atoms/src/menu.css",
+        "componentName": "sb-ui-menu",
+        "label": "CSS",
+        "category": "Navigation",
+        "status": "✅ Exists"
+      },
+      {
         "figmaComponent": "Toggle",
         "source": "packages/atoms/src/toggle.css",
         "componentName": "sb-ui-toggle",

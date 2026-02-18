@@ -1,0 +1,553 @@
+/**
+ * Menu Component - Seguros Bolívar UI Design System
+ * Menú de navegación vertical u horizontal, con opción de colapsar (solo iconos).
+ * Submenús con <details>/<summary> para abrir/cerrar sin JavaScript.
+ *
+ * Variantes:
+ * - Vertical (default): sb-ui-menu o sb-ui-menu--vertical
+ * - Horizontal: sb-ui-menu sb-ui-menu--horizontal
+ * - Colapsable: sb-ui-menu sb-ui-menu--collapsible; estado colapsado: sb-ui-menu--collapsed (toggle con JS)
+ *
+ * Uso vertical:
+ * <nav class="sb-ui-menu" aria-label="Menú principal">
+ *   <div class="sb-ui-menu__content">...</div>
+ * </nav>
+ *
+ * Uso horizontal:
+ * <nav class="sb-ui-menu sb-ui-menu--horizontal" aria-label="Menú principal">...</nav>
+ *
+ * Uso colapsable (añadir/quitar sb-ui-menu--collapsed para colapsar):
+ * <nav class="sb-ui-menu sb-ui-menu--collapsible" aria-label="Menú">...</nav>
+ */
+
+@layer reset, tokens, base, modifiers, states, utilities;
+
+/* ========================================
+   RESET LAYER
+   ======================================== */
+@layer reset {
+  .sb-ui-menu,
+  .sb-ui-menu *,
+  .sb-ui-menu *::before,
+  .sb-ui-menu *::after {
+    box-sizing: border-box;
+  }
+
+  .sb-ui-menu__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sb-ui-menu__trigger,
+  .sb-ui-menu__item,
+  .sb-ui-menu__submenu-item {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    text-align: start;
+    cursor: pointer;
+  }
+}
+
+/* ========================================
+   TOKENS LAYER
+   ======================================== */
+@layer tokens {
+  .sb-ui-menu {
+    --sb-ui-menu-bg: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-menu-border-color: var(--sb-ui-color-grayscale-L300, #e1e1e1);
+    --sb-ui-menu-border-width: 1px;
+    --sb-ui-menu-inline-size: 280px;
+    --sb-ui-menu-padding-block: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+    --sb-ui-menu-padding-inline: 0;
+
+    --sb-ui-menu-section-title-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-menu-section-title-font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
+    --sb-ui-menu-section-title-font-weight: 700;
+    --sb-ui-menu-section-title-padding-block: 0.75rem;
+    --sb-ui-menu-section-title-padding-inline: 1.5rem;
+    --sb-ui-menu-section-title-letter-spacing: 0.5px;
+
+    --sb-ui-menu-item-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-menu-item-color-hover: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-menu-item-color-active: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-menu-item-bg-hover: var(--sb-ui-color-grayscale-L400, #fafafa);
+    --sb-ui-menu-item-bg-active: var(--sb-ui-color-primary-L400, #f2f9f6);
+    --sb-ui-menu-item-border-active: var(--sb-ui-color-primary-base, #009056);
+    --sb-ui-menu-item-padding-block: 0.75rem;
+    --sb-ui-menu-item-padding-inline: 1.5rem;
+    --sb-ui-menu-item-gap: 0.875rem;
+    --sb-ui-menu-item-font-size: clamp(0.875rem, 0.8rem + 0.25vw, 0.9375rem);
+    --sb-ui-menu-item-font-weight: 500;
+    --sb-ui-menu-item-border-width: 3px;
+
+    --sb-ui-menu-icon-size: 1.125rem;
+    --sb-ui-menu-icon-inline-size: 20px;
+
+    --sb-ui-menu-submenu-bg: var(--sb-ui-color-grayscale-L400, #fafafa);
+    --sb-ui-menu-submenu-border-color: var(--sb-ui-color-primary-L300, #7ed8ac);
+    --sb-ui-menu-submenu-margin-inline-start: 1.5rem;
+    --sb-ui-menu-submenu-border-width: 2px;
+    --sb-ui-menu-submenu-item-padding-block: 0.6rem;
+    --sb-ui-menu-submenu-item-padding-inline: 1.5rem;
+    --sb-ui-menu-submenu-item-font-size: 0.875rem;
+    --sb-ui-menu-submenu-item-icon-inline-size: 16px;
+
+    --sb-ui-menu-toggle-size: 0.75rem;
+    --sb-ui-menu-toggle-rotate-open: 90deg;
+
+    /* Horizontal: borde inferior para ítem activo */
+    --sb-ui-menu-item-border-active-horizontal: var(--sb-ui-menu-item-border-width) solid
+      var(--sb-ui-menu-item-border-active);
+
+    /* Colapsado: ancho reducido (suficiente para títulos como "Componentes") */
+    --sb-ui-menu-inline-size-collapsed: 92px;
+
+    --sb-ui-menu-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+      transform 0.2s ease, inline-size 0.3s ease;
+  }
+}
+
+/* ========================================
+   BASE LAYER
+   ======================================== */
+@layer base {
+  /* Vertical (default): sidebar con borde a la derecha */
+  .sb-ui-menu,
+  .sb-ui-menu--vertical {
+    display: block;
+    inline-size: var(--sb-ui-menu-inline-size);
+    max-inline-size: 100%;
+    background-color: var(--sb-ui-menu-bg);
+    border-inline-end: var(--sb-ui-menu-border-width) solid var(--sb-ui-menu-border-color);
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    transition: var(--sb-ui-menu-transition);
+  }
+
+  .sb-ui-menu__content {
+    padding-block: var(--sb-ui-menu-padding-block);
+    padding-inline: var(--sb-ui-menu-padding-inline);
+  }
+
+  .sb-ui-menu__section {
+    margin-block-end: 1.5rem;
+  }
+
+  .sb-ui-menu__section:last-child {
+    margin-block-end: 0;
+  }
+
+  .sb-ui-menu__section-title {
+    display: block;
+    font-size: var(--sb-ui-menu-section-title-font-size);
+    font-weight: var(--sb-ui-menu-section-title-font-weight);
+    text-transform: uppercase;
+    letter-spacing: var(--sb-ui-menu-section-title-letter-spacing);
+    color: var(--sb-ui-menu-section-title-color);
+    padding-block: var(--sb-ui-menu-section-title-padding-block);
+    padding-inline: var(--sb-ui-menu-section-title-padding-inline);
+    margin-block-end: 0.75rem;
+  }
+
+  .sb-ui-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sb-ui-menu__item,
+  .sb-ui-menu__trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--sb-ui-menu-item-gap);
+    padding-block: var(--sb-ui-menu-item-padding-block);
+    padding-inline: var(--sb-ui-menu-item-padding-inline);
+    inline-size: 100%;
+    color: var(--sb-ui-menu-item-color);
+    font-size: var(--sb-ui-menu-item-font-size);
+    font-weight: var(--sb-ui-menu-item-font-weight);
+    text-decoration: none;
+    border-inline-start: var(--sb-ui-menu-item-border-width) solid transparent;
+    transition: var(--sb-ui-menu-transition);
+  }
+
+  .sb-ui-menu__item:focus-visible,
+  .sb-ui-menu__trigger:focus-visible {
+    outline: 2px solid var(--sb-ui-color-primary-base, #009056);
+    outline-offset: 2px;
+  }
+
+  .sb-ui-menu__item span,
+  .sb-ui-menu__trigger span {
+    flex: 1;
+  }
+
+  .sb-ui-menu__item i:first-child,
+  .sb-ui-menu__trigger i:first-child {
+    inline-size: var(--sb-ui-menu-icon-inline-size);
+    block-size: 1em;
+    text-align: center;
+    font-size: var(--sb-ui-menu-icon-size);
+    flex-shrink: 0;
+  }
+
+  /* Details: quitar marcador por defecto del summary */
+  .sb-ui-menu__details {
+    display: contents;
+  }
+
+  .sb-ui-menu__trigger {
+    list-style: none;
+  }
+
+  /* Quitar flecha nativa del summary en todos los navegadores (evita doble flecha con nuestro toggle/::after) */
+  .sb-ui-menu__trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .sb-ui-menu__trigger::marker {
+    display: none;
+    content: none;
+  }
+
+  .sb-ui-menu__toggle {
+    font-size: var(--sb-ui-menu-toggle-size);
+    transition: transform var(--sb-ui-menu-transition);
+    flex-shrink: 0;
+  }
+
+  .sb-ui-menu__details[open] .sb-ui-menu__toggle {
+    transform: rotate(var(--sb-ui-menu-toggle-rotate-open));
+  }
+
+  .sb-ui-menu__submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--sb-ui-menu-submenu-bg);
+    border-inline-start: var(--sb-ui-menu-submenu-border-width) solid
+      var(--sb-ui-menu-submenu-border-color);
+    margin-inline-start: var(--sb-ui-menu-submenu-margin-inline-start);
+  }
+
+  .sb-ui-menu__details:not([open]) .sb-ui-menu__submenu {
+    display: none;
+  }
+
+  .sb-ui-menu__submenu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: var(--sb-ui-menu-submenu-item-padding-block);
+    padding-inline: var(--sb-ui-menu-submenu-item-padding-inline);
+    inline-size: 100%;
+    color: var(--sb-ui-menu-item-color);
+    font-size: var(--sb-ui-menu-submenu-item-font-size);
+    font-weight: 400;
+    text-decoration: none;
+    border-inline-start: var(--sb-ui-menu-item-border-width) solid transparent;
+    transition: var(--sb-ui-menu-transition);
+  }
+
+  .sb-ui-menu__submenu-item:focus-visible {
+    outline: 2px solid var(--sb-ui-color-primary-base, #009056);
+    outline-offset: 2px;
+  }
+
+  .sb-ui-menu__submenu-item i {
+    inline-size: var(--sb-ui-menu-submenu-item-icon-inline-size);
+    text-align: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+}
+
+/* ========================================
+   STATES (hover, active)
+   ======================================== */
+@layer states {
+  .sb-ui-menu__item:hover,
+  .sb-ui-menu__trigger:hover {
+    background-color: var(--sb-ui-menu-item-bg-hover);
+    color: var(--sb-ui-menu-item-color-hover);
+  }
+
+  .sb-ui-menu__item.sb-ui-menu__item--active,
+  .sb-ui-menu__trigger.sb-ui-menu__trigger--active {
+    background-color: var(--sb-ui-menu-item-bg-active);
+    color: var(--sb-ui-menu-item-color-active);
+    border-inline-start-color: var(--sb-ui-menu-item-border-active);
+    font-weight: 600;
+  }
+
+  .sb-ui-menu__submenu-item:hover {
+    background-color: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    color: var(--sb-ui-menu-item-color-hover);
+    border-inline-start-color: var(--sb-ui-color-secondary-base, #ffe16f);
+  }
+
+  .sb-ui-menu__submenu-item.sb-ui-menu__submenu-item--active {
+    background-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    color: var(--sb-ui-menu-item-color-active);
+    border-inline-start-color: var(--sb-ui-color-secondary-base, #ffe16f);
+    font-weight: 600;
+  }
+}
+
+/* ========================================
+   MODIFIERS
+   ======================================== */
+@layer modifiers {
+  /* ---------- Horizontal ---------- */
+  .sb-ui-menu--horizontal {
+    inline-size: 100%;
+    max-inline-size: none;
+    border-inline-end: none;
+    border-block-end: var(--sb-ui-menu-border-width) solid var(--sb-ui-menu-border-color);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    padding-block: 0;
+    padding-inline: 0.5rem;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__section {
+    margin-block-end: 0;
+    margin-inline-end: 0.5rem;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__section-title {
+    display: none;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__list {
+    flex-direction: row;
+    gap: 0;
+    margin-block-end: 0;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__item,
+  .sb-ui-menu--horizontal .sb-ui-menu__trigger {
+    border-inline-start: none;
+    border-block-end: var(--sb-ui-menu-item-border-width) solid transparent;
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
+    white-space: nowrap;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__item.sb-ui-menu__item--active,
+  .sb-ui-menu--horizontal .sb-ui-menu__trigger.sb-ui-menu__trigger--active {
+    border-inline-start-color: transparent;
+    border-block-end-color: var(--sb-ui-menu-item-border-active);
+  }
+
+  /* Submenú horizontal: dropdown bajo el ítem */
+  .sb-ui-menu--horizontal .sb-ui-menu__details {
+    display: block;
+    position: relative;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__submenu {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    margin-inline-start: 0;
+    min-inline-size: 180px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-inline-start: none;
+    border-block-start: var(--sb-ui-menu-submenu-border-width) solid
+      var(--sb-ui-menu-submenu-border-color);
+    z-index: 100;
+  }
+
+  .sb-ui-menu--horizontal .sb-ui-menu__details:not([open]) .sb-ui-menu__submenu {
+    display: none;
+  }
+
+  /* ---------- Colapsable: estado expandido (default) ---------- */
+  .sb-ui-menu--collapsible {
+    transition: inline-size 0.3s ease, padding 0.3s ease;
+  }
+
+  /* ---------- Colapsable: estado colapsado (solo iconos) ---------- */
+  /* Se puede activar con clase .sb-ui-menu--collapsed (JS) o con checkbox hermano .sb-ui-menu__collapse-input:checked */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible {
+    inline-size: var(--sb-ui-menu-inline-size-collapsed) !important;
+    min-inline-size: var(--sb-ui-menu-inline-size-collapsed);
+    overflow: visible;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__section-title,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__section-title {
+    padding-inline: 0.5rem;
+    font-size: 0.55rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__item,
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__trigger,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__item,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__trigger {
+    justify-content: center;
+    padding-inline: 0.75rem;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__trigger,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__trigger {
+    position: relative;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__item span,
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__trigger span,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__item span,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__trigger span {
+    display: none;
+  }
+
+  /* En colapsado: mostrar solo el chevron como indicador (el marcador nativo del summary ya está oculto en base); no usar ::after */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__trigger::after,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__trigger::after {
+    display: none !important;
+  }
+
+  /* Asegurar que el chevron (.sb-ui-menu__toggle) se vea en colapsado: tamaño y posición */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__toggle,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    margin-inline-start: auto;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__trigger:hover::after,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__trigger:hover::after {
+    opacity: 1;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__details[open] .sb-ui-menu__trigger::after,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__details[open] .sb-ui-menu__trigger::after {
+    opacity: 1;
+  }
+
+  /* Submenú en colapsado: dentro del mismo menú (solo iconos), no flotante */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__details,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__details {
+    display: block;
+    position: relative;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu {
+    position: static;
+    margin-inline-start: 0;
+    min-inline-size: unset;
+    box-shadow: none;
+    border-inline-start: none;
+    background-color: transparent;
+  }
+
+  /* Submenú en colapsado: ítems como filas de solo icono (igual que el menú principal) */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item {
+    justify-content: center;
+    padding-inline: 0.75rem;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item span,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item span {
+    display: none;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item i,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-menu-icon-inline-size);
+    font-size: var(--sb-ui-menu-icon-size);
+    flex-shrink: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Botón/label para colapsar (opcional, colocar antes del menú) */
+  .sb-ui-menu__collapse-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: var(--sb-ui-menu-item-color);
+    margin-block-end: 0.5rem;
+    border-radius: 4px;
+    transition: var(--sb-ui-menu-transition);
+  }
+
+  .sb-ui-menu__collapse-label:hover {
+    background-color: var(--sb-ui-menu-item-bg-hover);
+    color: var(--sb-ui-menu-item-color-hover);
+  }
+
+  /* ---------- Compact ---------- */
+  .sb-ui-menu--compact .sb-ui-menu__section-title {
+    padding-block: 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .sb-ui-menu--compact .sb-ui-menu__item,
+  .sb-ui-menu--compact .sb-ui-menu__trigger {
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .sb-ui-menu--compact .sb-ui-menu__submenu-item {
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .sb-ui-menu--full-width {
+    inline-size: 100%;
+  }
+}
+
+/* ========================================
+   UTILITIES (reduced motion, high contrast)
+   ======================================== */
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-menu,
+    .sb-ui-menu__item,
+    .sb-ui-menu__trigger,
+    .sb-ui-menu__submenu-item,
+    .sb-ui-menu__toggle {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .sb-ui-menu {
+      --sb-ui-menu-border-width: 2px;
+      --sb-ui-menu-item-border-width: 4px;
+    }
+  }
+}

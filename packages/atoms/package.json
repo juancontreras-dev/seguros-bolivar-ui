@@ -24,6 +24,7 @@
     "./grid.css": "./dist/grid.css",
     "./gutters.css": "./dist/gutters.css",
     "./input.css": "./dist/input.css",
+    "./menu.css": "./dist/menu.css",
     "./radio.css": "./dist/radio.css",
     "./select.css": "./dist/select.css",
     "./slider.css": "./dist/slider.css",
@@ -38,7 +39,7 @@
     "build": "npm run clean && npm run build:copy && npm run build:bundle",
     "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "build:copy": "node -e \"require('fs').mkdirSync('dist', {recursive:true}); require('fs').cpSync('src', 'dist', {recursive:true})\"",
-    "build:bundle": "node -e \"const fs=require('fs'); const files=['accordion','alert','avatar','badge','breadcrumb','button','calendar','checkbox','chip','container','grid','columns','gutters','css-grid','file-upload','input','radio','select','slider','spinner','stepper','table','tabs','textArea','toggle'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
+    "build:bundle": "node -e \"const fs=require('fs'); const files=['accordion','alert','avatar','badge','breadcrumb','button','calendar','checkbox','chip','container','grid','columns','gutters','css-grid','file-upload','input','menu','radio','select','slider','spinner','stepper','table','tabs','textArea','toggle'].map(f=>'src/'+f+'.css'); const content=files.map(f=>fs.existsSync(f)?fs.readFileSync(f,'utf8'):'').join('\\n'); fs.writeFileSync('dist/index.css',content)\"",
     "dev": "npm run build",
     "lint": "stylelint 'src/**/*.css'"
   },

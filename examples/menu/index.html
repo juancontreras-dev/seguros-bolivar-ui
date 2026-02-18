@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu - Seguros Bolívar UI Design System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" />
+    <link rel="stylesheet" href="../components.css" />
+    <style>
+      .menu-demo-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .menu-demo-item {
+        padding: 1rem;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
+        border-radius: 8px;
+        background: var(--sb-ui-color-grayscale-L50, #fafafa);
+      }
+      .menu-demo-item h4 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+        margin-block-end: 1rem;
+        margin-block-start: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .menu-demo-item--full {
+        inline-size: 100%;
+        max-inline-size: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="component-container">
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon"><i class="fa-solid fa-bars" aria-hidden="true"></i></span>
+          <span>Menu</span>
+        </h2>
+        <p class="component-description">
+          Menú de navegación con variante <strong>vertical</strong> (sidebar), <strong>horizontal</strong> y opción de <strong>colapsar</strong> (solo iconos). Submenús con <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>, sin JavaScript.
+        </p>
+      </header>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Menú vertical (sidebar)</h3>
+        <div class="menu-demo-layout">
+          <div class="menu-demo-item">
+            <h4>Vertical estándar</h4>
+            <nav class="sb-ui-menu" aria-label="Ejemplo de menú">
+              <div class="sb-ui-menu__content">
+                <div class="sb-ui-menu__section">
+                  <div class="sb-ui-menu__section-title">Inicio</div>
+                  <div class="sb-ui-menu__list">
+                    <a href="#inicio" class="sb-ui-menu__item sb-ui-menu__item--active">
+                      <i class="fas fa-house" aria-hidden="true"></i>
+                      <span>Inicio</span>
+                    </a>
+                    <details class="sb-ui-menu__details">
+                      <summary class="sb-ui-menu__trigger">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        <span>Guía</span>
+                        <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                      </summary>
+                      <div class="sb-ui-menu__submenu">
+                        <a href="#instalacion" class="sb-ui-menu__submenu-item">
+                          <i class="fas fa-download" aria-hidden="true"></i>
+                          <span>Instalación</span>
+                        </a>
+                        <a href="#uso" class="sb-ui-menu__submenu-item sb-ui-menu__submenu-item--active">
+                          <i class="fas fa-code" aria-hidden="true"></i>
+                          <span>Uso básico</span>
+                        </a>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+                <div class="sb-ui-menu__section">
+                  <div class="sb-ui-menu__section-title">Componentes</div>
+                  <div class="sb-ui-menu__list">
+                    <a href="#input" class="sb-ui-menu__item">
+                      <i class="fas fa-keyboard" aria-hidden="true"></i>
+                      <span>Input</span>
+                    </a>
+                    <a href="#textarea" class="sb-ui-menu__item">
+                      <i class="fas fa-file-lines" aria-hidden="true"></i>
+                      <span>Textarea</span>
+                    </a>
+                    <a href="#button" class="sb-ui-menu__item">
+                      <i class="fas fa-square" aria-hidden="true"></i>
+                      <span>Botones</span>
+                    </a>
+                    <a href="#select" class="sb-ui-menu__item">
+                      <i class="fas fa-caret-down" aria-hidden="true"></i>
+                      <span>Select</span>
+                    </a>
+                    <a href="#checkbox" class="sb-ui-menu__item">
+                      <i class="fas fa-check-square" aria-hidden="true"></i>
+                      <span>Checkbox</span>
+                    </a>
+                    <details class="sb-ui-menu__details">
+                      <summary class="sb-ui-menu__trigger">
+                        <i class="fas fa-layer-group" aria-hidden="true"></i>
+                        <span>Otros</span>
+                        <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                      </summary>
+                      <div class="sb-ui-menu__submenu">
+                        <a href="#accordion" class="sb-ui-menu__submenu-item">
+                          <i class="fas fa-bars-staggered" aria-hidden="true"></i>
+                          <span>Accordion</span>
+                        </a>
+                        <a href="#tabs" class="sb-ui-menu__submenu-item">
+                          <i class="fas fa-folder" aria-hidden="true"></i>
+                          <span>Tabs</span>
+                        </a>
+                        <a href="#alert" class="sb-ui-menu__submenu-item">
+                          <i class="fas fa-bell" aria-hidden="true"></i>
+                          <span>Alert</span>
+                        </a>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+                <div class="sb-ui-menu__section">
+                  <div class="sb-ui-menu__section-title">Ayuda</div>
+                  <div class="sb-ui-menu__list">
+                    <a href="#documentacion" class="sb-ui-menu__item">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                      <span>Documentación</span>
+                    </a>
+                    <a href="#contacto" class="sb-ui-menu__item">
+                      <i class="fas fa-envelope" aria-hidden="true"></i>
+                      <span>Contacto</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <div class="menu-demo-item">
+            <h4>Vertical compacto</h4>
+            <nav class="sb-ui-menu sb-ui-menu--compact" aria-label="Menú compacto">
+              <div class="sb-ui-menu__content">
+                <div class="sb-ui-menu__section">
+                  <div class="sb-ui-menu__section-title">Layout</div>
+                  <div class="sb-ui-menu__list">
+                    <a href="#grid" class="sb-ui-menu__item">
+                      <i class="fas fa-table-cells" aria-hidden="true"></i>
+                      <span>Grid</span>
+                    </a>
+                    <a href="#container" class="sb-ui-menu__item">
+                      <i class="fas fa-border-all" aria-hidden="true"></i>
+                      <span>Container</span>
+                    </a>
+                    <a href="#columns" class="sb-ui-menu__item">
+                      <i class="fas fa-columns" aria-hidden="true"></i>
+                      <span>Columns</span>
+                    </a>
+                    <a href="#spacing" class="sb-ui-menu__item">
+                      <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+                      <span>Spacing</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="sb-ui-menu__section">
+                  <div class="sb-ui-menu__section-title">Formularios</div>
+                  <div class="sb-ui-menu__list">
+                    <a href="#form-basic" class="sb-ui-menu__item">
+                      <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                      <span>Formulario básico</span>
+                    </a>
+                    <a href="#form-validacion" class="sb-ui-menu__item">
+                      <i class="fas fa-circle-check" aria-hidden="true"></i>
+                      <span>Validación</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Código de ejemplo — Menú vertical</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-menu" aria-label="Menú principal"&gt;
+  &lt;div class="sb-ui-menu__content"&gt;
+    &lt;div class="sb-ui-menu__section"&gt;
+      &lt;div class="sb-ui-menu__section-title"&gt;Inicio&lt;/div&gt;
+      &lt;div class="sb-ui-menu__list"&gt;
+        &lt;a href="#" class="sb-ui-menu__item sb-ui-menu__item--active"&gt;
+          &lt;i class="fas fa-house"&gt;&lt;/i&gt;&lt;span&gt;Inicio&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;details class="sb-ui-menu__details"&gt;
+          &lt;summary class="sb-ui-menu__trigger"&gt;
+            &lt;i class="fas fa-rocket"&gt;&lt;/i&gt;&lt;span&gt;Guía&lt;/span&gt;
+            &lt;i class="sb-ui-menu__toggle fas fa-chevron-right"&gt;&lt;/i&gt;
+          &lt;/summary&gt;
+          &lt;div class="sb-ui-menu__submenu"&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;&lt;i class="fas fa-download"&gt;&lt;/i&gt;&lt;span&gt;Instalación&lt;/span&gt;&lt;/a&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;&lt;i class="fas fa-code"&gt;&lt;/i&gt;&lt;span&gt;Uso básico&lt;/span&gt;&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/details&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Menú colapsable (como la página de ejemplo)</h3>
+        <p class="component-description">
+          Con checkbox para colapsar/expandir sin JavaScript. En colapsado solo se muestran iconos; el submenú se abre a la derecha.
+        </p>
+        <div class="menu-demo-item">
+          <input type="checkbox" id="collapse-demo" class="sb-ui-menu__collapse-input" hidden aria-hidden="true" />
+          <label for="collapse-demo" class="sb-ui-menu__collapse-label" aria-label="Colapsar o expandir menú">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+            <span>Colapsar menú</span>
+          </label>
+          <nav class="sb-ui-menu sb-ui-menu--collapsible" aria-label="Menú colapsable">
+            <div class="sb-ui-menu__content">
+              <div class="sb-ui-menu__section">
+                <div class="sb-ui-menu__section-title">Inicio</div>
+                <div class="sb-ui-menu__list">
+                  <a href="#inicio" class="sb-ui-menu__item sb-ui-menu__item--active">
+                    <i class="fas fa-house" aria-hidden="true"></i>
+                    <span>Inicio</span>
+                  </a>
+                  <details class="sb-ui-menu__details">
+                    <summary class="sb-ui-menu__trigger">
+                      <i class="fas fa-rocket" aria-hidden="true"></i>
+                      <span>Guía</span>
+                      <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                    </summary>
+                    <div class="sb-ui-menu__submenu">
+                      <a href="#instalacion" class="sb-ui-menu__submenu-item"><i class="fas fa-download" aria-hidden="true"></i><span>Instalación</span></a>
+                      <a href="#uso" class="sb-ui-menu__submenu-item"><i class="fas fa-code" aria-hidden="true"></i><span>Uso básico</span></a>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="sb-ui-menu__section">
+                <div class="sb-ui-menu__section-title">Opciones</div>
+                <div class="sb-ui-menu__list">
+                  <a href="#input" class="sb-ui-menu__item">
+                    <i class="fas fa-keyboard" aria-hidden="true"></i>
+                    <span>Input</span>
+                  </a>
+                  <a href="#textarea" class="sb-ui-menu__item">
+                    <i class="fas fa-file-lines" aria-hidden="true"></i>
+                    <span>Textarea</span>
+                  </a>
+                  <a href="#button" class="sb-ui-menu__item">
+                    <i class="fas fa-square" aria-hidden="true"></i>
+                    <span>Botones</span>
+                  </a>
+                  <a href="#menu" class="sb-ui-menu__item">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span>Menu</span>
+                  </a>
+                  <details class="sb-ui-menu__details">
+                    <summary class="sb-ui-menu__trigger">
+                      <i class="fas fa-layer-group" aria-hidden="true"></i>
+                      <span>Otros</span>
+                      <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                    </summary>
+                    <div class="sb-ui-menu__submenu">
+                      <a href="#accordion" class="sb-ui-menu__submenu-item"><i class="fas fa-bars-staggered" aria-hidden="true"></i><span>Accordion</span></a>
+                      <a href="#tabs" class="sb-ui-menu__submenu-item"><i class="fas fa-folder" aria-hidden="true"></i><span>Tabs</span></a>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="sb-ui-menu__section">
+                <div class="sb-ui-menu__section-title">Ayuda</div>
+                <div class="sb-ui-menu__list">
+                  <a href="#documentacion" class="sb-ui-menu__item">
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                    <span>Documentación</span>
+                  </a>
+                  <a href="#contacto" class="sb-ui-menu__item">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span>Contacto</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Código de ejemplo — Menú colapsable</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;input type="checkbox" id="collapse-menu" class="sb-ui-menu__collapse-input" hidden /&gt;
+&lt;label for="collapse-menu" class="sb-ui-menu__collapse-label"&gt;
+  &lt;i class="fas fa-bars"&gt;&lt;/i&gt;&lt;span&gt;Colapsar menú&lt;/span&gt;
+&lt;/label&gt;
+&lt;nav class="sb-ui-menu sb-ui-menu--collapsible" aria-label="Menú colapsable"&gt;
+  &lt;div class="sb-ui-menu__content"&gt;
+    &lt;div class="sb-ui-menu__section"&gt;
+      &lt;div class="sb-ui-menu__section-title"&gt;Inicio&lt;/div&gt;
+      &lt;div class="sb-ui-menu__list"&gt;
+        &lt;a href="#" class="sb-ui-menu__item sb-ui-menu__item--active"&gt;
+          &lt;i class="fas fa-house"&gt;&lt;/i&gt;&lt;span&gt;Inicio&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;details class="sb-ui-menu__details"&gt;
+          &lt;summary class="sb-ui-menu__trigger"&gt;
+            &lt;i class="fas fa-rocket"&gt;&lt;/i&gt;&lt;span&gt;Guía&lt;/span&gt;
+            &lt;i class="sb-ui-menu__toggle fas fa-chevron-right"&gt;&lt;/i&gt;
+          &lt;/summary&gt;
+          &lt;div class="sb-ui-menu__submenu"&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;&lt;i class="fas fa-download"&gt;&lt;/i&gt;&lt;span&gt;Instalación&lt;/span&gt;&lt;/a&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;&lt;i class="fas fa-code"&gt;&lt;/i&gt;&lt;span&gt;Uso básico&lt;/span&gt;&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/details&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Menú horizontal</h3>
+        <div class="menu-demo-item menu-demo-item--full">
+          <nav class="sb-ui-menu sb-ui-menu--horizontal" aria-label="Menú horizontal">
+            <div class="sb-ui-menu__content">
+              <div class="sb-ui-menu__section">
+                <div class="sb-ui-menu__list">
+                  <a href="#inicio" class="sb-ui-menu__item sb-ui-menu__item--active">
+                    <i class="fas fa-house" aria-hidden="true"></i>
+                    <span>Inicio</span>
+                  </a>
+                  <a href="#input" class="sb-ui-menu__item">
+                    <i class="fas fa-keyboard" aria-hidden="true"></i>
+                    <span>Input</span>
+                  </a>
+                  <a href="#button" class="sb-ui-menu__item">
+                    <i class="fas fa-square" aria-hidden="true"></i>
+                    <span>Botones</span>
+                  </a>
+                  <details class="sb-ui-menu__details">
+                    <summary class="sb-ui-menu__trigger">
+                      <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                      <span>Componentes</span>
+                      <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                    </summary>
+                    <div class="sb-ui-menu__submenu">
+                      <a href="#textarea" class="sb-ui-menu__submenu-item"><span>Textarea</span></a>
+                      <a href="#select" class="sb-ui-menu__submenu-item"><span>Select</span></a>
+                      <a href="#menu" class="sb-ui-menu__submenu-item"><span>Menu</span></a>
+                    </div>
+                  </details>
+                  <details class="sb-ui-menu__details">
+                    <summary class="sb-ui-menu__trigger">
+                      <i class="fas fa-circle-question" aria-hidden="true"></i>
+                      <span>Ayuda</span>
+                      <i class="sb-ui-menu__toggle fas fa-chevron-right" aria-hidden="true"></i>
+                    </summary>
+                    <div class="sb-ui-menu__submenu">
+                      <a href="#documentacion" class="sb-ui-menu__submenu-item"><span>Documentación</span></a>
+                      <a href="#contacto" class="sb-ui-menu__submenu-item"><span>Contacto</span></a>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Código de ejemplo — Menú horizontal</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;nav class="sb-ui-menu sb-ui-menu--horizontal" aria-label="Menú horizontal"&gt;
+  &lt;div class="sb-ui-menu__content"&gt;
+    &lt;div class="sb-ui-menu__section"&gt;
+      &lt;div class="sb-ui-menu__list"&gt;
+        &lt;a href="#" class="sb-ui-menu__item sb-ui-menu__item--active"&gt;
+          &lt;i class="fas fa-house"&gt;&lt;/i&gt;&lt;span&gt;Inicio&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;a href="#" class="sb-ui-menu__item"&gt;&lt;i class="fas fa-keyboard"&gt;&lt;/i&gt;&lt;span&gt;Input&lt;/span&gt;&lt;/a&gt;
+        &lt;details class="sb-ui-menu__details"&gt;
+          &lt;summary class="sb-ui-menu__trigger"&gt;
+            &lt;i class="fas fa-puzzle-piece"&gt;&lt;/i&gt;&lt;span&gt;Componentes&lt;/span&gt;
+            &lt;i class="sb-ui-menu__toggle fas fa-chevron-right"&gt;&lt;/i&gt;
+          &lt;/summary&gt;
+          &lt;div class="sb-ui-menu__submenu"&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;Textarea&lt;/a&gt;
+            &lt;a href="#" class="sb-ui-menu__submenu-item"&gt;Select&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/details&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a
+            href="http://localhost:6007/?path=/docs/atoms-menu--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
