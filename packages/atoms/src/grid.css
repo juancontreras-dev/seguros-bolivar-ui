@@ -57,7 +57,9 @@
 
 @layer reset {
   .sb-ui-grid {
-    all: unset;
+    /* NO usar all: unset porque elimina display: grid */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 
     & > * {

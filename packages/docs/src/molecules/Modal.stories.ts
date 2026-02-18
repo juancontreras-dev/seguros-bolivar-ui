@@ -10,85 +10,75 @@ import { html } from 'lit';
  *   <span style="background: #E8F5E9; color: #388E3C; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">📦 Custom Element</span>
  * </div>
  *
- * Ventana modal con overlay para mostrar contenido flotante. Este es un **Web Component**,
- * por lo que **requiere importación de JavaScript** además del CSS.
+ * Ventana modal con 3 variantes de tamaño (Small, Medium, Large). Web Component con slots
+ * personalizables, cierre por ESC o backdrop, animaciones y bloqueo de scroll.
  *
- * ## 🚀 Instalación Completa
+ * ## Instalación
  *
  * ```html
- * <!-- 1. Incluye CSS (igual que componentes CSS puros): -->
- * <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+ * <!-- CSS -->
+ * <link rel="stylesheet" href="sb-ui-seguros-bolivar-light.min.css">
  *
- * <!-- 2. Incluye JavaScript (REQUERIDO para Web Components): -->
- * <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+ * <!-- JavaScript (REQUERIDO) -->
+ * <script type="module" src="sb-ui-components.min.js"></script>
  *
- * <!-- 3. Usa el custom element: -->
- * <sb-ui-modal id="mi-modal" title="Título del Modal">
- *   <div slot="body">
- *     <p>Contenido del modal aquí</p>
- *   </div>
+ * <!-- HTML -->
+ * <sb-ui-modal id="mi-modal" title="Confirmar acción" size="small">
+ *   <p>Contenido del modal.</p>
  *   <div slot="footer">
- *     <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Aceptar</button>
+ *     <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+ *             onclick="document.getElementById('mi-modal').close()">
+ *       Cancelar
+ *     </button>
+ *     <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+ *             onclick="document.getElementById('mi-modal').close()">
+ *       Confirmar
+ *     </button>
  *   </div>
  * </sb-ui-modal>
  *
- * <!-- Botón para abrir: -->
- * <button onclick="document.getElementById('mi-modal').setAttribute('open', 'true')">
+ * <button onclick="document.getElementById('mi-modal').openModal()">
  *   Abrir Modal
  * </button>
  * ```
  *
- * ## 📋 Atributos Disponibles
+ * ## Atributos
  *
  * | Atributo | Tipo | Default | Descripción |
  * |----------|------|---------|-------------|
- * | `title` | string | - | Título del modal |
- * | `open` | boolean | false | Controla si el modal está visible |
- * | `closable` | boolean | true | Si muestra el botón X de cerrar |
- * | `size` | 'small' \| 'medium' \| 'large' | 'medium' | Tamaño del modal |
+ * | `title` | string | — | Título del modal |
+ * | `size` | `'small'` \| `'medium'` \| `'large'` | `'medium'` | Tamaño del modal |
+ * | `open` | boolean | `false` | Estado inicial abierto |
+ * | `close-on-backdrop` | boolean | `true` | Cierra al hacer clic fuera |
+ * | `show-close-button` | boolean | `true` | Muestra el botón X |
  *
- * ## 📦 Slots Disponibles
+ * ## Slots
  *
  * | Slot | Descripción |
  * |------|-------------|
- * | `body` | Contenido principal del modal |
+ * | *(default)* | Contenido del body del modal |
  * | `footer` | Botones o acciones del modal |
+ * | `header` | Header personalizado (reemplaza `title`) |
  *
- * ## 💻 Uso con JavaScript
+ * ## Métodos y Eventos
  *
  * ```javascript
- * // Obtener referencia al modal
  * const modal = document.getElementById('mi-modal');
  *
- * // Abrir modal
- * modal.setAttribute('open', 'true');
+ * modal.openModal();  // Abre el modal
+ * modal.close();      // Cierra el modal
  *
- * // Cerrar modal
- * modal.removeAttribute('open');
- *
- * // Escuchar evento de cierre
- * modal.addEventListener('close', () => {
- *   console.log('Modal cerrado');
- * });
- *
- * // Cambiar título dinámicamente
- * modal.setAttribute('title', 'Nuevo Título');
+ * modal.addEventListener('sb-ui-modal-open',  () => console.log('Abierto'));
+ * modal.addEventListener('sb-ui-modal-close', () => console.log('Cerrado'));
  * ```
  *
- * ## 🎯 Casos de Uso
+ * ## Tamaños disponibles
  *
- * - ✅ Confirmaciones de acciones importantes
- * - ✅ Formularios en ventana flotante
- * - ✅ Detalles de elementos
- * - ✅ Mensajes de éxito/error
- * - ✅ Avisos y notificaciones
- *
- * ## ⚠️ Importante
- *
- * - Este componente **REQUIERE** la importación de JavaScript
- * - No funcionará solo con las clases CSS
- * - Es un `<sb-ui-modal>` custom element
- * - Los cambios en los controles se aplican en tiempo real
+ * | Variante | max-inline-size | max-block-size | Atributo |
+ * |----------|----------------|----------------|----------|
+ * | Small | `min(464px, 90%)` | `45dvb` | `size="small"` |
+ * | Medium | `min(716px, 90%)` | `82dvb` | `size="medium"` |
+ * | Large | `min(928px, 90%)` | `82dvb` | `size="large"` |
  */
 const meta: Meta = {
   title: 'Molecules/Modal',
@@ -98,48 +88,11 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Modal interactivo con overlay. Este es un Web Component que requiere JavaScript.',
+          'Ventana modal con 3 variantes de tamaño (Small, Medium, Large). Web Component con slots personalizables, cierre por ESC o backdrop, animaciones y bloqueo de scroll.',
       },
       story: {
         inline: false,
-        iframeHeight: '700px',
-      },
-    },
-    viewport: {
-      defaultViewport: 'desktop',
-    },
-  },
-  argTypes: {
-    title: {
-      control: 'text',
-      description: 'Título del modal',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    open: {
-      control: 'boolean',
-      description: 'Controla si el modal está visible',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    closable: {
-      control: 'boolean',
-      description: 'Si muestra el botón X de cerrar',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Tamaño del modal',
-      table: {
-        type: { summary: "'small' | 'medium' | 'large'" },
-        defaultValue: { summary: 'medium' },
+        iframeHeight: '500px',
       },
     },
   },
@@ -148,392 +101,472 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-/**
- * Modal básico con todas las opciones configurables
- */
-export const Playground: Story = {
-  args: {
-    title: 'Título del Modal',
-    open: true,
-    closable: true,
-    size: 'medium',
-  },
-  parameters: {
-    docs: {
-      story: {
-        iframeHeight: '700px',
-      },
-    },
-  },
-  render: (args) => html`
-    <div style="padding: 2rem; min-height: 600px;">
-      <sb-ui-modal
-        id="modal-playground"
-        title="${args.title}"
-        ?open="${args.open}"
-        ?closable="${args.closable}"
-        size="${args.size}"
-      >
-        <div slot="body">
-          <p style="margin: 0 0 1rem 0; color: #333; line-height: 1.6;">
-            Este es el contenido del modal. Puedes cambiar el <strong>título</strong>,
-            <strong>tamaño</strong>, y si es <strong>cerrable</strong> usando los controles de arriba.
-          </p>
-          <p style="margin: 0; color: #666; font-size: 0.875rem;">
-            Los cambios se aplican en tiempo real gracias a la reactividad del Web Component.
-          </p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke"
-            @click="${() => {
-              const modal = document.getElementById('modal-playground') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cancelar
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-playground') as any;
-              if (modal) modal.removeAttribute('open');
-              alert('¡Acción confirmada!');
-            }}"
-          >
-            Aceptar
-          </button>
-        </div>
-      </sb-ui-modal>
+// ---------------------------------------------------------------------------
+// Small — Confirmación
+// ---------------------------------------------------------------------------
 
-      <div
-        style="margin-top: 1rem; padding: 1rem; background: #E3F2FD; border-radius: 4px; font-size: 0.875rem;"
+/**
+ * Modal pequeño ideal para confirmaciones o acciones simples. Ancho máximo ~464px.
+ */
+export const Small: Story = {
+  name: 'Small — Confirmación',
+  render: () => html`
+    <div style="padding: 2rem;">
+      <button
+        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-small') as any)?.openModal()}"
       >
-        <strong>💡 Tip:</strong> Cambia los controles arriba para ver los cambios en tiempo real. El
-        modal se actualiza automáticamente.
+        <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+        Abrir Small
+      </button>
+    </div>
+
+    <sb-ui-modal id="modal-small" title="Confirmar acción" size="small">
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love
+        wafer I love.
+      </p>
+      <p style="font-weight: 600;">Esta acción no se puede deshacer.</p>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-small') as any)?.close()}"
+        >
+          Cancelar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-small') as any)?.close()}"
+        >
+          Confirmar
+        </button>
       </div>
-
-      <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-        style="margin-top: 1rem;"
-        @click="${() => {
-          const modal = document.getElementById('modal-playground') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
-      >
-        Abrir Modal
-      </button>
-    </div>
+    </sb-ui-modal>
   `,
 };
 
-/**
- * Modal de confirmación con contenido simple
- */
-export const Confirmation: Story = {
-  parameters: {
-    docs: {
-      story: {
-        iframeHeight: '700px',
-      },
-    },
-  },
-  render: () => html`
-    <div style="padding: 2rem; min-height: 600px;">
-      <button
-        class="sb-ui-button sb-ui-button--error sb-ui-button--fill"
-        @click="${() => {
-          const modal = document.getElementById('modal-confirmation') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
-      >
-        Eliminar Cuenta
-      </button>
+// ---------------------------------------------------------------------------
+// Small — Informativo (sin footer)
+// ---------------------------------------------------------------------------
 
-      <sb-ui-modal id="modal-confirmation" title="¿Estás seguro?" size="small" open="false">
-        <div slot="body">
-          <p style="margin: 0; color: #333; line-height: 1.6;">
-            Esta acción no se puede deshacer. ¿Deseas continuar?
-          </p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke"
-            @click="${() => {
-              const modal = document.getElementById('modal-confirmation') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cancelar
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--error sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-confirmation') as any;
-              if (modal) modal.removeAttribute('open');
-              alert('Cuenta eliminada');
-            }}"
-          >
-            Eliminar
-          </button>
-        </div>
-      </sb-ui-modal>
+/**
+ * Modal pequeño informativo sin footer. Se cierra únicamente con el botón X o la tecla ESC.
+ */
+export const SmallInfo: Story = {
+  name: 'Small — Informativo',
+  render: () => html`
+    <div style="padding: 2rem;">
+      <button
+        class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-small-info') as any)?.openModal()}"
+      >
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        Abrir Info
+      </button>
     </div>
+
+    <sb-ui-modal id="modal-small-info" title="Información importante" size="small">
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love
+        wafer I love. Pie oat cake gingerbread chocolate bar.
+      </p>
+      <p style="line-height: 1.6;">
+        Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops.
+      </p>
+    </sb-ui-modal>
   `,
 };
 
+// ---------------------------------------------------------------------------
+// Medium — Formulario
+// ---------------------------------------------------------------------------
+
 /**
- * Modal con formulario
+ * Modal mediano con formulario. Tamaño por defecto del componente. Ancho máximo ~716px.
  */
-export const WithForm: Story = {
+export const MediumForm: Story = {
+  name: 'Medium — Formulario',
   parameters: {
-    docs: {
-      story: {
-        iframeHeight: '800px',
-      },
-    },
+    docs: { story: { inline: false, iframeHeight: '750px' } },
   },
   render: () => html`
-    <div style="padding: 2rem; min-height: 600px;">
+    <div style="padding: 2rem;">
       <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-        @click="${() => {
-          const modal = document.getElementById('modal-form') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
+        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-medium-form') as any)?.openModal()}"
       >
-        Nuevo Usuario
+        <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+        Abrir Formulario
       </button>
-
-      <sb-ui-modal id="modal-form" title="Crear Nuevo Usuario" size="medium" open="false">
-        <div slot="body">
-          <form style="display: flex; flex-direction: column; gap: 1.5rem;">
-            <div>
-              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
-                Nombre
-              </label>
-              <input
-                type="text"
-                class="sb-ui-input"
-                placeholder="Ingresa el nombre"
-                style="width: 100%;"
-              />
-            </div>
-            <div>
-              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
-                Email
-              </label>
-              <input
-                type="email"
-                class="sb-ui-input"
-                placeholder="usuario@ejemplo.com"
-                style="width: 100%;"
-              />
-            </div>
-            <div>
-              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
-                Rol
-              </label>
-              <select class="sb-ui-select" style="width: 100%;">
-                <option>Usuario</option>
-                <option>Administrador</option>
-                <option>Editor</option>
-              </select>
-            </div>
-          </form>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke"
-            @click="${() => {
-              const modal = document.getElementById('modal-form') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cancelar
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-form') as any;
-              if (modal) modal.removeAttribute('open');
-              alert('Usuario creado exitosamente');
-            }}"
-          >
-            Crear Usuario
-          </button>
-        </div>
-      </sb-ui-modal>
     </div>
+
+    <sb-ui-modal id="modal-medium-form" title="Nuevo contacto" size="medium">
+      <form style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+            <label style="font-size: 0.875rem; font-weight: 600;">Nombre</label>
+            <input
+              type="text"
+              placeholder="Juan"
+              style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+            />
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+            <label style="font-size: 0.875rem; font-weight: 600;">Apellido</label>
+            <input
+              type="text"
+              placeholder="Pérez"
+              style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+            />
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <label style="font-size: 0.875rem; font-weight: 600;">Correo electrónico</label>
+          <input
+            type="email"
+            placeholder="juan@ejemplo.com"
+            style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+          />
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <label style="font-size: 0.875rem; font-weight: 600;">Tipo de seguro</label>
+          <select
+            style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+          >
+            <option>Seguro de Vida</option>
+            <option>Seguro Vehicular</option>
+            <option>Seguro de Hogar</option>
+            <option>Seguro de Salud</option>
+          </select>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <label style="font-size: 0.875rem; font-weight: 600;">Mensaje</label>
+          <textarea
+            rows="3"
+            placeholder="Describe brevemente lo que necesitas..."
+            style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box; resize: vertical;"
+          ></textarea>
+        </div>
+      </form>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-medium-form') as any)?.close()}"
+        >
+          Cancelar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-medium-form') as any)?.close()}"
+        >
+          Enviar solicitud
+        </button>
+      </div>
+    </sb-ui-modal>
   `,
 };
 
+// ---------------------------------------------------------------------------
+// Medium — Detalles
+// ---------------------------------------------------------------------------
+
 /**
- * Comparación de tamaños
+ * Modal mediano para mostrar detalles de un producto, con estadísticas y lista.
  */
-export const Sizes: Story = {
+export const MediumDetail: Story = {
+  name: 'Medium — Detalles',
   parameters: {
-    docs: {
-      story: {
-        iframeHeight: '800px',
-      },
-    },
+    docs: { story: { inline: false, iframeHeight: '700px' } },
   },
   render: () => html`
-    <div style="padding: 2rem; min-height: 600px; display: flex; gap: 1rem;">
+    <div style="padding: 2rem;">
       <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke"
-        @click="${() => {
-          const modal = document.getElementById('modal-small') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
+        class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-medium-detail') as any)?.openModal()}"
       >
-        Small
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+        Ver Detalles
       </button>
-
-      <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke"
-        @click="${() => {
-          const modal = document.getElementById('modal-medium') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
-      >
-        Medium
-      </button>
-
-      <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke"
-        @click="${() => {
-          const modal = document.getElementById('modal-large') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
-      >
-        Large
-      </button>
-
-      <!-- Modal Small -->
-      <sb-ui-modal id="modal-small" title="Modal Small" size="small" open="false">
-        <div slot="body">
-          <p style="margin: 0;">Este es un modal pequeño, ideal para confirmaciones rápidas.</p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-small') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cerrar
-          </button>
-        </div>
-      </sb-ui-modal>
-
-      <!-- Modal Medium -->
-      <sb-ui-modal id="modal-medium" title="Modal Medium (Default)" size="medium" open="false">
-        <div slot="body">
-          <p style="margin: 0;">
-            Este es un modal mediano, el tamaño por defecto. Ideal para formularios y contenido
-            general.
-          </p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-medium') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cerrar
-          </button>
-        </div>
-      </sb-ui-modal>
-
-      <!-- Modal Large -->
-      <sb-ui-modal id="modal-large" title="Modal Large" size="large" open="false">
-        <div slot="body">
-          <p style="margin: 0;">
-            Este es un modal grande, perfecto para contenido extenso, tablas, o múltiples secciones.
-          </p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-large') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cerrar
-          </button>
-        </div>
-      </sb-ui-modal>
     </div>
+
+    <sb-ui-modal id="modal-medium-detail" title="Seguro de Vida Premium" size="medium">
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love
+        wafer I love. Pie oat cake gingerbread chocolate bar apple pie tart danish.
+      </p>
+      <p style="line-height: 1.6; margin-block-end: 1rem;">
+        Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops chocolate bar.
+      </p>
+      <div
+        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-block-end: 1rem;"
+      >
+        <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #757575;">Cobertura</span>
+          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: #038450;">$500,000</p>
+        </div>
+        <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #757575;">Prima anual</span>
+          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: #038450;">$50,000</p>
+        </div>
+      </div>
+      <ul style="padding-inline-start: 1.25rem; line-height: 1.8;">
+        <li>Cobertura de vida completa</li>
+        <li>Asistencia médica 24/7</li>
+        <li>Cobertura de accidentes personales</li>
+        <li>Beneficiarios ilimitados</li>
+      </ul>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-medium-detail') as any)?.close()}"
+        >
+          Cerrar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-medium-detail') as any)?.close()}"
+        >
+          Contratar ahora
+        </button>
+      </div>
+    </sb-ui-modal>
   `,
 };
 
+// ---------------------------------------------------------------------------
+// Medium — Persistente
+// ---------------------------------------------------------------------------
+
 /**
- * Modal sin botón de cerrar
+ * Modal persistente: sin botón X y sin cierre al hacer clic en el backdrop.
+ * El usuario debe elegir una acción explícita. Usa `close-on-backdrop="false"`
+ * y `show-close-button="false"`.
  */
-export const NonClosable: Story = {
+export const MediumPersistent: Story = {
+  name: 'Medium — Persistente',
   parameters: {
-    docs: {
-      story: {
-        iframeHeight: '700px',
-      },
-    },
+    docs: { story: { inline: false, iframeHeight: '650px' } },
   },
   render: () => html`
-    <div style="padding: 2rem; min-height: 600px;">
+    <div style="padding: 2rem;">
       <button
-        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-        @click="${() => {
-          const modal = document.getElementById('modal-non-closable') as any;
-          if (modal) modal.setAttribute('open', 'true');
-        }}"
+        class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-persistent') as any)?.openModal()}"
       >
-        Abrir Modal No Cerrable
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        Modal Persistente
       </button>
-
-      <sb-ui-modal
-        id="modal-non-closable"
-        title="Acción Requerida"
-        size="medium"
-        closable="false"
-        open="false"
-      >
-        <div slot="body">
-          <p style="margin: 0 0 1rem 0; color: #333;">
-            Este modal no se puede cerrar haciendo clic fuera o en el botón X. Debes usar los
-            botones del footer.
-          </p>
-          <p style="margin: 0; color: #666; font-size: 0.875rem;">
-            Ideal para acciones críticas que requieren una decisión explícita.
-          </p>
-        </div>
-        <div slot="footer">
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke"
-            @click="${() => {
-              const modal = document.getElementById('modal-non-closable') as any;
-              if (modal) modal.removeAttribute('open');
-            }}"
-          >
-            Cancelar
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
-            @click="${() => {
-              const modal = document.getElementById('modal-non-closable') as any;
-              if (modal) modal.removeAttribute('open');
-              alert('Acción confirmada');
-            }}"
-          >
-            Confirmar
-          </button>
-        </div>
-      </sb-ui-modal>
     </div>
+
+    <sb-ui-modal
+      id="modal-persistent"
+      title="Acción requerida"
+      size="medium"
+      close-on-backdrop="false"
+      show-close-button="false"
+    >
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love
+        wafer I love.
+      </p>
+      <p style="line-height: 1.6;">
+        Este modal no se cierra al hacer clic fuera ni tiene botón X. Debes usar los botones de
+        acción.
+      </p>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-persistent') as any)?.close()}"
+        >
+          Rechazar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-persistent') as any)?.close()}"
+        >
+          Aceptar
+        </button>
+      </div>
+    </sb-ui-modal>
+  `,
+};
+
+// ---------------------------------------------------------------------------
+// Large — Términos y Condiciones
+// ---------------------------------------------------------------------------
+
+/**
+ * Modal grande con contenido extenso que activa scroll vertical. Ideal para
+ * términos y condiciones o políticas de privacidad. Ancho máximo ~928px.
+ */
+export const LargeTerms: Story = {
+  name: 'Large — Términos y Condiciones',
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: '850px' } },
+  },
+  render: () => html`
+    <div style="padding: 2rem;">
+      <button
+        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-large-terms') as any)?.openModal()}"
+      >
+        <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+        Abrir Grande
+      </button>
+    </div>
+
+    <sb-ui-modal
+      id="modal-large-terms"
+      title="Términos y condiciones del servicio"
+      size="large"
+    >
+      <h4 style="font-weight: 700; margin-block-end: 0.5rem;">1. Aceptación del servicio</h4>
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Cupcake ipsum dolor sit amet apple pie. Dessert sesame snaps donut sesame snaps tart I love
+        wafer I love. Pie oat cake gingerbread chocolate bar apple pie tart danish. Sweet roll
+        muffin cotton candy cake macaroon I love sesame snaps lemon drops chocolate bar.
+      </p>
+      <h4 style="font-weight: 700; margin-block-end: 0.5rem; margin-block-start: 1.25rem;">
+        2. Modificaciones al acuerdo
+      </h4>
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Oat cake souffle gingerbread candy dessert lollipop. I love danish dragee I love I love.
+        Tootsie roll jelly-o tiramisu toffee jujubes pie. Sugar plum cookie jelly beans bear claw
+        topping gummies oat cake chupa chups.
+      </p>
+      <h4 style="font-weight: 700; margin-block-end: 0.5rem; margin-block-start: 1.25rem;">
+        3. Privacidad y datos personales
+      </h4>
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Halvah cake candy canes pastry jelly beans. Chocolate bar jelly toffee ice cream
+        cheesecake. Croissant tart muffin chupa chups macaroon. Candy canes brownie cookie souffle
+        pudding marzipan fruitcake sesame snaps.
+      </p>
+      <h4 style="font-weight: 700; margin-block-end: 0.5rem; margin-block-start: 1.25rem;">
+        4. Responsabilidades del usuario
+      </h4>
+      <p style="line-height: 1.6; margin-block-end: 0.75rem;">
+        Jelly beans cake bonbon gummi bears chocolate cake carrot cake wafer. Marshmallow donut
+        sugar plum jelly-o tiramisu caramels bear claw. Cookie sweet roll gummies brownie tart
+        muffin.
+      </p>
+      <h4 style="font-weight: 700; margin-block-end: 0.5rem; margin-block-start: 1.25rem;">
+        5. Limitación de responsabilidad
+      </h4>
+      <p style="line-height: 1.6;">
+        Dragee liquorice brownie cake bonbon gummies. Candy canes marzipan biscuit ice cream.
+        Chupa chups wafer cotton candy souffle chocolate bar lemon drops sweet roll cake.
+      </p>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-large-terms') as any)?.close()}"
+        >
+          Rechazar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-large-terms') as any)?.close()}"
+        >
+          Aceptar términos
+        </button>
+      </div>
+    </sb-ui-modal>
+  `,
+};
+
+// ---------------------------------------------------------------------------
+// Large — Panel de Datos
+// ---------------------------------------------------------------------------
+
+/**
+ * Modal grande con tabla de datos. Ideal para reportes o listados de información
+ * compleja que requieren más espacio horizontal.
+ */
+export const LargeData: Story = {
+  name: 'Large — Panel de Datos',
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: '800px' } },
+  },
+  render: () => html`
+    <div style="padding: 2rem;">
+      <button
+        class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left"
+        @click="${() => (document.getElementById('modal-large-data') as any)?.openModal()}"
+      >
+        <i class="fa-solid fa-table" aria-hidden="true"></i>
+        Ver Datos
+      </button>
+    </div>
+
+    <sb-ui-modal id="modal-large-data" title="Resumen de pólizas activas" size="large">
+      <p style="line-height: 1.6; margin-block-end: 1rem;">
+        A continuación se presenta un resumen detallado de sus pólizas vigentes.
+      </p>
+      <table
+        style="inline-size: 100%; border-collapse: collapse; font-size: 0.875rem; margin-block-end: 1rem;"
+      >
+        <thead>
+          <tr style="background: #038450; color: #fff;">
+            <th style="padding: 0.5rem 0.75rem; text-align: start; font-weight: 600;">Póliza</th>
+            <th style="padding: 0.5rem 0.75rem; text-align: start; font-weight: 600;">Tipo</th>
+            <th style="padding: 0.5rem 0.75rem; text-align: end; font-weight: 600;">Prima</th>
+            <th style="padding: 0.5rem 0.75rem; text-align: center; font-weight: 600;">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-block-end: 1px solid #e0e0e0;">
+            <td style="padding: 0.5rem 0.75rem;">VID-2024-001</td>
+            <td style="padding: 0.5rem 0.75rem;">Vida Premium</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: end;">$50,000</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: center;">
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+            </td>
+          </tr>
+          <tr style="border-block-end: 1px solid #e0e0e0;">
+            <td style="padding: 0.5rem 0.75rem;">AUT-2024-015</td>
+            <td style="padding: 0.5rem 0.75rem;">Vehicular</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: end;">$32,000</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: center;">
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+            </td>
+          </tr>
+          <tr style="border-block-end: 1px solid #e0e0e0;">
+            <td style="padding: 0.5rem 0.75rem;">HOG-2023-042</td>
+            <td style="padding: 0.5rem 0.75rem;">Hogar</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: end;">$18,500</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: center;">
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #fff3cd; color: #856404;">Renovar</span>
+            </td>
+          </tr>
+          <tr style="border-block-end: 1px solid #e0e0e0;">
+            <td style="padding: 0.5rem 0.75rem;">SAL-2024-008</td>
+            <td style="padding: 0.5rem 0.75rem;">Salud</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: end;">$45,000</td>
+            <td style="padding: 0.5rem 0.75rem; text-align: center;">
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.8125rem; color: #757575;">
+        Sweet roll muffin cotton candy cake macaroon. Oat cake souffle gingerbread candy dessert
+        lollipop.
+      </p>
+      <div slot="footer">
+        <button
+          class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-large-data') as any)?.close()}"
+        >
+          Cerrar
+        </button>
+        <button
+          class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
+          @click="${() => (document.getElementById('modal-large-data') as any)?.close()}"
+        >
+          Descargar PDF
+        </button>
+      </div>
+    </sb-ui-modal>
   `,
 };

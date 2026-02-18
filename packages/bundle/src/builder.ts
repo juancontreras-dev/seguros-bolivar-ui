@@ -19,7 +19,7 @@ const PACKAGES_DIR = path.resolve(__dirname, '../..');
 const DIST_DIR = path.resolve(__dirname, '../dist');
 
 const TOKENS_DIST = path.join(PACKAGES_DIR, 'tokens/dist');
-const ATOMS_DIST = path.join(PACKAGES_DIR, 'atoms/dist');
+const ATOMS_SRC = path.join(PACKAGES_DIR, 'atoms/src'); // Cambiado de dist a src
 const MOLECULES_SRC = path.join(PACKAGES_DIR, 'molecules/src');
 const MOLECULES_DIST = path.join(PACKAGES_DIR, 'molecules/dist');
 const BRAND_OVERRIDES_SRC = path.join(PACKAGES_DIR, 'brand-overrides/src');
@@ -187,7 +187,7 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
     'index.css',
   ];
   for (const file of atomsFiles) {
-    const atomCSS = await readCSSFile(path.join(ATOMS_DIST, file));
+    const atomCSS = await readCSSFile(path.join(ATOMS_SRC, file));
     if (atomCSS && file !== 'index.css') {
       // Solo agregar archivos individuales, no el index
       cssFiles.push(atomCSS);
@@ -352,7 +352,7 @@ async function build(): Promise<void> {
   console.log('🚀 Building Complete Brand Bundles...\n');
   console.log('📦 Packages:');
   console.log(`  - Tokens: ${TOKENS_DIST}`);
-  console.log(`  - Atoms: ${ATOMS_DIST}`);
+  console.log(`  - Atoms: ${ATOMS_SRC}`);
   console.log(`  - Molecules (CSS): ${MOLECULES_SRC}`);
   console.log(`  - Molecules (JS): ${MOLECULES_DIST}`);
   console.log(`  - Brand Overrides: ${BRAND_OVERRIDES_SRC}`);

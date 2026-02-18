@@ -70,8 +70,11 @@
   .sb-ui-container-lg,
   .sb-ui-container-xl,
   .sb-ui-container-xxl {
-    all: unset;
+    /* NO usar all: unset porque puede eliminar display */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    display: block;
   }
 }
 

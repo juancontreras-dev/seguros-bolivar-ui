@@ -23,6 +23,50 @@
       href="../components.css?v=2"
     />
 
+    <style>
+      .alert-demo-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-block-end: 1.5rem;
+      }
+
+      .alert-demo-matrix {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-block-end: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .alert-demo-matrix {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .alert-demo-column h4 {
+        margin-block-end: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #888;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .alert-demo-column .alert-demo-grid {
+        gap: 0.75rem;
+      }
+
+      .alert-demo-row-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #aaa;
+        margin-block-end: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+    </style>
   </head>
 
   <body>
@@ -41,6 +85,7 @@
           Componente de alertas y notificaciones con 4 variantes de estado
           (success, info, warning, error), modificadores de estilo
           (con fondo / sin fondo) y boton de cierre opcional.
+          <strong>✨ Iconos 100% CSS puro - Sin Font Awesome ni librerías externas.</strong>
           Incluye accesibilidad con role="alert" y aria-labels.
         </p>
       </header>
@@ -60,58 +105,42 @@
             <div class="alert-demo-grid">
               <!-- Success + bg -->
               <div class="sb-ui-alert sb-ui-alert--success" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Info + bg -->
               <div class="sb-ui-alert sb-ui-alert--info" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-info"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Warning + bg -->
               <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Error + bg -->
               <div class="sb-ui-alert sb-ui-alert--error" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
             </div>
           </div>
@@ -122,58 +151,42 @@
             <div class="alert-demo-grid">
               <!-- Success + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Info + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-info"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Warning + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
 
               <!-- Error + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
                 </div>
-                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta">
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+                <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
               </div>
             </div>
           </div>
@@ -188,60 +201,44 @@
             </div>
           </div>
           <pre class="demo-code-block-body"><code>
-&lt;!-- Alert Success con fondo --&gt;
+&lt;!-- Alert Success con fondo (icono 100% CSS) --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
-  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;
-    &lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;
-  &lt;/button&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Info sin fondo --&gt;
+&lt;!-- Alert Info sin fondo (icono 100% CSS) --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
-  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;
-    &lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;
-  &lt;/button&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Warning con fondo --&gt;
+&lt;!-- Alert Warning con fondo (icono 100% CSS) --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--warning" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-triangle-exclamation"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
-  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;
-    &lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;
-  &lt;/button&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Error sin fondo --&gt;
+&lt;!-- Alert Error sin fondo (icono 100% CSS) --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-circle-xmark"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
-  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;
-    &lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;
-  &lt;/button&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
       </section>
@@ -261,9 +258,7 @@
             <div class="alert-demo-grid">
               <!-- Success + bg -->
               <div class="sb-ui-alert sb-ui-alert--success" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -272,9 +267,7 @@
 
               <!-- Info + bg -->
               <div class="sb-ui-alert sb-ui-alert--info" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-info"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -283,9 +276,7 @@
 
               <!-- Warning + bg -->
               <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -294,9 +285,7 @@
 
               <!-- Error + bg -->
               <div class="sb-ui-alert sb-ui-alert--error" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -311,9 +300,7 @@
             <div class="alert-demo-grid">
               <!-- Success + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -322,9 +309,7 @@
 
               <!-- Info + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-info"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -333,9 +318,7 @@
 
               <!-- Warning + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -344,9 +327,7 @@
 
               <!-- Error + no-bg -->
               <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
-                <div class="sb-ui-alert__icon" aria-hidden="true">
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </div>
+                <div class="sb-ui-alert__icon" aria-hidden="true"></div>
                 <div class="sb-ui-alert__content">
                   <strong class="sb-ui-alert__title">Description info text</strong>
                   <p class="sb-ui-alert__message">This is an info alert — check it</p>
@@ -365,22 +346,83 @@
             </div>
           </div>
           <pre class="demo-code-block-body"><code>
-&lt;!-- Alert Success sin boton de cierre --&gt;
+&lt;!-- ============================
+     Background: True (con fondo)
+     Icono 100% CSS - No se necesita Font Awesome
+     ============================ --&gt;
+
+&lt;!-- Alert Success con fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
-  &lt;/div&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Warning sin fondo y sin cierre --&gt;
-&lt;div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert"&gt;
-  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;
-    &lt;i class="fa-solid fa-triangle-exclamation"&gt;&lt;/i&gt;
+&lt;!-- Alert Info con fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--info" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert Warning con fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--warning" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert Error con fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--error" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ================================
+     Background: False (sin fondo)
+     Agregar sb-ui-alert--no-bg
+     Icono 100% CSS - No se necesita Font Awesome
+     ================================ --&gt;
+
+&lt;!-- Alert Success sin fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert Info sin fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert Warning sin fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert Error sin fondo + icono CSS --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
