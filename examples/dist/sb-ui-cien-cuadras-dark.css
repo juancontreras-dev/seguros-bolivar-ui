@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: cien-cuadras | Theme: dark
- * Generated: 2026-02-18T04:07:16.849Z
+ * Generated: 2026-02-18T04:39:53.861Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -9416,70 +9416,87 @@
 
 /**
  * TextArea Component - Seguros Bolívar UI Design System
- * Componente CSS puro con variables --sb-ui-* personalizables por marca
- * Incluye contador de caracteres y auto-resize
+ * Alineado con especificaciones Figma (mismo sistema que Input).
+ * CSS puro con variables --sb-ui-* personalizables por marca.
  *
  * Uso:
- * <textarea class="rb-textarea" placeholder="Escribe tu mensaje aquí"></textarea>
- * <textarea class="rb-textarea rb-textarea--error" maxlength="100"></textarea>
- * <textarea class="rb-textarea rb-textarea--with-counter" maxlength="500"></textarea>
+ * <textarea class="sb-ui-textarea" placeholder="Escribe tu mensaje aquí"></textarea>
+ * <textarea class="sb-ui-textarea sb-ui-textarea--error" maxlength="100"></textarea>
+ * <textarea class="sb-ui-textarea sb-ui-textarea--with-counter" maxlength="500"></textarea>
  */
 
 /* ========================================
-   VARIABLES CSS PERSONALIZABLES Y ESTILOS BASE
+   TOKENS - Variables CSS (alineados con Figma / Input)
    ======================================== */
 
 .sb-ui-textarea {
-  /* Colores - Pueden ser sobreescritos por marca */
+  /* Colores - Desde Figma (mismo criterio que Input) */
   --sb-ui-textarea-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
-  --sb-ui-textarea-bg-disabled: var(--sb-ui-color-grayscale-L300, #f2f3f5);
-  --sb-ui-textarea-text-color: var(--sb-ui-color-grayscale-D300, #404040);
-  --sb-ui-textarea-text-placeholder: var(--sb-ui-color-grayscale-base, #d9d9d9);
-  --sb-ui-textarea-text-disabled: var(--sb-ui-color-grayscale-base, #d9d9d9);
-  --sb-ui-textarea-border-color: var(--sb-ui-color-grayscale-L200, #edeef0);
-  --sb-ui-textarea-border-color-focus: var(--sb-ui-color-primary-base, #007acc);
+  --sb-ui-textarea-bg-disabled: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+  --sb-ui-textarea-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+  --sb-ui-textarea-text-placeholder: var(--sb-ui-color-grayscale-base, #9b9b9b);
+  --sb-ui-textarea-text-placeholder-hover: var(--sb-ui-color-grayscale-D100, #757575);
+  --sb-ui-textarea-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
+  --sb-ui-textarea-border-color: var(--sb-ui-color-grayscale-L100, #b9b9b9);
+  --sb-ui-textarea-border-hover: var(--sb-ui-color-grayscale-base, #9b9b9b);
+  --sb-ui-textarea-border-color-focus: var(--sb-ui-color-primary-base, #009056);
+  --sb-ui-textarea-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
   --sb-ui-textarea-border-color-error: var(--sb-ui-color-feedback-error-base, #dc3545);
   --sb-ui-textarea-border-color-success: var(--sb-ui-color-feedback-success-base, #28a745);
   --sb-ui-textarea-border-width: 1px;
-  --sb-ui-textarea-border-radius: 8px;
+  --sb-ui-textarea-border-radius: 4px; /* Desde Figma */
 
-  /* Espaciado */
-  --sb-ui-textarea-padding-x: 1rem;
-  --sb-ui-textarea-padding-y: 0.75rem;
+  /* Espaciado - Desde Figma (16px horizontal, 8px vertical) */
+  --sb-ui-textarea-padding-inline: 16px;
+  --sb-ui-textarea-padding-block: 8px;
   --sb-ui-textarea-padding-bottom-counter: 2.5rem;
 
-  /* Tipografía */
-  --sb-ui-textarea-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-  --sb-ui-textarea-font-size: 1rem;
+  /* Tipografía - Desde Figma (Body/Regular 16px, line-height 1.4) */
+  --sb-ui-textarea-font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', 'Roboto', sans-serif);
+  --sb-ui-textarea-font-size: 16px;
   --sb-ui-textarea-font-weight: 400;
-  --sb-ui-textarea-line-height: 1.5;
+  --sb-ui-textarea-line-height: 1.4;
+
+  /* Label - Desde Figma (Label/Regular 14px) */
+  --sb-ui-textarea-label-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+  --sb-ui-textarea-label-font-size: 14px;
+  --sb-ui-textarea-label-font-weight: 400;
+  --sb-ui-textarea-label-margin-block-end: 4px;
+
+  /* Helper text - Desde Figma (Caption/Regular 12px) */
+  --sb-ui-textarea-helper-color: var(--sb-ui-color-grayscale-D200, #414141);
+  --sb-ui-textarea-helper-font-size: 12px;
+  --sb-ui-textarea-helper-font-weight: 400;
+  --sb-ui-textarea-helper-margin-block-start: 4px;
 
   /* Tamaños */
   --sb-ui-textarea-min-height: 80px;
   --sb-ui-textarea-max-height: 200px;
 
-  /* Sombras */
+  /* Sombras - Focus igual que Input (verde Bolívar) */
   --sb-ui-textarea-shadow: none;
-  --sb-ui-textarea-shadow-focus: 0 0 0 3px var(--sb-ui-color-primary-L400, rgba(0, 122, 204, 0.1));
+  --sb-ui-textarea-shadow-focus: 0 0 0 3px rgba(0, 144, 86, 0.1);
 
   /* Transiciones */
-  --sb-ui-textarea-transition: all 0.2s ease;
+  --sb-ui-textarea-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
 
   /* Resize */
   --sb-ui-textarea-resize: vertical;
 
   /* Layout */
   display: block;
-  width: 100%;
+  inline-size: 100%;
   position: relative;
   box-sizing: border-box;
 
-  /* Spacing */
-  padding: var(--sb-ui-textarea-padding-y) var(--sb-ui-textarea-padding-x);
+  /* Spacing - Logical properties */
+  padding-block: var(--sb-ui-textarea-padding-block);
+  padding-inline: var(--sb-ui-textarea-padding-inline);
 
   /* Sizing */
-  min-height: var(--sb-ui-textarea-min-height);
-  max-height: var(--sb-ui-textarea-max-height);
+  min-block-size: var(--sb-ui-textarea-min-height);
+  max-block-size: var(--sb-ui-textarea-max-height);
 
   /* Typography */
   font-family: var(--sb-ui-textarea-font-family);
@@ -9523,6 +9540,16 @@
   opacity: 1;
 }
 
+/* Hover state - Desde Figma (borde más oscuro) */
+
+.sb-ui-textarea:hover:not(:disabled):not(.sb-ui-textarea--error):not(.sb-ui-textarea--success) {
+  border-color: var(--sb-ui-textarea-border-hover);
+}
+
+.sb-ui-textarea:hover:not(:disabled)::placeholder {
+  color: var(--sb-ui-textarea-text-placeholder-hover);
+}
+
 /* Focus state */
 
 .sb-ui-textarea:focus {
@@ -9530,14 +9557,19 @@
   box-shadow: var(--sb-ui-textarea-shadow-focus);
 }
 
-/* Disabled state */
+.sb-ui-textarea:focus-visible {
+  outline: 2px solid var(--sb-ui-color-primary-base, #009056);
+  outline-offset: 2px;
+}
+
+/* Disabled state - Desde Figma */
 
 .sb-ui-textarea:disabled {
   background-color: var(--sb-ui-textarea-bg-disabled);
   color: var(--sb-ui-textarea-text-disabled);
-  border-color: var(--sb-ui-textarea-bg-disabled);
+  border-color: var(--sb-ui-textarea-border-disabled);
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 1;
   resize: none;
 }
 
@@ -9546,17 +9578,7 @@
 }
 
 /* ========================================
-   TEXTAREA VARIANTS
-   ======================================== */
-
-/* Default textarea (no specific variant) */
-
-.sb-ui-textarea {
-  /* Usa estilos base */
-}
-
-/* ========================================
-   TEXTAREA STATES
+   TEXTAREA STATES (Error / Success - alineados con Figma)
    ======================================== */
 
 /* Error state */
@@ -9587,28 +9609,14 @@
   box-shadow: var(--sb-ui-textarea-shadow-focus);
 }
 
-/* Warning state */
-
-.sb-ui-textarea--warning {
-  --sb-ui-textarea-border-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-  --sb-ui-textarea-border-color-focus: var(--sb-ui-color-feedback-warning-base, #ffc107);
-  --sb-ui-textarea-shadow-focus: 0 0 0 3px
-    var(--sb-ui-color-feedback-warning-L400, rgba(255, 193, 7, 0.1));
-}
-
-.sb-ui-textarea--warning:focus {
-  border-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-  box-shadow: var(--sb-ui-textarea-shadow-focus);
-}
-
 /* ========================================
    TEXTAREA SIZES
    ======================================== */
 
 .sb-ui-textarea--small {
-  --sb-ui-textarea-padding-x: 0.75rem;
-  --sb-ui-textarea-padding-y: 0.5rem;
-  --sb-ui-textarea-font-size: 0.875rem;
+  --sb-ui-textarea-padding-inline: 12px;
+  --sb-ui-textarea-padding-block: 6px;
+  --sb-ui-textarea-font-size: 14px;
   --sb-ui-textarea-min-height: 60px;
   --sb-ui-textarea-max-height: 150px;
   --sb-ui-textarea-line-height: 1.25;
@@ -9616,19 +9624,19 @@
 }
 
 .sb-ui-textarea--medium {
-  --sb-ui-textarea-padding-x: 1rem;
-  --sb-ui-textarea-padding-y: 0.75rem;
-  --sb-ui-textarea-font-size: 1rem;
+  --sb-ui-textarea-padding-inline: 16px;
+  --sb-ui-textarea-padding-block: 8px;
+  --sb-ui-textarea-font-size: 16px;
   --sb-ui-textarea-min-height: 80px;
   --sb-ui-textarea-max-height: 200px;
-  --sb-ui-textarea-line-height: 1.5;
+  --sb-ui-textarea-line-height: 1.4;
   --sb-ui-textarea-padding-bottom-counter: 2.5rem;
 }
 
 .sb-ui-textarea--large {
-  --sb-ui-textarea-padding-x: 1.25rem;
-  --sb-ui-textarea-padding-y: 1rem;
-  --sb-ui-textarea-font-size: 1.125rem;
+  --sb-ui-textarea-padding-inline: 20px;
+  --sb-ui-textarea-padding-block: 10px;
+  --sb-ui-textarea-font-size: 18px;
   --sb-ui-textarea-min-height: 100px;
   --sb-ui-textarea-max-height: 250px;
   --sb-ui-textarea-line-height: 1.5;
@@ -9648,14 +9656,14 @@
 /* Block (full width) - ya es por defecto */
 
 .sb-ui-textarea--block {
-  width: 100%;
+  inline-size: 100%;
 }
 
 /* Inline (auto width) */
 
 .sb-ui-textarea--inline {
-  width: auto;
-  min-width: 200px;
+  inline-size: auto;
+  min-inline-size: 200px;
 }
 
 /* No resize */
@@ -9690,12 +9698,12 @@
 .sb-ui-textarea-container {
   position: relative;
   display: block;
-  width: 100%;
+  inline-size: 100%;
 }
 
 .sb-ui-textarea-container--inline {
   display: inline-block;
-  width: auto;
+  inline-size: auto;
 }
 
 /* ========================================
@@ -9704,18 +9712,19 @@
 
 .sb-ui-textarea-counter {
   position: absolute;
-  bottom: 0.5rem;
-  right: 0.75rem;
+  inset-block-end: 0.5rem;
+  inset-inline-end: 0.75rem;
   font-family: var(--sb-ui-textarea-font-family);
   font-size: 0.75rem;
   font-weight: 400;
-  color: var(--sb-ui-color-grayscale-base, #d9d9d9);
+  color: var(--sb-ui-color-grayscale-base, #9b9b9b);
   line-height: 1;
   pointer-events: none;
   z-index: 2;
   transition: var(--sb-ui-textarea-transition);
   background-color: var(--sb-ui-textarea-bg-color, #ffffff);
-  padding: 0.25rem 0.5rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -9768,16 +9777,16 @@
 }
 
 /* ========================================
-   TEXTAREA LABEL
+   TEXTAREA LABEL - Desde Figma (Label/Regular 14px)
    ======================================== */
 
 .sb-ui-textarea-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-block-end: var(--sb-ui-textarea-label-margin-block-end, 4px);
   font-family: var(--sb-ui-textarea-font-family);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--sb-ui-color-grayscale-D300, #404040);
+  font-size: var(--sb-ui-textarea-label-font-size, 14px);
+  font-weight: var(--sb-ui-textarea-label-font-weight, 400);
+  color: var(--sb-ui-textarea-label-color, #1b1b1b);
   line-height: 1.25;
 }
 
@@ -9788,21 +9797,31 @@
 
 .sb-ui-textarea-label--optional::after {
   content: ' (opcional)';
-  color: var(--sb-ui-color-grayscale-base, #d9d9d9);
+  color: var(--sb-ui-color-grayscale-base, #9b9b9b);
   font-weight: 400;
 }
 
 /* ========================================
-   TEXTAREA HELPER TEXT
+   TEXTAREA HELPER TEXT - Desde Figma (Caption/Regular 12px)
    ======================================== */
 
 .sb-ui-textarea-helper {
-  display: block;
-  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-block-start: var(--sb-ui-textarea-helper-margin-block-start, 4px);
   font-family: var(--sb-ui-textarea-font-family);
-  font-size: 0.75rem;
-  color: var(--sb-ui-color-grayscale-base, #d9d9d9);
+  font-size: var(--sb-ui-textarea-helper-font-size, 12px);
+  font-weight: var(--sb-ui-textarea-helper-font-weight, 400);
+  color: var(--sb-ui-textarea-helper-color, #414141);
   line-height: 1.25;
+}
+
+.sb-ui-textarea-helper i,
+.sb-ui-textarea-helper svg {
+  flex-shrink: 0;
+  font-size: 0.75em;
 }
 
 .sb-ui-textarea-helper--error {
@@ -9813,10 +9832,6 @@
   color: var(--sb-ui-color-feedback-success-base, #28a745);
 }
 
-.sb-ui-textarea-helper--warning {
-  color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-}
-
 /* ========================================
    TEXTAREA GROUP (multiple textareas)
    ======================================== */
@@ -9825,7 +9840,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
+  inline-size: 100%;
 }
 
 .sb-ui-textarea-group--horizontal {
@@ -9878,8 +9893,8 @@
 
   .sb-ui-textarea-counter {
     position: static;
-    margin-top: 0.5rem;
-    text-align: right;
+    margin-block-start: 0.5rem;
+    text-align: end;
     background: none;
     box-shadow: none;
     padding: 0;
@@ -9890,7 +9905,7 @@
 
 @media (width >= 641px) {
   .sb-ui-textarea--inline {
-    min-width: 250px;
+    min-inline-size: 250px;
   }
 }
 
@@ -9915,11 +9930,11 @@
 }
 
 /* ========================================
-   FOCUS VISIBLE (keyboard navigation)
+   FOCUS VISIBLE (keyboard navigation) - Verde Bolívar
    ======================================== */
 
 .sb-ui-textarea:focus-visible {
-  outline: 2px solid var(--sb-ui-color-primary-base, #007acc);
+  outline: 2px solid var(--sb-ui-color-primary-base, #009056);
   outline-offset: 2px;
 }
 
@@ -9987,13 +10002,14 @@
 .sb-ui-textarea--loading::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 20px;
+  block-size: 20px;
+  margin-block-start: -10px;
+  margin-inline-start: -10px;
   border: 2px solid var(--sb-ui-color-grayscale-L200, #edeef0);
-  border-top-color: var(--sb-ui-color-primary-base, #007acc);
+  border-block-start-color: var(--sb-ui-color-primary-base, #009056);
   border-radius: 50%;
   animation: rb-textarea-spinner 1s linear infinite;
   z-index: 3;

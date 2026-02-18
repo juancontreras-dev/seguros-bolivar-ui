@@ -3,41 +3,36 @@
  * Seguros Bolívar - TextArea Component Overrides
  * ============================================================================
  *
- * Brand-specific overrides for textarea component following design system specs
- *
- * - Border radius: 8px
- * - Padding: 16px horizontal, 8px vertical
- * - Font sizes: Label 14px, Helper 12px, Input 16px
- * - Spacing: 8px between elements
- * - Colors: Grayscale base for borders, primary for focus
+ * Brand-specific overrides for textarea. Base atoms ya alineados con Figma
+ * (border-radius 4px, padding 16px/8px, tipografía). Aquí solo refuerzo de tokens
+ * de marca y estados focus/error/success.
  * ============================================================================
  */
 
 /* ============================================================================
    CONFIGURACIÓN GLOBAL (fuera de @layer)
-   Propiedades estructurales como padding, border-radius, tamaños
    ============================================================================ */
 [data-brand='seguros-bolivar'] .sb-ui-textarea {
-  --sb-ui-textarea-border-radius: 8px;
-  --sb-ui-textarea-padding-x: 16px; /* Padding horizontal */
-  --sb-ui-textarea-padding-y: 8px; /* Padding vertical */
-  --sb-ui-textarea-font-size: 1rem; /* Body/Regular - 16px */
-  --sb-ui-textarea-font-weight: 400; /* Regular */
+  --sb-ui-textarea-border-radius: 4px; /* Desde Figma, igual que Input */
+  --sb-ui-textarea-padding-inline: 16px;
+  --sb-ui-textarea-padding-block: 8px;
+  --sb-ui-textarea-font-size: 16px;
+  --sb-ui-textarea-font-weight: 400;
   --sb-ui-textarea-min-height: 80px;
-  --sb-ui-textarea-line-height: 1.5;
+  --sb-ui-textarea-line-height: 1.4;
 }
 
 [data-brand='seguros-bolivar'] .sb-ui-textarea-label {
-  --sb-ui-textarea-label-font-size: 14px; /* Label/Regular - 14px */
-  --sb-ui-textarea-label-font-weight: 400; /* Regular, no bold */
-  --sb-ui-textarea-label-margin-block-end: 8px; /* 8px entre label y textarea */
+  --sb-ui-textarea-label-font-size: 14px;
+  --sb-ui-textarea-label-font-weight: 400;
+  --sb-ui-textarea-label-margin-block-end: 8px;
 }
 
 [data-brand='seguros-bolivar'] .sb-ui-textarea-helper {
-  --sb-ui-textarea-helper-font-size: 12px; /* Caption/Regular - 12px */
-  --sb-ui-textarea-helper-font-weight: 400; /* Regular */
-  --sb-ui-textarea-helper-margin-block-start: 8px; /* 8px entre textarea y helper text */
-  padding-inline-start: 8px; /* Padding izquierdo */
+  --sb-ui-textarea-helper-font-size: 12px;
+  --sb-ui-textarea-helper-font-weight: 400;
+  --sb-ui-textarea-helper-margin-block-start: 8px;
+  padding-inline-start: 8px;
 }
 
 /* Container padding según diseño */
@@ -135,26 +130,6 @@
   /* Icono en error - rojo */
   [data-brand='seguros-bolivar'] .sb-ui-textarea-container:has(.sb-ui-textarea--error) .sb-ui-textarea-helper i {
     color: var(--sb-ui-color-feedback-error-base) !important;
-  }
-
-  /* ========================================
-     WARNING STATE
-     Borde amarillo/naranja
-     ======================================== */
-  [data-brand='seguros-bolivar'] .sb-ui-textarea--warning {
-    --sb-ui-textarea-border-color: var(--sb-ui-color-feedback-warning-base);
-    --sb-ui-textarea-border-color-focus: var(--sb-ui-color-feedback-warning-base);
-    --sb-ui-textarea-shadow-focus: none;
-  }
-
-  /* Helper text en warning - todo amarillo (ícono + texto) */
-  [data-brand='seguros-bolivar'] .sb-ui-textarea-container:has(.sb-ui-textarea--warning) .sb-ui-textarea-helper {
-    color: var(--sb-ui-color-feedback-warning-base) !important;
-  }
-
-  /* Icono en warning - amarillo */
-  [data-brand='seguros-bolivar'] .sb-ui-textarea-container:has(.sb-ui-textarea--warning) .sb-ui-textarea-helper i {
-    color: var(--sb-ui-color-feedback-warning-base) !important;
   }
 
   /* ========================================

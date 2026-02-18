@@ -109,20 +109,26 @@
           <div class="textarea-demo-item">
             <h4>1. Default</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Comentarios</label>
-              <textarea class="sb-ui-textarea" rows="4" placeholder="Escribe tus comentarios aquí..."></textarea>
-              <span class="sb-ui-textarea-helper">Campo de texto de varias líneas</span>
+              <label class="sb-ui-textarea-label" for="textarea-default">Comentarios</label>
+              <textarea id="textarea-default" class="sb-ui-textarea" rows="4" placeholder="Escribe tus comentarios aquí..."></textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Campo de texto de varias líneas
+              </span>
             </div>
           </div>
 
           <!-- FOCUS -->
           <div class="textarea-demo-item">
             <h4>2. Focus</h4>
-            <p class="textarea-demo-note">Click para ver el borde verde</p>
+            <p class="textarea-demo-note">Haz clic en el campo para ver el borde verde (Figma)</p>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Descripción</label>
-              <textarea class="sb-ui-textarea" rows="4" placeholder="Click para enfocar"></textarea>
-              <span class="sb-ui-textarea-helper">Borde verde en focus</span>
+              <label class="sb-ui-textarea-label" for="textarea-focus">Descripción</label>
+              <textarea id="textarea-focus" class="sb-ui-textarea" rows="4" placeholder="Haz clic para enfocar"></textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Borde verde en focus
+              </span>
             </div>
           </div>
 
@@ -130,9 +136,12 @@
           <div class="textarea-demo-item">
             <h4>3. Disabled</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Campo deshabilitado</label>
-              <textarea class="sb-ui-textarea" rows="4" placeholder="Campo deshabilitado" disabled></textarea>
-              <span class="sb-ui-textarea-helper">No editable</span>
+              <label class="sb-ui-textarea-label" for="textarea-disabled">Campo deshabilitado</label>
+              <textarea id="textarea-disabled" class="sb-ui-textarea" rows="4" placeholder="Campo deshabilitado" disabled></textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                No editable
+              </span>
             </div>
           </div>
 
@@ -140,9 +149,12 @@
           <div class="textarea-demo-item">
             <h4>4. Error</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Mensaje de error</label>
-              <textarea class="sb-ui-textarea sb-ui-textarea--error" rows="4" placeholder="Campo con error"></textarea>
-              <span class="sb-ui-textarea-helper">Este campo es obligatorio</span>
+              <label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="textarea-error">Mensaje de error</label>
+              <textarea id="textarea-error" class="sb-ui-textarea sb-ui-textarea--error" rows="4" placeholder="Campo con error"></textarea>
+              <span class="sb-ui-textarea-helper sb-ui-textarea-helper--error">
+                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                Este campo es obligatorio
+              </span>
             </div>
           </div>
 
@@ -150,9 +162,12 @@
           <div class="textarea-demo-item">
             <h4>5. Success</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Validación exitosa</label>
-              <textarea class="sb-ui-textarea sb-ui-textarea--success" rows="4" placeholder="Campo válido">Texto validado correctamente</textarea>
-              <span class="sb-ui-textarea-helper">Campo completado correctamente</span>
+              <label class="sb-ui-textarea-label" for="textarea-success">Validación exitosa</label>
+              <textarea id="textarea-success" class="sb-ui-textarea sb-ui-textarea--success" rows="4" placeholder="Campo válido">Texto validado correctamente</textarea>
+              <span class="sb-ui-textarea-helper sb-ui-textarea-helper--success">
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                Campo completado correctamente
+              </span>
             </div>
           </div>
 
@@ -160,30 +175,33 @@
           <div class="textarea-demo-item">
             <h4>6. Read-only</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Solo lectura</label>
-              <textarea class="sb-ui-textarea" rows="4" readonly>Este texto es solo de lectura y no se puede editar.</textarea>
-              <span class="sb-ui-textarea-helper">Contenido no editable</span>
+              <label class="sb-ui-textarea-label" for="textarea-readonly">Solo lectura</label>
+              <textarea id="textarea-readonly" class="sb-ui-textarea" rows="4" readonly>Este texto es solo de lectura y no se puede editar.</textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Contenido no editable
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Estado Default --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Estado Default --&gt;
 &lt;div class="sb-ui-textarea-container"&gt;
-  &lt;label class="sb-ui-textarea-label"&gt;Comentarios&lt;/label&gt;
-  &lt;textarea class="sb-ui-textarea" rows="4" placeholder="Escribe aquí..."&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;Texto de ayuda&lt;/span&gt;
+  &lt;label class="sb-ui-textarea-label" for="..."&gt;Comentarios&lt;/label&gt;
+  &lt;textarea id="..." class="sb-ui-textarea" rows="4" placeholder="Escribe aquí..."&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Texto de ayuda&lt;/span&gt;
 &lt;/div&gt;
 
 &lt;!-- Estado Error --&gt;
 &lt;div class="sb-ui-textarea-container"&gt;
-  &lt;label class="sb-ui-textarea-label"&gt;Descripción&lt;/label&gt;
-  &lt;textarea class="sb-ui-textarea sb-ui-textarea--error" rows="4"&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;Este campo es obligatorio&lt;/span&gt;
+  &lt;label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="..."&gt;Descripción&lt;/label&gt;
+  &lt;textarea id="..." class="sb-ui-textarea sb-ui-textarea--error" rows="4"&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper sb-ui-textarea-helper--error"&gt;&lt;i class="fa-solid fa-circle-exclamation" aria-hidden="true"&gt;&lt;/i&gt; Este campo es obligatorio&lt;/span&gt;
 &lt;/div&gt;</code></pre>
         </div>
       </section>
@@ -222,12 +240,12 @@
           </div>
         </div>
 
-        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Small (3 rows) --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Small (3 rows) --&gt;
 &lt;textarea class="sb-ui-textarea" rows="3" placeholder="Texto corto"&gt;&lt;/textarea&gt;
 
 &lt;!-- Medium (5 rows) --&gt;
@@ -248,9 +266,12 @@
           <div class="textarea-demo-item">
             <h4>Formulario de Contacto</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Mensaje *</label>
-              <textarea class="sb-ui-textarea" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
-              <span class="sb-ui-textarea-helper">Mínimo 20 caracteres</span>
+              <label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="textarea-contact">Mensaje</label>
+              <textarea id="textarea-contact" class="sb-ui-textarea" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Mínimo 20 caracteres
+              </span>
             </div>
           </div>
 
@@ -258,9 +279,12 @@
           <div class="textarea-demo-item">
             <h4>Reseña de Producto</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Tu opinión</label>
-              <textarea class="sb-ui-textarea" rows="6" placeholder="Cuéntanos tu experiencia con el producto...">Excelente producto, superó mis expectativas.</textarea>
-              <span class="sb-ui-textarea-helper">200/500 caracteres</span>
+              <label class="sb-ui-textarea-label" for="textarea-review">Tu opinión</label>
+              <textarea id="textarea-review" class="sb-ui-textarea" rows="6" placeholder="Cuéntanos tu experiencia con el producto...">Excelente producto, superó mis expectativas.</textarea>
+              <span class="sb-ui-textarea-helper">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                200/500 caracteres
+              </span>
             </div>
           </div>
 
@@ -268,28 +292,26 @@
           <div class="textarea-demo-item">
             <h4>Reporte de Incidencia</h4>
             <div class="sb-ui-textarea-container">
-              <label class="sb-ui-textarea-label">Describe el problema *</label>
-              <textarea class="sb-ui-textarea sb-ui-textarea--error" rows="6" placeholder="Describe el problema..."></textarea>
-              <span class="sb-ui-textarea-helper">Este campo es obligatorio</span>
+              <label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="textarea-incident">Describe el problema</label>
+              <textarea id="textarea-incident" class="sb-ui-textarea sb-ui-textarea--error" rows="6" placeholder="Describe el problema..."></textarea>
+              <span class="sb-ui-textarea-helper sb-ui-textarea-helper--error">
+                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                Este campo es obligatorio
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
-          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Formulario de contacto --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Formulario de contacto --&gt;
 &lt;div class="sb-ui-textarea-container"&gt;
-  &lt;label class="sb-ui-textarea-label"&gt;Mensaje *&lt;/label&gt;
-  &lt;textarea 
-    class="sb-ui-textarea" 
-    rows="6" 
-    placeholder="Escribe tu mensaje..." 
-    required
-  &gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;Mínimo 20 caracteres&lt;/span&gt;
+  &lt;label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="msg"&gt;Mensaje&lt;/label&gt;
+  &lt;textarea id="msg" class="sb-ui-textarea" rows="6" placeholder="Escribe tu mensaje..." required&gt;&lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Mínimo 20 caracteres&lt;/span&gt;
 &lt;/div&gt;</code></pre>
         </div>
       </section>
