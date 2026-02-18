@@ -251,6 +251,20 @@ parameters: {
 }
 ```
 
+### Enlaces desde examples (Ver en Storybook)
+
+En las páginas de ejemplo (`examples/*/index.html`) se usa el mismo patrón para "Ver en Storybook":
+
+- **Base**: `http://localhost:6006` (puerto definido en `packages/docs/package.json`: `storybook dev -p 6006`)
+- **Página de docs del componente**: `/?path=/docs/{id}--docs`
+- **Id del componente**: el `title` de la meta en minúsculas y con guiones. Ejemplos:
+  - `Atoms/Button` → `atoms-button`
+  - `Atoms/Menu` → `atoms-menu`
+  - `Molecules/Stepper` → `molecules-stepper`
+- **URL completa**: `http://localhost:6006/?path=/docs/atoms-button--docs`
+
+Así se mantienen alineados Storybook y los ejemplos.
+
 ---
 
 ## 🔧 Configuración Técnica

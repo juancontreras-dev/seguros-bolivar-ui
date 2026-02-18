@@ -29,7 +29,7 @@ import { html } from 'lit';
  * - **Integrated**: 3 círculos concéntricos con velocidades diferentes
  */
 const meta: Meta = {
-  title: 'Atoms/Spinner',
+  title: 'Componentes HTML y CSS/Spinner',
   tags: ['autodocs'],
   parameters: {
     docs: {

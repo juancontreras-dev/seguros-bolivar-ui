@@ -36,7 +36,7 @@ import { html } from 'lit';
  * - **Múltiples acordeones**: Cada acordeón funciona independientemente
  */
 const meta: Meta = {
-  title: 'Atoms/Accordion',
+  title: 'Componentes HTML y CSS/Accordion',
   tags: ['autodocs'],
   parameters: {
     docs: {

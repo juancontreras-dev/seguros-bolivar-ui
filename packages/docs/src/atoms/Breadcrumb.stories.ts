@@ -27,7 +27,7 @@ import { html } from 'lit';
  * - **Truncado**: Los breadcrumbs largos pueden truncarse con elipsis
  */
 const meta: Meta = {
-  title: 'Atoms/Breadcrumb',
+  title: 'Componentes HTML y CSS/Breadcrumb',
   tags: ['autodocs'],
   parameters: {
     docs: {

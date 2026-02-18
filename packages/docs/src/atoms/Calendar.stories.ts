@@ -28,7 +28,7 @@ import { html } from 'lit';
  * - **Validación**: Soporta fechas mín/máx y fechas deshabilitadas
  */
 const meta: Meta = {
-  title: 'Atoms/Calendar',
+  title: 'Web Components/Calendar',
   tags: ['autodocs'],
   parameters: {
     docs: {

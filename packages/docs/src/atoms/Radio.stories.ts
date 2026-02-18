@@ -44,7 +44,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Radio',
+  title: 'Componentes HTML y CSS/Radio',
   tags: ['autodocs'],
   parameters: {
     docs: {

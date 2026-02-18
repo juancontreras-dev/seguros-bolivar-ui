@@ -35,7 +35,7 @@ import { html } from 'lit';
  * - **Grupos**: Usa `<optgroup>` para agrupar opciones
  */
 const meta: Meta = {
-  title: 'Atoms/Select',
+  title: 'Componentes HTML y CSS/Select',
   tags: ['autodocs'],
   parameters: {
     docs: {

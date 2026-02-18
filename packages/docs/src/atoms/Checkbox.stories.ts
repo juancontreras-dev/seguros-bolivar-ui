@@ -61,7 +61,7 @@ import { html } from 'lit';
  * - **Disabled**: Sin halos, cursor `not-allowed`
  */
 const meta: Meta = {
-  title: 'Atoms/Checkbox',
+  title: 'Componentes HTML y CSS/Checkbox',
   tags: ['autodocs'],
   parameters: {
     docs: {

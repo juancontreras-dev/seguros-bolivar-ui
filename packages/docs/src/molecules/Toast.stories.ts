@@ -38,7 +38,8 @@ import { html } from 'lit';
  * - **Iconos automáticos**: Cada variante tiene su icono (✓, ✕, ⚠, ℹ)
  */
 const meta: Meta = {
-  title: 'Molecules/Toast',
+  title: 'Web Components/Toast',
+  id: 'molecules-toast',
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -60,14 +61,6 @@ type Story = StoryObj;
  */
 export const Playground: Story = {
   render: () => html`
-    <script type="module">
-      import { showSuccess, showError, showWarning, showInfo } from '@sb-ui/molecules';
-      window.showSuccess = showSuccess;
-      window.showError = showError;
-      window.showWarning = showWarning;
-      window.showInfo = showInfo;
-    </script>
-
     <style>
       .toast-playground {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -136,14 +129,6 @@ export const Playground: Story = {
  */
 export const TodasLasVariantes: Story = {
   render: () => html`
-    <script type="module">
-      import { showSuccess, showError, showWarning, showInfo } from '@sb-ui/molecules';
-      window.showSuccess = showSuccess;
-      window.showError = showError;
-      window.showWarning = showWarning;
-      window.showInfo = showInfo;
-    </script>
-
     <style>
       .variants-demo {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -243,11 +228,6 @@ export const TodasLasVariantes: Story = {
  */
 export const DiferentesPosiciones: Story = {
   render: () => html`
-    <script type="module">
-      import { showToast } from '@sb-ui/molecules';
-      window.showToast = showToast;
-    </script>
-
     <style>
       .positions-demo {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -381,11 +361,6 @@ export const DiferentesPosiciones: Story = {
  */
 export const OpcionesPersonalizadas: Story = {
   render: () => html`
-    <script type="module">
-      import { showToast } from '@sb-ui/molecules';
-      window.showToast = showToast;
-    </script>
-
     <style>
       .options-demo {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
@@ -487,14 +462,6 @@ export const OpcionesPersonalizadas: Story = {
  */
 export const MultiplesToasts: Story = {
   render: () => html`
-    <script type="module">
-      import { showSuccess, showError, showWarning, showInfo } from '@sb-ui/molecules';
-      window.showSuccess = showSuccess;
-      window.showError = showError;
-      window.showWarning = showWarning;
-      window.showInfo = showInfo;
-    </script>
-
     <style>
       .multiples-demo {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);

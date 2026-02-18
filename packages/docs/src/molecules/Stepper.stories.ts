@@ -80,7 +80,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Molecules/Stepper',
+  title: 'Componentes HTML y CSS/Stepper',
   tags: ['autodocs'],
   parameters: {
     docs: {

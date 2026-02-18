@@ -73,7 +73,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Button',
+  title: 'Componentes HTML y CSS/Button',
   tags: ['autodocs'],
   parameters: {
     docs: {

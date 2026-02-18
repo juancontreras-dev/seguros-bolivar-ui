@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: white-label | Theme: light
- * Generated: 2026-02-18T05:06:20.914Z
+ * Generated: 2026-02-18T05:22:42.599Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -6855,8 +6855,8 @@
     --sb-ui-menu-item-border-active-horizontal: var(--sb-ui-menu-item-border-width) solid
       var(--sb-ui-menu-item-border-active);
 
-    /* Colapsado: ancho reducido */
-    --sb-ui-menu-inline-size-collapsed: 72px;
+    /* Colapsado: ancho reducido (suficiente para títulos como "Componentes") */
+    --sb-ui-menu-inline-size-collapsed: 92px;
 
     --sb-ui-menu-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
       transform 0.2s ease, inline-size 0.3s ease;
@@ -7194,25 +7194,7 @@
     opacity: 1;
   }
 
-  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item span,
-  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item span {
-    display: inline;
-  }
-
-  /* Submenú en colapsado: mostrar iconos de los ítems del dropdown */
-  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item i,
-  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    inline-size: var(--sb-ui-menu-submenu-item-icon-inline-size);
-    font-size: 0.75rem;
-    flex-shrink: 0;
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Submenú en colapsado: abrir como dropdown a la derecha */
+  /* Submenú en colapsado: dentro del mismo menú (solo iconos), no flotante */
   .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__details,
   .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__details {
     display: block;
@@ -7221,13 +7203,36 @@
 
   .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu,
   .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 100%;
+    position: static;
     margin-inline-start: 0;
-    min-inline-size: 180px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    z-index: 100;
+    min-inline-size: unset;
+    box-shadow: none;
+    border-inline-start: none;
+    background-color: transparent;
+  }
+
+  /* Submenú en colapsado: ítems como filas de solo icono (igual que el menú principal) */
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item {
+    justify-content: center;
+    padding-inline: 0.75rem;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item span,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item span {
+    display: none;
+  }
+
+  .sb-ui-menu--collapsible.sb-ui-menu--collapsed .sb-ui-menu__submenu-item i,
+  .sb-ui-menu__collapse-input:checked ~ .sb-ui-menu--collapsible .sb-ui-menu__submenu-item i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-menu-icon-inline-size);
+    font-size: var(--sb-ui-menu-icon-size);
+    flex-shrink: 0;
+    opacity: 1;
+    visibility: visible;
   }
 
   /* Botón/label para colapsar (opcional, colocar antes del menú) */

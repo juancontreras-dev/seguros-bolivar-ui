@@ -81,7 +81,7 @@ import { html } from 'lit';
  * | Large | `min(928px, 90%)` | `82dvb` | `size="large"` |
  */
 const meta: Meta = {
-  title: 'Molecules/Modal',
+  title: 'Web Components/Modal',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

@@ -52,7 +52,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/TextArea',
+  title: 'Componentes HTML y CSS/TextArea',
   tags: ['autodocs'],
   parameters: {
     docs: {

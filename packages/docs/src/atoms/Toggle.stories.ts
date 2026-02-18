@@ -49,7 +49,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Toggle',
+  title: 'Componentes HTML y CSS/Toggle',
   tags: ['autodocs'],
   parameters: {
     docs: {

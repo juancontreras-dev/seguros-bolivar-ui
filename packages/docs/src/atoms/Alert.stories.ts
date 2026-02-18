@@ -56,7 +56,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Alert',
+  title: 'Componentes HTML y CSS/Alert',
   tags: ['autodocs'],
   parameters: {
     docs: {

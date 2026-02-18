@@ -102,7 +102,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Tabs',
+  title: 'Componentes HTML y CSS/Tabs',
   tags: ['autodocs'],
   parameters: {
     docs: {

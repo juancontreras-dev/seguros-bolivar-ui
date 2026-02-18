@@ -31,7 +31,7 @@ import { html } from 'lit';
  * - **Bordered**: Opción para mostrar bordes entre celdas
  */
 const meta: Meta = {
-  title: 'Atoms/Table',
+  title: 'Componentes HTML y CSS/Table',
   tags: ['autodocs'],
   parameters: {
     docs: {

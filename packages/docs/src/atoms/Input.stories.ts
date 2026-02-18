@@ -53,7 +53,7 @@ import { html } from 'lit';
  * ```
  */
 const meta: Meta = {
-  title: 'Atoms/Input',
+  title: 'Componentes HTML y CSS/Input',
   tags: ['autodocs'],
   parameters: {
     docs: {
