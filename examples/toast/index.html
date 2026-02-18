@@ -728,14 +728,31 @@ showError('Mensaje', { title: 'Error' });</code></pre>
          JAVASCRIPT
          ======================================== -->
     <script type="module">
+      // Base path igual que index.html (funciona en GitHub Pages con subpath, ej. /repo-name/)
+      const TOAST_BASE_PATH = (function () {
+        const path = window.location.pathname;
+        if (path === '/' || path === '') return '/';
+        if (path.endsWith('/')) return path;
+        if (/\/index\.html$/i.test(path)) return path.replace(/\/index\.html$/i, '/');
+        return path + '/';
+      })();
+      // Si estamos en una ruta tipo /.../examples/toast/index.html, dist está en .../examples/dist/
+      const distPath = (function () {
+        const path = window.location.pathname;
+        if (/\/examples\/toast\//i.test(path)) {
+          return path.replace(/\/toast\/.*$/i, '/') + 'dist/';
+        }
+        return TOAST_BASE_PATH + 'dist/';
+      })();
+
       // Variable para rastrear si el módulo está cargado
       let moduleLoaded = false;
       
       try {
         console.log('🔄 Iniciando carga del módulo Toast...');
         
-        // Importar funciones del módulo compilado (sin cache bust para evitar problemas)
-        const toastModule = await import('../dist/sb-ui-components.min.js');
+        // Importar desde ruta absoluta para que funcione en GitHub Pages (subpath o root)
+        const toastModule = await import(new URL(distPath + 'sb-ui-components.min.js', window.location.origin).href);
         
         console.log('✅ Toast module loaded:', toastModule);
         console.log('📦 Available exports:', Object.keys(toastModule));
@@ -982,9 +999,8 @@ showError('Mensaje', { title: 'Error' });</code></pre>
           htmlEl.setAttribute('data-theme', currentTheme);
           localStorage.setItem('sb-ui-brand', currentBrand);
           localStorage.setItem('sb-ui-theme', currentTheme);
-          if (brandCss) {
-            brandCss.href =
-              '../dist/sb-ui-' + currentBrand + '-' + currentTheme + '.min.css?v=' + Date.now();
+          if (brandCss && typeof distPath !== 'undefined') {
+            brandCss.href = distPath + 'sb-ui-' + currentBrand + '-' + currentTheme + '.min.css?v=' + Date.now();
           }
         }
 
