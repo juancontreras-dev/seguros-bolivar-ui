@@ -15,7 +15,7 @@
 /**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: jelpit | Theme: dark
- * Generated: 2026-02-17T22:57:03.639Z
+ * Generated: 2026-02-18T04:07:15.437Z
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
@@ -6254,65 +6254,75 @@
    ======================================== */
 @layer tokens {
   .sb-ui-input {
-    /* Colores BASE - Estados interactivos */
-    --sb-ui-input-bg-color: var(--sb-ui-color-grayscale-white, #fff);
-    --sb-ui-input-bg-hover: var(--sb-ui-color-grayscale-white, #fff);
-    --sb-ui-input-bg-focus: var(--sb-ui-color-grayscale-white, #fff);
-    --sb-ui-input-bg-disabled: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    /* ===== TAMAÑOS - Desde Figma ===== */
+    --sb-ui-input-height: 40px; /* Altura exacta del input desde Figma */
+    --sb-ui-input-padding-inline-start: 16px; /* Padding izquierdo desde Figma */
+    --sb-ui-input-padding-inline-end: 16px; /* Padding derecho default */
+    --sb-ui-input-padding-block: 8px; /* Padding vertical desde Figma */
+    --sb-ui-input-padding-inline-end-icon: 50px; /* 40px icon container + 10px gap */
+    --sb-ui-input-gap: 10px; /* Gap interno desde Figma */
+    
+    /* ===== COLORES - Desde Figma ===== */
+    /* Background */
+    --sb-ui-input-bg-color: #FFFFFF; /* Greyscale/White */
+    --sb-ui-input-bg-hover: #FFFFFF;
+    --sb-ui-input-bg-focus: #FFFFFF;
+    --sb-ui-input-bg-disabled: #F5F5F5; /* Greyscale/-300 desde Figma */
+    
+    /* Text colors */
+    --sb-ui-input-text-color: #1B1B1B; /* Greyscale/Black */
+    --sb-ui-input-text-hover: #1B1B1B;
+    --sb-ui-input-text-focus: #1B1B1B;
+    --sb-ui-input-text-disabled: #9B9B9B; /* Greyscale/Base */
+    --sb-ui-input-text-placeholder: #9B9B9B; /* Greyscale/Base desde Figma */
+    --sb-ui-input-text-placeholder-hover: #757575; /* Greyscale/+100 desde Figma (hover) */
+    
+    /* Border colors - Desde Figma */
+    --sb-ui-input-border-color: #B9B9B9; /* Greyscale/-100 desde Figma */
+    --sb-ui-input-border-hover: #9B9B9B; /* Greyscale/Base desde Figma (hover) */
+    --sb-ui-input-border-focus: #009056; /* Primary/Base - verde Bolívar */
+    --sb-ui-input-border-disabled: #E1E1E1; /* Greyscale/-200 desde Figma */
+    --sb-ui-input-border-width: 1px; /* Desde Figma */
+    
+    /* Border radius */
+    --sb-ui-input-border-radius: 4px; /* Desde Figma */
 
-    --sb-ui-input-text-color: var(--sb-ui-color-grayscale-black, #000);
-    --sb-ui-input-text-hover: var(--sb-ui-color-grayscale-black, #000);
-    --sb-ui-input-text-focus: var(--sb-ui-color-grayscale-black, #000);
-    --sb-ui-input-text-disabled: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    --sb-ui-input-text-placeholder: var(--sb-ui-color-grayscale-base, #9b9b9b);
+    /* ===== TIPOGRAFÍA - Desde Figma ===== */
+    --sb-ui-input-font-family: 'Bolivar', 'Roboto', sans-serif; /* Font family desde Figma */
+    --sb-ui-input-font-size: 16px; /* Body/Regular desde Figma */
+    --sb-ui-input-font-weight: 400; /* Regular weight desde Figma */
+    --sb-ui-input-line-height: 1.4; /* Line height desde Figma */
 
-    --sb-ui-input-border-color: var(--sb-ui-color-grayscale-L200, #e1e1e1);
-    --sb-ui-input-border-hover: var(--sb-ui-color-grayscale-L200, #e1e1e1);
-    --sb-ui-input-border-focus: var(--sb-ui-color-primary-base, #007acc);
-    --sb-ui-input-border-disabled: var(--sb-ui-color-grayscale-L200, #e1e1e1);
+    /* Label - Desde Figma */
+    --sb-ui-input-label-color: #1B1B1B; /* Greyscale/Black */
+    --sb-ui-input-label-font-size: 14px; /* Label/Regular desde Figma */
+    --sb-ui-input-label-font-weight: 400; /* Regular weight */
+    --sb-ui-input-label-margin-block-end: 4px; /* Gap desde Figma */
 
-    /* Espaciado - SIEMPRE con clamp() */
-    --sb-ui-input-padding-inline: clamp(0.8rem, 0.5rem + 1.5vw, 1rem);
-    --sb-ui-input-padding-block: clamp(0.6rem, 0.4rem + 0.8vw, 0.875rem);
-    --sb-ui-input-padding-inline-end-icon: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+    /* Helper text - Desde Figma */
+    --sb-ui-input-helper-color: #414141; /* Greyscale/+300 desde Figma */
+    --sb-ui-input-helper-font-size: 12px; /* Caption/Regular desde Figma */
+    --sb-ui-input-helper-margin-block-start: 4px; /* Gap desde Figma */
+    
+    /* Íconos - Desde Figma */
+    --sb-ui-input-icon-size: 16px; /* Tamaño del ícono base */
+    --sb-ui-input-icon-container-size: 40px; /* Container del ícono desde Figma */
+    --sb-ui-input-icon-color: #038450; /* Primary/Base - verde Bolívar */
+    --sb-ui-input-icon-inset-inline-end: 8px; /* Padding desde el borde derecho */
+    
+    /* Helper icon */
+    --sb-ui-input-help-icon-size: 16px; /* Desde Figma */
 
-    /* Tipografía - SIEMPRE con clamp() */
-    --sb-ui-input-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-    --sb-ui-input-font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
-    --sb-ui-input-font-weight: 400;
-    --sb-ui-input-line-height: 1.5;
-
-    /* Label */
-    --sb-ui-input-label-color: var(--sb-ui-color-grayscale-black, #000);
-    --sb-ui-input-label-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-    --sb-ui-input-label-font-weight: 600;
-    --sb-ui-input-label-margin-block-end: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
-
-    /* Helper text */
-    --sb-ui-input-helper-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    --sb-ui-input-helper-font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-    --sb-ui-input-helper-margin-block-start: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
-
-    /* Tamaños - Logical properties */
-    --sb-ui-input-min-block-size: clamp(40px, 8vw, 44px);
-    --sb-ui-input-inline-size: 100%;
-
-    /* Bordes */
-    --sb-ui-input-border-width: 1px;
-    --sb-ui-input-border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
+    /* Search: color de la X nativa de limpiar (gris oscuro del sistema) */
+    --sb-ui-input-search-cancel-color: #5b5b5b; /* Greyscale/+200 / D200 */
 
     /* Sombras */
     --sb-ui-input-shadow: none;
-    --sb-ui-input-shadow-focus: 0 0 0 3px var(--sb-ui-color-primary-L400, rgba(0, 122, 204, 0.1));
+    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(0, 144, 86, 0.1); /* Verde Bolívar con opacidad */
 
-    /* Transiciones - NO incluir outline para evitar destellos en focus */
+    /* Transiciones */
     --sb-ui-input-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
       box-shadow 0.2s ease;
-
-    /* Íconos */
-    --sb-ui-input-icon-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
-    --sb-ui-input-icon-color: var(--sb-ui-color-grayscale-base, #9b9b9b);
-    --sb-ui-input-icon-inset-inline-end: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
   }
 }
 /* ========================================
@@ -6337,22 +6347,24 @@
     /* Layout */
     display: block;
     position: relative;
-    inline-size: var(--sb-ui-input-inline-size);
+    inline-size: 100%;
 
-    /* Spacing - SOLO Logical Properties */
-    padding-inline: var(--sb-ui-input-padding-inline);
+    /* Spacing - Desde Figma */
+    padding-inline-start: var(--sb-ui-input-padding-inline-start);
+    padding-inline-end: var(--sb-ui-input-padding-inline-end);
     padding-block: var(--sb-ui-input-padding-block);
 
-    /* Typography */
+    /* Typography - Desde Figma */
     font-family: var(--sb-ui-input-font-family);
     font-size: var(--sb-ui-input-font-size);
     font-weight: var(--sb-ui-input-font-weight);
     line-height: var(--sb-ui-input-line-height);
 
-    /* Sizing */
-    min-block-size: var(--sb-ui-input-min-block-size);
+    /* Sizing - Altura fija desde Figma */
+    block-size: var(--sb-ui-input-height);
+    min-block-size: var(--sb-ui-input-height);
 
-    /* Appearance */
+    /* Appearance - Desde Figma */
     background-color: var(--sb-ui-input-bg-color);
     color: var(--sb-ui-input-text-color);
     border: var(--sb-ui-input-border-width) solid var(--sb-ui-input-border-color);
@@ -6362,7 +6374,7 @@
     /* Animation */
     transition: var(--sb-ui-input-transition);
 
-    /* Nested Pseudo-classes - SIEMPRE usar & */
+    /* Nested Pseudo-classes */
   }
     .sb-ui-input::placeholder {
       color: var(--sb-ui-input-text-placeholder);
@@ -6371,20 +6383,20 @@
 
     .sb-ui-input:hover:not(:disabled):not(:focus) {
       background-color: var(--sb-ui-input-bg-hover);
-      color: var(--sb-ui-input-text-hover, var(--sb-ui-input-text-color));
-      border-color: var(--sb-ui-input-border-hover, var(--sb-ui-input-border-color));
+      color: var(--sb-ui-input-text-hover);
+      border-color: var(--sb-ui-input-border-hover);
     }
 
     .sb-ui-input:focus {
       background-color: var(--sb-ui-input-bg-focus);
-      color: var(--sb-ui-input-text-focus, var(--sb-ui-input-text-color));
+      color: var(--sb-ui-input-text-focus);
       border-color: var(--sb-ui-input-border-focus);
       box-shadow: var(--sb-ui-input-shadow-focus);
       outline: none;
     }
 
     .sb-ui-input:focus-visible {
-      outline: 2px solid var(--sb-ui-color-secondary-L100, #66bc9a);
+      outline: 2px solid var(--sb-ui-input-border-focus);
       outline-offset: 2px;
     }
 
@@ -6401,97 +6413,135 @@
       padding-inline-end: var(--sb-ui-input-padding-inline-end-icon);
     }
 
-  /* Label */
+    /* Search: botón limpiar (X) - gris #5b5b5b vía máscara (Chrome) */
+    .sb-ui-input[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 16px !important;
+      height: 16px !important;
+      margin-inline-start: 4px !important;
+      background-color: var(--sb-ui-input-search-cancel-color, #5b5b5b) !important;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+      -webkit-mask-size: contain !important;
+      -webkit-mask-repeat: no-repeat !important;
+      -webkit-mask-position: center !important;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+      mask-size: contain !important;
+      mask-repeat: no-repeat !important;
+      mask-position: center !important;
+      cursor: pointer;
+      opacity: 0.9;
+    }
+    .sb-ui-input[type="search"]::-webkit-search-cancel-button:hover {
+      opacity: 1;
+    }
+
+  /* Label - Desde Figma */
   .sb-ui-input-label {
     display: block;
-    margin-block-end: var(--sb-ui-input-label-margin-block-end);
     font-family: var(--sb-ui-input-font-family);
     font-size: var(--sb-ui-input-label-font-size);
     font-weight: var(--sb-ui-input-label-font-weight);
+    line-height: var(--sb-ui-input-line-height);
     color: var(--sb-ui-input-label-color);
-    line-height: 1.25;
+    margin-block-end: var(--sb-ui-input-label-margin-block-end);
+    
+    /* Label con asterisco para campos requeridos */
   }
-
-    --required.sb-ui-input-label::after {
+    .sb-ui-input-label.sb-ui-input-label--required::after {
       content: ' *';
       color: var(--sb-ui-color-feedback-error-base, #dc3545);
     }
-
-    --optional.sb-ui-input-label::after {
+    
+    /* Label con texto (opcional) */
+    .sb-ui-input-label.sb-ui-input-label--optional::after {
       content: ' (opcional)';
       color: var(--sb-ui-color-grayscale-base, #9b9b9b);
       font-weight: 400;
     }
 
-  /* Helper text */
+  /* Helper text - Desde Figma */
   .sb-ui-input-helper {
-    display: block;
-    margin-block-start: var(--sb-ui-input-helper-margin-block-start);
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Gap desde Figma */
     font-family: var(--sb-ui-input-font-family);
     font-size: var(--sb-ui-input-helper-font-size);
+    font-weight: var(--sb-ui-input-font-weight);
+    line-height: var(--sb-ui-input-line-height);
     color: var(--sb-ui-input-helper-color);
-    line-height: 1.25;
+    margin-block-start: var(--sb-ui-input-helper-margin-block-start);
   }
 
-  /* Ícono del input (derecha) */
+  /* Ícono - Desde Figma */
   .sb-ui-input-icon {
     position: absolute;
     inset-block-start: 50%;
     inset-inline-end: var(--sb-ui-input-icon-inset-inline-end);
     transform: translateY(-50%);
-    font-size: var(--sb-ui-input-icon-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--sb-ui-input-icon-container-size);
+    block-size: var(--sb-ui-input-icon-container-size);
     color: var(--sb-ui-input-icon-color);
     pointer-events: none;
-    transition: var(--sb-ui-input-transition);
+  }
+  
+  /* Tamaño del icono hijo (i o svg) */
+  .sb-ui-input-icon i,
+  .sb-ui-input-icon svg {
+    font-size: var(--sb-ui-input-icon-size) !important;
+    inline-size: var(--sb-ui-input-icon-size);
+    block-size: var(--sb-ui-input-icon-size);
+    line-height: 1;
+    vertical-align: baseline;
+  }
+  
+  /* Helper icon - Desde Figma */
+  .sb-ui-input-helper i,
+  .sb-ui-input-helper svg {
+    font-size: var(--sb-ui-input-help-icon-size) !important;
+    inline-size: var(--sb-ui-input-help-icon-size);
+    block-size: var(--sb-ui-input-help-icon-size);
+    line-height: 1;
+    color: var(--sb-ui-input-icon-color);
   }
 }
 /* ========================================
    STATES LAYER
    ======================================== */
 @layer states {
-  /* Success state */
+  /* Success state - Desde Figma */
   .sb-ui-input--success {
-    --sb-ui-input-border-color: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-input-border-focus: var(--sb-ui-color-feedback-success-base, #28a745);
-    --sb-ui-input-shadow-focus: 0 0 0 3px var(--sb-ui-color-feedback-success-L400, rgba(40, 167, 69, 0.1));
+    --sb-ui-input-border-color: #28A745; /* Alerts/Success/Base desde Figma */
+    --sb-ui-input-border-focus: #28A745;
+    --sb-ui-input-border-hover: #28A745;
+    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(40, 167, 69, 0.1);
   }
-
-    .sb-ui-input--success + .sb-ui-input-icon {
-      color: var(--sb-ui-color-feedback-success-base, #28a745);
-    }
 
   .sb-ui-input--success ~ .sb-ui-input-helper {
-    color: var(--sb-ui-color-feedback-success-base, #28a745);
+    color: #279941; /* Alerts/Success/+100 desde Figma */
+  }
+  
+  .sb-ui-input-inner:has(.sb-ui-input--success) .sb-ui-input-icon {
+    color: #038450; /* Primary/Base - verde Bolívar */
   }
 
-  /* Error state */
+  /* Error state - Desde Figma */
   .sb-ui-input--error {
-    --sb-ui-input-border-color: var(--sb-ui-color-feedback-error-base, #dc3545);
-    --sb-ui-input-border-focus: var(--sb-ui-color-feedback-error-base, #dc3545);
-    --sb-ui-input-shadow-focus: 0 0 0 3px var(--sb-ui-color-feedback-error-L400, rgba(220, 53, 69, 0.1));
+    --sb-ui-input-border-color: #DC3545; /* Alerts/Error/Base desde Figma */
+    --sb-ui-input-border-focus: #DC3545;
+    --sb-ui-input-border-hover: #DC3545;
+    --sb-ui-input-shadow-focus: 0 0 0 3px rgba(220, 53, 69, 0.1);
   }
-
-    .sb-ui-input--error + .sb-ui-input-icon {
-      color: var(--sb-ui-color-feedback-error-base, #dc3545);
-    }
 
   .sb-ui-input--error ~ .sb-ui-input-helper {
-    color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    color: #DC3545; /* Alerts/Error/Base desde Figma */
   }
-
-  /* Warning state */
-  .sb-ui-input--warning {
-    --sb-ui-input-border-color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-    --sb-ui-input-border-focus: var(--sb-ui-color-feedback-warning-base, #ffc107);
-    --sb-ui-input-shadow-focus: 0 0 0 3px var(--sb-ui-color-feedback-warning-L400, rgba(255, 193, 7, 0.1));
-  }
-
-    .sb-ui-input--warning + .sb-ui-input-icon {
-      color: var(--sb-ui-color-feedback-warning-base, #ffc107);
-    }
-
-  .sb-ui-input--warning ~ .sb-ui-input-helper {
-    color: var(--sb-ui-color-feedback-warning-base, #ffc107);
+  
+  .sb-ui-input-inner:has(.sb-ui-input--error) .sb-ui-input-icon {
+    color: #DC3545; /* Alerts/Error/Base */
   }
 
   /* Disabled state */
@@ -6500,14 +6550,85 @@
     opacity: 0.6;
   }
 
-  .sb-ui-input:disabled + .sb-ui-input-icon,
-  .sb-ui-input.sb-ui-input--disabled + .sb-ui-input-icon {
+  .sb-ui-input-inner:has(.sb-ui-input:disabled) .sb-ui-input-icon,
+  .sb-ui-input-inner:has(.sb-ui-input--disabled) .sb-ui-input-icon {
     opacity: 0.6;
   }
 
-  /* Focus state - icon color */
-  .sb-ui-input:focus + .sb-ui-input-icon {
-    color: var(--sb-ui-input-border-focus);
+  /* Focus state - icon stays verde Bolívar */
+  .sb-ui-input-inner:has(.sb-ui-input:focus) .sb-ui-input-icon {
+    color: #009056; /* Primary/Base desde Figma */
+  }
+  
+  /* ========================================
+     PASSWORD TOGGLE (Sin JavaScript)
+     ======================================== */
+  
+  /* Checkbox oculto que controla la visibilidad */
+  .sb-ui-input-password-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Wrapper que contiene ambos inputs - NO afecta el layout */
+  .sb-ui-input-password-wrapper {
+    display: contents;
+  }
+  
+  /* Label del ícono - override de pointer-events para que sea clickeable */
+  .sb-ui-input-password-toggle-label {
+    pointer-events: auto !important; /* Sobreescribe el pointer-events: none de .sb-ui-input-icon */
+    cursor: pointer;
+  }
+    
+    .sb-ui-input-password-toggle-label:hover {
+      color: #009056;
+    }
+    
+    /* Los iconos van inline dentro del flex container - NO position absolute */
+    .sb-ui-input-password-toggle-label i {
+      font-size: var(--sb-ui-input-icon-size) !important;
+      line-height: 1;
+    }
+  
+  /* Ojo abierto visible por defecto (password oculto) */
+  .sb-ui-input-password-toggle-label .fa-eye {
+    display: inline-block !important;
+  }
+  
+  /* Ojo tachado oculto por defecto */
+  .sb-ui-input-password-toggle-label .fa-eye-slash {
+    display: none !important;
+  }
+  
+  /* Cuando el checkbox está checked: cambiar icono */
+  .sb-ui-input-password-toggle:checked ~ .sb-ui-input-inner .sb-ui-input-password-toggle-label .fa-eye {
+    display: none !important;
+  }
+  
+  .sb-ui-input-password-toggle:checked ~ .sb-ui-input-inner .sb-ui-input-password-toggle-label .fa-eye-slash {
+    display: inline-block !important;
+  }
+  
+  /* Input password visible por defecto, text oculto */
+  .sb-ui-input-inner:has(.sb-ui-input-password-toggle-label) .sb-ui-input[type="password"] {
+    display: block;
+  }
+  
+  .sb-ui-input-inner:has(.sb-ui-input-password-toggle-label) .sb-ui-input[type="text"] {
+    display: none;
+  }
+  
+  /* Cuando checked: mostrar text, ocultar password */
+  .sb-ui-input-password-toggle:checked ~ .sb-ui-input-inner .sb-ui-input[type="password"] {
+    display: none;
+  }
+  
+  .sb-ui-input-password-toggle:checked ~ .sb-ui-input-inner .sb-ui-input[type="text"] {
+    display: block;
   }
 }
 /* ========================================
@@ -6579,6 +6700,19 @@
   }
 }
 /* ========================================
+   ICON SIZE OVERRIDE (fuera de @layer - mayor prioridad que Font Awesome)
+   ======================================== */
+.sb-ui-input-icon {
+  /* Anular la variable CSS de Font Awesome directamente en el contenedor */
+  --fa-font-size: var(--sb-ui-input-icon-size);
+  font-size: var(--sb-ui-input-icon-size);
+}
+.sb-ui-input-icon i,
+.sb-ui-input-icon svg {
+  font-size: var(--sb-ui-input-icon-size) !important;
+  line-height: 1 !important;
+}
+/* ========================================
    AUTOFILL STYLES (fuera de @layer)
    ======================================== */
 .sb-ui-input:-webkit-autofill,
@@ -6588,6 +6722,31 @@
   -webkit-box-shadow: 0 0 0 30px var(--sb-ui-input-bg-color) inset !important;
   -webkit-text-fill-color: var(--sb-ui-input-text-color) !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+/* ========================================
+   SEARCH CANCEL BUTTON - Chrome (fuera de @layer)
+   Gris #5b5b5b: máscara + background para que no use el azul nativo
+   ======================================== */
+.sb-ui-input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-inline-start: 4px !important;
+  background-color: #5b5b5b !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+  -webkit-mask-size: contain !important;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='black' d='M7 5.94L2.53 1.47a.75.75 0 00-1.06 1.06L5.94 7 1.47 11.47a.75.75 0 101.06 1.06L7 8.06l4.47 4.47a.75.75 0 001.06-1.06L8.06 7l4.47-4.47a.75.75 0 10-1.06-1.06L7 5.94z'/%3E%3C/svg%3E") !important;
+  mask-size: contain !important;
+  mask-repeat: no-repeat !important;
+  mask-position: center !important;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.sb-ui-input[type="search"]::-webkit-search-cancel-button:hover {
+  opacity: 1;
 }
 
 

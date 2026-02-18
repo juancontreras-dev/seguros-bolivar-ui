@@ -1,0 +1,428 @@
+/**
+ * ============================================================================
+ * Slider (Range) Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Componente CSS moderno con:
+ * - CSS Nesting nativo con &
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - Variables CSS themables (multi-marca)
+ * - Soporte cross-browser (WebKit, Moz, MS)
+ *
+ * ============================================================================
+ * 📋 ESTRUCTURA HTML
+ * ============================================================================
+ *
+ * <!-- Slider básico -->
+ * <input type="range" class="sb-ui-slider" min="0" max="100" value="50">
+ *
+ * <!-- Slider con label -->
+ * <div class="sb-ui-slider-container">
+ *   <label for="volume" class="sb-ui-slider-label">Volume</label>
+ *   <input type="range" id="volume" class="sb-ui-slider" min="0" max="100" value="70">
+ *   <span class="sb-ui-slider-value">70%</span>
+ * </div>
+ *
+ * <!-- Slider con marcas (ticks) -->
+ * <div class="sb-ui-slider-container">
+ *   <input type="range" class="sb-ui-slider" min="0" max="100" step="25" value="50" list="slider-marks">
+ *   <datalist id="slider-marks">
+ *     <option value="0" label="0%"></option>
+ *     <option value="25" label="25%"></option>
+ *     <option value="50" label="50%"></option>
+ *     <option value="75" label="75%"></option>
+ *     <option value="100" label="100%"></option>
+ *   </datalist>
+ * </div>
+ *
+ * ============================================================================
+ * 🎨 VARIANTES
+ * ============================================================================
+ *
+ * COLORES:
+ * - .sb-ui-slider--primary (color primario - default)
+ * - .sb-ui-slider--secondary (color secundario)
+ * - .sb-ui-slider--success (verde)
+ * - .sb-ui-slider--warning (amarillo/naranja)
+ * - .sb-ui-slider--error (rojo)
+ * - .sb-ui-slider--info (azul)
+ *
+ * TAMAÑOS:
+ * - .sb-ui-slider--sm (pequeño)
+ * - .sb-ui-slider--md (mediano - default)
+ * - .sb-ui-slider--lg (grande)
+ *
+ * ESTADOS:
+ * - :disabled (deshabilitado)
+ * - :focus (foco)
+ *
+ * ============================================================================
+ */
+
+@layer reset, tokens, base, sizes, variants, states, utilities;
+
+/* ========================================
+   RESET LAYER
+   ======================================== */
+@layer reset {
+  .sb-ui-slider {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .sb-ui-slider-container {
+    box-sizing: border-box;
+  }
+
+  .sb-ui-slider-label,
+  .sb-ui-slider-value {
+    box-sizing: border-box;
+  }
+}
+
+/* ========================================
+   TOKENS LAYER - Variables CSS
+   ======================================== */
+@layer tokens {
+  .sb-ui-slider {
+    /* ===== TRACK (barra) ===== */
+    --sb-ui-slider-track-height: 0.375rem; /* 6px */
+    --sb-ui-slider-track-bg: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+    --sb-ui-slider-track-border-radius: 0.5rem;
+    
+    /* ===== FILL (progreso) ===== */
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-primary-base, #038450);
+    
+    /* ===== THUMB (control deslizable) ===== */
+    --sb-ui-slider-thumb-size: 1.25rem; /* 20px */
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-slider-thumb-border: 2px solid var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-slider-thumb-border-radius: 50%;
+    --sb-ui-slider-thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --sb-ui-slider-thumb-shadow-hover: 0 3px 8px rgba(0, 0, 0, 0.3);
+    --sb-ui-slider-thumb-shadow-active: 0 1px 2px rgba(0, 0, 0, 0.3);
+    
+    /* ===== ESTADOS ===== */
+    --sb-ui-slider-thumb-scale-hover: 1.1;
+    --sb-ui-slider-thumb-scale-active: 1.05;
+    
+    /* ===== DISABLED ===== */
+    --sb-ui-slider-disabled-opacity: 0.5;
+    
+    /* ===== TRANSICIONES ===== */
+    --sb-ui-slider-transition: all 0.2s ease;
+  }
+
+  .sb-ui-slider-container {
+    --sb-ui-slider-container-gap: 0.5rem;
+  }
+}
+
+/* ========================================
+   BASE LAYER - Estilos fundamentales
+   ======================================== */
+@layer base {
+  .sb-ui-slider {
+    /* Layout */
+    inline-size: 100%;
+    block-size: var(--sb-ui-slider-track-height);
+    margin: 0;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    
+    /* Track base */
+    background: transparent;
+    
+    /* Transiciones */
+    transition: var(--sb-ui-slider-transition);
+    
+    /* ===== WEBKIT (Chrome, Safari, Edge) ===== */
+    
+    /* Track */
+    &::-webkit-slider-runnable-track {
+      inline-size: 100%;
+      block-size: var(--sb-ui-slider-track-height);
+      background-color: var(--sb-ui-slider-track-bg);
+      border-radius: var(--sb-ui-slider-track-border-radius);
+      border: none;
+    }
+    
+    /* Thumb */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      inline-size: var(--sb-ui-slider-thumb-size);
+      block-size: var(--sb-ui-slider-thumb-size);
+      background-color: var(--sb-ui-slider-thumb-bg);
+      border: var(--sb-ui-slider-thumb-border);
+      border-radius: var(--sb-ui-slider-thumb-border-radius);
+      cursor: pointer;
+      box-shadow: var(--sb-ui-slider-thumb-shadow);
+      margin-block-start: calc((var(--sb-ui-slider-track-height) - var(--sb-ui-slider-thumb-size)) / 2);
+      transition: var(--sb-ui-slider-transition);
+    }
+    
+    &:hover::-webkit-slider-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-hover));
+      box-shadow: var(--sb-ui-slider-thumb-shadow-hover);
+    }
+    
+    &:active::-webkit-slider-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-active));
+      box-shadow: var(--sb-ui-slider-thumb-shadow-active);
+    }
+    
+    /* ===== MOZ (Firefox) ===== */
+    
+    /* Track */
+    &::-moz-range-track {
+      inline-size: 100%;
+      block-size: var(--sb-ui-slider-track-height);
+      background-color: var(--sb-ui-slider-track-bg);
+      border-radius: var(--sb-ui-slider-track-border-radius);
+      border: none;
+    }
+    
+    /* Progress (relleno) */
+    &::-moz-range-progress {
+      block-size: var(--sb-ui-slider-track-height);
+      background-color: var(--sb-ui-slider-fill-bg);
+      border-radius: var(--sb-ui-slider-track-border-radius);
+    }
+    
+    /* Thumb */
+    &::-moz-range-thumb {
+      inline-size: var(--sb-ui-slider-thumb-size);
+      block-size: var(--sb-ui-slider-thumb-size);
+      background-color: var(--sb-ui-slider-thumb-bg);
+      border: var(--sb-ui-slider-thumb-border);
+      border-radius: var(--sb-ui-slider-thumb-border-radius);
+      cursor: pointer;
+      box-shadow: var(--sb-ui-slider-thumb-shadow);
+      transition: var(--sb-ui-slider-transition);
+    }
+    
+    &:hover::-moz-range-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-hover));
+      box-shadow: var(--sb-ui-slider-thumb-shadow-hover);
+    }
+    
+    &:active::-moz-range-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-active));
+      box-shadow: var(--sb-ui-slider-thumb-shadow-active);
+    }
+    
+    /* ===== MS (IE/Edge legacy) ===== */
+    
+    /* Track */
+    &::-ms-track {
+      inline-size: 100%;
+      block-size: var(--sb-ui-slider-track-height);
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    
+    /* Fill (lower) */
+    &::-ms-fill-lower {
+      background-color: var(--sb-ui-slider-fill-bg);
+      border-radius: var(--sb-ui-slider-track-border-radius);
+    }
+    
+    /* Fill (upper) */
+    &::-ms-fill-upper {
+      background-color: var(--sb-ui-slider-track-bg);
+      border-radius: var(--sb-ui-slider-track-border-radius);
+    }
+    
+    /* Thumb */
+    &::-ms-thumb {
+      inline-size: var(--sb-ui-slider-thumb-size);
+      block-size: var(--sb-ui-slider-thumb-size);
+      background-color: var(--sb-ui-slider-thumb-bg);
+      border: var(--sb-ui-slider-thumb-border);
+      border-radius: var(--sb-ui-slider-thumb-border-radius);
+      cursor: pointer;
+      box-shadow: var(--sb-ui-slider-thumb-shadow);
+      margin-block-start: 0;
+    }
+    
+    &:hover::-ms-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-hover));
+    }
+    
+    &:active::-ms-thumb {
+      transform: scale(var(--sb-ui-slider-thumb-scale-active));
+    }
+    
+    /* Focus */
+    &:focus {
+      outline: none;
+    }
+    
+    &:focus-visible::-webkit-slider-thumb {
+      outline: 2px solid var(--sb-ui-color-primary-base, #038450);
+      outline-offset: 2px;
+    }
+    
+    &:focus-visible::-moz-range-thumb {
+      outline: 2px solid var(--sb-ui-color-primary-base, #038450);
+      outline-offset: 2px;
+    }
+  }
+  
+  /* Container */
+  .sb-ui-slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sb-ui-slider-container-gap);
+    inline-size: 100%;
+  }
+  
+  /* Label */
+  .sb-ui-slider-label {
+    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--sb-ui-color-grayscale-D300, #424242);
+  }
+  
+  /* Value display */
+  .sb-ui-slider-value {
+    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--sb-ui-color-primary-base, #038450);
+    text-align: end;
+  }
+}
+
+/* ========================================
+   SIZES LAYER - Variantes de tamaño
+   ======================================== */
+@layer sizes {
+  /* Small */
+  .sb-ui-slider--sm {
+    --sb-ui-slider-track-height: 0.25rem; /* 4px */
+    --sb-ui-slider-thumb-size: 1rem; /* 16px */
+  }
+  
+  /* Medium (default) */
+  .sb-ui-slider--md {
+    --sb-ui-slider-track-height: 0.375rem; /* 6px */
+    --sb-ui-slider-thumb-size: 1.25rem; /* 20px */
+  }
+  
+  /* Large */
+  .sb-ui-slider--lg {
+    --sb-ui-slider-track-height: 0.5rem; /* 8px */
+    --sb-ui-slider-thumb-size: 1.5rem; /* 24px */
+  }
+}
+
+/* ========================================
+   VARIANTS LAYER - Colores
+   ======================================== */
+@layer variants {
+  /* Primary (default) */
+  .sb-ui-slider--primary {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-primary-base, #038450);
+  }
+  
+  /* Secondary */
+  .sb-ui-slider--secondary {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-secondary-base, #ffe16f);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-secondary-base, #ffe16f);
+  }
+  
+  /* Success */
+  .sb-ui-slider--success {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-feedback-success-base, #4caf50);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-feedback-success-base, #4caf50);
+  }
+  
+  /* Warning */
+  .sb-ui-slider--warning {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-feedback-warning-base, #ff9800);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-feedback-warning-base, #ff9800);
+  }
+  
+  /* Error */
+  .sb-ui-slider--error {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-feedback-error-base, #f44336);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-feedback-error-base, #f44336);
+  }
+  
+  /* Info */
+  .sb-ui-slider--info {
+    --sb-ui-slider-fill-bg: var(--sb-ui-color-feedback-info-base, #2196f3);
+    --sb-ui-slider-thumb-bg: var(--sb-ui-color-feedback-info-base, #2196f3);
+  }
+}
+
+/* ========================================
+   STATES LAYER - Estados
+   ======================================== */
+@layer states {
+  /* Disabled */
+  .sb-ui-slider:disabled {
+    opacity: var(--sb-ui-slider-disabled-opacity);
+    cursor: not-allowed;
+    
+    &::-webkit-slider-thumb {
+      cursor: not-allowed;
+    }
+    
+    &::-moz-range-thumb {
+      cursor: not-allowed;
+    }
+    
+    &::-ms-thumb {
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* ========================================
+   UTILITIES LAYER - Layout helpers
+   ======================================== */
+@layer utilities {
+  /* Slider con label y value en horizontal */
+  .sb-ui-slider-container--horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    
+    & .sb-ui-slider-label {
+      flex-shrink: 0;
+      min-inline-size: 80px;
+    }
+    
+    & .sb-ui-slider {
+      flex: 1;
+    }
+    
+    & .sb-ui-slider-value {
+      flex-shrink: 0;
+      min-inline-size: 50px;
+    }
+  }
+  
+  /* Datalist (marcas/ticks) styling */
+  .sb-ui-slider-container datalist {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 0.25rem;
+    padding-inline: calc(var(--sb-ui-slider-thumb-size) / 2);
+  }
+  
+  .sb-ui-slider-container datalist option {
+    font-size: 0.75rem;
+    color: var(--sb-ui-color-grayscale-D200, #757575);
+  }
+}

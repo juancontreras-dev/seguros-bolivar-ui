@@ -174,9 +174,9 @@
     <h2><i class="fa-solid fa-puzzle-piece"></i> Componentes</h2>
     <p>El Design System incluye más de 15 componentes divididos en dos categorías principales según su implementación técnica.</p>
 
-    <!-- HTML + CSS Section -->
+    <!-- Componentes HTML + CSS: mismo orden que el menú lateral -->
     <h3 class="section-title"><i class="fa-solid fa-code"></i> Componentes HTML + CSS</h3>
-    <p class="section-description">Componentes que usan clases CSS de la librería. No requieren el script <code>sb-ui-components.min.js</code>. Algunos (p. ej. File Upload) pueden necesitar JavaScript propio para la lógica (drag & drop, input), pero no el de la librería.</p>
+    <p class="section-description">Componentes que usan clases CSS de la librería. No requieren el script <code>sb-ui-components.min.js</code>.</p>
 
     <div class="component-grid">
       <a class="component-card" data-path="button/primary.html">
@@ -185,113 +185,77 @@
           <h4>Botones - Primary</h4>
           <p>Botones principales de acción</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="button/secondary.html">
         <div class="icon"><i class="fas fa-circle-notch"></i></div>
         <div class="info">
           <h4>Botones - Secondary</h4>
           <p>Botones de acción secundaria</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="button/error.html">
         <div class="icon"><i class="fas fa-exclamation-circle"></i></div>
         <div class="info">
           <h4>Botones - Error</h4>
           <p>Botones para acciones destructivas</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="input/">
         <div class="icon"><i class="fas fa-keyboard"></i></div>
         <div class="info">
-          <h4>Inputs</h4>
+          <h4>Input</h4>
           <p>Campos de texto con validación</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="textarea/">
         <div class="icon"><i class="fas fa-file-lines"></i></div>
         <div class="info">
           <h4>Textarea</h4>
           <p>Áreas de texto multilínea</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="select/">
         <div class="icon"><i class="fas fa-list"></i></div>
         <div class="info">
-          <h4>Selects</h4>
+          <h4>Select</h4>
           <p>Listas desplegables estilizadas</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="checkbox/">
         <div class="icon"><i class="fas fa-check-square"></i></div>
         <div class="info">
-          <h4>Checkboxes</h4>
+          <h4>Checkbox</h4>
           <p>Casillas de verificación accesibles</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="radio/">
         <div class="icon"><i class="fas fa-circle"></i></div>
         <div class="info">
-          <h4>Radio Buttons</h4>
+          <h4>Radio</h4>
           <p>Botones de selección única</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="toggle/">
         <div class="icon"><i class="fas fa-toggle-on"></i></div>
         <div class="info">
           <h4>Toggle</h4>
           <p>Interruptores on/off</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="table/">
         <div class="icon"><i class="fas fa-table"></i></div>
         <div class="info">
-          <h4>Tablas</h4>
+          <h4>Tabla</h4>
           <p>Tablas con paginación y estilos</p>
         </div>
-        
       </a>
-
       <a class="component-card" data-path="alert/">
         <div class="icon"><i class="fas fa-triangle-exclamation"></i></div>
         <div class="info">
-          <h4>Alerts</h4>
+          <h4>Alert</h4>
           <p>Notificaciones y mensajes</p>
         </div>
-        
       </a>
-
-      <a class="component-card" data-path="file-upload/">
-        <div class="icon"><i class="fas fa-cloud-arrow-up"></i></div>
-        <div class="info">
-          <h4>File Upload</h4>
-          <p>Estilos para zona de carga; la lógica (input/drag) la implementas tú</p>
-        </div>
-      </a>
-    </div>
-
-    <!-- HTML + CSS: Tabs, Stepper, Breadcrumb, Spinner, Accordion (solo clases CSS, sin JS de librería) -->
-    <h3 class="section-title"><i class="fa-solid fa-code"></i> Más componentes HTML + CSS</h3>
-    <p class="section-description">Estos componentes usan solo clases CSS. No requieren el script <code>sb-ui-components.min.js</code>.</p>
-
-    <div class="component-grid">
       <a class="component-card" data-path="tabs/">
         <div class="icon"><i class="fas fa-folder-open"></i></div>
         <div class="info">
@@ -329,7 +293,7 @@
       </a>
     </div>
 
-    <!-- Web Components Section: requieren sb-ui-components.min.js -->
+    <!-- Web Components: mismo orden que el menú lateral -->
     <h3 class="section-title"><i class="fa-solid fa-cube"></i> Web Components (requieren JavaScript de la librería)</h3>
     <p class="section-description">Implementados con Web Components (Lit). Para que funcionen debes incluir el script de la librería.</p>
 
@@ -349,8 +313,22 @@
       <a class="component-card" data-path="calendar/">
         <div class="icon"><i class="fas fa-calendar"></i></div>
         <div class="info">
-          <h4>Calendar</h4>
-          <p>Calendario interactivo</p>
+          <h4>Calendario</h4>
+          <p>Calendario y selector de fechas</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="toast/">
+        <div class="icon"><i class="fas fa-bell"></i></div>
+        <div class="info">
+          <h4>Toast</h4>
+          <p>Notificaciones toast</p>
+        </div>
+      </a>
+      <a class="component-card" data-path="file-upload/">
+        <div class="icon"><i class="fas fa-cloud-arrow-up"></i></div>
+        <div class="info">
+          <h4>File Upload</h4>
+          <p>Estilos para zona de carga; la lógica (input/drag) la implementas tú</p>
         </div>
       </a>
     </div>

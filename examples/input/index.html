@@ -13,6 +13,9 @@
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1.5rem;
       }
+      .input-demo-states--full-width {
+        grid-template-columns: 1fr 1fr;
+      }
       .input-demo-item {
         padding: 1.25rem;
         border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
@@ -38,128 +41,413 @@
           <span>Input</span>
         </h2>
         <p class="component-description">
-          Campo de texto con estados (default, hover, focus, disabled, success, error, warning), tamaños (small, medium, large), required/optional y tipos (text, email, password, number, date, tel, url). Componente HTML + CSS de la librería.
+          Campo de texto con soporte para todos los estados (default, hover, focus, disabled, success, error), iconos, labels y helper text.
         </p>
       </header>
 
       <section class="variant-section">
-        <h3 class="variant-title">Estados</h3>
+        <h3 class="variant-title">Estados Básicos</h3>
         <p class="component-description">
-          El input puede mostrarse en distintos estados visuales: por defecto (con hover y focus interactivos), deshabilitado, éxito, error y advertencia. Hover y focus se aplican automáticamente al interactuar.
+          Hover y focus se aplican automáticamente al interactuar con el campo.
         </p>
         <div class="input-demo-states">
           <div class="input-demo-item">
             <h4 class="input-demo-label">Default</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-default">Nombre</label>
-              <input id="input-default" class="sb-ui-input" type="text" placeholder="Escribe aquí..." />
+              <label class="sb-ui-input-label" for="input-default">Label Text</label>
+              <input id="input-default" class="sb-ui-input" type="text" placeholder="Placeholder" />
+              <span class="sb-ui-input-helper">
+                <i class="fa-solid fa-circle-info"></i>
+                Texto de ayuda
+              </span>
             </div>
           </div>
+          
           <div class="input-demo-item">
-            <h4 class="input-demo-label">Con ícono (librería)</h4>
+            <h4 class="input-demo-label">Con Valor</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-icon">Buscar</label>
+              <label class="sb-ui-input-label" for="input-value">Nombre</label>
+              <input id="input-value" class="sb-ui-input" type="text" value="Texto ingresado" />
+              <span class="sb-ui-input-helper">
+                Input con valor
+              </span>
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">Con Icono</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label" for="input-icon-demo">Buscar</label>
               <div class="sb-ui-input-inner">
-                <input id="input-icon" class="sb-ui-input sb-ui-input--with-icon" type="text" placeholder="Buscar..." />
-                <span class="sb-ui-input-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input id="input-icon-demo" class="sb-ui-input sb-ui-input--with-icon" type="text" placeholder="Buscar..." />
+                <i class="sb-ui-input-icon fa-solid fa-magnifying-glass"></i>
               </div>
+              <span class="sb-ui-input-helper">
+                Input con icono
+              </span>
             </div>
           </div>
-          <div class="input-demo-item">
-            <h4 class="input-demo-label">Label required / optional</h4>
-            <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label sb-ui-input-label--required" for="input-required">Email (requerido)</label>
-              <input id="input-required" class="sb-ui-input" type="email" placeholder="tu@email.com" />
-            </div>
-            <div class="sb-ui-input-container" style="margin-block-start: 1rem;">
-              <label class="sb-ui-input-label sb-ui-input-label--optional" for="input-optional">Teléfono (opcional)</label>
-              <input id="input-optional" class="sb-ui-input" type="tel" placeholder="+57 300 123 4567" />
-            </div>
-          </div>
+          
           <div class="input-demo-item">
             <h4 class="input-demo-label">Disabled</h4>
             <div class="sb-ui-input-container">
               <label class="sb-ui-input-label" for="input-disabled">Campo deshabilitado</label>
-              <input id="input-disabled" class="sb-ui-input sb-ui-input--disabled" type="text" placeholder="No editable" disabled />
+              <input id="input-disabled" class="sb-ui-input" type="text" placeholder="No editable" disabled />
+              <span class="sb-ui-input-helper">
+                Campo no disponible
+              </span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Estados de Validación</h3>
+        <p class="component-description">
+          Estados de validación: Success y Error con sus respectivos iconos y colores.
+        </p>
+        <div class="input-demo-states input-demo-states--full-width">
           <div class="input-demo-item">
             <h4 class="input-demo-label">Success</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-success">Correo válido</label>
-              <input id="input-success" class="sb-ui-input sb-ui-input--success" type="email" value="usuario@ejemplo.com" />
-              <span class="sb-ui-input-helper">El formato es correcto.</span>
+              <label class="sb-ui-input-label" for="input-success">Email válido</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-success" class="sb-ui-input sb-ui-input--success sb-ui-input--with-icon" type="email" value="usuario@ejemplo.com" />
+                <i class="sb-ui-input-icon fa-solid fa-circle-check"></i>
+              </div>
+              <span class="sb-ui-input-helper">
+                <i class="fa-solid fa-circle-info"></i>
+                El campo fue validado correctamente
+              </span>
             </div>
           </div>
+          
           <div class="input-demo-item">
             <h4 class="input-demo-label">Error</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-error">Correo requerido</label>
-              <input id="input-error" class="sb-ui-input sb-ui-input--error" type="email" placeholder="correo@ejemplo.com" />
-              <span class="sb-ui-input-helper">Ingresa un correo electrónico válido.</span>
+              <label class="sb-ui-input-label sb-ui-input-label--required" for="input-error">Email requerido</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-error" class="sb-ui-input sb-ui-input--error sb-ui-input--with-icon" type="email" placeholder="correo@ejemplo.com" />
+                <i class="sb-ui-input-icon fa-solid fa-circle-exclamation"></i>
+              </div>
+              <span class="sb-ui-input-helper">
+                <i class="fa-solid fa-circle-info"></i>
+                Este campo es requerido
+              </span>
             </div>
           </div>
+          
+        </div>
+      </section>
+
+      <section class="variant-section">
+        <h3 class="variant-title">Labels y Requerimientos</h3>
+        <p class="component-description">
+          Asterisco rojo para campos requeridos y texto "(opcional)" para campos opcionales.
+        </p>
+        <div class="input-demo-states input-demo-states--full-width">
           <div class="input-demo-item">
-            <h4 class="input-demo-label">Warning</h4>
+            <h4 class="input-demo-label">Campo Requerido</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-warning">Contraseña débil</label>
-              <input id="input-warning" class="sb-ui-input sb-ui-input--warning" type="password" value="123" />
-              <span class="sb-ui-input-helper">Recomendamos usar mayúsculas, números y símbolos.</span>
+              <label class="sb-ui-input-label sb-ui-input-label--required" for="input-required">Email</label>
+              <input id="input-required" class="sb-ui-input" type="email" placeholder="tu@email.com" required />
+              <span class="sb-ui-input-helper">
+                Label incluye asterisco (*) en rojo
+              </span>
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">Campo Opcional</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label sb-ui-input-label--optional" for="input-optional">Teléfono</label>
+              <input id="input-optional" class="sb-ui-input" type="tel" placeholder="+57 300 123 4567" />
+              <span class="sb-ui-input-helper">
+                Label incluye texto "(opcional)"
+              </span>
             </div>
           </div>
         </div>
       </section>
 
       <section class="variant-section">
-        <h3 class="variant-title">Tamaños</h3>
+        <h3 class="variant-title">Tipos de Input</h3>
         <p class="component-description">
-          La librería define tres tamaños con <code>sb-ui-input--small</code>, el valor por defecto (medium) y <code>sb-ui-input--large</code>.
+          El componente soporta todos los tipos HTML5: text, email, password, tel, url, number, time, etc.
         </p>
         <div class="input-demo-states">
           <div class="input-demo-item">
-            <h4 class="input-demo-label">Small</h4>
+            <h4 class="input-demo-label">Email</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-small">Pequeño</label>
-              <input id="input-small" class="sb-ui-input sb-ui-input--small" type="text" placeholder="Small" />
+              <label class="sb-ui-input-label" for="input-email">Email</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-email" class="sb-ui-input sb-ui-input--with-icon" type="email" placeholder="tu@correo.com" />
+                <i class="sb-ui-input-icon fa-solid fa-envelope"></i>
+              </div>
             </div>
           </div>
+          
           <div class="input-demo-item">
-            <h4 class="input-demo-label">Medium (default)</h4>
+            <h4 class="input-demo-label">Password (con toggle)</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-medium">Mediano</label>
-              <input id="input-medium" class="sb-ui-input" type="text" placeholder="Medium" />
+              <label class="sb-ui-input-label" for="input-password-visible">Contraseña</label>
+              <!-- Checkbox oculto que controla la visibilidad -->
+              <input type="checkbox" id="password-toggle-1" class="sb-ui-input-password-toggle" />
+              
+              <div class="sb-ui-input-inner">
+                <!-- Wrapper con ambos inputs -->
+                <div class="sb-ui-input-password-wrapper">
+                  <!-- Input password (visible por defecto) -->
+                  <input 
+                    id="input-password-visible" 
+                    class="sb-ui-input sb-ui-input--with-icon" 
+                    type="password" 
+                    placeholder="••••••••"
+                    value="MiPassword123" 
+                  />
+                  <!-- Input text (oculto por defecto) -->
+                  <input 
+                    class="sb-ui-input sb-ui-input--with-icon" 
+                    type="text" 
+                    placeholder="••••••••"
+                    value="MiPassword123"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  />
+                </div>
+                
+                <!-- Label clickeable que controla el checkbox - igual que los otros iconos -->
+                <label for="password-toggle-1" class="sb-ui-input-icon sb-ui-input-password-toggle-label" title="Mostrar/Ocultar contraseña">
+                  <i class="fa-solid fa-eye"></i>
+                  <i class="fa-solid fa-eye-slash"></i>
+                </label>
+              </div>
+              <span class="sb-ui-input-helper">
+                Click en el ojo para mostrar/ocultar (sin JavaScript)
+              </span>
             </div>
           </div>
+          
           <div class="input-demo-item">
-            <h4 class="input-demo-label">Large</h4>
+            <h4 class="input-demo-label">Teléfono</h4>
             <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-large">Grande</label>
-              <input id="input-large" class="sb-ui-input sb-ui-input--large" type="text" placeholder="Large" />
+              <label class="sb-ui-input-label" for="input-tel">Teléfono</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-tel" class="sb-ui-input sb-ui-input--with-icon" type="tel" placeholder="300 123 4567" />
+                <i class="sb-ui-input-icon fa-solid fa-phone"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">Number</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label" for="input-number">Cantidad</label>
+              <input id="input-number" class="sb-ui-input" type="number" placeholder="0" min="0" />
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">Time</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label" for="input-time">Hora</label>
+              <input id="input-time" class="sb-ui-input" type="time" />
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">URL</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label" for="input-url">Sitio Web</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-url" class="sb-ui-input sb-ui-input--with-icon" type="url" placeholder="https://ejemplo.com" />
+                <i class="sb-ui-input-icon fa-solid fa-globe"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="input-demo-item">
+            <h4 class="input-demo-label">Search</h4>
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label" for="input-search">Buscar</label>
+              <div class="sb-ui-input-inner">
+                <input id="input-search" class="sb-ui-input sb-ui-input--with-icon" type="search" placeholder="Buscar..." />
+                <i class="sb-ui-input-icon fa-solid fa-magnifying-glass"></i>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section class="variant-section">
-        <h3 class="variant-title">Modificadores</h3>
+        <h3 class="variant-title">Implementación</h3>
         <p class="component-description">
-          <code>sb-ui-input--rounded</code> para bordes más redondeados y <code>sb-ui-input--inline</code> para ancho automático (útil en formularios en línea).
+          Cómo implementar cada ejemplo con el HTML y las clases del componente Input.
         </p>
-        <div class="input-demo-states">
-          <div class="input-demo-item">
-            <h4 class="input-demo-label">Rounded</h4>
-            <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-rounded">Búsqueda</label>
-              <input id="input-rounded" class="sb-ui-input sb-ui-input--rounded" type="text" placeholder="Bordes redondeados" />
-            </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Default (label + input + helper)</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
-          <div class="input-demo-item">
-            <h4 class="input-demo-label">Inline</h4>
-            <div class="sb-ui-input-container">
-              <label class="sb-ui-input-label" for="input-inline">Código</label>
-              <input id="input-inline" class="sb-ui-input sb-ui-input--inline" type="text" placeholder="Ancho automático" />
-            </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label" for="mi-input"&gt;Label Text&lt;/label&gt;
+  &lt;input id="mi-input" class="sb-ui-input" type="text" placeholder="Placeholder" /&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Texto de ayuda&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Con icono derecho</span>
+            <span class="demo-code-block-badge">HTML</span>
           </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label" for="mi-input"&gt;Buscar&lt;/label&gt;
+  &lt;div class="sb-ui-input-inner"&gt;
+    &lt;input id="mi-input" class="sb-ui-input sb-ui-input--with-icon" type="text" placeholder="Buscar..." /&gt;
+    &lt;i class="sb-ui-input-icon fa-solid fa-magnifying-glass"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Disabled</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label" for="mi-input"&gt;Campo deshabilitado&lt;/label&gt;
+  &lt;input id="mi-input" class="sb-ui-input" type="text" placeholder="No editable" disabled /&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Campo no disponible&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Estado Success</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label" for="mi-input"&gt;Email válido&lt;/label&gt;
+  &lt;div class="sb-ui-input-inner"&gt;
+    &lt;input id="mi-input" class="sb-ui-input sb-ui-input--success sb-ui-input--with-icon" type="email" value="usuario@ejemplo.com" /&gt;
+    &lt;i class="sb-ui-input-icon fa-solid fa-circle-check"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;span class="sb-ui-input-helper"&gt;El campo fue validado correctamente&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Estado Error</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label sb-ui-input-label--required" for="mi-input"&gt;Email requerido&lt;/label&gt;
+  &lt;div class="sb-ui-input-inner"&gt;
+    &lt;input id="mi-input" class="sb-ui-input sb-ui-input--error sb-ui-input--with-icon" type="email" placeholder="correo@ejemplo.com" /&gt;
+    &lt;i class="sb-ui-input-icon fa-solid fa-circle-exclamation"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Este campo es requerido&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Campo requerido (asterisco rojo)</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label sb-ui-input-label--required" for="mi-input"&gt;Email&lt;/label&gt;
+  &lt;input id="mi-input" class="sb-ui-input" type="email" placeholder="tu@email.com" required /&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Label incluye asterisco (*) en rojo&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Campo opcional</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label sb-ui-input-label--optional" for="mi-input"&gt;Teléfono&lt;/label&gt;
+  &lt;input id="mi-input" class="sb-ui-input" type="tel" placeholder="+57 300 123 4567" /&gt;
+  &lt;span class="sb-ui-input-helper"&gt;Label incluye texto "(opcional)"&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Password con toggle mostrar/ocultar (sin JavaScript)</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-input-container"&gt;
+  &lt;label class="sb-ui-input-label" for="mi-password"&gt;Contraseña&lt;/label&gt;
+  &lt;input type="checkbox" id="password-toggle" class="sb-ui-input-password-toggle" /&gt;
+  &lt;div class="sb-ui-input-inner"&gt;
+    &lt;div class="sb-ui-input-password-wrapper"&gt;
+      &lt;input id="mi-password" class="sb-ui-input sb-ui-input--with-icon" type="password" placeholder="••••••••" /&gt;
+      &lt;input class="sb-ui-input sb-ui-input--with-icon" type="text" placeholder="••••••••" tabindex="-1" aria-hidden="true" /&gt;
+    &lt;/div&gt;
+    &lt;label for="password-toggle" class="sb-ui-input-icon sb-ui-input-password-toggle-label" title="Mostrar/Ocultar contraseña"&gt;
+      &lt;i class="fa-solid fa-eye"&gt;&lt;/i&gt;
+      &lt;i class="fa-solid fa-eye-slash"&gt;&lt;/i&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Tipos: email, tel, number, time, url, search</span>
+            <span class="demo-code-block-badge">HTML</span>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Email con icono --&gt;
+&lt;div class="sb-ui-input-inner"&gt;
+  &lt;input class="sb-ui-input sb-ui-input--with-icon" type="email" placeholder="tu@correo.com" /&gt;
+  &lt;i class="sb-ui-input-icon fa-solid fa-envelope"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Teléfono con icono --&gt;
+&lt;div class="sb-ui-input-inner"&gt;
+  &lt;input class="sb-ui-input sb-ui-input--with-icon" type="tel" placeholder="300 123 4567" /&gt;
+  &lt;i class="sb-ui-input-icon fa-solid fa-phone"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Number (sin icono) --&gt;
+&lt;input class="sb-ui-input" type="number" placeholder="0" min="0" /&gt;
+
+&lt;!-- Time --&gt;
+&lt;input class="sb-ui-input" type="time" /&gt;
+
+&lt;!-- URL con icono --&gt;
+&lt;div class="sb-ui-input-inner"&gt;
+  &lt;input class="sb-ui-input sb-ui-input--with-icon" type="url" placeholder="https://ejemplo.com" /&gt;
+  &lt;i class="sb-ui-input-icon fa-solid fa-globe"&gt;&lt;/i&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">¿Quieres ver más detalles?</h3>
+          <p class="storybook-reference-description">
+            En <strong>Storybook</strong> puedes explorar el código de cada variación del componente y ver todos los estados interactivos.
+          </p>
+          <a 
+            href="http://localhost:6007/?path=/docs/atoms-input--docs" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver en Storybook
+          </a>
         </div>
       </section>
     </main>
