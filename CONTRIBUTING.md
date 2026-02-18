@@ -266,7 +266,7 @@ Añadir a los `package.json` correspondientes y archivos de índice.
 
 ### Documentación
 
-- [Storybook](http://localhost:6006) - Documentación interactiva
+- [Storybook](https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/) - Documentación interactiva
 - [Demo](http://localhost:3000) - Ejemplos en vivo
 - [CSS Standards](./docs/guides/CSS_STANDARDS.md) - Convenciones CSS
 

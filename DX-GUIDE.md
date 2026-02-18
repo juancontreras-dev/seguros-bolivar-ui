@@ -90,7 +90,7 @@ pnpm run dev
 # packages/docs/src/atoms/NuevoComponente.stories.ts
 
 # 4. Ver en Storybook (auto-reload)
-# http://localhost:6006
+# https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/
 
 # 5. Commit automático (hooks activos)
 git add .
@@ -138,7 +138,7 @@ pnpm run dev:demo
 # En VSCode: F5 → "Debug Storybook"
 # O manual:
 pnpm run dev:storybook
-# → http://localhost:6006
+# → https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/
 ```
 
 **Debugging tips:**
@@ -297,7 +297,7 @@ pnpm run dev:storybook --verbose
 
 ### Documentación
 
-- **Storybook**: http://localhost:6006 (después de `pnpm run dev:storybook`)
+- **Storybook**: https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/ (después de `pnpm run dev:storybook`)
 - **Demo**: http://localhost:3000 (después de `pnpm run dev:demo`)
 - **Contributing**: [CONTRIBUTING.md](./CONTRIBUTING.md)
 - **CSS Standards**: [docs/guides/CSS_STANDARDS.md](./docs/guides/CSS_STANDARDS.md)

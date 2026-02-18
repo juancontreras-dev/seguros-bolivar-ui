@@ -28,7 +28,7 @@ pnpm storybook
 pnpm --filter @seguros-bolivar-ui/docs storybook
 ```
 
-**Puerto**: http://localhost:6006
+**Local**: `http://localhost:6006` · **Publicado**: [Storybook](https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/)
 
 ### Build para Producción
 
@@ -255,13 +255,14 @@ parameters: {
 
 En las páginas de ejemplo (`examples/*/index.html`) se usa el mismo patrón para "Ver en Storybook":
 
-- **Base**: `http://localhost:6006` (puerto definido en `packages/docs/package.json`: `storybook dev -p 6006`)
+- **Base (publicado)**: `https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/`
+- **Desarrollo local**: `https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/` (o `http://localhost:6006` con `pnpm storybook`)
 - **Página de docs del componente**: `/?path=/docs/{id}--docs`
-- **Id del componente**: el `title` de la meta en minúsculas y con guiones. Ejemplos:
-  - `Atoms/Button` → `atoms-button`
-  - `Atoms/Menu` → `atoms-menu`
-  - `Molecules/Stepper` → `molecules-stepper`
-- **URL completa**: `http://localhost:6006/?path=/docs/atoms-button--docs`
+- **Id del componente**: el `title` de la story en minúsculas y con guiones. Ejemplos:
+  - `Componentes HTML y CSS/Button` → `componentes-html-y-css-button`
+  - `Componentes HTML y CSS/Menu` → `componentes-html-y-css-menu`
+  - `Web Components/Modal` → `web-components-modal`
+- **URL completa**: `https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/?path=/docs/componentes-html-y-css-button--docs`
 
 Así se mantienen alineados Storybook y los ejemplos.
 

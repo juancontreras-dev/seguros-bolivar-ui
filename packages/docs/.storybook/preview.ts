@@ -214,10 +214,10 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      const brand = context.globals.brand || 'jelpit';
+      const brand = context.globals.brand || 'seguros-bolivar';
       const theme = context.globals.theme || 'light';
 
-      // Update HTML attributes
+      // Update HTML attributes (canvas iframe)
       document.documentElement.setAttribute('data-brand', brand);
       document.documentElement.setAttribute('data-theme', theme);
 
@@ -232,10 +232,25 @@ const preview: Preview = {
         document.head.appendChild(styleLink);
       }
 
-      // Cargar desde publicDir configurado en main.ts
-      // Usar ruta relativa sin '/' inicial para compatibilidad con GitHub Pages
-      // Esto funciona tanto en /storybook/ como en /
-      styleLink.href = `sb-ui-${brand}-${theme}.min.css`;
+      // Nueva URL para forzar recarga al cambiar theme/brand (evita caché del tema anterior)
+      const newHref = `sb-ui-${brand}-${theme}.min.css?t=${theme}`;
+      if (styleLink.getAttribute('href') !== newHref) {
+        styleLink.setAttribute('href', newHref);
+      }
+
+      // Estilos globales para tema dark: fondo y texto del canvas
+      const themeStyleId = 'sb-ui-theme-canvas';
+      let themeStyle = document.getElementById(themeStyleId) as HTMLStyleElement;
+      if (!themeStyle) {
+        themeStyle = document.createElement('style');
+        themeStyle.id = themeStyleId;
+        document.head.appendChild(themeStyle);
+      }
+      themeStyle.textContent =
+        theme === 'dark'
+          ? `[data-theme="dark"] { background: var(--sb-ui-color-grayscale-D400, #1a1a1a); color: var(--sb-ui-color-grayscale-L400, #fafafa); }
+             [data-theme="dark"] body { background: inherit; color: inherit; min-height: 100vh; }`
+          : '';
 
       // Renderizar la story
       const storyResult = story();

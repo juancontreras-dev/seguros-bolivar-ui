@@ -169,7 +169,7 @@ pnpm storybook
 ```
 
 - ✅ Build completo primero
-- ✅ Storybook en `http://localhost:6006`
+- ✅ Storybook en `https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/`
 - ✅ Documentación interactiva
 - 📝 Usar cuando: Ver componentes, documentación
 
