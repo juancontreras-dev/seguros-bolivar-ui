@@ -1,0 +1,14 @@
+name: frontend Template
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [develop, stage, master]
+
+jobs:
+  frontend-pipeline:
+    secrets: inherit
+    uses: segurosbolivar/devops-actions-frontend-templates/.github/workflows/template.yml@v1.0.0
+    with:
+      language_package_manager: "npm"  # npm | pip | gradle
+      language_version: "18.19.1" # specific version of npm | pip | gradle

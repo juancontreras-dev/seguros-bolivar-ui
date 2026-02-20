@@ -1,29 +1,3 @@
-# # Archivo CODEOWNERS
-# # Estos usuarios serán automáticamente solicitados como revisores cuando
-# # alguien abra un pull request que modifique los archivos especificados.
-
-# # Default owners para todo el repo
-# * @tu-usuario
-
-# # Tokens y Design System
-# /packages/tokens/ @tu-usuario @design-team
-# /packages/atoms/ @tu-usuario @frontend-team
-# /packages/molecules/ @tu-usuario @frontend-team
-
-# # Documentación
-# /docs/ @tu-usuario @docs-team
-# /packages/docs/ @tu-usuario @docs-team
-# *.md @tu-usuario @docs-team
-
-# # Build y configuración
-# /packages/bundle/ @tu-usuario @devops-team
-# /.github/ @tu-usuario @devops-team
-# turbo.json @tu-usuario @devops-team
-# package.json @tu-usuario
-
-# # Testing
-# *.test.ts @tu-usuario @qa-team
-# *.spec.ts @tu-usuario @qa-team
-# /playwright.config.ts @tu-usuario @qa-team
-# /vitest.config.ts @tu-usuario @qa-team
-
+* @segurosbolivar/software-engineering
+.github/** @segurosbolivar/devops-actions
+**sonar-project.properties @segurosbolivar/devops-actions

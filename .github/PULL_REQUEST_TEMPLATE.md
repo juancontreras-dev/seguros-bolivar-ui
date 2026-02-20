@@ -1,77 +1,18 @@
-<!-- ## 📝 Descripción
+## Descripción (Obligatorio)
 
-<!-- Describe brevemente los cambios realizados -->
+Escriba aca la Descripción. 
 
-## 🎯 Tipo de Cambio
+## Relación de Historias de Usuarios  (Obligatorio)
 
-<!-- Marca con una X lo que aplique -->
+Relación de acá los Link to related US from Jira board "[nombre](url)"
 
-- [ ] 🐛 Bug fix (cambio que soluciona un problema)
-- [ ] ✨ Nueva funcionalidad (cambio que agrega funcionalidad)
-- [ ] 💥 Breaking change (cambio que rompe compatibilidad)
-- [ ] 📚 Documentación (solo cambios en documentación)
-- [ ] 🎨 Estilos (cambios que no afectan la lógica)
-- [ ] ♻️ Refactorización (cambios que no agregan funcionalidad ni arreglan bugs)
-- [ ] ⚡️ Performance (mejoras de rendimiento)
-- [ ] ✅ Tests (agregar o corregir tests)
-- [ ] 🔧 Configuración (cambios en configuración o tooling)
 
-## 🔗 Issue Relacionado
+## Tipos de Cambios
 
-<!-- Si existe un issue, agrégalo aquí -->
-
-Closes #
-
-## 📸 Screenshots (si aplica)
-
-<!-- Agrega screenshots si hay cambios visuales -->
-
-## ✅ Checklist
-
-- [ ] Mi código sigue las guías de estilo del proyecto
-- [ ] He revisado mi propio código
-- [ ] He comentado mi código, especialmente en áreas difíciles de entender
-- [ ] He actualizado la documentación correspondiente
-- [ ] Mis cambios no generan nuevas advertencias
-- [ ] He agregado tests que prueban que mi fix es efectivo o que mi funcionalidad funciona
-- [ ] Los tests unitarios existentes pasan localmente con mis cambios
-- [ ] He ejecutado `pnpm lint` y no hay errores
-- [ ] He ejecutado `pnpm build` y se construye correctamente
-- [ ] He actualizado el CHANGELOG.md (si aplica)
-
-## 🧪 Tests
-
-<!-- Describe cómo probaste tus cambios -->
-
-- [ ] Unit tests
-- [ ] E2E tests
-- [ ] Pruebas manuales
-
-## 📦 Packages Afectados
-
-<!-- Marca los packages que modificaste -->
-
-- [ ] @seguros-bolivar-ui/tokens
-- [ ] @seguros-bolivar-ui/atoms
-- [ ] @seguros-bolivar-ui/molecules
-- [ ] @seguros-bolivar-ui/bundle
-- [ ] @seguros-bolivar-ui/docs
-- [ ] examples
-
-## 🌐 Marcas Afectadas
-
-<!-- Si afecta marcas específicas, márcalas -->
-
-- [ ] White Label
-- [ ] Jelpit
-- [ ] Davivienda
-- [ ] Cien Cuadras
-- [ ] Doctor Aki
-- [ ] Seguros Bolívar
-- [ ] Todas
-
-## 💬 Notas Adicionales
-
-<!-- Cualquier información adicional que consideres relevante -->
-
--->
+- [ ] **chore**: mejoras en temas de administración/mantenimiento del proyecto (i.e. actualización de dependencias)
+- [ ] **feature**: nuevas funcionalidades que serán incluidas en el proyecto. (i.e. visualización de cursos)
+- [ ] **refactor:** Refactorización del código en producción
+- [ ] **n :** mejoras/reescritura de features existentes, no agrega un cambio grande a lo que actualmente tiene. (i.e. cambiar estados locales usando stateless components conectados a Redux)
+- [ ] **fix/hotfix/patch:** corrección de un bug esperado o inesperado (i.e. links rotos)
+- [ ] **test:** agregar tests a un feature existente que no cuenta con los mismos (i.e. unit testing del componente de login)
+- [ ] **style:** Se aplicó formato, comas y puntos faltantes, etc; Sin cambios en el código.
