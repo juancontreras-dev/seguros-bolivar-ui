@@ -5,8 +5,11 @@ import path from 'path';
 import postcss from 'postcss';
 import postcssImport from 'postcss-import';
 import postcssNesting from 'postcss-nesting';
+import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import { brotliCompressSync, gzipSync } from 'zlib';
+
+const require = createRequire(import.meta.url);
 import { BRANDS, THEMES, type Brand, type Theme } from '@seguros-bolivar-ui/tokens';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +28,15 @@ const MOLECULES_DIST = path.join(PACKAGES_DIR, 'molecules/dist');
 const BRAND_OVERRIDES_SRC = path.join(PACKAGES_DIR, 'brand-overrides/src');
 const FONTS_SRC = path.resolve(__dirname, '../../../examples/assets/fonts/bolivar');
 const FONTS_DIST = path.join(DIST_DIR, 'fonts');
+const FA_PKG = (() => {
+  try {
+    return path.dirname(require.resolve('@fortawesome/fontawesome-free/package.json'));
+  } catch {
+    return path.join(PACKAGES_DIR, '..', 'node_modules/@fortawesome/fontawesome-free');
+  }
+})();
+const FA_WEBFONTS_SRC = path.join(FA_PKG, 'webfonts');
+const FA_WEBFONTS_DIST = path.join(DIST_DIR, 'webfonts');
 
 /**
  * CSS Minifier con cssnano (optimización avanzada)
@@ -112,6 +124,29 @@ async function copyFontFiles(): Promise<void> {
 }
 
 /**
+ * Copia Font Awesome webfonts e incluye su CSS en el bundle
+ */
+async function copyFontAwesomeAndGetCSS(): Promise<string> {
+  const { existsSync } = await import('fs');
+  const faCssPath = path.join(FA_PKG, 'css', 'all.min.css');
+  if (!existsSync(faCssPath)) {
+    console.warn('⚠️  Font Awesome not found. Run: pnpm install');
+    return '';
+  }
+  console.log('\n🔤 Copying Font Awesome webfonts...');
+  await fs.mkdir(FA_WEBFONTS_DIST, { recursive: true });
+  const files = await fs.readdir(FA_WEBFONTS_SRC);
+  let copied = 0;
+  for (const file of files) {
+    await fs.copyFile(path.join(FA_WEBFONTS_SRC, file), path.join(FA_WEBFONTS_DIST, file));
+    copied++;
+  }
+  console.log(`  ✅ ${copied} Font Awesome webfonts copied to dist/webfonts/`);
+  const faCSS = await fs.readFile(faCssPath, 'utf-8');
+  return faCSS.replace(/\.\.\/webfonts\//g, 'webfonts/');
+}
+
+/**
  * Genera las declaraciones @font-face para la fuente Bolivar
  */
 function generateFontFaceCSS(): string {
@@ -137,20 +172,21 @@ function generateFontFaceCSS(): string {
 }
 
 /**
- * Genera los @import externos para Roboto y Font Awesome
+ * Genera los @import externos (solo Roboto; Font Awesome va empaquetado)
  */
 function generateExternalImports(): string {
-  return [
-    "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');",
-    "@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');",
-  ].join('\n');
+  return "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');";
 }
 
 /**
  * Genera bundle COMPLETO para una marca/tema específica
  * Incluye: Tokens + Atoms + Molecules + Brand Overrides (si existen)
  */
-async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<void> {
+async function buildCompleteBrandBundle(
+  brand: Brand,
+  theme: Theme,
+  fontAwesomeCSS: string
+): Promise<void> {
   console.log(`\n🎨 Building complete bundle: ${brand}-${theme}`);
 
   const cssFiles: string[] = [];
@@ -227,10 +263,10 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
   // Combinar todo
   const combinedCSS = cssFiles.filter(Boolean).join('\n\n');
 
-  // Agregar @import externos + @font-face + header con metadatos
-  // Los @import DEBEN ir al inicio del archivo CSS (requerimiento CSS)
+  // Agregar @import externos + Font Awesome (incluido) + @font-face + header con metadatos
   const externalImports = generateExternalImports();
   const fontFaceCSS = generateFontFaceCSS();
+  const faBlock = fontAwesomeCSS ? `\n\n/* Font Awesome 6 - bundled */\n${fontAwesomeCSS}\n` : '';
   const header = `/**
  * Seguros Bolivar UI Design System - Complete Bundle
  * Brand: ${brand} | Theme: ${theme}
@@ -238,7 +274,7 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
  *
  * Includes:
  * - External fonts (Roboto via Google Fonts)
- * - External icons (Font Awesome 6)
+ * - Font Awesome 6 icons (bundled)
  * - Custom fonts (Bolivar @font-face)
  * - Design Tokens (variables CSS)
  * - Base Components (atoms)
@@ -255,7 +291,8 @@ async function buildCompleteBrandBundle(brand: Brand, theme: Theme): Promise<voi
 
 `;
 
-  const cssWithHeader = externalImports + '\n\n' + fontFaceCSS + '\n\n' + header + combinedCSS;
+  const cssWithHeader =
+    externalImports + faBlock + '\n\n' + fontFaceCSS + '\n\n' + header + combinedCSS;
 
   // Minificar CSS con cssnano
   const minified = await minifyCSS(cssWithHeader);
@@ -361,13 +398,14 @@ async function build(): Promise<void> {
   // Crear directorio dist
   await fs.mkdir(DIST_DIR, { recursive: true });
 
-  // 0. Copiar archivos de fuentes Bolivar a dist/fonts/
+  // 0. Copiar fuentes Bolivar y Font Awesome
   await copyFontFiles();
+  const fontAwesomeCSS = await copyFontAwesomeAndGetCSS();
 
   // 1. Build complete bundles para cada marca/tema (tokens + atoms + overrides)
   for (const brand of BRANDS) {
     for (const theme of THEMES) {
-      await buildCompleteBrandBundle(brand, theme);
+      await buildCompleteBrandBundle(brand, theme, fontAwesomeCSS);
     }
   }
 

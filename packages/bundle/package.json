@@ -12,6 +12,8 @@
     "dist/**/*.map",
     "dist/**/*.gz",
     "dist/**/*.br",
+    "dist/fonts/**/*.woff2",
+    "dist/webfonts/**/*",
     "README.md",
     "LICENSE"
   ],
@@ -64,12 +66,10 @@
     "url": "https://www.segurosbolivar.com"
   },
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@seguros-bolivar-ui/atoms": "workspace:*",
     "@seguros-bolivar-ui/molecules": "workspace:*",
-    "@seguros-bolivar-ui/tokens": "workspace:*"
-  },
-  "devDependencies": {
+    "@seguros-bolivar-ui/tokens": "workspace:*",
     "@types/node": "^20.11.19",
     "clean-css": "^5.3.3",
     "compression": "^1.8.1",
@@ -79,6 +79,7 @@
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^13.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@fortawesome/fontawesome-free": "^6.5.1"
   }
 }

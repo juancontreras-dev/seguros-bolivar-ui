@@ -49,6 +49,14 @@ function copyToExamples() {
     const fontFiles = readdirSync(fontsSrc).filter(f => f.endsWith('.woff2'));
     console.log(`✅ ${fontFiles.length} font files copiados a examples/dist/fonts/`);
   }
+  // Copiar Font Awesome webfonts (dist/webfonts/ → examples/dist/webfonts/)
+  const webfontsSrc = join(BUNDLE_DIST, 'webfonts');
+  const webfontsDest = join(EXAMPLES_DIST, 'webfonts');
+  if (existsSync(webfontsSrc)) {
+    cpSync(webfontsSrc, webfontsDest, { recursive: true });
+    const wfFiles = readdirSync(webfontsSrc).length;
+    console.log(`✅ ${wfFiles} Font Awesome webfonts copiados a examples/dist/webfonts/`);
+  }
 }
 
 function copyToStorybook() {

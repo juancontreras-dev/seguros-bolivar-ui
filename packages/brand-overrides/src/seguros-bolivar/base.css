@@ -1,0 +1,10 @@
+/**
+ * Seguros Bolívar - Tipografía base del documento
+ * Aplica la fuente del design system (Bolivar, Roboto) a todo el HTML.
+ * Roboto se carga vía @import en el bundle; Bolivar vía @font-face.
+ */
+
+[data-brand="seguros-bolivar"] html,
+[data-brand="seguros-bolivar"] body {
+  font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+}

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seguros Bolívar UI - CDN</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css" />
+  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+</head>
+<body>
+  <main class="sb-ui-container">
+    <h1>Seguros Bolívar UI desde CDN</h1>
+    <p>Variaciones de la librería cargadas desde <strong>unpkg</strong> (<code>@seguros-bolivar/ui-bundle@latest</code>).</p>
+
+    <div class="sb-ui-grid-cols-3 sb-ui-gap-4 sb-ui-place-items-start">
+      <!-- COLUMNA 1: Botones -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Botones</h2>
+        <h3>Primary Fill</h3>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Default</button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left">
+          <i class="fa-solid fa-check" aria-hidden="true"></i> Icon left
+        </button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-right">
+          Icon right <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-only" aria-label="Icono">
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+        </button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--loading">Loading</button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--disabled" disabled>Disabled</button>
+
+        <h3>Primary Stroke</h3>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke">Default</button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke sb-ui-button--loading">Loading</button>
+
+        <h3>Primary Text</h3>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--text">Default</button>
+
+        <h3>Secondary Fill</h3>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Default</button>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--disabled" disabled>Disabled</button>
+
+        <h3>Secondary Stroke</h3>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke">Default</button>
+
+        <h3>Secondary Text</h3>
+        <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--text">Default</button>
+
+        <h3>Error</h3>
+        <button class="sb-ui-button sb-ui-button--error sb-ui-button--fill">Eliminar</button>
+        <button class="sb-ui-button sb-ui-button--error sb-ui-button--stroke">Cancelar</button>
+
+        <h3>Tertiary</h3>
+        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--fill">Fill</button>
+        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--stroke">Stroke</button>
+        <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--text">Text</button>
+
+        <h3>Tamaños</h3>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small">Small</button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Medium</button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--large">Large</button>
+
+        <h3>Modificadores</h3>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-only sb-ui-button--square" aria-label="Cuadrado"><i class="fa-solid fa-plus"></i></button>
+        <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--block">Block (ancho completo)</button>
+      </div>
+
+      <!-- COLUMNA 2: Input -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Input</h2>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i1">Default</label>
+          <input id="i1" class="sb-ui-input" type="text" placeholder="Placeholder" />
+          <span class="sb-ui-input-helper">Texto de ayuda opcional</span>
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i2">Con valor</label>
+          <input id="i2" class="sb-ui-input" type="text" value="Texto ingresado" />
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i3">Con icono</label>
+          <div class="sb-ui-input-inner">
+            <input id="i3" class="sb-ui-input sb-ui-input--with-icon" type="text" placeholder="Buscar..." />
+            <i class="sb-ui-input-icon fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i4">Disabled</label>
+          <input id="i4" class="sb-ui-input" type="text" placeholder="Disabled" disabled />
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i5">Success</label>
+          <div class="sb-ui-input-inner">
+            <input id="i5" class="sb-ui-input sb-ui-input--success sb-ui-input--with-icon" type="email" value="usuario@ejemplo.com" />
+            <i class="sb-ui-input-icon fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label sb-ui-input-label--required" for="i6">Error</label>
+          <div class="sb-ui-input-inner">
+            <input id="i6" class="sb-ui-input sb-ui-input--error sb-ui-input--with-icon" type="email" placeholder="correo@ejemplo.com" />
+            <i class="sb-ui-input-icon fa-solid fa-circle-exclamation"></i>
+          </div>
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label sb-ui-input-label--optional" for="i7">Opcional</label>
+          <input id="i7" class="sb-ui-input" type="text" placeholder="Campo opcional" />
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i8">Small</label>
+          <input id="i8" class="sb-ui-input sb-ui-input--small" type="text" placeholder="Small" />
+        </div>
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label" for="i9">Large</label>
+          <input id="i9" class="sb-ui-input sb-ui-input--large" type="text" placeholder="Large" />
+        </div>
+      </div>
+
+      <!-- COLUMNA 3: Textarea -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Textarea</h2>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t1">Default</label>
+          <textarea id="t1" class="sb-ui-textarea" rows="3" placeholder="Escribe aquí..."></textarea>
+          <span class="sb-ui-textarea-helper">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Texto de ayuda
+          </span>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t2">Con valor</label>
+          <textarea id="t2" class="sb-ui-textarea" rows="3">Texto existente</textarea>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t3">Disabled</label>
+          <textarea id="t3" class="sb-ui-textarea" rows="3" placeholder="Disabled" disabled></textarea>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="t4">Error</label>
+          <textarea id="t4" class="sb-ui-textarea sb-ui-textarea--error" rows="3" placeholder="Campo con error"></textarea>
+          <span class="sb-ui-textarea-helper sb-ui-textarea-helper--error">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Campo obligatorio
+          </span>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t5">Success</label>
+          <textarea id="t5" class="sb-ui-textarea sb-ui-textarea--success" rows="3">Texto validado correctamente</textarea>
+          <span class="sb-ui-textarea-helper sb-ui-textarea-helper--success">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Campo completado correctamente
+          </span>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t6">Read-only</label>
+          <textarea id="t6" class="sb-ui-textarea" rows="3" readonly>Texto solo lectura</textarea>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t7">Small</label>
+          <textarea id="t7" class="sb-ui-textarea sb-ui-textarea--small" rows="2" placeholder="Small"></textarea>
+        </div>
+        <div class="sb-ui-textarea-container">
+          <label class="sb-ui-textarea-label" for="t8">Large</label>
+          <textarea id="t8" class="sb-ui-textarea sb-ui-textarea--large" rows="4" placeholder="Large"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 columnas: Select, Checkbox, Radio, Toggle -->
+    <div class="sb-ui-grid-cols-4 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+      <!-- COLUMNA 4: Select -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Select</h2>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Default</label>
+          <select class="sb-ui-select">
+            <option value="">Seleccione...</option>
+            <option value="co">Colombia</option>
+            <option value="mx">México</option>
+            <option value="ar">Argentina</option>
+          </select>
+          <span class="sb-ui-select-helper">Seleccione su país</span>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Con valor</label>
+          <select class="sb-ui-select">
+            <option value="">Seleccione...</option>
+            <option value="co" selected>Colombia</option>
+            <option value="mx">México</option>
+          </select>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Disabled</label>
+          <select class="sb-ui-select" disabled>
+            <option value="">No disponible</option>
+          </select>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label sb-ui-select-label--required">Error</label>
+          <select class="sb-ui-select sb-ui-select--error">
+            <option value="">Seleccione...</option>
+          </select>
+          <span class="sb-ui-select-helper sb-ui-select-helper--error">Campo obligatorio</span>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Success</label>
+          <select class="sb-ui-select sb-ui-select--success">
+            <option value="ok" selected>Validado</option>
+          </select>
+          <span class="sb-ui-select-helper sb-ui-select-helper--success">Campo validado</span>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Small</label>
+          <select class="sb-ui-select sb-ui-select--small">
+            <option value="">Seleccione...</option>
+          </select>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Medium</label>
+          <select class="sb-ui-select">
+            <option value="">Seleccione...</option>
+          </select>
+        </div>
+        <div class="sb-ui-select-container">
+          <label class="sb-ui-select-label">Large</label>
+          <select class="sb-ui-select sb-ui-select--large">
+            <option value="">Seleccione...</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- COLUMNA 5: Checkbox -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Checkbox</h2>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-checkbox">
+            <input type="checkbox" class="sb-ui-checkbox__input" />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Unchecked</span>
+          </label>
+          <label class="sb-ui-checkbox">
+            <input type="checkbox" class="sb-ui-checkbox__input" checked />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Checked</span>
+          </label>
+          <label class="sb-ui-checkbox" id="checkbox-indeterminate-wrap">
+            <input type="checkbox" class="sb-ui-checkbox__input" id="checkbox-indeterminate" />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Indeterminate</span>
+          </label>
+          <label class="sb-ui-checkbox">
+            <input type="checkbox" class="sb-ui-checkbox__input" disabled />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Disabled</span>
+          </label>
+          <label class="sb-ui-checkbox sb-ui-checkbox--error">
+            <input type="checkbox" class="sb-ui-checkbox__input" />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Error</span>
+          </label>
+          <label class="sb-ui-checkbox sb-ui-checkbox--loading">
+            <input type="checkbox" class="sb-ui-checkbox__input" checked />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Loading</span>
+          </label>
+          <label class="sb-ui-checkbox sb-ui-checkbox--readonly">
+            <input type="checkbox" class="sb-ui-checkbox__input" checked />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Read-only</span>
+          </label>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-checkbox sb-ui-checkbox--small">
+            <input type="checkbox" class="sb-ui-checkbox__input" />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Small</span>
+          </label>
+          <label class="sb-ui-checkbox">
+            <input type="checkbox" class="sb-ui-checkbox__input" checked />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Medium</span>
+          </label>
+          <label class="sb-ui-checkbox sb-ui-checkbox--large">
+            <input type="checkbox" class="sb-ui-checkbox__input" />
+            <span class="sb-ui-checkbox__box"></span>
+            <span class="sb-ui-checkbox__label">Large</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- COLUMNA 6: Radio -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Radio</h2>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-radio">
+            <input type="radio" class="sb-ui-radio__input" name="radio-demo" />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Opción 1</span>
+          </label>
+          <label class="sb-ui-radio">
+            <input type="radio" class="sb-ui-radio__input" name="radio-demo" checked />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Opción 2 (selected)</span>
+          </label>
+          <label class="sb-ui-radio">
+            <input type="radio" class="sb-ui-radio__input" name="radio-demo" />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Opción 3</span>
+          </label>
+          <label class="sb-ui-radio">
+            <input type="radio" class="sb-ui-radio__input" name="radio-disabled" disabled />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Disabled</span>
+          </label>
+          <label class="sb-ui-radio sb-ui-radio--error">
+            <input type="radio" class="sb-ui-radio__input" name="radio-error" />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Error</span>
+          </label>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-radio sb-ui-radio--small">
+            <input type="radio" class="sb-ui-radio__input" name="radio-size-small" />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Small</span>
+          </label>
+          <label class="sb-ui-radio">
+            <input type="radio" class="sb-ui-radio__input" name="radio-size-med" checked />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Medium</span>
+          </label>
+          <label class="sb-ui-radio sb-ui-radio--large">
+            <input type="radio" class="sb-ui-radio__input" name="radio-size-large" />
+            <span class="sb-ui-radio__circle"></span>
+            <span class="sb-ui-radio__label">Large</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- COLUMNA 7: Toggle -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Toggle</h2>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-toggle">
+            <input type="checkbox" class="sb-ui-toggle-input" />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Off</span>
+          </label>
+          <label class="sb-ui-toggle">
+            <input type="checkbox" class="sb-ui-toggle-input" checked />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">On</span>
+          </label>
+          <label class="sb-ui-toggle">
+            <input type="checkbox" class="sb-ui-toggle-input" disabled />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Disabled off</span>
+          </label>
+          <label class="sb-ui-toggle">
+            <input type="checkbox" class="sb-ui-toggle-input" checked disabled />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Disabled on</span>
+          </label>
+          <label class="sb-ui-toggle sb-ui-toggle--error">
+            <input type="checkbox" class="sb-ui-toggle-input" />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Error</span>
+          </label>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <label class="sb-ui-toggle sb-ui-toggle--small">
+            <input type="checkbox" class="sb-ui-toggle-input" />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Small</span>
+          </label>
+          <label class="sb-ui-toggle">
+            <input type="checkbox" class="sb-ui-toggle-input" checked />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Medium</span>
+          </label>
+          <label class="sb-ui-toggle sb-ui-toggle--large">
+            <input type="checkbox" class="sb-ui-toggle-input" />
+            <span class="sb-ui-toggle-slider"></span>
+            <span class="sb-ui-toggle-label">Large</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 columnas: Table, Alert -->
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+      <!-- COLUMNA 8: Table -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Table</h2>
+        <h3>Básica</h3>
+        <div style="overflow-x: auto;">
+          <table class="sb-ui-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Juan Pérez</td>
+                <td>juan@ejemplo.com</td>
+                <td>Activo</td>
+              </tr>
+              <tr>
+                <td>María García</td>
+                <td>maria@ejemplo.com</td>
+                <td>Pendiente</td>
+              </tr>
+              <tr>
+                <td>Carlos López</td>
+                <td>carlos@ejemplo.com</td>
+                <td>Inactivo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Striped</h3>
+        <div style="overflow-x: auto;">
+          <table class="sb-ui-table sb-ui-table--striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Producto A</td>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Producto B</td>
+                <td>$200</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Producto C</td>
+                <td>$150</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Bordered + Hover</h3>
+        <div style="overflow-x: auto;">
+          <table class="sb-ui-table sb-ui-table--bordered sb-ui-table--hover">
+            <thead>
+              <tr>
+                <th>Columna</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>1</td></tr>
+              <tr><td>B</td><td>2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Compact</h3>
+        <div style="overflow-x: auto;">
+          <table class="sb-ui-table sb-ui-table--compact">
+            <thead>
+              <tr>
+                <th>X</th>
+                <th>Y</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>2</td></tr>
+              <tr><td>3</td><td>4</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COLUMNA 9: Alert -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Alert</h2>
+        <h3>Con fondo</h3>
+        <div class="sb-ui-alert sb-ui-alert--success" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Éxito</strong>
+            <p class="sb-ui-alert__message">Operación completada correctamente.</p>
+          </div>
+          <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
+        </div>
+        <div class="sb-ui-alert sb-ui-alert--info" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Información</strong>
+            <p class="sb-ui-alert__message">Revise los datos antes de continuar.</p>
+          </div>
+          <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
+        </div>
+        <div class="sb-ui-alert sb-ui-alert--warning" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Advertencia</strong>
+            <p class="sb-ui-alert__message">Complete todos los campos requeridos.</p>
+          </div>
+          <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
+        </div>
+        <div class="sb-ui-alert sb-ui-alert--error" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Error</strong>
+            <p class="sb-ui-alert__message">Ha ocurrido un error. Intente nuevamente.</p>
+          </div>
+          <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
+        </div>
+        <h3>Sin fondo</h3>
+        <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Success</strong>
+            <p class="sb-ui-alert__message">Mensaje sin fondo de color.</p>
+          </div>
+        </div>
+        <div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Error</strong>
+            <p class="sb-ui-alert__message">Mensaje de error sin fondo.</p>
+          </div>
+        </div>
+        <h3>Sin botón cerrar</h3>
+        <div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-close" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Solo información</strong>
+            <p class="sb-ui-alert__message">Sin botón de cerrar.</p>
+          </div>
+        </div>
+        <h3>Tamaños</h3>
+        <div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--small" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Small</strong>
+            <p class="sb-ui-alert__message">Alerta compacta.</p>
+          </div>
+        </div>
+        <div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--large" role="alert">
+          <div class="sb-ui-alert__icon" aria-hidden="true"></div>
+          <div class="sb-ui-alert__content">
+            <strong class="sb-ui-alert__title">Large</strong>
+            <p class="sb-ui-alert__message">Alerta con más espacio.</p>
+          </div>
+          <button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 columnas: Tabs, Stepper -->
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+      <!-- COLUMNA 10: Tabs -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Tabs</h2>
+        <h3>Track (solo texto)</h3>
+        <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
+          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+            <span class="sb-ui-tabs__title">General</span>
+            <span class="sb-ui-tabs__description">Información general</span>
+          </button>
+          <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <span class="sb-ui-tabs__title">Contacto</span>
+            <span class="sb-ui-tabs__description">Datos de contacto</span>
+          </button>
+          <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <span class="sb-ui-tabs__title">Facturación</span>
+            <span class="sb-ui-tabs__description">Información de pago</span>
+          </button>
+        </div>
+        <h3>Button (con iconos)</h3>
+        <div class="sb-ui-tabs sb-ui-tabs--button" role="tablist">
+          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+            <i class="fa-solid fa-user sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Perfil</span>
+            <span class="sb-ui-tabs__description">Datos personales</span>
+          </button>
+          <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <i class="fa-solid fa-gear sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Configuración</span>
+            <span class="sb-ui-tabs__description">Preferencias</span>
+          </button>
+          <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <i class="fa-solid fa-shield sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Seguridad</span>
+            <span class="sb-ui-tabs__description">Contraseña y sesión</span>
+          </button>
+        </div>
+        <h3>Folder</h3>
+        <div class="sb-ui-tabs sb-ui-tabs--folder" role="tablist">
+          <button class="sb-ui-tabs__item" role="tab" aria-selected="false">
+            <i class="fa-solid fa-file sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Documentos</span>
+            <span class="sb-ui-tabs__description">Archivos</span>
+          </button>
+          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+            <i class="fa-solid fa-image sb-ui-tabs__icon"></i>
+            <span class="sb-ui-tabs__title">Imágenes</span>
+            <span class="sb-ui-tabs__description">Fotos</span>
+          </button>
+        </div>
+        <h3>Tab disabled</h3>
+        <div class="sb-ui-tabs sb-ui-tabs--track" role="tablist">
+          <button class="sb-ui-tabs__item sb-ui-tabs__item--active" role="tab" aria-selected="true">
+            <span class="sb-ui-tabs__title">Activo</span>
+          </button>
+          <button class="sb-ui-tabs__item sb-ui-tabs__item--disabled" role="tab" aria-selected="false" disabled>
+            <span class="sb-ui-tabs__title">Disabled</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- COLUMNA 11: Stepper -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Stepper</h2>
+        <h3>Horizontal (números)</h3>
+        <div class="sb-ui-stepper sb-ui-stepper--horizontal">
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-check"></i></div>
+            <span class="sb-ui-stepper__step-label">Paso 1</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+            <div class="sb-ui-stepper__step-circle">2</div>
+            <span class="sb-ui-stepper__step-label">Paso 2</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle">3</div>
+            <span class="sb-ui-stepper__step-label">Paso 3</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle">4</div>
+            <span class="sb-ui-stepper__step-label">Paso 4</span>
+          </div>
+        </div>
+        <h3>Track dash</h3>
+        <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-check"></i></div>
+            <span class="sb-ui-stepper__step-label">Registro</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+            <div class="sb-ui-stepper__step-circle">2</div>
+            <span class="sb-ui-stepper__step-label">Confirmar</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle">3</div>
+            <span class="sb-ui-stepper__step-label">Finalizar</span>
+          </div>
+        </div>
+        <h3>Con iconos</h3>
+        <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-icon">
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-check"></i></div>
+            <span class="sb-ui-stepper__step-label">Carrito</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-credit-card"></i></div>
+            <span class="sb-ui-stepper__step-label">Pago</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-truck"></i></div>
+            <span class="sb-ui-stepper__step-label">Envío</span>
+          </div>
+        </div>
+        <h3>Mix (icono + badge)</h3>
+        <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix sb-ui-stepper--track-dash">
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+            <div class="sb-ui-stepper__step-circle">
+              <div class="sb-ui-stepper__step-circle-badge">1</div>
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <span class="sb-ui-stepper__step-label">Paso 1</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+            <div class="sb-ui-stepper__step-circle">
+              <div class="sb-ui-stepper__step-circle-badge">2</div>
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="sb-ui-stepper__step-label">Paso 2</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle">
+              <div class="sb-ui-stepper__step-circle-badge">3</div>
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="sb-ui-stepper__step-label">Paso 3</span>
+          </div>
+        </div>
+        <h3>Vertical</h3>
+        <div class="sb-ui-stepper sb-ui-stepper--vertical" style="max-width: 200px;">
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+            <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-check"></i></div>
+            <span class="sb-ui-stepper__step-label">Completado</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+            <div class="sb-ui-stepper__step-circle">2</div>
+            <span class="sb-ui-stepper__step-label">Actual</span>
+            <div class="sb-ui-stepper__step-track"></div>
+          </div>
+          <div class="sb-ui-stepper__step">
+            <div class="sb-ui-stepper__step-circle">3</div>
+            <span class="sb-ui-stepper__step-label">Pendiente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 columnas: Breadcrumb, Menu -->
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+      <!-- COLUMNA 12: Breadcrumb -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Breadcrumb</h2>
+        <h3>Con icono inicial</h3>
+        <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+          <ol class="sb-ui-breadcrumb__list">
+            <li class="sb-ui-breadcrumb__item">
+              <a href="#" class="sb-ui-breadcrumb__link">
+                <i class="fa-solid fa-house sb-ui-breadcrumb__icon" aria-hidden="true"></i>
+                Inicio
+              </a>
+            </li>
+            <li class="sb-ui-breadcrumb__item">
+              <a href="#" class="sb-ui-breadcrumb__link">Productos</a>
+            </li>
+            <li class="sb-ui-breadcrumb__item">
+              <span class="sb-ui-breadcrumb__current" aria-current="page">Seguros</span>
+            </li>
+          </ol>
+        </nav>
+        <h3>Solo texto</h3>
+        <nav class="sb-ui-breadcrumb" aria-label="breadcrumb">
+          <ol class="sb-ui-breadcrumb__list">
+            <li class="sb-ui-breadcrumb__item">
+              <a href="#" class="sb-ui-breadcrumb__link">Inicio</a>
+            </li>
+            <li class="sb-ui-breadcrumb__item">
+              <a href="#" class="sb-ui-breadcrumb__link">Documentación</a>
+            </li>
+            <li class="sb-ui-breadcrumb__item">
+              <a href="#" class="sb-ui-breadcrumb__link">Componentes</a>
+            </li>
+            <li class="sb-ui-breadcrumb__item">
+              <span class="sb-ui-breadcrumb__current" aria-current="page">Breadcrumb</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- COLUMNA 13: Menu -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Menu</h2>
+        <h3>Vertical (sidebar)</h3>
+        <nav class="sb-ui-menu" aria-label="Menú vertical" style="max-width: 260px;">
+          <div class="sb-ui-menu__content">
+            <div class="sb-ui-menu__section">
+              <div class="sb-ui-menu__section-title">Principal</div>
+              <div class="sb-ui-menu__list">
+                <a href="#" class="sb-ui-menu__item sb-ui-menu__item--active">
+                  <i class="fa-solid fa-house" aria-hidden="true"></i>
+                  <span>Inicio</span>
+                </a>
+                <details class="sb-ui-menu__details">
+                  <summary class="sb-ui-menu__trigger">
+                    <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                    <span>Componentes</span>
+                    <i class="sb-ui-menu__toggle fa-solid fa-chevron-right" aria-hidden="true"></i>
+                  </summary>
+                  <div class="sb-ui-menu__submenu">
+                    <a href="#" class="sb-ui-menu__submenu-item">
+                      <i class="fa-solid fa-keyboard" aria-hidden="true"></i>
+                      <span>Input</span>
+                    </a>
+                    <a href="#" class="sb-ui-menu__submenu-item sb-ui-menu__submenu-item--active">
+                      <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+                      <span>Textarea</span>
+                    </a>
+                    <a href="#" class="sb-ui-menu__submenu-item">
+                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                      <span>Button</span>
+                    </a>
+                  </div>
+                </details>
+                <a href="#" class="sb-ui-menu__item">
+                  <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                  <span>Configuración</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <h3>Horizontal</h3>
+        <nav class="sb-ui-menu sb-ui-menu--horizontal" aria-label="Menú horizontal">
+          <div class="sb-ui-menu__content">
+            <div class="sb-ui-menu__section">
+              <div class="sb-ui-menu__list">
+                <a href="#" class="sb-ui-menu__item sb-ui-menu__item--active">
+                  <i class="fa-solid fa-house" aria-hidden="true"></i>
+                  <span>Inicio</span>
+                </a>
+                <a href="#" class="sb-ui-menu__item">
+                  <i class="fa-solid fa-keyboard" aria-hidden="true"></i>
+                  <span>Input</span>
+                </a>
+                <a href="#" class="sb-ui-menu__item">
+                  <i class="fa-solid fa-square" aria-hidden="true"></i>
+                  <span>Botones</span>
+                </a>
+                <details class="sb-ui-menu__details">
+                  <summary class="sb-ui-menu__trigger">
+                    <i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
+                    <span>Componentes</span>
+                    <i class="sb-ui-menu__toggle fa-solid fa-chevron-right" aria-hidden="true"></i>
+                  </summary>
+                  <div class="sb-ui-menu__submenu">
+                    <a href="#" class="sb-ui-menu__submenu-item"><span>Textarea</span></a>
+                    <a href="#" class="sb-ui-menu__submenu-item"><span>Select</span></a>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <h3>Compact</h3>
+        <nav class="sb-ui-menu sb-ui-menu--compact" aria-label="Menú compacto" style="max-width: 220px;">
+          <div class="sb-ui-menu__content">
+            <div class="sb-ui-menu__section">
+              <div class="sb-ui-menu__section-title">Opciones</div>
+              <div class="sb-ui-menu__list">
+                <a href="#" class="sb-ui-menu__item sb-ui-menu__item--active">
+                  <i class="fa-solid fa-house"></i>
+                  <span>Inicio</span>
+                </a>
+                <a href="#" class="sb-ui-menu__item">
+                  <i class="fa-solid fa-gear"></i>
+                  <span>Ajustes</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Accordion y Spinner -->
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+      <!-- COLUMNA: Accordion -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Accordion</h2>
+        <h3>Primary</h3>
+        <details class="sb-ui-accordion sb-ui-accordion--primary">
+          <summary class="sb-ui-accordion__header">
+            <i class="fa-solid fa-globe sb-ui-accordion__icon-start" aria-hidden="true"></i>
+            <span class="sb-ui-accordion__label">Información general</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content">
+            <p>Contenido del acordeón primario.</p>
+          </div>
+        </details>
+        <details class="sb-ui-accordion sb-ui-accordion--primary" open>
+          <summary class="sb-ui-accordion__header">
+            <i class="fa-solid fa-file sb-ui-accordion__icon-start" aria-hidden="true"></i>
+            <span class="sb-ui-accordion__label">Abierto por defecto</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content">
+            <p>Este acordeón viene abierto (atributo open).</p>
+          </div>
+        </details>
+        <h3>Secondary</h3>
+        <details class="sb-ui-accordion sb-ui-accordion--secondary">
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">Sin icono de inicio</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content">
+            <p>Variante secundaria del acordeón.</p>
+          </div>
+        </details>
+        <h3>Con acción</h3>
+        <details class="sb-ui-accordion sb-ui-accordion--primary">
+          <summary class="sb-ui-accordion__header">
+            <i class="fa-solid fa-download sb-ui-accordion__icon-start" aria-hidden="true"></i>
+            <span class="sb-ui-accordion__label">Con botón de acción</span>
+            <button class="sb-ui-accordion__action" type="button" onclick="event.stopPropagation()">
+              <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content">
+            <p>Acordeón con botón de acción en el header.</p>
+          </div>
+        </details>
+        <h3>Tamaños</h3>
+        <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--small">
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">Small</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content"><p>Compacto.</p></div>
+        </details>
+        <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--large">
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">Large</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content"><p>Más espaciado.</p></div>
+        </details>
+        <h3>Disabled</h3>
+        <details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--disabled">
+          <summary class="sb-ui-accordion__header">
+            <span class="sb-ui-accordion__label">Deshabilitado</span>
+            <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end" aria-hidden="true"></i>
+          </summary>
+          <div class="sb-ui-accordion__content"><p>No se puede expandir.</p></div>
+        </details>
+      </div>
+
+      <!-- COLUMNA: Spinner -->
+      <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
+        <h2>Spinner</h2>
+        <h3>Básico</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-4 sb-ui-gap-2">
+          <div class="sb-ui-spinner" role="status" aria-label="Cargando 25%" data-progress="25"></div>
+          <div class="sb-ui-spinner" role="status" aria-label="Cargando 50%" data-progress="50"></div>
+          <div class="sb-ui-spinner" role="status" aria-label="Cargando 75%" data-progress="75"></div>
+          <div class="sb-ui-spinner" role="status" aria-label="Cargando 100%" data-progress="100"></div>
+        </div>
+        <h3>Integrado</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-3 sb-ui-gap-2">
+          <div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando" data-progress="50">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--fast" role="status" aria-label="Cargando rápido" data-progress="50">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
+          <div class="sb-ui-spinner sb-ui-spinner--integrated sb-ui-spinner--slow" role="status" aria-label="Cargando lento" data-progress="75">
+            <div class="sb-ui-spinner__inner-ring"></div>
+          </div>
+        </div>
+        <h3>Con icono</h3>
+        <div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando" data-progress="75">
+          <div class="sb-ui-spinner__content">
+            <div class="sb-ui-spinner__icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <h3>Con icono y texto</h3>
+        <div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando" data-progress="50">
+          <div class="sb-ui-spinner__content">
+            <div class="sb-ui-spinner__icon"><i class="fa-solid fa-spinner" aria-hidden="true"></i></div>
+            <span class="sb-ui-spinner__label">Procesando...</span>
+          </div>
+        </div>
+        <h3>Velocidad</h3>
+        <div class="sb-ui-grid sb-ui-grid-cols-3 sb-ui-gap-2">
+          <div class="sb-ui-spinner sb-ui-spinner--fast" role="status" aria-label="Rápido" data-progress="50"></div>
+          <div class="sb-ui-spinner" role="status" aria-label="Normal" data-progress="50"></div>
+          <div class="sb-ui-spinner sb-ui-spinner--paused" role="status" aria-label="Pausado" data-progress="50"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ind = document.getElementById('checkbox-indeterminate');
+      if (ind) ind.indeterminate = true;
+    });
+  </script>
+</body>
+</html>

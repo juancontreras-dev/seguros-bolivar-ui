@@ -81,7 +81,10 @@ importers:
   packages/brand-overrides: {}
 
   packages/bundle:
-    dependencies:
+    devDependencies:
+      '@fortawesome/fontawesome-free':
+        specifier: ^6.5.1
+        version: 6.7.2
       '@seguros-bolivar-ui/atoms':
         specifier: workspace:*
         version: link:../atoms
@@ -91,7 +94,6 @@ importers:
       '@seguros-bolivar-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
-    devDependencies:
       '@types/node':
         specifier: ^20.11.19
         version: 20.19.22
@@ -2630,6 +2632,11 @@ packages:
 
   /@floating-ui/utils@0.2.10:
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+    dev: true
+
+  /@fortawesome/fontawesome-free@6.7.2:
+    resolution: {integrity: sha512-JUOtgFW6k9u4Y+xeIaEiLr3+cjoUPiAuLXoyKOJSia6Duzb7pq+A76P9ZdPDoAoxHdHzq6gE9/jKBGXlZT8FbA==}
+    engines: {node: '>=6'}
     dev: true
 
   /@fullhuman/postcss-purgecss@7.0.2(postcss@8.5.6):
