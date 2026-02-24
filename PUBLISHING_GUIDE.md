@@ -1,6 +1,9 @@
 # 📦 Guía de Publicación - Seguros Bolívar UI
 
-Esta guía te ayudará a publicar la librería en NPM y hacerla disponible en CDNs públicos.
+> **CDN (actual):** Los archivos se sirven desde **GitHub Pages** tras cada deploy. URL: `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/` — No requiere publicar en npm.  
+> **JFrog:** Ver [RELEASE.md](RELEASE.md) para publicar en Artifactory.
+
+Esta guía describe la publicación en NPM público (alternativa).
 
 ## 🎯 Requisitos Previos
 

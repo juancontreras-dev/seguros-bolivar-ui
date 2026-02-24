@@ -41,11 +41,9 @@
 
 ## 🚀 Instalación
 
-### Opción 1: CDN (Recomendado para prototipos)
+### Opción 1: CDN (GitHub Pages - Recomendado)
 
-La forma más rápida de empezar es usar un CDN público:
-
-#### unpkg.com
+Los archivos se sirven desde GitHub Pages tras cada deploy:
 
 ```html
 <!DOCTYPE html>
@@ -56,10 +54,10 @@ La forma más rápida de empezar es usar un CDN público:
   <title>Mi App - Seguros Bolívar</title>
   
   <!-- CSS del Design System -->
-  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  <link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
   
   <!-- Web Components (opcional, solo si usas modales, datepickers, etc.) -->
-  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+  <script type="module" src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
 </head>
 <body>
   <!-- Tu contenido aquí -->
@@ -68,13 +66,6 @@ La forma más rápida de empezar es usar un CDN público:
   </button>
 </body>
 </html>
-```
-
-#### jsDelivr (alternativa)
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
 ```
 
 ### Opción 2: NPM (Recomendado para producción)
@@ -111,7 +102,7 @@ Para que los estilos de cada marca se apliquen correctamente, **DEBES agregar** 
 <!DOCTYPE html>
 <html lang="es" data-brand="seguros-bolivar" data-theme="light">
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  <link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
 </head>
 <body>
   <!-- Tus componentes aquí -->
@@ -165,7 +156,7 @@ function cambiarMarcaYTema(marca, tema) {
   
   // Actualizar el archivo CSS cargado
   const linkCSS = document.querySelector('link[rel="stylesheet"]');
-  linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+  linkCSS.href = `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-${marca}-${tema}.min.css`;
 }
 ```
 
@@ -237,13 +228,13 @@ Simplemente cambia el archivo CSS que cargas:
 
 ```html
 <!-- Seguros Bolívar Light -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
 
 <!-- Davivienda Dark -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-davivienda-dark.min.css">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-davivienda-dark.min.css">
 
 <!-- Jelpit Light -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-jelpit-light.min.css">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-jelpit-light.min.css">
 ```
 
 ---
@@ -346,8 +337,7 @@ Visita nuestra página de ejemplos para ver todos los componentes en acción:
 ### Recursos Adicionales
 
 - 📦 [NPM Package](https://www.npmjs.com/package/@seguros-bolivar/ui-bundle)
-- 🌐 [unpkg CDN](https://unpkg.com/@seguros-bolivar/ui-bundle@latest/)
-- 🚀 [jsDelivr CDN](https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/)
+- 📦 [CDN (GitHub Pages)](https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/)
 
 ---
 
@@ -478,8 +468,7 @@ MIT © Seguros Bolívar
 ## 🔗 Enlaces Útiles
 
 - 📦 **NPM**: https://www.npmjs.com/package/@seguros-bolivar/ui-bundle
-- 🌐 **unpkg**: https://unpkg.com/@seguros-bolivar/ui-bundle@latest/
-- 🚀 **jsDelivr**: https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/
+- 📦 **CDN (GitHub Pages)**: https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/
 - 📊 **Estadísticas**: https://npm-stat.com/charts.html?package=@seguros-bolivar/ui-bundle
 - 🐛 **Issues**: https://github.com/seguros-bolivar/bolivar-ui/issues
 - 💬 **Discussions**: https://github.com/seguros-bolivar/bolivar-ui/discussions

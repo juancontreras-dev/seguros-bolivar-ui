@@ -4,31 +4,30 @@ Sistema de Diseño Multi-Marca para aplicaciones web empresariales de Seguros Bo
 
 ## 🚀 Instalación
 
-### Opción 1: CDN (Recomendado)
+### Opción 1: CDN (GitHub Pages - Recomendado)
 
-Usa el CDN público de **unpkg** o **jsDelivr** para cargar los archivos directamente:
-
-#### unpkg.com
+Los archivos se sirven desde GitHub Pages tras cada deploy del repo:
 
 ```html
 <!-- CSS - Seguros Bolívar Light -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
 
 <!-- JavaScript - Web Components -->
-<script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+<script type="module" src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
 ```
 
-#### jsDelivr.com
+### Opción 2: JFrog Artifactory (repositorio interno)
 
-```html
-<!-- CSS - Seguros Bolívar Light -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+Configura `.npmrc` en tu proyecto:
 
-<!-- JavaScript - Web Components -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+```ini
+@seguros-bolivar:registry=https://triale35dcc.jfrog.io/artifactory/api/npm/segurosbolivar-ui-lib/
+//triale35dcc.jfrog.io/artifactory/api/npm/segurosbolivar-ui-lib/:_authToken=TU_TOKEN
 ```
 
-### Opción 2: NPM
+Luego: `npm install @seguros-bolivar/ui-bundle` o `pnpm add @seguros-bolivar/ui-bundle`
+
+### Opción 3: NPM público
 
 Instala el paquete en tu proyecto:
 
@@ -44,7 +43,7 @@ pnpm add @seguros-bolivar/ui-bundle
 yarn add @seguros-bolivar/ui-bundle
 ```
 
-### Opción 3: Descarga Directa
+### Opción 4: Descarga Directa
 
 Descarga los archivos desde [GitHub Releases](https://github.com/seguros-bolivar/bolivar-ui/releases) y cópialos a tu proyecto.
 
@@ -61,10 +60,10 @@ Descarga los archivos desde [GitHub Releases](https://github.com/seguros-bolivar
   <title>Mi App - Seguros Bolívar</title>
   
   <!-- CSS del Design System -->
-  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  <link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
   
   <!-- Web Components (opcional) -->
-  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+  <script type="module" src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
 </head>
 <body>
   <!-- Usa los componentes -->
@@ -113,7 +112,7 @@ O cambia el archivo CSS cargado:
 
 ```html
 <!-- Cambiar de Seguros Bolívar a Davivienda -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-davivienda-light.min.css">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-davivienda-light.min.css">
 ```
 
 ## 📦 Contenido del Bundle
@@ -166,40 +165,40 @@ Cada archivo CSS incluye:
 Para producción, es recomendable usar una versión específica en lugar de `@latest`:
 
 ```html
-<!-- Versión fija (ejemplo: 1.0.0) -->
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@1.0.0/dist/sb-ui-seguros-bolivar-light.min.css">
+<!-- La versión en GitHub Pages siempre es la última desplegada -->
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
 ```
 
 ### Preload para Mejor Performance
 
 ```html
 <!-- Precargar CSS para renderizado más rápido -->
-<link rel="preload" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css" as="style">
-<link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+<link rel="preload" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css" as="style">
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
 ```
 
-### Integrity Hash (SRI)
+### Integrity Hash (SRI) (opcional)
 
-Para mayor seguridad, usa Subresource Integrity:
+Para mayor seguridad, genera un hash del archivo descargado:
 
 ```bash
 # Generar hash SHA-384
-openssl dgst -sha384 -binary sb-ui-seguros-bolivar-light.min.css | openssl base64 -A
+curl -sL https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css | openssl dgst -sha384 -binary | openssl base64 -A
 ```
 
 ```html
 <link 
   rel="stylesheet" 
-  href="https://unpkg.com/@seguros-bolivar/ui-bundle@1.0.0/dist/sb-ui-seguros-bolivar-light.min.css"
+  href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css"
   integrity="sha384-HASH_AQUI"
   crossorigin="anonymous">
 ```
 
 ## 📖 Documentación Completa
 
-- **Storybook:** https://seguros-bolivar.github.io/bolivar-ui/
-- **GitHub:** https://github.com/seguros-bolivar/bolivar-ui
-- **Ejemplos:** https://seguros-bolivar.github.io/bolivar-ui/examples/
+- **Storybook:** https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/
+- **GitHub:** https://github.com/juancontreras-dev/seguros-bolivar-ui
+- **Ejemplos:** https://juancontreras-dev.github.io/seguros-bolivar-ui/
 
 ## 🤝 Soporte
 

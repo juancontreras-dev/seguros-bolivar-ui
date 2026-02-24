@@ -273,13 +273,13 @@
     <p>Para cambiar de marca, simplemente cambia el archivo CSS que importas:</p>
 
     <div class="code-block">&lt;!-- Seguros Bolívar Light --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+&lt;link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
 
 &lt;!-- Davivienda Dark --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-davivienda-dark.min.css"&gt;
+&lt;link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-davivienda-dark.min.css"&gt;
 
 &lt;!-- Jelpit Light --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-jelpit-light.min.css"&gt;</div>
+&lt;link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-jelpit-light.min.css"&gt;</div>
 
     <h3>Cambiar de Tema Dinámicamente</h3>
     <p>Puedes permitir a los usuarios cambiar entre tema claro y oscuro en tiempo real:</p>
@@ -287,7 +287,7 @@
     <div class="code-block">// JavaScript para cambiar tema dinámicamente
 function cambiarTema(marca, tema) {
   const linkCSS = document.querySelector('link[rel="stylesheet"]');
-  const nuevoCSS = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+  const nuevoCSS = `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-${marca}-${tema}.min.css`;
   linkCSS.href = nuevoCSS;
 }
 
@@ -313,7 +313,7 @@ cambiarTema('davivienda', 'light');       // Cambia a Davivienda light</div>
     <div class="code-block">&lt;!-- ✅ CORRECTO - Con data attributes --&gt;
 &lt;html lang="es" data-brand="seguros-bolivar" data-theme="light"&gt;
 &lt;head&gt;
-  &lt;link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
+  &lt;link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;!-- Los componentes aquí tendrán estilos de Seguros Bolívar --&gt;
@@ -413,7 +413,7 @@ function cambiarMarcaYTema(marca, tema) {
   
   // Actualizar el CSS cargado
   const linkCSS = document.querySelector('link[rel="stylesheet"]');
-  linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-${marca}-${tema}.min.css`;
+  linkCSS.href = `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-${marca}-${tema}.min.css`;
 }
 
 // Ejemplos de uso:

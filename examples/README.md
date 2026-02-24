@@ -130,8 +130,11 @@ Cada marca tiene su propio bundle que incluye:
 3. **Overrides**: Personalizaciones específicas de marca
 
 ```html
-<!-- Ejemplo: Cargar bundle de Seguros Bolívar Light -->
+<!-- Local (dentro de examples/): -->
 <link rel="stylesheet" href="dist/sb-ui-seguros-bolivar-light.min.css" />
+
+<!-- CDN (GitHub Pages - producción): -->
+<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css" />
 ```
 
 **Tamaño**: ~34KB minificado, ~4.7KB gzip
