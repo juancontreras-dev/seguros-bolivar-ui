@@ -10,6 +10,7 @@
 </head>
 <body>
   <main class="sb-ui-container">
+  <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-y-5">
     <h1>Seguros Bolívar UI desde CDN</h1>
     <p>Variaciones de la librería cargadas desde <strong>GitHub Pages CDN</strong> (mismo repo, deploy automático).</p>
 
@@ -168,7 +169,7 @@
     </div>
 
     <!-- 4 columnas: Select, Checkbox, Radio, Toggle -->
-    <div class="sb-ui-grid-cols-4 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+    <div class="sb-ui-grid-cols-4 sb-ui-gap-4 sb-ui-place-items-start">
       <!-- COLUMNA 4: Select -->
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Select</h2>
@@ -393,12 +394,12 @@
     </div>
 
     <!-- 2 columnas: Table, Alert -->
-    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start">
       <!-- COLUMNA 8: Table -->
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Table</h2>
         <h3>Básica</h3>
-        <div style="overflow-x: auto;">
+        <div class="sb-ui-table-container">
           <table class="sb-ui-table">
             <thead>
               <tr>
@@ -427,7 +428,7 @@
           </table>
         </div>
         <h3>Striped</h3>
-        <div style="overflow-x: auto;">
+        <div class="sb-ui-table-container">
           <table class="sb-ui-table sb-ui-table--striped">
             <thead>
               <tr>
@@ -456,7 +457,7 @@
           </table>
         </div>
         <h3>Bordered + Hover</h3>
-        <div style="overflow-x: auto;">
+        <div class="sb-ui-table-container">
           <table class="sb-ui-table sb-ui-table--bordered sb-ui-table--hover">
             <thead>
               <tr>
@@ -471,7 +472,7 @@
           </table>
         </div>
         <h3>Compact</h3>
-        <div style="overflow-x: auto;">
+        <div class="sb-ui-table-container">
           <table class="sb-ui-table sb-ui-table--compact">
             <thead>
               <tr>
@@ -566,7 +567,7 @@
     </div>
 
     <!-- 2 columnas: Tabs, Stepper -->
-    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" >
       <!-- COLUMNA 10: Tabs -->
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Tabs</h2>
@@ -713,7 +714,7 @@
           </div>
         </div>
         <h3>Vertical</h3>
-        <div class="sb-ui-stepper sb-ui-stepper--vertical" style="max-width: 200px;">
+        <div class="sb-ui-stepper sb-ui-stepper--vertical" >
           <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
             <div class="sb-ui-stepper__step-circle"><i class="fa-solid fa-check"></i></div>
             <span class="sb-ui-stepper__step-label">Completado</span>
@@ -733,7 +734,7 @@
     </div>
 
     <!-- 2 columnas: Breadcrumb, Menu -->
-    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" >
       <!-- COLUMNA 12: Breadcrumb -->
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Breadcrumb</h2>
@@ -777,7 +778,7 @@
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Menu</h2>
         <h3>Vertical (sidebar)</h3>
-        <nav class="sb-ui-menu" aria-label="Menú vertical" style="max-width: 260px;">
+        <nav class="sb-ui-menu" aria-label="Menú vertical" >
           <div class="sb-ui-menu__content">
             <div class="sb-ui-menu__section">
               <div class="sb-ui-menu__section-title">Principal</div>
@@ -848,7 +849,7 @@
           </div>
         </nav>
         <h3>Compact</h3>
-        <nav class="sb-ui-menu sb-ui-menu--compact" aria-label="Menú compacto" style="max-width: 220px;">
+        <nav class="sb-ui-menu sb-ui-menu--compact" aria-label="Menú compacto" >
           <div class="sb-ui-menu__content">
             <div class="sb-ui-menu__section">
               <div class="sb-ui-menu__section-title">Opciones</div>
@@ -869,7 +870,7 @@
     </div>
 
     <!-- Accordion y Spinner -->
-    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" style="margin-top: 3rem;">
+    <div class="sb-ui-grid-cols-2 sb-ui-gap-4 sb-ui-place-items-start" >
       <!-- COLUMNA: Accordion -->
       <div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-3">
         <h2>Accordion</h2>
@@ -986,6 +987,7 @@
         </div>
       </div>
     </div>
+  </div>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
