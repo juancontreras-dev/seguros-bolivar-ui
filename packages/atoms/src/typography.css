@@ -1,0 +1,195 @@
+/**
+ * Typography Utilities - Seguros Bolivar UI Design System
+ * Clases utilitarias para tipografía: headings, body, label, caption, colores, pesos.
+ * Todas las clases usan tokens del sistema (--sb-ui-typography-*, --sb-ui-color-*).
+ *
+ * Uso:
+ *   <h1 class="sb-ui-heading-h1">...</h1>
+ *   <p class="sb-ui-text-body">...</p>
+ *   <span class="sb-ui-text-body sb-ui-text--primary">...</span>
+ *   <strong class="sb-ui-text-body sb-ui-text--bold">...</strong>
+ */
+
+@layer tokens, base, variants;
+
+/* ========================================
+   TOKENS
+   ======================================== */
+@layer tokens {
+  .sb-ui-heading-h1,
+  .sb-ui-heading-h2,
+  .sb-ui-heading-h3,
+  .sb-ui-heading-h4,
+  .sb-ui-heading-h5,
+  .sb-ui-heading-h6,
+  .sb-ui-text-body,
+  .sb-ui-text-label,
+  .sb-ui-text-caption,
+  .sb-ui-text-button {
+    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+  }
+}
+
+/* ========================================
+   BASE - Headings
+   ======================================== */
+@layer base {
+  .sb-ui-heading-h1 {
+    font-size: var(--sb-ui-typography-fontSize-h1, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-heading-h2 {
+    font-size: var(--sb-ui-typography-fontSize-h2, 2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-heading-h3 {
+    font-size: var(--sb-ui-typography-fontSize-h3, 1.75rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-heading-h4 {
+    font-size: var(--sb-ui-typography-fontSize-h4, 1.5rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-heading-h5 {
+    font-size: var(--sb-ui-typography-fontSize-h5, 1.25rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-heading-h6 {
+    font-size: var(--sb-ui-typography-fontSize-h6, 1rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  /* Text variants */
+  .sb-ui-text-body {
+    font-size: var(--sb-ui-typography-fontSize-body, 1rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+
+  .sb-ui-text-label {
+    font-size: var(--sb-ui-typography-fontSize-label, 0.875rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--sb-ui-color-grayscale-D200);
+    margin: 0;
+  }
+
+  .sb-ui-text-caption {
+    font-size: var(--sb-ui-typography-fontSize-caption, 0.75rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--sb-ui-color-grayscale-base);
+    margin: 0;
+  }
+
+  .sb-ui-text-button {
+    font-size: var(--sb-ui-typography-fontSize-button, 1rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--sb-ui-color-grayscale-black);
+    margin: 0;
+  }
+}
+
+/* ========================================
+   VARIANTS - Colores
+   ======================================== */
+@layer variants {
+  .sb-ui-text--primary {
+    color: var(--sb-ui-color-primary-base);
+  }
+
+  .sb-ui-text--primary-dark {
+    color: var(--sb-ui-color-primary-D100);
+  }
+
+  .sb-ui-text--secondary {
+    color: var(--sb-ui-color-secondary-base);
+  }
+
+  .sb-ui-text--secondary-dark {
+    color: var(--sb-ui-color-secondary-D100);
+  }
+
+  .sb-ui-text--tertiary {
+    color: var(--sb-ui-color-tertiary-base);
+  }
+
+  .sb-ui-text--error {
+    color: var(--sb-ui-color-feedback-error-base);
+  }
+
+  .sb-ui-text--success {
+    color: var(--sb-ui-color-feedback-success-base);
+  }
+
+  .sb-ui-text--warning {
+    color: var(--sb-ui-color-feedback-warning-base);
+  }
+
+  .sb-ui-text--info {
+    color: var(--sb-ui-color-feedback-info-base);
+  }
+
+  .sb-ui-text--black {
+    color: var(--sb-ui-color-grayscale-black);
+  }
+
+  .sb-ui-text--muted {
+    color: var(--sb-ui-color-grayscale-D200);
+  }
+
+  .sb-ui-text--subtle {
+    color: var(--sb-ui-color-grayscale-base);
+  }
+
+  .sb-ui-text--white {
+    color: var(--sb-ui-color-grayscale-white);
+  }
+
+  /* Pesos */
+  .sb-ui-text--light {
+    font-weight: 300;
+  }
+
+  .sb-ui-text--regular {
+    font-weight: 400;
+  }
+
+  .sb-ui-text--medium {
+    font-weight: 500;
+  }
+
+  .sb-ui-text--semibold {
+    font-weight: 600;
+  }
+
+  .sb-ui-text--bold {
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tipografía - Utilidades - Seguros Bolívar UI Design System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preload" href="../../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link rel="stylesheet" href="../../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
+    <link rel="stylesheet" href="../../components.css" />
+  </head>
+
+  <body>
+    <main class="component-container">
+
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-font" aria-hidden="true"></i>
+          </span>
+          <span>Tipografía</span>
+        </h2>
+        <p class="component-description">
+          Clases utilitarias de tipografía del Design System. Usa <code>sb-ui-heading-*</code> para títulos,
+          <code>sb-ui-text-*</code> para textos, y combínalas con modificadores de color
+          (<code>sb-ui-text--primary</code>) y peso (<code>sb-ui-text--bold</code>) sin escribir CSS adicional.
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: TÍTULOS (HEADINGS)
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Títulos (Headings)</h3>
+        <p class="demo-description">
+          Usa las clases <code>sb-ui-heading-h1</code> a <code>sb-ui-heading-h6</code> para aplicar la escala tipográfica del sistema. El tamaño y peso provienen de los tokens de la marca activa.
+        </p>
+
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h1 — 2.25rem</h4>
+            <h1 class="sb-ui-heading-h1">Heading H1</h1>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h2 — 2rem</h4>
+            <h2 class="sb-ui-heading-h2">Heading H2</h2>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h3 — 1.75rem</h4>
+            <h3 class="sb-ui-heading-h3">Heading H3</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h4 — 1.5rem</h4>
+            <h4 class="sb-ui-heading-h4">Heading H4</h4>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h5 — 1.25rem</h4>
+            <h5 class="sb-ui-heading-h5">Heading H5</h5>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-heading-h6 — 1rem</h4>
+            <h6 class="sb-ui-heading-h6">Heading H6</h6>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;h1 class="sb-ui-heading-h1"&gt;Título principal&lt;/h1&gt;
+&lt;h2 class="sb-ui-heading-h2"&gt;Subtítulo&lt;/h2&gt;
+&lt;h3 class="sb-ui-heading-h3"&gt;Sección&lt;/h3&gt;
+&lt;h4 class="sb-ui-heading-h4"&gt;Sub-sección&lt;/h4&gt;
+&lt;h5 class="sb-ui-heading-h5"&gt;Detalle&lt;/h5&gt;
+&lt;h6 class="sb-ui-heading-h6"&gt;Nota&lt;/h6&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: TEXTOS (BODY, LABEL, CAPTION)
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Textos (Body, Label, Caption)</h3>
+        <p class="demo-description">
+          Clases para texto de contenido, etiquetas de formulario, notas auxiliares y texto de botones.
+        </p>
+
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text-body — 1rem, regular</h4>
+            <p class="sb-ui-text-body">Texto de cuerpo estándar para párrafos y contenido principal.</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text-label — 0.875rem, semibold</h4>
+            <span class="sb-ui-text-label">Etiqueta de formulario</span>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text-caption — 0.75rem</h4>
+            <span class="sb-ui-text-caption">Texto auxiliar o nota al pie</span>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text-button — 1rem, medium</h4>
+            <span class="sb-ui-text-button">Texto para botones</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;p class="sb-ui-text-body"&gt;Párrafo de contenido principal&lt;/p&gt;
+&lt;label class="sb-ui-text-label"&gt;Nombre completo&lt;/label&gt;
+&lt;span class="sb-ui-text-caption"&gt;Última actualización: enero 2026&lt;/span&gt;
+&lt;span class="sb-ui-text-button"&gt;Guardar cambios&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: COLORES DE TEXTO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Colores de texto</h3>
+        <p class="demo-description">
+          Combina cualquier clase de tipografía con un modificador de color <code>sb-ui-text--*</code>.
+          Los colores provienen de los tokens de la marca activa.
+        </p>
+
+        <h4 class="demo-section-subtitle">Primary</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--primary</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--primary">Primary (base)</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--primary-dark</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--primary-dark">Primary Dark (D100)</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">body + primary</h4>
+            <p class="sb-ui-text-body sb-ui-text--primary">Texto body en primary base.</p>
+          </div>
+        </div>
+
+        <h4 class="demo-section-subtitle">Secondary</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--secondary</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--secondary">Secondary (base)</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--secondary-dark</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--secondary-dark">Secondary Dark (D100)</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">body + secondary</h4>
+            <p class="sb-ui-text-body sb-ui-text--secondary">Texto body en secondary base.</p>
+          </div>
+        </div>
+
+        <h4 class="demo-section-subtitle">Tertiary</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--tertiary</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--tertiary">Tertiary (base)</h3>
+          </div>
+        </div>
+
+        <h4 class="demo-section-subtitle">Feedback</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--error</h4>
+            <p class="sb-ui-text-body sb-ui-text--error">Texto de error</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--success</h4>
+            <p class="sb-ui-text-body sb-ui-text--success">Texto de éxito</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--warning</h4>
+            <p class="sb-ui-text-body sb-ui-text--warning">Texto de advertencia</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--info</h4>
+            <p class="sb-ui-text-body sb-ui-text--info">Texto informativo</p>
+          </div>
+        </div>
+
+        <h4 class="demo-section-subtitle">Escala de grises</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--black</h4>
+            <p class="sb-ui-text-body sb-ui-text--black">Texto negro (default)</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--muted</h4>
+            <p class="sb-ui-text-body sb-ui-text--muted">Texto muted (gris oscuro)</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--subtle</h4>
+            <p class="sb-ui-text-body sb-ui-text--subtle">Texto subtle (gris claro)</p>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;h2 class="sb-ui-heading-h2 sb-ui-text--primary"&gt;Título verde&lt;/h2&gt;
+&lt;h3 class="sb-ui-heading-h3 sb-ui-text--secondary"&gt;Título dorado&lt;/h3&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--error"&gt;Mensaje de error&lt;/p&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--muted"&gt;Texto secundario&lt;/p&gt;</code></pre>
+        </div>
+
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Uso recomendado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>sb-ui-text--primary</code></td>
+              <td>Títulos destacados, enlaces, CTAs</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--primary-dark</code></td>
+              <td>Énfasis sobre fondo claro</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--secondary</code></td>
+              <td>Acentos, badges, highlights</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--secondary-dark</code></td>
+              <td>Énfasis secundario</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--tertiary</code></td>
+              <td>Información complementaria</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--error</code></td>
+              <td>Mensajes de error y validación</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--success</code></td>
+              <td>Confirmaciones, estados correctos</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--warning</code></td>
+              <td>Advertencias, alertas</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--info</code></td>
+              <td>Notas informativas</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--black</code></td>
+              <td>Texto principal (default)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--muted</code></td>
+              <td>Texto secundario, descripciones</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--subtle</code></td>
+              <td>Placeholders, notas al pie</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--white</code></td>
+              <td>Texto sobre fondos oscuros</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: PESOS (FONT-WEIGHT)
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Pesos de fuente (Font Weight)</h3>
+        <p class="demo-description">
+          Modificadores de peso para ajustar la jerarquía visual. Combínalos con cualquier clase base.
+        </p>
+
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--light (300)</h4>
+            <p class="sb-ui-text-body sb-ui-text--light">Textos decorativos o subtítulos suaves</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--regular (400)</h4>
+            <p class="sb-ui-text-body sb-ui-text--regular">Texto de cuerpo por defecto</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--medium (500)</h4>
+            <p class="sb-ui-text-body sb-ui-text--medium">Énfasis moderado, botones</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--semibold (600)</h4>
+            <p class="sb-ui-text-body sb-ui-text--semibold">Labels y subtítulos</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">sb-ui-text--bold (700)</h4>
+            <p class="sb-ui-text-body sb-ui-text--bold">Headings y énfasis fuerte</p>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;p class="sb-ui-text-body sb-ui-text--light"&gt;Texto light&lt;/p&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--regular"&gt;Texto regular&lt;/p&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--medium"&gt;Texto medium&lt;/p&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--semibold"&gt;Texto semibold&lt;/p&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--bold"&gt;Texto bold&lt;/p&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 5: COMBINACIONES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Combinaciones</h3>
+        <p class="demo-description">
+          Las clases son composables: combina tamaño + color + peso para obtener el estilo deseado en una sola línea de HTML.
+        </p>
+
+        <h4 class="demo-section-subtitle">Heading + color + peso</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">h2 + primary + bold</h4>
+            <h2 class="sb-ui-heading-h2 sb-ui-text--primary sb-ui-text--bold">H2 Primary Bold</h2>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">h3 + secondary + medium</h4>
+            <h3 class="sb-ui-heading-h3 sb-ui-text--secondary sb-ui-text--medium">H3 Secondary Medium</h3>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">h4 + error + semibold</h4>
+            <h4 class="sb-ui-heading-h4 sb-ui-text--error sb-ui-text--semibold">H4 Error Semibold</h4>
+          </div>
+        </div>
+
+        <h4 class="demo-section-subtitle">Texto + color + peso</h4>
+        <div class="demo-showcase-grid">
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">body + primary + medium</h4>
+            <p class="sb-ui-text-body sb-ui-text--primary sb-ui-text--medium">Body Primary Medium</p>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">label + secondary + bold</h4>
+            <span class="sb-ui-text-label sb-ui-text--secondary sb-ui-text--bold">Label Secondary Bold</span>
+          </div>
+          <div class="demo-showcase-item">
+            <h4 class="sb-ui-text-caption sb-ui-text--subtle">caption + muted + regular</h4>
+            <span class="sb-ui-text-caption sb-ui-text--muted sb-ui-text--regular">Caption Muted Regular</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Heading con color y peso --&gt;
+&lt;h2 class="sb-ui-heading-h2 sb-ui-text--primary sb-ui-text--bold"&gt;
+  Título destacado
+&lt;/h2&gt;
+
+&lt;!-- Body con color secundario --&gt;
+&lt;p class="sb-ui-text-body sb-ui-text--secondary sb-ui-text--medium"&gt;
+  Descripción relevante
+&lt;/p&gt;
+
+&lt;!-- Label con color muted --&gt;
+&lt;span class="sb-ui-text-label sb-ui-text--muted"&gt;
+  Información auxiliar
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 6: EJEMPLO COMPUESTO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Ejemplo compuesto — Tarjeta de datos</h3>
+        <p class="demo-description">
+          Tarjeta construida usando únicamente clases de la librería: grid para layout, tipografía para textos, colores y pesos como modificadores.
+        </p>
+
+        <div class="demo-showcase-item sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2">
+          <h3 class="sb-ui-heading-h4 sb-ui-text--primary">Datos del asegurado</h3>
+          <span class="sb-ui-text-label">Número de documento</span>
+          <p class="sb-ui-text-body sb-ui-text--bold">1.023.456.789</p>
+          <span class="sb-ui-text-label">Nombre completo</span>
+          <p class="sb-ui-text-body">María Alejandra Rodríguez</p>
+          <span class="sb-ui-text-caption sb-ui-text--subtle">Actualizado el 27 de enero de 2026</span>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-grid sb-ui-grid-cols-1 sb-ui-gap-2"&gt;
+  &lt;h3 class="sb-ui-heading-h4 sb-ui-text--primary"&gt;Datos del asegurado&lt;/h3&gt;
+  &lt;span class="sb-ui-text-label"&gt;Número de documento&lt;/span&gt;
+  &lt;p class="sb-ui-text-body sb-ui-text--bold"&gt;1.023.456.789&lt;/p&gt;
+  &lt;span class="sb-ui-text-label"&gt;Nombre completo&lt;/span&gt;
+  &lt;p class="sb-ui-text-body"&gt;María Alejandra Rodríguez&lt;/p&gt;
+  &lt;span class="sb-ui-text-caption sb-ui-text--subtle"&gt;Actualizado...&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 7: REFERENCIA RÁPIDA
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Referencia rápida de clases</h3>
+
+        <h4 class="demo-section-subtitle">Clases base (tamaño)</h4>
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Elemento</th>
+              <th>Tamaño (Seguros Bolívar)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>sb-ui-heading-h1</code></td>
+              <td>Título principal</td>
+              <td>2.25rem (36px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-heading-h2</code></td>
+              <td>Subtítulo</td>
+              <td>2rem (32px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-heading-h3</code></td>
+              <td>Sección</td>
+              <td>1.75rem (28px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-heading-h4</code></td>
+              <td>Sub-sección</td>
+              <td>1.5rem (24px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-heading-h5</code></td>
+              <td>Detalle</td>
+              <td>1.25rem (20px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-heading-h6</code></td>
+              <td>Nota</td>
+              <td>1rem (16px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text-body</code></td>
+              <td>Párrafos</td>
+              <td>1rem (16px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text-label</code></td>
+              <td>Etiquetas de formulario</td>
+              <td>0.875rem (14px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text-caption</code></td>
+              <td>Notas auxiliares</td>
+              <td>0.75rem (12px)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text-button</code></td>
+              <td>Texto de botones</td>
+              <td>1rem (16px)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class="demo-section-subtitle">Modificadores de peso</h4>
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>sb-ui-text--light</code></td>
+              <td>300</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--regular</code></td>
+              <td>400</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--medium</code></td>
+              <td>500</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--semibold</code></td>
+              <td>600</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-text--bold</code></td>
+              <td>700</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <i class="fa-solid fa-book storybook-reference-icon"></i>
+          <h3 class="storybook-reference-title">Tipografía en Storybook</h3>
+          <p class="storybook-reference-description">
+            Explora la documentación interactiva de tipografía en Storybook: cambia de marca y tema en tiempo real para ver cómo se adaptan los estilos.
+          </p>
+          <a
+            href="https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/?path=/docs/foundations-typography--docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="storybook-reference-link"
+          >
+            <i class="fa-solid fa-external-link-alt"></i>
+            Ver Tipografía en Storybook
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <script>
+      function copyCode(btn) {
+        var codeBlock = btn.closest('.demo-code-block');
+        var code = codeBlock ? codeBlock.querySelector('code') : null;
+        if (code) {
+          navigator.clipboard.writeText(code.textContent).then(function() {
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(function() {
+              btn.classList.remove('copied');
+              btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
+            }, 1500);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

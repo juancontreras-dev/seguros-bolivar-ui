@@ -12,6 +12,7 @@
 @import './columns.css';
 @import './gutters.css';
 @import './css-grid.css';
+@import './typography.css';
 
 /* UI Components */
 @import './accordion.css';
