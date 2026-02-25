@@ -194,15 +194,13 @@
 
         <div class="demo-code-block">
           <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Ejemplo de uso - Con boton de cierre</span>
+            <span class="demo-code-block-title">ALERT CON FONDO</span>
             <div>
               <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>
-&lt;!-- Alert Success con fondo (icono 100% CSS) --&gt;
-&lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
@@ -211,8 +209,7 @@
   &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Info sin fondo (icono 100% CSS) --&gt;
-&lt;div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert"&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--info" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
@@ -221,7 +218,6 @@
   &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Warning con fondo (icono 100% CSS) --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--warning" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -231,7 +227,51 @@
   &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Error sin fondo (icono 100% CSS) --&gt;
+&lt;div class="sb-ui-alert sb-ui-alert--error" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">ALERT SIN FONDO</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert"&gt;
+  &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-alert__content"&gt;
+    &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
+    &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="sb-ui-alert__close" type="button" aria-label="Cerrar alerta"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
 &lt;div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -339,20 +379,13 @@
 
         <div class="demo-code-block">
           <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Ejemplo de uso - Sin boton de cierre</span>
+            <span class="demo-code-block-title">ALERT CON FONDO - SIN BOTON DE CIERRE</span>
             <div>
               <span class="demo-code-block-badge">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>
-&lt;!-- ============================
-     Background: True (con fondo)
-     Icono 100% CSS - No se necesita Font Awesome
-     ============================ --&gt;
-
-&lt;!-- Alert Success con fondo + icono CSS --&gt;
-&lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-alert sb-ui-alert--success" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
@@ -360,7 +393,6 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Info con fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--info" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -369,7 +401,6 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Warning con fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--warning" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -378,23 +409,24 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Error con fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--error" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
     &lt;p class="sb-ui-alert__message"&gt;This is an info alert — check it&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
 
-&lt;!-- ================================
-     Background: False (sin fondo)
-     Agregar sb-ui-alert--no-bg
-     Icono 100% CSS - No se necesita Font Awesome
-     ================================ --&gt;
-
-&lt;!-- Alert Success sin fondo + icono CSS --&gt;
-&lt;div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert"&gt;
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">ALERT SIN FONDO - SIN BOTON DE CIERRE</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar codigo"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-alert sb-ui-alert--success sb-ui-alert--no-bg" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
     &lt;strong class="sb-ui-alert__title"&gt;Description info text&lt;/strong&gt;
@@ -402,7 +434,6 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Info sin fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--no-bg" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -411,7 +442,6 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Warning sin fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--warning sb-ui-alert--no-bg" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;
@@ -420,7 +450,6 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Alert Error sin fondo + icono CSS --&gt;
 &lt;div class="sb-ui-alert sb-ui-alert--error sb-ui-alert--no-bg" role="alert"&gt;
   &lt;div class="sb-ui-alert__icon" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;div class="sb-ui-alert__content"&gt;

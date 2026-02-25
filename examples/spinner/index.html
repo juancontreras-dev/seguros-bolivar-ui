@@ -86,9 +86,13 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner" role="status" aria-label="Cargando" data-progress="50"&gt;&lt;/div&gt;</code></pre>
+          <pre class="demo-code-block-body"><code>&lt;!-- Spinner Básico --&gt;
+&lt;div class="sb-ui-spinner" role="status" aria-label="Cargando" data-progress="50"&gt;&lt;/div&gt;</code></pre>
         </div>
       </section>
 
@@ -127,9 +131,13 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Spinner Integrado --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--integrated" role="status" aria-label="Cargando" data-progress="50"&gt;
   &lt;div class="sb-ui-spinner__inner-ring"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -186,21 +194,23 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Tamaño MD con diferentes niveles de progreso --&gt;
+          <pre class="demo-code-block-body"><code>
+&lt;!-- Spinner con icono  --&gt;
 &lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" role="status" aria-label="Cargando" data-progress="25"&gt;
   &lt;div class="sb-ui-spinner__content"&gt;
     &lt;div class="sb-ui-spinner__icon"&gt;
       &lt;i class="fa-solid fa-lock" aria-hidden="true"&gt;&lt;/i&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Cambiar el progreso: 25, 50, 75, 100 --&gt;
-&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="50" ...&gt;...&lt;/div&gt;
-&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="75" ...&gt;...&lt;/div&gt;
-&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="100" ...&gt;...&lt;/div&gt;</code></pre>
+&lt;/div&gt; &lt;!-- Cambiar el progreso: 25, 50, 75, 100 --&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="50" ...&gt;&lt;/div&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="75" ...&gt;&lt;/div&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon sb-ui-spinner--md" data-progress="100" ...&gt;&lt;/div&gt;</code></pre>
         </div>
       </section>
 
@@ -259,9 +269,13 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando" data-progress="50"&gt;
+          <pre class="demo-code-block-body"><code>&lt;p&gt;spinner icono y texto&lt;/p&gt;
+&lt;div class="sb-ui-spinner sb-ui-spinner--icon-text" role="status" aria-label="Cargando" data-progress="50"&gt;
   &lt;div class="sb-ui-spinner__content"&gt;
     &lt;div class="sb-ui-spinner__icon"&gt;
       &lt;i class="fa-solid fa-lock" aria-hidden="true"&gt;&lt;/i&gt;
@@ -299,7 +313,10 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>&lt;div class="sb-ui-spinner sb-ui-spinner--fast" data-progress="50"&gt;&lt;/div&gt;
 &lt;div class="sb-ui-spinner sb-ui-spinner--slow" data-progress="50"&gt;&lt;/div&gt;
@@ -329,5 +346,21 @@
         </div>
       </section>
     </main>
+
+    <script>
+      function copyCode(btn) {
+        const codeBlock = btn.closest('.demo-code-block').querySelector('code');
+        const text = codeBlock.textContent.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          const icon = btn.querySelector('i');
+          icon.className = 'fa-solid fa-check';
+          btn.style.color = '#28a745';
+          setTimeout(() => {
+            icon.className = 'fa-solid fa-copy';
+            btn.style.color = '';
+          }, 2000);
+        });
+      }
+    </script>
   </body>
 </html>

@@ -24,6 +24,29 @@
         margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
       }
 
+      /* Tipos: una fila completa por cada tipo (Success, Info, Warning, Error) */
+      .toast-demo-grid--full-row {
+        grid-template-columns: 1fr;
+      }
+
+      /* Evitar scroll horizontal en bloques de código - el texto se ajusta */
+      .toast-demo-card .demo-code-block {
+        min-width: 0;
+      }
+
+      .toast-demo-card .demo-code-block-body {
+        overflow-x: hidden;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
+      }
+
+      .toast-demo-card .demo-code-block-body code {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
       .toast-demo-card {
         padding-block: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
         padding-inline: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
@@ -205,8 +228,9 @@
         <h3 class="variant-title">Tipos de notificación</h3>
         <p class="component-description">Cuatro tipos de toast según el contexto del mensaje.</p>
 
-        <div class="toast-demo-grid">
+        <div class="toast-demo-grid toast-demo-grid--full-row">
 
+          <!-- Success -->
           <div class="toast-demo-card">
             <p class="toast-demo-card__title">Success</p>
             <p class="toast-demo-card__description">Operación completada correctamente.</p>
@@ -220,8 +244,22 @@
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
               Ver Success
             </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Success</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showSuccess ya está disponible en window --&gt;
+&lt;button onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"&gt;
+  Ver Success
+&lt;/button&gt;</code></pre>
+            </div>
           </div>
 
+          <!-- Info -->
           <div class="toast-demo-card">
             <p class="toast-demo-card__title">Info</p>
             <p class="toast-demo-card__description">Información relevante para el usuario.</p>
@@ -235,8 +273,22 @@
               <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
               Ver Info
             </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Info</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showInfo ya está disponible en window --&gt;
+&lt;button onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"&gt;
+  Ver Info
+&lt;/button&gt;</code></pre>
+            </div>
           </div>
 
+          <!-- Warning -->
           <div class="toast-demo-card">
             <p class="toast-demo-card__title">Warning</p>
             <p class="toast-demo-card__description">Advertencia que requiere atención.</p>
@@ -250,8 +302,22 @@
               <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
               Ver Warning
             </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Warning</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showWarning ya está disponible en window --&gt;
+&lt;button onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"&gt;
+  Ver Warning
+&lt;/button&gt;</code></pre>
+            </div>
           </div>
 
+          <!-- Error -->
           <div class="toast-demo-card">
             <p class="toast-demo-card__title">Error</p>
             <p class="toast-demo-card__description">Error que impide completar la acción.</p>
@@ -265,36 +331,21 @@
               <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
               Ver Error
             </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Error</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showError ya está disponible en window --&gt;
+&lt;button onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"&gt;
+  Ver Error
+&lt;/button&gt;</code></pre>
+            </div>
           </div>
 
-        </div>
-
-        <!-- Código de ejemplo -->
-        <div class="demo-code-block code-block-wrapper">
-          <div class="demo-code-block-header">
-            <span>HTML + JS</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
-          </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Incluir el bundle de Web Components --&gt;
-&lt;script type="module" src="dist/sb-ui-components.min.js"&gt;&lt;/script&gt;
-
-&lt;script&gt;
-// Importar las funciones del módulo
-import { showToast, showSuccess, showInfo, showWarning, showError }
-  from './dist/sb-ui-components.min.js';
-
-// Success
-showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 });
-
-// Info
-showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 });
-
-// Warning
-showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 });
-
-// Error
-showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 });
-&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -365,8 +416,11 @@ showError('No se pudo conectar al servidor.', { title: 'Error de conexión', aut
         <!-- Código de ejemplo -->
         <div class="demo-code-block code-block-wrapper">
           <div class="demo-code-block-header">
-            <span>JS</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
+            <span class="demo-code-block-title">Ejemplo de uso - Posiciones</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>showToast({ type: 'info', message: 'Mensaje', position: 'top-left',    autoDismiss: 3000 });
 showToast({ type: 'info', message: 'Mensaje', position: 'top-right',   autoDismiss: 3000 });
@@ -450,8 +504,11 @@ showToast({ type: 'info', message: 'Mensaje', position: 'bottom-center',autoDism
         <!-- Código de ejemplo -->
         <div class="demo-code-block code-block-wrapper">
           <div class="demo-code-block-header">
-            <span>JS</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
+            <span class="demo-code-block-title">Ejemplo de uso - Auto-dismiss</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>// Sin auto-dismiss (permanente hasta que el usuario lo cierre)
 showToast({ type: 'info', title: 'Persistente', message: 'Ciérralo con el botón X.' });
@@ -511,8 +568,11 @@ showToast({
         <!-- Código de ejemplo -->
         <div class="demo-code-block code-block-wrapper">
           <div class="demo-code-block-header">
-            <span>JS</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
+            <span class="demo-code-block-title">Ejemplo de uso - Tamaños</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>showToast({ type: 'info', message: 'Small',  size: 'small',  autoDismiss: 3000 });
 showToast({ type: 'info', message: 'Medium', size: 'medium', autoDismiss: 3000 });
@@ -560,13 +620,16 @@ showToast({ type: 'info', message: 'Large',  size: 'large',  autoDismiss: 3000 }
         <!-- Código de ejemplo -->
         <div class="demo-code-block code-block-wrapper">
           <div class="demo-code-block-header">
-            <span>JS</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
+            <span class="demo-code-block-title">Ejemplo de uso - Gestión múltiple</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>import {
   showToast, showSuccess, showInfo, showWarning, showError,
   hideAllToasts, removeAllToasts, ToastManager
-} from './dist/sb-ui-components.min.js';
+} from 'https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js';
 
 // Crear varios toasts
 showSuccess('Archivo guardado');
@@ -632,8 +695,11 @@ manager.remove(id); // Eliminar por ID</code></pre>
         <!-- Código de ejemplo -->
         <div class="demo-code-block code-block-wrapper">
           <div class="demo-code-block-header">
-            <span>HTML</span>
-            <button class="demo-code-block-copy" type="button">Copiar</button>
+            <span class="demo-code-block-title">Ejemplo de uso - Elemento HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>&lt;sb-ui-toast
   id="mi-toast"
@@ -700,7 +766,7 @@ sb-ui-toast-click  // Al hacer clic</code></pre>
             <span>Opciones de showToast()</span>
             <button class="demo-code-block-copy" type="button">Copiar</button>
           </div>
-          <pre class="demo-code-block-body"><code>import { showToast, showSuccess, showInfo, showWarning, showError } from './dist/sb-ui-components.min.js';
+          <pre class="demo-code-block-body"><code>import { showToast, showSuccess, showInfo, showWarning, showError } from 'https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js';
 
 showToast({
   type: 'success',          // 'info' | 'success' | 'warning' | 'error'
@@ -728,21 +794,12 @@ showError('Mensaje', { title: 'Error' });</code></pre>
          JAVASCRIPT
          ======================================== -->
     <script type="module">
-      // Base path igual que index.html (funciona en GitHub Pages con subpath, ej. /repo-name/)
-      const TOAST_BASE_PATH = (function () {
-        const path = window.location.pathname;
-        if (path === '/' || path === '') return '/';
-        if (path.endsWith('/')) return path;
-        if (/\/index\.html$/i.test(path)) return path.replace(/\/index\.html$/i, '/');
-        return path + '/';
-      })();
-      // Si estamos en una ruta tipo /.../examples/toast/index.html, dist está en .../examples/dist/
+      // dist/ está al nivel del parent de /toast/ (ej: /dist/ en localhost, /repo/examples/dist/ en GitHub Pages)
       const distPath = (function () {
         const path = window.location.pathname;
-        if (/\/examples\/toast\//i.test(path)) {
-          return path.replace(/\/toast\/.*$/i, '/') + 'dist/';
-        }
-        return TOAST_BASE_PATH + 'dist/';
+        // /toast/, /toast/index.html, /examples/toast/ -> subir a parent y añadir dist/
+        const parent = path.replace(/\/toast\/?.*$/i, '/') || '/';
+        return parent + (parent.endsWith('/') ? '' : '/') + 'dist/';
       })();
 
       // Variable para rastrear si el módulo está cargado

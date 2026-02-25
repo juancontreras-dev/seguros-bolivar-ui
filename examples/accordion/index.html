@@ -162,6 +162,52 @@
             </div>
           </div>
         </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;details class="sb-ui-accordion sb-ui-accordion--primary"&gt;
+  &lt;summary class="sb-ui-accordion__header"&gt;
+    &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
+    &lt;span class="sb-ui-accordion__label"&gt;Título del acordeón&lt;/span&gt;
+    &lt;button class="sb-ui-accordion__action" type="button"
+            onclick="event.stopPropagation(); event.preventDefault();"&gt;
+      &lt;i class="fa-solid fa-circle-down"&gt;&lt;/i&gt;
+      Descargar
+    &lt;/button&gt;
+    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
+  &lt;/summary&gt;
+  &lt;div class="sb-ui-accordion__content"&gt;
+    Contenido del acordeón.
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso Sin Acción</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Sin acción --&gt;
+&lt;details class="sb-ui-accordion sb-ui-accordion--primary" open&gt;
+  &lt;summary class="sb-ui-accordion__header"&gt;
+    &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
+    &lt;span class="sb-ui-accordion__label"&gt;Título expandido&lt;/span&gt;
+    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
+  &lt;/summary&gt;
+  &lt;div class="sb-ui-accordion__content"&gt;
+    Contenido visible por defecto.
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre>
+        </div>
       </section>
 
       <!-- ============================================
@@ -185,50 +231,16 @@
             <p>Este contenido no es accesible cuando el acordeón está deshabilitado.</p>
           </div>
         </details>
-      </section>
-
-      <!-- ============================================
-           SECTION 3: Code snippet
-           ============================================ -->
-      <section class="variant-section">
-        <h3 class="variant-title">Código</h3>
-        <p class="component-description">Estructura semántica del componente accordion con todas las piezas opcionales.</p>
 
         <div class="demo-code-block">
           <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Estructura completa</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <span class="demo-code-block-title">Ejemplo de uso</span>
+            <div>
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código"><i class="fa-solid fa-copy"></i></button>
+            </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;!-- Con acción (pill button) --&gt;
-&lt;details class="sb-ui-accordion sb-ui-accordion--primary"&gt;
-  &lt;summary class="sb-ui-accordion__header"&gt;
-    &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-accordion__label"&gt;Título del acordeón&lt;/span&gt;
-    &lt;button class="sb-ui-accordion__action" type="button"
-            onclick="event.stopPropagation(); event.preventDefault();"&gt;
-      &lt;i class="fa-solid fa-circle-down"&gt;&lt;/i&gt;
-      Descargar
-    &lt;/button&gt;
-    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
-  &lt;/summary&gt;
-  &lt;div class="sb-ui-accordion__content"&gt;
-    Contenido del acordeón.
-  &lt;/div&gt;
-&lt;/details&gt;
-
-&lt;!-- Sin acción --&gt;
-&lt;details class="sb-ui-accordion sb-ui-accordion--primary" open&gt;
-  &lt;summary class="sb-ui-accordion__header"&gt;
-    &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
-    &lt;span class="sb-ui-accordion__label"&gt;Título expandido&lt;/span&gt;
-    &lt;i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"&gt;&lt;/i&gt;
-  &lt;/summary&gt;
-  &lt;div class="sb-ui-accordion__content"&gt;
-    Contenido visible por defecto.
-  &lt;/div&gt;
-&lt;/details&gt;
-
-&lt;!-- Disabled --&gt;
+          <pre class="demo-code-block-body"><code>&lt;!-- Disabled --&gt;
 &lt;details class="sb-ui-accordion sb-ui-accordion--primary sb-ui-accordion--disabled"&gt;
   &lt;summary class="sb-ui-accordion__header"&gt;
     &lt;i class="fa-solid fa-globe sb-ui-accordion__icon-start"&gt;&lt;/i&gt;
@@ -259,5 +271,21 @@
         </div>
       </section>
     </main>
+
+    <script>
+      function copyCode(btn) {
+        const codeBlock = btn.closest('.demo-code-block').querySelector('code');
+        const text = codeBlock.textContent.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          const icon = btn.querySelector('i');
+          icon.className = 'fa-solid fa-check';
+          btn.style.color = '#28a745';
+          setTimeout(() => {
+            icon.className = 'fa-solid fa-copy';
+            btn.style.color = '';
+          }, 2000);
+        });
+      }
+    </script>
   </body>
 </html>

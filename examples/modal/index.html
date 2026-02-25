@@ -13,281 +13,6 @@
     <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
     <link rel="stylesheet" href="../components.css" />
     <script type="module" src="../dist/sb-ui-components.min.js"></script>
-
-    <style>
-      /* ========================================
-         MODAL DEMO - Estilos de pagina
-         ======================================== */
-      .modal-demo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
-        margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
-      }
-
-      .modal-demo-card {
-        padding-block: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-        padding-inline: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .modal-demo-card__title {
-        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-        margin-block-end: clamp(0.5rem, 0.3rem + 0.3vw, 0.75rem);
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .modal-demo-card__description {
-        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-        color: var(--sb-ui-color-grayscale-D100, #757575);
-        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        line-height: 1.5;
-      }
-
-      /* Size badges */
-      .modal-size-badge {
-        display: inline-block;
-        padding-block: clamp(0.15rem, 0.1rem + 0.1vw, 0.2rem);
-        padding-inline: clamp(0.4rem, 0.3rem + 0.3vw, 0.6rem);
-        border-radius: 50px;
-        font-size: clamp(0.625rem, 0.6rem + 0.1vw, 0.6875rem);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-inline-end: clamp(0.25rem, 0.2rem + 0.2vw, 0.5rem);
-      }
-
-      .modal-size-badge--small {
-        background: var(--sb-ui-color-secondary-L300, #fff6d4);
-        color: var(--sb-ui-color-primary-D200, #014d2a);
-      }
-
-      .modal-size-badge--medium {
-        background: var(--sb-ui-color-primary-L400, #f2f9f6);
-        color: var(--sb-ui-color-primary-D100, #038450);
-      }
-
-      .modal-size-badge--large {
-        background: var(--sb-ui-color-tertiary-L400, #e8f4f8);
-        color: var(--sb-ui-color-tertiary-D100, #0277a8);
-      }
-
-      /* Specs table */
-      .modal-spec-table {
-        inline-size: 100%;
-        border-collapse: collapse;
-        margin-block-end: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-      }
-
-      .modal-spec-table th,
-      .modal-spec-table td {
-        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
-        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-        text-align: start;
-        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-      }
-
-      .modal-spec-table th {
-        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D100, #757575);
-        text-transform: uppercase;
-        font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
-        letter-spacing: 0.5px;
-      }
-
-      .modal-spec-table code {
-        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
-        padding-block: 0.1rem;
-        padding-inline: clamp(0.2rem, 0.15rem + 0.1vw, 0.35rem);
-        border-radius: 3px;
-        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
-      }
-
-      /* Content inside modals */
-      .modal-content-heading {
-        font-weight: 700;
-        margin-block-end: clamp(0.375rem, 0.25rem + 0.2vw, 0.5rem);
-        color: var(--sb-ui-color-grayscale-D400, #282828);
-        font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
-      }
-
-      .modal-content-heading + .modal-content-heading {
-        margin-block-start: clamp(1rem, 0.75rem + 0.5vw, 1.25rem);
-      }
-
-      .modal-content-text {
-        line-height: 1.6;
-        margin-block-end: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-      }
-
-      .modal-content-text--emphasis {
-        font-weight: 600;
-        margin-block-start: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-      }
-
-      /* Form layout inside modals */
-      .modal-form {
-        display: flex;
-        flex-direction: column;
-        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-      }
-
-      .modal-form__row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-      }
-
-      .modal-form__field {
-        display: flex;
-        flex-direction: column;
-        gap: clamp(0.25rem, 0.2rem + 0.1vw, 0.375rem);
-      }
-
-      .modal-form__label {
-        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-      }
-
-      .modal-form__input,
-      .modal-form__select,
-      .modal-form__textarea {
-        inline-size: 100%;
-        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.5rem);
-        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: clamp(4px, 0.3rem + 0.2vw, 6px);
-        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-        font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
-        background: var(--sb-ui-color-grayscale-white, #fff);
-        color: var(--sb-ui-color-grayscale-D400, #282828);
-        box-sizing: border-box;
-      }
-
-      .modal-form__textarea {
-        resize: vertical;
-      }
-
-      /* Stats grid inside modals */
-      .modal-stats-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
-      }
-
-      .modal-stat-card {
-        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
-        padding-block: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        padding-inline: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
-      }
-
-      .modal-stat-card__label {
-        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
-        text-transform: uppercase;
-        color: var(--sb-ui-color-grayscale-D100, #757575);
-        font-weight: 600;
-      }
-
-      .modal-stat-card__value {
-        font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
-        font-weight: 700;
-        margin-block-start: clamp(0.15rem, 0.1rem + 0.1vw, 0.25rem);
-        color: var(--sb-ui-color-primary-D100, #038450);
-      }
-
-      /* List inside modals */
-      .modal-content-list {
-        margin-block-start: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        padding-inline-start: clamp(1rem, 0.75rem + 0.5vw, 1.25rem);
-        line-height: 1.8;
-      }
-
-      /* Data table inside modals */
-      .modal-data-table {
-        inline-size: 100%;
-        border-collapse: collapse;
-        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-      }
-
-      .modal-data-table thead tr {
-        background: var(--sb-ui-color-primary-base, #038450);
-        color: var(--sb-ui-color-grayscale-white, #fff);
-      }
-
-      .modal-data-table th,
-      .modal-data-table td {
-        padding-block: clamp(0.375rem, 0.3rem + 0.2vw, 0.625rem);
-        padding-inline: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
-        text-align: start;
-        font-weight: 600;
-      }
-
-      .modal-data-table td {
-        font-weight: 400;
-      }
-
-      .modal-data-table tbody tr {
-        border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-      }
-
-      .modal-data-table .modal-data-table__align-end {
-        text-align: end;
-      }
-
-      .modal-data-table .modal-data-table__align-center {
-        text-align: center;
-      }
-
-      /* Status badge inside table */
-      .modal-status-badge {
-        display: inline-block;
-        padding-block: clamp(0.1rem, 0.05rem + 0.1vw, 0.15rem);
-        padding-inline: clamp(0.35rem, 0.25rem + 0.2vw, 0.5rem);
-        border-radius: 50px;
-        font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
-        font-weight: 600;
-      }
-
-      .modal-status-badge--active {
-        background: var(--sb-ui-color-feedback-success-L400, #d4edda);
-        color: var(--sb-ui-color-feedback-success-D200, #155724);
-      }
-
-      .modal-status-badge--warning {
-        background: var(--sb-ui-color-feedback-warning-L400, #fff3cd);
-        color: var(--sb-ui-color-feedback-warning-D200, #856404);
-      }
-
-      .modal-content-note {
-        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-        color: var(--sb-ui-color-grayscale-D100, #757575);
-      }
-
-      @media (max-inline-size: 640px) {
-        .modal-demo-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .modal-form__row {
-          grid-template-columns: 1fr;
-        }
-
-        .modal-stats-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
   </head>
   <body data-brand="seguros-bolivar">
     <main class="component-container">
@@ -384,25 +109,24 @@
               <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="mi-modal-small" title="Confirmar accion" size="small"&gt;
-  &lt;p&gt;Cupcake ipsum dolor sit amet apple pie. Dessert sesame
-  snaps donut sesame snaps tart I love wafer I love.&lt;/p&gt;
+          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="modal-small" title="Confirmar accion" size="small"&gt;
+  &lt;p&gt;Este es un modal tamaño small&lt;/p&gt;
 
   &lt;div slot="footer"&gt;
     &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
-            onclick="document.getElementById('mi-modal-small').close()"&gt;
+            onclick="document.getElementById('modal-small').close()"&gt;
       Cancelar
     &lt;/button&gt;
     &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
-            onclick="document.getElementById('mi-modal-small').close()"&gt;
+            onclick="document.getElementById('modal-small').close()"&gt;
       Confirmar
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/sb-ui-modal&gt;
 
 &lt;!-- Abrir el modal --&gt;
-&lt;button onclick="document.getElementById('mi-modal-small').openModal()"&gt;
-  Abrir Modal
+&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="document.getElementById('modal-small').openModal()"&gt;
+  Abrir Modal Small
 &lt;/button&gt;</code></pre>
         </div>
       </section>
@@ -455,38 +179,47 @@
               <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>&lt;sb-ui-modal id="mi-modal-medium" title="Nuevo contacto" size="medium"&gt;
-  &lt;form class="modal-form"&gt;
-    &lt;div class="modal-form__row"&gt;
-      &lt;div class="modal-form__field"&gt;
-        &lt;label class="modal-form__label"&gt;Nombre&lt;/label&gt;
-        &lt;input type="text" class="modal-form__input" placeholder="Juan" /&gt;
+          <pre class="demo-code-block-body"><code>&lt;!--Modal medium --&gt;
+&lt;sb-ui-modal id="modal-medium" title="Nuevo contacto" size="medium"&gt;
+  &lt;form id="modal-contact-form" class="sb-ui-grid-cols-1 sb-ui-gap-4" onsubmit="return handleContactForm(event)"&gt;
+    &lt;div class="sb-ui-grid-cols-2 sb-ui-gap-3"&gt;
+      &lt;div class="sb-ui-input-container"&gt;
+        &lt;label class="sb-ui-input-label sb-ui-input-label--required" for="modal-firstName"&gt;Nombre&lt;/label&gt;
+        &lt;input type="text" id="modal-firstName" name="firstName" class="sb-ui-input" placeholder="Ingrese su nombre" required aria-describedby="modal-firstNameHelper" aria-required="true" autocomplete="given-name" /&gt;
+        &lt;span class="sb-ui-input-helper" id="modal-firstNameHelper" role="status" aria-live="polite"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Mínimo 2 caracteres&lt;/span&gt;
       &lt;/div&gt;
-      &lt;div class="modal-form__field"&gt;
-        &lt;label class="modal-form__label"&gt;Apellido&lt;/label&gt;
-        &lt;input type="text" class="modal-form__input" placeholder="Perez" /&gt;
+      &lt;div class="sb-ui-input-container"&gt;
+        &lt;label class="sb-ui-input-label sb-ui-input-label--required" for="modal-lastName"&gt;Apellido&lt;/label&gt;
+        &lt;input type="text" id="modal-lastName" name="lastName" class="sb-ui-input" placeholder="Ingrese su apellido" required aria-describedby="modal-lastNameHelper" aria-required="true" autocomplete="family-name" /&gt;
+        &lt;span class="sb-ui-input-helper" id="modal-lastNameHelper" role="status" aria-live="polite"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Mínimo 2 caracteres&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class="modal-form__field"&gt;
-      &lt;label class="modal-form__label"&gt;Correo electronico&lt;/label&gt;
-      &lt;input type="email" class="modal-form__input" placeholder="juan@ejemplo.com" /&gt;
+    &lt;div class="sb-ui-input-container"&gt;
+      &lt;label class="sb-ui-input-label sb-ui-input-label--required" for="modal-email"&gt;Correo electrónico&lt;/label&gt;
+      &lt;input type="email" id="modal-email" name="email" class="sb-ui-input" placeholder="ejemplo@email.com" required aria-describedby="modal-emailHelper" aria-required="true" autocomplete="email" /&gt;
+      &lt;span class="sb-ui-input-helper" id="modal-emailHelper" role="status" aria-live="polite"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Usaremos este email para contactarlo&lt;/span&gt;
     &lt;/div&gt;
-    &lt;div class="modal-form__field"&gt;
-      &lt;label class="modal-form__label"&gt;Mensaje&lt;/label&gt;
-      &lt;textarea class="modal-form__textarea" rows="3" placeholder="Escribe tu mensaje..."&gt;&lt;/textarea&gt;
+    &lt;div class="sb-ui-textarea-container"&gt;
+      &lt;label class="sb-ui-textarea-label sb-ui-textarea-label--optional" for="modal-comments"&gt;Comentarios&lt;/label&gt;
+      &lt;textarea id="modal-comments" name="comments" class="sb-ui-textarea" placeholder="Cuéntanos un poco sobre ti..." rows="4"&gt;&lt;/textarea&gt;
+      &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Máximo 500 caracteres&lt;/span&gt;
     &lt;/div&gt;
   &lt;/form&gt;
 
   &lt;div slot="footer"&gt;
-    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
-            onclick="document.getElementById('mi-modal-medium').close()"&gt;
+    &lt;button type="button" class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+            onclick="document.getElementById('modal-medium').close()"&gt;
       Cancelar
     &lt;/button&gt;
-    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"&gt;
-      Enviar
+    &lt;button type="submit" form="modal-contact-form" class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"&gt;
+      Enviar solicitud
     &lt;/button&gt;
   &lt;/div&gt;
-&lt;/sb-ui-modal&gt;</code></pre>
+&lt;/sb-ui-modal&gt;
+&lt;!-- Abrir el modal Medium --&gt;
+&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="document.getElementById('modal-medium').openModal()"&gt;
+  Abrir Modal Medium
+&lt;/button&gt;</code></pre>
         </div>
       </section>
 
@@ -550,7 +283,11 @@
       Aceptar terminos
     &lt;/button&gt;
   &lt;/div&gt;
-&lt;/sb-ui-modal&gt;</code></pre>
+&lt;/sb-ui-modal&gt;
+
+&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="document.getElementById('mi-modal-large').openModal()"&gt;
+  Abrir Modal Large
+&lt;/button&gt;</code></pre>
         </div>
       </section>
 
@@ -568,7 +305,7 @@
           <pre class="demo-code-block-body"><code>// Propiedades (atributos HTML)
 // title             - String  - Titulo del modal
 // size              - String  - 'small' | 'medium' | 'large' (default: 'medium')
-// open              - Boolean - Estado abierto/cerrado
+// open              - Boolean - Estado abierto/cerrado (tambien: modal.open = true)
 // close-on-backdrop - Boolean - Cerrar al hacer clic fuera (default: true)
 // show-close-button - Boolean - Mostrar boton X (default: true)
 
@@ -584,7 +321,10 @@ modal.addEventListener('sb-ui-modal-close', () =&gt; console.log('Cerrado'));
 // Slots
 // (default)  - Contenido del body
 // header     - Header personalizado (reemplaza title)
-// footer     - Footer con botones de accion</code></pre>
+// footer     - Footer con botones de accion
+
+// CSS Parts (para estilos personalizados)
+// backdrop, dialog, header, body, footer, close-button</code></pre>
         </div>
       </section>
 
@@ -615,45 +355,39 @@ modal.addEventListener('sb-ui-modal-close', () =&gt; console.log('Cerrado'));
         <p class="modal-content-text">Sweet roll muffin cotton candy cake macaroon I love sesame snaps lemon drops.</p>
       </sb-ui-modal>
 
-      <!-- Medium: Formulario -->
+      <!-- Medium: Formulario (solo estilos del CSS compilado: sb-ui-*) -->
       <sb-ui-modal id="modal-medium-form" title="Nuevo contacto" size="medium">
-        <form id="contact-form" class="modal-form">
-          <div class="modal-form__row">
-            <div class="modal-form__field">
-              <label class="modal-form__label">Nombre</label>
-              <input type="text" class="modal-form__input" placeholder="Juan" required />
+        <form id="modal-contact-form" class="sb-ui-grid-cols-1 sb-ui-gap-4" onsubmit="return handleContactForm(event)">
+          <div class="sb-ui-grid-cols-2 sb-ui-gap-3">
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label sb-ui-input-label--required" for="modal-firstName">Nombre</label>
+              <input type="text" id="modal-firstName" name="firstName" class="sb-ui-input" placeholder="Ingrese su nombre" required aria-describedby="modal-firstNameHelper" aria-required="true" autocomplete="given-name" />
+              <span class="sb-ui-input-helper" id="modal-firstNameHelper" role="status" aria-live="polite"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Mínimo 2 caracteres</span>
             </div>
-            <div class="modal-form__field">
-              <label class="modal-form__label">Apellido</label>
-              <input type="text" class="modal-form__input" placeholder="Perez" required />
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label sb-ui-input-label--required" for="modal-lastName">Apellido</label>
+              <input type="text" id="modal-lastName" name="lastName" class="sb-ui-input" placeholder="Ingrese su apellido" required aria-describedby="modal-lastNameHelper" aria-required="true" autocomplete="family-name" />
+              <span class="sb-ui-input-helper" id="modal-lastNameHelper" role="status" aria-live="polite"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Mínimo 2 caracteres</span>
             </div>
           </div>
-          <div class="modal-form__field">
-            <label class="modal-form__label">Correo electronico</label>
-            <input type="email" class="modal-form__input" placeholder="juan@ejemplo.com" required />
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label sb-ui-input-label--required" for="modal-email">Correo electrónico</label>
+            <input type="email" id="modal-email" name="email" class="sb-ui-input" placeholder="ejemplo@email.com" required aria-describedby="modal-emailHelper" aria-required="true" autocomplete="email" />
+            <span class="sb-ui-input-helper" id="modal-emailHelper" role="status" aria-live="polite"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Usaremos este email para contactarlo</span>
           </div>
-          <div class="modal-form__field">
-            <label class="modal-form__label">Tipo de seguro</label>
-            <select class="modal-form__select">
-              <option>Seguro de Vida</option>
-              <option>Seguro Vehicular</option>
-              <option>Seguro de Hogar</option>
-              <option>Seguro de Salud</option>
-            </select>
-          </div>
-          <div class="modal-form__field">
-            <label class="modal-form__label">Mensaje</label>
-            <textarea class="modal-form__textarea" rows="3" placeholder="Describe brevemente lo que necesitas..."></textarea>
+          <div class="sb-ui-textarea-container">
+            <label class="sb-ui-textarea-label sb-ui-textarea-label--optional" for="modal-comments">Comentarios</label>
+            <textarea id="modal-comments" name="comments" class="sb-ui-textarea" placeholder="Cuéntanos un poco sobre ti..." rows="4"></textarea>
+            <span class="sb-ui-textarea-helper"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Máximo 500 caracteres</span>
           </div>
         </form>
 
         <div slot="footer">
-          <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
+          <button type="button" class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill sb-ui-button--small"
                   onclick="document.getElementById('modal-medium-form').close()">
             Cancelar
           </button>
-          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small"
-                  onclick="handleContactForm()">
+          <button type="submit" form="modal-contact-form" class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small">
             Enviar solicitud
           </button>
         </div>
@@ -845,9 +579,15 @@ modal.addEventListener('sb-ui-modal-close', () =&gt; console.log('Cerrado'));
           }
         }
 
-        function handleContactForm() {
+        function handleContactForm(e) {
+          if (e) e.preventDefault();
+          var form = document.getElementById('modal-contact-form');
           var modal = document.getElementById('modal-medium-form');
-          if (modal) modal.close();
+          if (form && form.checkValidity()) {
+            if (modal) modal.close();
+            if (form) form.reset();
+          }
+          return false;
         }
 
         function copyCode(btn) {
