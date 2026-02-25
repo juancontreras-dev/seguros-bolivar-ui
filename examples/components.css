@@ -881,6 +881,29 @@ body {
 }
 
 /* ========================================
+   CARD DEMO LAYOUT
+   ======================================== */
+.card-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 1rem + 1vw, 2rem);
+  margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.card-demo-grid--horizontal {
+  grid-template-columns: 1fr;
+}
+
+.card-demo-label {
+  font-size: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
+  font-weight: 600;
+  color: var(--sb-ui-color-grayscale-base, #9b9b9b);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-block-end: clamp(0.5rem, 0.3rem + 0.3vw, 0.75rem);
+}
+
+/* ========================================
    FORM LAYOUT (form-demo / modal form)
    ======================================== */
 .form-card {
