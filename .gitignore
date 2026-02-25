@@ -2,20 +2,12 @@
 node_modules/
 .pnpm-store/
 
-# Build outputs
+# Build outputs (no commitear: se regeneran con pnpm run build)
 dist/
 build/
 .turbo/
 .next/
 out/
-
-# EXCEPCIÓN: Permitir examples/dist/ para desarrollo local
-!examples/dist/
-!examples/dist/*.css
-!examples/dist/*.js
-
-# No subir demos en dist (solo en examples/)
-**/dist/*.html
 
 # Testing
 coverage/
