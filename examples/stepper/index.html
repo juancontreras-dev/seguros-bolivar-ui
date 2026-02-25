@@ -133,10 +133,54 @@
 
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">// Actualizar estado visual del stepper
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Funcional con botones de navegación --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal" id="stepper-demo-1" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 1"&gt;1&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Información Personal&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 2"&gt;2&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Datos de Contacto&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 3"&gt;3&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Confirmación&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button" aria-label="Paso 4"&gt;4&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Finalizar&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Botones de navegación --&gt;
+&lt;div class="stepper-actions" style="display: flex; gap: 1rem; margin-block-start: 2rem;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" id="stepper-prev"&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" id="stepper-next"&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" id="stepper-reset"&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong id="stepper-current-label"&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+// Actualizar estado visual del stepper
 function updateStepper(container, currentStep) {
   const steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
   steps.forEach(function(stepEl) {
@@ -154,6 +198,8 @@ function updateStepper(container, currentStep) {
     }
   });
   container.setAttribute('data-current-step', currentStep);
+  var labelEl = document.getElementById('stepper-current-label');
+  if (labelEl) labelEl.textContent = currentStep;
 }
 
 // Botones y clic en pasos
@@ -166,12 +212,16 @@ document.getElementById('stepper-next').onclick = function() {
 document.getElementById('stepper-prev').onclick = function() {
   if (current &gt; 1) { current--; updateStepper(stepper, current); }
 };
+document.getElementById('stepper-reset').onclick = function() {
+  current = 1; updateStepper(stepper, current);
+};
 stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
     if (step &lt;= current + 1) { current = step; updateStepper(stepper, current); }
   });
-});</code></pre>
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -247,37 +297,98 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Horizontal con Números --&gt;
-&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal"&gt;
-  &lt;!-- Completado --&gt;
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
-      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
-    &lt;/div&gt;
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Horizontal con Números - Track Punteado (Dash) --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash" id="mi-stepper" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;1&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 1&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;!-- Activo --&gt;
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;2&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 2&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;!-- Pendiente (Empty Default) --&gt;
-  &lt;div class="sb-ui-stepper__step"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;3&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 3&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;4&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 4&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Track Punteado --&gt;
-&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash"&gt;
-  ...
+&lt;!-- Controles: data-stepper-target debe coincidir con el id del stepper --&gt;
+&lt;div data-stepper-target="mi-stepper" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong data-stepper-label&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+  var targetId = controlsEl.getAttribute('data-stepper-target');
+  var stepperEl = document.getElementById(targetId);
+  if (!stepperEl) return;
+  var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+  var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+  var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+  var labelEl = controlsEl.querySelector('[data-stepper-label]');
+  var totalSteps = 4;
+  var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+  function updateStepper(container, step, lbl) {
+    var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+    if (!container._stepContents) {
+      container._stepContents = {};
+      steps.forEach(function(s) {
+        var n = parseInt(s.getAttribute('data-step'), 10);
+        var c = s.querySelector('.sb-ui-stepper__step-circle');
+        if (c) container._stepContents[n] = c.innerHTML;
+      });
+    }
+    steps.forEach(function(s) {
+      var n = parseInt(s.getAttribute('data-step'), 10);
+      s.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+      var c = s.querySelector('.sb-ui-stepper__step-circle');
+      if (!c) return;
+      if (n &lt; step) { s.classList.add('sb-ui-stepper__step--filled-default'); c.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;'; }
+      else if (n === step) { s.classList.add('sb-ui-stepper__step--empty-active'); c.innerHTML = container._stepContents[n] || String(n); }
+      else { c.innerHTML = container._stepContents[n] || String(n); }
+    });
+    container.setAttribute('data-current-step', step);
+    if (lbl) lbl.textContent = step;
+  }
+  function update() { updateStepper(stepperEl, current, labelEl); }
+  if (prevBtn) prevBtn.onclick = function() { if (current &gt; 1) { current--; update(); } };
+  if (nextBtn) nextBtn.onclick = function() { if (current &lt; totalSteps) { current++; update(); } };
+  if (resetBtn) resetBtn.onclick = function() { current = 1; update(); };
+  stepperEl.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+    btn.onclick = function() {
+      var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+      if (step &lt;= current + 1) { current = step; update(); }
+    };
+  });
+  update();
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -322,33 +433,97 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper con Iconos --&gt;
-&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-icon"&gt;
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
-      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
-    &lt;/div&gt;
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper con Iconos (funcional) --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-icon" id="mi-stepper" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;&lt;i class="fa-solid fa-cart-shopping"&gt;&lt;/i&gt;&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Carrito&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
-      &lt;i class="fa-solid fa-credit-card"&gt;&lt;/i&gt;
-    &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;&lt;i class="fa-solid fa-credit-card"&gt;&lt;/i&gt;&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Pago&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;div class="sb-ui-stepper__step"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
-      &lt;i class="fa-solid fa-truck"&gt;&lt;/i&gt;
-    &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;&lt;i class="fa-solid fa-truck"&gt;&lt;/i&gt;&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Envío&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;&lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Confirmación&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-stepper-target="mi-stepper" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong data-stepper-label&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+  var targetId = controlsEl.getAttribute('data-stepper-target');
+  var stepperEl = document.getElementById(targetId);
+  if (!stepperEl) return;
+  var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+  var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+  var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+  var labelEl = controlsEl.querySelector('[data-stepper-label]');
+  var totalSteps = 4;
+  var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+  function updateStepper(container, step, lbl) {
+    var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+    if (!container._stepContents) {
+      container._stepContents = {};
+      steps.forEach(function(s) {
+        var n = parseInt(s.getAttribute('data-step'), 10);
+        var c = s.querySelector('.sb-ui-stepper__step-circle');
+        if (c) container._stepContents[n] = c.innerHTML;
+      });
+    }
+    steps.forEach(function(s) {
+      var n = parseInt(s.getAttribute('data-step'), 10);
+      s.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+      var c = s.querySelector('.sb-ui-stepper__step-circle');
+      if (!c) return;
+      if (n &lt; step) { s.classList.add('sb-ui-stepper__step--filled-default'); c.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;'; }
+      else if (n === step) { s.classList.add('sb-ui-stepper__step--empty-active'); c.innerHTML = container._stepContents[n] || String(n); }
+      else { c.innerHTML = container._stepContents[n] || String(n); }
+    });
+    container.setAttribute('data-current-step', step);
+    if (lbl) lbl.textContent = step;
+  }
+  function update() { updateStepper(stepperEl, current, labelEl); }
+  if (prevBtn) prevBtn.onclick = function() { if (current &gt; 1) { current--; update(); } };
+  if (nextBtn) nextBtn.onclick = function() { if (current &lt; totalSteps) { current++; update(); } };
+  if (resetBtn) resetBtn.onclick = function() { current = 1; update(); };
+  stepperEl.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+    btn.onclick = function() {
+      var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+      if (step &lt;= current + 1) { current = step; update(); }
+    };
+  });
+  update();
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -405,27 +580,109 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Mix (Icono + Badge) --&gt;
-&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix"&gt;
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix" id="mi-stepper" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
       &lt;span class="sb-ui-stepper__step-circle-badge"&gt;1&lt;/span&gt;
       &lt;i class="fa-solid fa-user"&gt;&lt;/i&gt;
     &lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Usuario&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;div class="sb-ui-stepper__step"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
       &lt;span class="sb-ui-stepper__step-circle-badge"&gt;2&lt;/span&gt;
       &lt;i class="fa-solid fa-shield-halved"&gt;&lt;/i&gt;
     &lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Seguro&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
+      &lt;span class="sb-ui-stepper__step-circle-badge"&gt;3&lt;/span&gt;
+      &lt;i class="fa-solid fa-file-contract"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Contrato&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
+      &lt;span class="sb-ui-stepper__step-circle-badge"&gt;4&lt;/span&gt;
+      &lt;i class="fa-solid fa-check-double"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Finalizar&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-stepper-target="mi-stepper" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong data-stepper-label&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+  var targetId = controlsEl.getAttribute('data-stepper-target');
+  var stepperEl = document.getElementById(targetId);
+  if (!stepperEl) return;
+  var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+  var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+  var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+  var labelEl = controlsEl.querySelector('[data-stepper-label]');
+  var totalSteps = 4;
+  var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+  function updateStepper(container, step, lbl) {
+    var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+    if (!container._stepContents) {
+      container._stepContents = {};
+      steps.forEach(function(s) {
+        var n = parseInt(s.getAttribute('data-step'), 10);
+        var c = s.querySelector('.sb-ui-stepper__step-circle');
+        if (c) container._stepContents[n] = c.innerHTML;
+      });
+    }
+    steps.forEach(function(s) {
+      var n = parseInt(s.getAttribute('data-step'), 10);
+      s.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+      var c = s.querySelector('.sb-ui-stepper__step-circle');
+      if (!c) return;
+      if (n &lt; step) { s.classList.add('sb-ui-stepper__step--filled-default'); c.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;'; }
+      else if (n === step) { s.classList.add('sb-ui-stepper__step--empty-active'); c.innerHTML = container._stepContents[n] || String(n); }
+      else { c.innerHTML = container._stepContents[n] || String(n); }
+    });
+    container.setAttribute('data-current-step', step);
+    if (lbl) lbl.textContent = step;
+  }
+  function update() { updateStepper(stepperEl, current, labelEl); }
+  if (prevBtn) prevBtn.onclick = function() { if (current &gt; 1) { current--; update(); } };
+  if (nextBtn) nextBtn.onclick = function() { if (current &lt; totalSteps) { current++; update(); } };
+  if (resetBtn) resetBtn.onclick = function() { current = 1; update(); };
+  stepperEl.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+    btn.onclick = function() {
+      var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+      if (step &lt;= current + 1) { current = step; update(); }
+    };
+  });
+  update();
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -505,29 +762,97 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Vertical --&gt;
-&lt;div class="sb-ui-stepper sb-ui-stepper--vertical"&gt;
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;
-      &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
-    &lt;/div&gt;
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper Vertical (funcional) --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--vertical" id="mi-stepper" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;1&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 1&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;2&lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;2&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 2&lt;/span&gt;
     &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  
-  &lt;div class="sb-ui-stepper__step"&gt;
-    &lt;div class="sb-ui-stepper__step-circle"&gt;3&lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;3&lt;/div&gt;
     &lt;span class="sb-ui-stepper__step-label"&gt;Paso 3&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;4&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 4&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-stepper-target="mi-stepper" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong data-stepper-label&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+  var targetId = controlsEl.getAttribute('data-stepper-target');
+  var stepperEl = document.getElementById(targetId);
+  if (!stepperEl) return;
+  var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+  var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+  var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+  var labelEl = controlsEl.querySelector('[data-stepper-label]');
+  var totalSteps = 4;
+  var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+  function updateStepper(container, step, lbl) {
+    var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+    if (!container._stepContents) {
+      container._stepContents = {};
+      steps.forEach(function(s) {
+        var n = parseInt(s.getAttribute('data-step'), 10);
+        var c = s.querySelector('.sb-ui-stepper__step-circle');
+        if (c) container._stepContents[n] = c.innerHTML;
+      });
+    }
+    steps.forEach(function(s) {
+      var n = parseInt(s.getAttribute('data-step'), 10);
+      s.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+      var c = s.querySelector('.sb-ui-stepper__step-circle');
+      if (!c) return;
+      if (n &lt; step) { s.classList.add('sb-ui-stepper__step--filled-default'); c.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;'; }
+      else if (n === step) { s.classList.add('sb-ui-stepper__step--empty-active'); c.innerHTML = container._stepContents[n] || String(n); }
+      else { c.innerHTML = container._stepContents[n] || String(n); }
+    });
+    container.setAttribute('data-current-step', step);
+    if (lbl) lbl.textContent = step;
+  }
+  function update() { updateStepper(stepperEl, current, labelEl); }
+  if (prevBtn) prevBtn.onclick = function() { if (current &gt; 1) { current--; update(); } };
+  if (nextBtn) nextBtn.onclick = function() { if (current &lt; totalSteps) { current++; update(); } };
+  if (resetBtn) resetBtn.onclick = function() { current = 1; update(); };
+  stepperEl.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+    btn.onclick = function() {
+      var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+      if (step &lt;= current + 1) { current = step; update(); }
+    };
+  });
+  update();
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -572,22 +897,97 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
         <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
           <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Ejemplo de uso</span>
-            <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Step Clickable --&gt;
-&lt;div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default sb-ui-stepper__step--clickable"&gt;
-  &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;
-    &lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Stepper con steps clickables (funcional) --&gt;
+&lt;div class="sb-ui-stepper sb-ui-stepper--horizontal" id="mi-stepper" data-current-step="1"&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="1"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;1&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Clickable&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;span class="sb-ui-stepper__step-label"&gt;Clickable&lt;/span&gt;
-  &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="2"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;2&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Actual&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="3"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;3&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 3&lt;/span&gt;
+    &lt;div class="sb-ui-stepper__step-track"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-stepper__step sb-ui-stepper__step--clickable" data-step="4"&gt;
+    &lt;div class="sb-ui-stepper__step-circle" tabindex="0" role="button"&gt;4&lt;/div&gt;
+    &lt;span class="sb-ui-stepper__step-label"&gt;Paso 4&lt;/span&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Step Deshabilitado --&gt;
-&lt;div class="sb-ui-stepper__step sb-ui-stepper__step--disabled"&gt;
-  &lt;div class="sb-ui-stepper__step-circle" aria-disabled="true"&gt;2&lt;/div&gt;
-  &lt;span class="sb-ui-stepper__step-label"&gt;Deshabilitado&lt;/span&gt;
+&lt;div data-stepper-target="mi-stepper" style="display: flex; gap: 1rem; align-items: center; margin-block-start: 2rem; flex-wrap: wrap;"&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--secondary" data-stepper-prev&gt;Anterior&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--primary" data-stepper-next&gt;Siguiente&lt;/button&gt;
+  &lt;button type="button" class="sb-ui-button sb-ui-button--tertiary" data-stepper-reset&gt;Reset&lt;/button&gt;
+  &lt;span&gt;Paso &lt;strong data-stepper-label&gt;1&lt;/strong&gt; de 4&lt;/span&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="demo-code-block" style="background: #1e1e1e; color: #d4d4d4; border-radius: 8px; border: 1px solid #e5e7eb; margin: 1.5rem 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);">
+          <div class="demo-code-block-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.25rem; background: #2d2d2d; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+            <span class="demo-code-block-title" style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.3px; color: #a0a0a0;">Cómo hacerlo funcional (JavaScript)</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="demo-code-block-badge" style="font-size: 0.6875rem; padding: 0.3125rem 0.625rem; border-radius: 0.375rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;script&gt;
+document.querySelectorAll('[data-stepper-target]').forEach(function(controlsEl) {
+  var targetId = controlsEl.getAttribute('data-stepper-target');
+  var stepperEl = document.getElementById(targetId);
+  if (!stepperEl) return;
+  var prevBtn = controlsEl.querySelector('[data-stepper-prev]');
+  var nextBtn = controlsEl.querySelector('[data-stepper-next]');
+  var resetBtn = controlsEl.querySelector('[data-stepper-reset]');
+  var labelEl = controlsEl.querySelector('[data-stepper-label]');
+  var totalSteps = 4;
+  var current = parseInt(stepperEl.getAttribute('data-current-step'), 10) || 1;
+
+  function updateStepper(container, step, lbl) {
+    var steps = container.querySelectorAll('.sb-ui-stepper__step[data-step]');
+    if (!container._stepContents) {
+      container._stepContents = {};
+      steps.forEach(function(s) {
+        var n = parseInt(s.getAttribute('data-step'), 10);
+        var c = s.querySelector('.sb-ui-stepper__step-circle');
+        if (c) container._stepContents[n] = c.innerHTML;
+      });
+    }
+    steps.forEach(function(s) {
+      var n = parseInt(s.getAttribute('data-step'), 10);
+      s.classList.remove('sb-ui-stepper__step--filled-default', 'sb-ui-stepper__step--empty-active');
+      var c = s.querySelector('.sb-ui-stepper__step-circle');
+      if (!c) return;
+      if (n &lt; step) { s.classList.add('sb-ui-stepper__step--filled-default'); c.innerHTML = '&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;'; }
+      else if (n === step) { s.classList.add('sb-ui-stepper__step--empty-active'); c.innerHTML = container._stepContents[n] || String(n); }
+      else { c.innerHTML = container._stepContents[n] || String(n); }
+    });
+    container.setAttribute('data-current-step', step);
+    if (lbl) lbl.textContent = step;
+  }
+  function update() { updateStepper(stepperEl, current, labelEl); }
+  if (prevBtn) prevBtn.onclick = function() { if (current &gt; 1) { current--; update(); } };
+  if (nextBtn) nextBtn.onclick = function() { if (current &lt; totalSteps) { current++; update(); } };
+  if (resetBtn) resetBtn.onclick = function() { current = 1; update(); };
+  stepperEl.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
+    btn.onclick = function() {
+      var step = parseInt(btn.closest('.sb-ui-stepper__step').getAttribute('data-step'), 10);
+      if (step &lt;= current + 1) { current = step; update(); }
+    };
+  });
+  update();
+});
+&lt;/script&gt;</code></pre>
         </div>
       </section>
 
@@ -809,6 +1209,29 @@ stepper.querySelectorAll('.sb-ui-stepper__step-circle').forEach(function(btn) {
           });
           update1();
         }
+
+        // COPIAR CÓDIGO (delegación para botones .demo-code-block-copy)
+        document.addEventListener('click', function (event) {
+          var btn = event.target.closest('.demo-code-block-copy');
+          if (!btn) return;
+          event.preventDefault();
+          var block = btn.closest('.demo-code-block');
+          if (!block) return;
+          var code = block.querySelector('code');
+          if (!code) return;
+          var text = code.textContent || code.innerText;
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = 'Copiado!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = 'Copiar';
+              btn.classList.remove('copied');
+            }, 2000);
+          }).catch(function (err) {
+            console.error('Error al copiar:', err);
+            alert('Error al copiar el código');
+          });
+        });
       })();
     </script>
   </body>
