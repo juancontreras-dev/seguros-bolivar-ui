@@ -26,12 +26,18 @@
 
       /* Tipos: una fila completa por cada tipo (Success, Info, Warning, Error) */
       .toast-demo-grid--full-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       /* Evitar scroll horizontal en bloques de código - el texto se ajusta */
+      .toast-demo-card {
+        min-width: 0;
+        max-width: 100%;
+      }
+
       .toast-demo-card .demo-code-block {
         min-width: 0;
+        max-width: 100%;
       }
 
       .toast-demo-card .demo-code-block-body {
@@ -40,6 +46,7 @@
         word-wrap: break-word;
         overflow-wrap: break-word;
         min-width: 0;
+        max-width: 100%;
       }
 
       .toast-demo-card .demo-code-block-body code {
@@ -110,18 +117,10 @@
         margin-block-start: clamp(1.5rem, 1rem + 1vw, 2rem);
       }
 
-      /* Posiciones - Grid layout */
-      .toast-positions-grid {
-        max-inline-size: 500px;
-      }
-
-      .toast-positions-grid .sb-ui-button {
-        grid-column: span 1;
-      }
-
-      .toast-positions-grid .sb-ui-button--top-center,
-      .toast-positions-grid .sb-ui-button--bottom-center {
-        grid-column: 1 / -1;
+      /* Posiciones - una columna por item, sin desbordamiento */
+      .toast-demo-grid--full-row .toast-demo-card {
+        min-width: 0;
+        overflow-x: hidden;
       }
 
       /* Contenedor de tamaños */
@@ -183,6 +182,7 @@
 
       /* Deshabilitar botones hasta que el módulo esté listo */
       body:not(.toast-ready) .toast-trigger,
+      body:not(.toast-ready) .toast-demo-btn,
       body:not(.toast-ready) #btn-create-multiple,
       body:not(.toast-ready) #btn-hide-all,
       body:not(.toast-ready) #btn-remove-all,
@@ -235,11 +235,8 @@
             <p class="toast-demo-card__title">Success</p>
             <p class="toast-demo-card__description">Operación completada correctamente.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left toast-trigger"
-              data-toast-type="success"
-              data-toast-title="Guardado exitoso"
-              data-toast-message="Los cambios se guardaron correctamente."
-              data-toast-auto-dismiss="4000"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"
             >
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
               Ver Success
@@ -252,10 +249,11 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showSuccess ya está disponible en window --&gt;
-&lt;button onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"&gt;
-  Ver Success
-&lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-circle-check" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Success
+  &lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -264,11 +262,8 @@
             <p class="toast-demo-card__title">Info</p>
             <p class="toast-demo-card__description">Información relevante para el usuario.</p>
             <button
-              class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
-              data-toast-type="info"
-              data-toast-title="Información"
-              data-toast-message="Hay una nueva versión disponible."
-              data-toast-auto-dismiss="4000"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"
             >
               <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
               Ver Info
@@ -281,10 +276,11 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showInfo ya está disponible en window --&gt;
-&lt;button onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"&gt;
-  Ver Info
-&lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Info
+  &lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -293,11 +289,8 @@
             <p class="toast-demo-card__title">Warning</p>
             <p class="toast-demo-card__description">Advertencia que requiere atención.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
-              data-toast-type="warning"
-              data-toast-title="Advertencia"
-              data-toast-message="Tu sesión vencerá en 5 minutos."
-              data-toast-auto-dismiss="4000"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"
             >
               <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
               Ver Warning
@@ -310,10 +303,11 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showWarning ya está disponible en window --&gt;
-&lt;button onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"&gt;
-  Ver Warning
-&lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-triangle-exclamation" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Warning
+  &lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -322,11 +316,8 @@
             <p class="toast-demo-card__title">Error</p>
             <p class="toast-demo-card__description">Error que impide completar la acción.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
-              data-toast-type="error"
-              data-toast-title="Error de conexión"
-              data-toast-message="No se pudo conectar al servidor."
-              data-toast-auto-dismiss="4000"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"
             >
               <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
               Ver Error
@@ -339,10 +330,11 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showError ya está disponible en window --&gt;
-&lt;button onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"&gt;
-  Ver Error
-&lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-circle-xmark" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Error
+  &lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -356,78 +348,170 @@
         <h3 class="variant-title">Posiciones</h3>
         <p class="component-description">El toast puede aparecer en 6 posiciones de la pantalla.</p>
 
-        <div class="toast-btn-grid toast-positions-grid">
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
-            data-toast-type="info"
-            data-toast-message="Top Left"
-            data-toast-position="top-left"
-            data-toast-auto-dismiss="3000"
-          >
-            ↖ Top Left
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
-            data-toast-type="info"
-            data-toast-message="Top Right"
-            data-toast-position="top-right"
-            data-toast-auto-dismiss="3000"
-          >
-            ↗ Top Right
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
-            data-toast-type="info"
-            data-toast-message="Bottom Left"
-            data-toast-position="bottom-left"
-            data-toast-auto-dismiss="3000"
-          >
-            ↙ Bottom Left
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
-            data-toast-type="info"
-            data-toast-message="Bottom Right"
-            data-toast-position="bottom-right"
-            data-toast-auto-dismiss="3000"
-          >
-            ↘ Bottom Right
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--top-center toast-trigger"
-            data-toast-type="success"
-            data-toast-message="Top Center"
-            data-toast-position="top-center"
-            data-toast-auto-dismiss="3000"
-          >
-            ↑ Top Center
-          </button>
-          <button
-            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--bottom-center toast-trigger"
-            data-toast-type="success"
-            data-toast-message="Bottom Center"
-            data-toast-position="bottom-center"
-            data-toast-auto-dismiss="3000"
-          >
-            ↓ Bottom Center
-          </button>
-        </div>
+        <div class="toast-demo-grid toast-demo-grid--full-row">
 
-        <!-- Código de ejemplo -->
-        <div class="demo-code-block code-block-wrapper">
-          <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Ejemplo de uso - Posiciones</span>
-            <div class="demo-code-block-actions">
-              <span class="demo-code-block-badge">JS</span>
-              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+          <!-- Top Left -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Top Left</p>
+            <p class="toast-demo-card__description">Toast en la esquina superior izquierda.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showInfo('Toast en esquina superior izquierda.', { title: 'Top Left', position: 'top-left', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-up-left" aria-hidden="true"></i>
+              Ver Top Left
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Top Left</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showInfo('Toast en esquina superior izquierda.', { title: 'Top Left', position: 'top-left', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-up-left" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Top Left
+  &lt;/button&gt;</code></pre>
             </div>
           </div>
-          <pre class="demo-code-block-body"><code>showToast({ type: 'info', message: 'Mensaje', position: 'top-left',    autoDismiss: 3000 });
-showToast({ type: 'info', message: 'Mensaje', position: 'top-right',   autoDismiss: 3000 });
-showToast({ type: 'info', message: 'Mensaje', position: 'top-center',  autoDismiss: 3000 });
-showToast({ type: 'info', message: 'Mensaje', position: 'bottom-left', autoDismiss: 3000 });
-showToast({ type: 'info', message: 'Mensaje', position: 'bottom-right',autoDismiss: 3000 });
-showToast({ type: 'info', message: 'Mensaje', position: 'bottom-center',autoDismiss: 3000 });</code></pre>
+
+          <!-- Top Right -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Top Right</p>
+            <p class="toast-demo-card__description">Toast en la esquina superior derecha.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showInfo('Toast en esquina superior derecha.', { title: 'Top Right', position: 'top-right', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i>
+              Ver Top Right
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Top Right</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showInfo('Toast en esquina superior derecha.', { title: 'Top Right', position: 'top-right', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-up-right" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Top Right
+  &lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Top Center -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Top Center</p>
+            <p class="toast-demo-card__description">Toast centrado en la parte superior.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showSuccess('Toast centrado en la parte superior.', { title: 'Top Center', position: 'top-center', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              Ver Top Center
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Top Center</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showSuccess('Toast centrado en la parte superior.', { title: 'Top Center', position: 'top-center', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-up" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Top Center
+  &lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Bottom Left -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Bottom Left</p>
+            <p class="toast-demo-card__description">Toast en la esquina inferior izquierda.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showInfo('Toast en esquina inferior izquierda.', { title: 'Bottom Left', position: 'bottom-left', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-down-left" aria-hidden="true"></i>
+              Ver Bottom Left
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Bottom Left</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showInfo('Toast en esquina inferior izquierda.', { title: 'Bottom Left', position: 'bottom-left', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-down-left" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Bottom Left
+  &lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Bottom Right -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Bottom Right</p>
+            <p class="toast-demo-card__description">Toast en la esquina inferior derecha.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showInfo('Toast en esquina inferior derecha.', { title: 'Bottom Right', position: 'bottom-right', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-down-right" aria-hidden="true"></i>
+              Ver Bottom Right
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Bottom Right</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showInfo('Toast en esquina inferior derecha.', { title: 'Bottom Right', position: 'bottom-right', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-down-right" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Bottom Right
+  &lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Bottom Center -->
+          <div class="toast-demo-card">
+            <p class="toast-demo-card__title">Bottom Center</p>
+            <p class="toast-demo-card__description">Toast centrado en la parte inferior.</p>
+            <button
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
+              onclick="showSuccess('Toast centrado en la parte inferior.', { title: 'Bottom Center', position: 'bottom-center', autoDismiss: 4000 })"
+            >
+              <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              Ver Bottom Center
+            </button>
+            <div class="demo-code-block code-block-wrapper">
+              <div class="demo-code-block-header">
+                <span class="demo-code-block-title">Ejemplo de uso - Bottom Center</span>
+                <div class="demo-code-block-actions">
+                  <span class="demo-code-block-badge">HTML + JS</span>
+                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+                </div>
+              </div>
+              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
+    onclick="showSuccess('Toast centrado en la parte inferior.', { title: 'Bottom Center', position: 'bottom-center', autoDismiss: 4000 })"&gt;
+    &lt;i class="fa-solid fa-arrow-down" aria-hidden="true"&gt;&lt;/i&gt;
+    Ver Bottom Center
+  &lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
         </div>
       </section>
 
