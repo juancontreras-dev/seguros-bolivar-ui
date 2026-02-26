@@ -4,6 +4,7 @@
  */
 
 import './components/alert/alert-behavior.js';
+import './components/file-upload/file-upload-behavior.js';
 export { SbUiCalendar } from './components/Calendar.js';
 export { SbUiDatePicker } from './components/DatePicker.js';
 export { SbUiModal } from './components/modal/modal.js';
