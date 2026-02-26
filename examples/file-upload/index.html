@@ -351,11 +351,21 @@
               <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
             </div>
           </div>
-          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;!-- Dropzone básico --&gt;
-&lt;div class="sb-ui-file-upload-wrapper"&gt;
+          <pre class="demo-code-block-body" style="margin: 0; padding: 1.25rem; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.875rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #d4d4d4; background: #1e1e1e;"><code style="color: #d4d4d4; background: transparent;">&lt;div class="sb-ui-file-upload-wrapper"&gt;
   &lt;label class="sb-ui-file-upload__label"&gt;Documento&lt;/label&gt;
+
   &lt;div class="sb-ui-file-upload-container"&gt;
-    &lt;input type="file" class="sb-ui-file-upload-input" id="fileInput" /&gt;
+
+    &lt;!-- Input oculto correctamente --&gt;
+    &lt;input 
+      type="file" 
+      id="fileInput"
+      class="sb-ui-file-upload-input"
+      accept=".jpg,.jpeg,.png,.pdf"
+      hidden
+    /&gt;
+
+    &lt;!-- Dropzone --&gt;
     &lt;div class="sb-ui-file-upload-dropzone"&gt;
       &lt;p class="sb-ui-file-upload-dropzone__text"&gt;
         Arrastre y suelte sus documentos aquí.
@@ -364,9 +374,14 @@
         Máx. 20 MB. Formatos: .jpg, .png, .pdf.
       &lt;/p&gt;
     &lt;/div&gt;
-    &lt;button class="sb-ui-button sb-ui-button--primary" type="button"&gt;
-      Seleccione un archivo
-    &lt;/button&gt;
+
+    &lt;!-- Botón visual --&gt;
+    &lt;label 
+      for="fileInput"
+      class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-file-upload__select-button"&gt;
+      Seleccionar archivo
+    &lt;/label&gt;
+
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>

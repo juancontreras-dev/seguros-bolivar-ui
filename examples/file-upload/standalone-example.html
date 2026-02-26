@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Upload - Seguros Bolivar UI</title>
+
+  <!-- CDN oficiales -->
+  <link rel="stylesheet"
+    href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css" />
+
+  <script type="module"
+    src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
+
+  <style>
+    /* Ocultar el input file - necesario para que funcione */
+    .sb-ui-file-upload-input {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>File Upload</h1>
+
+  <div class="sb-ui-file-upload-wrapper">
+    <label class="sb-ui-file-upload__label">Documento</label>
+
+    <div class="sb-ui-file-upload-container" id="fileUploadDemo">
+      <!-- Input oculto - IMPORTANTE: usar id para el script -->
+      <input 
+        type="file" 
+        id="fileInput"
+        class="sb-ui-file-upload-input"
+        accept=".jpg,.jpeg,.png,.pdf"
+      />
+
+      <!-- Dropzone - IMPORTANTE: usar id="dropzone" para el script -->
+      <div class="sb-ui-file-upload-dropzone" id="dropzone">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" style="color: var(--sb-ui-color-feedback-success-base)">
+          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
+        </svg>
+        <p class="sb-ui-file-upload-dropzone__text">
+          Arrastre y suelte sus documentos aquí.
+        </p>
+        <p class="sb-ui-file-upload__help">
+          Máx. 20 MB. Formatos: .jpg, .png, .pdf.
+        </p>
+      </div>
+
+      <!-- Botón - usar type="button" e id para el script (NO label con for) -->
+      <button 
+        type="button"
+        id="selectFileBtn"
+        class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-file-upload__select-button">
+        Seleccionar archivo
+      </button>
+
+      <!-- Contenedor para mostrar archivos seleccionados (opcional) -->
+      <div id="fileItemsContainer"></div>
+    </div>
+  </div>
+
+  <!--
+    El CDN sb-ui-components.min.js ya incluye el behavior de drag & drop y click.
+    No se requiere JavaScript adicional para el funcionamiento básico.
+
+    Para reaccionar a los archivos seleccionados, escucha el evento personalizado:
+
+    document.querySelector('.sb-ui-file-upload-wrapper')
+      .addEventListener('sb-ui-file-upload-change', (e) => {
+        const files = e.detail.files; // FileList
+        // validar, subir, mostrar preview, etc.
+        console.log('Archivos seleccionados:', files);
+      });
+
+    Para wrappers añadidos dinámicamente al DOM:
+      window.initFileUploadBehavior();
+  -->
+
+</body>
+</html>
