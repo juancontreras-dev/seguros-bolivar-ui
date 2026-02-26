@@ -225,7 +225,10 @@
           <div class="demo-code-block">
             <div class="demo-code-block-header">
               <span class="demo-code-block-title">Ejemplo de uso</span>
-              <span class="demo-code-block-badge">HTML</span>
+              <div class="demo-code-block-actions">
+                <span class="demo-code-block-badge">HTML</span>
+                <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+              </div>
             </div>
             <pre class="demo-code-block-body"><code>&lt;!-- Single --&gt;
 &lt;sb-ui-datepicker variant="single" placeholder="Seleccionar fecha" label="Fecha"&gt;&lt;/sb-ui-datepicker&gt;
@@ -245,7 +248,10 @@
           <div class="demo-code-block">
             <div class="demo-code-block-header">
               <span class="demo-code-block-title">Clases CSS</span>
-              <span class="demo-code-block-badge">CSS</span>
+              <div class="demo-code-block-actions">
+                <span class="demo-code-block-badge">CSS</span>
+                <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+              </div>
             </div>
             <pre class="demo-code-block-body"><code>.sb-ui-calendar                 /* Base */
 .sb-ui-calendar--small          /* Tamaño pequeño */
@@ -266,7 +272,10 @@
           <div class="demo-code-block">
             <div class="demo-code-block-header">
               <span class="demo-code-block-title">Variables</span>
-              <span class="demo-code-block-badge">CSS</span>
+              <div class="demo-code-block-actions">
+                <span class="demo-code-block-badge">CSS</span>
+                <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+              </div>
             </div>
             <pre class="demo-code-block-body"><code>--sb-ui-calendar-day-selected-bg: var(--sb-ui-color-secondary-base);
 --sb-ui-calendar-day-range-start-bg: var(--sb-ui-color-secondary-base);
@@ -318,6 +327,29 @@
           }
         });
       })();
+
+      // COPIAR CÓDIGO (delegación para botones .demo-code-block-copy)
+      document.addEventListener('click', function (event) {
+        const btn = event.target.closest('.demo-code-block-copy');
+        if (!btn) return;
+        event.preventDefault();
+        const block = btn.closest('.demo-code-block');
+        if (!block) return;
+        const code = block.querySelector('code');
+        if (!code) return;
+        const text = code.textContent || code.innerText;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copiado!';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.textContent = 'Copiar';
+            btn.classList.remove('copied');
+          }, 2000);
+        }).catch(function (err) {
+          console.error('Error al copiar:', err);
+          alert('Error al copiar el código');
+        });
+      });
     </script>
   </body>
 </html>

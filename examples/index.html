@@ -2533,6 +2533,36 @@
         // For example, reinitialize event listeners, animations, etc.
       }
 
+      // ========================================
+      // COPIAR CÓDIGO (delegación global para contenido dinámico)
+      // ========================================
+      document.addEventListener('click', function (event) {
+        const btn = event.target.closest('.demo-code-block-copy');
+        if (!btn) return;
+
+        event.preventDefault();
+
+        const block = btn.closest('.demo-code-block');
+        if (!block) return;
+
+        const code = block.querySelector('code');
+        if (!code) return;
+
+        const text = code.textContent || code.innerText;
+
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copiado!';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.textContent = 'Copiar';
+            btn.classList.remove('copied');
+          }, 2000);
+        }).catch(function (err) {
+          console.error('Error al copiar:', err);
+          alert('Error al copiar el código');
+        });
+      });
+
       // Add tooltips to sidebar items using their label text
       function addSidebarTooltips() {
         const items = document.querySelectorAll('.sidebar-nav-item, .sidebar-submenu-item, .sidebar-submenu-btn');

@@ -188,21 +188,28 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>&lt;!-- Estado Default --&gt;
-&lt;div class="sb-ui-textarea-container"&gt;
-  &lt;label class="sb-ui-textarea-label" for="..."&gt;Comentarios&lt;/label&gt;
-  &lt;textarea id="..." class="sb-ui-textarea" rows="4" placeholder="Escribe aquí..."&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Texto de ayuda&lt;/span&gt;
-&lt;/div&gt;
 
-&lt;!-- Estado Error --&gt;
-&lt;div class="sb-ui-textarea-container"&gt;
+  &lt;label class="sb-ui-textarea-label" for="..."&gt;Comentarios&lt;/label&gt;
+  &lt;textarea id="..." class="sb-ui-textarea" rows="4" placeholder="Escribe aquí..."&gt;
+      &lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper"&gt;
+    &lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Texto de ayuda
+  &lt;/span&gt;
+  
+  &lt;!-- Estado Error --&gt;
+  
   &lt;label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="..."&gt;Descripción&lt;/label&gt;
-  &lt;textarea id="..." class="sb-ui-textarea sb-ui-textarea--error" rows="4"&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper sb-ui-textarea-helper--error"&gt;&lt;i class="fa-solid fa-circle-exclamation" aria-hidden="true"&gt;&lt;/i&gt; Este campo es obligatorio&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+  &lt;textarea id="..." class="sb-ui-textarea sb-ui-textarea--error" rows="4"&gt;
+    &lt;/textarea&gt;
+  &lt;span class="sb-ui-textarea-helper sb-ui-textarea-helper--error"&gt;
+    &lt;i class="fa-solid fa-circle-exclamation" aria-hidden="true"&gt;&lt;/i&gt; Este campo es obligatorio
+  &lt;/span&gt;</code></pre>
         </div>
       </section>
 
@@ -243,7 +250,10 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>&lt;!-- Small (3 rows) --&gt;
 &lt;textarea class="sb-ui-textarea" rows="3" placeholder="Texto corto"&gt;&lt;/textarea&gt;
@@ -305,14 +315,18 @@
         <div class="demo-code-block">
           <div class="demo-code-block-header">
             <span class="demo-code-block-title">Ejemplo de uso</span>
-            <span class="demo-code-block-badge">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">HTML</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
+            </div>
           </div>
           <pre class="demo-code-block-body"><code>&lt;!-- Formulario de contacto --&gt;
-&lt;div class="sb-ui-textarea-container"&gt;
+
   &lt;label class="sb-ui-textarea-label sb-ui-textarea-label--required" for="msg"&gt;Mensaje&lt;/label&gt;
   &lt;textarea id="msg" class="sb-ui-textarea" rows="6" placeholder="Escribe tu mensaje..." required&gt;&lt;/textarea&gt;
-  &lt;span class="sb-ui-textarea-helper"&gt;&lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; Mínimo 20 caracteres&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+  &lt;span class="sb-ui-textarea-helper"&gt;
+    &lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt; 
+    Mínimo 20 caracteres&lt;/span&gt;</code></pre>
         </div>
       </section>
 
