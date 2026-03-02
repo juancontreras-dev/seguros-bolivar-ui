@@ -49,10 +49,16 @@ date: '2025-01-16'
  * - Logical Properties (RTL/LTR)
  * - clamp() para responsive fluido
  *
- * Uso: <elemento class="sb-ui-[component]- sb-ui-[component]--[variant]">
+ * Uso: <elemento class="sb-ui-[component] sb-ui-[component]--[variant]">
  */
 
+/* Elegir según la complejidad del componente: */
+/* 8 capas - Componentes simples */
 @layer reset, tokens, base, variants, sizes, modifiers, states, utilities;
+/* 9 capas - Con style-variants (stroke/fill/text) */
+/* @layer reset, tokens, base, variants, style-variants, sizes, modifiers, states, utilities; */
+/* 10 capas - Completo con icon-positions */
+/* @layer reset, tokens, base, variants, style-variants, brand-overrides, sizes, modifiers, icon-positions, states, utilities; */
 
 /* ========================================
    RESET LAYER
@@ -178,20 +184,21 @@ date: '2025-01-16'
     }
 
     /* Disabled hover - usar variables específicas con fallback */
+    /* Usar @layer brand-overrides para personalizar, NO !important */
     &:disabled:hover,
     &.sb-ui-[component]--disabled:hover {
       background-color: var(
         --sb-ui-[component]-bg-disabled-hover,
         var(--sb-ui-[component]-bg-disabled)
-      ) !important;
+      );
       color: var(
         --sb-ui-[component]-text-disabled-hover,
         var(--sb-ui-[component]-text-disabled)
-      ) !important;
+      );
       border-color: var(
         --sb-ui-[component]-border-disabled-hover,
         var(--sb-ui-[component]-border-disabled)
-      ) !important;
+      );
       cursor: not-allowed;
       box-shadow: none;
       outline: none;
@@ -702,17 +709,65 @@ El layer `brand-overrides` permite a las marcas sobrescribir variables CSS del c
 ```
 packages/
 ├── atoms/src/
-│   ├── button.css          ← Componente principal
+│   ├── button.css          ← Gold standard (referencia)
 │   ├── input.css
+│   ├── select.css
+│   ├── checkbox.css
+│   ├── radio.css
+│   ├── toggle.css
+│   ├── textArea.css
+│   ├── accordion.css
+│   ├── alert.css
+│   ├── breadcrumb.css
+│   ├── calendar.css
+│   ├── file-upload.css
+│   ├── menu.css
+│   ├── spinner.css
+│   ├── stepper.css
+│   ├── table.css
+│   ├── tabs.css
+│   ├── container.css       ← Layout (sin brand overrides)
+│   ├── grid.css            ← Layout
+│   ├── columns.css         ← Layout
+│   ├── gutters.css         ← Layout
+│   ├── css-grid.css        ← Layout
 │   └── index.css           ← Solo @import
 │
+├── molecules/src/
+│   ├── components/
+│   │   ├── modal/modal.ts         ← <sb-ui-modal>
+│   │   ├── toast/toast.ts         ← <sb-ui-toast>
+│   │   ├── Calendar.ts            ← <sb-ui-calendar>
+│   │   ├── DatePicker.ts          ← <sb-ui-datepicker>
+│   │   ├── alert/alert-behavior.ts
+│   │   └── file-upload/file-upload-behavior.ts
+│   └── index.ts
+│
 ├── brand-overrides/src/
+│   ├── seguros-bolivar/
+│   │   ├── base.css        ← Variables globales de la marca
+│   │   ├── button.css
+│   │   ├── input.css
+│   │   ├── select.css
+│   │   ├── textarea.css
+│   │   ├── toggle.css
+│   │   ├── accordion.css
+│   │   ├── alert.css
+│   │   ├── breadcrumb.css
+│   │   ├── calendar.css
+│   │   ├── file-upload.css
+│   │   ├── spinner.css
+│   │   ├── table.css
+│   │   ├── tabs.css
+│   │   └── index.css
 │   ├── davivienda/
-│   │   ├── button.css      ← Override específico
-│   │   └── index.css       ← Solo @import
-│   └── seguros-bolivar/
-│       ├── button.css
-│       └── index.css
+│   │   ├── button.css
+│   │   ├── input.css
+│   │   ├── textarea.css
+│   │   ├── toggle.css
+│   │   └── index.css
+│   └── [cien-cuadras|doctor-aki|jelpit|white-label]/
+│       └── (misma estructura que davivienda)
 ```
 
 ---
@@ -855,5 +910,5 @@ La variante **Track** de los tabs tiene colores corporativos específicos que DE
 
 ---
 
-**Última actualización:** 2025-01-16
-**Versión:** 3.2.0 - Actualizado con @layer brand-overrides para overrides de marca
+**Última actualización:** 2026-03-02
+**Versión:** 3.3.0 - Template corregido: @layer completo, sin !important en disabled-hover, estructura de archivos actualizada

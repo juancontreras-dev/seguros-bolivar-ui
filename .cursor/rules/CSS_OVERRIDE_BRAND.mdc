@@ -101,7 +101,7 @@ date: '2025-01-16'
      PRIMARY - FILL
      Descripción del estilo de la marca
      ======================================== */
-  .sb-ui-[component]--fill.sb-ui-[component]--primary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--fill.sb-ui-[component]--primary {
     /* Background */
     --sb-ui-[component]-primary-fill-bg: var(--sb-ui-color-secondary-base);
     --sb-ui-[component]-primary-fill-bg-hover: var(--sb-ui-color-secondary-D100);
@@ -125,7 +125,7 @@ date: '2025-01-16'
      PRIMARY - TEXT
      Descripción del estilo de la marca
      ======================================== */
-  .sb-ui-[component]--text.sb-ui-[component]--primary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--text.sb-ui-[component]--primary {
     /* Background */
     --sb-ui-[component]-primary-text-bg: transparent;
     --sb-ui-[component]-primary-text-bg-hover: var(--sb-ui-color-secondary-L400);
@@ -143,7 +143,7 @@ date: '2025-01-16'
      SECONDARY - STROKE
      Descripción del estilo de la marca
      ======================================== */
-  .sb-ui-[component]--secondary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--secondary {
     /* Solo definir lo que cambia */
     --sb-ui-[component]-secondary-stroke-bg: var(--sb-ui-color-grayscale-white);
     --sb-ui-[component]-secondary-stroke-bg-hover: var(--sb-ui-color-primary-L400);
@@ -159,7 +159,7 @@ date: '2025-01-16'
      SECONDARY - FILL
      Descripción del estilo de la marca
      ======================================== */
-  .sb-ui-[component]--fill.sb-ui-[component]--secondary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--fill.sb-ui-[component]--secondary {
     --sb-ui-[component]-secondary-fill-bg: var(--sb-ui-color-primary-base);
     --sb-ui-[component]-secondary-fill-bg-hover: var(--sb-ui-color-primary-D100);
 
@@ -172,7 +172,7 @@ date: '2025-01-16'
      SECONDARY - TEXT
      Descripción del estilo de la marca
      ======================================== */
-  .sb-ui-[component]--text.sb-ui-[component]--secondary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--text.sb-ui-[component]--secondary {
     --sb-ui-[component]-secondary-text-text: var(--sb-ui-color-primary-base);
     --sb-ui-[component]-secondary-text-text-hover: var(--sb-ui-color-primary-D100);
   }
@@ -180,14 +180,14 @@ date: '2025-01-16'
   /* ========================================
      TERTIARY - Si la marca lo personaliza
      ======================================== */
-  .sb-ui-[component]--tertiary {
+  [data-brand='nombre-marca'] .sb-ui-[component]--tertiary {
     /* Solo si hay cambios respecto al default */
   }
 
   /* ========================================
      ERROR - Si la marca lo personaliza
      ======================================== */
-  .sb-ui-[component]--error {
+  [data-brand='nombre-marca'] .sb-ui-[component]--error {
     /* Solo si hay cambios respecto al default */
   }
 }
@@ -558,7 +558,7 @@ packages/brand-overrides/src/
 - [ ] ✅ Usa `[data-brand="nombre-marca"]` como wrapper
 - [ ] ✅ Solo define variables CSS que cambian
 - [ ] ✅ Mantiene la estructura de nombres del componente base
-- [ ] ✅ Define los 4 estados (default, hover, active, disabled) cuando cambia una propiedad
+- [ ] ✅ Define los 5 estados (default, hover, active, disabled, disabled-hover) cuando cambia una propiedad
 - [ ] ✅ Usa selectores correctos: `.sb-ui-button--primary` (stroke), `.sb-ui-button--fill.sb-ui-button--primary` (fill)
 - [ ] ✅ Documenta qué cambia y por qué en comentarios
 - [ ] ✅ Variables usan prefijo `--sb-ui-`
@@ -675,7 +675,7 @@ packages/brand-overrides/src/
 1. **SOLO variables CSS** - No cambies clases ni estructura
 2. **Data attribute obligatorio** - `[data-brand="nombre"]`
 3. **Hereda todo lo demás** - Solo define lo que cambia
-4. **4 estados siempre** - default, hover, active, disabled
+4. **5 estados siempre** - default, hover, active, disabled, disabled-hover
 5. **Selectores específicos** - `.sb-ui-button--fill.sb-ui-button--primary` para FILL
 6. **Usa tokens del sistema** - `var(--sb-ui-color-*)`
 7. **Documenta los cambios** - Comentarios claros sobre qué y por qué
@@ -889,5 +889,5 @@ Cambia el botón de Davivienda a rojo
 
 ---
 
-**Última actualización:** 2025-01-16
-**Versión:** 2.0.0 - Brand Override Standards con @layer brand-overrides
+**Última actualización:** 2026-03-02
+**Versión:** 2.1.0 - Selectores con [data-brand] en todos los bloques del template, 5 estados en checklist
