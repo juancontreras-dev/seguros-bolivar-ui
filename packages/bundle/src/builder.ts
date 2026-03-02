@@ -205,6 +205,7 @@ async function buildCompleteBrandBundle(
     'columns.css',
     'gutters.css',
     'css-grid.css',
+    'typography.css',
     'accordion.css',
     'alert.css',
     'breadcrumb.css',
