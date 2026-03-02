@@ -7,6 +7,9 @@ const meta: Meta = {
   parameters: {
     layout: 'fullscreen', // Usar fullscreen para que el layout se vea correctamente
     docs: {
+      canvas: {
+        layout: 'fullscreen', // También para el canvas en docs
+      },
       description: {
         component: `
 Sistema de Layout moderno del Seguros Bolívar UI Design System basado en CSS Grid.
@@ -79,7 +82,7 @@ export const Container: Story = {
     layout: 'fullscreen',
   },
   render: () => html`
-    <div style="padding: 2rem; min-inline-size: 100%; background: var(--sb-ui-color-grayscale-L400);">
+    <div style="padding: 2rem; background: var(--sb-ui-color-grayscale-L400); width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Containers</h2>
       <p style="margin-bottom: 2rem; color: var(--sb-ui-color-grayscale-D100); max-inline-size: 800px;">
         Los containers limitan el ancho máximo del contenido y lo centran horizontalmente.
@@ -208,10 +211,10 @@ export const Container: Story = {
  */
 export const Grid: Story = {
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
   render: () => html`
-    <div>
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Grid de 12 Columnas</h2>
       <p style="margin-bottom: 2rem; color: var(--sb-ui-color-grayscale-D100);">
         El grid usa CSS Grid moderno con 12 columnas. Cada columna es responsive y se adapta
@@ -375,8 +378,11 @@ export const Grid: Story = {
  * responsive usando sufijos: `-sm-`, `-md-`, `-lg-`, `-xl-`, `-xxl-`.
  */
 export const Breakpoints: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   render: () => html`
-    <div style="padding: 2rem;">
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Sistema de Breakpoints</h2>
       <p style="margin-bottom: 2rem; color: var(--sb-ui-color-grayscale-D100);">
         Redimensiona la ventana para ver cómo cambian los layouts en diferentes tamaños.
@@ -507,10 +513,10 @@ export const Breakpoints: Story = {
  */
 export const Gutters: Story = {
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
   render: () => html`
-    <div>
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Gutters (Espaciado)</h2>
       <p style="margin-bottom: 2rem; color: var(--sb-ui-color-grayscale-D100);">
         Sistema de espaciado con 6 niveles (0-5) para controlar el gap entre elementos del grid.
@@ -675,8 +681,11 @@ export const Gutters: Story = {
  * - `.sb-ui-col-start-auto`: Posición automática
  */
 export const Columns: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   render: () => html`
-    <div style="padding: 2rem;">
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Column Utilities</h2>
 
       <!-- Align Self -->
@@ -829,8 +838,11 @@ export const Columns: Story = {
  * - `.sb-ui-place-content-{start|center|end|space-between|space-around|space-evenly}`
  */
 export const CSSGrid: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   render: () => html`
-    <div style="padding: 2rem;">
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">CSS Grid Utilities</h2>
 
       <!-- Grid Cols -->
@@ -983,8 +995,11 @@ export const CSSGrid: Story = {
  * Layouts reales combinando diferentes utilidades del sistema.
  */
 export const Examples: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   render: () => html`
-    <div style="padding: 2rem;">
+    <div style="padding: 2rem; width: 100%; box-sizing: border-box;">
       <h2 style="margin-bottom: 1rem;">Ejemplos Prácticos</h2>
 
       <!-- Dashboard Layout -->

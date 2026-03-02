@@ -66,8 +66,8 @@ export const Basic: Story = {
 
     <div class="story-container">
       <div class="breadcrumb-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Breadcrumb Básico</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Breadcrumb Básico</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Navegación con 3 niveles de jerarquía
         </p>
 
@@ -120,8 +120,8 @@ export const WithIcons: Story = {
 
     <div class="story-container">
       <div class="breadcrumb-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Breadcrumb con Iconos</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Breadcrumb con Iconos</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Separadores con iconos de chevron
         </p>
 
@@ -182,8 +182,8 @@ export const Long: Story = {
 
     <div class="story-container">
       <div class="breadcrumb-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Breadcrumb Largo</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Breadcrumb Largo</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Navegación con 5 niveles de jerarquía
         </p>
 
@@ -248,8 +248,8 @@ export const Compact: Story = {
 
     <div class="story-container">
       <div class="breadcrumb-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Breadcrumb Compacto</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Breadcrumb Compacto</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Versión simplificada para espacios reducidos
         </p>
 
@@ -295,7 +295,7 @@ export const WithDropdown: Story = {
       .breadcrumb-dropdown__button {
         background: none;
         border: none;
-        color: #038450;
+        color: var(--sb-ui-color-primary-base, #038450);
         cursor: pointer;
         padding: 0.25rem 0.5rem;
         font-size: 0.875rem;
@@ -305,8 +305,8 @@ export const WithDropdown: Story = {
 
     <div class="story-container">
       <div class="breadcrumb-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Breadcrumb con Dropdown</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Breadcrumb con Dropdown</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Menú colapsable para niveles intermedios
         </p>
 

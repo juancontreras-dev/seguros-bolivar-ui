@@ -10,22 +10,29 @@ import { html } from 'lit';
  *
  * | Función | Parámetros | Descripción |
  * |---------|------------|-------------|
- * | `showToast(message, options)` | `message: string`, `options: ToastOptions` | Muestra un toast personalizado |
- * | `showSuccess(message)` | `message: string` | Toast de éxito (verde) |
- * | `showError(message)` | `message: string` | Toast de error (rojo) |
- * | `showWarning(message)` | `message: string` | Toast de advertencia (amarillo) |
- * | `showInfo(message)` | `message: string` | Toast informativo (azul) |
+ * | `showToast(options)` | `options: ToastOptions` | Muestra un toast personalizado |
+ * | `showSuccess(message, options?)` | `message: string`, `options?: Omit<ToastOptions, 'type' \| 'message'>` | Toast de éxito (verde) |
+ * | `showError(message, options?)` | `message: string`, `options?: Omit<ToastOptions, 'type' \| 'message'>` | Toast de error (rojo) |
+ * | `showWarning(message, options?)` | `message: string`, `options?: Omit<ToastOptions, 'type' \| 'message'>` | Toast de advertencia (amarillo) |
+ * | `showInfo(message, options?)` | `message: string`, `options?: Omit<ToastOptions, 'type' \| 'message'>` | Toast informativo (azul) |
  * | `hideToast(id)` | `id: string` | Oculta un toast específico |
  * | `hideAllToasts()` | - | Oculta todos los toasts |
+ * | `removeToast(id)` | `id: string` | Elimina un toast del DOM |
+ * | `removeAllToasts()` | - | Elimina todos los toasts del DOM |
  *
  * ## 🎯 ToastOptions
  *
  * ```typescript
  * {
- *   variant?: 'success' | 'error' | 'warning' | 'info';  // Tipo de toast
+ *   type?: 'success' | 'error' | 'warning' | 'info';  // Tipo de toast
+ *   message?: string;                                   // Mensaje del toast
+ *   title?: string;                                     // Título opcional
  *   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
- *   duration?: number;     // Duración en ms (0 = no auto-cierre)
- *   closable?: boolean;    // Mostrar botón cerrar
+ *   size?: 'small' | 'medium' | 'large';               // Tamaño del toast
+ *   autoDismiss?: number;                               // Duración en ms (0 = no auto-cierre)
+ *   showClose?: boolean;                                // Mostrar botón cerrar
+ *   showProgress?: boolean;                             // Mostrar barra de progreso
+ *   clickable?: boolean;                                // Hacer el toast clickeable
  * }
  * ```
  *
@@ -36,6 +43,7 @@ import { html } from 'lit';
  * - **Stack**: Los toasts se apilan verticalmente en la posición elegida
  * - **Animaciones**: Entrada/salida suave con transiciones CSS
  * - **Iconos automáticos**: Cada variante tiene su icono (✓, ✕, ⚠, ℹ)
+ * - **Barra de progreso**: Visual feedback del tiempo restante (cuando `showProgress: true`)
  */
 const meta: Meta = {
   title: 'Web Components/Toast',
@@ -265,9 +273,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast arriba izquierda', {
+              (window as any).showInfo('Toast arriba izquierda', {
                 position: 'top-left',
-                variant: 'info',
               });
             }}"
           >
@@ -280,9 +287,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast arriba centro', {
+              (window as any).showInfo('Toast arriba centro', {
                 position: 'top-center',
-                variant: 'info',
               });
             }}"
           >
@@ -295,9 +301,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast arriba derecha', {
+              (window as any).showInfo('Toast arriba derecha', {
                 position: 'top-right',
-                variant: 'info',
               });
             }}"
           >
@@ -310,9 +315,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast abajo izquierda', {
+              (window as any).showInfo('Toast abajo izquierda', {
                 position: 'bottom-left',
-                variant: 'info',
               });
             }}"
           >
@@ -325,9 +329,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast abajo centro', {
+              (window as any).showInfo('Toast abajo centro', {
                 position: 'bottom-center',
-                variant: 'info',
               });
             }}"
           >
@@ -340,9 +343,8 @@ export const DiferentesPosiciones: Story = {
           <button
             class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
             @click="${() => {
-              (window as any).showToast('Toast abajo derecha', {
+              (window as any).showInfo('Toast abajo derecha', {
                 position: 'bottom-right',
-                variant: 'info',
               });
             }}"
           >
@@ -350,7 +352,7 @@ export const DiferentesPosiciones: Story = {
           </button>
         </div>
       </div>
-    </style>
+    </div>
   `,
 };
 
@@ -393,9 +395,8 @@ export const OpcionesPersonalizadas: Story = {
         <button
           class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--fill"
           @click="${() => {
-            (window as any).showToast('Me cierro en 1 segundo', {
-              variant: 'success',
-              duration: 1000,
+            (window as any).showSuccess('Me cierro en 1 segundo', {
+              autoDismiss: 1000,
             });
           }}"
         >
@@ -409,10 +410,9 @@ export const OpcionesPersonalizadas: Story = {
         <button
           class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--fill"
           @click="${() => {
-            (window as any).showToast('Debes cerrarme manualmente', {
-              variant: 'warning',
-              duration: 0,
-              closable: true,
+            (window as any).showWarning('Debes cerrarme manualmente', {
+              autoDismiss: 0,
+              showClose: true,
             });
           }}"
         >
@@ -426,9 +426,8 @@ export const OpcionesPersonalizadas: Story = {
         <button
           class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--fill"
           @click="${() => {
-            (window as any).showToast('Me mantengo visible por 10 segundos', {
-              variant: 'info',
-              duration: 10000,
+            (window as any).showInfo('Me mantengo visible por 10 segundos', {
+              autoDismiss: 10000,
             });
           }}"
         >
@@ -442,9 +441,8 @@ export const OpcionesPersonalizadas: Story = {
         <button
           class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--fill"
           @click="${() => {
-            (window as any).showToast('Sin botón cerrar', {
-              variant: 'info',
-              closable: false,
+            (window as any).showInfo('Sin botón cerrar', {
+              showClose: false,
             });
           }}"
         >
@@ -558,19 +556,26 @@ showInfo('Información útil');
       <div class="code-section">
         <h4>Con Opciones Personalizadas</h4>
         <div class="code-snippet">
-// Toast personalizado
-showToast('Mensaje personalizado', {
-  variant: 'success',           // 'success' | 'error' | 'warning' | 'info'
+// Toast con opciones completas
+showToast({
+  type: 'success',              // 'success' | 'error' | 'warning' | 'info'
+  message: 'Mensaje personalizado',
   position: 'top-right',        // Ver posiciones disponibles
-  duration: 5000,               // Duración en ms (0 = no auto-cierre)
-  closable: true                // Mostrar botón cerrar
+  autoDismiss: 5000,            // Duración en ms (0 = no auto-cierre)
+  showClose: true,              // Mostrar botón cerrar
+  showProgress: true            // Mostrar barra de progreso
 });
 
 // Toast sin auto-cierre
-showToast('Mensaje permanente', {
-  variant: 'warning',
-  duration: 0,
-  closable: true
+showWarning('Mensaje permanente', {
+  autoDismiss: 0,
+  showClose: true
+});
+
+// Toast con título personalizado
+showSuccess('Operación completada', {
+  title: '¡Éxito!',
+  autoDismiss: 4000
 });
         </div>
       </div>
@@ -580,9 +585,9 @@ showToast('Mensaje permanente', {
         <div class="code-snippet">
 import { hideToast, hideAllToasts, removeAllToasts } from '@sb-ui/molecules';
 
-// Ocultar un toast específico
-const toast = showSuccess('Mensaje');
-hideToast(toast.id);
+// Ocultar un toast específico (retorna el ID)
+const toastId = showSuccess('Mensaje');
+hideToast(toastId);
 
 // Ocultar todos los toasts
 hideAllToasts();

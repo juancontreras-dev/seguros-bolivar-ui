@@ -343,15 +343,15 @@ export const Primary: Story = {
 
       .state-label.default {
         background: #e3f2fd;
-        color: #1565c0;
+        color: var(--sb-ui-color-primary-D100, #1565c0);
       }
       .state-label.loading {
         background: #e8f5e9;
-        color: #2e7d32;
+        color: var(--sb-ui-color-feedback-success-base, #2e7d32);
       }
       .state-label.disabled {
         background: #eceff1;
-        color: #546e7a;
+        color: var(--sb-ui-color-grayscale-base, #546e7a);
       }
 
       /* Font Awesome link */
@@ -861,15 +861,15 @@ export const Secondary: Story = {
 
       .state-label.default {
         background: #e8f5e8;
-        color: #2e7d32;
+        color: var(--sb-ui-color-feedback-success-base, #2e7d32);
       }
       .state-label.loading {
         background: #fff3e0;
-        color: #ef6c00;
+        color: var(--sb-ui-color-feedback-warning-base, #ef6c00);
       }
       .state-label.disabled {
         background: #eceff1;
-        color: #546e7a;
+        color: var(--sb-ui-color-grayscale-base, #546e7a);
       }
 
       /* Font Awesome link */
@@ -1382,15 +1382,15 @@ export const Error: Story = {
 
       .state-label.default {
         background: #ffebee;
-        color: #c62828;
+        color: var(--sb-ui-color-feedback-error-D100, #c62828);
       }
       .state-label.loading {
         background: #fff3e0;
-        color: #ef6c00;
+        color: var(--sb-ui-color-feedback-warning-base, #ef6c00);
       }
       .state-label.disabled {
         background: #eceff1;
-        color: #546e7a;
+        color: var(--sb-ui-color-grayscale-base, #546e7a);
       }
 
       /* Font Awesome link */

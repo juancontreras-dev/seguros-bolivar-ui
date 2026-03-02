@@ -311,16 +311,16 @@ export const BasicStates: Story = {
 
       .state-label.enabled {
         background: #e8f5e9;
-        color: #2e7d32;
+        color: var(--sb-ui-color-feedback-success-base, #2e7d32);
       }
       .state-label.disabled {
         background: #eceff1;
-        color: #546e7a;
+        color: var(--sb-ui-color-grayscale-base, #546e7a);
       }
 
       .hint-text {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         font-style: italic;
         margin-top: 0.5rem;
       }
@@ -452,22 +452,22 @@ export const Sizes: Story = {
 
       .size-card {
         padding: 1.5rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         text-align: center;
       }
 
       .size-card h4 {
         margin-bottom: 1rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
         font-size: 1rem;
         font-weight: 600;
       }
 
       .size-card .spec {
         font-size: 0.75rem;
-        color: #999;
+        color: var(--sb-ui-color-grayscale-D100, #999);
         margin-bottom: 1rem;
         font-family: 'Courier New', monospace;
       }
@@ -623,14 +623,14 @@ export const ErrorState: Story = {
 
       .card {
         padding: 1.5rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
       }
 
       .card h4 {
         margin-bottom: 1rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         font-size: 0.875rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -644,7 +644,7 @@ export const ErrorState: Story = {
 
       .hint-text {
         font-size: 0.75rem;
-        color: #999;
+        color: var(--sb-ui-color-grayscale-D100, #999);
         margin-top: 0.5rem;
       }
     </style>
@@ -756,14 +756,14 @@ export const SpecialStates: Story = {
 
       .card {
         padding: 1.5rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
       }
 
       .card h4 {
         margin-bottom: 1rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
         font-size: 1rem;
         font-weight: 600;
       }
@@ -776,7 +776,7 @@ export const SpecialStates: Story = {
 
       .code-hint {
         font-size: 0.75rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         background: #f5f5f5;
         padding: 0.5rem;
         border-radius: 4px;
@@ -901,29 +901,29 @@ export const InteractiveEffects: Story = {
 
       .card {
         padding: 2rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         text-align: center;
       }
 
       .card h4 {
         margin-bottom: 0.5rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
         font-size: 1rem;
         font-weight: 600;
       }
 
       .card .instruction {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 1.5rem;
       }
 
       .card kbd {
         padding: 2px 6px;
         background: #f5f5f5;
-        border: 1px solid #ccc;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #ccc);
         border-radius: 3px;
         font-family: 'Courier New', monospace;
         font-size: 0.85em;
@@ -941,14 +941,14 @@ export const InteractiveEffects: Story = {
       .spec-box .spec-title {
         font-size: 0.75rem;
         font-weight: 600;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
         margin-bottom: 0.5rem;
         text-transform: uppercase;
       }
 
       .spec-box .spec-item {
         font-size: 0.75rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         font-family: 'Courier New', monospace;
         margin: 0.25rem 0;
       }
@@ -1075,14 +1075,14 @@ export const Modifiers: Story = {
 
       .card {
         padding: 1.5rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
       }
 
       .card h4 {
         margin-bottom: 1rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         font-size: 0.875rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -1212,7 +1212,7 @@ export const FormValidation: Story = {
 
       .demo-subtitle {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 2rem;
       }
 
@@ -1224,14 +1224,14 @@ export const FormValidation: Story = {
         display: block;
         margin-bottom: 0.5rem;
         font-weight: 500;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
         font-size: 0.875rem;
       }
 
       .form-input {
         width: 100%;
         padding: 0.75rem;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
         border-radius: 8px;
         font-size: 1rem;
         font-family: inherit;
@@ -1244,7 +1244,7 @@ export const FormValidation: Story = {
 
       .checkbox-container {
         padding: 1rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
         border-radius: 8px;
         margin-bottom: 1.5rem;
       }
@@ -1253,7 +1253,7 @@ export const FormValidation: Story = {
         display: none;
         margin-top: 0.5rem;
         margin-left: 28px;
-        color: #dc3545;
+        color: var(--sb-ui-color-feedback-error-base, #dc3545);
         font-size: 0.875rem;
         font-weight: 500;
       }
@@ -1282,13 +1282,13 @@ export const FormValidation: Story = {
 
       .form-result.success {
         background: #e8f5e9;
-        color: #2e7d32;
+        color: var(--sb-ui-color-feedback-success-base, #2e7d32);
         border: 2px solid #4caf50;
       }
 
       .form-result.error {
         background: transparent;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
       }
 
       .sb-ui-button {
@@ -1310,7 +1310,7 @@ export const FormValidation: Story = {
       .sb-ui-button--secondary {
         background: transparent;
         color: var(--sb-ui-color-primary-base, #009056);
-        border-color: #e0e0e0;
+        border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
       }
 
       .sb-ui-button:hover {
@@ -1483,7 +1483,7 @@ export const RealWorldExamples: Story = {
 
       .example-description {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 1.5rem;
       }
 
@@ -1553,7 +1553,7 @@ export const RealWorldExamples: Story = {
           </div>
 
           <div>
-            <strong style="display: block; margin-bottom: 1rem; color: #333;">Precio</strong>
+            <strong style="display: block; margin-bottom: 1rem; color: var(--sb-ui-color-grayscale-D200, #333);">Precio</strong>
             <div class="example-group">
               <label class="sb-ui-checkbox">
                 <input type="checkbox" class="sb-ui-checkbox__input" />

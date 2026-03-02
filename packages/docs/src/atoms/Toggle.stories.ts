@@ -383,7 +383,7 @@ export const Estados: Story = {
             <input type="checkbox" class="sb-ui-toggle-input" />
             <span class="sb-ui-toggle-slider"></span>
           </label>
-          <span style="margin-left: 1rem; font-size: 0.875rem; color: #666;">Button style</span>
+          <span style="margin-left: 1rem; font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666);">Button style</span>
         </div>
         <div>
           <label class="sb-ui-toggle sb-ui-toggle--checkbox">

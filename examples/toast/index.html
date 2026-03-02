@@ -5,203 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toast Component - Seguros Bolivar UI Design System</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
-    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
-    <link rel="stylesheet" href="../components.css" />
-
-    <style>
-      /* ========================================
-         TOAST DEMO - Estilos de página
-         ======================================== */
-      .toast-demo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
-        margin-block-end: clamp(1.5rem, 1rem + 1vw, 2rem);
-      }
-
-      /* Tipos: una fila completa por cada tipo (Success, Info, Warning, Error) */
-      .toast-demo-grid--full-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      /* Evitar scroll horizontal en bloques de código - el texto se ajusta */
-      .toast-demo-card {
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .toast-demo-card .demo-code-block {
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .toast-demo-card .demo-code-block-body {
-        overflow-x: hidden;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .toast-demo-card .demo-code-block-body code {
-        white-space: pre-wrap;
-        word-break: break-word;
-      }
-
-      .toast-demo-card {
-        padding-block: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-        padding-inline: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-        border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-radius: clamp(6px, 0.4rem + 0.3vw, 8px);
-        background: var(--sb-ui-color-grayscale-L400, #fafafa);
-      }
-
-      .toast-demo-card__title {
-        font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
-        margin-block-end: clamp(0.5rem, 0.3rem + 0.3vw, 0.75rem);
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .toast-demo-card__description {
-        font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-        color: var(--sb-ui-color-grayscale-D100, #757575);
-        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        line-height: 1.5;
-      }
-
-      .toast-btn-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .toast-btn-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-      }
-
-      .toast-counter-badge {
-        margin-block-start: 1rem;
-        padding-block: 0.5rem;
-        padding-inline: 0.75rem;
-        background: var(--sb-ui-color-grayscale-L300, #f5f5f5);
-        border-radius: 6px;
-        text-align: center;
-        font-size: 0.875rem;
-        color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
-      }
-
-      .toast-counter-badge strong {
-        color: var(--sb-ui-color-primary-base, #00786e);
-      }
-
-      .demo-section-title {
-        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-        font-weight: 600;
-        color: var(--sb-ui-color-grayscale-D300, #1a1a1a);
-        margin-block-end: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
-        padding-block-start: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
-      }
-
-      .code-block-wrapper {
-        margin-block-start: clamp(1.5rem, 1rem + 1vw, 2rem);
-      }
-
-      /* Posiciones - una columna por item, sin desbordamiento */
-      .toast-demo-grid--full-row .toast-demo-card {
-        min-width: 0;
-        overflow-x: hidden;
-      }
-
-      /* Contenedor de tamaños */
-      .toast-sizes-container {
-        max-inline-size: 300px;
-      }
-
-      /* Contenedor de gestión */
-      .toast-management-container {
-        max-inline-size: 400px;
-      }
-
-      /* Contenedor de elemento estático */
-      .toast-static-container {
-        max-inline-size: 400px;
-      }
-
-      /* Espaciado entre bloques de código */
-      .demo-code-block + .demo-code-block {
-        margin-block-start: 1rem;
-      }
-
-      /* Loading indicator */
-      .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 255, 255, 0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .loading-spinner {
-        width: 50px;
-        height: 50px;
-        border: 4px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
-        border-top-color: var(--sb-ui-color-primary-base, #00786e);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      body:not(.toast-ready) .loading-overlay {
-        display: flex;
-      }
-
-      body.toast-ready .loading-overlay {
-        display: none;
-      }
-
-      /* Deshabilitar botones hasta que el módulo esté listo */
-      body:not(.toast-ready) .toast-trigger,
-      body:not(.toast-ready) .toast-demo-btn,
-      body:not(.toast-ready) #btn-create-multiple,
-      body:not(.toast-ready) #btn-hide-all,
-      body:not(.toast-ready) #btn-remove-all,
-      body:not(.toast-ready) #btn-static-show,
-      body:not(.toast-ready) #btn-static-hide {
-        opacity: 0.5;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
-    </style>
+    <link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
   </head>
 
   <body>
-    <!-- Loading overlay -->
-    <div class="loading-overlay">
-      <div class="loading-spinner"></div>
-      <p>Cargando módulo Toast...</p>
-    </div>
-
     <main class="component-container">
 
       <!-- ========================================
@@ -235,8 +42,11 @@
             <p class="toast-demo-card__title">Success</p>
             <p class="toast-demo-card__description">Operación completada correctamente.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left toast-trigger"
+              data-toast-type="success"
+              data-toast-title="Guardado exitoso"
+              data-toast-message="Los cambios se guardaron correctamente."
+              data-toast-auto-dismiss="4000"
             >
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
               Ver Success
@@ -249,11 +59,10 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-circle-check" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Success
-  &lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showSuccess ya está disponible en window --&gt;
+&lt;button onclick="showSuccess('Los cambios se guardaron correctamente.', { title: 'Guardado exitoso', autoDismiss: 4000 })"&gt;
+  Ver Success
+&lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -262,8 +71,11 @@
             <p class="toast-demo-card__title">Info</p>
             <p class="toast-demo-card__description">Información relevante para el usuario.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"
+              class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
+              data-toast-type="info"
+              data-toast-title="Información"
+              data-toast-message="Hay una nueva versión disponible."
+              data-toast-auto-dismiss="4000"
             >
               <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
               Ver Info
@@ -276,11 +88,10 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Info
-  &lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showInfo ya está disponible en window --&gt;
+&lt;button onclick="showInfo('Hay una nueva versión disponible.', { title: 'Información', autoDismiss: 4000 })"&gt;
+  Ver Info
+&lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -289,8 +100,11 @@
             <p class="toast-demo-card__title">Warning</p>
             <p class="toast-demo-card__description">Advertencia que requiere atención.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
+              data-toast-type="warning"
+              data-toast-title="Advertencia"
+              data-toast-message="Tu sesión vencerá en 5 minutos."
+              data-toast-auto-dismiss="4000"
             >
               <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
               Ver Warning
@@ -303,11 +117,10 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-triangle-exclamation" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Warning
-  &lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showWarning ya está disponible en window --&gt;
+&lt;button onclick="showWarning('Tu sesión vencerá en 5 minutos.', { title: 'Advertencia', autoDismiss: 4000 })"&gt;
+  Ver Warning
+&lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -316,8 +129,11 @@
             <p class="toast-demo-card__title">Error</p>
             <p class="toast-demo-card__description">Error que impide completar la acción.</p>
             <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"
+              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-trigger"
+              data-toast-type="error"
+              data-toast-title="Error de conexión"
+              data-toast-message="No se pudo conectar al servidor."
+              data-toast-auto-dismiss="4000"
             >
               <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
               Ver Error
@@ -330,11 +146,10 @@
                   <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
                 </div>
               </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-circle-xmark" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Error
-  &lt;/button&gt;</code></pre>
+              <pre class="demo-code-block-body"><code>&lt;!-- Con link y script ya en el head, showError ya está disponible en window --&gt;
+&lt;button onclick="showError('No se pudo conectar al servidor.', { title: 'Error de conexión', autoDismiss: 4000 })"&gt;
+  Ver Error
+&lt;/button&gt;</code></pre>
             </div>
           </div>
 
@@ -348,170 +163,78 @@
         <h3 class="variant-title">Posiciones</h3>
         <p class="component-description">El toast puede aparecer en 6 posiciones de la pantalla.</p>
 
-        <div class="toast-demo-grid toast-demo-grid--full-row">
+        <div class="toast-btn-grid toast-positions-grid">
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
+            data-toast-type="info"
+            data-toast-message="Top Left"
+            data-toast-position="top-left"
+            data-toast-auto-dismiss="3000"
+          >
+            ↖ Top Left
+          </button>
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
+            data-toast-type="info"
+            data-toast-message="Top Right"
+            data-toast-position="top-right"
+            data-toast-auto-dismiss="3000"
+          >
+            ↗ Top Right
+          </button>
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
+            data-toast-type="info"
+            data-toast-message="Bottom Left"
+            data-toast-position="bottom-left"
+            data-toast-auto-dismiss="3000"
+          >
+            ↙ Bottom Left
+          </button>
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small toast-trigger"
+            data-toast-type="info"
+            data-toast-message="Bottom Right"
+            data-toast-position="bottom-right"
+            data-toast-auto-dismiss="3000"
+          >
+            ↘ Bottom Right
+          </button>
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--top-center toast-trigger"
+            data-toast-type="success"
+            data-toast-message="Top Center"
+            data-toast-position="top-center"
+            data-toast-auto-dismiss="3000"
+          >
+            ↑ Top Center
+          </button>
+          <button
+            class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--bottom-center toast-trigger"
+            data-toast-type="success"
+            data-toast-message="Bottom Center"
+            data-toast-position="bottom-center"
+            data-toast-auto-dismiss="3000"
+          >
+            ↓ Bottom Center
+          </button>
+        </div>
 
-          <!-- Top Left -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Top Left</p>
-            <p class="toast-demo-card__description">Toast en la esquina superior izquierda.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showInfo('Toast en esquina superior izquierda.', { title: 'Top Left', position: 'top-left', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-up-left" aria-hidden="true"></i>
-              Ver Top Left
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Top Left</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showInfo('Toast en esquina superior izquierda.', { title: 'Top Left', position: 'top-left', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-up-left" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Top Left
-  &lt;/button&gt;</code></pre>
+        <!-- Código de ejemplo -->
+        <div class="demo-code-block code-block-wrapper">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">Ejemplo de uso - Posiciones</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">JS</span>
+              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
             </div>
           </div>
-
-          <!-- Top Right -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Top Right</p>
-            <p class="toast-demo-card__description">Toast en la esquina superior derecha.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showInfo('Toast en esquina superior derecha.', { title: 'Top Right', position: 'top-right', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i>
-              Ver Top Right
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Top Right</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showInfo('Toast en esquina superior derecha.', { title: 'Top Right', position: 'top-right', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-up-right" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Top Right
-  &lt;/button&gt;</code></pre>
-            </div>
-          </div>
-
-          <!-- Top Center -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Top Center</p>
-            <p class="toast-demo-card__description">Toast centrado en la parte superior.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showSuccess('Toast centrado en la parte superior.', { title: 'Top Center', position: 'top-center', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-              Ver Top Center
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Top Center</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showSuccess('Toast centrado en la parte superior.', { title: 'Top Center', position: 'top-center', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-up" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Top Center
-  &lt;/button&gt;</code></pre>
-            </div>
-          </div>
-
-          <!-- Bottom Left -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Bottom Left</p>
-            <p class="toast-demo-card__description">Toast en la esquina inferior izquierda.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showInfo('Toast en esquina inferior izquierda.', { title: 'Bottom Left', position: 'bottom-left', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-down-left" aria-hidden="true"></i>
-              Ver Bottom Left
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Bottom Left</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showInfo('Toast en esquina inferior izquierda.', { title: 'Bottom Left', position: 'bottom-left', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-down-left" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Bottom Left
-  &lt;/button&gt;</code></pre>
-            </div>
-          </div>
-
-          <!-- Bottom Right -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Bottom Right</p>
-            <p class="toast-demo-card__description">Toast en la esquina inferior derecha.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showInfo('Toast en esquina inferior derecha.', { title: 'Bottom Right', position: 'bottom-right', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-down-right" aria-hidden="true"></i>
-              Ver Bottom Right
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Bottom Right</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showInfo('Toast en esquina inferior derecha.', { title: 'Bottom Right', position: 'bottom-right', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-down-right" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Bottom Right
-  &lt;/button&gt;</code></pre>
-            </div>
-          </div>
-
-          <!-- Bottom Center -->
-          <div class="toast-demo-card">
-            <p class="toast-demo-card__title">Bottom Center</p>
-            <p class="toast-demo-card__description">Toast centrado en la parte inferior.</p>
-            <button
-              class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left toast-demo-btn"
-              onclick="showSuccess('Toast centrado en la parte inferior.', { title: 'Bottom Center', position: 'bottom-center', autoDismiss: 4000 })"
-            >
-              <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
-              Ver Bottom Center
-            </button>
-            <div class="demo-code-block code-block-wrapper">
-              <div class="demo-code-block-header">
-                <span class="demo-code-block-title">Ejemplo de uso - Bottom Center</span>
-                <div class="demo-code-block-actions">
-                  <span class="demo-code-block-badge">HTML + JS</span>
-                  <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-                </div>
-              </div>
-              <pre class="demo-code-block-body"><code>&lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--small sb-ui-button--icon-left"
-    onclick="showSuccess('Toast centrado en la parte inferior.', { title: 'Bottom Center', position: 'bottom-center', autoDismiss: 4000 })"&gt;
-    &lt;i class="fa-solid fa-arrow-down" aria-hidden="true"&gt;&lt;/i&gt;
-    Ver Bottom Center
-  &lt;/button&gt;</code></pre>
-            </div>
-          </div>
-
+          <pre class="demo-code-block-body"><code>showToast({ type: 'info', message: 'Mensaje', position: 'top-left',    autoDismiss: 3000 });
+showToast({ type: 'info', message: 'Mensaje', position: 'top-right',   autoDismiss: 3000 });
+showToast({ type: 'info', message: 'Mensaje', position: 'top-center',  autoDismiss: 3000 });
+showToast({ type: 'info', message: 'Mensaje', position: 'bottom-left', autoDismiss: 3000 });
+showToast({ type: 'info', message: 'Mensaje', position: 'bottom-right',autoDismiss: 3000 });
+showToast({ type: 'info', message: 'Mensaje', position: 'bottom-center',autoDismiss: 3000 });</code></pre>
         </div>
       </section>
 
@@ -817,11 +540,8 @@ manager.remove(id); // Eliminar por ID</code></pre>
 
         <div class="demo-code-block">
           <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Propiedades / Atributos</span>
-            <div class="demo-code-block-actions">
-              <span class="demo-code-block-badge">HTML</span>
-              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-            </div>
+            <span>Propiedades / Atributos</span>
+            <button class="demo-code-block-copy" type="button">Copiar</button>
           </div>
           <pre class="demo-code-block-body"><code>// Atributos HTML del elemento &lt;sb-ui-toast&gt;
 type         = 'info' | 'success' | 'warning' | 'error'  // default: 'info'
@@ -850,11 +570,8 @@ sb-ui-toast-click  // Al hacer clic</code></pre>
 
         <div class="demo-code-block">
           <div class="demo-code-block-header">
-            <span class="demo-code-block-title">Opciones de showToast()</span>
-            <div class="demo-code-block-actions">
-              <span class="demo-code-block-badge">JS</span>
-              <button class="copy-btn demo-code-block-copy" type="button">Copiar</button>
-            </div>
+            <span>Opciones de showToast()</span>
+            <button class="demo-code-block-copy" type="button">Copiar</button>
           </div>
           <pre class="demo-code-block-body"><code>import { showToast, showSuccess, showInfo, showWarning, showError } from 'https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js';
 
@@ -881,106 +598,30 @@ showError('Mensaje', { title: 'Error' });</code></pre>
     </main>
 
     <!-- ========================================
-         JAVASCRIPT
+         JAVASCRIPT - Funcionalidad y estilos vienen del CDN
          ======================================== -->
     <script type="module">
-      // dist/ está al nivel del parent de /toast/ (ej: /dist/ en localhost, /repo/examples/dist/ en GitHub Pages)
-      const distPath = (function () {
-        const path = window.location.pathname;
-        // /toast/, /toast/index.html, /examples/toast/ -> subir a parent y añadir dist/
-        const parent = path.replace(/\/toast\/?.*$/i, '/') || '/';
-        return parent + (parent.endsWith('/') ? '' : '/') + 'dist/';
-      })();
+      const CDN_JS = 'https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js';
 
-      // Variable para rastrear si el módulo está cargado
-      let moduleLoaded = false;
-      
       try {
-        console.log('🔄 Iniciando carga del módulo Toast...');
-        
-        // Importar desde ruta absoluta para que funcione en GitHub Pages (subpath o root)
-        const toastModule = await import(new URL(distPath + 'sb-ui-components.min.js', window.location.origin).href);
-        
-        console.log('✅ Toast module loaded:', toastModule);
-        console.log('📦 Available exports:', Object.keys(toastModule));
-        
-        // Verificar que las exportaciones existen
-        if (!toastModule.showToast) {
-          throw new Error('La función showToast no está disponible en el módulo');
-        }
-        
-        // Esperar a que el custom element esté definido
-        console.log('⏳ Esperando definición del custom element...');
+        const toastModule = await import(CDN_JS);
         await customElements.whenDefined('sb-ui-toast');
-        console.log('✅ Custom element sb-ui-toast defined');
-
-        // Exponer al contexto global para los onclick inline con wrappers de debug
-        window.showToast = function(...args) {
-          console.log('🔔 showToast llamado con args:', args);
-          return toastModule.showToast(...args);
-        };
-        window.showSuccess = function(...args) {
-          console.log('✅ showSuccess llamado con args:', args);
-          return toastModule.showSuccess(...args);
-        };
-        window.showInfo = function(...args) {
-          console.log('ℹ️ showInfo llamado con args:', args);
-          return toastModule.showInfo(...args);
-        };
-        window.showWarning = function(...args) {
-          console.log('⚠️ showWarning llamado con args:', args);
-          return toastModule.showWarning(...args);
-        };
-        window.showError = function(...args) {
-          console.log('❌ showError llamado con args:', args);
-          return toastModule.showError(...args);
-        };
+        window.showToast = toastModule.showToast;
+        window.showSuccess = toastModule.showSuccess;
+        window.showInfo = toastModule.showInfo;
+        window.showWarning = toastModule.showWarning;
+        window.showError = toastModule.showError;
         window.hideAllToasts = toastModule.hideAllToasts;
         window.removeAllToasts = toastModule.removeAllToasts;
         window.ToastManager = toastModule.ToastManager;
-        
-        console.log('✅ Toast functions exposed to window');
-        console.log('🔍 window.showToast:', window.showToast);
-        console.log('🔍 typeof window.showToast:', typeof window.showToast);
-        
-        // Verificar que las funciones están disponibles
-        if (typeof window.showToast !== 'function') {
-          throw new Error('showToast no es una función después de exponerla a window');
-        }
-        
-        moduleLoaded = true;
-        console.log('✅ ¡Módulo Toast completamente cargado y listo!');
-        
-        // Marcar visualmente que está listo
-        document.body.classList.add('toast-ready');
-        
       } catch (error) {
-        console.error('❌ Error loading toast module:', error);
-        console.error('Stack trace:', error.stack);
-        console.error('Error name:', error.name);
-        console.error('Error message:', error.message);
-        
-        // Crear funciones de respaldo que muestren el error
-        const errorHandler = (functionName) => {
-          return function(...args) {
-            console.error(`❌ Intento de llamar a ${functionName} pero el módulo no se cargó correctamente`);
-            console.error('Argumentos:', args);
-            alert(`ERROR: No se pudo cargar el módulo de Toast.\n\nError: ${error.message}\n\nRevisa la consola del navegador para más detalles.`);
-          };
-        };
-        
-        window.showToast = errorHandler('showToast');
-        window.showSuccess = errorHandler('showSuccess');
-        window.showInfo = errorHandler('showInfo');
-        window.showWarning = errorHandler('showWarning');
-        window.showError = errorHandler('showError');
-        window.hideAllToasts = errorHandler('hideAllToasts');
-        window.removeAllToasts = errorHandler('removeAllToasts');
+        console.error('Error cargando módulo Toast:', error);
+        const noop = () => alert('Error: No se pudo cargar el módulo Toast.');
+        window.showToast = window.showSuccess = window.showInfo = window.showWarning = window.showError = noop;
+        window.hideAllToasts = window.removeAllToasts = () => {};
       }
 
-      // ========================================
-      // DELEGACIÓN DE EVENTOS PARA TOAST TRIGGERS
-      // ========================================
+      // Delegación de eventos para botones .toast-trigger
       
       /**
        * Manejador delegado para todos los botones con clase .toast-trigger
@@ -1020,7 +661,6 @@ showError('Mensaje', { title: 'Error' });</code></pre>
           config.showProgress = true;
         }
 
-        console.log('🔔 Toast trigger clicked, config:', config);
         window.showToast(config);
       });
 
@@ -1034,7 +674,6 @@ showError('Mensaje', { title: 'Error' });</code></pre>
 
       if (btnCreateMultiple) {
         btnCreateMultiple.addEventListener('click', function() {
-          console.log('🔄 Ejecutando showMultipleToasts...');
           if (typeof window.showSuccess !== 'function') {
             console.error('❌ showSuccess no está disponible');
             alert('ERROR: Las funciones de Toast no están disponibles');
@@ -1132,27 +771,6 @@ showError('Mensaje', { title: 'Error' });</code></pre>
           alert('Error al copiar el código');
         });
       });
-
-      // Brand/theme switcher (heredado de otros ejemplos)
-      (function () {
-        var brandCss = document.getElementById('brand-css');
-        var htmlEl = document.documentElement;
-
-        var currentBrand = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
-        var currentTheme = localStorage.getItem('sb-ui-theme') || 'light';
-
-        function applyBrandTheme() {
-          htmlEl.setAttribute('data-brand', currentBrand);
-          htmlEl.setAttribute('data-theme', currentTheme);
-          localStorage.setItem('sb-ui-brand', currentBrand);
-          localStorage.setItem('sb-ui-theme', currentTheme);
-          if (brandCss && typeof distPath !== 'undefined') {
-            brandCss.href = distPath + 'sb-ui-' + currentBrand + '-' + currentTheme + '.min.css?v=' + Date.now();
-          }
-        }
-
-        applyBrandTheme();
-      })();
     </script>
   </body>
 </html>
