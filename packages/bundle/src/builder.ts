@@ -211,6 +211,7 @@ async function buildCompleteBrandBundle(
     'breadcrumb.css',
     'button.css',
     'calendar.css',
+    'card.css',
     'checkbox.css',
     'file-upload.css',
     'input.css',
