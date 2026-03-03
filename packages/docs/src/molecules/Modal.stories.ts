@@ -208,7 +208,7 @@ export const MediumForm: Story = {
             <input
               type="text"
               placeholder="Juan"
-              style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+              style="padding: 0.5rem 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0); border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
             />
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.25rem;">
@@ -216,7 +216,7 @@ export const MediumForm: Story = {
             <input
               type="text"
               placeholder="Pérez"
-              style="padding: 0.5rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
+              style="padding: 0.5rem 0.75rem; border: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0); border-radius: 4px; font-size: 0.875rem; inline-size: 100%; box-sizing: border-box;"
             />
           </div>
         </div>
@@ -301,12 +301,12 @@ export const MediumDetail: Story = {
         style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-block-end: 1rem;"
       >
         <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px;">
-          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #757575;">Cobertura</span>
-          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: #038450;">$500,000</p>
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--sb-ui-color-grayscale-base, #757575);">Cobertura</span>
+          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: var(--sb-ui-color-primary-base, #038450);">$500,000</p>
         </div>
         <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px;">
-          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #757575;">Prima anual</span>
-          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: #038450;">$50,000</p>
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--sb-ui-color-grayscale-base, #757575);">Prima anual</span>
+          <p style="font-size: 1.125rem; font-weight: 700; margin-block-start: 0.25rem; color: var(--sb-ui-color-primary-base, #038450);">$50,000</p>
         </div>
       </div>
       <ul style="padding-inline-start: 1.25rem; line-height: 1.8;">
@@ -507,7 +507,7 @@ export const LargeData: Story = {
         style="inline-size: 100%; border-collapse: collapse; font-size: 0.875rem; margin-block-end: 1rem;"
       >
         <thead>
-          <tr style="background: #038450; color: #fff;">
+          <tr style="background: var(--sb-ui-color-primary-base, #038450); color: #fff;">
             <th style="padding: 0.5rem 0.75rem; text-align: start; font-weight: 600;">Póliza</th>
             <th style="padding: 0.5rem 0.75rem; text-align: start; font-weight: 600;">Tipo</th>
             <th style="padding: 0.5rem 0.75rem; text-align: end; font-weight: 600;">Prima</th>
@@ -515,41 +515,41 @@ export const LargeData: Story = {
           </tr>
         </thead>
         <tbody>
-          <tr style="border-block-end: 1px solid #e0e0e0;">
+          <tr style="border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);">
             <td style="padding: 0.5rem 0.75rem;">VID-2024-001</td>
             <td style="padding: 0.5rem 0.75rem;">Vida Premium</td>
             <td style="padding: 0.5rem 0.75rem; text-align: end;">$50,000</td>
             <td style="padding: 0.5rem 0.75rem; text-align: center;">
-              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: var(--sb-ui-color-feedback-success-L100, #d4edda); color: var(--sb-ui-color-feedback-success-D200, #155724);">Activa</span>
             </td>
           </tr>
-          <tr style="border-block-end: 1px solid #e0e0e0;">
+          <tr style="border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);">
             <td style="padding: 0.5rem 0.75rem;">AUT-2024-015</td>
             <td style="padding: 0.5rem 0.75rem;">Vehicular</td>
             <td style="padding: 0.5rem 0.75rem; text-align: end;">$32,000</td>
             <td style="padding: 0.5rem 0.75rem; text-align: center;">
-              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: var(--sb-ui-color-feedback-success-L100, #d4edda); color: var(--sb-ui-color-feedback-success-D200, #155724);">Activa</span>
             </td>
           </tr>
-          <tr style="border-block-end: 1px solid #e0e0e0;">
+          <tr style="border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);">
             <td style="padding: 0.5rem 0.75rem;">HOG-2023-042</td>
             <td style="padding: 0.5rem 0.75rem;">Hogar</td>
             <td style="padding: 0.5rem 0.75rem; text-align: end;">$18,500</td>
             <td style="padding: 0.5rem 0.75rem; text-align: center;">
-              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #fff3cd; color: #856404;">Renovar</span>
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: var(--sb-ui-color-feedback-warning-L100, #fff3cd); color: var(--sb-ui-color-feedback-warning-D200, #856404);">Renovar</span>
             </td>
           </tr>
-          <tr style="border-block-end: 1px solid #e0e0e0;">
+          <tr style="border-block-end: 1px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);">
             <td style="padding: 0.5rem 0.75rem;">SAL-2024-008</td>
             <td style="padding: 0.5rem 0.75rem;">Salud</td>
             <td style="padding: 0.5rem 0.75rem; text-align: end;">$45,000</td>
             <td style="padding: 0.5rem 0.75rem; text-align: center;">
-              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: #d4edda; color: #155724;">Activa</span>
+              <span style="display:inline-block; padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: var(--sb-ui-color-feedback-success-L100, #d4edda); color: var(--sb-ui-color-feedback-success-D200, #155724);">Activa</span>
             </td>
           </tr>
         </tbody>
       </table>
-      <p style="font-size: 0.8125rem; color: #757575;">
+      <p style="font-size: 0.8125rem; color: var(--sb-ui-color-grayscale-base, #757575);">
         Sweet roll muffin cotton candy cake macaroon. Oat cake souffle gingerbread candy dessert
         lollipop.
       </p>

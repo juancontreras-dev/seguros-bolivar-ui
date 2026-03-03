@@ -70,7 +70,7 @@ import { html } from 'lit';
  * - **Border-radius:** 8px
  * - **Iconos:** SÍ (20px)
  * - **Active BG:** Amarillo (#FFE16F)
- * - **Active Text:** Verde (#038450), font-weight 700
+ * - **Active Text:** Verde (var(--sb-ui-color-primary-base)), font-weight 700
  *
  * ### Folder Variant
  * - **Altura:** 72px
@@ -78,7 +78,7 @@ import { html } from 'lit';
  * - **Border-radius:** 8px 8px 0 0 (solo arriba)
  * - **Iconos:** SÍ (20px)
  * - **Active BG:** Verde claro (#F2F9F6)
- * - **Active Text:** Verde (#038450), font-weight 700
+ * - **Active Text:** Verde (var(--sb-ui-color-primary-base)), font-weight 700
  *
  * ## 🎯 Ejemplo de Estructura
  *
@@ -149,7 +149,7 @@ export const Playground: Story = {
     ];
 
     return html`
-      <div style="max-width: 800px; padding: 2rem; background: #fafafa;">
+      <div style="max-width: 800px; padding: 2rem; background: var(--sb-ui-color-grayscale-L400, #fafafa);">
         <div class="sb-ui-tabs sb-ui-tabs--${args.variant}">
           ${tabs.map(
             (tab) => html`
@@ -190,7 +190,7 @@ export const TrackVariant: Story = {
       .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
       }
 
       .tabs-demo-section {
@@ -205,28 +205,28 @@ export const TrackVariant: Story = {
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: #038450;
+        color: var(--sb-ui-color-primary-base, #038450);
       }
 
       .tabs-demo-subtitle {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 2rem;
       }
 
       .tabs-demo-specs {
-        background: #f2f9f6;
+        background: var(--sb-ui-color-feedback-success-L100, #f2f9f6);
         padding: 1rem;
         border-radius: 8px;
         margin-bottom: 1.5rem;
-        border-left: 4px solid #038450;
+        border-left: 4px solid var(--sb-ui-color-primary-base, #038450);
       }
 
       .tabs-demo-specs ul {
         margin: 0;
         padding-left: 1.5rem;
         font-size: 0.875rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
       }
 
       .tabs-demo-specs li {
@@ -351,7 +351,7 @@ export const ButtonVariant: Story = {
       .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
       }
 
       .tabs-demo-section {
@@ -366,12 +366,12 @@ export const ButtonVariant: Story = {
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: #ffe16f;
+        color: var(--sb-ui-color-secondary-L100, #ffe16f);
       }
 
       .tabs-demo-subtitle {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 2rem;
       }
 
@@ -387,7 +387,7 @@ export const ButtonVariant: Story = {
         margin: 0;
         padding-left: 1.5rem;
         font-size: 0.875rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
       }
 
       .tabs-demo-specs li {
@@ -409,7 +409,7 @@ export const ButtonVariant: Story = {
             <li><strong>Border-radius:</strong> 8px</li>
             <li><strong>Iconos:</strong> SÍ (20px)</li>
             <li><strong>Active BG:</strong> Amarillo (#FFE16F)</li>
-            <li><strong>Active Text:</strong> Verde (#038450), bold</li>
+            <li><strong>Active Text:</strong> Verde (var(--sb-ui-color-primary-base)), bold</li>
           </ul>
         </div>
 
@@ -517,7 +517,7 @@ export const FolderVariant: Story = {
       .tabs-demo-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
       }
 
       .tabs-demo-section {
@@ -532,28 +532,28 @@ export const FolderVariant: Story = {
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: #038450;
+        color: var(--sb-ui-color-primary-base, #038450);
       }
 
       .tabs-demo-subtitle {
         font-size: 0.875rem;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
         margin-bottom: 2rem;
       }
 
       .tabs-demo-specs {
-        background: #f2f9f6;
+        background: var(--sb-ui-color-feedback-success-L100, #f2f9f6);
         padding: 1rem;
         border-radius: 8px;
         margin-bottom: 1.5rem;
-        border-left: 4px solid #038450;
+        border-left: 4px solid var(--sb-ui-color-primary-base, #038450);
       }
 
       .tabs-demo-specs ul {
         margin: 0;
         padding-left: 1.5rem;
         font-size: 0.875rem;
-        color: #333;
+        color: var(--sb-ui-color-grayscale-D200, #333);
       }
 
       .tabs-demo-specs li {
@@ -575,7 +575,7 @@ export const FolderVariant: Story = {
             <li><strong>Border-radius:</strong> 8px 8px 0 0 (solo arriba)</li>
             <li><strong>Iconos:</strong> SÍ (20px)</li>
             <li><strong>Active BG:</strong> Verde claro (#F2F9F6)</li>
-            <li><strong>Active Text:</strong> Verde (#038450), bold</li>
+            <li><strong>Active Text:</strong> Verde (var(--sb-ui-color-primary-base)), bold</li>
           </ul>
         </div>
 
@@ -682,7 +682,7 @@ export const Comparison: Story = {
       .comparison-container {
         font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
         padding: 2rem;
-        background: #fafafa;
+        background: var(--sb-ui-color-grayscale-L400, #fafafa);
       }
 
       .comparison-grid {
@@ -714,32 +714,32 @@ export const Comparison: Story = {
       }
 
       .comparison-item--track h3 {
-        color: #038450;
+        color: var(--sb-ui-color-primary-base, #038450);
       }
       .comparison-item--track .spec-badge {
-        background: #f2f9f6;
-        color: #038450;
+        background: var(--sb-ui-color-feedback-success-L100, #f2f9f6);
+        color: var(--sb-ui-color-primary-base, #038450);
       }
 
       .comparison-item--button h3 {
-        color: #c99700;
+        color: var(--sb-ui-color-secondary-D100, #c99700);
       }
       .comparison-item--button .spec-badge {
         background: #fffaf0;
-        color: #c99700;
+        color: var(--sb-ui-color-secondary-D100, #c99700);
       }
 
       .comparison-item--folder h3 {
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
       }
       .comparison-item--folder .spec-badge {
         background: #f5f5f5;
-        color: #666;
+        color: var(--sb-ui-color-grayscale-base, #666);
       }
     </style>
 
     <div class="comparison-container">
-      <h2 style="margin-bottom: 2rem; color: #038450; text-align: center;">
+      <h2 style="margin-bottom: 2rem; color: var(--sb-ui-color-primary-base, #038450); text-align: center;">
         Comparación de Variantes
       </h2>
 

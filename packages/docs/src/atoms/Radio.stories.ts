@@ -214,7 +214,7 @@ export const Sizes: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 24px;">
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">Small</h4>
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">Small</h4>
         <div style="display: flex; gap: 16px; align-items: center;">
           ${createRadio({
             size: 'small',
@@ -233,7 +233,7 @@ export const Sizes: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Medium (Default)
         </h4>
         <div style="display: flex; gap: 16px; align-items: center;">
@@ -254,7 +254,7 @@ export const Sizes: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">Large</h4>
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">Large</h4>
         <div style="display: flex; gap: 16px; align-items: center;">
           ${createRadio({
             size: 'large',
@@ -319,7 +319,7 @@ export const DisabledState: Story = {
         })}
       </div>
       <p
-        style="margin: 0; padding: 12px; background: #f8f9fa; border-left: 4px solid #6c757d; font-family: 'Roboto', sans-serif; font-size: 14px; color: #495057;"
+        style="margin: 0; padding: 12px; background: #f8f9fa; border-left: 4px solid var(--sb-ui-color-grayscale-base, #6c757d); font-family: 'Roboto', sans-serif; font-size: 14px; color: var(--sb-ui-color-grayscale-D100, #495057);"
       >
         💡 <strong>Nota:</strong> Los radios disabled NO muestran halos al hacer hover y el cursor
         es <code>not-allowed</code>.
@@ -355,7 +355,7 @@ export const ErrorState: Story = {
         })}
       </div>
       <p
-        style="margin: 0; padding: 12px; background: #fff5f5; border-left: 4px solid #dc3545; font-family: 'Roboto', sans-serif; font-size: 14px; color: #721c24;"
+        style="margin: 0; padding: 12px; background: #fff5f5; border-left: 4px solid var(--sb-ui-color-feedback-error-base, #dc3545); font-family: 'Roboto', sans-serif; font-size: 14px; color: var(--sb-ui-color-feedback-error-D200, #721c24);"
       >
         ⚠️ <strong>Importante:</strong> Solo el border y el punto interior cambian a rojo. El label
         permanece gris para mejor legibilidad.
@@ -378,28 +378,28 @@ export const InteractiveStates: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 24px;">
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Hover State (pasa el mouse)
         </h4>
         ${createRadio({ label: 'Hover me!', name: 'hover', value: 'hover' })}
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Pressed State (mantén presionado)
         </h4>
         ${createRadio({ label: 'Click and hold!', name: 'pressed', value: 'pressed' })}
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Focus State (usa Tab para navegar)
         </h4>
         ${createRadio({ label: 'Tab here!', name: 'focus', value: 'focus' })}
       </div>
 
       <p
-        style="margin: 0; padding: 12px; background: #e7f5ff; border-left: 4px solid #0c8599; font-family: 'Roboto', sans-serif; font-size: 14px; color: #0c5460;"
+        style="margin: 0; padding: 12px; background: #e7f5ff; border-left: 4px solid var(--sb-ui-color-info-base, #0c8599); font-family: 'Roboto', sans-serif; font-size: 14px; color: var(--sb-ui-color-info-D100, #0c5460);"
       >
         ℹ️ <strong>Info:</strong> Los halos NO aparecen cuando el radio está disabled.
       </p>
@@ -416,7 +416,7 @@ export const RadioGroups: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 32px;">
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Método de Pago
         </h4>
         <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -433,7 +433,7 @@ export const RadioGroups: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">Tamaño</h4>
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">Tamaño</h4>
         <div style="display: flex; gap: 16px;">
           ${createRadio({ label: 'S', name: 'size', value: 's' })}
           ${createRadio({ label: 'M', checked: true, name: 'size', value: 'm' })}
@@ -457,7 +457,7 @@ export const Modifiers: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 32px;">
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           No Label (solo círculo)
         </h4>
         <div style="display: flex; gap: 16px; align-items: center;">
@@ -467,7 +467,7 @@ export const Modifiers: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: #333;">
+        <h4 style="margin: 0 0 12px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D200, #333);">
           Block (ancho completo)
         </h4>
         <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -501,7 +501,7 @@ export const FormValidation: Story = {
       >
         <div>
           <label
-            style="display: block; margin-bottom: 8px; font-weight: 500; font-family: 'Roboto', sans-serif; color: #212529;"
+            style="display: block; margin-bottom: 8px; font-weight: 500; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D300, #212529);"
           >
             Selecciona una opción *
           </label>
@@ -512,7 +512,7 @@ export const FormValidation: Story = {
           </div>
           <span
             id="error-message"
-            style="display: none; margin-top: 8px; font-size: 14px; color: #dc3545; font-family: 'Roboto', sans-serif;"
+            style="display: none; margin-top: 8px; font-size: 14px; color: var(--sb-ui-color-feedback-error-base, #dc3545); font-family: 'Roboto', sans-serif;"
           >
             ⚠️ Debes seleccionar una opción
           </span>
@@ -527,7 +527,7 @@ export const FormValidation: Story = {
 
         <div
           id="result"
-          style="display: none; padding: 12px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 4px; color: #0c5460; font-family: 'Roboto', sans-serif; font-size: 14px;"
+          style="display: none; padding: 12px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 4px; color: var(--sb-ui-color-info-D100, #0c5460); font-family: 'Roboto', sans-serif; font-size: 14px;"
         ></div>
       </form>
     </div>
@@ -585,7 +585,7 @@ export const RealWorldExamples: Story = {
     <div style="display: flex; flex-direction: column; gap: 48px;">
       <!-- Ejemplo 1: Selector de plan -->
       <div style="max-width: 500px;">
-        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: #212529;">
+        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D300, #212529);">
           Selecciona tu plan
         </h4>
         <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -599,7 +599,7 @@ export const RealWorldExamples: Story = {
               value: 'basic',
             })}
             <p
-              style="margin: 8px 0 0 34px; font-size: 14px; color: #6c757d; font-family: 'Roboto', sans-serif;"
+              style="margin: 8px 0 0 34px; font-size: 14px; color: var(--sb-ui-color-grayscale-base, #6c757d); font-family: 'Roboto', sans-serif;"
             >
               Ideal para uso personal. Incluye 10GB de almacenamiento.
             </p>
@@ -610,7 +610,7 @@ export const RealWorldExamples: Story = {
           >
             ${createRadio({ label: 'Plan Pro - $19.99/mes', name: 'plan', value: 'pro' })}
             <p
-              style="margin: 8px 0 0 34px; font-size: 14px; color: #6c757d; font-family: 'Roboto', sans-serif;"
+              style="margin: 8px 0 0 34px; font-size: 14px; color: var(--sb-ui-color-grayscale-base, #6c757d); font-family: 'Roboto', sans-serif;"
             >
               Para equipos pequeños. 100GB de almacenamiento + colaboración.
             </p>
@@ -625,7 +625,7 @@ export const RealWorldExamples: Story = {
               value: 'enterprise',
             })}
             <p
-              style="margin: 8px 0 0 34px; font-size: 14px; color: #6c757d; font-family: 'Roboto', sans-serif;"
+              style="margin: 8px 0 0 34px; font-size: 14px; color: var(--sb-ui-color-grayscale-base, #6c757d); font-family: 'Roboto', sans-serif;"
             >
               Solución personalizada para grandes organizaciones.
             </p>
@@ -635,7 +635,7 @@ export const RealWorldExamples: Story = {
 
       <!-- Ejemplo 2: Opciones de envío -->
       <div style="max-width: 500px;">
-        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: #212529;">
+        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D300, #212529);">
           Método de envío
         </h4>
         <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -660,7 +660,7 @@ export const RealWorldExamples: Story = {
 
       <!-- Ejemplo 3: Pregunta de encuesta -->
       <div style="max-width: 500px;">
-        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: #212529;">
+        <h4 style="margin: 0 0 16px 0; font-family: 'Roboto', sans-serif; color: var(--sb-ui-color-grayscale-D300, #212529);">
           ¿Cómo calificarías nuestro servicio?
         </h4>
         <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -878,7 +878,7 @@ export const CodeExamples: Story = {
       style="display: flex; flex-direction: column; gap: 32px; font-family: 'Roboto', sans-serif;"
     >
       <div>
-        <h4 style="margin: 0 0 12px 0; color: #212529;">Radio Básico</h4>
+        <h4 style="margin: 0 0 12px 0; color: var(--sb-ui-color-grayscale-D300, #212529);">Radio Básico</h4>
         <pre
           style="background: #f8f9fa; padding: 16px; border-radius: 4px; overflow-x: auto; margin: 0; border: 1px solid #dee2e6;"
         ><code>&lt;label class="sb-ui-radio"&gt;
@@ -889,7 +889,7 @@ export const CodeExamples: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; color: #212529;">Radio con todos los atributos</h4>
+        <h4 style="margin: 0 0 12px 0; color: var(--sb-ui-color-grayscale-D300, #212529);">Radio con todos los atributos</h4>
         <pre
           style="background: #f8f9fa; padding: 16px; border-radius: 4px; overflow-x: auto; margin: 0; border: 1px solid #dee2e6;"
         ><code>&lt;label class="sb-ui-radio sb-ui-radio--large sb-ui-radio--error"&gt;
@@ -900,7 +900,7 @@ export const CodeExamples: Story = {
       </div>
 
       <div>
-        <h4 style="margin: 0 0 12px 0; color: #212529;">Grupo de Radios</h4>
+        <h4 style="margin: 0 0 12px 0; color: var(--sb-ui-color-grayscale-D300, #212529);">Grupo de Radios</h4>
         <pre
           style="background: #f8f9fa; padding: 16px; border-radius: 4px; overflow-x: auto; margin: 0; border: 1px solid #dee2e6;"
         ><code>&lt;div&gt;

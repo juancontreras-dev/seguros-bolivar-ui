@@ -181,6 +181,12 @@
     place-content: space-evenly;
   }
 
+  /* ===== Min Block Size (altura mínima de pantalla completa) ===== */
+  /* Uso principal: body que centra contenido verticalmente con place-content-center */
+  .sb-ui-min-block-screen {
+    min-block-size: 100dvb;
+  }
+
   /* ===== Accesibilidad ===== */
   /* ===== Accesibilidad: High Contrast Mode ===== */
   @media (prefers-contrast: high) {

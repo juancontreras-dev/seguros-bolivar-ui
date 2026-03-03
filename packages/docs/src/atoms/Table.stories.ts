@@ -74,8 +74,8 @@ export const Basic: Story = {
 
     <div class="story-container">
       <div class="table-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Tabla Básica</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Tabla Básica</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Tabla estándar con diseño limpio y minimalista
         </p>
 
@@ -100,7 +100,7 @@ export const Basic: Story = {
                 <td>Juan Pérez</td>
                 <td>juan@example.com</td>
                 <td>Admin</td>
-                <td><span style="color: #038450; font-weight: 600;">Activo</span></td>
+                <td><span style="color: var(--sb-ui-color-primary-base, #038450); font-weight: 600;">Activo</span></td>
               </tr>
               <tr>
                 <td>
@@ -109,7 +109,7 @@ export const Basic: Story = {
                 <td>María García</td>
                 <td>maria@example.com</td>
                 <td>Usuario</td>
-                <td><span style="color: #038450; font-weight: 600;">Activo</span></td>
+                <td><span style="color: var(--sb-ui-color-primary-base, #038450); font-weight: 600;">Activo</span></td>
               </tr>
               <tr>
                 <td>
@@ -118,7 +118,7 @@ export const Basic: Story = {
                 <td>Carlos López</td>
                 <td>carlos@example.com</td>
                 <td>Editor</td>
-                <td><span style="color: #9b9b9b; font-weight: 600;">Inactivo</span></td>
+                <td><span style="color: var(--sb-ui-color-grayscale-D100, #9b9b9b); font-weight: 600;">Inactivo</span></td>
               </tr>
             </tbody>
           </table>
@@ -156,8 +156,8 @@ export const Striped: Story = {
 
     <div class="story-container">
       <div class="table-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Tabla Striped</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Tabla Striped</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Filas alternadas con fondo gris para mejor legibilidad
         </p>
 
@@ -247,8 +247,8 @@ export const Hover: Story = {
 
     <div class="story-container">
       <div class="table-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Tabla con Hover</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Tabla con Hover</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Las filas se resaltan al pasar el mouse
         </p>
 
@@ -269,21 +269,21 @@ export const Hover: Story = {
                 <td>Empresa ABC</td>
                 <td>2024-01-15</td>
                 <td>$5,000</td>
-                <td><span style="color: #038450; font-weight: 600;">Pagado</span></td>
+                <td><span style="color: var(--sb-ui-color-primary-base, #038450); font-weight: 600;">Pagado</span></td>
               </tr>
               <tr>
                 <td>#002</td>
                 <td>Corporación XYZ</td>
                 <td>2024-01-16</td>
                 <td>$3,200</td>
-                <td><span style="color: #FFB020; font-weight: 600;">Pendiente</span></td>
+                <td><span style="color: var(--sb-ui-color-feedback-warning-base, #FFB020); font-weight: 600;">Pendiente</span></td>
               </tr>
               <tr>
                 <td>#003</td>
                 <td>Sociedad LMN</td>
                 <td>2024-01-17</td>
                 <td>$1,800</td>
-                <td><span style="color: #038450; font-weight: 600;">Pagado</span></td>
+                <td><span style="color: var(--sb-ui-color-primary-base, #038450); font-weight: 600;">Pagado</span></td>
               </tr>
             </tbody>
           </table>
@@ -326,8 +326,8 @@ export const WithPagination: Story = {
 
     <div class="story-container">
       <div class="table-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Tabla con Paginación</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Tabla con Paginación</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Sistema de paginación completo con navegación
         </p>
 
@@ -448,8 +448,8 @@ export const Combined: Story = {
 
     <div class="story-container">
       <div class="table-wrapper">
-        <h2 style="margin-bottom: 1rem; color: #038450;">Tabla Combinada</h2>
-        <p style="margin-bottom: 1.5rem; color: #5b5b5b;">
+        <h2 style="margin-bottom: 1rem; color: var(--sb-ui-color-primary-base, #038450);">Tabla Combinada</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-D200, #5b5b5b);">
           Striped + Bordered + Hover + Compact
         </p>
 
@@ -495,7 +495,7 @@ export const Combined: Story = {
               </tr>
               <tr>
                 <td colspan="4" style="text-align: right; font-weight: 700;">Total:</td>
-                <td style="font-weight: 700; color: #038450;">$5,400/año</td>
+                <td style="font-weight: 700; color: var(--sb-ui-color-primary-base, #038450);">$5,400/año</td>
               </tr>
             </tbody>
           </table>

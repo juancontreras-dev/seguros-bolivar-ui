@@ -106,13 +106,13 @@ export const Playground: Story = {
     const progressAttr = args.type === 'basic' ? args.progress : null;
 
     return html`
-      <div style="display: flex; justify-content: center; padding: 3rem; background: #fafafa;">
+      <div style="display: flex; justify-content: center; padding: 3rem; background: var(--sb-ui-color-grayscale-L400, #fafafa);">
         <div class="${classes}" data-progress="${progressAttr}">
           ${args.type === 'icon' || args.type === 'icon-text'
             ? html`
                 <div class="sb-ui-spinner__content">
                   <div class="sb-ui-spinner__icon">
-                    <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+                    <i class="fa-solid fa-check" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
                   </div>
                   ${args.type === 'icon-text'
                     ? html`<div class="sb-ui-spinner__label">OK</div>`
@@ -123,7 +123,7 @@ export const Playground: Story = {
         </div>
       </div>
       ${args.type === 'basic'
-        ? html`<div style="text-align: center; color: #666;">
+        ? html`<div style="text-align: center; color: var(--sb-ui-color-grayscale-base, #666);">
             Progress: ${args.progress}%
           </div>`
         : ''}
@@ -170,7 +170,7 @@ export const Basic: Story = {
     </style>
 
     <div class="spinner-demo-container">
-      <h3 style="margin-bottom: 1.5rem; color: #038450;">Diferentes Niveles de Progreso</h3>
+      <h3 style="margin-bottom: 1.5rem; color: var(--sb-ui-color-primary-base, #038450);">Diferentes Niveles de Progreso</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
           <div class="sb-ui-spinner" data-progress="0"></div>
@@ -246,8 +246,8 @@ export const Integrated: Story = {
     </style>
 
     <div class="spinner-demo-container">
-      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner Integrado - Rotación Alterna</h3>
-      <p style="margin-bottom: 1.5rem; color: #666;">
+      <h3 style="margin-bottom: 1.5rem; color: var(--sb-ui-color-primary-base, #038450);">Spinner Integrado - Rotación Alterna</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--sb-ui-color-grayscale-base, #666);">
         Los anillos externo e interno rotan en sentido horario, mientras que el anillo medio rota en sentido anti-horario.
       </p>
       <div class="spinner-demo-grid">
@@ -259,7 +259,7 @@ export const Integrated: Story = {
         </div>
       </div>
 
-      <h3 style="margin: 2.5rem 0 1.5rem; color: #038450;">Diferentes Velocidades</h3>
+      <h3 style="margin: 2.5rem 0 1.5rem; color: var(--sb-ui-color-primary-base, #038450);">Diferentes Velocidades</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
           <div class="sb-ui-spinner sb-ui-spinner--integrated">
@@ -333,13 +333,13 @@ export const Icon: Story = {
     </style>
 
     <div class="spinner-demo-container">
-      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner con Diferentes Iconos</h3>
+      <h3 style="margin-bottom: 1.5rem; color: var(--sb-ui-color-primary-base, #038450);">Spinner con Diferentes Iconos</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
           <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="75">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-check" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
             </div>
           </div>
@@ -352,7 +352,7 @@ export const Icon: Story = {
               <div class="sb-ui-spinner__icon">
                 <i
                   class="fa-solid fa-cloud-arrow-up"
-                  style="color: #038450; font-size: 20px;"
+                  style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"
                 ></i>
               </div>
             </div>
@@ -364,7 +364,7 @@ export const Icon: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="90">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-download" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-download" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
             </div>
           </div>
@@ -375,7 +375,7 @@ export const Icon: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="25">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-sync" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-sync" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
             </div>
           </div>
@@ -425,13 +425,13 @@ export const IconText: Story = {
     </style>
 
     <div class="spinner-demo-container">
-      <h3 style="margin-bottom: 1.5rem; color: #038450;">Spinner con Icono y Texto</h3>
+      <h3 style="margin-bottom: 1.5rem; color: var(--sb-ui-color-primary-base, #038450);">Spinner con Icono y Texto</h3>
       <div class="spinner-demo-grid">
         <div class="spinner-demo-item">
           <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-check" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
               <div class="sb-ui-spinner__label">OK</div>
             </div>
@@ -443,7 +443,7 @@ export const IconText: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="50">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-cloud-arrow-up" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-cloud-arrow-up" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
               <div class="sb-ui-spinner__label">UP</div>
             </div>
@@ -455,7 +455,7 @@ export const IconText: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="75">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-shield-halved" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-shield-halved" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
               <div class="sb-ui-spinner__label">SEC</div>
             </div>
@@ -557,14 +557,14 @@ export const CasosDeUso: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon-text" data-progress="100">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-check" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-check" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
               <div class="sb-ui-spinner__label">OK</div>
             </div>
           </div>
           <div>
-            <strong style="color: #038450;">¡Operación completada!</strong><br />
-            <span style="color: #666;">Tu archivo se ha guardado correctamente</span>
+            <strong style="color: var(--sb-ui-color-primary-base, #038450);">¡Operación completada!</strong><br />
+            <span style="color: var(--sb-ui-color-grayscale-base, #666);">Tu archivo se ha guardado correctamente</span>
           </div>
         </div>
       </div>
@@ -576,13 +576,13 @@ export const CasosDeUso: Story = {
           <div class="sb-ui-spinner sb-ui-spinner--icon" data-progress="45">
             <div class="sb-ui-spinner__content">
               <div class="sb-ui-spinner__icon">
-                <i class="fa-solid fa-gear" style="color: #038450; font-size: 20px;"></i>
+                <i class="fa-solid fa-gear" style="color: var(--sb-ui-color-primary-base, #038450); font-size: 20px;"></i>
               </div>
             </div>
           </div>
           <div>
             <strong>Procesando tu solicitud...</strong><br />
-            <span style="color: #666;">Esto puede tomar unos momentos</span>
+            <span style="color: var(--sb-ui-color-grayscale-base, #666);">Esto puede tomar unos momentos</span>
           </div>
         </div>
       </div>

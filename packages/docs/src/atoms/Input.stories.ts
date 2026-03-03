@@ -362,15 +362,15 @@ export const Estados: Story = {
 
       .state-label.default {
         background: #e3f2fd;
-        color: #1565c0;
+        color: var(--sb-ui-color-primary-D100, #1565c0);
       }
       .state-label.hover {
         background: #f3e5f5;
-        color: #6a1b9a;
+        color: var(--sb-ui-color-secondary-D200, #6a1b9a);
       }
       .state-label.disabled {
         background: #eceff1;
-        color: #546e7a;
+        color: var(--sb-ui-color-grayscale-base, #546e7a);
       }
     </style>
 

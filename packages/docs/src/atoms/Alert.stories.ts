@@ -510,8 +510,8 @@ export const Estados: Story = {
            RESUMEN Y NOTAS
            ======================================== -->
       <div class="matrix-section" style="background: #fff9e6; border-left: 4px solid #ffa000;">
-        <h3 style="margin-top: 0; color: #e65100;">📝 Notas Importantes</h3>
-        <ul style="line-height: 1.8; color: #333;">
+        <h3 style="margin-top: 0; color: var(--sb-ui-color-feedback-warning-base, #e65100);">📝 Notas Importantes</h3>
+        <ul style="line-height: 1.8; color: var(--sb-ui-color-grayscale-D200, #333);">
           <li>
             <strong>Estado por defecto:</strong> INFO es el estado por defecto (no necesitas
             especificar <code>.sb-ui-alert--info</code>).

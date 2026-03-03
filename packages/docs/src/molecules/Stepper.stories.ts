@@ -411,8 +411,8 @@ export const States: Story = {
     >
       <!-- Empty Default -->
       <div>
-        <h3 style="color: #9b9b9b; font-size: 1rem; margin-bottom: 1rem">Empty Default</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-grayscale-D100, #9b9b9b); font-size: 1rem; margin-bottom: 1rem">Empty Default</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           Paso pendiente (no visitado)
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
@@ -425,8 +425,8 @@ export const States: Story = {
 
       <!-- Empty Active -->
       <div>
-        <h3 style="color: #ffe16f; font-size: 1rem; margin-bottom: 1rem">Empty Active</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-secondary-L100, #ffe16f); font-size: 1rem; margin-bottom: 1rem">Empty Active</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           Paso actual (en progreso)
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
@@ -439,8 +439,8 @@ export const States: Story = {
 
       <!-- Filled Default -->
       <div>
-        <h3 style="color: #038450; font-size: 1rem; margin-bottom: 1rem">Filled Default</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">Paso completado</p>
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); font-size: 1rem; margin-bottom: 1rem">Filled Default</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">Paso completado</p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
           <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
             <div class="sb-ui-stepper__step-circle">${checkIcon}</div>
@@ -452,8 +452,8 @@ export const States: Story = {
 
       <!-- Filled Active -->
       <div>
-        <h3 style="color: #05794a; font-size: 1rem; margin-bottom: 1rem">Filled Active</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-D100, #05794a); font-size: 1rem; margin-bottom: 1rem">Filled Active</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           Completado + activo (poco común)
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
@@ -501,12 +501,12 @@ export const FormularioMultiPaso: Story = {
           style="
             margin-top: 2rem;
             padding: 1.5rem;
-            background-color: #f9f9f9;
+            background-color: var(--sb-ui-color-grayscale-L400, #f9f9f9);
             border-radius: 8px;
             min-height: 150px;
           "
         >
-          <h3 style="color: #038450; margin-top: 0">Paso 1: Datos Personales</h3>
+          <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-top: 0">Paso 1: Datos Personales</h3>
           <div style="margin-bottom: 1rem">
             <label style="display: block; font-weight: 700; margin-bottom: 0.5rem"
               >Nombre completo</label
@@ -517,7 +517,7 @@ export const FormularioMultiPaso: Story = {
               style="
                 width: 100%;
                 padding: 0.75rem;
-                border: 2px solid #e0e0e0;
+                border: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
                 border-radius: 8px;
                 font-size: 1rem;
               "
@@ -531,7 +531,7 @@ export const FormularioMultiPaso: Story = {
               style="
                 width: 100%;
                 padding: 0.75rem;
-                border: 2px solid #e0e0e0;
+                border: 2px solid var(--sb-ui-color-grayscale-L200, #e0e0e0);
                 border-radius: 8px;
                 font-size: 1rem;
               "
@@ -553,7 +553,7 @@ export const FormularioMultiPaso: Story = {
 
         <!-- Info -->
         <div style="margin-top: 1rem; padding: 1rem; background: #f0f9f4; border-radius: 8px">
-          <strong style="color: #038450">💡 Tip:</strong> En tu implementación, usa JavaScript para
+          <strong style="color: var(--sb-ui-color-primary-base, #038450)">💡 Tip:</strong> En tu implementación, usa JavaScript para
           actualizar las clases según el paso actual.
         </div>
       </div>
@@ -614,7 +614,7 @@ export const Playground: Story = {
           <p style="margin: 0.5rem 0">
             <strong>Paso actual:</strong> <code>${currentStep}</code> de <code>${totalSteps}</code>
           </p>
-          <p style="margin-top: 1rem; color: #038450">
+          <p style="margin-top: 1rem; color: var(--sb-ui-color-primary-base, #038450)">
             <strong>Classes:</strong>
             <code style="font-size: 0.75rem; display: block; margin-top: 0.5rem">
               .sb-ui-stepper ${orientationClass} ${typeClass} ${trackClass}
@@ -636,8 +636,8 @@ export const TodosLosTipos: Story = {
     <div style="display: flex; flex-direction: column; gap: 3rem;">
       <!-- Number -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">Number (Default)</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">Number (Default)</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           54px desktop / 40px mobile
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
@@ -650,8 +650,8 @@ export const TodosLosTipos: Story = {
 
       <!-- Icon -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">Icon</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">Icon</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           62px desktop / 46px mobile
         </p>
         <div
@@ -664,8 +664,8 @@ export const TodosLosTipos: Story = {
 
       <!-- Mix -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">Mix (Icon + Badge)</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">Mix (Icon + Badge)</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           62px desktop / 46px mobile + badge arriba centrado
         </p>
         <div
@@ -689,8 +689,8 @@ export const TrackStyles: Story = {
     <div style="display: flex; flex-direction: column; gap: 3rem;">
       <!-- Solid -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">Solid (Sin clase --track-dash)</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">Solid (Sin clase --track-dash)</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           Líneas verdes sólidas siempre
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal">
@@ -703,8 +703,8 @@ export const TrackStyles: Story = {
 
       <!-- Dash -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">Dash (Recomendado)</h3>
-        <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem">
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">Dash (Recomendado)</h3>
+        <p style="font-size: 0.875rem; color: var(--sb-ui-color-grayscale-base, #666); margin-bottom: 1rem">
           Sólida después de completados, punteada hacia pendientes
         </p>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
@@ -728,7 +728,7 @@ export const DiferentesNumerosDePasos: Story = {
     <div style="display: flex; flex-direction: column; gap: 3rem;">
       <!-- 2 pasos -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">2 Pasos</h3>
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">2 Pasos</h3>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
           ${renderStep(1, 2, 'Paso 1', 'number', false)}
           ${renderStep(2, 2, 'Paso 2', 'number', true)}
@@ -737,7 +737,7 @@ export const DiferentesNumerosDePasos: Story = {
 
       <!-- 3 pasos -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">3 Pasos</h3>
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">3 Pasos</h3>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
           ${renderStep(1, 2, 'Paso 1', 'number', false)}
           ${renderStep(2, 2, 'Paso 2', 'number', false)}
@@ -747,7 +747,7 @@ export const DiferentesNumerosDePasos: Story = {
 
       <!-- 5 pasos -->
       <div>
-        <h3 style="color: #038450; margin-bottom: 1rem">5 Pasos</h3>
+        <h3 style="color: var(--sb-ui-color-primary-base, #038450); margin-bottom: 1rem">5 Pasos</h3>
         <div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
           ${renderStep(1, 3, 'Paso 1', 'number', false)}
           ${renderStep(2, 3, 'Paso 2', 'number', false)}

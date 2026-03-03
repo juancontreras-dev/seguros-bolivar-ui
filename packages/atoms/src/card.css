@@ -130,8 +130,8 @@
     /* Spacing */
     --sb-ui-card-padding-inline: clamp(0.75rem, 0.5rem + 1vw, 1rem);
     --sb-ui-card-padding-block: clamp(0.75rem, 0.5rem + 1vw, 1rem);
-    --sb-ui-card-content-gap: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
-    --sb-ui-card-actions-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+    --sb-ui-card-content-gap: clamp(0.75rem, 0.5rem + 1vw, 1rem);
+    --sb-ui-card-actions-gap: clamp(0.5rem, 0.375rem + 0.5vw, 0.75rem);
 
     /* Image */
     --sb-ui-card-image-block-size: clamp(140px, 25vw, 200px);

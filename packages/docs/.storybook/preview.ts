@@ -14,128 +14,25 @@ import type { Preview } from '@storybook/web-components';
 import '@seguros-bolivar-ui/molecules';
 
 // ============================================================================
-// TOAST HELPER FUNCTIONS - Global para onclick y Storybook
+// TOAST HELPER FUNCTIONS - Expuestas automáticamente por @seguros-bolivar-ui/molecules
+// ============================================================================
+// NOTA: El paquete molecules ya expone showToast, showSuccess, showError, showWarning,
+// showInfo, hideToast, hideAllToasts, removeToast, removeAllToasts en window.
+// Ver packages/molecules/src/index.ts líneas 40-50
 // ============================================================================
 declare global {
   interface Window {
-    showToast: (type: string, position: string) => void;
-    showSuccess: (message: string, position?: string) => void;
-    showError: (message: string, position?: string) => void;
-    showWarning: (message: string, position?: string) => void;
-    showInfo: (message: string, position?: string) => void;
+    showToast: (options: any) => string;
+    showSuccess: (message: string, options?: any) => string;
+    showError: (message: string, options?: any) => string;
+    showWarning: (message: string, options?: any) => string;
+    showInfo: (message: string, options?: any) => string;
+    hideToast: (id: string) => boolean;
+    hideAllToasts: () => void;
+    removeToast: (id: string) => boolean;
+    removeAllToasts: () => void;
+    ToastManager: any;
   }
-}
-
-// Toast helper functions
-window.showSuccess = function (message: string, position: string = 'top-right') {
-  createToast('success', message, position);
-};
-
-window.showError = function (message: string, position: string = 'top-right') {
-  createToast('error', message, position);
-};
-
-window.showWarning = function (message: string, position: string = 'top-right') {
-  createToast('warning', message, position);
-};
-
-window.showInfo = function (message: string, position: string = 'top-right') {
-  createToast('info', message, position);
-};
-
-// Original showToast function - Sobrecarga para soportar ambas firmas
-window.showToast = function (
-  typeOrMessage: string,
-  positionOrOptions?: string | { position?: string; variant?: string }
-) {
-  let type: string;
-  let message: string;
-  let position: string = 'top-right';
-
-  // Determinar si es la forma antigua (type, position) o nueva (message, options)
-  if (typeof positionOrOptions === 'object' && positionOrOptions !== null) {
-    // Nueva forma: showToast(message, {position, variant})
-    message = typeOrMessage;
-    type = positionOrOptions.variant || 'info';
-    position = positionOrOptions.position || 'top-right';
-  } else {
-    // Forma antigua: showToast(type, position)
-    type = typeOrMessage;
-    position = (positionOrOptions as string) || 'top-right';
-
-    const defaultMessages: Record<string, string> = {
-      success: 'Tu solicitud ha sido procesada correctamente.',
-      error: 'No se pudo completar la operación. Intenta nuevamente.',
-      warning: 'Por favor, revisa los datos antes de continuar.',
-      info: 'Tienes una nueva notificación importante.',
-    };
-
-    message = defaultMessages[type] || 'Notificación';
-  }
-
-  createToast(type, message, position);
-};
-
-function createToast(type: string, message: string, position: string) {
-  const positionClasses: Record<string, string> = {
-    'top-left': 'sb-ui-alert--toast-top-left',
-    'top-center': 'sb-ui-alert--toast-top-center',
-    'top-right': '',
-    'bottom-left': 'sb-ui-alert--toast-bottom-left',
-    'bottom-center': 'sb-ui-alert--toast-bottom-center',
-    'bottom-right': 'sb-ui-alert--toast-bottom-right',
-  };
-
-  const titles: Record<string, string> = {
-    success: '¡Éxito!',
-    error: 'Error',
-    warning: 'Advertencia',
-    info: 'Información',
-  };
-
-  const positionClass = positionClasses[position] || '';
-  const title = titles[type] || 'Notificación';
-
-  // Create toast element
-  const toast = document.createElement('div');
-  toast.className = `sb-ui-alert sb-ui-alert--${type} sb-ui-alert--toast ${positionClass} sb-ui-alert--fade-in`;
-  toast.setAttribute('role', 'alert');
-
-  toast.innerHTML = `
-    <div class="sb-ui-alert-icon"></div>
-    <div class="sb-ui-alert-content">
-      <div class="sb-ui-alert-title">${title}</div>
-      <div class="sb-ui-alert-message">${message}</div>
-    </div>
-    <button class="sb-ui-alert-close" aria-label="Cerrar notificación">×</button>
-  `;
-
-  // Add to body
-  document.body.appendChild(toast);
-
-  // Close button handler
-  const closeBtn = toast.querySelector('.sb-ui-alert-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      removeToastElement(toast);
-    });
-  }
-
-  // Auto-remove after 5 seconds
-  setTimeout(() => {
-    if (document.body.contains(toast)) {
-      removeToastElement(toast);
-    }
-  }, 5000);
-}
-
-function removeToastElement(toast: HTMLElement) {
-  toast.classList.add('sb-ui-alert--fade-out');
-  setTimeout(() => {
-    if (toast.parentNode) {
-      toast.parentNode.removeChild(toast);
-    }
-  }, 300);
 }
 
 const preview: Preview = {
