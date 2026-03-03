@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Component - Seguros Bolívar UI Design System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preload" href="../dist/sb-ui-seguros-bolivar-light.min.css" as="style" />
+    <link rel="stylesheet" href="../dist/sb-ui-seguros-bolivar-light.min.css" id="brand-css" />
+    <link rel="stylesheet" href="../components.css" />
+  </head>
+
+  <body>
+    <main class="component-container">
+
+      <header class="component-header">
+        <h2 class="variant-title">
+          <span class="component-title-icon">
+            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+          </span>
+          <span>Card</span>
+        </h2>
+        <p class="component-description">
+          Componente Card del Design System. Usa la clase base <code>sb-ui-card</code> con modificadores
+          para cambiar orientación (<code>--horizontal</code>), posición de imagen (<code>--img-left</code>,
+          <code>--img-right</code>), y disposición de botones (<code>--actions-horizontal</code>).
+        </p>
+      </header>
+
+      <!-- ========================================
+           SECCIÓN 1: CARD VERTICAL CON IMAGEN
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Vertical con imagen (default)</h3>
+        <p class="demo-description">
+          La variante por defecto: imagen arriba, contenido debajo y botones apilados verticalmente. Incluye badge, FAB, precio y footer.
+        </p>
+
+        <div class="card-demo-grid">
+
+          <div>
+            <p class="card-demo-label">Botones verticales</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card1/400/250" alt="Imagen de ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--success">
+                  <i class="fa-solid fa-tag"></i> Success
+                </span>
+                <button class="sb-ui-card__fab" aria-label="Agregar">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Título de la Card</h3>
+                <p class="sb-ui-card__subtitle">Subtítulo descriptivo</p>
+                <p class="sb-ui-card__description">Descripción breve del contenido de esta card de ejemplo.</p>
+                <p class="sb-ui-card__observation">*Aplican términos y condiciones</p>
+                <div class="sb-ui-card__price">
+                  <span class="sb-ui-card__price-label">Desde:</span>
+                  <span class="sb-ui-card__price-value">$120.000</span>
+                </div>
+              </div>
+              <div class="sb-ui-card__actions">
+                <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Más info</button>
+                <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Comprar</button>
+              </div>
+              <div class="sb-ui-card__footer">
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-calendar"></i><span>Ene 2026</span>
+                </div>
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-clock"></i><span>30 días</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Botones horizontales</p>
+            <article class="sb-ui-card sb-ui-card--actions-horizontal">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card2/400/250" alt="Imagen de ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--warning">
+                  <i class="fa-solid fa-bolt"></i> Popular
+                </span>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Seguro de Hogar</h3>
+                <p class="sb-ui-card__subtitle">Protege lo que más importa</p>
+                <p class="sb-ui-card__description">Cobertura integral para tu hogar y familia.</p>
+                <p class="sb-ui-card__observation">*Consulta coberturas disponibles</p>
+                <div class="sb-ui-card__price">
+                  <span class="sb-ui-card__price-label">Desde:</span>
+                  <span class="sb-ui-card__price-value">$85.000</span>
+                </div>
+              </div>
+              <div class="sb-ui-card__actions">
+                <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Detalles</button>
+                <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Cotizar</button>
+              </div>
+              <div class="sb-ui-card__footer">
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-shield-halved"></i><span>Premium</span>
+                </div>
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-star"></i><span>4.8/5</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Card vertical</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;article class="sb-ui-card"&gt;
+  &lt;div class="sb-ui-card__image"&gt;
+    &lt;img class="sb-ui-card__img" src="..." alt="..." /&gt;
+    &lt;span class="sb-ui-card__badge sb-ui-card__badge--success"&gt;
+      &lt;i class="fa-solid fa-tag"&gt;&lt;/i&gt; Success
+    &lt;/span&gt;
+    &lt;button class="sb-ui-card__fab"&gt;
+      &lt;i class="fa-solid fa-plus"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__content"&gt;
+    &lt;h3 class="sb-ui-card__title"&gt;Título&lt;/h3&gt;
+    &lt;p class="sb-ui-card__subtitle"&gt;Subtítulo&lt;/p&gt;
+    &lt;p class="sb-ui-card__description"&gt;Descripción...&lt;/p&gt;
+    &lt;p class="sb-ui-card__observation"&gt;Observación&lt;/p&gt;
+    &lt;div class="sb-ui-card__price"&gt;
+      &lt;span class="sb-ui-card__price-label"&gt;Desde:&lt;/span&gt;
+      &lt;span class="sb-ui-card__price-value"&gt;$120.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__actions"&gt;
+    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill"&gt;Más info&lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;Comprar&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__footer"&gt;
+    &lt;div class="sb-ui-card__footer-item"&gt;
+      &lt;i class="fa-solid fa-calendar"&gt;&lt;/i&gt;&lt;span&gt;Ene 2026&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="sb-ui-card__footer-item"&gt;
+      &lt;i class="fa-solid fa-clock"&gt;&lt;/i&gt;&lt;span&gt;30 días&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+&lt;!-- Con botones horizontales: --&gt;
+&lt;article class="sb-ui-card sb-ui-card--actions-horizontal"&gt;
+  ...
+&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 2: CARD VERTICAL SIN IMAGEN
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Vertical sin imagen</h3>
+        <p class="demo-description">
+          Card sin sección de imagen. El contenido comienza directamente con el texto.
+        </p>
+
+        <div class="card-demo-grid">
+
+          <div>
+            <p class="card-demo-label">Botones verticales</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Plan Básico</h3>
+                <p class="sb-ui-card__subtitle">Seguro de vida</p>
+                <p class="sb-ui-card__description">Protección esencial para ti y tu familia con cobertura por fallecimiento y accidentes.</p>
+                <p class="sb-ui-card__observation">*Sujeto a condiciones de póliza</p>
+                <div class="sb-ui-card__price">
+                  <span class="sb-ui-card__price-label">Desde:</span>
+                  <span class="sb-ui-card__price-value">$45.000</span>
+                </div>
+              </div>
+              <div class="sb-ui-card__actions">
+                <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Ver detalle</button>
+                <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Cotizar ahora</button>
+              </div>
+              <div class="sb-ui-card__footer">
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-heart-pulse"></i><span>Vida</span>
+                </div>
+                <div class="sb-ui-card__footer-item">
+                  <i class="fa-solid fa-users"></i><span>Familiar</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Botones horizontales</p>
+            <article class="sb-ui-card sb-ui-card--actions-horizontal">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Plan Premium</h3>
+                <p class="sb-ui-card__subtitle">Seguro todo riesgo</p>
+                <p class="sb-ui-card__description">Cobertura completa para auto, hogar y vida en un solo plan integral.</p>
+                <p class="sb-ui-card__observation">*Descuento 20% primer año</p>
+                <div class="sb-ui-card__price">
+                  <span class="sb-ui-card__price-label">Desde:</span>
+                  <span class="sb-ui-card__price-value">$250.000</span>
+                </div>
+              </div>
+              <div class="sb-ui-card__actions">
+                <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Comparar</button>
+                <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Contratar</button>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Sin imagen</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Card vertical sin imagen --&gt;
+&lt;article class="sb-ui-card"&gt;
+  &lt;div class="sb-ui-card__content"&gt;
+    &lt;h3 class="sb-ui-card__title"&gt;Plan Básico&lt;/h3&gt;
+    &lt;p class="sb-ui-card__subtitle"&gt;Seguro de vida&lt;/p&gt;
+    &lt;p class="sb-ui-card__description"&gt;Descripción...&lt;/p&gt;
+    &lt;p class="sb-ui-card__observation"&gt;Observación&lt;/p&gt;
+    &lt;div class="sb-ui-card__price"&gt;
+      &lt;span class="sb-ui-card__price-label"&gt;Desde:&lt;/span&gt;
+      &lt;span class="sb-ui-card__price-value"&gt;$45.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__actions"&gt;
+    &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill"&gt;Detalle&lt;/button&gt;
+    &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;Cotizar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 3: CARD HORIZONTAL - IMAGEN IZQUIERDA
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Horizontal — Imagen a la izquierda</h3>
+        <p class="demo-description">
+          Usa <code>sb-ui-card--horizontal sb-ui-card--img-left</code> para colocar la imagen al lado izquierdo del contenido.
+        </p>
+
+        <div class="card-demo-grid card-demo-grid--horizontal">
+
+          <div>
+            <p class="card-demo-label">Botones verticales</p>
+            <article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-left">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card3/400/300" alt="Imagen de ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--info">
+                  <i class="fa-solid fa-circle-info"></i> Nuevo
+                </span>
+              </div>
+              <div class="sb-ui-card__body">
+                <div class="sb-ui-card__content">
+                  <h3 class="sb-ui-card__title">Seguro de Auto</h3>
+                  <p class="sb-ui-card__subtitle">Protección vehicular</p>
+                  <p class="sb-ui-card__description">Tu vehículo protegido con cobertura integral, asistencia 24/7 y taller preferente.</p>
+                  <p class="sb-ui-card__observation">*Incluye grúa gratuita</p>
+                  <div class="sb-ui-card__price">
+                    <span class="sb-ui-card__price-label">Desde:</span>
+                    <span class="sb-ui-card__price-value">$180.000</span>
+                  </div>
+                </div>
+                <div class="sb-ui-card__actions">
+                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Ver planes</button>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Cotizar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Botones horizontales + footer</p>
+            <article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-left sb-ui-card--actions-horizontal">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card4/400/300" alt="Imagen de ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--error">
+                  <i class="fa-solid fa-fire"></i> Oferta
+                </span>
+                <button class="sb-ui-card__fab" aria-label="Favorito">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+              </div>
+              <div class="sb-ui-card__body">
+                <div class="sb-ui-card__content">
+                  <h3 class="sb-ui-card__title">Seguro de Viaje</h3>
+                  <p class="sb-ui-card__subtitle">Viaja sin preocupaciones</p>
+                  <p class="sb-ui-card__description">Cobertura médica internacional, pérdida de equipaje y cancelación de vuelos.</p>
+                  <p class="sb-ui-card__observation">*Válido para destinos internacionales</p>
+                  <div class="sb-ui-card__price">
+                    <span class="sb-ui-card__price-label">Desde:</span>
+                    <span class="sb-ui-card__price-value">$65.000</span>
+                  </div>
+                </div>
+                <div class="sb-ui-card__actions">
+                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Detalles</button>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Comprar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Horizontal img-left</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-left"&gt;
+  &lt;div class="sb-ui-card__image"&gt;
+    &lt;img class="sb-ui-card__img" src="..." alt="..." /&gt;
+    &lt;span class="sb-ui-card__badge sb-ui-card__badge--info"&gt;Nuevo&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__body"&gt;
+    &lt;div class="sb-ui-card__content"&gt;
+      &lt;h3 class="sb-ui-card__title"&gt;Título&lt;/h3&gt;
+      &lt;p class="sb-ui-card__subtitle"&gt;Subtítulo&lt;/p&gt;
+      &lt;p class="sb-ui-card__description"&gt;Descripción...&lt;/p&gt;
+      &lt;div class="sb-ui-card__price"&gt;
+        &lt;span class="sb-ui-card__price-label"&gt;Desde:&lt;/span&gt;
+        &lt;span class="sb-ui-card__price-value"&gt;$180.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="sb-ui-card__actions"&gt;
+      &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill"&gt;Ver&lt;/button&gt;
+      &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;Cotizar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+&lt;!-- Botones horizontales: agregar sb-ui-card--actions-horizontal --&gt;
+&lt;article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-left sb-ui-card--actions-horizontal"&gt;
+  ...
+&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 4: CARD HORIZONTAL - IMAGEN DERECHA
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Horizontal — Imagen a la derecha</h3>
+        <p class="demo-description">
+          Usa <code>sb-ui-card--horizontal sb-ui-card--img-right</code> para colocar la imagen al lado derecho.
+        </p>
+
+        <div class="card-demo-grid card-demo-grid--horizontal">
+
+          <div>
+            <p class="card-demo-label">Botones verticales</p>
+            <article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-right">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card5/400/300" alt="Imagen de ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--success">
+                  <i class="fa-solid fa-check"></i> Activo
+                </span>
+              </div>
+              <div class="sb-ui-card__body">
+                <div class="sb-ui-card__content">
+                  <h3 class="sb-ui-card__title">Seguro de Mascotas</h3>
+                  <p class="sb-ui-card__subtitle">Tu mejor amigo protegido</p>
+                  <p class="sb-ui-card__description">Cobertura veterinaria, vacunas y emergencias para perros y gatos.</p>
+                  <p class="sb-ui-card__observation">*Perros y gatos de 3 meses a 8 años</p>
+                  <div class="sb-ui-card__price">
+                    <span class="sb-ui-card__price-label">Desde:</span>
+                    <span class="sb-ui-card__price-value">$35.000</span>
+                  </div>
+                </div>
+                <div class="sb-ui-card__actions">
+                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Info</button>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Contratar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Botones horizontales</p>
+            <article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-right sb-ui-card--actions-horizontal">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/card6/400/300" alt="Imagen de ejemplo" />
+              </div>
+              <div class="sb-ui-card__body">
+                <div class="sb-ui-card__content">
+                  <h3 class="sb-ui-card__title">Seguro Empresarial</h3>
+                  <p class="sb-ui-card__subtitle">Protección para tu negocio</p>
+                  <p class="sb-ui-card__description">Coberturas a medida para PYMES: responsabilidad civil, incendio y robo.</p>
+                  <div class="sb-ui-card__price">
+                    <span class="sb-ui-card__price-label">Desde:</span>
+                    <span class="sb-ui-card__price-value">$320.000</span>
+                  </div>
+                </div>
+                <div class="sb-ui-card__actions">
+                  <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Comparar</button>
+                  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Asesoría</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Horizontal img-right</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-right"&gt;
+  &lt;div class="sb-ui-card__image"&gt;
+    &lt;img class="sb-ui-card__img" src="..." alt="..." /&gt;
+  &lt;/div&gt;
+  &lt;div class="sb-ui-card__body"&gt;
+    &lt;div class="sb-ui-card__content"&gt;
+      &lt;h3 class="sb-ui-card__title"&gt;Título&lt;/h3&gt;
+      &lt;p class="sb-ui-card__subtitle"&gt;Subtítulo&lt;/p&gt;
+      &lt;p class="sb-ui-card__description"&gt;Descripción...&lt;/p&gt;
+      &lt;div class="sb-ui-card__price"&gt;
+        &lt;span class="sb-ui-card__price-label"&gt;Desde:&lt;/span&gt;
+        &lt;span class="sb-ui-card__price-value"&gt;$320.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="sb-ui-card__actions"&gt;
+      &lt;button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill"&gt;Comparar&lt;/button&gt;
+      &lt;button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"&gt;Asesoría&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 5: BADGES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Variantes de Badge</h3>
+        <p class="demo-description">
+          El badge superpuesto en la imagen soporta las variantes <code>--success</code>,
+          <code>--warning</code>, <code>--error</code> e <code>--info</code>.
+        </p>
+
+        <div class="card-demo-grid">
+
+          <div>
+            <p class="card-demo-label">Badge Success</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/badge1/400/200" alt="Ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--success">
+                  <i class="fa-solid fa-check-circle"></i> Success
+                </span>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Badge Success</h3>
+                <p class="sb-ui-card__description">Fondo verde con texto oscuro.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Badge Warning</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/badge2/400/200" alt="Ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--warning">
+                  <i class="fa-solid fa-bolt"></i> Warning
+                </span>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Badge Warning</h3>
+                <p class="sb-ui-card__description">Fondo amarillo con texto oscuro.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Badge Error</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/badge3/400/200" alt="Ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--error">
+                  <i class="fa-solid fa-exclamation-triangle"></i> Error
+                </span>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Badge Error</h3>
+                <p class="sb-ui-card__description">Fondo rojo con texto blanco.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Badge Info</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__image">
+                <img class="sb-ui-card__img" src="https://picsum.photos/seed/badge4/400/200" alt="Ejemplo" />
+                <span class="sb-ui-card__badge sb-ui-card__badge--info">
+                  <i class="fa-solid fa-circle-info"></i> Info
+                </span>
+              </div>
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Badge Info</h3>
+                <p class="sb-ui-card__description">Fondo azul con texto blanco.</p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Badges</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;span class="sb-ui-card__badge sb-ui-card__badge--success"&gt;Success&lt;/span&gt;
+&lt;span class="sb-ui-card__badge sb-ui-card__badge--warning"&gt;Warning&lt;/span&gt;
+&lt;span class="sb-ui-card__badge sb-ui-card__badge--error"&gt;Error&lt;/span&gt;
+&lt;span class="sb-ui-card__badge sb-ui-card__badge--info"&gt;Info&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 6: MODIFICADORES DE ESTILO
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Modificadores de estilo</h3>
+        <p class="demo-description">
+          Controla la apariencia visual: <code>--elevated</code> para más sombra,
+          <code>--outlined</code> para borde sin sombra, <code>--interactive</code> para hover.
+        </p>
+
+        <div class="card-demo-grid">
+
+          <div>
+            <p class="card-demo-label">Default (shadow-xs)</p>
+            <article class="sb-ui-card">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Card Default</h3>
+                <p class="sb-ui-card__description">Sombra estándar del design system.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Elevated (shadow-s)</p>
+            <article class="sb-ui-card sb-ui-card--elevated">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Card Elevated</h3>
+                <p class="sb-ui-card__description">Sombra más pronunciada para destacar.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Outlined (borde sin sombra)</p>
+            <article class="sb-ui-card sb-ui-card--outlined">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Card Outlined</h3>
+                <p class="sb-ui-card__description">Solo borde, sin sombra.</p>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <p class="card-demo-label">Interactive (hover)</p>
+            <article class="sb-ui-card sb-ui-card--interactive">
+              <div class="sb-ui-card__content">
+                <h3 class="sb-ui-card__title">Card Interactive</h3>
+                <p class="sb-ui-card__description">Pasa el cursor para ver el efecto hover.</p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <span class="demo-code-block-title">HTML</span>
+            <div class="demo-code-block-actions">
+              <span class="demo-code-block-badge">Modificadores</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Elevated --&gt;
+&lt;article class="sb-ui-card sb-ui-card--elevated"&gt;...&lt;/article&gt;
+
+&lt;!-- Outlined --&gt;
+&lt;article class="sb-ui-card sb-ui-card--outlined"&gt;...&lt;/article&gt;
+
+&lt;!-- Interactive (hover) --&gt;
+&lt;article class="sb-ui-card sb-ui-card--interactive"&gt;...&lt;/article&gt;
+
+&lt;!-- Full width --&gt;
+&lt;article class="sb-ui-card sb-ui-card--block"&gt;...&lt;/article&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;article class="sb-ui-card sb-ui-card--disabled"&gt;...&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ========================================
+           SECCIÓN 7: TABLA DE CLASES
+           ======================================== -->
+      <section class="variant-section">
+        <h3 class="variant-title">Referencia de clases</h3>
+        <p class="demo-description">
+          Todas las clases disponibles para el componente Card.
+        </p>
+
+        <table class="states-table">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>sb-ui-card</code></td>
+              <td>Contenedor principal</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__body</code></td>
+              <td>Wrapper de content + actions (usar en horizontal)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__image</code></td>
+              <td>Wrapper de imagen</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__img</code></td>
+              <td>Elemento img (object-fit cover)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__badge</code></td>
+              <td>Tag superpuesto en imagen</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__badge--success/warning/error/info</code></td>
+              <td>Variantes de color del badge</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__fab</code></td>
+              <td>Botón flotante circular en imagen</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__content</code></td>
+              <td>Wrapper de contenido textual</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__title</code></td>
+              <td>Título (16px, bold)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__subtitle</code></td>
+              <td>Subtítulo (14px, bold)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__description</code></td>
+              <td>Texto descriptivo (14px, regular)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__observation</code></td>
+              <td>Nota/observación (12px, regular)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__price</code></td>
+              <td>Wrapper de sección de precio</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__price-label</code></td>
+              <td>Etiqueta "Desde:" (caption)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__price-value</code></td>
+              <td>Valor del precio (20px, bold)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__actions</code></td>
+              <td>Contenedor de botones</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__footer</code></td>
+              <td>Footer con ítems separados por borde</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card__footer-item</code></td>
+              <td>Ítem individual del footer</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--horizontal</code></td>
+              <td>Orientación horizontal</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--img-left</code></td>
+              <td>Imagen a la izquierda (horizontal)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--img-right</code></td>
+              <td>Imagen a la derecha (horizontal)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--actions-horizontal</code></td>
+              <td>Botones en fila</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--elevated</code></td>
+              <td>Sombra más pronunciada</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--outlined</code></td>
+              <td>Solo borde, sin sombra</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--interactive</code></td>
+              <td>Efecto hover (elevación + translate)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--block</code></td>
+              <td>Ancho completo (100%)</td>
+            </tr>
+            <tr>
+              <td><code>sb-ui-card--disabled</code></td>
+              <td>Estado deshabilitado (opacidad + no-events)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========================================
+           STORYBOOK REFERENCE
+           ======================================== -->
+      <section class="variant-section storybook-reference">
+        <div class="storybook-reference-content">
+          <h3 class="storybook-reference-title">Card en Storybook</h3>
+          <p class="storybook-reference-description">
+            Explora la documentación interactiva del componente Card con playground, variantes de badge, modificadores y más.
+          </p>
+          <a href="https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/?path=/docs/componentes-html-y-css-card--docs"
+             target="_blank" rel="noopener noreferrer" class="storybook-reference-link">
+            <i class="fas fa-book-open"></i> Ver Card en Storybook
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <script>
+      function copyCode(btn) {
+        var codeBlock = btn.closest('.demo-code-block').querySelector('code');
+        if (!codeBlock) return;
+        var text = codeBlock.textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.classList.add('copied');
+          btn.innerHTML = '<i class="fas fa-check"></i> Copiado';
+          setTimeout(function () {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fas fa-copy"></i> Copiar';
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

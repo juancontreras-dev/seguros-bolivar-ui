@@ -1,0 +1,584 @@
+/**
+ * Card Component - Seguros Bolivar UI Design System
+ * - CSS Nesting nativo con &
+ * - @layer para control de cascada
+ * - Logical Properties (RTL/LTR)
+ * - clamp() para responsive fluido
+ *
+ * ============================================================================
+ * INDICE DE NAVEGACION
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION
+ * 2. RESET LAYER
+ * 3. TOKENS LAYER - Variables CSS
+ * 4. BASE LAYER - Contenedor + sub-elementos
+ * 5. VARIANTS LAYER - horizontal, img-left, img-right
+ * 6. MODIFIERS LAYER - actions-horizontal, no-footer
+ * 7. STATES LAYER - hover elevation
+ * 8. UTILITIES LAYER - accesibilidad, responsive
+ *
+ * ============================================================================
+ * VARIANTES
+ * ============================================================================
+ *
+ * Orientacion: vertical (default) | horizontal (--horizontal)
+ * Imagen: top (default) | left (--img-left) | right (--img-right) | sin imagen
+ * Botones: vertical (default) | horizontal (--actions-horizontal)
+ *
+ * ============================================================================
+ * EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Card vertical con imagen arriba y botones verticales -->
+ * <article class="sb-ui-card">
+ *   <div class="sb-ui-card__image">
+ *     <img class="sb-ui-card__img" src="..." alt="..." />
+ *     <span class="sb-ui-card__badge sb-ui-card__badge--success">
+ *       <i class="fa-solid fa-tag"></i> Success
+ *     </span>
+ *     <button class="sb-ui-card__fab"><i class="fa-solid fa-plus"></i></button>
+ *   </div>
+ *   <div class="sb-ui-card__content">
+ *     <h3 class="sb-ui-card__title">Title H6</h3>
+ *     <p class="sb-ui-card__subtitle">Subtitle</p>
+ *     <p class="sb-ui-card__description">Description text</p>
+ *     <p class="sb-ui-card__observation">Observation</p>
+ *     <div class="sb-ui-card__price">
+ *       <span class="sb-ui-card__price-label">Desde:</span>
+ *       <span class="sb-ui-card__price-prefix">Precio:</span>
+ *       <span class="sb-ui-card__price-value">$00.000</span>
+ *     </div>
+ *   </div>
+ *   <div class="sb-ui-card__actions">
+ *     <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Button</button>
+ *     <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Button</button>
+ *   </div>
+ *   <div class="sb-ui-card__footer">
+ *     <div class="sb-ui-card__footer-item">
+ *       <i class="fa-solid fa-globe"></i><span>Date 1</span>
+ *     </div>
+ *     <div class="sb-ui-card__footer-item">
+ *       <i class="fa-solid fa-globe"></i><span>Date 1</span>
+ *     </div>
+ *   </div>
+ * </article>
+ *
+ * <!-- Card horizontal con imagen a la izquierda -->
+ * <article class="sb-ui-card sb-ui-card--horizontal sb-ui-card--img-left">
+ *   ...mismo contenido interno...
+ * </article>
+ *
+ * <!-- Card vertical con botones horizontales y sin footer -->
+ * <article class="sb-ui-card sb-ui-card--actions-horizontal">
+ *   ...contenido sin sb-ui-card__footer...
+ * </article>
+ *
+ * ============================================================================
+ */
+
+/* ========================================
+   LAYERS - Define prioridad de cascada
+   ======================================== */
+
+@layer reset, tokens, base, variants, modifiers, states, utilities;
+
+/* ========================================
+   RESET LAYER
+   ======================================== */
+
+@layer reset {
+  .sb-ui-card {
+    all: unset;
+    box-sizing: border-box;
+  }
+
+  .sb-ui-card *,
+  .sb-ui-card *::before,
+  .sb-ui-card *::after {
+    box-sizing: inherit;
+  }
+}
+
+/* ========================================
+   TOKENS LAYER - Variables CSS
+   ======================================== */
+
+@layer tokens {
+  .sb-ui-card {
+    /* Background */
+    --sb-ui-card-bg-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-card-bg-hover: var(--sb-ui-color-grayscale-white, #ffffff);
+
+    /* Border */
+    --sb-ui-card-border-width: 0;
+    --sb-ui-card-border-color: transparent;
+    --sb-ui-card-border-radius: clamp(0.625rem, 0.5rem + 0.5vw, 0.75rem);
+
+    /* Shadow */
+    --sb-ui-card-shadow: var(
+      --sb-ui-shadow-xs,
+      0px 2px 4px rgba(115, 115, 115, 0.16),
+      0px 0px 6px rgba(115, 115, 115, 0.16)
+    );
+    --sb-ui-card-shadow-hover: var(
+      --sb-ui-shadow-s,
+      0px 4px 8px rgba(115, 115, 115, 0.2),
+      0px 0px 10px rgba(115, 115, 115, 0.12)
+    );
+
+    /* Spacing */
+    --sb-ui-card-padding-inline: clamp(0.75rem, 0.5rem + 1vw, 1rem);
+    --sb-ui-card-padding-block: clamp(0.75rem, 0.5rem + 1vw, 1rem);
+    --sb-ui-card-content-gap: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+    --sb-ui-card-actions-gap: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+
+    /* Image */
+    --sb-ui-card-image-block-size: clamp(140px, 25vw, 200px);
+    --sb-ui-card-image-inline-size: clamp(120px, 20vw, 180px);
+
+    /* Typography */
+    --sb-ui-card-font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', 'Roboto', sans-serif);
+
+    --sb-ui-card-title-font-size: var(--sb-ui-typography-fontSize-h6, 1rem);
+    --sb-ui-card-title-font-weight: 700;
+    --sb-ui-card-title-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+
+    --sb-ui-card-subtitle-font-size: var(--sb-ui-typography-fontSize-label, 0.875rem);
+    --sb-ui-card-subtitle-font-weight: 700;
+    --sb-ui-card-subtitle-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+
+    --sb-ui-card-description-font-size: var(--sb-ui-typography-fontSize-label, 0.875rem);
+    --sb-ui-card-description-font-weight: 400;
+    --sb-ui-card-description-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+
+    --sb-ui-card-observation-font-size: var(--sb-ui-typography-fontSize-caption, 0.75rem);
+    --sb-ui-card-observation-font-weight: 400;
+    --sb-ui-card-observation-color: var(--sb-ui-color-grayscale-D100, #757575);
+
+    --sb-ui-card-price-label-font-size: var(--sb-ui-typography-fontSize-caption, 0.75rem);
+    --sb-ui-card-price-label-color: var(--sb-ui-color-grayscale-D100, #757575);
+
+    --sb-ui-card-price-value-font-size: var(--sb-ui-typography-fontSize-h5, 1.25rem);
+    --sb-ui-card-price-value-font-weight: 700;
+    --sb-ui-card-price-value-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+
+    --sb-ui-card-line-height: 1.4;
+
+    /* Badge */
+    --sb-ui-card-badge-font-size: var(--sb-ui-typography-fontSize-caption, 0.75rem);
+    --sb-ui-card-badge-font-weight: 700;
+    --sb-ui-card-badge-padding-inline: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem);
+    --sb-ui-card-badge-padding-block: clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem);
+    --sb-ui-card-badge-border-radius: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+    --sb-ui-card-badge-bg: var(--sb-ui-color-grayscale-L300, #f5f5f5);
+    --sb-ui-card-badge-color: var(--sb-ui-color-grayscale-D200, #5b5b5b);
+
+    /* FAB (floating action button) */
+    --sb-ui-card-fab-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+    --sb-ui-card-fab-bg: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-card-fab-color: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-card-fab-border-color: var(--sb-ui-color-primary-base, #038450);
+    --sb-ui-card-fab-border-radius: 50%;
+
+    /* Footer */
+    --sb-ui-card-footer-border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+    --sb-ui-card-footer-font-size: var(--sb-ui-typography-fontSize-caption, 0.75rem);
+    --sb-ui-card-footer-color: var(--sb-ui-color-grayscale-D100, #757575);
+    --sb-ui-card-footer-gap: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+
+    /* Transition */
+    --sb-ui-card-transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+}
+
+/* ========================================
+   BASE LAYER - Estilos base
+   ======================================== */
+
+@layer base {
+  .sb-ui-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    background-color: var(--sb-ui-card-bg-color);
+    border: var(--sb-ui-card-border-width) solid var(--sb-ui-card-border-color);
+    border-radius: var(--sb-ui-card-border-radius);
+    box-shadow: var(--sb-ui-card-shadow);
+
+    font-family: var(--sb-ui-card-font-family);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-title-color);
+
+    transition: var(--sb-ui-card-transition);
+  }
+
+  /* ---- Image area ---- */
+
+  .sb-ui-card__image {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    block-size: var(--sb-ui-card-image-block-size);
+  }
+
+  .sb-ui-card__img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .sb-ui-card__badge {
+    position: absolute;
+    inset-block-start: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    inset-inline-start: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    padding-inline: var(--sb-ui-card-badge-padding-inline);
+    padding-block: var(--sb-ui-card-badge-padding-block);
+    border-radius: var(--sb-ui-card-badge-border-radius);
+
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-badge-font-size);
+    font-weight: var(--sb-ui-card-badge-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+
+    background-color: var(--sb-ui-card-badge-bg);
+    color: var(--sb-ui-card-badge-color);
+
+    &--success {
+      --sb-ui-card-badge-bg: var(--sb-ui-color-feedback-success-L100, #69c17d);
+      --sb-ui-card-badge-color: var(--sb-ui-color-primary-D100, #05794a);
+    }
+
+    &--warning {
+      --sb-ui-card-badge-bg: var(--sb-ui-color-feedback-warning-L100, #ffe799);
+      --sb-ui-card-badge-color: var(--sb-ui-color-grayscale-D300, #414141);
+    }
+
+    &--error {
+      --sb-ui-card-badge-bg: var(--sb-ui-color-feedback-error-L100, #f5a0a8);
+      --sb-ui-card-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    }
+
+    &--info {
+      --sb-ui-card-badge-bg: var(--sb-ui-color-feedback-info-L100, #80bfff);
+      --sb-ui-card-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    }
+  }
+
+  .sb-ui-card__fab {
+    position: absolute;
+    inset-block-start: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    inset-inline-end: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    inline-size: var(--sb-ui-card-fab-size);
+    block-size: var(--sb-ui-card-fab-size);
+    border-radius: var(--sb-ui-card-fab-border-radius);
+    border: 2px solid var(--sb-ui-card-fab-border-color);
+
+    background-color: var(--sb-ui-card-fab-bg);
+    color: var(--sb-ui-card-fab-color);
+    font-size: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      background-color: var(--sb-ui-color-primary-L300, #e5f4ee);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--sb-ui-color-secondary-L100);
+      outline-offset: 2px;
+    }
+  }
+
+  /* ---- Body wrapper (groups content + actions for horizontal layout) ---- */
+
+  .sb-ui-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  /* ---- Content area ---- */
+
+  .sb-ui-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sb-ui-card-content-gap);
+    padding-inline: var(--sb-ui-card-padding-inline);
+    padding-block: var(--sb-ui-card-padding-block);
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  .sb-ui-card__title {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-title-font-size);
+    font-weight: var(--sb-ui-card-title-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-title-color);
+    margin: 0;
+  }
+
+  .sb-ui-card__subtitle {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-subtitle-font-size);
+    font-weight: var(--sb-ui-card-subtitle-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-subtitle-color);
+    margin: 0;
+  }
+
+  .sb-ui-card__description {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-description-font-size);
+    font-weight: var(--sb-ui-card-description-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-description-color);
+    margin: 0;
+  }
+
+  .sb-ui-card__observation {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-observation-font-size);
+    font-weight: var(--sb-ui-card-observation-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-observation-color);
+    margin: 0;
+  }
+
+  /* ---- Price section ---- */
+
+  .sb-ui-card__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin-block-start: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+  }
+
+  .sb-ui-card__price-label {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-price-label-font-size);
+    font-weight: 400;
+    color: var(--sb-ui-card-price-label-color);
+  }
+
+  .sb-ui-card__price-prefix {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-price-label-font-size);
+    font-weight: 400;
+    color: var(--sb-ui-card-price-label-color);
+  }
+
+  .sb-ui-card__price-value {
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-price-value-font-size);
+    font-weight: var(--sb-ui-card-price-value-font-weight);
+    line-height: var(--sb-ui-card-line-height);
+    color: var(--sb-ui-card-price-value-color);
+  }
+
+  /* ---- Actions area ---- */
+
+  .sb-ui-card__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sb-ui-card-actions-gap);
+    padding-inline: var(--sb-ui-card-padding-inline);
+    padding-block-end: var(--sb-ui-card-padding-block);
+  }
+
+  /* ---- Footer ---- */
+
+  .sb-ui-card__footer {
+    display: flex;
+    align-items: center;
+    border-block-start: 1px solid var(--sb-ui-card-footer-border-color);
+  }
+
+  .sb-ui-card__footer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sb-ui-card-footer-gap);
+    flex: 1;
+    padding-block: clamp(0.5rem, 0.4rem + 0.3vw, 0.625rem);
+    padding-inline: clamp(0.25rem, 0.2rem + 0.2vw, 0.5rem);
+
+    font-family: var(--sb-ui-card-font-family);
+    font-size: var(--sb-ui-card-footer-font-size);
+    font-weight: 400;
+    color: var(--sb-ui-card-footer-color);
+
+    &:not(:last-child) {
+      border-inline-end: 1px solid var(--sb-ui-card-footer-border-color);
+    }
+  }
+}
+
+/* ========================================
+   VARIANTS LAYER - Orientación e imagen
+   ======================================== */
+
+@layer variants {
+  .sb-ui-card--horizontal {
+    flex-direction: row;
+
+    & .sb-ui-card__image {
+      block-size: auto;
+      inline-size: var(--sb-ui-card-image-inline-size);
+      min-block-size: 100%;
+    }
+
+    & .sb-ui-card__img {
+      position: absolute;
+      inset: 0;
+    }
+
+    & .sb-ui-card__body {
+      flex: 1;
+      flex-direction: row;
+      align-items: stretch;
+      min-inline-size: 0;
+    }
+
+    & .sb-ui-card__content {
+      flex: 1;
+      min-inline-size: 0;
+    }
+
+    & .sb-ui-card__actions {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-block-end: 0;
+      padding-block: var(--sb-ui-card-padding-block);
+    }
+
+    & .sb-ui-card__footer {
+      flex-direction: column;
+      border-block-start: none;
+      border-inline-start: 1px solid var(--sb-ui-card-footer-border-color);
+    }
+
+    & .sb-ui-card__footer-item {
+      &:not(:last-child) {
+        border-inline-end: none;
+        border-block-end: 1px solid var(--sb-ui-card-footer-border-color);
+      }
+    }
+  }
+
+  .sb-ui-card--img-right {
+    & .sb-ui-card__image {
+      order: 999;
+    }
+  }
+
+  .sb-ui-card--img-left {
+    & .sb-ui-card__image {
+      order: -1;
+    }
+  }
+}
+
+/* ========================================
+   MODIFIERS LAYER
+   ======================================== */
+
+@layer modifiers {
+  .sb-ui-card--actions-horizontal {
+    & .sb-ui-card__actions {
+      flex-direction: row;
+    }
+
+    & .sb-ui-card__actions > * {
+      flex: 1;
+    }
+  }
+
+  .sb-ui-card--elevated {
+    --sb-ui-card-shadow: var(
+      --sb-ui-shadow-s,
+      0px 4px 8px rgba(115, 115, 115, 0.2),
+      0px 0px 10px rgba(115, 115, 115, 0.12)
+    );
+  }
+
+  .sb-ui-card--outlined {
+    --sb-ui-card-shadow: none;
+    --sb-ui-card-border-width: 1px;
+    --sb-ui-card-border-color: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+  }
+
+  .sb-ui-card--block {
+    inline-size: 100%;
+  }
+}
+
+/* ========================================
+   STATES LAYER
+   ======================================== */
+
+@layer states {
+  .sb-ui-card--interactive {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: var(--sb-ui-card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--sb-ui-color-secondary-L100);
+      outline-offset: 2px;
+    }
+  }
+
+  .sb-ui-card--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+/* ========================================
+   UTILITIES LAYER - Accesibilidad
+   ======================================== */
+
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-card {
+      --sb-ui-card-transition: none;
+    }
+
+    .sb-ui-card--interactive {
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .sb-ui-card {
+      --sb-ui-card-border-width: 2px;
+      --sb-ui-card-border-color: currentColor;
+    }
+  }
+}
