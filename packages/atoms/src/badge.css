@@ -4,363 +4,228 @@
  * ============================================================================
  *
  * Componente CSS moderno con:
- * - CSS Nesting nativo con &
+ * - CSS Nesting nativo
  * - @layer para control de cascada
  * - Logical Properties para internacionalización (RTL/LTR)
- * - Variables CSS themables (multi-marca)
- * - Soporte para números, iconos y posicionamiento
+ * - clamp() para responsive fluido
  *
- * ============================================================================
- * 📋 ESTRUCTURA HTML
- * ============================================================================
- *
- * <!-- Badge standalone -->
- * <span class="sb-ui-badge">5</span>
- * <span class="sb-ui-badge sb-ui-badge--primary">New</span>
- *
- * <!-- Badge en botón -->
- * <button class="sb-ui-button">
- *   Notificaciones
- *   <span class="sb-ui-badge sb-ui-badge--error">3</span>
- * </button>
- *
- * <!-- Badge posicionado (con contenedor relativo) -->
- * <div style="position: relative; display: inline-block;">
- *   <i class="fa fa-bell"></i>
- *   <span class="sb-ui-badge sb-ui-badge--positioned sb-ui-badge--top-right">12</span>
- * </div>
- *
- * <!-- Badge con avatar -->
- * <div class="sb-ui-avatar" style="position: relative;">
- *   <img src="user.jpg" alt="User">
- *   <span class="sb-ui-badge sb-ui-badge--positioned sb-ui-badge--bottom-right sb-ui-badge--success"></span>
- * </div>
- *
- * ============================================================================
- * 🎨 VARIANTES
- * ============================================================================
- *
- * COLORES:
- * - .sb-ui-badge--default (gris - default)
- * - .sb-ui-badge--primary (color primario de marca)
- * - .sb-ui-badge--secondary (color secundario de marca)
- * - .sb-ui-badge--success (verde)
- * - .sb-ui-badge--warning (amarillo/naranja)
- * - .sb-ui-badge--error (rojo)
- * - .sb-ui-badge--info (azul)
- *
- * TAMAÑOS:
- * - .sb-ui-badge--sm (pequeño)
- * - .sb-ui-badge--md (mediano - default)
- * - .sb-ui-badge--lg (grande)
- *
- * FORMAS:
- * - .sb-ui-badge--rounded (redondeado - default)
- * - .sb-ui-badge--square (cuadrado con bordes suaves)
- * - .sb-ui-badge--circle (circular, para números)
- * - .sb-ui-badge--dot (punto pequeño, sin contenido)
- *
- * POSICIONES (requiere contenedor position: relative):
- * - .sb-ui-badge--positioned (activa posicionamiento absoluto)
- * - .sb-ui-badge--top-right
- * - .sb-ui-badge--top-left
- * - .sb-ui-badge--bottom-right
- * - .sb-ui-badge--bottom-left
+ * Uso con texto:  <span class="sb-ui-badge sb-ui-badge--error">8</span>
+ * Uso con icono:  <span class="sb-ui-badge sb-ui-badge--error sb-ui-badge--icon-only"><i class="fa-solid fa-exclamation"></i></span>
+ * IMPORTANTE: texto e icono son mutuamente excluyentes — nunca los uses juntos.
  *
  * ============================================================================
  */
 
-@layer reset, tokens, base, sizes, variants, positions, utilities;
+/* ========================================
+   LAYERS - Define prioridad de cascada
+   ======================================== */
+
+@layer reset, tokens, base, variants, sizes, modifiers, states, utilities;
 
 /* ========================================
    RESET LAYER
    ======================================== */
+
 @layer reset {
   .sb-ui-badge {
     all: unset;
     box-sizing: border-box;
-
-    & *,
-    & *::before,
-    & *::after {
-      box-sizing: inherit;
-    }
   }
 }
 
 /* ========================================
    TOKENS LAYER - Variables CSS
    ======================================== */
+
 @layer tokens {
   .sb-ui-badge {
-    /* ===== TAMAÑOS ===== */
-    --sb-ui-badge-font-size: 0.75rem; /* 12px */
-    --sb-ui-badge-padding-inline: 0.5rem; /* 8px */
-    --sb-ui-badge-padding-block: 0.125rem; /* 2px */
-    --sb-ui-badge-min-width: 1.25rem; /* 20px min para números */
-    --sb-ui-badge-height: auto;
-    --sb-ui-badge-gap: 0.25rem;
+    /* Colores BASE - Error por defecto */
+    --sb-ui-badge-bg-color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    --sb-ui-badge-text-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-badge-icon-color: var(--sb-ui-color-grayscale-white, #ffffff);
 
-    /* ===== COLORES DEFAULT ===== */
-    --sb-ui-badge-bg: var(--sb-ui-color-grayscale-base, #9e9e9e);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
-    --sb-ui-badge-border-color: transparent;
+    /* Espaciado - Tamaño 20px (large por defecto) */
+    --sb-ui-badge-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    --sb-ui-badge-padding-inline: clamp(0.375rem, 0.3rem + 0.4vw, 0.5rem);
+    --sb-ui-badge-padding-block: clamp(0.375rem, 0.3rem + 0.4vw, 0.5rem);
+    --sb-ui-badge-gap: clamp(0.25rem, 0.2rem + 0.3vw, 0.5rem);
 
-    /* ===== BORDES Y FORMAS ===== */
-    --sb-ui-badge-border-radius: 0.75rem; /* 12px - pill shape */
+    /* Tipografía */
+    --sb-ui-badge-font-family: var(--sb-ui-typography-fontFamily, 'Bolivar', sans-serif);
+    --sb-ui-badge-font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --sb-ui-badge-font-weight: 700;
+    --sb-ui-badge-line-height: 0;
+
+    /* Bordes - Redondo para Success, cuadrado redondeado para otros */
+    --sb-ui-badge-border-radius: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
     --sb-ui-badge-border-width: 0;
 
-    /* ===== POSICIONAMIENTO ===== */
-    --sb-ui-badge-offset-x: -0.375rem; /* -6px */
-    --sb-ui-badge-offset-y: -0.375rem; /* -6px */
+    /* Iconos */
+    --sb-ui-badge-icon-size: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
   }
 }
 
 /* ========================================
-   BASE LAYER - Estilos fundamentales
+   BASE LAYER - Estilos base
    ======================================== */
+
 @layer base {
   .sb-ui-badge {
     /* Layout */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     flex-shrink: 0;
-    vertical-align: middle;
 
-    /* Tamaño */
-    min-inline-size: var(--sb-ui-badge-min-width);
-    block-size: var(--sb-ui-badge-height);
+    /* Sizing - Logical Properties */
+    inline-size: var(--sb-ui-badge-size);
+    block-size: var(--sb-ui-badge-size);
+    min-inline-size: var(--sb-ui-badge-size);
+    min-block-size: var(--sb-ui-badge-size);
+
+    /* Spacing - Logical Properties */
     padding-inline: var(--sb-ui-badge-padding-inline);
     padding-block: var(--sb-ui-badge-padding-block);
+    gap: var(--sb-ui-badge-gap);
 
-    /* Colores */
-    background-color: var(--sb-ui-badge-bg);
-    color: var(--sb-ui-badge-color);
-    border: var(--sb-ui-badge-border-width) solid var(--sb-ui-badge-border-color);
-
-    /* Forma */
-    border-radius: var(--sb-ui-badge-border-radius);
-
-    /* Tipografía */
-    font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+    /* Typography */
+    font-family: var(--sb-ui-badge-font-family);
+    font-style: normal;
+    font-weight: var(--sb-ui-badge-font-weight);
     font-size: var(--sb-ui-badge-font-size);
-    font-weight: 600;
-    line-height: 1.2;
+    line-height: var(--sb-ui-badge-line-height);
     text-align: center;
     white-space: nowrap;
 
-    /* Efectos */
-    user-select: none;
+    /* Appearance */
+    background-color: var(--sb-ui-badge-bg-color);
+    color: var(--sb-ui-badge-text-color);
+    border-radius: var(--sb-ui-badge-border-radius);
+    border: var(--sb-ui-badge-border-width) solid transparent;
+
+    /* Iconos dentro del badge */
+    & > svg,
+    & > i,
+    & > [class*='fa-'],
+    & > [class*='icon'] {
+      inline-size: var(--sb-ui-badge-icon-size);
+      block-size: var(--sb-ui-badge-icon-size);
+      flex-shrink: 0;
+      color: var(--sb-ui-badge-icon-color);
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
 /* ========================================
-   SIZES LAYER - Variantes de tamaño
+   VARIANTS LAYER - Tipos de feedback
    ======================================== */
-@layer sizes {
-  /* Small */
-  .sb-ui-badge--sm {
-    --sb-ui-badge-font-size: 0.625rem; /* 10px */
-    --sb-ui-badge-padding-inline: 0.375rem; /* 6px */
-    --sb-ui-badge-padding-block: 0.0625rem; /* 1px */
-    --sb-ui-badge-min-width: 1rem; /* 16px */
-    --sb-ui-badge-border-radius: 0.5rem; /* 8px */
-  }
 
-  /* Medium (default) */
-  .sb-ui-badge--md {
-    --sb-ui-badge-font-size: 0.75rem; /* 12px */
-    --sb-ui-badge-padding-inline: 0.5rem; /* 8px */
-    --sb-ui-badge-padding-block: 0.125rem; /* 2px */
-    --sb-ui-badge-min-width: 1.25rem; /* 20px */
-    --sb-ui-badge-border-radius: 0.75rem; /* 12px */
-  }
-
-  /* Large */
-  .sb-ui-badge--lg {
-    --sb-ui-badge-font-size: 0.875rem; /* 14px */
-    --sb-ui-badge-padding-inline: 0.625rem; /* 10px */
-    --sb-ui-badge-padding-block: 0.25rem; /* 4px */
-    --sb-ui-badge-min-width: 1.5rem; /* 24px */
-    --sb-ui-badge-border-radius: 1rem; /* 16px */
-  }
-}
-
-/* ========================================
-   VARIANTS LAYER - Colores y formas
-   ======================================== */
 @layer variants {
-  /* ===== VARIANTES DE COLOR ===== */
-  
-  /* Default - Gris */
-  .sb-ui-badge--default {
-    --sb-ui-badge-bg: var(--sb-ui-color-grayscale-base, #9e9e9e);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
-  }
-
-  /* Primary - Color primario de marca */
-  .sb-ui-badge--primary {
-    --sb-ui-badge-bg: var(--sb-ui-color-primary-base, #038450);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
-  }
-
-  /* Secondary - Color secundario de marca */
-  .sb-ui-badge--secondary {
-    --sb-ui-badge-bg: var(--sb-ui-color-secondary-base, #ffe16f);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-base, #1b1b1b);
-  }
-
-  /* Success - Verde */
-  .sb-ui-badge--success {
-    --sb-ui-badge-bg: var(--sb-ui-color-feedback-success-base, #4caf50);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
-  }
-
-  /* Warning - Amarillo/Naranja */
-  .sb-ui-badge--warning {
-    --sb-ui-badge-bg: var(--sb-ui-color-feedback-warning-base, #ff9800);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
-  }
-
-  /* Error - Rojo */
+  /* ERROR - Rojo (default) */
   .sb-ui-badge--error {
-    --sb-ui-badge-bg: var(--sb-ui-color-feedback-error-base, #f44336);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-badge-bg-color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    --sb-ui-badge-text-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-badge-icon-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-badge-border-radius: clamp(0.5rem, 0.45rem + 0.25vw, 0.5625rem);
   }
 
-  /* Info - Azul */
+  /* WARNING - Amarillo */
+  .sb-ui-badge--warning {
+    --sb-ui-badge-bg-color: var(--sb-ui-color-feedback-warning-base, #ffc100);
+    --sb-ui-badge-text-color: var(--sb-ui-color-grayscale-D400, #282828);
+    --sb-ui-badge-icon-color: var(--sb-ui-color-grayscale-D400, #282828);
+    --sb-ui-badge-border-radius: clamp(0.5rem, 0.45rem + 0.25vw, 0.5625rem);
+  }
+
+  /* INFO - Azul */
   .sb-ui-badge--info {
-    --sb-ui-badge-bg: var(--sb-ui-color-feedback-info-base, #2196f3);
-    --sb-ui-badge-color: var(--sb-ui-color-grayscale-white, #ffffff);
+    --sb-ui-badge-bg-color: var(--sb-ui-color-feedback-info-L100, #4da5ff);
+    --sb-ui-badge-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+    --sb-ui-badge-icon-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+    --sb-ui-badge-border-radius: clamp(0.5rem, 0.45rem + 0.25vw, 0.5625rem);
   }
 
-  /* ===== VARIANTES DE FORMA ===== */
-
-  /* Rounded - Pill shape (default) */
-  .sb-ui-badge--rounded {
-    --sb-ui-badge-border-radius: 0.75rem;
-  }
-
-  /* Square - Cuadrado con bordes suaves */
-  .sb-ui-badge--square {
-    --sb-ui-badge-border-radius: 0.25rem; /* 4px */
-  }
-
-  /* Circle - Circular (para números) */
-  .sb-ui-badge--circle {
-    --sb-ui-badge-border-radius: 50%;
-    --sb-ui-badge-padding-inline: 0;
-    inline-size: var(--sb-ui-badge-min-width);
-    block-size: var(--sb-ui-badge-min-width);
-    aspect-ratio: 1;
-  }
-
-  /* Dot - Punto pequeño sin contenido */
-  .sb-ui-badge--dot {
-    --sb-ui-badge-min-width: 0.5rem; /* 8px */
-    --sb-ui-badge-padding-inline: 0;
-    --sb-ui-badge-padding-block: 0;
-    inline-size: 0.5rem;
-    block-size: 0.5rem;
-    border-radius: 50%;
+  /* SUCCESS - Verde */
+  .sb-ui-badge--success {
+    --sb-ui-badge-bg-color: var(--sb-ui-color-feedback-success-L100, #69c17d);
+    --sb-ui-badge-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+    --sb-ui-badge-icon-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+    --sb-ui-badge-border-radius: clamp(2.5rem, 2.3rem + 1vw, 3.125rem);
   }
 }
 
 /* ========================================
-   POSITIONS LAYER - Posicionamiento
+   SIZES LAYER
    ======================================== */
-@layer positions {
-  /* Posicionamiento absoluto activado */
-  .sb-ui-badge--positioned {
-    position: absolute;
-    z-index: 1;
+
+@layer sizes {
+  /* Small - 12px */
+  .sb-ui-badge--small {
+    --sb-ui-badge-size: clamp(0.625rem, 0.55rem + 0.4vw, 0.75rem);
+    --sb-ui-badge-padding-inline: clamp(0.25rem, 0.2rem + 0.25vw, 0.3125rem);
+    --sb-ui-badge-padding-block: clamp(0.25rem, 0.2rem + 0.25vw, 0.3125rem);
+    --sb-ui-badge-font-size: clamp(0.625rem, 0.575rem + 0.25vw, 0.75rem);
+    --sb-ui-badge-icon-size: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
   }
 
-  /* Top Right */
-  .sb-ui-badge--top-right {
-    inset-block-start: var(--sb-ui-badge-offset-y);
-    inset-inline-end: var(--sb-ui-badge-offset-x);
+  /* Medium - 16px (valor intermedio) */
+  .sb-ui-badge--medium {
+    --sb-ui-badge-size: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+    --sb-ui-badge-padding-inline: clamp(0.25rem, 0.2rem + 0.25vw, 0.3125rem);
+    --sb-ui-badge-padding-block: clamp(0.25rem, 0.2rem + 0.25vw, 0.3125rem);
+    --sb-ui-badge-font-size: clamp(0.625rem, 0.575rem + 0.25vw, 0.75rem);
+    --sb-ui-badge-icon-size: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
   }
 
-  /* Top Left */
-  .sb-ui-badge--top-left {
-    inset-block-start: var(--sb-ui-badge-offset-y);
-    inset-inline-start: var(--sb-ui-badge-offset-x);
-  }
-
-  /* Bottom Right */
-  .sb-ui-badge--bottom-right {
-    inset-block-end: var(--sb-ui-badge-offset-y);
-    inset-inline-end: var(--sb-ui-badge-offset-x);
-  }
-
-  /* Bottom Left */
-  .sb-ui-badge--bottom-left {
-    inset-block-end: var(--sb-ui-badge-offset-y);
-    inset-inline-start: var(--sb-ui-badge-offset-x);
+  /* Large - 20px (default ya definido en tokens) */
+  .sb-ui-badge--large {
+    --sb-ui-badge-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    --sb-ui-badge-padding-inline: clamp(0.375rem, 0.3rem + 0.4vw, 0.5rem);
+    --sb-ui-badge-padding-block: clamp(0.375rem, 0.3rem + 0.4vw, 0.5rem);
+    --sb-ui-badge-font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --sb-ui-badge-icon-size: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
   }
 }
 
 /* ========================================
-   UTILITIES LAYER - Utilidades
+   MODIFIERS LAYER
    ======================================== */
-@layer utilities {
-  /* Badge con outline (stroke) en lugar de fill */
-  .sb-ui-badge--outline {
-    background-color: transparent;
-    border-width: 1px;
-    border-style: solid;
+
+@layer modifiers {
+  /* Sin texto - solo icono */
+  .sb-ui-badge--icon-only {
+    /* Elimina el contenido de texto */
+    font-size: 0;
     
-    &.sb-ui-badge--default {
-      border-color: var(--sb-ui-color-grayscale-base, #9e9e9e);
-      color: var(--sb-ui-color-grayscale-base, #9e9e9e);
-    }
+    /* Ajusta el padding para que el icono quede centrado */
+    padding-inline: var(--sb-ui-badge-padding-inline);
+    padding-block: var(--sb-ui-badge-padding-block);
+  }
+}
 
-    &.sb-ui-badge--primary {
-      border-color: var(--sb-ui-color-primary-base, #038450);
-      color: var(--sb-ui-color-primary-base, #038450);
-    }
+/* ========================================
+   UTILITIES LAYER (máxima prioridad)
+   ======================================== */
 
-    &.sb-ui-badge--secondary {
-      border-color: var(--sb-ui-color-secondary-base, #ffe16f);
-      color: var(--sb-ui-color-grayscale-base, #1b1b1b);
-    }
-
-    &.sb-ui-badge--success {
-      border-color: var(--sb-ui-color-feedback-success-base, #4caf50);
-      color: var(--sb-ui-color-feedback-success-base, #4caf50);
-    }
-
-    &.sb-ui-badge--warning {
-      border-color: var(--sb-ui-color-feedback-warning-base, #ff9800);
-      color: var(--sb-ui-color-feedback-warning-base, #ff9800);
-    }
-
-    &.sb-ui-badge--error {
-      border-color: var(--sb-ui-color-feedback-error-base, #f44336);
-      color: var(--sb-ui-color-feedback-error-base, #f44336);
-    }
-
-    &.sb-ui-badge--info {
-      border-color: var(--sb-ui-color-feedback-info-base, #2196f3);
-      color: var(--sb-ui-color-feedback-info-base, #2196f3);
+@layer utilities {
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .sb-ui-badge {
+      --sb-ui-badge-border-width: 2px;
+      border-color: currentColor;
     }
   }
 
-  /* Badge con animación de pulso (para notificaciones) */
-  @keyframes sb-ui-badge-pulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-badge {
+      transition: none;
+      animation: none;
     }
-    50% {
-      opacity: 0.7;
-      transform: scale(1.05);
-    }
-  }
-
-  .sb-ui-badge--pulse {
-    animation: sb-ui-badge-pulse 2s ease-in-out infinite;
   }
 }
