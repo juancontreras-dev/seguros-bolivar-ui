@@ -383,7 +383,7 @@ async function buildJSBundle(): Promise<void> {
  */
 async function generateIndexHTML(): Promise<void> {
   // Skip - no generamos HTMLs en dist/
-  console.log('\n  ℹ️  Skipping HTML generation (demos are in examples/)');
+  console.log('\n  ℹ️  Skipping HTML generation');
 }
 
 /**
