@@ -1,0 +1,1255 @@
+---
+alwaysApply: true
+description: "Catálogo completo de variables CSS del Seguros Bolivar UI Design System - Todas las variables disponibles con prefijo --sb-ui- para colores, tipografía, espaciado, sombras, gradientes y componentes específicos"
+globs:
+  - "**/*.css"
+  - "packages/atoms/**/*.css"
+  - "packages/molecules/**/*.css"
+  - "packages/brand-overrides/**/*.css"
+  - "packages/tokens/**/*.json"
+---
+# Seguros Bolivar UI Design System - Variables CSS
+
+## 🎯 Contexto
+
+Este documento contiene **TODAS las variables CSS disponibles** en el Seguros Bolivar UI Design System. Todas las variables tienen el prefijo `--sb-ui-` para evitar colisiones.
+
+---
+
+## 🔗 Equivalencias Figma → variables --sb-ui-*
+
+Cuando se usa el MCP de Figma (`get_variable_defs`), los tokens retornados siguen una convención de nombres diferente a la de la librería. Usa esta tabla para traducirlos:
+
+### Convención de escala
+
+| Sufijo en Figma | Equivalente en sb-ui |
+|-----------------|----------------------|
+| `/+100` | `-base` |
+| `/+200` | `-D100` |
+| `/+300` | `-D200` |
+| `/+400` | `-D300` |
+| `/-100` | `-L100` |
+| `/-200` | `-L200` |
+| `/-300` | `-L300` |
+| `/Base` | `-base` |
+
+### Prefijos de categoría
+
+| Prefijo en Figma | Prefijo en sb-ui |
+|------------------|------------------|
+| `Primary/` | `--sb-ui-color-primary-` |
+| `Secondary/` | `--sb-ui-color-secondary-` |
+| `Tertiary/` | `--sb-ui-color-tertiary-` |
+| `Greyscale/Black` | `--sb-ui-color-grayscale-black` |
+| `Greyscale/White` | `--sb-ui-color-grayscale-white` |
+| `Greyscale/+N` | `--sb-ui-color-grayscale-DN00` |
+| `Greyscale/-N` | `--sb-ui-color-grayscale-LN00` |
+| `Alerts/Success/` | `--sb-ui-color-feedback-success-` |
+| `Alerts/Error/` | `--sb-ui-color-feedback-error-` |
+| `Alerts/Warning/` | `--sb-ui-color-feedback-warning-` |
+| `Alerts/Info/` | `--sb-ui-color-feedback-info-` |
+
+**Ejemplo de uso:** token Figma `Primary/+200` → aplica prefijo `--sb-ui-color-primary-` + escala `+200 = D100` → `--sb-ui-color-primary-D100`
+
+---
+
+**⚠️ OBLIGATORIO:** Siempre usar estas variables en lugar de valores hardcodeados.
+
+---
+
+## ⚠️ RESTRICCIONES FUNDAMENTALES
+
+### ❌ PROHIBIDO: Valores Hardcodeados
+
+**NUNCA uses valores literales directamente. SIEMPRE variables CSS.**
+
+```css
+/* ❌ PROHIBIDO - Valores hardcodeados */
+.sb-ui-button {
+  background-color: #038450;        /* NO hardcodear colores */
+  padding: 12px 24px;               /* NO hardcodear espaciado */
+  font-size: 16px;                  /* NO hardcodear tipografía */
+  border-radius: 50px;              /* NO hardcodear bordes */
+  font-family: 'Roboto', sans-serif; /* NO hardcodear fuentes */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* NO hardcodear sombras */
+}
+
+/* ✅ CORRECTO - Usar variables CSS */
+.sb-ui-button {
+  background-color: var(--sb-ui-color-primary-base);
+  padding-inline: var(--sb-ui-button-padding-inline);
+  padding-block: var(--sb-ui-button-padding-block);
+  font-size: var(--sb-ui-button-font-size);
+  border-radius: var(--sb-ui-button-border-radius);
+  font-family: var(--sb-ui-typography-fontFamily);
+  box-shadow: var(--sb-ui-shadow-s);
+}
+```
+
+### ✅ SIEMPRE Usar Variables del Sistema
+
+**TODOS los valores deben usar variables CSS del sistema de diseño.**
+
+---
+
+## 🎨 VARIABLES DE COLOR
+
+### Primary (Color Primario)
+
+```css
+--sb-ui-color-primary-D400    /* Más oscuro */
+--sb-ui-color-primary-D300
+--sb-ui-color-primary-D200
+--sb-ui-color-primary-D100
+--sb-ui-color-primary-base    /* Color base */
+--sb-ui-color-primary-L100
+--sb-ui-color-primary-L200
+--sb-ui-color-primary-L300
+--sb-ui-color-primary-L400    /* Más claro */
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-button--primary {
+  background-color: var(--sb-ui-color-primary-base);
+  color: var(--sb-ui-color-grayscale-white);
+}
+
+.sb-ui-button--primary:hover {
+  background-color: var(--sb-ui-color-primary-D100);
+}
+```
+
+### Secondary (Color Secundario)
+
+```css
+--sb-ui-color-secondary-D400
+--sb-ui-color-secondary-D300
+--sb-ui-color-secondary-D200
+--sb-ui-color-secondary-D100
+--sb-ui-color-secondary-base
+--sb-ui-color-secondary-L100
+--sb-ui-color-secondary-L200
+--sb-ui-color-secondary-L300
+--sb-ui-color-secondary-L400
+```
+
+### Tertiary (Color Terciario)
+
+```css
+--sb-ui-color-tertiary-D400
+--sb-ui-color-tertiary-D300
+--sb-ui-color-tertiary-D200
+--sb-ui-color-tertiary-D100
+--sb-ui-color-tertiary-base
+--sb-ui-color-tertiary-L100
+--sb-ui-color-tertiary-L200
+--sb-ui-color-tertiary-L300
+--sb-ui-color-tertiary-L400
+```
+
+### Grayscale (Escala de Grises)
+
+```css
+--sb-ui-color-grayscale-black
+--sb-ui-color-grayscale-D400
+--sb-ui-color-grayscale-D300
+--sb-ui-color-grayscale-D200
+--sb-ui-color-grayscale-D100
+--sb-ui-color-grayscale-base
+--sb-ui-color-grayscale-L100
+--sb-ui-color-grayscale-L200
+--sb-ui-color-grayscale-L300
+--sb-ui-color-grayscale-L400
+--sb-ui-color-grayscale-white
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-input {
+  background-color: var(--sb-ui-color-grayscale-white);
+  border-color: var(--sb-ui-color-grayscale-L200);
+  color: var(--sb-ui-color-grayscale-black);
+}
+
+.sb-ui-input:disabled {
+  background-color: var(--sb-ui-color-grayscale-L300);
+  color: var(--sb-ui-color-grayscale-base);
+}
+```
+
+### Feedback Colors (Colores de Retroalimentación)
+
+#### Error
+
+```css
+--sb-ui-color-feedback-error-D400
+--sb-ui-color-feedback-error-D300
+--sb-ui-color-feedback-error-D200
+--sb-ui-color-feedback-error-D100
+--sb-ui-color-feedback-error-base
+--sb-ui-color-feedback-error-L100
+--sb-ui-color-feedback-error-L200
+--sb-ui-color-feedback-error-L300
+--sb-ui-color-feedback-error-L400
+```
+
+#### Success
+
+```css
+--sb-ui-color-feedback-success-D400
+--sb-ui-color-feedback-success-D300
+--sb-ui-color-feedback-success-D200
+--sb-ui-color-feedback-success-D100
+--sb-ui-color-feedback-success-base
+--sb-ui-color-feedback-success-L100
+--sb-ui-color-feedback-success-L200
+--sb-ui-color-feedback-success-L300
+--sb-ui-color-feedback-success-L400
+```
+
+#### Warning
+
+```css
+--sb-ui-color-feedback-warning-D400
+--sb-ui-color-feedback-warning-D300
+--sb-ui-color-feedback-warning-D200
+--sb-ui-color-feedback-warning-D100
+--sb-ui-color-feedback-warning-base
+--sb-ui-color-feedback-warning-L100
+--sb-ui-color-feedback-warning-L200
+--sb-ui-color-feedback-warning-L300
+--sb-ui-color-feedback-warning-L400
+```
+
+#### Info
+
+```css
+--sb-ui-color-feedback-info-D400
+--sb-ui-color-feedback-info-D300
+--sb-ui-color-feedback-info-D200
+--sb-ui-color-feedback-info-D100
+--sb-ui-color-feedback-info-base
+--sb-ui-color-feedback-info-L100
+--sb-ui-color-feedback-info-L200
+--sb-ui-color-feedback-info-L300
+--sb-ui-color-feedback-info-L400
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-alert--error {
+  background-color: var(--sb-ui-color-feedback-error-L400);
+  border-color: var(--sb-ui-color-feedback-error-base);
+  color: var(--sb-ui-color-feedback-error-D400);
+}
+
+.sb-ui-alert--success {
+  background-color: var(--sb-ui-color-feedback-success-L400);
+  border-color: var(--sb-ui-color-feedback-success-base);
+  color: var(--sb-ui-color-feedback-success-D400);
+}
+```
+
+---
+
+## 📝 VARIABLES DE TIPOGRAFÍA
+
+### Font Family
+
+```css
+--sb-ui-typography-fontFamily
+```
+
+**Ejemplo:** `'Bolivar', 'Roboto', sans-serif` (Seguros Bolívar)
+
+### Font Sizes
+
+```css
+--sb-ui-typography-fontSize-h1      /* 2.25rem */
+--sb-ui-typography-fontSize-h2      /* 2rem */
+--sb-ui-typography-fontSize-h3      /* 1.75rem */
+--sb-ui-typography-fontSize-h4      /* 1.5rem */
+--sb-ui-typography-fontSize-h5      /* 1.25rem */
+--sb-ui-typography-fontSize-h6      /* 1rem */
+--sb-ui-typography-fontSize-body    /* 1rem */
+--sb-ui-typography-fontSize-label   /* 0.875rem */
+--sb-ui-typography-fontSize-caption /* 0.75rem */
+--sb-ui-typography-fontSize-button  /* 1rem */
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-heading--h1 {
+  font-family: var(--sb-ui-typography-fontFamily);
+  font-size: var(--sb-ui-typography-fontSize-h1);
+}
+
+.sb-ui-label {
+  font-family: var(--sb-ui-typography-fontFamily);
+  font-size: var(--sb-ui-typography-fontSize-label);
+}
+```
+
+---
+
+## 📏 VARIABLES DE ESPACIADO
+
+**Nota:** Las variables de espaciado se definen por componente. Usa las variables específicas de cada componente.
+
+### Ejemplos por Componente
+
+#### Button
+
+```css
+--sb-ui-button-padding-inline
+--sb-ui-button-padding-block
+--sb-ui-button-gap
+```
+
+#### Input
+
+```css
+--sb-ui-input-padding-inline
+--sb-ui-input-padding-block
+--sb-ui-input-gap
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-button {
+  padding-inline: var(--sb-ui-button-padding-inline);
+  padding-block: var(--sb-ui-button-padding-block);
+  gap: var(--sb-ui-button-gap);
+}
+
+.sb-ui-input {
+  padding-inline: var(--sb-ui-input-padding-inline);
+  padding-block: var(--sb-ui-input-padding-block);
+}
+```
+
+---
+
+## 🔲 VARIABLES DE BORDES
+
+### Border Radius
+
+```css
+--sb-ui-border-radius-sm    /* Radio pequeño */
+--sb-ui-border-radius-md    /* Radio mediano */
+--sb-ui-border-radius-lg    /* Radio grande */
+```
+
+### Border Width
+
+```css
+--sb-ui-border-width-base   /* Ancho de borde base */
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-button {
+  border-radius: var(--sb-ui-button-border-radius);
+  border-width: var(--sb-ui-border-width-base);
+}
+
+.sb-ui-card {
+  border-radius: var(--sb-ui-border-radius-md);
+}
+```
+
+---
+
+## 🌑 VARIABLES DE SOMBRAS
+
+```css
+--sb-ui-shadow-xs    /* Sombra extra pequeña */
+--sb-ui-shadow-s     /* Sombra pequeña */
+--sb-ui-shadow-m     /* Sombra mediana */
+--sb-ui-shadow-l     /* Sombra grande */
+--sb-ui-shadow-xl    /* Sombra extra grande */
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-card {
+  box-shadow: var(--sb-ui-shadow-m);
+}
+
+.sb-ui-button:hover {
+  box-shadow: var(--sb-ui-shadow-s);
+}
+
+.sb-ui-modal {
+  box-shadow: var(--sb-ui-shadow-xl);
+}
+```
+
+---
+
+## 🎨 VARIABLES DE GRADIENTES
+
+### Primary Gradient
+
+```css
+--sb-ui-gradient-primary-dark
+--sb-ui-gradient-primary-base
+--sb-ui-gradient-primary-light
+```
+
+### Secondary Gradient
+
+```css
+--sb-ui-gradient-secondary-dark
+--sb-ui-gradient-secondary-base
+--sb-ui-gradient-secondary-light
+```
+
+### Tertiary Gradient
+
+```css
+--sb-ui-gradient-tertiary-dark
+--sb-ui-gradient-tertiary-base
+--sb-ui-gradient-tertiary-light
+```
+
+**Ejemplo de uso:**
+```css
+.sb-ui-hero {
+  background: var(--sb-ui-gradient-primary-base);
+}
+
+.sb-ui-card--featured {
+  background: var(--sb-ui-gradient-secondary-light);
+}
+```
+
+---
+
+## 🧩 VARIABLES ESPECÍFICAS DE COMPONENTES
+
+### Button
+
+```css
+/* Colores */
+--sb-ui-button-bg-color
+--sb-ui-button-bg-hover
+--sb-ui-button-bg-active
+--sb-ui-button-bg-disabled
+--sb-ui-button-bg-disabled-hover
+
+--sb-ui-button-text-color
+--sb-ui-button-text-hover
+--sb-ui-button-text-active
+--sb-ui-button-text-disabled
+--sb-ui-button-text-disabled-hover
+
+--sb-ui-button-border-color
+--sb-ui-button-border-hover
+--sb-ui-button-border-active
+--sb-ui-button-border-disabled
+--sb-ui-button-border-disabled-hover
+
+/* Espaciado */
+--sb-ui-button-padding-inline
+--sb-ui-button-padding-block
+--sb-ui-button-gap
+
+/* Tipografía */
+--sb-ui-button-font-size
+--sb-ui-button-font-weight
+--sb-ui-button-line-height
+
+/* Bordes */
+--sb-ui-button-border-radius
+--sb-ui-button-border-width
+
+/* Tamaños */
+--sb-ui-button-min-inline-size
+--sb-ui-button-min-block-size
+```
+
+### Input
+
+```css
+/* Colores */
+--sb-ui-input-bg-color
+--sb-ui-input-bg-hover
+--sb-ui-input-bg-focus
+--sb-ui-input-bg-disabled
+
+--sb-ui-input-text-color
+--sb-ui-input-text-placeholder
+--sb-ui-input-text-disabled
+
+--sb-ui-input-border-color
+--sb-ui-input-border-hover
+--sb-ui-input-border-focus
+--sb-ui-input-border-error
+--sb-ui-input-border-success
+--sb-ui-input-border-disabled
+
+/* Espaciado */
+--sb-ui-input-padding-inline
+--sb-ui-input-padding-block
+--sb-ui-input-gap
+
+/* Tipografía */
+--sb-ui-input-font-size
+--sb-ui-input-font-weight
+--sb-ui-input-line-height
+
+/* Bordes */
+--sb-ui-input-border-radius
+--sb-ui-input-border-width
+
+/* Tamaños */
+--sb-ui-input-min-block-size
+```
+
+### Select
+
+```css
+/* Similar a Input */
+--sb-ui-select-bg-color
+--sb-ui-select-text-color
+--sb-ui-select-border-color
+--sb-ui-select-padding-inline
+--sb-ui-select-padding-block
+--sb-ui-select-font-size
+--sb-ui-select-border-radius
+```
+
+### Checkbox / Radio
+
+```css
+/* Colores */
+--sb-ui-checkbox-bg-color
+--sb-ui-checkbox-bg-checked
+--sb-ui-checkbox-bg-disabled
+--sb-ui-checkbox-border-color
+--sb-ui-checkbox-border-checked
+--sb-ui-checkbox-border-disabled
+--sb-ui-checkbox-checkmark-color
+
+/* Tamaños */
+--sb-ui-checkbox-size
+--sb-ui-checkbox-border-radius
+```
+
+### Toggle
+
+```css
+/* Colores */
+--sb-ui-toggle-bg-color
+--sb-ui-toggle-bg-checked
+--sb-ui-toggle-bg-disabled
+--sb-ui-toggle-slider-color
+--sb-ui-toggle-slider-checked
+
+/* Tamaños (Logical Properties) */
+--sb-ui-toggle-inline-size
+--sb-ui-toggle-block-size
+--sb-ui-toggle-slider-size
+```
+
+### TextArea
+
+```css
+/* Similar a Input */
+--sb-ui-textarea-bg-color
+--sb-ui-textarea-text-color
+--sb-ui-textarea-border-color
+--sb-ui-textarea-padding-inline
+--sb-ui-textarea-padding-block
+--sb-ui-textarea-font-size
+--sb-ui-textarea-border-radius
+--sb-ui-textarea-min-block-size
+```
+
+### Alert
+
+```css
+/* Colores por variante */
+--sb-ui-alert-info-bg
+--sb-ui-alert-info-border
+--sb-ui-alert-info-text
+
+--sb-ui-alert-success-bg
+--sb-ui-alert-success-border
+--sb-ui-alert-success-text
+
+--sb-ui-alert-warning-bg
+--sb-ui-alert-warning-border
+--sb-ui-alert-warning-text
+
+--sb-ui-alert-error-bg
+--sb-ui-alert-error-border
+--sb-ui-alert-error-text
+
+/* Espaciado */
+--sb-ui-alert-padding-inline
+--sb-ui-alert-padding-block
+--sb-ui-alert-gap
+--sb-ui-alert-border-radius
+```
+
+### Table
+
+```css
+/* Colores */
+--sb-ui-table-bg-color
+--sb-ui-table-header-bg
+--sb-ui-table-header-text
+--sb-ui-table-row-bg
+--sb-ui-table-row-bg-hover
+--sb-ui-table-row-bg-striped
+--sb-ui-table-border-color
+
+/* Espaciado */
+--sb-ui-table-padding-inline
+--sb-ui-table-padding-block
+--sb-ui-table-border-width
+```
+
+### Spinner
+
+```css
+/* Colores */
+--sb-ui-spinner-color
+--sb-ui-spinner-color-primary
+--sb-ui-spinner-color-secondary
+
+/* Tamaños */
+--sb-ui-spinner-size-small
+--sb-ui-spinner-size-medium
+--sb-ui-spinner-size-large
+--sb-ui-spinner-border-width
+```
+
+### Accordion
+
+```css
+/* Colores - Background */
+--sb-ui-accordion-bg-color
+--sb-ui-accordion-bg-hover
+--sb-ui-accordion-bg-active
+--sb-ui-accordion-bg-disabled
+--sb-ui-accordion-bg-disabled-hover
+--sb-ui-accordion-bg-expanded
+
+/* Colores - Text */
+--sb-ui-accordion-text-color
+--sb-ui-accordion-text-hover
+--sb-ui-accordion-text-active
+--sb-ui-accordion-text-disabled
+--sb-ui-accordion-text-disabled-hover
+--sb-ui-accordion-text-expanded
+
+/* Colores - Border */
+--sb-ui-accordion-border-color
+--sb-ui-accordion-border-hover
+--sb-ui-accordion-border-active
+--sb-ui-accordion-border-disabled
+--sb-ui-accordion-border-disabled-hover
+--sb-ui-accordion-border-expanded
+--sb-ui-accordion-border-focus
+
+/* Icon */
+--sb-ui-accordion-icon-start-color
+--sb-ui-accordion-icon-start-color-expanded
+
+/* Action pill */
+--sb-ui-accordion-action-bg
+--sb-ui-accordion-action-bg-hover
+--sb-ui-accordion-action-bg-active
+--sb-ui-accordion-action-text
+--sb-ui-accordion-action-text-hover
+--sb-ui-accordion-action-text-active
+--sb-ui-accordion-action-border-radius
+```
+
+### Tabs
+
+```css
+/* Colores - Background */
+--sb-ui-tabs-bg-color
+--sb-ui-tabs-bg-hover
+--sb-ui-tabs-bg-active
+--sb-ui-tabs-bg-disabled
+--sb-ui-tabs-bg-disabled-hover
+
+/* Colores - Text */
+--sb-ui-tabs-text-color
+--sb-ui-tabs-text-hover
+--sb-ui-tabs-text-active
+--sb-ui-tabs-text-disabled
+--sb-ui-tabs-text-disabled-hover
+--sb-ui-tabs-description-color
+
+/* Colores - Icon */
+--sb-ui-tabs-icon-color
+--sb-ui-tabs-icon-hover
+--sb-ui-tabs-icon-active
+--sb-ui-tabs-icon-disabled
+--sb-ui-tabs-icon-disabled-hover
+
+/* Colores - Border */
+--sb-ui-tabs-border-color
+--sb-ui-tabs-border-hover
+--sb-ui-tabs-border-active
+```
+
+### Breadcrumb
+
+```css
+/* Tipografía */
+--sb-ui-breadcrumb-font-family
+--sb-ui-breadcrumb-font-size
+--sb-ui-breadcrumb-font-weight
+--sb-ui-breadcrumb-line-height
+
+/* Colores */
+--sb-ui-breadcrumb-link-color
+--sb-ui-breadcrumb-link-hover
+--sb-ui-breadcrumb-link-active
+--sb-ui-breadcrumb-current-color
+--sb-ui-breadcrumb-separator-color
+--sb-ui-breadcrumb-icon-color
+--sb-ui-breadcrumb-icon-hover
+--sb-ui-breadcrumb-icon-active
+
+/* Espaciado */
+--sb-ui-breadcrumb-gap
+--sb-ui-breadcrumb-padding-block
+--sb-ui-breadcrumb-padding-inline
+--sb-ui-breadcrumb-icon-size
+--sb-ui-breadcrumb-separator-content
+--sb-ui-breadcrumb-separator-margin-inline
+```
+
+### Menu
+
+```css
+/* Estructura */
+--sb-ui-menu-bg
+--sb-ui-menu-border-color
+--sb-ui-menu-border-width
+--sb-ui-menu-inline-size
+--sb-ui-menu-padding-block
+--sb-ui-menu-padding-inline
+
+/* Section title */
+--sb-ui-menu-section-title-color
+--sb-ui-menu-section-title-font-size
+--sb-ui-menu-section-title-font-weight
+--sb-ui-menu-section-title-padding-block
+--sb-ui-menu-section-title-padding-inline
+--sb-ui-menu-section-title-letter-spacing
+
+/* Items */
+--sb-ui-menu-item-color
+--sb-ui-menu-item-color-hover
+--sb-ui-menu-item-color-active
+--sb-ui-menu-item-bg-hover
+--sb-ui-menu-item-bg-active
+--sb-ui-menu-item-border-active
+--sb-ui-menu-item-padding-block
+--sb-ui-menu-item-padding-inline
+--sb-ui-menu-item-gap
+--sb-ui-menu-item-font-size
+--sb-ui-menu-item-font-weight
+--sb-ui-menu-item-border-width
+
+/* Icons */
+--sb-ui-menu-icon-size
+--sb-ui-menu-icon-inline-size
+
+/* Submenú */
+--sb-ui-menu-submenu-bg
+--sb-ui-menu-submenu-border-color
+--sb-ui-menu-submenu-margin-inline-start
+--sb-ui-menu-submenu-border-width
+--sb-ui-menu-submenu-item-padding-block
+--sb-ui-menu-submenu-item-padding-inline
+--sb-ui-menu-submenu-item-font-size
+
+/* Toggle (chevron) */
+--sb-ui-menu-toggle-size
+--sb-ui-menu-toggle-rotate-open
+
+/* Colapsado */
+--sb-ui-menu-inline-size-collapsed
+```
+
+### File Upload
+
+```css
+/* Wrapper */
+--sb-ui-file-upload-wrapper-gap
+
+/* Label */
+--sb-ui-file-upload-label-color
+--sb-ui-file-upload-label-font-size
+--sb-ui-file-upload-label-font-weight
+--sb-ui-file-upload-label-margin-block-end
+
+/* Dropzone */
+--sb-ui-file-upload-dropzone-bg
+--sb-ui-file-upload-dropzone-border-color
+--sb-ui-file-upload-dropzone-border-width
+--sb-ui-file-upload-dropzone-border-style
+--sb-ui-file-upload-dropzone-border-radius
+--sb-ui-file-upload-dropzone-padding-block
+--sb-ui-file-upload-dropzone-padding-inline
+--sb-ui-file-upload-dropzone-gap
+--sb-ui-file-upload-dropzone-hover-bg
+--sb-ui-file-upload-dropzone-hover-border
+--sb-ui-file-upload-dropzone-active-bg
+
+/* Texto de ayuda */
+--sb-ui-file-upload-text-color
+--sb-ui-file-upload-text-font-size
+--sb-ui-file-upload-help-color
+--sb-ui-file-upload-help-font-size
+
+/* File Item (sb-ui-file-upload) */
+--sb-ui-file-upload-bg
+--sb-ui-file-upload-border-color
+--sb-ui-file-upload-border-width
+--sb-ui-file-upload-border-radius
+--sb-ui-file-upload-padding-block
+--sb-ui-file-upload-padding-inline
+--sb-ui-file-upload-gap
+--sb-ui-file-upload-icon-size
+--sb-ui-file-upload-icon-color
+--sb-ui-file-upload-icon-bg
+--sb-ui-file-upload-filename-color
+--sb-ui-file-upload-filename-font-size
+--sb-ui-file-upload-caption-color
+--sb-ui-file-upload-caption-font-size
+```
+
+### Stepper
+
+```css
+/* Tamaños del step (círculo) */
+--sb-ui-stepper-step-size-number       /* paso con número */
+--sb-ui-stepper-step-size-icon         /* paso con icono */
+--sb-ui-stepper-step-size-mix          /* paso mixto */
+--sb-ui-stepper-step-radius            /* siempre 50% */
+--sb-ui-stepper-step-border-width
+
+/* Estado: Empty Default (pendiente) */
+--sb-ui-stepper-step-empty-default-bg
+--sb-ui-stepper-step-empty-default-border
+--sb-ui-stepper-step-empty-default-text
+--sb-ui-stepper-step-empty-default-icon
+
+/* Estado: Empty Active (paso actual) */
+--sb-ui-stepper-step-empty-active-bg
+--sb-ui-stepper-step-empty-active-border
+--sb-ui-stepper-step-empty-active-text
+--sb-ui-stepper-step-empty-active-icon
+
+/* Estado: Filled Default (completado) */
+--sb-ui-stepper-step-filled-default-bg
+--sb-ui-stepper-step-filled-default-border
+--sb-ui-stepper-step-filled-default-text
+--sb-ui-stepper-step-filled-default-icon
+
+/* Estado: Filled Active (completado + seleccionado) */
+--sb-ui-stepper-step-filled-active-bg
+--sb-ui-stepper-step-filled-active-border
+--sb-ui-stepper-step-filled-active-text
+--sb-ui-stepper-step-filled-active-icon
+```
+
+### Calendar
+
+```css
+/* Container */
+--sb-ui-calendar-bg
+--sb-ui-calendar-border-color
+--sb-ui-calendar-border-width
+--sb-ui-calendar-border-radius
+--sb-ui-calendar-padding
+--sb-ui-calendar-gap
+--sb-ui-calendar-shadow
+--sb-ui-calendar-inline-size
+
+/* Header */
+--sb-ui-calendar-header-padding-block
+--sb-ui-calendar-header-gap
+--sb-ui-calendar-header-margin-block-end
+
+/* Month/Year */
+--sb-ui-calendar-month-font-size
+--sb-ui-calendar-month-font-weight
+--sb-ui-calendar-month-color
+
+/* Botones de navegación */
+--sb-ui-calendar-nav-size
+--sb-ui-calendar-nav-bg
+--sb-ui-calendar-nav-bg-hover
+--sb-ui-calendar-nav-bg-active
+--sb-ui-calendar-nav-color
+--sb-ui-calendar-nav-border-radius
+
+/* Días de la semana */
+--sb-ui-calendar-weekday-font-size
+--sb-ui-calendar-weekday-font-weight
+--sb-ui-calendar-weekday-color
+--sb-ui-calendar-weekday-padding-block
+
+/* Grid de días */
+--sb-ui-calendar-grid-gap
+--sb-ui-calendar-day-size
+--sb-ui-calendar-day-font-size
+```
+
+### Modal (Web Component)
+
+```css
+/* Container */
+--sb-ui-modal-backdrop-bg
+--sb-ui-modal-bg
+--sb-ui-modal-border-radius
+--sb-ui-modal-shadow
+--sb-ui-modal-padding-inline
+--sb-ui-modal-padding-block
+--sb-ui-modal-gap
+
+/* Header */
+--sb-ui-modal-title-color
+--sb-ui-modal-title-font-size
+--sb-ui-modal-title-font-weight
+--sb-ui-modal-header-border
+--sb-ui-modal-close-size
+```
+
+### Toast (Web Component)
+
+```css
+/* Colores de fondo por variante */
+--sb-ui-toast-bg-color
+--sb-ui-toast-bg-color-success
+--sb-ui-toast-bg-color-info
+--sb-ui-toast-bg-color-warning
+--sb-ui-toast-bg-color-error
+
+/* Colores de borde por variante */
+--sb-ui-toast-border-color
+--sb-ui-toast-border-color-success
+--sb-ui-toast-border-color-info
+--sb-ui-toast-border-color-warning
+--sb-ui-toast-border-color-error
+
+/* Texto */
+--sb-ui-toast-text-color
+--sb-ui-toast-title-color
+--sb-ui-toast-icon-color
+```
+
+### Avatar
+
+```css
+/* Tamaño */
+--sb-ui-avatar-size              /* 40px por defecto (md) */
+--sb-ui-avatar-font-size
+--sb-ui-avatar-status-size
+--sb-ui-avatar-status-border
+
+/* Colores */
+--sb-ui-avatar-bg
+--sb-ui-avatar-color
+--sb-ui-avatar-border-color
+
+/* Estados de presencia (badge) */
+--sb-ui-avatar-status-online
+--sb-ui-avatar-status-away
+--sb-ui-avatar-status-busy
+--sb-ui-avatar-status-offline
+
+/* Forma */
+--sb-ui-avatar-border-radius
+--sb-ui-avatar-border-width
+```
+
+### Badge
+
+```css
+/* Tamaños */
+--sb-ui-badge-font-size
+--sb-ui-badge-padding-inline
+--sb-ui-badge-padding-block
+--sb-ui-badge-min-width
+--sb-ui-badge-gap
+
+/* Colores */
+--sb-ui-badge-bg
+--sb-ui-badge-color
+--sb-ui-badge-border-color
+
+/* Forma */
+--sb-ui-badge-border-radius
+--sb-ui-badge-border-width
+
+/* Posicionamiento */
+--sb-ui-badge-offset-x
+--sb-ui-badge-offset-y
+```
+
+### Chip
+
+```css
+/* Tamaños */
+--sb-ui-chip-height
+--sb-ui-chip-padding-inline
+--sb-ui-chip-gap
+--sb-ui-chip-font-size
+
+/* Colores */
+--sb-ui-chip-bg
+--sb-ui-chip-color
+--sb-ui-chip-border-color
+
+/* Hover/Active (clickeable) */
+--sb-ui-chip-bg-hover
+--sb-ui-chip-bg-active
+--sb-ui-chip-color-hover
+
+/* Forma */
+--sb-ui-chip-border-radius
+--sb-ui-chip-border-width
+```
+
+### Slider
+
+```css
+/* Track (barra de fondo) */
+--sb-ui-slider-track-height
+--sb-ui-slider-track-bg
+--sb-ui-slider-track-border-radius
+
+/* Fill (progreso activo) */
+--sb-ui-slider-fill-bg
+
+/* Thumb (control deslizable) */
+--sb-ui-slider-thumb-size
+--sb-ui-slider-thumb-bg
+--sb-ui-slider-thumb-border-color
+--sb-ui-slider-thumb-border-width
+--sb-ui-slider-thumb-shadow
+
+/* Estados */
+--sb-ui-slider-thumb-bg-hover
+--sb-ui-slider-thumb-bg-active
+--sb-ui-slider-track-bg-disabled
+--sb-ui-slider-fill-bg-disabled
+--sb-ui-slider-thumb-bg-disabled
+```
+
+---
+
+## 📊 TABLA DE EQUIVALENCIAS PROHIBIDAS
+
+| ❌ Prohibido | ✅ Usar Variable |
+|--------------|------------------|
+| `#038450` | `var(--sb-ui-color-primary-base)` |
+| `#FFE16F` | `var(--sb-ui-color-secondary-base)` |
+| `#1b1b1b` | `var(--sb-ui-color-grayscale-black)` |
+| `#ffffff` | `var(--sb-ui-color-grayscale-white)` |
+| `#dc3545` | `var(--sb-ui-color-feedback-error-base)` |
+| `#28a745` | `var(--sb-ui-color-feedback-success-base)` |
+| `#ffc100` | `var(--sb-ui-color-feedback-warning-base)` |
+| `16px` | `var(--sb-ui-button-font-size)` o `var(--sb-ui-input-font-size)` |
+| `12px 24px` | `padding-inline: var(--sb-ui-button-padding-inline); padding-block: var(--sb-ui-button-padding-block);` |
+| `50px` | `var(--sb-ui-button-border-radius)` |
+| `'Roboto'` | `var(--sb-ui-typography-fontFamily)` |
+| `700` | `var(--sb-ui-button-font-weight)` |
+| `0 2px 4px rgba(0,0,0,0.1)` | `var(--sb-ui-shadow-s)` |
+| `linear-gradient(...)` | `var(--sb-ui-gradient-primary-base)` |
+
+---
+
+## ✅ CHECKLIST DE USO
+
+Antes de escribir CSS, verifica:
+
+- [ ] ✅ ¿Estoy usando variables CSS del sistema?
+  - [ ] NO hay valores hardcodeados (colores, tamaños, espaciado)
+  - [ ] Todos los valores usan `var(--sb-ui-*)`
+- [ ] ✅ ¿La variable existe en esta regla?
+  - [ ] Si NO existe, consultar con el equipo antes de crear una nueva
+- [ ] ✅ ¿Estoy usando la variable correcta?
+  - [ ] Variables de componente específicas para componentes
+  - [ ] Variables globales para elementos genéricos
+- [ ] ✅ ¿Respeto el prefijo `--sb-ui-`?
+  - [ ] Todas las variables deben tener el prefijo `--sb-ui-`
+
+---
+
+## 🎯 EJEMPLOS COMPLETOS
+
+### Ejemplo 1: Button Primary Fill
+
+```css
+.sb-ui-button--primary.sb-ui-button--fill {
+  /* Colores */
+  background-color: var(--sb-ui-button-bg-color);
+  color: var(--sb-ui-button-text-color);
+  border-color: var(--sb-ui-button-border-color);
+
+  /* Espaciado */
+  padding-inline: var(--sb-ui-button-padding-inline);
+  padding-block: var(--sb-ui-button-padding-block);
+  gap: var(--sb-ui-button-gap);
+
+  /* Tipografía */
+  font-family: var(--sb-ui-typography-fontFamily);
+  font-size: var(--sb-ui-button-font-size);
+  font-weight: var(--sb-ui-button-font-weight);
+  line-height: var(--sb-ui-button-line-height);
+
+  /* Bordes */
+  border-radius: var(--sb-ui-button-border-radius);
+  border-width: var(--sb-ui-button-border-width);
+
+  /* Estados */
+  &:hover {
+    background-color: var(--sb-ui-button-bg-hover);
+    color: var(--sb-ui-button-text-hover);
+    border-color: var(--sb-ui-button-border-hover);
+  }
+
+  &:active {
+    background-color: var(--sb-ui-button-bg-active);
+    color: var(--sb-ui-button-text-active);
+    border-color: var(--sb-ui-button-border-active);
+  }
+
+  &:disabled {
+    background-color: var(--sb-ui-button-bg-disabled);
+    color: var(--sb-ui-button-text-disabled);
+    border-color: var(--sb-ui-button-border-disabled);
+  }
+}
+```
+
+### Ejemplo 2: Input con Estados
+
+```css
+.sb-ui-input {
+  /* Colores */
+  background-color: var(--sb-ui-input-bg-color);
+  color: var(--sb-ui-input-text-color);
+  border-color: var(--sb-ui-input-border-color);
+
+  /* Espaciado */
+  padding-inline: var(--sb-ui-input-padding-inline);
+  padding-block: var(--sb-ui-input-padding-block);
+
+  /* Tipografía */
+  font-family: var(--sb-ui-typography-fontFamily);
+  font-size: var(--sb-ui-input-font-size);
+  line-height: var(--sb-ui-input-line-height);
+
+  /* Bordes */
+  border-radius: var(--sb-ui-input-border-radius);
+  border-width: var(--sb-ui-input-border-width);
+
+  /* Estados */
+  &:hover {
+    border-color: var(--sb-ui-input-border-hover);
+  }
+
+  &:focus {
+    background-color: var(--sb-ui-input-bg-focus);
+    border-color: var(--sb-ui-input-border-focus);
+  }
+
+  &::placeholder {
+    color: var(--sb-ui-input-text-placeholder);
+  }
+
+  &:disabled {
+    background-color: var(--sb-ui-input-bg-disabled);
+    color: var(--sb-ui-input-text-disabled);
+    border-color: var(--sb-ui-input-border-disabled);
+  }
+
+  /* Validación */
+  &.sb-ui-input--error {
+    border-color: var(--sb-ui-input-border-error);
+  }
+
+  &.sb-ui-input--success {
+    border-color: var(--sb-ui-input-border-success);
+  }
+}
+```
+
+### Ejemplo 3: Card con Sombra
+
+> **⚠️ Nota:** No existen variables globales `--sb-ui-spacing-*`. Para layouts y tarjetas propias, usa variables de proyecto o valores `clamp()` directos.
+
+```css
+/* ✅ CORRECTO - valores de clamp() para elemento propio */
+.mi-card {
+  background-color: var(--sb-ui-color-grayscale-white);
+  border-radius: var(--sb-ui-border-radius-md);
+  box-shadow: var(--sb-ui-shadow-m);
+  padding-inline: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  padding-block: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+}
+```
+
+---
+
+## 🔍 CÓMO BUSCAR VARIABLES
+
+### Por Categoría
+
+1. **Colores:** Buscar `--sb-ui-color-*`
+2. **Tipografía:** Buscar `--sb-ui-typography-*`
+3. **Espaciado:** Buscar `--sb-ui-[component]-padding-*` o `--sb-ui-[component]-gap`
+4. **Bordes:** Buscar `--sb-ui-border-*` o `--sb-ui-[component]-border-*`
+5. **Sombras:** Buscar `--sb-ui-shadow-*`
+6. **Gradientes:** Buscar `--sb-ui-gradient-*`
+7. **Componentes:** Buscar `--sb-ui-[component]-*`
+
+### Por Componente
+
+Si necesitas variables para un componente específico, busca:
+- `--sb-ui-button-*` para Button
+- `--sb-ui-input-*` para Input
+- `--sb-ui-select-*` para Select
+- `--sb-ui-checkbox-*` para Checkbox
+- `--sb-ui-alert-*` para Alert
+- etc.
+
+---
+
+## 📚 REFERENCIAS
+
+- **Tokens Source:** `packages/tokens/src/primitives/brands/`
+- **Componentes:** `.cursor/rules/componentes-01-sb-ui.mdc`
+- **CSS Standards:** `.cursor/rules/CSS.mdc`
+- **Brand Overrides:** `.cursor/rules/CSS_OVERRIDE_BRAND.mdc`
+
+---
+
+## 🎯 RECORDATORIOS FINALES
+
+1. **SIEMPRE** usa variables CSS con prefijo `--sb-ui-`
+2. **NUNCA** uses valores hardcodeados
+3. **SIEMPRE** verifica que la variable existe antes de usarla
+4. **SIEMPRE** usa variables específicas de componente cuando existan
+5. **NUNCA** crees nuevas variables sin consultar con el equipo
+
+---
+
+**Última actualización:** 2026-03-02
+**Versión:** 1.1.0 - Avatar, Badge, Chip, Slider añadidos
