@@ -14,5 +14,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@seguros-bolivar-ui/docs"]
+  "ignore": []
 }

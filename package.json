@@ -11,39 +11,28 @@
     "css",
     "design-tokens"
   ],
-  "homepage": "https://github.com/juancontreras-dev/seguros-bolivar-ui#readme",
+  "homepage": "https://github.com/segurosbolivar/seguros-bolivar-ui-lib#readme",
   "bugs": {
-    "url": "https://github.com/juancontreras-dev/seguros-bolivar-ui/issues"
+    "url": "https://github.com/segurosbolivar/seguros-bolivar-ui-lib/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/juancontreras-dev/seguros-bolivar-ui.git"
+    "url": "https://github.com/segurosbolivar/seguros-bolivar-ui-lib.git"
   },
   "license": "MIT",
   "author": "Seguros Bolivar UI",
   "type": "module",
   "scripts": {
-    "build": "pnpm run clean && pnpm exec turbo run build --force --no-cache && pnpm --filter @seguros-bolivar/ui-bundle run copy:all",
-    "build:storybook": "pnpm run build && pnpm --filter @seguros-bolivar-ui/docs build-storybook",
-    "build:site": "pnpm run build && pnpm run build:storybook && node scripts/build-site.js",
-    "check": "pnpm run lint  --fix && pnpm run format:check && pnpm run test",
-    "clean": "pnpm exec turbo run clean && node -e \"const fs=require('fs'); ['.turbo','node_modules/.cache','docs'].forEach(d=>fs.rmSync(d,{recursive:true,force:true})); ['examples/dist','packages/docs/.storybook'].forEach(d=>{try{fs.readdirSync(d).filter(f=>f.includes('.min.')).forEach(f=>fs.unlinkSync(d+'/'+f))}catch(e){}})\"",
-    "demo": "pnpm run build && cd examples && npx serve -p 3000",
-    "demo:subpath": "npx serve . -p 3080",
-    "deploy": "pnpm run build:site && node scripts/deploy-gh-pages.js",
-    "dev": "./scripts/dev.sh",
-    "dev:bundle": "pnpm --filter @seguros-bolivar-ui/bundle dev",
-    "dev:demo": "pnpm run build && cd examples && npx serve -p 3000",
-    "dev:storybook": "pnpm run build && pnpm --filter @seguros-bolivar-ui/docs storybook",
+    "build": "pnpm run clean && pnpm exec turbo run build --force --no-cache",
+    "check": "pnpm run lint --fix && pnpm run format:check && pnpm run test",
+    "clean": "pnpm exec turbo run clean && node -e \"const fs=require('fs'); ['.turbo','node_modules/.cache','docs'].forEach(d=>fs.rmSync(d,{recursive:true,force:true}))\"",
     "dev:test": "vitest --watch",
-    "format": "prettier --write \"**/*.{html,ts,tsx,js,jsx,json,css,md}\"",
-    "format:check": "prettier --check \"**/*.{html,ts,tsx,js,jsx,json,css,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css}\"",
     "lint": "pnpm exec turbo run lint",
     "lint:fix": "pnpm exec turbo run lint -- --fix && pnpm format",
     "prepare": "husky",
     "release": "changeset publish",
-    "setup": "./scripts/setup.sh",
-    "storybook": "pnpm run build && pnpm --filter @seguros-bolivar-ui/docs storybook",
     "test": "pnpm exec turbo run test",
     "test:ui": "vitest --ui",
     "test:watch": "vitest --watch",

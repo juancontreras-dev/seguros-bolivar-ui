@@ -1,35 +1,10 @@
-# 📦 Seguros Bolívar UI - Bundle CDN
+# 📦 Seguros Bolívar UI Bundle
 
 Sistema de Diseño Multi-Marca para aplicaciones web empresariales de Seguros Bolívar.
 
 ## 🚀 Instalación
 
-### Opción 1: CDN (GitHub Pages - Recomendado)
-
-Los archivos se sirven desde GitHub Pages tras cada deploy del repo:
-
-```html
-<!-- CSS - Seguros Bolívar Light -->
-<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
-
-<!-- JavaScript - Web Components -->
-<script type="module" src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
-```
-
-### Opción 2: JFrog Artifactory (repositorio interno)
-
-Configura `.npmrc` en tu proyecto:
-
-```ini
-@seguros-bolivar:registry=https://triale35dcc.jfrog.io/artifactory/api/npm/segurosbolivar-ui-lib/
-//triale35dcc.jfrog.io/artifactory/api/npm/segurosbolivar-ui-lib/:_authToken=TU_TOKEN
-```
-
-Luego: `npm install @seguros-bolivar/ui-bundle` o `pnpm add @seguros-bolivar/ui-bundle`
-
-### Opción 3: NPM público
-
-Instala el paquete en tu proyecto:
+### Opción 1: NPM (Recomendado)
 
 ```bash
 npm install @seguros-bolivar/ui-bundle
@@ -43,13 +18,21 @@ pnpm add @seguros-bolivar/ui-bundle
 yarn add @seguros-bolivar/ui-bundle
 ```
 
-### Opción 4: Descarga Directa
+### Opción 2: CDN (Próximamente)
 
-Descarga los archivos desde [GitHub Releases](https://github.com/seguros-bolivar/bolivar-ui/releases) y cópialos a tu proyecto.
+En futuras versiones estará disponible vía jsDelivr:
+
+```html
+<!-- Próximamente -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+```
 
 ## 📚 Uso Básico
 
-### HTML
+### Uso vía NPM
+
+Después de instalar el paquete, importa los archivos desde `node_modules`:
 
 ```html
 <!DOCTYPE html>
@@ -59,19 +42,41 @@ Descarga los archivos desde [GitHub Releases](https://github.com/seguros-bolivar
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi App - Seguros Bolívar</title>
   
-  <!-- CSS del Design System -->
-  <link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
+  <!-- CSS del Design System desde node_modules -->
+  <link rel="stylesheet" href="node_modules/@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar-light.min.css">
   
   <!-- Web Components (opcional) -->
-  <script type="module" src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
+  <script type="module" src="node_modules/@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js"></script>
 </head>
 <body>
-  <!-- Usa los componentes -->
-  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
-    Acción Principal
+  <!-- Botones -->
+  <button class="sb-ui-button sb-ui-button--primary">
+    Botón Primary Stroke
   </button>
   
-  <!-- Web Component: Datepicker -->
+  <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+    Botón Primary Fill
+  </button>
+
+  <!-- Input -->
+  <input type="text" class="sb-ui-input" placeholder="Escribe aquí">
+
+  <!-- Badge -->
+  <span class="sb-ui-badge sb-ui-badge--success">Activo</span>
+  
+  <!-- Card -->
+  <div class="sb-ui-card">
+    <div class="sb-ui-card__body">
+      Contenido de la tarjeta
+    </div>
+  </div>
+
+  <!-- Alert -->
+  <div class="sb-ui-alert sb-ui-alert--info">
+    Este es un mensaje informativo
+  </div>
+
+  <!-- Web Components: Datepicker -->
   <sb-ui-datepicker
     label="Fecha de nacimiento"
     placeholder="DD/MM/YYYY">
@@ -80,12 +85,20 @@ Descarga los archivos desde [GitHub Releases](https://github.com/seguros-bolivar
 </html>
 ```
 
-## 🎨 Marcas Disponibles
+### Integración con Bundlers (Webpack, Vite, etc.)
 
-El bundle incluye 6 marcas y 2 temas (light/dark) cada una:
+```javascript
+// En tu archivo principal JS/TS
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar-light.min.css';
+import '@seguros-bolivar/ui-bundle/dist/sb-ui-components.min.js';
+```
 
-| Marca | Light | Dark |
-|-------|-------|------|
+## 🎨 Bundles Disponibles
+
+El paquete incluye **12 archivos CSS** (6 marcas × 2 temas):
+
+| Marca | Tema Light | Tema Dark |
+|-------|-----------|-----------|
 | **Seguros Bolívar** | `sb-ui-seguros-bolivar-light.min.css` | `sb-ui-seguros-bolivar-dark.min.css` |
 | **Davivienda** | `sb-ui-davivienda-light.min.css` | `sb-ui-davivienda-dark.min.css` |
 | **Jelpit** | `sb-ui-jelpit-light.min.css` | `sb-ui-jelpit-dark.min.css` |
@@ -95,7 +108,7 @@ El bundle incluye 6 marcas y 2 temas (light/dark) cada una:
 
 ### Cambiar de Marca/Tema
 
-Actualiza el atributo `data-brand` y `data-theme` en el `<html>`:
+**Opción 1:** Actualiza el atributo `data-brand` y `data-theme` en el `<html>`:
 
 ```html
 <!-- Seguros Bolívar Light -->
@@ -108,21 +121,134 @@ Actualiza el atributo `data-brand` y `data-theme` en el `<html>`:
 <html data-brand="jelpit" data-theme="light">
 ```
 
-O cambia el archivo CSS cargado:
+**Opción 2:** Cambia el archivo CSS importado:
 
 ```html
 <!-- Cambiar de Seguros Bolívar a Davivienda -->
-<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-davivienda-light.min.css">
+<link rel="stylesheet" href="node_modules/@seguros-bolivar/ui-bundle/dist/sb-ui-davivienda-light.min.css">
+```
+
+## 🎯 Componentes Disponibles
+
+### Botones
+
+```html
+<!-- Botones Primary -->
+<button class="sb-ui-button sb-ui-button--primary">Primary Stroke</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Primary Fill</button>
+
+<!-- Botones Secondary -->
+<button class="sb-ui-button sb-ui-button--secondary">Secondary</button>
+<button class="sb-ui-button sb-ui-button--secondary sb-ui-button--fill">Secondary Fill</button>
+
+<!-- Botones Error -->
+<button class="sb-ui-button sb-ui-button--error">Error</button>
+
+<!-- Tamaños -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">Small</button>
+<button class="sb-ui-button sb-ui-button--primary">Medium</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--large">Large</button>
+
+<!-- Estados -->
+<button class="sb-ui-button sb-ui-button--primary" disabled>Disabled</button>
+```
+
+### Input
+
+```html
+<!-- Input normal -->
+<input type="text" class="sb-ui-input" placeholder="Escribe aquí">
+
+<!-- Input con error -->
+<input type="text" class="sb-ui-input sb-ui-input--error" value="Texto con error">
+
+<!-- Input disabled -->
+<input type="text" class="sb-ui-input" disabled placeholder="Disabled">
+```
+
+### Badge
+
+```html
+<span class="sb-ui-badge sb-ui-badge--success">Activo</span>
+<span class="sb-ui-badge sb-ui-badge--error">Error</span>
+<span class="sb-ui-badge sb-ui-badge--warning">Advertencia</span>
+<span class="sb-ui-badge sb-ui-badge--info">Info</span>
+<span class="sb-ui-badge sb-ui-badge--default">Default</span>
+```
+
+### Card
+
+```html
+<div class="sb-ui-card">
+  <div class="sb-ui-card__header">
+    <h3>Título de la tarjeta</h3>
+  </div>
+  <div class="sb-ui-card__body">
+    Contenido principal de la tarjeta
+  </div>
+  <div class="sb-ui-card__footer">
+    <button class="sb-ui-button sb-ui-button--primary">Acción</button>
+  </div>
+</div>
+```
+
+### Alert
+
+```html
+<div class="sb-ui-alert sb-ui-alert--success">
+  Operación exitosa
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--error">
+  Error al procesar
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--warning">
+  Advertencia importante
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--info">
+  Información relevante
+</div>
+```
+
+### Web Components
+
+```html
+<!-- Datepicker -->
+<sb-ui-datepicker
+  label="Fecha de nacimiento"
+  placeholder="DD/MM/YYYY"
+  value="2024-01-15">
+</sb-ui-datepicker>
+
+<!-- Modal -->
+<sb-ui-modal id="my-modal" title="Título del Modal">
+  <p>Contenido del modal</p>
+</sb-ui-modal>
+
+<!-- Toast -->
+<sb-ui-toast message="Operación exitosa" type="success"></sb-ui-toast>
+
+<!-- Stepper -->
+<sb-ui-stepper current-step="1">
+  <sb-ui-step label="Paso 1"></sb-ui-step>
+  <sb-ui-step label="Paso 2"></sb-ui-step>
+  <sb-ui-step label="Paso 3"></sb-ui-step>
+</sb-ui-stepper>
 ```
 
 ## 📦 Contenido del Bundle
 
 Cada archivo CSS incluye:
 
-- ✅ **Tokens** (colores, tipografía, espaciado)
-- ✅ **Componentes Atómicos** (botones, inputs, selects, etc.)
-- ✅ **Componentes Moleculares** (modales, dropdowns, toasts)
-- ✅ **Brand Overrides** (estilos específicos de cada marca)
+- ✅ **Design Tokens** (colores, tipografía, espaciado, sombras)
+- ✅ **Componentes Atómicos** (botones, inputs, selects, checkboxes, radios, etc.)
+- ✅ **Componentes Moleculares** (modales, dropdowns, toasts, steppers)
+- ✅ **Grid System** (12 columnas, responsive)
+- ✅ **Utilidades** (espaciado, tipografía, colores)
+- ✅ **Fuentes Bolivar** (Light, Regular, SemiBold, Bold, ExtraBold)
+- ✅ **Brand Overrides** (estilos específicos por marca)
 
 ### Tamaños de Archivos (Gzipped)
 
@@ -130,26 +256,30 @@ Cada archivo CSS incluye:
 |---------|--------|
 | CSS (minificado + gzip) | ~23-27 KB |
 | JavaScript (minificado + gzip) | ~16 KB |
-| **Total** | **~40 KB** |
+| Fuentes WOFF2 (10 archivos) | ~350 KB total |
+| **Total aproximado** | **~390 KB** |
 
-## 🎯 Componentes Disponibles
+## 🔧 Lista Completa de Componentes
 
 ### Atoms (CSS)
-- Button
-- Input
-- Select
-- Checkbox
-- Radio
-- Toggle
-- TextArea
 - Accordion
 - Alert
+- Badge
 - Breadcrumb
+- Button
 - Calendar
-- Spinner
-- Tabs
-- Table
+- Card
+- Checkbox
 - FileUpload
+- Input
+- Menu
+- Radio
+- Select
+- Spinner
+- Table
+- Tabs
+- TextArea
+- Toggle
 
 ### Molecules (Web Components)
 - `<sb-ui-datepicker>`
@@ -158,54 +288,11 @@ Cada archivo CSS incluye:
 - `<sb-ui-toast>`
 - `<sb-ui-stepper>`
 
-## 🔧 Configuración Avanzada
-
-### Versión Específica
-
-Para producción, es recomendable usar una versión específica en lugar de `@latest`:
-
-```html
-<!-- La versión en GitHub Pages siempre es la última desplegada -->
-<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
-```
-
-### Preload para Mejor Performance
-
-```html
-<!-- Precargar CSS para renderizado más rápido -->
-<link rel="preload" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css" as="style">
-<link rel="stylesheet" href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
-```
-
-### Integrity Hash (SRI) (opcional)
-
-Para mayor seguridad, genera un hash del archivo descargado:
-
-```bash
-# Generar hash SHA-384
-curl -sL https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css | openssl dgst -sha384 -binary | openssl base64 -A
-```
-
-```html
-<link 
-  rel="stylesheet" 
-  href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css"
-  integrity="sha384-HASH_AQUI"
-  crossorigin="anonymous">
-```
-
-## 📖 Documentación Completa
-
-- **Storybook:** https://juancontreras-dev.github.io/seguros-bolivar-ui/storybook/
-- **GitHub:** https://github.com/juancontreras-dev/seguros-bolivar-ui
-- **Ejemplos:** https://juancontreras-dev.github.io/seguros-bolivar-ui/
-
 ## 🤝 Soporte
 
-- **Issues:** https://github.com/seguros-bolivar/bolivar-ui/issues
-- **Discussions:** https://github.com/seguros-bolivar/bolivar-ui/discussions
+- **Issues:** https://github.com/segurosbolivar/seguros-bolivar-ui-lib/issues
+- **Repository:** https://github.com/segurosbolivar/seguros-bolivar-ui-lib
 
 ## 📄 Licencia
 
 MIT © Seguros Bolívar
-

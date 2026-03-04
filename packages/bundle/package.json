@@ -23,10 +23,6 @@
   },
   "scripts": {
     "build": "tsx src/builder.ts",
-    "build:copy": "pnpm run build && pnpm run copy:all",
-    "copy:all": "node ../../scripts/copy-assets.js all",
-    "copy:examples": "node ../../scripts/copy-assets.js examples",
-    "copy:storybook": "node ../../scripts/copy-assets.js storybook",
     "dev": "tsx watch src/builder.ts",
     "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true})\"",
     "serve": "npx serve dist -p 3000",
@@ -51,14 +47,14 @@
     "dark-mode",
     "colombia"
   ],
-  "homepage": "https://github.com/seguros-bolivar/bolivar-ui#readme",
+  "homepage": "https://github.com/segurosbolivar/seguros-bolivar-ui-lib#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seguros-bolivar/bolivar-ui.git",
+    "url": "git+https://github.com/segurosbolivar/seguros-bolivar-ui-lib.git",
     "directory": "packages/bundle"
   },
   "bugs": {
-    "url": "https://github.com/seguros-bolivar/bolivar-ui/issues"
+    "url": "https://github.com/segurosbolivar/seguros-bolivar-ui-lib/issues"
   },
   "author": {
     "name": "Seguros Bolivar UI Team",

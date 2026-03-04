@@ -1,0 +1,78 @@
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!-- Evitar overflow horizontal en stories con layout fullscreen -->
+<style>
+  /* Asegurar que el box-sizing sea border-box globalmente */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Prevenir overflow horizontal en TODOS los niveles */
+  html,
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Storybook root y canvas */
+  #storybook-root,
+  #storybook-docs,
+  .sbdocs-wrapper,
+  #root {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Iframe y preview específicamente */
+  body.sb-show-main {
+    overflow-x: hidden !important;
+  }
+
+  /* Todos los divs directos dentro del root */
+  #storybook-root > div,
+  #storybook-root > *,
+  #root > div,
+  #root > * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Elementos draggable de Storybook que causan overflow */
+  .react-draggable {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Preview wrapper de Storybook */
+  #storybook-preview-wrapper {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Asegurar que los grids no causen overflow */
+  .sb-ui-grid,
+  [class*="sb-ui-col-"],
+  [class*="sb-ui-grid-"] {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Contenedores con padding deben usar border-box */
+  [style*="padding"] {
+    box-sizing: border-box !important;
+  }
+
+  /* Clases CSS con hashes de Storybook */
+  [class*="css-"] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+</style>
