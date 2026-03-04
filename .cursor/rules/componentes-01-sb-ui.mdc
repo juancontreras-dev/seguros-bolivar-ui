@@ -1,0 +1,2192 @@
+---
+alwaysApply: true
+description: "Guía completa de componentes del Seguros Bolivar UI Design System - Nomenclatura BEM, clases CSS, variantes, estados y ejemplos de uso para todos los componentes atómicos y moleculares"
+globs:
+  - "**/*.html"
+  - "**/*.css"
+  - "**/*.mdx"
+---
+
+## ⚠️ RESTRICCIONES OBLIGATORIAS
+
+### 1. Verificación de Elementos Existentes
+
+**ANTES de implementar cualquier componente, SIEMPRE:**
+
+1. ✅ **Verificar si el elemento existe** en esta regla consultando la lista de "Átomos Disponibles" o "Moléculas Disponibles"
+2. ✅ **Revisar la estructura HTML** documentada para ese componente
+3. ✅ **Revisar las clases CSS** documentadas y sus variantes
+4. ✅ **Confirmar la nomenclatura** según el patrón BEM establecido
+
+### 2. Prohibiciones Absolutas
+
+#### 🚨 REGLA DE ORO: Selectores CSS
+
+**SI TU SELECTOR CSS CONTIENE `.sb-ui-` EN CUALQUIER PARTE, NO LO ESCRIBAS.**
+
+```css
+/* ❌ CUALQUIER selector que contenga .sb-ui- está PROHIBIDO */
+.sb-ui-button { }                    /* ❌ PROHIBIDO */
+.my-class .sb-ui-input { }           /* ❌ PROHIBIDO */
+.sb-ui-button i { }                  /* ❌ PROHIBIDO */
+.sb-ui-input--custom { }             /* ❌ PROHIBIDO */
+.container .sb-ui-button { }         /* ❌ PROHIBIDO */
+[class*="sb-ui-"] { }                /* ❌ PROHIBIDO */
+
+/* ✅ SOLO clases personalizadas sin .sb-ui- */
+.my-button { }                       /* ✅ CORRECTO */
+.my-input-wrapper { }                /* ✅ CORRECTO */
+.login-form { }                      /* ✅ CORRECTO */
+```
+
+**Si necesitas personalización:**
+1. Usa solo clases personalizadas (sin `.sb-ui-`)
+2. Usa variables CSS del sistema (`var(--sb-ui-*)`)
+3. Usa JavaScript para agregar/quitar clases del sistema dinámicamente
+4. Usa brand overrides si necesitas cambios globales
+
+#### ❌ PROHIBIDO: Sobrescribir CSS de Elementos Existentes
+
+**NUNCA modifiques, sobrescribas o alteres el CSS de componentes que ya existen en esta regla.**
+
+```css
+/* ❌ PROHIBIDO - Sobrescribir estilos de componentes existentes */
+.sb-ui-button {
+  background-color: red !important; /* NO HACER ESTO */
+}
+
+.sb-ui-input {
+  border: 2px solid blue; /* NO HACER ESTO */
+}
+```
+
+**Solución:** Si necesitas personalización, usa:
+- Variables CSS del sistema de diseño (ver sección "Variables CSS")
+- Brand overrides (ver `.cursor/rules/CSS_OVERRIDE_BRAND.mdc`)
+- Modificadores existentes o crear nuevos siguiendo la nomenclatura BEM
+
+#### ❌ PROHIBIDO: Usar Selectores CSS que Afecten Elementos del Sistema
+
+**NUNCA uses selectores CSS que modifiquen elementos con clases `.sb-ui-*`, incluso indirectamente.**
+
+```css
+/* ❌ PROHIBIDO - Selector que afecta elementos del sistema */
+.my-wrapper .sb-ui-button {
+  background-color: red; /* NO HACER ESTO */
+}
+
+.my-form .sb-ui-input {
+  padding: 20px; /* NO HACER ESTO */
+}
+
+.sb-ui-button i {
+  font-size: 20px; /* NO HACER ESTO - afecta iconos dentro de botones del sistema */
+}
+
+.login-form:invalid .sb-ui-button {
+  opacity: 0.5; /* NO HACER ESTO - modifica botones del sistema */
+}
+
+/* ❌ PROHIBIDO - Combinar clases personalizadas con clases del sistema */
+.my-class.sb-ui-button {
+  color: blue; /* NO HACER ESTO */
+}
+
+/* ❌ PROHIBIDO - Selectores descendientes que afecten el sistema */
+.container .sb-ui-input {
+  border: 2px solid red; /* NO HACER ESTO */
+}
+
+/* ❌ PROHIBIDO - Modificar elementos hijos dentro de componentes del sistema */
+.sb-ui-button > span {
+  font-weight: bold; /* NO HACER ESTO */
+}
+
+.sb-ui-input-container .sb-ui-input {
+  margin-bottom: 10px; /* NO HACER ESTO */
+}
+```
+
+**✅ CORRECTO - Usar solo clases personalizadas para elementos propios:**
+
+```css
+/* ✅ CORRECTO - Solo clases personalizadas */
+.my-button {
+  background-color: var(--sb-ui-color-primary-base);
+}
+
+.my-input-wrapper {
+  position: relative;
+}
+
+.my-icon {
+  position: absolute;
+  left: 10px;
+}
+
+/* ✅ CORRECTO - Usar JavaScript para agregar/quitar clases del sistema */
+// En lugar de CSS, usar JavaScript:
+button.classList.add('sb-ui-button--disabled');
+button.classList.remove('sb-ui-button--loading');
+```
+
+**Regla de Oro:** Si tu selector CSS contiene `.sb-ui-` en cualquier parte, **NO LO ESCRIBAS**. Usa solo clases personalizadas y deja que los componentes del sistema manejen sus propios estilos.
+
+#### ❌ PROHIBIDO: Modificar Estructura HTML o Clases CSS
+
+**NUNCA cambies la estructura HTML o las clases CSS documentadas para componentes existentes.**
+
+```html
+<!-- ❌ PROHIBIDO - Modificar estructura existente -->
+<button class="mi-boton-custom"> <!-- NO usar clases personalizadas -->
+  Click
+</button>
+
+<!-- ✅ CORRECTO - Usar estructura y clases documentadas -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">
+  Click
+</button>
+```
+
+#### ❌ PROHIBIDO: Crear o Duplicar Elementos Existentes
+
+**NUNCA crees componentes que ya existen en esta regla con nombres diferentes o duplicados.**
+
+```html
+<!-- ❌ PROHIBIDO - Duplicar componente existente -->
+<button class="sb-ui-btn"> <!-- Button ya existe como sb-ui-button -->
+  Click
+</button>
+
+<!-- ❌ PROHIBIDO - Crear variante no documentada -->
+<button class="sb-ui-button sb-ui-button--custom"> <!-- Variante no existe -->
+  Click
+</button>
+```
+
+### 3. Si un Elemento NO Existe
+
+**Cuando necesites un componente que NO está documentado aquí:**
+
+1. ✅ **Informar claramente** que el elemento no existe en esta regla
+2. ✅ **Crear el componente** siguiendo estrictamente:
+   - La nomenclatura BEM establecida (`sb-ui-{component}`)
+   - El patrón de estructura HTML de componentes similares
+   - El sistema de variables CSS del design system
+   - Las convenciones de esta regla
+3. ✅ **Documentar** el nuevo componente en esta regla para futuras referencias
+
+**Ejemplo de creación de nuevo componente:**
+
+```css
+/* ✅ CORRECTO - Nuevo componente siguiendo nomenclatura */
+.sb-ui-card {
+  /* Usar variables CSS del sistema */
+  background-color: var(--sb-ui-color-grayscale-white);
+  padding: var(--sb-ui-button-padding-block);
+  border-radius: var(--sb-ui-border-radius-md);
+}
+```
+
+### 4. Sistema de Variables CSS (OBLIGATORIO)
+
+#### ✅ SIEMPRE Usar Variables del Design System
+
+**TODOS los valores deben usar variables CSS del sistema de diseño. NUNCA valores hardcodeados.**
+
+```css
+/* ❌ PROHIBIDO - Valores hardcodeados */
+.sb-ui-button {
+  background-color: #038450; /* NO hardcodear colores */
+  padding: 12px 24px; /* NO hardcodear espaciado */
+  font-size: 16px; /* NO hardcodear tipografía */
+  border-radius: 50px; /* NO hardcodear bordes */
+}
+
+/* ✅ CORRECTO - Usar variables CSS */
+.sb-ui-button {
+  background-color: var(--sb-ui-color-primary-base);
+  padding-inline: var(--sb-ui-button-padding-inline);
+  padding-block: var(--sb-ui-button-padding-block);
+  font-size: var(--sb-ui-button-font-size);
+  border-radius: var(--sb-ui-button-border-radius);
+}
+```
+
+#### Variables Disponibles por Categoría
+
+**Colores:**
+```css
+--sb-ui-color-primary-base          /* Color primario */
+--sb-ui-color-primary-D100         /* Primario oscuro */
+--sb-ui-color-primary-L100         /* Primario claro */
+--sb-ui-color-secondary-base        /* Color secundario */
+--sb-ui-color-grayscale-white      /* Blanco */
+--sb-ui-color-grayscale-black     /* Negro */
+--sb-ui-color-grayscale-base       /* Gris base */
+--sb-ui-color-grayscale-L100       /* Gris claro */
+--sb-ui-color-grayscale-L200       /* Gris más claro */
+--sb-ui-color-grayscale-L300       /* Gris muy claro */
+--sb-ui-color-grayscale-L400       /* Gris extremadamente claro */
+--sb-ui-color-feedback-success-base /* Verde éxito */
+--sb-ui-color-feedback-error-base   /* Rojo error */
+--sb-ui-color-feedback-warning-base /* Amarillo advertencia */
+```
+
+**Tipografía:**
+```css
+--sb-ui-typography-fontFamily       /* Familia de fuente */
+--sb-ui-typography-fontSize-base    /* Tamaño base */
+--sb-ui-typography-fontWeight-base  /* Peso base */
+--sb-ui-typography-lineHeight-base  /* Altura de línea */
+```
+
+**Bordes:**
+```css
+--sb-ui-border-radius-sm           /* Radio pequeño */
+--sb-ui-border-radius-md            /* Radio mediano */
+--sb-ui-border-radius-lg            /* Radio grande */
+--sb-ui-border-width-base           /* Ancho de borde base */
+```
+
+**Componentes Específicos:**
+```css
+/* Button */
+--sb-ui-button-padding-inline
+--sb-ui-button-padding-block
+--sb-ui-button-font-size
+--sb-ui-button-border-radius
+--sb-ui-button-bg-color
+--sb-ui-button-text-color
+
+/* Input */
+--sb-ui-input-padding-inline
+--sb-ui-input-padding-block
+--sb-ui-input-font-size
+--sb-ui-input-border-color
+--sb-ui-input-border-radius
+```
+
+#### ❌ PROHIBIDO: Valores Hardcodeados
+
+**NUNCA uses valores literales directamente. SIEMPRE variables CSS.**
+
+| ❌ Prohibido | ✅ Usar Variable |
+|--------------|------------------|
+| `#038450` | `var(--sb-ui-color-primary-base)` |
+| `#FFE16F` | `var(--sb-ui-color-secondary-base)` |
+| `16px` | `var(--sb-ui-button-font-size)` o `var(--sb-ui-input-font-size)` |
+| `12px 24px` | `padding-inline: var(--sb-ui-button-padding-inline); padding-block: var(--sb-ui-button-padding-block);` |
+| `50px` | `var(--sb-ui-button-border-radius)` |
+| `'Roboto'` | `var(--sb-ui-typography-fontFamily)` |
+| `700` | `var(--sb-ui-typography-fontWeight-base)` |
+
+### 5. Checklist Antes de Implementar
+
+**ANTES de escribir código, verifica:**
+
+- [ ] ✅ ¿El componente existe en esta regla?
+  - [ ] Si SÍ: Usar estructura y clases documentadas exactamente
+  - [ ] Si NO: Informar y crear siguiendo nomenclatura BEM
+- [ ] ✅ ¿Estoy usando variables CSS del sistema?
+  - [ ] NO hay valores hardcodeados
+  - [ ] Todos los valores usan `var(--sb-ui-*)`
+- [ ] ✅ ¿Respeto la estructura HTML documentada?
+  - [ ] Elementos en el orden correcto
+  - [ ] Clases CSS exactas según documentación
+- [ ] ✅ ¿No estoy sobrescribiendo CSS existente?
+  - [ ] No modifico estilos de componentes existentes
+  - [ ] No uso selectores que contengan `.sb-ui-*` en ninguna parte
+  - [ ] No combino clases personalizadas con clases del sistema
+  - [ ] No modifico elementos hijos dentro de componentes del sistema
+  - [ ] Uso brand overrides si necesito personalización
+  - [ ] Uso JavaScript para estados dinámicos en lugar de CSS
+
+---
+
+## Nomenclatura BEM
+
+```
+sb-ui-{component}                    → Block
+sb-ui-{component}--{modifier}        → Modifier
+sb-ui-{component}__{element}         → Element
+```
+
+**Variables CSS:**
+```
+--sb-ui-{component}-{property}-{state}
+```
+
+---
+
+## Átomos Disponibles
+
+| Componente | Clase Base |
+|------------|------------|
+| Button | `.sb-ui-button` |
+| Input | `.sb-ui-input` |
+| Select | `.sb-ui-select` |
+| Checkbox | `.sb-ui-checkbox` |
+| Radio | `.sb-ui-radio` |
+| Toggle | `.sb-ui-toggle` |
+| TextArea | `.sb-ui-textarea` |
+| Accordion | `.sb-ui-accordion` |
+| Alert | `.sb-ui-alert` |
+| Breadcrumb | `.sb-ui-breadcrumb` |
+| Spinner | `.sb-ui-spinner` |
+| Tabs | `.sb-ui-tabs` |
+| Table | `.sb-ui-table` |
+| File Upload | `.sb-ui-file-upload` |
+| Menu | `.sb-ui-menu` |
+| Stepper | `.sb-ui-stepper` |
+| Calendar (CSS) | `.sb-ui-calendar` |
+| Avatar | `.sb-ui-avatar` |
+| Badge | `.sb-ui-badge` |
+| Chip | `.sb-ui-chip` |
+| Slider | `.sb-ui-slider` |
+| Typography | `.sb-ui-heading-h1` / `.sb-ui-text-body` |
+| Container | `.sb-ui-container` |
+| Grid (Flex) | `.sb-ui-grid` + `.sb-ui-col-{n}` |
+| CSS Grid | `.sb-ui-grid-cols-{n}` |
+| Gutters | `.sb-ui-gap-{n}` (modificador de Grid) |
+
+---
+
+## Button
+
+### Anatomía
+```
+.sb-ui-button                     → Base (OBLIGATORIO)
+.sb-ui-button--{variant}          → primary, secondary, tertiary, error
+.sb-ui-button--{style}            → stroke, fill, text
+.sb-ui-button--{size}             → small, medium, large
+.sb-ui-button--{modifier}         → block, rounded, square, circle
+.sb-ui-button--icon-{position}    → left, right, only
+.sb-ui-button--{state}            → loading, disabled
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<button class="sb-ui-button sb-ui-button--primary">Primary</button>
+
+<!-- Con estilo fill -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Primary Fill</button>
+
+<!-- Icono izquierdo -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left">
+  <i class="fa-solid fa-check"></i>
+  Guardar
+</button>
+
+<!-- Icono derecho -->
+<button class="sb-ui-button sb-ui-button--secondary sb-ui-button--stroke sb-ui-button--icon-right">
+  Siguiente
+  <i class="fa-solid fa-arrow-right"></i>
+</button>
+
+<!-- Solo icono -->
+<button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--text sb-ui-button--icon-only">
+  <i class="fa-solid fa-trash"></i>
+</button>
+
+<!-- Disabled -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--disabled">Disabled</button>
+
+<!-- Loading -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--loading">Loading...</button>
+
+<!-- Tamaños -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--small">Small</button>
+<button class="sb-ui-button sb-ui-button--primary">Medium (default)</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--large">Large</button>
+
+<!-- Modificadores -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--block">Full Width</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--rounded">Rounded</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--square">Square</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--circle sb-ui-button--icon-only">
+  <i class="fa-solid fa-plus"></i>
+</button>
+
+<!-- Variantes -->
+<button class="sb-ui-button sb-ui-button--primary">Primary</button>
+<button class="sb-ui-button sb-ui-button--secondary">Secondary</button>
+<button class="sb-ui-button sb-ui-button--tertiary">Tertiary</button>
+<button class="sb-ui-button sb-ui-button--error">Error</button>
+
+<!-- Estilos -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--stroke">Stroke</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill">Fill</button>
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--text">Text</button>
+```
+
+---
+
+## Input
+
+### Anatomía
+```
+.sb-ui-input-container        → Wrapper
+  ├── .sb-ui-input-label      → Label
+  ├── <div style="position: relative"> (wrapper para icono)
+  │     ├── .sb-ui-input      → Input
+  │     └── .sb-ui-input-icon → Icono (opcional)
+  └── .sb-ui-input-helper     → Helper text
+```
+
+**⚠️ NOTA:** Para usar iconos, el input debe tener la clase `sb-ui-input--with-icon` y el icono debe usar la clase `sb-ui-input-icon`. El wrapper del icono debe tener `position: relative`.
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label">Nombre</label>
+  <input class="sb-ui-input" type="text" placeholder="Escribe tu nombre">
+  <span class="sb-ui-input-helper">
+    <i class="fa-solid fa-circle-info"></i>
+    Campo obligatorio
+  </span>
+</div>
+
+<!-- Con icono -->
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label">Email</label>
+  <div style="position: relative;">
+    <input class="sb-ui-input sb-ui-input--with-icon" type="email" placeholder="email@example.com">
+    <span class="sb-ui-input-icon">
+      <i class="fa-solid fa-envelope"></i>
+    </span>
+  </div>
+  <span class="sb-ui-input-helper">Ingresa tu email</span>
+</div>
+
+<!-- Estados -->
+<input class="sb-ui-input" type="text" placeholder="Default">
+<input class="sb-ui-input" type="text" disabled placeholder="Disabled">
+<input class="sb-ui-input" type="text" readonly value="Read-only">
+
+<!-- Con validación e icono -->
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label">Email</label>
+  <div style="position: relative;">
+    <input class="sb-ui-input sb-ui-input--success sb-ui-input--with-icon" type="text" value="valid@email.com">
+    <span class="sb-ui-input-icon">
+      <i class="fa-solid fa-check"></i>
+    </span>
+  </div>
+  <span class="sb-ui-input-helper">Email válido</span>
+</div>
+
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label">Email</label>
+  <div style="position: relative;">
+    <input class="sb-ui-input sb-ui-input--error sb-ui-input--with-icon" type="text" value="invalid">
+    <span class="sb-ui-input-icon">
+      <i class="fa-solid fa-xmark"></i>
+    </span>
+  </div>
+  <span class="sb-ui-input-helper">Email inválido</span>
+</div>
+
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label">Email</label>
+  <div style="position: relative;">
+    <input class="sb-ui-input sb-ui-input--warning sb-ui-input--with-icon" type="text" value="warning">
+    <span class="sb-ui-input-icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </span>
+  </div>
+  <span class="sb-ui-input-helper">Revisa tu email</span>
+</div>
+
+<!-- Tamaños -->
+<input class="sb-ui-input sb-ui-input--small" type="text" placeholder="Small">
+<input class="sb-ui-input" type="text" placeholder="Medium (default)">
+<input class="sb-ui-input sb-ui-input--large" type="text" placeholder="Large">
+
+<!-- Tipos -->
+<input class="sb-ui-input" type="email" placeholder="email@example.com">
+<input class="sb-ui-input" type="password" placeholder="••••••••">
+<input class="sb-ui-input" type="number" placeholder="0">
+<input class="sb-ui-input" type="date">
+<input class="sb-ui-input" type="tel" placeholder="+1 (555) 000-0000">
+<input class="sb-ui-input" type="url" placeholder="https://example.com">
+
+<!-- Required / Optional -->
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label sb-ui-input-label--required">Email *</label>
+  <input class="sb-ui-input" type="email" required>
+</div>
+
+<div class="sb-ui-input-container">
+  <label class="sb-ui-input-label sb-ui-input-label--optional">Teléfono (opcional)</label>
+  <input class="sb-ui-input" type="tel">
+</div>
+```
+
+---
+
+## Checkbox
+
+### Anatomía
+```
+.sb-ui-checkbox                → Label wrapper
+  ├── .sb-ui-checkbox__input   → Input nativo (oculto)
+  ├── .sb-ui-checkbox__box     → Box visual
+  └── .sb-ui-checkbox__label   → Texto
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<label class="sb-ui-checkbox">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Acepto términos</span>
+</label>
+
+<!-- Checked -->
+<label class="sb-ui-checkbox">
+  <input type="checkbox" class="sb-ui-checkbox__input" checked>
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Marcado</span>
+</label>
+
+<!-- Disabled -->
+<label class="sb-ui-checkbox">
+  <input type="checkbox" class="sb-ui-checkbox__input" disabled>
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Deshabilitado</span>
+</label>
+
+<!-- Error -->
+<label class="sb-ui-checkbox sb-ui-checkbox--error">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Campo obligatorio *</span>
+</label>
+
+<!-- Tamaños -->
+<label class="sb-ui-checkbox sb-ui-checkbox--small">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Small (16px)</span>
+</label>
+
+<label class="sb-ui-checkbox">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Medium (20px)</span>
+</label>
+
+<label class="sb-ui-checkbox sb-ui-checkbox--large">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Large (24px)</span>
+</label>
+
+<!-- Sin label -->
+<label class="sb-ui-checkbox sb-ui-checkbox--no-label">
+  <input type="checkbox" class="sb-ui-checkbox__input">
+  <span class="sb-ui-checkbox__box"></span>
+</label>
+
+<!-- Indeterminate (JavaScript) -->
+<label class="sb-ui-checkbox">
+  <input type="checkbox" class="sb-ui-checkbox__input" id="indeterminate">
+  <span class="sb-ui-checkbox__box"></span>
+  <span class="sb-ui-checkbox__label">Selección parcial</span>
+</label>
+<script>
+  document.getElementById('indeterminate').indeterminate = true;
+</script>
+```
+
+---
+
+## Select
+
+```html
+<!-- Básico -->
+<select class="sb-ui-select">
+  <option>Opción 1</option>
+  <option>Opción 2</option>
+  <option>Opción 3</option>
+</select>
+
+<!-- Disabled -->
+<select class="sb-ui-select" disabled>
+  <option>Deshabilitado</option>
+</select>
+
+<!-- Tamaños -->
+<select class="sb-ui-select sb-ui-select--small">
+  <option>Small</option>
+</select>
+
+<select class="sb-ui-select sb-ui-select--large">
+  <option>Large</option>
+</select>
+```
+
+---
+
+## Radio
+
+### Anatomía
+```
+.sb-ui-radio                → Label wrapper
+  ├── .sb-ui-radio__input   → Input nativo (oculto)
+  ├── .sb-ui-radio__circle  → Círculo visual (contenedor exterior)
+  └── .sb-ui-radio__label   → Texto
+```
+
+**⚠️ NOTA:** Radio usa `__circle` (no `__box`) para el elemento visual circular.
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<label class="sb-ui-radio">
+  <input type="radio" class="sb-ui-radio__input" name="grupo1">
+  <span class="sb-ui-radio__circle"></span>
+  <span class="sb-ui-radio__label">Opción 1</span>
+</label>
+
+<label class="sb-ui-radio">
+  <input type="radio" class="sb-ui-radio__input" name="grupo1" checked>
+  <span class="sb-ui-radio__circle"></span>
+  <span class="sb-ui-radio__label">Opción 2</span>
+</label>
+
+<label class="sb-ui-radio">
+  <input type="radio" class="sb-ui-radio__input" name="grupo1" disabled>
+  <span class="sb-ui-radio__circle"></span>
+  <span class="sb-ui-radio__label">Deshabilitado</span>
+</label>
+```
+
+---
+
+## TextArea
+
+### Anatomía
+```
+.sb-ui-textarea-container        → Wrapper
+  ├── .sb-ui-textarea-label      → Label
+  ├── .sb-ui-textarea            → Textarea
+  └── .sb-ui-textarea-helper     → Helper text
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<textarea class="sb-ui-textarea" placeholder="Escribe tu mensaje" rows="4"></textarea>
+
+<!-- Con container completo -->
+<div class="sb-ui-textarea-container">
+  <label class="sb-ui-textarea-label">Mensaje</label>
+  <textarea class="sb-ui-textarea" placeholder="Escribe tu mensaje" rows="4"></textarea>
+  <span class="sb-ui-textarea-helper">
+    <i class="fa-solid fa-circle-info"></i>
+    Campo obligatorio
+  </span>
+</div>
+
+<!-- Estados -->
+<textarea class="sb-ui-textarea sb-ui-textarea--error" placeholder="Error"></textarea>
+<textarea class="sb-ui-textarea" disabled placeholder="Disabled"></textarea>
+
+<!-- Tamaños -->
+<textarea class="sb-ui-textarea sb-ui-textarea--small" rows="3"></textarea>
+<textarea class="sb-ui-textarea" rows="4"></textarea>
+<textarea class="sb-ui-textarea sb-ui-textarea--large" rows="6"></textarea>
+```
+
+---
+
+## Toggle
+
+### Anatomía
+```
+.sb-ui-toggle                → Label wrapper (OBLIGATORIO)
+  ├── .sb-ui-toggle-input    → Input checkbox nativo (oculto)
+  ├── .sb-ui-toggle-slider   → Slider visual (barra deslizante)
+  └── .sb-ui-toggle-label    → Texto del label (opcional)
+```
+
+**⚠️ NOTA:** El Toggle usa guion simple (`-`) en lugar de doble guion bajo (`__`) para los elementos internos. Esto es diferente a Checkbox y Radio que usan `__`.
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<label class="sb-ui-toggle">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Activar notificaciones</span>
+</label>
+
+<!-- Checked -->
+<label class="sb-ui-toggle">
+  <input type="checkbox" class="sb-ui-toggle-input" checked>
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Activado</span>
+</label>
+
+<!-- Disabled -->
+<label class="sb-ui-toggle">
+  <input type="checkbox" class="sb-ui-toggle-input" disabled>
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Deshabilitado</span>
+</label>
+
+<!-- Error -->
+<label class="sb-ui-toggle sb-ui-toggle--error">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Campo obligatorio *</span>
+</label>
+
+<!-- Success -->
+<label class="sb-ui-toggle sb-ui-toggle--success">
+  <input type="checkbox" class="sb-ui-toggle-input" checked>
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Validado</span>
+</label>
+
+<!-- Warning -->
+<label class="sb-ui-toggle sb-ui-toggle--warning">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Advertencia</span>
+</label>
+
+<!-- Tamaños -->
+<label class="sb-ui-toggle sb-ui-toggle--small">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Small Toggle</span>
+</label>
+
+<label class="sb-ui-toggle">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Medium Toggle (default)</span>
+</label>
+
+<label class="sb-ui-toggle sb-ui-toggle--large">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+  <span class="sb-ui-toggle-label">Large Toggle</span>
+</label>
+
+<!-- Sin label -->
+<label class="sb-ui-toggle sb-ui-toggle--no-label">
+  <input type="checkbox" class="sb-ui-toggle-input">
+  <span class="sb-ui-toggle-slider"></span>
+</label>
+
+<!-- Grupo vertical -->
+<div class="sb-ui-toggle-group">
+  <label class="sb-ui-toggle">
+    <input type="checkbox" class="sb-ui-toggle-input" checked>
+    <span class="sb-ui-toggle-slider"></span>
+    <span class="sb-ui-toggle-label">Notificaciones</span>
+  </label>
+  <label class="sb-ui-toggle">
+    <input type="checkbox" class="sb-ui-toggle-input">
+    <span class="sb-ui-toggle-slider"></span>
+    <span class="sb-ui-toggle-label">Email</span>
+  </label>
+  <label class="sb-ui-toggle">
+    <input type="checkbox" class="sb-ui-toggle-input" checked>
+    <span class="sb-ui-toggle-slider"></span>
+    <span class="sb-ui-toggle-label">SMS</span>
+  </label>
+</div>
+
+<!-- Grupo horizontal -->
+<div class="sb-ui-toggle-group sb-ui-toggle-group--horizontal">
+  <label class="sb-ui-toggle">
+    <input type="checkbox" class="sb-ui-toggle-input" checked>
+    <span class="sb-ui-toggle-slider"></span>
+    <span class="sb-ui-toggle-label">Notificaciones</span>
+  </label>
+  <label class="sb-ui-toggle">
+    <input type="checkbox" class="sb-ui-toggle-input">
+    <span class="sb-ui-toggle-slider"></span>
+    <span class="sb-ui-toggle-label">Email</span>
+  </label>
+</div>
+```
+
+---
+
+## Alert
+
+```html
+<!-- Variantes -->
+<div class="sb-ui-alert sb-ui-alert--info">
+  <i class="fa-solid fa-circle-info"></i>
+  Información importante
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--success">
+  <i class="fa-solid fa-circle-check"></i>
+  Operación exitosa
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--warning">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  Advertencia
+</div>
+
+<div class="sb-ui-alert sb-ui-alert--error">
+  <i class="fa-solid fa-circle-xmark"></i>
+  Error crítico
+</div>
+
+<!-- Con botón cerrar -->
+<div class="sb-ui-alert sb-ui-alert--info sb-ui-alert--dismissible">
+  <i class="fa-solid fa-circle-info"></i>
+  Mensaje
+  <button class="sb-ui-alert-close" aria-label="Cerrar alerta">×</button>
+</div>
+```
+
+---
+
+## Spinner
+
+### Anatomía
+```
+.sb-ui-spinner                    → Base (OBLIGATORIO)
+.sb-ui-spinner--{size}           → small, large (medium es el default)
+.sb-ui-spinner--{color}          → primary, secondary (opcional)
+```
+
+**⚠️ NOTA:** Los modificadores de tamaño y color se pueden combinar. Si no se especifica tamaño, se usa el tamaño medium por defecto. Si no se especifica color, se usa el color por defecto del sistema.
+
+### Ejemplos
+
+```html
+<!-- Tamaños -->
+<div class="sb-ui-spinner sb-ui-spinner--small"></div>
+<div class="sb-ui-spinner"></div>
+<div class="sb-ui-spinner sb-ui-spinner--large"></div>
+
+<!-- Colores -->
+<div class="sb-ui-spinner sb-ui-spinner--primary"></div>
+<div class="sb-ui-spinner sb-ui-spinner--secondary"></div>
+<div class="sb-ui-spinner"></div>
+
+<!-- Combinaciones (tamaño + color) -->
+<div class="sb-ui-spinner sb-ui-spinner--small sb-ui-spinner--primary"></div>
+<div class="sb-ui-spinner sb-ui-spinner--large sb-ui-spinner--secondary"></div>
+```
+
+---
+
+## Tabs
+
+### Anatomía
+```
+<div class="sb-ui-tabs sb-ui-tabs--{variant}">
+  └── <button class="sb-ui-tabs__item">
+        ├── .sb-ui-tabs__icon (opcional)
+        ├── .sb-ui-tabs__title
+        └── .sb-ui-tabs__description (opcional)
+```
+
+### Ejemplos
+
+```html
+<!-- Track variant (línea horizontal abajo) -->
+<div class="sb-ui-tabs sb-ui-tabs--track">
+  <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+    <span class="sb-ui-tabs__title">Tab 1</span>
+    <span class="sb-ui-tabs__description">Descripción</span>
+  </button>
+  <button class="sb-ui-tabs__item">
+    <span class="sb-ui-tabs__title">Tab 2</span>
+    <span class="sb-ui-tabs__description">Descripción</span>
+  </button>
+</div>
+
+<!-- Button variant (con iconos) -->
+<div class="sb-ui-tabs sb-ui-tabs--button">
+  <button class="sb-ui-tabs__item sb-ui-tabs__item--active">
+    <i class="fa-solid fa-globe sb-ui-tabs__icon"></i>
+    <span class="sb-ui-tabs__title">Tab 1</span>
+    <span class="sb-ui-tabs__description">Descripción</span>
+  </button>
+  <button class="sb-ui-tabs__item">
+    <i class="fa-solid fa-user sb-ui-tabs__icon"></i>
+    <span class="sb-ui-tabs__title">Tab 2</span>
+    <span class="sb-ui-tabs__description">Descripción</span>
+  </button>
+</div>
+```
+
+---
+
+## Accordion
+
+### Anatomía
+```
+<details class="sb-ui-accordion">
+  ├── <summary class="sb-ui-accordion__header">
+  │     ├── .sb-ui-accordion__icon-start (opcional)
+  │     ├── .sb-ui-accordion__label
+  │     ├── .sb-ui-accordion__action (opcional)
+  │     └── .sb-ui-accordion__icon-end
+  └── <div class="sb-ui-accordion__content">
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<details class="sb-ui-accordion sb-ui-accordion--primary">
+  <summary class="sb-ui-accordion__header">
+    <span class="sb-ui-accordion__label">Pregunta frecuente</span>
+    <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+  </summary>
+  <div class="sb-ui-accordion__content">
+    <p>Respuesta a la pregunta frecuente.</p>
+  </div>
+</details>
+
+<!-- Con icono inicial y botón de acción -->
+<details class="sb-ui-accordion sb-ui-accordion--primary" open>
+  <summary class="sb-ui-accordion__header">
+    <i class="fa-solid fa-globe sb-ui-accordion__icon-start"></i>
+    <span class="sb-ui-accordion__label">Sección expandida</span>
+    <button class="sb-ui-accordion__action sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small" onclick="event.stopPropagation()">
+      Acción
+    </button>
+    <i class="fa-solid fa-chevron-down sb-ui-accordion__icon-end"></i>
+  </summary>
+  <div class="sb-ui-accordion__content">
+    <p>Contenido del acordeón.</p>
+  </div>
+</details>
+```
+
+---
+
+## Breadcrumb
+
+### Anatomía
+```
+<nav class="sb-ui-breadcrumb">
+  └── <ol class="sb-ui-breadcrumb__list">
+        └── <li class="sb-ui-breadcrumb__item">
+              ├── <a class="sb-ui-breadcrumb__link"> (para links)
+              └── <span class="sb-ui-breadcrumb__current"> (para página actual)
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<nav class="sb-ui-breadcrumb" aria-label="Breadcrumb">
+  <ol class="sb-ui-breadcrumb__list">
+    <li class="sb-ui-breadcrumb__item">
+      <a href="#home" class="sb-ui-breadcrumb__link">Inicio</a>
+    </li>
+    <li class="sb-ui-breadcrumb__item">
+      <a href="#category" class="sb-ui-breadcrumb__link">Categoría</a>
+    </li>
+    <li class="sb-ui-breadcrumb__item">
+      <span class="sb-ui-breadcrumb__current" aria-current="page">Página actual</span>
+    </li>
+  </ol>
+</nav>
+```
+
+---
+
+## File Upload
+
+### Anatomía
+```
+<div class="sb-ui-file-upload-wrapper">
+  ├── <label class="sb-ui-file-upload__label"> (opcional)
+  └── <div class="sb-ui-file-upload-container">
+        ├── <div class="sb-ui-file-upload-dropzone">   ← zona drag & drop
+        │     ├── <button class="sb-ui-button ...">     ← botón seleccionar
+        │     └── <p class="sb-ui-file-upload__help">  ← texto de ayuda
+        └── <div class="sb-ui-file-upload sb-ui-file-upload--{estado}">  ← item de archivo (sibling)
+              ├── .sb-ui-file-upload__content
+              │     ├── .sb-ui-file-upload__filename
+              │     ├── .sb-ui-file-upload__progress
+              │     │     └── .sb-ui-file-upload__progress-bar
+              │     └── .sb-ui-file-upload__caption
+              └── .sb-ui-file-upload__actions
+```
+
+**Estados:** `--uploading`, `--uploaded`, `--success`, `--error`
+
+**⚠️ NOTA:** `.sb-ui-file-upload` (item de archivo) es **sibling** de `.sb-ui-file-upload-dropzone`, NO está anidado dentro de ella. Ambas son hijas de `.sb-ui-file-upload-container`.
+
+### Ejemplos
+
+```html
+<!-- Estructura básica (solo zona drag & drop) -->
+<div class="sb-ui-file-upload-wrapper">
+  <label class="sb-ui-file-upload__label">Subir archivo</label>
+  <div class="sb-ui-file-upload-container">
+    <div class="sb-ui-file-upload-dropzone">
+      <input type="file" class="sb-ui-file-upload-input" style="display:none" id="fileInput">
+      <button class="sb-ui-button sb-ui-button--primary" onclick="document.getElementById('fileInput').click()">
+        Seleccione un archivo
+      </button>
+      <p class="sb-ui-file-upload__help">Arrastra archivos aquí o haz clic para seleccionar</p>
+    </div>
+  </div>
+</div>
+
+<!-- Con item de archivo cargando (sb-ui-file-upload es sibling de dropzone) -->
+<div class="sb-ui-file-upload-wrapper">
+  <label class="sb-ui-file-upload__label">Documentos</label>
+  <div class="sb-ui-file-upload-container">
+    <div class="sb-ui-file-upload-dropzone">
+      <button class="sb-ui-button sb-ui-button--primary">Seleccione un archivo</button>
+      <p class="sb-ui-file-upload__help">PDF, PNG o JPG hasta 10MB</p>
+    </div>
+    <!-- Item de archivo: SIBLING de dropzone, no anidado -->
+    <div class="sb-ui-file-upload sb-ui-file-upload--uploading">
+      <div class="sb-ui-file-upload__content">
+        <p class="sb-ui-file-upload__filename">documento.pdf</p>
+        <div class="sb-ui-file-upload__progress">
+          <div class="sb-ui-file-upload__progress-bar" style="width: 65%"></div>
+        </div>
+        <p class="sb-ui-file-upload__caption">Cargando archivo...</p>
+      </div>
+      <div class="sb-ui-file-upload__actions">
+        <button class="sb-ui-file-upload__button" type="button" title="Cancelar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Item archivo cargado exitosamente -->
+<div class="sb-ui-file-upload sb-ui-file-upload--success">
+  <div class="sb-ui-file-upload__content">
+    <p class="sb-ui-file-upload__filename">contrato.pdf</p>
+    <p class="sb-ui-file-upload__caption">Archivo cargado correctamente</p>
+  </div>
+  <div class="sb-ui-file-upload__actions">
+    <button class="sb-ui-file-upload__button" type="button" title="Eliminar">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Item con error -->
+<div class="sb-ui-file-upload sb-ui-file-upload--error">
+  <div class="sb-ui-file-upload__content">
+    <p class="sb-ui-file-upload__filename">imagen.bmp</p>
+    <p class="sb-ui-file-upload__caption">Formato no soportado</p>
+  </div>
+  <div class="sb-ui-file-upload__actions">
+    <button class="sb-ui-file-upload__button" type="button" title="Reintentar">
+      <i class="fa-solid fa-rotate"></i>
+    </button>
+  </div>
+</div>
+```
+
+---
+
+## Table
+
+```html
+<table class="sb-ui-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>juan@example.com</td>
+      <td>Admin</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Variantes -->
+<table class="sb-ui-table sb-ui-table--striped"></table>
+<table class="sb-ui-table sb-ui-table--bordered"></table>
+<table class="sb-ui-table sb-ui-table--hover"></table>
+<table class="sb-ui-table sb-ui-table--compact"></table>
+```
+
+---
+
+## Moléculas (Web Components)
+
+| Componente | Tag |
+|------------|-----|
+| Modal | `<sb-ui-modal>` |
+| Datepicker | `<sb-ui-datepicker>` |
+| Toast | `<sb-ui-toast>` |
+| Calendar | `<sb-ui-calendar>` |
+
+**⚠️ NOTA:** `sb-ui-stepper` es un **átomo CSS** (no web component). `sb-ui-dropdown` no existe — para menús desplegables usar `<details>`/`<summary>` o el componente `sb-ui-menu`.
+
+---
+
+## Modal
+
+### Anatomía
+```
+<sb-ui-modal>
+  ├── title (atributo)
+  ├── open (atributo)
+  ├── [slot default]
+  ├── [slot="header"]
+  └── [slot="footer"]
+```
+
+### Ejemplos
+
+```html
+<!-- Básico -->
+<button onclick="document.getElementById('modal1').openModal()">Abrir</button>
+
+<sb-ui-modal id="modal1" title="Mi Modal">
+  <p>Contenido</p>
+</sb-ui-modal>
+
+<!-- Con footer -->
+<sb-ui-modal id="modal2" title="Confirmar">
+  <p>¿Continuar?</p>
+  
+  <div slot="footer">
+    <button 
+      class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small"
+      onclick="document.getElementById('modal2').close()"
+    >
+      Cancelar
+    </button>
+    <button 
+      class="sb-ui-button sb-ui-button--primary sb-ui-button--small"
+      onclick="handleConfirm()"
+    >
+      Aceptar
+    </button>
+  </div>
+</sb-ui-modal>
+
+<!-- Header personalizado -->
+<sb-ui-modal id="modal3">
+  <div slot="header" style="display: flex; align-items: center; gap: 0.5rem;">
+    <span>🎉</span>
+    <span>Custom Header</span>
+  </div>
+  <p>Contenido</p>
+</sb-ui-modal>
+
+<!-- Atributos -->
+<sb-ui-modal 
+  id="modal4" 
+  title="Modal"
+  show-close-button="false"
+  close-on-backdrop="false"
+>
+  <p>Sin botón X, no cierra con backdrop</p>
+</sb-ui-modal>
+```
+
+### JavaScript API
+
+```javascript
+const modal = document.getElementById('modal1');
+
+// Abrir
+modal.openModal();
+
+// Cerrar
+modal.close();
+
+// Eventos
+modal.addEventListener('sb-ui-modal-open', () => {
+  console.log('Abierto');
+});
+
+modal.addEventListener('sb-ui-modal-close', () => {
+  console.log('Cerrado');
+});
+
+// Estado
+console.log(modal.open); // true/false
+```
+
+---
+
+## Datepicker
+
+```html
+<sb-ui-datepicker
+  label="Fecha de nacimiento"
+  placeholder="DD/MM/YYYY"
+  required
+>
+</sb-ui-datepicker>
+
+<!-- Con valor inicial -->
+<sb-ui-datepicker
+  label="Fecha"
+  value="2024-01-15"
+>
+</sb-ui-datepicker>
+```
+
+---
+
+## Toast
+
+```html
+<!-- Disparar toast desde JavaScript -->
+<script>
+  // Importar el manager (ya disponible con sb-ui-components.min.js)
+  import { toastManager } from 'sb-ui-components.min.js';
+
+  // Tipos: success, error, warning, info
+  toastManager.show('Operación exitosa', 'success');
+  toastManager.show('Error al procesar', 'error');
+  toastManager.show('Revisa los datos', 'warning');
+  toastManager.show('Información relevante', 'info');
+</script>
+
+<!-- El contenedor se añade automáticamente al DOM.
+     Asegúrate de tener el JS cargado: -->
+<script type="module"
+  src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js">
+</script>
+```
+
+---
+
+## Calendar (Web Component)
+
+### Anatomía
+```
+<sb-ui-calendar>
+  ├── variant      → "single" | "range" | "multiple"
+  ├── size         → "small" | "medium" | "large"
+  ├── selected-date  → "YYYY-MM-DD" (modo single)
+  ├── selected-dates → "YYYY-MM-DD,YYYY-MM-DD" (modo multiple)
+  ├── range-start    → "YYYY-MM-DD" (modo range)
+  ├── range-end      → "YYYY-MM-DD" (modo range)
+  ├── min-date       → "YYYY-MM-DD"
+  ├── max-date       → "YYYY-MM-DD"
+  ├── disabled-dates → "YYYY-MM-DD,YYYY-MM-DD"
+  ├── locale         → "es" | "en" (default: "es")
+  ├── show-footer    → boolean (default: true)
+  ├── show-double    → boolean (calendarios dobles, útil en range)
+  └── inline         → boolean (sin borde/sombra)
+```
+
+### Ejemplos
+
+```html
+<!-- Selección única -->
+<sb-ui-calendar variant="single"></sb-ui-calendar>
+
+<!-- Con fecha preseleccionada -->
+<sb-ui-calendar
+  variant="single"
+  selected-date="2026-03-15"
+></sb-ui-calendar>
+
+<!-- Rango de fechas (doble calendario) -->
+<sb-ui-calendar
+  variant="range"
+  show-double="true"
+  range-start="2026-03-01"
+  range-end="2026-03-15"
+></sb-ui-calendar>
+
+<!-- Selección múltiple -->
+<sb-ui-calendar
+  variant="multiple"
+  selected-dates="2026-03-01,2026-03-10,2026-03-20"
+></sb-ui-calendar>
+
+<!-- Con restricciones de fechas -->
+<sb-ui-calendar
+  variant="single"
+  min-date="2026-01-01"
+  max-date="2026-12-31"
+  disabled-dates="2026-03-08,2026-03-09"
+></sb-ui-calendar>
+
+<!-- Inline (sin card) -->
+<sb-ui-calendar variant="single" inline></sb-ui-calendar>
+
+<!-- Tamaños -->
+<sb-ui-calendar variant="single" size="small"></sb-ui-calendar>
+<sb-ui-calendar variant="single" size="medium"></sb-ui-calendar>
+<sb-ui-calendar variant="single" size="large"></sb-ui-calendar>
+```
+
+### JavaScript API
+
+```javascript
+const cal = document.querySelector('sb-ui-calendar');
+
+// Eventos
+cal.addEventListener('date-select', (e) => {
+  console.log('Fecha seleccionada:', e.detail);
+});
+
+cal.addEventListener('date-change', (e) => {
+  console.log('Selección cambió:', e.detail);
+});
+
+cal.addEventListener('month-change', (e) => {
+  console.log('Mes cambió:', e.detail);
+});
+
+cal.addEventListener('calendar-accept', (e) => {
+  console.log('Aceptado:', e.detail);
+});
+
+cal.addEventListener('calendar-cancel', () => {
+  console.log('Cancelado');
+});
+```
+
+---
+
+## Menu
+
+### Anatomía
+```
+<nav class="sb-ui-menu [sb-ui-menu--{variante}]">
+  └── <div class="sb-ui-menu__content">
+        └── <div class="sb-ui-menu__section">
+              ├── <span class="sb-ui-menu__section-title">Título sección</span>
+              └── <ul class="sb-ui-menu__list">
+                    ├── <li>
+                    │     <a class="sb-ui-menu__item [sb-ui-menu__item--active]" href="#">
+                    │       <i class="fa-solid fa-..."></i>   ← icono (opcional)
+                    │       <span>Texto ítem</span>
+                    │     </a>
+                    │   </li>
+                    └── <li>                             ← ítem con submenú
+                          <details class="sb-ui-menu__details">
+                            <summary class="sb-ui-menu__trigger [sb-ui-menu__trigger--active]">
+                              <i class="fa-solid fa-..."></i>
+                              <span>Con submenú</span>
+                              <i class="fa-solid fa-chevron-right sb-ui-menu__toggle"></i>
+                            </summary>
+                            <ul class="sb-ui-menu__submenu">
+                              <li>
+                                <a class="sb-ui-menu__submenu-item" href="#">Sub-ítem</a>
+                              </li>
+                            </ul>
+                          </details>
+                        </li>
+```
+
+**Variantes:** `--vertical` (default), `--horizontal`, `--collapsible`, `--compact`, `--full-width`
+**Estado activo ítem:** `sb-ui-menu__item--active` / `sb-ui-menu__trigger--active`
+
+### Ejemplos
+
+```html
+<!-- Menú vertical (default) -->
+<nav class="sb-ui-menu" aria-label="Menú principal">
+  <div class="sb-ui-menu__content">
+    <div class="sb-ui-menu__section">
+      <span class="sb-ui-menu__section-title">Principal</span>
+      <ul class="sb-ui-menu__list">
+        <li>
+          <a class="sb-ui-menu__item sb-ui-menu__item--active" href="#">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a class="sb-ui-menu__item" href="#">
+            <i class="fa-solid fa-user"></i>
+            <span>Perfil</span>
+          </a>
+        </li>
+        <li>
+          <!-- Ítem con submenú (no requiere JS) -->
+          <details class="sb-ui-menu__details">
+            <summary class="sb-ui-menu__trigger">
+              <i class="fa-solid fa-gear"></i>
+              <span>Configuración</span>
+              <i class="fa-solid fa-chevron-right sb-ui-menu__toggle"></i>
+            </summary>
+            <ul class="sb-ui-menu__submenu">
+              <li>
+                <a class="sb-ui-menu__submenu-item" href="#">
+                  <i class="fa-solid fa-bell"></i>
+                  <span>Notificaciones</span>
+                </a>
+              </li>
+              <li>
+                <a class="sb-ui-menu__submenu-item sb-ui-menu__submenu-item--active" href="#">
+                  <i class="fa-solid fa-shield"></i>
+                  <span>Seguridad</span>
+                </a>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú horizontal -->
+<nav class="sb-ui-menu sb-ui-menu--horizontal" aria-label="Navegación">
+  <div class="sb-ui-menu__content">
+    <div class="sb-ui-menu__section">
+      <ul class="sb-ui-menu__list">
+        <li>
+          <a class="sb-ui-menu__item sb-ui-menu__item--active" href="#">Inicio</a>
+        </li>
+        <li>
+          <a class="sb-ui-menu__item" href="#">Productos</a>
+        </li>
+        <li>
+          <!-- Dropdown en horizontal -->
+          <details class="sb-ui-menu__details">
+            <summary class="sb-ui-menu__trigger">
+              <span>Más</span>
+              <i class="fa-solid fa-chevron-right sb-ui-menu__toggle"></i>
+            </summary>
+            <ul class="sb-ui-menu__submenu">
+              <li><a class="sb-ui-menu__submenu-item" href="#">Opción A</a></li>
+              <li><a class="sb-ui-menu__submenu-item" href="#">Opción B</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú colapsable (JS para toggle) -->
+<button onclick="document.getElementById('sidebar').classList.toggle('sb-ui-menu--collapsed')">
+  <i class="fa-solid fa-bars"></i>
+</button>
+<nav class="sb-ui-menu sb-ui-menu--collapsible" id="sidebar" aria-label="Sidebar">
+  <div class="sb-ui-menu__content">
+    <div class="sb-ui-menu__section">
+      <ul class="sb-ui-menu__list">
+        <li>
+          <a class="sb-ui-menu__item sb-ui-menu__item--active" href="#">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a class="sb-ui-menu__item" href="#">
+            <i class="fa-solid fa-chart-bar"></i>
+            <span>Reportes</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú compacto (padding reducido) -->
+<nav class="sb-ui-menu sb-ui-menu--compact" aria-label="Menú compacto">
+  <div class="sb-ui-menu__content">
+    <div class="sb-ui-menu__section">
+      <ul class="sb-ui-menu__list">
+        <li><a class="sb-ui-menu__item" href="#"><span>Ítem 1</span></a></li>
+        <li><a class="sb-ui-menu__item" href="#"><span>Ítem 2</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+---
+
+## Stepper
+
+### Anatomía
+```
+<div class="sb-ui-stepper sb-ui-stepper--{orientación} [sb-ui-stepper--{tipo}] [sb-ui-stepper--track-dash]">
+  └── <div class="sb-ui-stepper__step sb-ui-stepper__step--{estado} [sb-ui-stepper__step--clickable]">
+        ├── <div class="sb-ui-stepper__step-circle">
+        │     ├── Número / Ícono (contenido)
+        │     └── <span class="sb-ui-stepper__step-circle-badge"> (solo variante mix)
+        ├── <div class="sb-ui-stepper__step-track"> (línea conectora, auto-oculta en último)
+        └── <span class="sb-ui-stepper__step-label">Texto del paso</span>
+```
+
+**Orientación:** `--horizontal` (default), `--vertical`
+**Tipo de ícono:** *(sin clase)* = número | `--type-icon` = ícono | `--type-mix` = ícono + badge numérico
+**Estados del step:** `--empty-active` (actual), `--filled-default` (completado), *(sin clase)* (pendiente)
+**Track:** `--track-dash` (líneas punteadas hacia steps pendientes)
+
+### Ejemplos
+
+```html
+<!-- Horizontal con números -->
+<div class="sb-ui-stepper sb-ui-stepper--horizontal">
+  <!-- Completado -->
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+    <div class="sb-ui-stepper__step-circle">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Datos personales</span>
+  </div>
+  <!-- Actual -->
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+    <div class="sb-ui-stepper__step-circle">2</div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Dirección</span>
+  </div>
+  <!-- Pendiente -->
+  <div class="sb-ui-stepper__step">
+    <div class="sb-ui-stepper__step-circle">3</div>
+    <!-- Sin track en el último step -->
+    <span class="sb-ui-stepper__step-label">Pago</span>
+  </div>
+</div>
+
+<!-- Vertical con íconos -->
+<div class="sb-ui-stepper sb-ui-stepper--vertical sb-ui-stepper--type-icon">
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+    <div class="sb-ui-stepper__step-circle">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Paso 1</span>
+  </div>
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+    <div class="sb-ui-stepper__step-circle">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Paso 2</span>
+  </div>
+  <div class="sb-ui-stepper__step">
+    <div class="sb-ui-stepper__step-circle">
+      <i class="fa-solid fa-credit-card"></i>
+    </div>
+    <span class="sb-ui-stepper__step-label">Paso 3</span>
+  </div>
+</div>
+
+<!-- Con líneas punteadas (track-dash) -->
+<div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--track-dash">
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+    <div class="sb-ui-stepper__step-circle">1</div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Completado</span>
+  </div>
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+    <div class="sb-ui-stepper__step-circle">2</div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Actual</span>
+  </div>
+  <div class="sb-ui-stepper__step">
+    <div class="sb-ui-stepper__step-circle">3</div>
+    <span class="sb-ui-stepper__step-label">Pendiente</span>
+  </div>
+</div>
+
+<!-- Variante mix (ícono + badge numérico) -->
+<div class="sb-ui-stepper sb-ui-stepper--horizontal sb-ui-stepper--type-mix">
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default">
+    <div class="sb-ui-stepper__step-circle">
+      <span class="sb-ui-stepper__step-circle-badge">1</span>
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Completado</span>
+  </div>
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active">
+    <div class="sb-ui-stepper__step-circle">
+      <span class="sb-ui-stepper__step-circle-badge">2</span>
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Actual</span>
+  </div>
+  <div class="sb-ui-stepper__step">
+    <div class="sb-ui-stepper__step-circle">
+      <span class="sb-ui-stepper__step-circle-badge">3</span>
+      <i class="fa-solid fa-credit-card"></i>
+    </div>
+    <span class="sb-ui-stepper__step-label">Pendiente</span>
+  </div>
+</div>
+
+<!-- Steps clickables -->
+<div class="sb-ui-stepper sb-ui-stepper--horizontal">
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--filled-default sb-ui-stepper__step--clickable"
+       onclick="goToStep(1)">
+    <div class="sb-ui-stepper__step-circle">1</div>
+    <div class="sb-ui-stepper__step-track"></div>
+    <span class="sb-ui-stepper__step-label">Paso 1</span>
+  </div>
+  <div class="sb-ui-stepper__step sb-ui-stepper__step--empty-active sb-ui-stepper__step--clickable"
+       onclick="goToStep(2)">
+    <div class="sb-ui-stepper__step-circle">2</div>
+    <span class="sb-ui-stepper__step-label">Paso 2</span>
+  </div>
+</div>
+```
+
+---
+
+## Avatar
+
+### Anatomía
+```
+.sb-ui-avatar                       → Contenedor (OBLIGATORIO)
+.sb-ui-avatar__img                  → Imagen del avatar
+.sb-ui-avatar__initials             → Iniciales de texto
+.sb-ui-avatar__icon                 → Icono fallback
+.sb-ui-avatar__status               → Badge de estado de presencia
+.sb-ui-avatar__status--{estado}     → online, away, busy, offline
+```
+
+### Variantes
+```
+Tamaños:  --xs (24px), --sm (32px), --md (40px), --lg (48px), --xl (64px), --2xl (80px), --3xl (96px)
+Formas:   --circle (default), --rounded, --square
+Borde:    --bordered
+Grupo:    .sb-ui-avatar-group (contenedor), .sb-ui-avatar-group__count (+N)
+```
+
+### Ejemplos
+
+```html
+<!-- Con imagen -->
+<div class="sb-ui-avatar sb-ui-avatar--lg">
+  <img src="user.jpg" alt="Juan Doe" class="sb-ui-avatar__img">
+</div>
+
+<!-- Con iniciales -->
+<div class="sb-ui-avatar sb-ui-avatar--md sb-ui-avatar--primary">
+  <span class="sb-ui-avatar__initials">JD</span>
+</div>
+
+<!-- Con badge de estado -->
+<div class="sb-ui-avatar">
+  <img src="user.jpg" alt="User" class="sb-ui-avatar__img">
+  <span class="sb-ui-avatar__status sb-ui-avatar__status--online"></span>
+</div>
+
+<!-- Grupo de avatares -->
+<div class="sb-ui-avatar-group">
+  <div class="sb-ui-avatar sb-ui-avatar--sm"><img src="a.jpg" alt="A" class="sb-ui-avatar__img"></div>
+  <div class="sb-ui-avatar sb-ui-avatar--sm"><img src="b.jpg" alt="B" class="sb-ui-avatar__img"></div>
+  <span class="sb-ui-avatar-group__count">+3</span>
+</div>
+```
+
+---
+
+## Badge
+
+### Anatomía
+```
+.sb-ui-badge                        → Elemento base (OBLIGATORIO)
+.sb-ui-badge--positioned            → Activa posicionamiento absoluto (requiere contenedor position: relative)
+.sb-ui-badge--{posición}            → top-right, top-left, bottom-right, bottom-left
+```
+
+### Variantes
+```
+Colores:  --default (gris), --primary, --secondary, --success, --warning, --error, --info
+Tamaños:  --sm, --md (default), --lg
+Formas:   --rounded (default), --square, --circle, --dot
+Estilos:  --outline (borde sin fondo), --pulse (animación)
+```
+
+### Ejemplos
+
+```html
+<!-- Inline dentro de botón -->
+<button class="sb-ui-button sb-ui-button--secondary">
+  Notificaciones
+  <span class="sb-ui-badge sb-ui-badge--error">3</span>
+</button>
+
+<!-- Posicionado sobre un ícono -->
+<div style="position: relative; display: inline-block;">
+  <i class="fa fa-bell"></i>
+  <span class="sb-ui-badge sb-ui-badge--positioned sb-ui-badge--top-right sb-ui-badge--primary">12</span>
+</div>
+
+<!-- Dot de estado (sin contenido) -->
+<span class="sb-ui-badge sb-ui-badge--dot sb-ui-badge--success"></span>
+```
+
+---
+
+## Chip
+
+### Anatomía
+```
+.sb-ui-chip                         → Contenedor (OBLIGATORIO)
+.sb-ui-chip__label                  → Texto del chip (OBLIGATORIO)
+.sb-ui-chip__icon                   → Icono izquierdo (opcional)
+.sb-ui-chip__avatar                 → Avatar izquierdo (opcional)
+.sb-ui-chip__remove                 → Botón de cierre X (opcional)
+```
+
+### Variantes
+```
+Colores:  --default (gris), --primary, --secondary, --success, --warning, --error, --info
+Tamaños:  --sm, --md (default), --lg
+Estilos:  --filled (default), --outline, --soft
+Estados:  --clickable (hover/cursor pointer), --disabled, --selected
+```
+
+### Ejemplos
+
+```html
+<!-- Chip básico -->
+<div class="sb-ui-chip">
+  <span class="sb-ui-chip__label">Etiqueta</span>
+</div>
+
+<!-- Chip con icono -->
+<div class="sb-ui-chip sb-ui-chip--primary">
+  <i class="sb-ui-chip__icon fa fa-tag"></i>
+  <span class="sb-ui-chip__label">Categoría</span>
+</div>
+
+<!-- Chip removible -->
+<div class="sb-ui-chip sb-ui-chip--outline sb-ui-chip--primary">
+  <span class="sb-ui-chip__label">Filtro activo</span>
+  <button class="sb-ui-chip__remove" aria-label="Quitar filtro">
+    <i class="fa fa-times"></i>
+  </button>
+</div>
+
+<!-- Chip clickeable -->
+<button class="sb-ui-chip sb-ui-chip--clickable sb-ui-chip--soft sb-ui-chip--success">
+  <span class="sb-ui-chip__label">Seleccionar</span>
+</button>
+```
+
+---
+
+## Slider
+
+### Anatomía
+```
+input[type="range"].sb-ui-slider    → Input nativo del slider (OBLIGATORIO)
+.sb-ui-slider-container             → Contenedor (opcional, para label + value)
+.sb-ui-slider-label                 → Label del slider
+.sb-ui-slider-value                 → Valor mostrado
+```
+
+### Variantes
+```
+Colores:  --primary (default), --secondary, --success, --warning, --error, --info
+Tamaños:  --sm, --md (default), --lg
+Estados:  :disabled (nativo HTML)
+```
+
+### Ejemplos
+
+```html
+<!-- Slider básico -->
+<input type="range" class="sb-ui-slider" min="0" max="100" value="50">
+
+<!-- Slider con label y valor -->
+<div class="sb-ui-slider-container">
+  <label for="volume" class="sb-ui-slider-label">Volumen</label>
+  <input type="range" id="volume" class="sb-ui-slider sb-ui-slider--primary"
+         min="0" max="100" value="70">
+  <span class="sb-ui-slider-value">70%</span>
+</div>
+
+<!-- Slider deshabilitado -->
+<input type="range" class="sb-ui-slider" min="0" max="100" value="30" disabled>
+```
+
+---
+
+## Typography
+
+Clases utilitarias para aplicar la escala tipográfica del Design System.
+
+```html
+<!-- Headings -->
+<h1 class="sb-ui-heading-h1">Heading 1</h1>
+<h2 class="sb-ui-heading-h2">Heading 2</h2>
+<h3 class="sb-ui-heading-h3">Heading 3</h3>
+<h4 class="sb-ui-heading-h4">Heading 4</h4>
+<h5 class="sb-ui-heading-h5">Heading 5</h5>
+<h6 class="sb-ui-heading-h6">Heading 6</h6>
+
+<!-- Body / párrafos -->
+<p class="sb-ui-text-body">Texto de cuerpo estándar.</p>
+<span class="sb-ui-text-label">Texto de etiqueta</span>
+<span class="sb-ui-text-caption">Texto de caption</span>
+
+<!-- Modificadores de color y peso -->
+<p class="sb-ui-text-body sb-ui-text--primary">Texto con color primario</p>
+<strong class="sb-ui-text-body sb-ui-text--bold">Texto en negrita</strong>
+```
+
+---
+
+## Layout (Container / Grid / CSS Grid / Gutters)
+
+Átomos de layout estructural. **No tienen brand overrides** — son puramente estructurales.
+
+### Container
+
+```html
+<div class="sb-ui-container">Contenido centrado con max-width</div>
+<div class="sb-ui-container-fluid">Contenido full-width</div>
+```
+
+### Grid (Flexbox, 12 columnas)
+
+```html
+<div class="sb-ui-grid">
+  <div class="sb-ui-col-6">Mitad izquierda</div>
+  <div class="sb-ui-col-6">Mitad derecha</div>
+</div>
+
+<!-- Responsive -->
+<div class="sb-ui-grid">
+  <div class="sb-ui-col-12 sb-ui-col-md-6 sb-ui-col-lg-4">Item</div>
+</div>
+```
+
+### CSS Grid
+
+```html
+<div class="sb-ui-grid-cols-3">
+  <div>Col 1</div>
+  <div>Col 2</div>
+  <div>Col 3</div>
+</div>
+
+<div class="sb-ui-grid-cols-auto-fit"><!-- auto-fill responsive --></div>
+```
+
+### Gutters (Espaciado entre celdas)
+
+```html
+<!-- Aplicar como modificador al Grid -->
+<div class="sb-ui-grid sb-ui-gap-3">...</div>
+<div class="sb-ui-grid sb-ui-gap-x-4 sb-ui-gap-y-2">...</div>
+```
+
+---
+
+## Personalización
+
+**⚠️ La personalización de colores y estilos se hace SIEMPRE a través del sistema de brand-overrides — NUNCA con valores hardcodeados.**
+
+```css
+/* ✅ CORRECTO - Personalización por componente (en brand-overrides) */
+@layer brand-overrides {
+  [data-brand='mi-marca'] .sb-ui-button--primary {
+    --sb-ui-button-primary-stroke-bg: var(--sb-ui-color-primary-base);
+    --sb-ui-button-border-radius: var(--sb-ui-border-radius-lg);
+    --sb-ui-button-padding-inline: 2rem;
+  }
+}
+
+/* ✅ CORRECTO - Sobreescribir tokens globales de marca */
+@layer brand-overrides {
+  [data-brand='mi-marca'] {
+    --sb-ui-color-primary-base: var(--sb-ui-color-primary-base); /* Usar tokens del sistema */
+    --sb-ui-typography-fontFamily: 'Inter', sans-serif;          /* Fuente personalizada */
+    --sb-ui-border-radius-md: 0.5rem;                            /* Bordes personalizados */
+  }
+}
+
+/* ❌ PROHIBIDO - Nunca hardcodear colores */
+.mi-boton {
+  --sb-ui-button-bg-color: #ff6b6b;   /* ❌ Hardcoded */
+  --sb-ui-color-primary-base: #007acc; /* ❌ Hardcoded */
+}
+```
+
+**Ver:** `.cursor/rules/CSS_OVERRIDE_BRAND.mdc` para la guía completa de brand-overrides.
+
+---
+
+## Variables de Espaciado del Proyecto
+
+**⚠️ NOTA:** Las variables de espaciado globales (`--sb-ui-spacing-*`) no están disponibles en el sistema de diseño. Para espaciados en layouts y componentes personalizados, define variables de proyecto.
+
+### Variables Recomendadas
+
+```css
+:root {
+  /* Variables de espaciado del proyecto */
+  --project-spacing-xs: 0.25rem;   /* 4px - Extra pequeño */
+  --project-spacing-sm: 0.5rem;     /* 8px - Pequeño */
+  --project-spacing-md: 1rem;       /* 16px - Mediano */
+  --project-spacing-lg: 1.5rem;     /* 24px - Grande */
+  --project-spacing-xl: 2rem;       /* 32px - Extra grande */
+  --project-spacing-2xl: 3rem;      /* 48px - Muy grande */
+}
+```
+
+### Ejemplo de Uso
+
+```css
+/* ✅ CORRECTO - Usar variables de proyecto para layouts */
+.login-card {
+  padding: var(--project-spacing-xl);
+  margin-block-end: var(--project-spacing-lg);
+}
+
+.form-group {
+  margin-block-end: var(--project-spacing-lg);
+}
+
+/* ✅ CORRECTO - Usar variables del sistema para componentes */
+.sb-ui-button {
+  padding-inline: var(--sb-ui-button-padding-inline);
+  padding-block: var(--sb-ui-button-padding-block);
+}
+```
+
+**Regla importante:**
+- **Variables del sistema** (`--sb-ui-*`) → Para componentes del sistema de diseño
+- **Variables de proyecto** (`--project-*`) → Para layouts, espaciados generales y componentes personalizados
+
+---
+
+## Ejemplo Completo: Login
+
+```html
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <!-- Un solo link incluye FA + Bolivar + Roboto automáticamente -->
+  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-block-size: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 1rem;
+    }
+    .login-card {
+      inline-size: 100%;
+      max-inline-size: 400px;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    .form-group {
+      margin-block-end: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h1 style="text-align: center;">Iniciar Sesión</h1>
+    
+    <form id="login-form">
+      <div class="form-group">
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label sb-ui-input-label--required">Email</label>
+          <input class="sb-ui-input" type="email" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="sb-ui-input-container">
+          <label class="sb-ui-input-label sb-ui-input-label--required">Contraseña</label>
+          <input class="sb-ui-input" type="password" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="sb-ui-checkbox">
+          <input type="checkbox" class="sb-ui-checkbox__input">
+          <span class="sb-ui-checkbox__box"></span>
+          <span class="sb-ui-checkbox__label">Recordarme</span>
+        </label>
+      </div>
+      
+      <button type="submit" class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--block">
+        Iniciar Sesión
+      </button>
+    </form>
+  </div>
+</body>
+</html>
+```
+
+---
+
+## Ejemplo Completo: CRUD con Modal
+
+```html
+<!DOCTYPE html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-seguros-bolivar-light.min.css">
+  <script type="module" src="https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-components.min.js"></script>
+  <style>
+    body { padding: 2rem; max-inline-size: 1200px; margin-inline: auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-block-end: 2rem; }
+    .user-table { inline-size: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+    .user-table th, .user-table td { padding: 1rem; text-align: start; border-block-end: 1px solid #e1e1e1; }
+    .user-table th { background: #f5f5f5; font-weight: 600; }
+    .actions { display: flex; gap: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Usuarios</h1>
+    <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill" onclick="document.getElementById('modal-new').openModal()">
+      Nuevo Usuario
+    </button>
+  </div>
+  
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Juan Pérez</td>
+        <td>juan@example.com</td>
+        <td>Admin</td>
+        <td class="actions">
+          <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small sb-ui-button--icon-only">
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+          <button class="sb-ui-button sb-ui-button--error sb-ui-button--small sb-ui-button--icon-only" onclick="confirmDelete('Juan')">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Modal Nuevo -->
+  <sb-ui-modal id="modal-new" title="Nuevo Usuario">
+    <form id="form-new" style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="sb-ui-input-container">
+        <label class="sb-ui-input-label">Nombre</label>
+        <input class="sb-ui-input" type="text" required>
+      </div>
+      <div class="sb-ui-input-container">
+        <label class="sb-ui-input-label">Email</label>
+        <input class="sb-ui-input" type="email" required>
+      </div>
+      <div class="sb-ui-input-container">
+        <label class="sb-ui-input-label">Rol</label>
+        <select class="sb-ui-select">
+          <option>Usuario</option>
+          <option>Admin</option>
+        </select>
+      </div>
+    </form>
+    
+    <div slot="footer">
+      <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" onclick="document.getElementById('modal-new').close()">
+        Cancelar
+      </button>
+      <button class="sb-ui-button sb-ui-button--primary sb-ui-button--small" onclick="createUser()">
+        Crear
+      </button>
+    </div>
+  </sb-ui-modal>
+  
+  <!-- Modal Eliminar -->
+  <sb-ui-modal id="modal-delete" title="Confirmar" show-close-button="false">
+    <p>¿Eliminar a <strong id="delete-name"></strong>?</p>
+    <div slot="footer">
+      <button class="sb-ui-button sb-ui-button--tertiary sb-ui-button--small" onclick="document.getElementById('modal-delete').close()">
+        Cancelar
+      </button>
+      <button class="sb-ui-button sb-ui-button--error sb-ui-button--small" onclick="deleteUser()">
+        Eliminar
+      </button>
+    </div>
+  </sb-ui-modal>
+  
+  <script>
+    function createUser() {
+      const form = document.getElementById('form-new');
+      if (form.checkValidity()) {
+        document.getElementById('modal-new').close();
+        form.reset();
+      }
+    }
+    
+    function confirmDelete(name) {
+      document.getElementById('delete-name').textContent = name;
+      document.getElementById('modal-delete').openModal();
+    }
+    
+    function deleteUser() {
+      document.getElementById('modal-delete').close();
+    }
+  </script>
+</body>
+</html>
+```
+
+---
+
+## Cambio Dinámico de Marca/Tema
+
+```javascript
+// Cambiar marca y tema
+document.documentElement.setAttribute('data-brand', 'davivienda');
+document.documentElement.setAttribute('data-theme', 'dark');
+
+// Actualizar CSS
+const linkCSS = document.querySelector('link[rel="stylesheet"]');
+linkCSS.href = `https://unpkg.com/@seguros-bolivar/ui-bundle@latest/dist/sb-ui-davivienda-dark.min.css`;
+
+// Guardar en localStorage
+localStorage.setItem('sb-ui-brand', 'davivienda');
+localStorage.setItem('sb-ui-theme', 'dark');
+```
+
+---
+
+**Versión:** 1.1.0 | **Fecha:** 2026-03-02

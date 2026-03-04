@@ -26,7 +26,7 @@ const ATOMS_SRC = path.join(PACKAGES_DIR, 'atoms/src'); // Cambiado de dist a sr
 const MOLECULES_SRC = path.join(PACKAGES_DIR, 'molecules/src');
 const MOLECULES_DIST = path.join(PACKAGES_DIR, 'molecules/dist');
 const BRAND_OVERRIDES_SRC = path.join(PACKAGES_DIR, 'brand-overrides/src');
-const FONTS_SRC = path.resolve(__dirname, '../../../examples/assets/fonts/bolivar');
+const FONTS_SRC = path.resolve(__dirname, '../assets/fonts/bolivar');
 const FONTS_DIST = path.join(DIST_DIR, 'fonts');
 const FA_PKG = (() => {
   try {

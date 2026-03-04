@@ -1,0 +1,842 @@
+---
+alwaysApply: true
+description: "Workflow de implementación con Seguros Bolívar UI — orquesta los 6 pasos para construir cualquier artefacto (página, sección, formulario, componente aislado, etc.) usando los componentes de la librería como piezas Lego. Incluye guía de implementación CDN: URLs por marca/tema, setup del entorno, cambio dinámico de marca y solución de problemas."
+globs:
+  - "**/*.html"
+  - "**/*.md"
+  - "**/*.mdx"
+---
+
+# Workflow de Implementación — Seguros Bolívar UI
+
+## Principio fundamental
+
+La librería **seguros-bolivar-ui** funciona como un kit de piezas Lego: existen piezas (componentes) y con ellas se puede construir cualquier cosa.
+
+**No asumas el tipo de output.** El desarrollador puede pedir:
+- Una pantalla completa
+- Un formulario aislado
+- Un fragmento de sección
+- Un modal o widget
+- Cualquier otra cosa
+
+El workflow se aplica igual en todos los casos.
+
+---
+
+## Regla de oro — CSS cero
+
+> **Prohibido crear estilos en el HTML. El artefacto se construye EXCLUSIVAMENTE con los componentes y clases de la librería.**
+
+Esto significa:
+- **No `<style>` en el HTML** — ningún bloque de estilos embebido en el artefacto
+- **No atributo `style=""`** con valores de diseño (colores, tamaños, espaciados, display, flex, grid…)
+- **No clases CSS propias** — únicamente clases `sb-ui-*` documentadas en `componentes-01-sb-ui.mdc`
+
+Los componentes de la librería ya incluyen todos sus estilos. El layout se resuelve
+con las clases utilitarias del sistema (`sb-ui-container`, `sb-ui-grid`, `sb-ui-col-*`,
+`sb-ui-grid-cols-*`, `sb-ui-place-*`, `sb-ui-card`, etc.).
+
+**Antes de escribir cualquier CSS, hazte estas preguntas en orden:**
+
+1. ¿Existe una clase `sb-ui-*` que resuelva esto? → Úsala (consulta `componentes-01-sb-ui.mdc`)
+2. ¿Existe un patrón de layout documentado en este workflow? → Aplícalo (sección 5c)
+3. ¿Ninguna opción anterior funciona? → **Notifica al desarrollador** que hay un gap en la librería. **No escribas CSS.**
+
+**La única excepción aceptada:**
+- `style="position: relative;"` en el wrapper del input con icono — patrón explícito de la documentación del componente `sb-ui-input`
+
+Cualquier otro CSS es una señal de que el paso de mapeo (PASO 2) o de layout (PASO 5c) no se completó correctamente.
+
+---
+
+## Alcance del workflow — diseño vs JavaScript
+
+El workflow genera la **capa de diseño** (HTML + CSS). El JavaScript es una capa separada.
+
+### Qué genera el workflow automáticamente
+
+**Átomos (CSS puro):** no requieren JS. Solo HTML + clases `sb-ui-*`.
+
+**Moléculas (Web Components):** cuando el artefacto contiene alguna de estas:
+`<sb-ui-modal>` `<sb-ui-toast>` `<sb-ui-datepicker>` `<sb-ui-calendar>`
+
+→ El workflow incluye el script bundle en el `<head>`:
+```html
+<script type="module"
+        src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js">
+</script>
+```
+Los Web Components se inicializan solos. El desarrollador puede usarlos sin configuración adicional.
+
+---
+
+### Qué NO genera el workflow — JS del negocio
+
+El workflow **no escribe** la lógica de negocio en JavaScript. Para esas interacciones
+deja **comentarios `TODO: JS`** como marcadores para que el desarrollador los implemente:
+
+```html
+<!-- TODO: JS → enviar formulario con fetch/axios a /api/auth/login -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--block"
+        id="btn-login">
+  Ingresar
+</button>
+
+<!-- TODO: JS → modal.open() al hacer clic en "Ver detalles" -->
+<sb-ui-modal id="modal-detalle">
+  <span slot="title">Detalle de póliza</span>
+  <div slot="body">...</div>
+</sb-ui-modal>
+
+<!-- TODO: JS → mostrar/ocultar contraseña al hacer clic en el icono -->
+<span class="sb-ui-input-icon" id="toggle-password">
+  <i class="fa-solid fa-eye"></i>
+</span>
+```
+
+---
+
+### API de las moléculas — referencia para el desarrollador
+
+Cuando el workflow genera una molécula, deja el comentario con la API disponible:
+
+| Molécula | Cómo abrirla/usarla desde JS |
+|----------|------------------------------|
+| `<sb-ui-modal id="m">` | `document.getElementById('m').open()` / `.close()` |
+| `<sb-ui-toast id="t">` | `document.getElementById('t').show({ message: '...', type: 'success' })` |
+| `<sb-ui-datepicker id="d">` | lee el valor con `document.getElementById('d').value` |
+| `<sb-ui-calendar id="c">` | lee el rango con `.startDate` y `.endDate` |
+
+---
+
+### Resumen — cuándo el desarrollador agrega JS
+
+| Tipo de interacción | Responsable |
+|--------------------|------------|
+| Renderizado y estilos del componente | ✅ Librería (automático) |
+| Web Component abre/cierra/actualiza | ✅ Librería (automático una vez incluido el script) |
+| Validación de formularios | 👨‍💻 Desarrollador (agrega después) |
+| Llamadas a APIs / fetch | 👨‍💻 Desarrollador (agrega después) |
+| Disparar `modal.open()` desde un botón | 👨‍💻 Desarrollador (agrega después) |
+| Lógica de negocio (auth, sesión, etc.) | 👨‍💻 Desarrollador (agrega después) |
+
+---
+
+## Fuentes de verdad — cuándo consultar cada una
+
+| Archivo | Pregunta que responde | Momento de uso |
+|---------|----------------------|----------------|
+| `componentes-01-sb-ui.mdc` | ¿Qué piezas existen y cómo se usan? | Pasos 2, 3 y 5 |
+| `implementacion-01-cdn.mdc` | ¿Cómo se inicializa el entorno? | Paso 5 |
+| `variables-01-css.mdc` | ¿Qué tokens usar si hay CSS adicional? | Paso 5 (solo si aplica) |
+
+---
+
+## Los 6 pasos — ejecutar siempre en este orden
+
+### PASO 1 — ANALIZAR
+
+Lee la solicitud o el diseño proporcionado y descompónlo en **elementos visuales individuales**.
+
+- Si el input es una descripción en texto: identifica cada elemento mencionado
+- Si el input es una imagen o screenshot: identifica cada elemento visual
+- Si el input es un URL de Figma (con MCP configurado): **ver instrucciones Figma abajo**
+
+#### Cuando el input es Figma MCP — extracción fiel al diseño
+
+**El diseño de Figma es la fuente de verdad.** El objetivo es reproducirlo con la mayor fidelidad posible usando los componentes de la librería. No simplifiques ni tomes atajos creativos.
+
+##### Herramientas MCP a usar — siempre las dos, en paralelo
+
+```
+get_design_context   → estructura visual, screenshot, Code Connect
+get_variable_defs    → tokens de color/estilo asignados al nodo
+```
+
+Ejecuta ambas sobre el mismo `nodeId` antes de continuar con el análisis.
+
+##### Sobre el Code Connect
+
+El MCP puede retornar un snippet con imports. Antes de usarlo:
+
+- ✅ Import **relativo al proyecto** (`../../components/...`) → úsalo como pista de qué componente sb-ui aplica
+- ❌ Import a **URL externa** (`https://...`) → ignora completamente ese snippet. Usa el screenshot + tokens para construir con `sb-ui-*`
+
+##### Uso de los tokens retornados por get_variable_defs
+
+Con los tokens obtenidos, realiza estos pasos **antes de mapear componentes**:
+
+1. Consulta `variables-01-css.mdc` para encontrar la variable `--sb-ui-*` equivalente a cada token Figma
+2. Con la variable identificada, consulta `componentes-01-sb-ui.mdc` para confirmar qué clase de variante del componente ya usa ese valor internamente
+3. Si el componente ya incorpora el token, usa la clase de variante correcta — **no agregues CSS adicional**
+4. Si ningún componente existente representa ese token, notifica el gap antes de continuar
+
+##### Extracción visual — documentar antes de mapear componentes
+
+Al leer el frame con el MCP, extrae y documenta **todo lo siguiente** antes de mapear componentes:
+
+**1. Estructura y orden:**
+- Orden exacto de los elementos (de arriba a abajo, de izquierda a derecha)
+- Jerarquía de contenedores (qué está dentro de qué)
+- Número exacto de columnas y filas del layout
+
+**2. Cada componente:**
+- Tipo de elemento (botón, input, card, texto, icono…)
+- Variante o estado visible en el diseño (primary/secondary, fill/stroke/text, large/medium/small…)
+- Texto exacto que muestra
+- Icono si lo tiene (nombre o descripción)
+
+**3. Espaciado y proporciones:**
+- Gap entre elementos (¿están separados o pegados?)
+- Ancho del contenedor (¿full-width, centrado, angosto?)
+- Proporción de columnas en layouts de múltiples columnas (50/50, 30/70…)
+
+**4. Imagen o ilustración:**
+- ¿Hay imagen en la card? ¿Está arriba, a la izquierda o a la derecha?
+
+**Regla de fidelidad:** si el diseño muestra dos botones en fila, el artefacto debe tener dos botones en fila. Si muestra un badge sobre la imagen, debe estar sobre la imagen. No reordenes ni omitas elementos sin avisar al desarrollador.
+
+**Cuando un detalle del diseño no tiene componente en la librería:**
+- No lo omitas silenciosamente
+- Notifica: `"El diseño muestra [X] que no está disponible en la librería. Lo sustituyo por [alternativa] — ¿es aceptable?"`
+
+**Resultado esperado:** lista de elementos visuales con variante, texto e icono, por ejemplo:
+```
+- card horizontal con imagen a la izquierda
+  - imagen de producto (arriba-izquierda)
+  - badge --warning "Oferta" (sobre la imagen)
+  - título: "Seguro de Vehículo"
+  - descripción: "Cobertura todo riesgo..."
+  - precio: "Desde $62.000/mes"
+  - botón --stroke --secondary "Ver detalles"
+  - botón --fill --primary "Cotizar"
+```
+
+---
+
+### PASO 2 — MAPEAR
+
+Para cada elemento visual identificado, determina el **componente sb-ui candidato**.
+
+Consulta el índice rápido de `componentes-01-sb-ui.mdc`:
+
+**Componentes visuales:**
+```
+Campo de texto            → sb-ui-input
+Área multilínea           → sb-ui-textarea
+Lista desplegable         → sb-ui-select
+Botón con fondo sólido    → sb-ui-button + --fill
+Botón con borde           → sb-ui-button + --stroke (default)
+Botón solo texto / link   → sb-ui-button + --text
+Alerta / mensaje estado   → sb-ui-alert
+Contenido colapsable      → sb-ui-accordion
+Pestañas                  → sb-ui-tabs
+Tabla de datos            → sb-ui-table
+Popup / overlay           → <sb-ui-modal>
+Notificación flotante     → <sb-ui-toast>
+Pasos de un proceso       → sb-ui-stepper
+Selector de fecha         → <sb-ui-datepicker>
+Rango de fechas           → <sb-ui-calendar>
+Carga de archivos         → sb-ui-file-upload
+Menú de navegación        → sb-ui-menu
+Perfil de usuario         → sb-ui-avatar
+Etiqueta de estado        → sb-ui-badge
+Etiqueta removible        → sb-ui-chip
+Selector rango numérico   → sb-ui-slider
+Ruta de navegación        → sb-ui-breadcrumb
+Indicador de carga        → sb-ui-spinner
+Encabezado / título       → sb-ui-heading
+Texto de cuerpo           → sb-ui-body
+Tarjeta / panel           → sb-ui-card + sb-ui-card--elevated / --outlined
+Checkbox                  → sb-ui-checkbox
+Radio button              → sb-ui-radio
+Toggle / interruptor      → sb-ui-toggle
+```
+
+**Sistema de layout — identificar la estructura antes de los componentes** (ver referencia completa en sección 5c):
+```
+Contenedor con padding + max-width responsivo  → sb-ui-container
+Grilla de 12 columnas                          → sb-ui-grid  (requiere sb-ui-col-* en hijos)
+  Hijo que ocupa N columnas                    → sb-ui-col-N  (N = 1 a 12)
+  Hijo centrado horizontalmente en la grilla   → sb-ui-col-N + sb-ui-col-start-X  (X = (12-N)/2 + 1)
+  Override responsivo obligatorio              → sb-ui-col-md-N + sb-ui-col-lg-N + sb-ui-col-xl-N
+Grilla de N columnas IGUALES (sin 12-col)      → sb-ui-grid-cols-N (1 a 6)
+Centrar filas verticalmente en el grid         → sb-ui-place-content-center  (en el contenedor)
+Centrar ítems dentro de su celda               → sb-ui-place-items-center  (en el contenedor)
+Alinear ítem al extremo derecho de su celda    → sb-ui-col-justify-self-end  (en el ítem)
+Centrar un ítem en su celda (encoge al contenido) → sb-ui-col-justify-self-center  (en el ítem)
+Centrar artefacto en pantalla completa         → Patrón 1 (sección 5c)
+```
+
+**Resultado esperado:** cada elemento tiene un componente candidato asignado.
+
+---
+
+### PASO 3 — VALIDAR
+
+Para cada componente candidato, **confirma que existe actualmente** en `componentes-01-sb-ui.mdc`.
+
+La librería está en crecimiento constante — nunca asumas que un componente existe sin verificarlo.
+
+**Si el componente existe:**
+- ✅ Inclúyelo en el plan
+- Anota las variantes disponibles y el HTML exacto que documenta el catálogo
+
+**Si el componente NO existe aún:**
+- ⚠️ No inventes clases `sb-ui-*` que no existan
+- ⚠️ No uses librerías externas sin avisar
+- Notifica al desarrollador antes de continuar:
+  ```
+  "El componente [nombre] no está disponible aún en seguros-bolivar-ui.
+  Alternativas disponibles: [lista de componentes cercanos].
+  ¿Continúo con alguna de estas alternativas o prefieres esperar
+  a que el componente sea añadido a la librería?"
+  ```
+
+---
+
+### PASO 4 — PLANEAR
+
+Antes de escribir una sola línea de HTML, presenta el plan de ensamblaje:
+
+```
+Componentes confirmados:
+- sb-ui-input (x2) — email y password
+- sb-ui-button --fill --primary — acción principal
+- sb-ui-button --text — enlace secundario
+- sb-ui-container — wrapper responsivo
+
+Estructura:
+Container
+  └── [label + Input email]
+  └── [label + Input password]
+  └── Button --fill "Ingresar"
+  └── Button --text "Olvidé mi contraseña"
+```
+
+Si hay algún elemento del diseño que no tiene pieza disponible, indícalo aquí antes de generar.
+
+---
+
+### PASO 5 — GENERAR
+
+Ensambla el output usando las tres fuentes en este orden:
+
+#### 5a. Clases y estructura HTML de componentes
+Consulta `componentes-01-sb-ui.mdc` para obtener el HTML exacto de cada pieza.
+Usa las clases documentadas sin modificarlas ni inventar nuevas.
+
+#### 5b. Setup del entorno
+
+**CDN oficial (GitHub Pages):** `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/`
+
+##### URLs de CSS — tabla completa
+
+| Marca | Light | Dark |
+|-------|-------|------|
+| Seguros Bolívar | `sb-ui-seguros-bolivar-light.min.css` | `sb-ui-seguros-bolivar-dark.min.css` |
+| Davivienda | `sb-ui-davivienda-light.min.css` | `sb-ui-davivienda-dark.min.css` |
+| Jelpit | `sb-ui-jelpit-light.min.css` | `sb-ui-jelpit-dark.min.css` |
+| Cien Cuadras | `sb-ui-cien-cuadras-light.min.css` | `sb-ui-cien-cuadras-dark.min.css` |
+| Doctor Aki | `sb-ui-doctor-aki-light.min.css` | `sb-ui-doctor-aki-dark.min.css` |
+| White Label | `sb-ui-white-label-light.min.css` | `sb-ui-white-label-dark.min.css` |
+
+Patrón de nombre: `sb-ui-{marca}-{tema}.min.css`
+
+##### Reglas de setup
+
+- `data-brand` y `data-theme` son **obligatorios** en `<html>` — sin ellos solo se aplican estilos base (White Label)
+- **Font Awesome ya viene en el bundle CSS** — no agregar `<link>` separado de cdnjs ni otro CDN
+- El bundle incluye automáticamente: Font Awesome 6 + fuente Bolívar (`@font-face`) + Roboto (Google Fonts)
+- JS de Web Components: incluir **solo si el output contiene moléculas**
+
+```html
+<!-- CSS del Design System (elegir marca y tema) -->
+<link rel="stylesheet"
+      href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
+
+<!-- Web Components — solo si el output usa <sb-ui-modal>, <sb-ui-toast>, <sb-ui-datepicker> o <sb-ui-calendar> -->
+<script type="module"
+        src="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-components.min.js"></script>
+```
+
+**Nota:** El JS `sb-ui-components.min.js` es el mismo para todas las marcas. El Stepper es átomo CSS puro — no requiere el script.
+
+**Cuando el artefacto contiene moléculas**, agrega un comentario `TODO: JS` junto a cada
+elemento interactivo para que el desarrollador sepa dónde conectar la lógica:
+
+```html
+<!-- TODO: JS → modal.open() al hacer clic -->
+<button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill"
+        id="btn-abrir-modal">
+  Ver detalles
+</button>
+
+<sb-ui-modal id="modal-detalle">
+  <span slot="title">Título</span>
+  <div slot="body">Contenido</div>
+</sb-ui-modal>
+```
+
+#### 5c. Sistema de layout — referencia completa
+
+El sistema de layout resuelve dimensionamiento, centrado y distribución sin CSS adicional.
+Consulta esta sección antes de escribir cualquier `<style>`.
+
+---
+
+##### Contenedores — anchos máximos por viewport
+
+`sb-ui-container` y sus variantes siguen este comportamiento Bootstrap-style:
+
+| Viewport | `sb-ui-container` max-width | Nota |
+|----------|----------------------------|------|
+| < 576px  | 100% (sin límite)           | Móvil: siempre full-width |
+| 576–767px | 540px                      | |
+| 768–991px | 720px                      | |
+| 992–1199px | 960px                     | |
+| 1200–1399px | 1140px                   | |
+| 1400px+ | 1320px                      | |
+
+**⚠️ `sb-ui-container-sm` NO es un contenedor angosto fijo.**
+Es un "container que activa en SM" pero luego escala igual que `sb-ui-container`.
+A 1200px viewport ya tiene 1140px de ancho. **Nunca usarlo para contenido que deba mantenerse estrecho.**
+
+---
+
+##### Grilla de 12 columnas — anchos aproximados del contenido
+
+Con `sb-ui-grid` dentro de `sb-ui-container`, las columnas tienen estos anchos:
+
+| Viewport | Container | 4 cols | 6 cols | 8 cols | 10 cols |
+|----------|-----------|--------|--------|--------|---------|
+| md 768px | 720px | ~258px | ~368px | ~479px | ~589px |
+| lg 992px | 960px | ~350px | ~492px | ~641px | ~790px |
+| xl 1200px | 1140px | ~408px | ~571px | ~736px | ~900px |
+| xxl 1536px | 1320px | ~424px | ~648px | ~848px | — |
+
+**Columnas recomendadas según tipo de artefacto:**
+
+| Artefacto | md (768px) | lg (992px) | xl (1200px+) |
+|-----------|-----------|-----------|-------------|
+| Login / registro / confirmación | 8 cols | 6 cols | 4 cols |
+| Formulario mediano | 10 cols | 8 cols | 6 cols |
+| Página de contenido | 12 cols | 10 cols | 8 cols |
+| Dashboard full-width | 12 cols | 12 cols | 12 cols |
+| Panel lateral + contenido | 3+9 cols | 3+9 cols | 2+10 cols |
+
+---
+
+##### Fórmula de centrado de columnas
+
+Para centrar N columnas en la grilla de 12: `start = (12 − N) / 2 + 1`
+
+| Columnas | start | Verificación |
+|---------|-------|-------------|
+| 4 cols | start-5 | 4 vacías + 4 + 4 vacías = 12 ✓ |
+| 6 cols | start-4 | 3 vacías + 6 + 3 vacías = 12 ✓ |
+| 8 cols | start-3 | 2 vacías + 8 + 2 vacías = 12 ✓ |
+| 10 cols | start-2 | 1 vacía + 10 + 1 vacía = 12 ✓ |
+
+---
+
+##### Regla de cascada de columnas responsivas — CRÍTICO
+
+`sb-ui-col-md-8` aplica en **768px Y TODOS LOS VIEWPORTS MAYORES** a menos que se sobrescriba.
+Sin overrides en lg/xl, el mismo ancho de tablet se aplica en pantallas de 1536px → contenido demasiado ancho.
+
+**Siempre encadenar los tres overrides para artefactos angostos:**
+
+```
+sb-ui-col-12              → móvil: 100%
+sb-ui-col-md-N  sb-ui-col-start-md-X  → tablet 768px
+sb-ui-col-lg-N  sb-ui-col-start-lg-X  → desktop 992px
+sb-ui-col-xl-N  sb-ui-col-start-xl-X  → pantalla grande 1200px+
+```
+
+---
+
+##### Utilidades de alineación — cuándo usar cada una
+
+| Clase | Dónde se aplica | Efecto |
+|-------|----------------|--------|
+| `sb-ui-place-content-center` | contenedor grid | Centra las filas verticalmente en el contenedor |
+| `sb-ui-place-items-center` | contenedor grid | Centra cada ítem dentro de su celda (el ítem se encoge al tamaño de su contenido) |
+| `sb-ui-col-justify-self-end` | ítem de grid | El ítem se mueve al extremo derecho de su celda |
+| `sb-ui-col-justify-self-center` | ítem de grid | El ítem se centra en su celda |
+| `sb-ui-col-align-self-center` | ítem de grid | El ítem se centra verticalmente en su celda |
+
+**Diferencia clave:**
+- `place-content-center` mueve las filas/columnas del grid → para centrar el contenido en la pantalla
+- `place-items-center` hace que cada ítem encoja a fit-content → para centrar un logo, imagen, o texto corto dentro de su espacio
+
+---
+
+##### Patrones de layout listos para usar
+
+**Patrón 1 — Artefacto centrado en pantalla completa (login, error, confirmación)**
+
+```html
+<body class="sb-ui-grid-cols-1 sb-ui-place-content-center sb-ui-min-block-screen">
+  <div class="sb-ui-container">
+    <div class="sb-ui-grid">
+      <article class="sb-ui-col-12
+                      sb-ui-col-md-8  sb-ui-col-start-md-3
+                      sb-ui-col-lg-6  sb-ui-col-start-lg-4
+                      sb-ui-col-xl-4  sb-ui-col-start-xl-5
+                      sb-ui-card sb-ui-card--elevated">
+        <div class="sb-ui-card__content">...</div>
+      </article>
+    </div>
+  </div>
+</body>
+```
+
+**Patrón 2 — Formulario mediano centrado**
+
+```html
+<div class="sb-ui-container">
+  <div class="sb-ui-grid">
+    <div class="sb-ui-col-12 sb-ui-col-md-10 sb-ui-col-start-md-2
+                sb-ui-col-lg-8  sb-ui-col-start-lg-3
+                sb-ui-col-xl-6  sb-ui-col-start-xl-4">
+      <!-- contenido del formulario -->
+    </div>
+  </div>
+</div>
+```
+
+**Patrón 3 — Layout de 2 columnas iguales**
+
+```html
+<div class="sb-ui-container">
+  <div class="sb-ui-grid">
+    <div class="sb-ui-col-12 sb-ui-col-md-6">Columna izquierda</div>
+    <div class="sb-ui-col-12 sb-ui-col-md-6">Columna derecha</div>
+  </div>
+</div>
+```
+
+**Patrón 4 — Fila con elemento a la derecha**
+
+```html
+<div class="sb-ui-grid-cols-2 sb-ui-place-items-center">
+  <span>Izquierda</span>
+  <a class="sb-ui-button sb-ui-button--text sb-ui-col-justify-self-end">Derecha</a>
+</div>
+```
+
+**Patrón 5 — Grid de tarjetas auto-responsivo**
+
+```html
+<div class="sb-ui-container">
+  <div class="sb-ui-grid-cols-auto-fit">
+    <article class="sb-ui-card">...</article>
+    <article class="sb-ui-card">...</article>
+  </div>
+</div>
+```
+
+---
+
+#### 5d. CSS adicional — PROHIBIDO en el artefacto
+
+**No se escribe CSS en el HTML del artefacto.** Ni en `<style>`, ni en `style=""`, ni como clase propia.
+
+Si después de revisar los pasos 5a–5c todavía hay una necesidad visual que las clases de la librería no cubren, el flujo correcto es:
+
+1. **Notificar al desarrollador** que existe un gap en la librería
+2. **Esperar** a que el gap sea resuelto como un nuevo componente o clase utilitaria
+3. **No** generar un parche de CSS temporal en el artefacto
+
+**Clase disponible en la librería:** usa `sb-ui-min-block-screen` en el `<body>` para aplicar
+`min-block-size: 100dvb`. No escribas CSS adicional para esto.
+
+---
+
+### PASO 6 — VERIFICAR
+
+Antes de entregar el output, confirma que NO contiene:
+
+- ❌ **Cualquier bloque `<style>`** — el artefacto no tiene CSS embebido propio
+- ❌ **Atributo `style=""` con valores de diseño** — colores, tamaños, display, flex, grid, espaciados (excepción única: `position: relative` en wrapper de input con icono)
+- ❌ **Clases CSS propias** — solo se permiten clases `sb-ui-*` documentadas en `componentes-01-sb-ui.mdc`
+- ❌ Colores hexadecimales (`#xxx`, `rgb()`, `hsl()`)
+- ❌ Valores de espaciado hardcodeados (`padding: 16px`, `margin: 8px`)
+- ❌ `!important`
+- ❌ Clases `sb-ui-*` que no existan en `componentes-01-sb-ui.mdc`
+- ❌ `data-brand` o `data-theme` ausentes en el `<html>`
+- ❌ Font Awesome cargado por CDN separado (ya está en el bundle)
+- ❌ Múltiples marcas en una misma página
+- ❌ `sb-ui-container-sm` usado como contenedor angosto fijo — NO es fijo, crece con el viewport; usar `sb-ui-container + sb-ui-grid + sb-ui-col-md-8 sb-ui-col-start-md-3` en su lugar
+
+**Verificación de espaciado — revisa visualmente cada grupo de componentes:**
+
+- ❌ **Botones en una card fuera de `sb-ui-card__actions`** — los botones de una card siempre van en `<div class="sb-ui-card__actions">`, nunca directamente en `sb-ui-card__content`. El `card__actions` tiene gap propio; el `card__content` no es el contenedor correcto para botones.
+- ❌ **2 o más componentes hermanos dentro de un `<div>` sin gap** — si el padre no es `sb-ui-card__content`, `sb-ui-card__actions` ni `sb-ui-grid`, los hijos quedarán pegados. Envuelve el grupo en `sb-ui-grid-cols-1 sb-ui-gap-3` (columna) o `sb-ui-grid-cols-N sb-ui-gap-3` (fila).
+- ❌ **Secciones de página pegadas dentro de `sb-ui-container`** — el container no tiene gap propio. Si hay breadcrumb + heading + grid como hijos directos, envuélvelos en `<div class="sb-ui-grid-cols-1 sb-ui-gap-4">`.
+
+Escala de referencia rápida: `sb-ui-gap-2` (8px) · `sb-ui-gap-3` (16px) · `sb-ui-gap-4` (~16–24px responsivo) · `sb-ui-gap-5` (~24–48px responsivo)
+
+---
+
+## Ejemplo completo — Modo sin Figma
+
+**Solicitud:**
+```
+"Construye una pantalla de login para Seguros Bolívar con logo, email, contraseña,
+checkbox recordarme, link olvidé contraseña y botón ingresar"
+```
+
+**PASO 1 — ANALIZAR:**
+- logo de la marca (imagen)
+- encabezado "Bienvenido" con subtítulo
+- campo de texto tipo email con icono
+- campo de texto tipo password con icono
+- checkbox "Recordarme"
+- enlace "Olvidé mi contraseña"
+- botón con fondo sólido "Ingresar"
+- layout: artefacto centrado en pantalla completa, card angosto
+
+**PASO 2 — MAPEAR:**
+- logo → `<img>` (estándar HTML, sin componente específico)
+- encabezado + subtítulo → `sb-ui-card__title` + `sb-ui-card__subtitle` (dentro de card)
+- campos email/password → `sb-ui-input` + `sb-ui-input-label` + `sb-ui-input-container`
+- checkbox → `sb-ui-checkbox`
+- enlace → `sb-ui-button --text --tertiary`
+- botón → `sb-ui-button --fill --primary --block`
+- contenedor card → `sb-ui-card sb-ui-card--elevated`
+- layout pantalla completa → Patrón 1 (ver sección 5c): `sb-ui-grid-cols-1 + sb-ui-container + sb-ui-grid + sb-ui-col-md-8 sb-ui-col-start-md-3`
+- fila checkbox+link → `sb-ui-grid-cols-2 + sb-ui-place-items-center + sb-ui-col-justify-self-end`
+
+**PASO 3 — VALIDAR:** todos existen ✅
+
+**PASO 4 — PLANEAR:**
+```
+body [grid-1-col + place-content-center]
+  └── container
+       └── grid 12-col
+            └── article [col-12, col-md-8 start-md-3 | card elevated]
+                 └── card__content
+                      └── div [grid-1-col + place-items-center] → logo
+                      └── div → [card__title, card__subtitle]
+                      └── input-container → [label + input email + icono]
+                      └── input-container → [label + input password + icono]
+                      └── div [grid-cols-2 + place-items-center]
+                           └── checkbox "Recordarme"
+                           └── button--text [justify-self-end] "Olvidé mi contraseña"
+                      └── button --fill --primary --block "Ingresar"
+```
+
+**PASO 5 — GENERAR:**
+
+```html
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión — Seguros Bolívar</title>
+  <link rel="stylesheet"
+        href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css">
+</head>
+<body class="sb-ui-grid-cols-1 sb-ui-place-content-center sb-ui-min-block-screen">
+
+  <div class="sb-ui-container">
+    <div class="sb-ui-grid">
+
+      <article class="sb-ui-col-12
+                      sb-ui-col-md-8  sb-ui-col-start-md-3
+                      sb-ui-col-lg-6  sb-ui-col-start-lg-4
+                      sb-ui-col-xl-4  sb-ui-col-start-xl-5
+                      sb-ui-card sb-ui-card--elevated">
+        <div class="sb-ui-card__content">
+
+          <div class="sb-ui-grid-cols-1 sb-ui-place-items-center">
+            <img src=".../logo-seguros-bolivar.svg" alt="Seguros Bolívar" height="48">
+          </div>
+
+          <div>
+            <h1 class="sb-ui-card__title">Bienvenido</h1>
+            <p class="sb-ui-card__subtitle">Ingresa tus credenciales para continuar</p>
+          </div>
+
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label sb-ui-input-label--required" for="email">
+              Correo electrónico
+            </label>
+            <div style="position: relative;">
+              <input class="sb-ui-input sb-ui-input--with-icon"
+                     type="email" id="email" placeholder="correo@ejemplo.com" required>
+              <span class="sb-ui-input-icon"><i class="fa-solid fa-envelope"></i></span>
+            </div>
+          </div>
+
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label sb-ui-input-label--required" for="password">
+              Contraseña
+            </label>
+            <div style="position: relative;">
+              <input class="sb-ui-input sb-ui-input--with-icon"
+                     type="password" id="password" placeholder="••••••••" required>
+              <span class="sb-ui-input-icon"><i class="fa-solid fa-lock"></i></span>
+            </div>
+          </div>
+
+          <div class="sb-ui-grid-cols-2 sb-ui-place-items-center">
+            <label class="sb-ui-checkbox">
+              <input type="checkbox" class="sb-ui-checkbox__input" id="remember">
+              <span class="sb-ui-checkbox__box"></span>
+              <span class="sb-ui-checkbox__label">Recordarme</span>
+            </label>
+            <a href="#"
+               class="sb-ui-button sb-ui-button--tertiary sb-ui-button--text sb-ui-col-justify-self-end">
+              Olvidé mi contraseña
+            </a>
+          </div>
+
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--block">
+            Ingresar
+          </button>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+</body>
+</html>
+```
+
+**PASO 6 — VERIFICAR:** ✅ sin colores hardcodeados, ✅ solo clases `sb-ui-*` documentadas,
+✅ data attributes presentes, ✅ layout usando sistema de grilla (no `sb-ui-container-sm`),
+✅ centrado vertical con `sb-ui-min-block-screen` en el `<body>` (sin CSS adicional)
+
+---
+
+## Ejemplo completo — Modo con Figma MCP
+
+**Solicitud:**
+```
+"Implementa este diseño: https://www.figma.com/file/xxx/Cards-Seguros-Bolivar"
+```
+
+**PASO 1 — ANALIZAR (vía MCP):**
+
+Se lee el frame con el MCP y se documenta lo extraído con fidelidad:
+
+```
+Frame: "Cards de productos"
+Layout: grid de 3 columnas iguales
+Gap entre cards: ~24px
+
+Card 1 — Seguro de Vida:
+  - imagen arriba (cover)
+  - badge --success "Popular" sobre la imagen (esquina superior izquierda)
+  - título: "Seguro de Vida"
+  - subtítulo: "Protección para ti y tu familia"
+  - descripción: "Cobertura por fallecimiento..."
+  - precio: "Desde $45.000/mes"
+  - botón --fill --primary "Cotizar"  [ancho completo]
+  - botón --stroke --secondary "Ver detalles"  [ancho completo]
+  → Los botones están apilados verticalmente bajo el contenido
+```
+
+**PASO 2 — MAPEAR** (igual que modo texto, pero con las variantes exactas del diseño)
+
+**PASO 3 — VALIDAR** (igual)
+
+**PASO 4 — PLANEAR:**
+```
+container
+  └── grid (sb-ui-grid)
+       ├── article [col-12, col-md-6, col-lg-4 | card elevated]
+       │    ├── card__image → img + badge --success
+       │    ├── card__content → título + subtítulo + descripción + precio
+       │    └── card__actions → button --fill --primary + button --stroke --secondary
+       ├── article ... (card 2)
+       └── article ... (card 3)
+```
+
+**PASO 5 — GENERAR** respetando el orden y variantes extraídas del diseño.
+
+**PASO 6 — VERIFICAR** — además de los checks estándar, confirmar:
+- ✅ El orden de los elementos coincide con el diseño de Figma
+- ✅ Las variantes de botones, badges e inputs son las del diseño (no las más convenientes)
+- ✅ El layout de columnas reproduce las proporciones del diseño
+- ✅ Los textos son exactamente los que muestra el diseño
+
+---
+
+## Cambio de marca
+
+El mismo artefacto funciona para cualquier marca. Solo cambia `data-brand`, el nombre del archivo CSS y nada más:
+
+```html
+<!-- Seguros Bolívar -->
+<html data-brand="seguros-bolivar" data-theme="light">
+<link href=".../sb-ui-seguros-bolivar-light.min.css">
+
+<!-- Davivienda, misma estructura HTML -->
+<html data-brand="davivienda" data-theme="light">
+<link href=".../sb-ui-davivienda-light.min.css">
+```
+
+**Nunca modificar las clases de componentes para cambiar de marca** — el sistema de brand overrides lo resuelve automáticamente con los data attributes.
+
+### Cambio dinámico de marca/tema desde JavaScript
+
+Cuando el artefacto requiera un selector de marca o tema en tiempo de ejecución:
+
+```javascript
+function cambiarMarcaYTema(marca, tema) {
+  const html = document.documentElement;
+
+  // 1. Actualizar data attributes
+  html.setAttribute('data-brand', marca);
+  html.setAttribute('data-theme', tema);
+
+  // 2. Actualizar el CSS cargado — obligatorio al cambiar marca
+  const linkCSS = document.querySelector('link[href*="sb-ui-"]');
+  if (linkCSS) {
+    linkCSS.href = `https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-${marca}-${tema}.min.css`;
+  }
+}
+
+// Ejemplos de uso:
+cambiarMarcaYTema('seguros-bolivar', 'light');
+cambiarMarcaYTema('davivienda', 'dark');
+```
+
+#### Persistencia con localStorage
+
+```javascript
+// Guardar preferencia del usuario
+function guardarPreferencia(marca, tema) {
+  localStorage.setItem('sb-ui-brand', marca);
+  localStorage.setItem('sb-ui-theme', tema);
+}
+
+// Cargar preferencia al inicio
+window.addEventListener('DOMContentLoaded', () => {
+  const marca = localStorage.getItem('sb-ui-brand') || 'seguros-bolivar';
+  const tema  = localStorage.getItem('sb-ui-theme')  || 'light';
+  cambiarMarcaYTema(marca, tema);
+});
+```
+
+**Importante:** al cambiar de marca dinámicamente siempre actualizar el `href` del `<link>` CSS, no solo los data attributes.
+
+---
+
+## Solución de problemas frecuentes
+
+| Síntoma | Causa | Solución |
+|---------|-------|----------|
+| Los estilos no se aplican / apariencia genérica | Faltan `data-brand` o `data-theme` en `<html>` | Agregar `<html data-brand="seguros-bolivar" data-theme="light">` |
+| Los iconos no aparecen | El bundle CSS no cargó correctamente | Verificar que la URL del `<link>` es correcta; Font Awesome viene bundleado — no agregar CDN separado |
+| Web Components no funcionan (`<sb-ui-modal>`, etc.) | Script ausente o cargado sin `type="module"` | `<script type="module" src=".../sb-ui-components.min.js"></script>` |
+| Cambio de marca no surte efecto | Solo se actualizaron los data attributes pero no el `href` del CSS | Llamar `cambiarMarcaYTema(marca, tema)` que actualiza ambos |
+| Estilos desactualizados tras build | Cache del navegador | El CDN de GitHub Pages no tiene versión en la URL — para estabilidad ante breaking changes, descargar el bundle localmente |

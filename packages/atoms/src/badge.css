@@ -111,6 +111,7 @@
     & > [class*='icon'] {
       inline-size: var(--sb-ui-badge-icon-size);
       block-size: var(--sb-ui-badge-icon-size);
+      font-size: var(--sb-ui-badge-icon-size);
       flex-shrink: 0;
       color: var(--sb-ui-badge-icon-color);
       line-height: 1;
@@ -201,10 +202,10 @@
   .sb-ui-badge--icon-only {
     /* Elimina el contenido de texto */
     font-size: 0;
-    
-    /* Ajusta el padding para que el icono quede centrado */
-    padding-inline: var(--sb-ui-badge-padding-inline);
-    padding-block: var(--sb-ui-badge-padding-block);
+
+    /* Sin padding: el icono usa todo el área, flexbox centra */
+    padding-inline: 0;
+    padding-block: 0;
   }
 }
 
