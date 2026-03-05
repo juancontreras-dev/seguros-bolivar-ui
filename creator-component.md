@@ -1800,3 +1800,141 @@ En todos los casos, ejecuta el flujo completo desde Paso 0.
 - Agregar `<script>` extras al HTML demo fuera de `copyCode()`, snippet dismiss o `../dist/`
 - Usar clases CSS inventadas que modifiquen la apariencia del componente en el demo
 - "Arreglar" visualmente el demo con estilos locales en vez de corregir el componente CSS
+
+---
+
+## FASE 6 — SINCRONIZACIÓN CON RAMA `library-only`
+
+Esta fase se ejecuta SIEMPRE después de que la FASE 5 (build y verificación) haya pasado
+correctamente. Su objetivo es llevar ÚNICAMENTE los archivos de librería al branch
+`library-only`, que existe exclusivamente para distribución CDN sin demos ni Storybook.
+
+### ¿Qué es `library-only`?
+
+La rama `library-only` contiene solo los paquetes necesarios para construir el bundle CDN:
+  - `packages/tokens/`         → Design tokens
+  - `packages/atoms/`          → CSS de atoms
+  - `packages/molecules/`      → CSS + Lit de molecules
+  - `packages/brand-overrides/`→ Overrides por marca
+  - `packages/bundle/`         → Builder del CDN
+
+Lo que NO existe en `library-only` (y nunca debe llegar):
+  ❌ `examples/`                → demos HTML
+  ❌ `packages/docs/`           → Storybook
+
+### Archivos a sincronizar por tipo de componente
+
+ATOM:
+  ✅ `packages/atoms/src/{component}.css`
+  ✅ `packages/atoms/package.json`            (si se actualizaron los exports)
+  ✅ `packages/bundle/src/builder.ts`         (atomsFiles actualizado)
+  ✅ `packages/brand-overrides/src/{brand}/{component}.css` (si existe)
+  ✅ `packages/brand-overrides/src/{brand}/index.css`       (si se agregó el @import)
+
+MOLECULE:
+  ✅ `packages/molecules/src/components/{component}/{component}.css`
+  ✅ `packages/molecules/src/components/{component}/{component}.ts`
+  ✅ `packages/molecules/src/index.css`       (si se agregó el @import)
+  ✅ `packages/molecules/src/index.ts`        (si se agregó el export)
+  ✅ `packages/molecules/package.json`        (si se actualizaron los exports)
+  ✅ `packages/brand-overrides/src/{brand}/{component}.css` (si existe)
+  ✅ `packages/brand-overrides/src/{brand}/index.css`       (si se agregó el @import)
+
+### Procedimiento paso a paso
+
+```bash
+# 0. Verificar que estamos en la rama de trabajo (NO en main ni library-only)
+git rev-parse --abbrev-ref HEAD
+# → debe mostrar la rama actual de trabajo (ej: feature/layout-menu)
+
+# 1. Registrar la rama actual para volver al final
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# 2. Asegurarse de que todos los cambios están commiteados en la rama actual
+git status
+# → No debe haber cambios sin commitear. Si los hay, commitear antes de continuar.
+
+# 3. Cambiar a library-only y actualizar desde remoto
+git checkout library-only
+git pull origin library-only
+
+# 4a. Traer los archivos de librería desde la rama de trabajo (ATOM)
+git checkout $current_branch -- packages/atoms/src/{component}.css
+git checkout $current_branch -- packages/atoms/package.json
+git checkout $current_branch -- packages/bundle/src/builder.ts
+# (Agregar brand overrides solo si existen)
+git checkout $current_branch -- packages/brand-overrides/src/{brand}/{component}.css
+git checkout $current_branch -- packages/brand-overrides/src/{brand}/index.css
+
+# 4b. Traer los archivos de librería desde la rama de trabajo (MOLECULE)
+git checkout $current_branch -- packages/molecules/src/components/{component}/{component}.css
+git checkout $current_branch -- packages/molecules/src/components/{component}/{component}.ts
+git checkout $current_branch -- packages/molecules/src/index.css
+git checkout $current_branch -- packages/molecules/src/index.ts
+git checkout $current_branch -- packages/molecules/package.json
+# (Agregar brand overrides solo si existen)
+git checkout $current_branch -- packages/brand-overrides/src/{brand}/{component}.css
+git checkout $current_branch -- packages/brand-overrides/src/{brand}/index.css
+
+# 5. Verificar que NO se trajeron archivos de examples/ ni docs/
+git status
+# → Solo deben aparecer archivos de packages/ (atoms, molecules, brand-overrides, bundle)
+# → Si aparece cualquier archivo de examples/ o packages/docs/ → git restore --staged <archivo>
+
+# 6. Build de verificación en library-only
+pnpm run build
+# → Debe completar sin errores
+
+# 7. Commit en library-only
+git add packages/atoms/src/{component}.css
+git add packages/atoms/package.json
+git add packages/bundle/src/builder.ts
+# (agregar los demás archivos que se sincronizaron)
+git commit -m "feat: agregar {component} al bundle de librería"
+
+# 8. Push de library-only al remoto
+git push origin library-only
+
+# 9. Volver a la rama de trabajo original
+git checkout $current_branch
+```
+
+### Verificación post-sincronización
+
+Antes de dar la fase por terminada, confirmar que en `library-only`:
+
+  ✅ `pnpm run build` completó sin errores
+  ✅ El archivo `{component}.css` aparece en `packages/atoms/src/` (si es atom)
+  ✅ El `builder.ts` tiene `'{component}.css'` en `atomsFiles` (si es atom)
+  ✅ El componente aparece en los 12 bundles generados en `dist/`
+  ✅ NO existe `examples/{component}/` en la rama
+  ✅ NO existe `packages/docs/src/atoms/{Component}.stories.ts` en la rama
+
+### Reglas críticas de esta fase
+
+  - NUNCA hacer `git checkout library-only -- examples/` o `-- packages/docs/`
+  - NUNCA hacer `git merge` ni `git rebase` de la rama de trabajo sobre `library-only`
+    (eso traería todos los archivos, incluyendo demos y Storybook)
+  - SIEMPRE usar `git checkout {rama} -- {archivo}` para traer archivos selectivamente
+  - SIEMPRE volver a la rama de trabajo al terminar (`git checkout $current_branch`)
+  - Si `pnpm run build` falla en `library-only`, diagnosticar antes de hacer push
+
+### En el resumen final al usuario
+
+Cuando hayas completado todas las fases incluyendo esta, incluir en el resumen:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SINCRONIZACIÓN library-only
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Archivos sincronizados:
+  ✅ packages/atoms/src/{component}.css
+  ✅ packages/bundle/src/builder.ts
+  ✅ packages/brand-overrides/src/{brand}/{component}.css
+
+Build en library-only: ✅ OK
+Push a origin/library-only: ✅ OK
+Rama actual restaurada: ✅ {rama-de-trabajo}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
