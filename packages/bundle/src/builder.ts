@@ -222,6 +222,7 @@ async function buildCompleteBrandBundle(
     'spinner.css',
     'stepper.css',
     'tabs.css',
+    'tag.css',
     'textArea.css',
     'toggle.css',
     'index.css',
@@ -383,7 +384,7 @@ async function buildJSBundle(): Promise<void> {
  */
 async function generateIndexHTML(): Promise<void> {
   // Skip - no generamos HTMLs en dist/
-  console.log('\n  ℹ️  Skipping HTML generation');
+  console.log('\n  ℹ️  Skipping HTML generation (demos are in examples/)');
 }
 
 /**
