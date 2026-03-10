@@ -222,6 +222,7 @@ async function buildCompleteBrandBundle(
     'spinner.css',
     'stepper.css',
     'tabs.css',
+    'tag.css',
     'textArea.css',
     'toggle.css',
     'index.css',
