@@ -52,4 +52,5 @@ storybook-static/
 
 .vercel
 
-/.storybook
+# Claude Code (configuración local del desarrollador)
+.claude/
