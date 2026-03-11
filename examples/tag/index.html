@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="es" data-brand="seguros-bolivar" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tag Component - Seguros Bolívar UI</title>
+
+    <!-- CSS del Design System -->
+    <link
+      rel="stylesheet"
+      href="https://juancontreras-dev.github.io/seguros-bolivar-ui/dist/sb-ui-seguros-bolivar-light.min.css"
+    />
+
+    <!-- ============================================
+         ESTILOS GENERALES DEL DEMO
+         ============================================ -->
+    <style>
+      /* Estilos globales del demo - NO estilos del componente */
+      :root {
+        --demo-bg: #ffffff;
+        --demo-content-bg: #f8f9fa;
+        --demo-border: #e9ecef;
+        --demo-text-primary: #1b1b1b;
+        --demo-text-secondary: #666;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--sb-ui-typography-fontFamily);
+        background-color: var(--demo-content-bg);
+        color: var(--demo-text-primary);
+        line-height: 1.6;
+        padding-block: 2rem;
+      }
+
+      .demo-container {
+        max-inline-size: 1200px;
+        margin-inline: auto;
+        padding-inline: 2rem;
+      }
+
+      .demo-header {
+        text-align: center;
+        margin-block-end: 3rem;
+      }
+
+      .demo-title {
+        font-size: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+        font-weight: 700;
+        color: var(--demo-text-primary);
+        margin-block-end: 0.5rem;
+      }
+
+      .demo-subtitle {
+        font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+        color: var(--demo-text-secondary);
+        font-weight: 400;
+      }
+
+      .component-description {
+        font-size: 1rem;
+        color: var(--demo-text-secondary);
+        line-height: 1.6;
+        margin-block-end: 2rem;
+      }
+
+      .variant-section {
+        background-color: var(--demo-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-block-end: 2rem;
+        border: 1px solid var(--demo-border);
+      }
+
+      .variant-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-block-end: 1rem;
+        color: var(--demo-text-primary);
+      }
+
+      .tag-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-block: 2rem;
+      }
+
+      .tag-demo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .tag-demo-label {
+        font-size: 0.75rem;
+        color: var(--demo-text-secondary);
+        font-weight: 500;
+      }
+
+      /* Estilos para bloques de código */
+      .demo-code-block {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-block-start: 2rem;
+      }
+
+      .demo-code-block-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background-color: #e9ecef;
+        border-block-end: 1px solid #dee2e6;
+      }
+
+      .demo-code-block-header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .demo-code-block-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--demo-text-primary);
+      }
+
+      .demo-code-block-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        background-color: #6c757d;
+        color: white;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .copy-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: #6c757d;
+        transition: color 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        color: var(--demo-text-primary);
+      }
+
+      .demo-code-block-body {
+        padding: 1.5rem;
+        overflow-x: auto;
+        margin: 0;
+      }
+
+      .demo-code-block-body code {
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--demo-text-primary);
+      }
+    </style>
+
+    <script>
+      function copyCode(button) {
+        const codeBlock = button.closest('.demo-code-block').querySelector('code');
+        const textToCopy = codeBlock.textContent;
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            const icon = button.querySelector('i');
+            icon.className = 'fa-solid fa-check';
+            setTimeout(() => {
+              icon.className = 'fa-solid fa-copy';
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error('Error al copiar:', err);
+          });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="demo-container">
+      <!-- ============================================
+           HEADER DEL DEMO
+           ============================================ -->
+      <header class="demo-header">
+        <h1 class="demo-title">Tag Component</h1>
+        <p class="demo-subtitle">Etiquetas visuales para estados y categorización</p>
+      </header>
+
+      <p class="component-description">
+        Componente Tag con 32 variantes: 4 colores (Error, Warning, Success, Info) × 2 tamaños
+        (Large, Small) × 2 esquinas (Off, Rounded) × 2 estados de icono (con/sin icono izquierdo).
+      </p>
+
+      <!-- ============================================
+           VARIANTE — ERROR
+           ============================================ -->
+      <section class="variant-section">
+        <h2 class="variant-title">Error (Rojo)</h2>
+        <p class="component-description">
+          Tag con fondo rojo (#dc3545) y texto blanco para indicar errores, fallos o estados
+          críticos que requieren atención inmediata.
+        </p>
+
+        <div class="tag-demo-grid">
+          <!-- Con icono (Left icon: True) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Error
+            </span>
+            <span class="tag-demo-label">Large + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Error
+            </span>
+            <span class="tag-demo-label">Large + On + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Error
+            </span>
+            <span class="tag-demo-label">Small + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Error
+            </span>
+            <span class="tag-demo-label">Small + On + Icono</span>
+          </div>
+          
+          <!-- Sin icono (Left icon: False) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error">
+              Error
+            </span>
+            <span class="tag-demo-label">Large + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--rounded">
+              Error
+            </span>
+            <span class="tag-demo-label">Large + On</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small">
+              Error
+            </span>
+            <span class="tag-demo-label">Small + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small sb-ui-tag--rounded">
+              Error
+            </span>
+            <span class="tag-demo-label">Small + On</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <div class="demo-code-block-header-left">
+              <h4 class="demo-code-block-title">Ejemplo de uso</h4>
+              <span class="demo-code-block-badge">HTML</span>
+            </div>
+            <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Tag Error - Large con icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--error"&gt;
+  &lt;i class="fa-solid fa-circle-exclamation"&gt;&lt;/i&gt;
+  Error
+&lt;/span&gt;
+
+&lt;!-- Tag Error - Small sin icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small"&gt;
+  Error
+&lt;/span&gt;
+
+&lt;!-- Tag Error - Large Rounded --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--rounded"&gt;
+  &lt;i class="fa-solid fa-circle-exclamation"&gt;&lt;/i&gt;
+  Error
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ============================================
+           VARIANTE — WARNING
+           ============================================ -->
+      <section class="variant-section">
+        <h2 class="variant-title">Warning (Amarillo)</h2>
+        <p class="component-description">
+          Tag con fondo amarillo (#ffc100) y texto oscuro para indicar advertencias, alertas informativas o situaciones que requieren precaución.
+        </p>
+
+        <div class="tag-demo-grid">
+          <!-- Con icono (Left icon: True) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Warning
+            </span>
+            <span class="tag-demo-label">Large + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--rounded">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Warning
+            </span>
+            <span class="tag-demo-label">Large + On + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--small">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Warning
+            </span>
+            <span class="tag-demo-label">Small + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--small sb-ui-tag--rounded">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Warning
+            </span>
+            <span class="tag-demo-label">Small + On + Icono</span>
+          </div>
+          
+          <!-- Sin icono (Left icon: False) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning">
+              Warning
+            </span>
+            <span class="tag-demo-label">Large + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--rounded">
+              Warning
+            </span>
+            <span class="tag-demo-label">Large + On</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--small">
+              Warning
+            </span>
+            <span class="tag-demo-label">Small + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--small sb-ui-tag--rounded">
+              Warning
+            </span>
+            <span class="tag-demo-label">Small + On</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <div class="demo-code-block-header-left">
+              <h4 class="demo-code-block-title">Ejemplo de uso</h4>
+              <span class="demo-code-block-badge">HTML</span>
+            </div>
+            <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Tag Warning - Large con icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--warning"&gt;
+  &lt;i class="fa-solid fa-triangle-exclamation"&gt;&lt;/i&gt;
+  Warning
+&lt;/span&gt;
+
+&lt;!-- Tag Warning - Small sin icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--small"&gt;
+  Warning
+&lt;/span&gt;
+
+&lt;!-- Tag Warning - Large Rounded --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--warning sb-ui-tag--rounded"&gt;
+  &lt;i class="fa-solid fa-triangle-exclamation"&gt;&lt;/i&gt;
+  Warning
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ============================================
+           VARIANTE — SUCCESS
+           ============================================ -->
+      <section class="variant-section">
+        <h2 class="variant-title">Success (Verde)</h2>
+        <p class="component-description">
+          Tag con fondo verde (#28a745) y texto blanco para indicar éxito, confirmación o estados completados correctamente.
+        </p>
+
+        <div class="tag-demo-grid">
+          <!-- Con icono (Left icon: True) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success">
+              <i class="fa-solid fa-circle-check"></i>
+              Success
+            </span>
+            <span class="tag-demo-label">Large + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-check"></i>
+              Success
+            </span>
+            <span class="tag-demo-label">Large + On + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--small">
+              <i class="fa-solid fa-circle-check"></i>
+              Success
+            </span>
+            <span class="tag-demo-label">Small + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--small sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-check"></i>
+              Success
+            </span>
+            <span class="tag-demo-label">Small + On + Icono</span>
+          </div>
+          
+          <!-- Sin icono (Left icon: False) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success">
+              Success
+            </span>
+            <span class="tag-demo-label">Large + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--rounded">
+              Success
+            </span>
+            <span class="tag-demo-label">Large + On</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--small">
+              Success
+            </span>
+            <span class="tag-demo-label">Small + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--small sb-ui-tag--rounded">
+              Success
+            </span>
+            <span class="tag-demo-label">Small + On</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <div class="demo-code-block-header-left">
+              <h4 class="demo-code-block-title">Ejemplo de uso</h4>
+              <span class="demo-code-block-badge">HTML</span>
+            </div>
+            <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Tag Success - Large con icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--success"&gt;
+  &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
+  Success
+&lt;/span&gt;
+
+&lt;!-- Tag Success - Small sin icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--small"&gt;
+  Success
+&lt;/span&gt;
+
+&lt;!-- Tag Success - Large Rounded --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--success sb-ui-tag--rounded"&gt;
+  &lt;i class="fa-solid fa-circle-check"&gt;&lt;/i&gt;
+  Success
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ============================================
+           VARIANTE — INFO
+           ============================================ -->
+      <section class="variant-section">
+        <h2 class="variant-title">Info (Azul)</h2>
+        <p class="component-description">
+          Tag con fondo azul (#17a2b8) y texto blanco para indicar información general, mensajes informativos o estados neutrales.
+        </p>
+
+        <div class="tag-demo-grid">
+          <!-- Con icono (Left icon: True) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info">
+              <i class="fa-solid fa-circle-info"></i>
+              Info
+            </span>
+            <span class="tag-demo-label">Large + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-info"></i>
+              Info
+            </span>
+            <span class="tag-demo-label">Large + On + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--small">
+              <i class="fa-solid fa-circle-info"></i>
+              Info
+            </span>
+            <span class="tag-demo-label">Small + Off + Icono</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--small sb-ui-tag--rounded">
+              <i class="fa-solid fa-circle-info"></i>
+              Info
+            </span>
+            <span class="tag-demo-label">Small + On + Icono</span>
+          </div>
+          
+          <!-- Sin icono (Left icon: False) -->
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info">
+              Info
+            </span>
+            <span class="tag-demo-label">Large + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--rounded">
+              Info
+            </span>
+            <span class="tag-demo-label">Large + On</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--small">
+              Info
+            </span>
+            <span class="tag-demo-label">Small + Off</span>
+          </div>
+          <div class="tag-demo-item">
+            <span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--small sb-ui-tag--rounded">
+              Info
+            </span>
+            <span class="tag-demo-label">Small + On</span>
+          </div>
+        </div>
+
+        <div class="demo-code-block">
+          <div class="demo-code-block-header">
+            <div class="demo-code-block-header-left">
+              <h4 class="demo-code-block-title">Ejemplo de uso</h4>
+              <span class="demo-code-block-badge">HTML</span>
+            </div>
+            <button class="copy-btn" onclick="copyCode(this)" aria-label="Copiar código">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+          </div>
+          <pre class="demo-code-block-body"><code>&lt;!-- Tag Info - Large con icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--info"&gt;
+  &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
+  Info
+&lt;/span&gt;
+
+&lt;!-- Tag Info - Small sin icono --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--small"&gt;
+  Info
+&lt;/span&gt;
+
+&lt;!-- Tag Info - Large Rounded --&gt;
+&lt;span class="sb-ui-tag sb-ui-tag--info sb-ui-tag--rounded"&gt;
+  &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
+  Info
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

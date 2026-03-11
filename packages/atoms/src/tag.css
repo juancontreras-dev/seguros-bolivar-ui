@@ -1,0 +1,261 @@
+/**
+ * ============================================================================
+ * Tag Component - Seguros Bolivar UI Design System
+ * ============================================================================
+ *
+ * Componente CSS moderno con:
+ * - CSS Nesting nativo
+ * - @layer para control de cascada
+ * - Logical Properties para internacionalización (RTL/LTR)
+ * - clamp() para responsive fluido
+ *
+ * ============================================================================
+ * 📋 ÍNDICE DE NAVEGACIÓN
+ * ============================================================================
+ *
+ * 1. LAYERS DECLARATION ...................... Línea ~60
+ * 2. RESET LAYER ............................. Línea ~70
+ * 3. TOKENS LAYER ............................ Línea ~80
+ *    - Variables CSS base (error default)
+ * 4. BASE LAYER .............................. Línea ~130
+ *    - Estilos base del componente
+ * 5. VARIANTS LAYER .......................... Línea ~160
+ *    ├─ ERROR ............................... Línea ~165
+ *    ├─ WARNING ............................. Línea ~185
+ *    ├─ SUCCESS ............................. Línea ~205
+ *    └─ INFO ................................ Línea ~225
+ * 6. SIZES LAYER ............................. Línea ~245
+ *    ├─ LARGE (default) ..................... Línea ~250
+ *    └─ SMALL ............................... Línea ~265
+ * 7. MODIFIERS LAYER ......................... Línea ~280
+ *    └─ ROUNDED ............................. Línea ~285
+ * 8. UTILITIES LAYER ......................... Línea ~295
+ *    ├─ High Contrast Mode .................. Línea ~300
+ *    └─ Reduced Motion ...................... Línea ~310
+ *
+ * ============================================================================
+ * 🎨 VARIANTES DE ESTILO
+ * ============================================================================
+ *
+ * ERROR: rojo, para errores o acciones destructivas
+ * WARNING: amarillo, para advertencias
+ * SUCCESS: verde, para éxitos o confirmaciones
+ * INFO: azul, para información neutral
+ *
+ * ============================================================================
+ * 📏 TAMAÑOS
+ * ============================================================================
+ *
+ * large (default): 24px altura, font 14px, padding 8px, gap 4px
+ * small: 18px altura aprox, font 12px, padding 8px, gap 2px
+ *
+ * ============================================================================
+ * 💡 EJEMPLOS DE USO
+ * ============================================================================
+ *
+ * <!-- Error tag (default) -->
+ * <span class="sb-ui-tag sb-ui-tag--error">
+ *   <i class="fa-solid fa-circle-exclamation"></i>
+ *   Error
+ * </span>
+ *
+ * <!-- Warning tag -->
+ * <span class="sb-ui-tag sb-ui-tag--warning">
+ *   <i class="fa-solid fa-triangle-exclamation"></i>
+ *   Warning
+ * </span>
+ *
+ * <!-- Success tag -->
+ * <span class="sb-ui-tag sb-ui-tag--success">
+ *   <i class="fa-solid fa-circle-check"></i>
+ *   Success
+ * </span>
+ *
+ * <!-- Info tag -->
+ * <span class="sb-ui-tag sb-ui-tag--info">
+ *   <i class="fa-solid fa-circle-info"></i>
+ *   Info
+ * </span>
+ *
+ * <!-- Small tag -->
+ * <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--small">
+ *   <i class="fa-solid fa-circle-exclamation"></i>
+ *   Error
+ * </span>
+ *
+ * <!-- Rounded tag -->
+ * <span class="sb-ui-tag sb-ui-tag--error sb-ui-tag--rounded">
+ *   <i class="fa-solid fa-circle-exclamation"></i>
+ *   Error
+ * </span>
+ *
+ * <!-- Tag sin icono -->
+ * <span class="sb-ui-tag sb-ui-tag--error">
+ *   Error
+ * </span>
+ *
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. LAYERS DECLARATION
+   ============================================================================ */
+@layer reset, tokens, base, variants, sizes, modifiers, utilities;
+
+/* ============================================================================
+   2. RESET LAYER
+   ============================================================================ */
+@layer reset {
+  .sb-ui-tag {
+    all: unset;
+    box-sizing: border-box;
+  }
+}
+
+/* ============================================================================
+   3. TOKENS LAYER - Variables CSS
+   ============================================================================ */
+@layer tokens {
+  .sb-ui-tag {
+    /* Colores BASE - Error (default) */
+    --sb-ui-tag-bg-color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    --sb-ui-tag-text-color: var(--sb-ui-color-grayscale-white, #ffffff);
+
+    /* Espaciado - Large (default) */
+    --sb-ui-tag-padding-inline: clamp(0.44rem, 0.4rem + 0.2vw, 0.5rem); /* 7-8px */
+    --sb-ui-tag-padding-block: clamp(0.22rem, 0.2rem + 0.1vw, 0.25rem); /* 3.5-4px */
+    --sb-ui-tag-gap: clamp(0.22rem, 0.2rem + 0.1vw, 0.25rem); /* 3.5-4px */
+
+    /* Tipografía - Large (default) */
+    --sb-ui-tag-font-size: clamp(0.813rem, 0.781rem + 0.16vw, 0.875rem); /* 13-14px */
+    --sb-ui-tag-font-weight: 400;
+    --sb-ui-tag-line-height: 1.4;
+    --sb-ui-tag-font-family: var(--sb-ui-typography-fontFamily, 'Roboto', sans-serif);
+
+    /* Forma */
+    --sb-ui-tag-border-radius: clamp(0.313rem, 0.281rem + 0.16vw, 0.375rem); /* 5-6px */
+    --sb-ui-tag-min-block-size: clamp(1.375rem, 1.313rem + 0.31vw, 1.5rem); /* 22-24px */
+
+    /* Iconos */
+    --sb-ui-tag-icon-size: clamp(0.875rem, 0.844rem + 0.16vw, 1rem); /* 14-16px */
+  }
+}
+
+/* ============================================================================
+   4. BASE LAYER
+   ============================================================================ */
+@layer base {
+  .sb-ui-tag {
+    /* Layout */
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sb-ui-tag-gap);
+
+    /* Espaciado */
+    padding-inline: var(--sb-ui-tag-padding-inline);
+    padding-block: var(--sb-ui-tag-padding-block);
+    min-block-size: var(--sb-ui-tag-min-block-size);
+
+    /* Tipografía */
+    font-family: var(--sb-ui-tag-font-family);
+    font-size: var(--sb-ui-tag-font-size);
+    font-weight: var(--sb-ui-tag-font-weight);
+    line-height: var(--sb-ui-tag-line-height);
+    white-space: nowrap;
+
+    /* Colores */
+    background-color: var(--sb-ui-tag-bg-color);
+    color: var(--sb-ui-tag-text-color);
+
+    /* Forma */
+    border-radius: var(--sb-ui-tag-border-radius);
+
+    /* Iconos */
+    & > i,
+    & > svg {
+      inline-size: var(--sb-ui-tag-icon-size);
+      block-size: var(--sb-ui-tag-icon-size);
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* ============================================================================
+   5. VARIANTS LAYER
+   ============================================================================ */
+@layer variants {
+  /* ERROR (default) */
+  .sb-ui-tag--error {
+    --sb-ui-tag-bg-color: var(--sb-ui-color-feedback-error-base, #dc3545);
+    --sb-ui-tag-text-color: var(--sb-ui-color-grayscale-white, #ffffff);
+  }
+
+  /* WARNING */
+  .sb-ui-tag--warning {
+    --sb-ui-tag-bg-color: var(--sb-ui-color-feedback-warning-base, #ffc100);
+    --sb-ui-tag-text-color: var(--sb-ui-color-grayscale-D400, #282828);
+  }
+
+  /* SUCCESS */
+  .sb-ui-tag--success {
+    --sb-ui-tag-bg-color: var(--sb-ui-color-feedback-success-L100, #69c17d);
+    --sb-ui-tag-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+  }
+
+  /* INFO */
+  .sb-ui-tag--info {
+    --sb-ui-tag-bg-color: var(--sb-ui-color-feedback-info-L100, #4da5ff);
+    --sb-ui-tag-text-color: var(--sb-ui-color-grayscale-black, #1b1b1b);
+  }
+}
+
+/* ============================================================================
+   6. SIZES LAYER
+   ============================================================================ */
+@layer sizes {
+  /* LARGE (default) - ya definido en tokens */
+
+  /* SMALL */
+  .sb-ui-tag--small {
+    --sb-ui-tag-padding-inline: clamp(0.44rem, 0.4rem + 0.2vw, 0.5rem); /* 7-8px */
+    --sb-ui-tag-padding-block: clamp(0.094rem, 0.063rem + 0.16vw, 0.125rem); /* 1.5-2px */
+    --sb-ui-tag-gap: clamp(0.094rem, 0.063rem + 0.16vw, 0.125rem); /* 1.5-2px */
+    --sb-ui-tag-font-size: clamp(0.688rem, 0.656rem + 0.16vw, 0.75rem); /* 11-12px */
+    --sb-ui-tag-line-height: 1.2;
+    --sb-ui-tag-min-block-size: clamp(1rem, 0.938rem + 0.31vw, 1.125rem); /* 16-18px */
+    --sb-ui-tag-border-radius: clamp(0.219rem, 0.188rem + 0.16vw, 0.25rem); /* 3.5-4px */
+    --sb-ui-tag-icon-size: clamp(0.75rem, 0.719rem + 0.16vw, 0.875rem); /* 12-14px */
+  }
+}
+
+/* ============================================================================
+   7. MODIFIERS LAYER
+   ============================================================================ */
+@layer modifiers {
+  /* ROUNDED */
+  .sb-ui-tag--rounded {
+    --sb-ui-tag-border-radius: clamp(3.125rem, 3rem + 0.63vw, 6.25rem); /* 50-100px */
+  }
+}
+
+/* ============================================================================
+   8. UTILITIES LAYER
+   ============================================================================ */
+@layer utilities {
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .sb-ui-tag {
+      outline: 1px solid currentColor;
+      outline-offset: -1px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .sb-ui-tag {
+      transition: none;
+    }
+  }
+}

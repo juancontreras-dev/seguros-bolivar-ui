@@ -1,1 +1,3 @@
-.storybook/*
+# Build artifacts copiados por copy-assets.js (se regeneran con pnpm run build)
+.storybook/*.min.css
+.storybook/*.min.js
